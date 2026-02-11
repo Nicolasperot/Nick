@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nick Perot | Estrategia, Tecnología y Derecho</title>
+    <meta name="description"
+        content="Sitio personal de Nick Perot. Abogado, docente en UNL y consultor en tecnología, gestión pública e IA.">
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #fafafa;
+            --text-color: #1a1a1a;
+            --text-secondary: #555555;
+            --accent-color: #000000;
+            --border-color: #e0e0e0;
+            --card-bg: #ffffff;
+            --font-main: 'Inter', sans-serif;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #0f0f0f;
+                --text-color: #ededed;
+                --text-secondary: #a0a0a0;
+                --accent-color: #ffffff;
+                --border-color: #333333;
+                --card-bg: #1a1a1a;
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .section-padding {
+            padding: 100px 0;
+        }
+
+        /* Animaciones */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(var(--bg-color), 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid transparent;
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            border-bottom: 1px solid var(--border-color);
+            background: var(--bg-color);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.4rem;
+            letter-spacing: -1px;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 24px;
+        }
+
+        nav a {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: var(--text-color);
+        }
+
+        .social-nav {
+            display: flex;
+            gap: 15px;
+            padding-left: 20px;
+            border-left: 1px solid var(--border-color);
+        }
+
+        .social-nav i {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Hero */
+        #hero {
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            line-height: 1;
+            margin-bottom: 20px;
+            letter-spacing: -2px;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+        }
+
+        .pilares {
+            display: grid;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+
+        .pilares li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .pilares i {
+            color: var(--text-secondary);
+            width: 18px;
+        }
+
+        .hero-img-container {
+            width: 100%;
+            border-radius: 16px;
+            overflow: hidden;
+            aspect-ratio: 4/5;
+            background: var(--border-color);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(20%);
+        }
+
+        /* Botones */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--text-color);
+            color: var(--bg-color);
+        }
+
+        .btn-outline {
+            border: 1px solid var(--border-color);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+        /* Grid de Cards */
+        .section-header {
+            margin-bottom: 40px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 30px;
+            border-radius: 12px;
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            border-color: var(--text-color);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .card i {
+            margin-bottom: 20px;
+            width: 32px;
+            height: 32px;
+            stroke-width: 1.5px;
+        }
+
+        /* Formulario */
+        form {
+            display: grid;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: grid;
+            gap: 8px;
+        }
+
+        input,
+        textarea,
+        select {
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: inherit;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--text-color);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-img-container {
+                order: -1;
+                max-width: 300px;
+                margin: 0 auto;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .pilares {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header id="main-header">
+        <div class="container nav-container">
+            <a href="#" class="logo">NICK PEROT</a>
+            <nav>
+                <ul>
+                    <li><a href="#about">Bio</a></li>
+                    <li><a href="#articulos">Artículos</a></li>
+                    <li><a href="#servicios">Servicios</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+            <div class="social-nav">
+                <a href="https://linkedin.com/in/nickperot" target="_blank"><i data-lucide="linkedin"></i></a>
+                <a href="https://x.com/nickperot" target="_blank"><i data-lucide="twitter"></i></a>
+                <a href="https://instagram.com/nickperot" target="_blank"><i data-lucide="instagram"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <section id="about" class="section-padding">
+        <div class="container hero-content fade-in">
+            <div class="hero-text">
+                <h1>Derecho & <br>Tecnología.</h1>
+                <p class="subtitle">La revolución digital llegó para quedarse. Ayudo a construir instituciones más
+                    ágiles y educación más viva.</p>
+
+                <ul class="pilares">
+                    <li><i data-lucide="scale"></i> Abogacía y Gestión Pública</li>
+                    <li><i data-lucide="cpu"></i> Inteligencia Artificial Aplicada</li>
+                    <li><i data-lucide="graduation-cap"></i> Docente en FCJS - UNL</li>
+                    <li><i data-lucide="flag"></i> Estrategia y Performance F1</li>
+                </ul>
+
+                <div style="display: flex; gap: 15px;">
+                    <a href="#contacto" class="btn btn-primary">Empezar un proyecto</a>
+                    <a href="https://youtube.com/@formulalegal" target="_blank" class="btn btn-outline"><i
+                            data-lucide="youtube" style="margin-right: 8px;"></i> Fórmula Legal</a>
+                </div>
+            </div>
+
+            <div class="hero-image">
+                <div class="hero-img-container">
+                    <img src="assets/images/profile_3.jpg" alt="Nicolás Perot">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="articulos" class="section-padding" style="background: var(--card-bg);">
+        <div class="container fade-in">
+            <div class="section-header">
+                <h2>Artículos recientes</h2>
+                <div id="filters" style="display: flex; gap: 15px; font-size: 0.8rem;">
+                    <span style="cursor:pointer; font-weight: bold;">Todos</span>
+                    <span style="cursor:pointer; color: var(--text-secondary);">Derecho</span>
+                    <span style="cursor:pointer; color: var(--text-secondary);">IA</span>
+                </div>
+            </div>
+            <div class="cards-grid" id="articles-grid">
+            </div>
+        </div>
+    </section>
+
+    <section id="servicios" class="section-padding">
+        <div class="container fade-in">
+            <div class="section-header">
+                <h2>Servicios</h2>
+            </div>
+            <div class="cards-grid">
+                <div class="card">
+                    <i data-lucide="landmark"></i>
+                    <h3>GovTech & Gestión</h3>
+                    <p>Modernización de procesos estatales y consultoría legal estratégica para la administración
+                        pública.</p>
+                </div>
+                <div class="card">
+                    <i data-lucide="bot"></i>
+                    <h3>Implementación de IA</h3>
+                    <p>Estrategias para integrar herramientas de IA generativa en el flujo de trabajo profesional y
+                        legal.</p>
+                </div>
+                <div class="card">
+                    <i data-lucide="graduation-cap"></i>
+                    <h3>Innovación Educativa</h3>
+                    <p>Diseño de programas académicos que integran tecnología, nuevos métodos y pensamiento crítico.</p>
+                </div>
+                <div class="card">
+                    <i data-lucide="users-2"></i>
+                    <h3>Gestión de Talento</h3>
+                    <p>Optimización de equipos humanos bajo la luz de nuevas tecnologías, metodologías ágiles y procesos
+                        digitales.</p>
+                </div>
+                <div class="card">
+                    <i data-lucide="scale"></i>
+                    <h3>Consultoría Jurídica</h3>
+                    <p>Asesoramiento legal integral con visión estratégica, enfocado en la prevención de riesgos y
+                        soluciones eficientes.</p>
+                </div>
+                <div class="card">
+                    <i data-lucide="bar-chart-3"></i>
+                    <h3>Análisis de Datos</h3>
+                    <p>Lectura de performance y toma de decisiones basada en datos, con enfoque en contextos de alta
+                        competitividad.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto" class="section-padding">
+        <div class="container fade-in">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px;">
+                <div>
+                    <h2>Hablemos.</h2>
+                    <p style="margin: 20px 0; color: var(--text-secondary);">¿Tenés una idea, una propuesta académica o
+                        simplemente querés charlar sobre el impacto de la IA?</p>
+                    <p><strong>Email:</strong> nperot@fcjs.unl.edu.ar</p>
+                </div>
+                <form id="contact-form">
+                    <div class="form-group">
+                        <label>Nombre</label>
+                        <input type="text" id="name" required placeholder="Tu nombre">
+                    </div>
+                    <div class="form-group">
+                        <label>Motivo</label>
+                        <select id="reason">
+                            <option>Consulta Profesional</option>
+                            <option>Propuesta Académica</option>
+                            <option>Fórmula Legal / F1</option>
+                            <option>Otro</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Mensaje</label>
+                        <textarea id="message" rows="4" placeholder="¿Cómo puedo ayudarte?"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Enviar email</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer
+        style="padding: 50px 0; border-top: 1px solid var(--border-color); text-align: center; font-size: 0.8rem; color: var(--text-secondary);">
+        <p>&copy; 2026 Nick Perot. Construido con tecnología y enfoque humano.</p>
+    </footer>
+
+    <script>
+        // Inicializar Iconos
+        lucide.createIcons();
+
+        // Datos de ejemplo para que la web no se vea vacía
+        const articles = [
+            { title: "IA en la Justicia: ¿Aliada o Riesgo?", cat: "Derecho", desc: "Un análisis sobre la automatización de sentencias y el rol del abogado." },
+            { title: "El efecto Colapinto y la F1", cat: "Fórmula 1", desc: "Por qué el impacto de Franco trasciende lo deportivo y entra en lo comercial." },
+            { title: "Educación 4.0 en la UNL", cat: "Educación", desc: "Nuevas metodologías aplicadas a la cátedra de Economía Política." }
+        ];
+
+        const grid = document.getElementById('articles-grid');
+        articles.forEach(art => {
+            grid.innerHTML += `
+                <div class="card">
+                    <span style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-secondary)">${art.cat}</span>
+                    <h3 style="margin: 10px 0">${art.title}</h3>
+                    <p style="font-size: 0.9rem; color: var(--text-secondary)">${art.desc}</p>
+                </div>
+            `;
+        });
+
+        // Manejo del Formulario
+        document.getElementById('contact-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const reason = document.getElementById('reason').value;
+            const msg = document.getElementById('message').value;
+            window.location.href = `mailto:nperot@fcjs.unl.edu.ar?subject=${reason} - ${name}&body=${msg}`;
+        });
+
+        // Scroll y Animaciones
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            header.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+</body>
+
+</html>
