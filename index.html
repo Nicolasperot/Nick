@@ -5,11 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-KCH5LGBG');</script>
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-KCH5LGBG');</script>
     <!-- End Google Tag Manager -->
     <title>Nick Perot | Derecho, Tecnología y Gestión</title>
     <meta name="description"
@@ -17,7 +20,8 @@
 
     <!-- SEO Meta Tags -->
     <meta name="author" content="Nick Perot">
-    <meta name="keywords" content="Nick Perot, abogado, derecho, tecnología, gestión, inteligencia artificial, IA, docente, UNL, consultor, Santa Fe, Argentina">
+    <meta name="keywords"
+        content="Nick Perot, abogado, derecho, tecnología, gestión, inteligencia artificial, IA, docente, UNL, consultor, Santa Fe, Argentina">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://nickperot.com/">
 
@@ -32,7 +36,8 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Nick Perot | Derecho, Tecnología y Gestión">
-    <meta name="twitter:description" content="Abogado, docente en UNL y consultor en derecho, tecnología, gestión e IA.">
+    <meta name="twitter:description"
+        content="Abogado, docente en UNL y consultor en derecho, tecnología, gestión e IA.">
 
     <!-- Security -->
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
@@ -1298,6 +1303,205 @@
                 font-size: 0.7rem;
                 padding: 5px 10px;
             }
+
+            /* Fix double line spacing on mobile */
+            .narrative {
+                line-height: 1.65;
+                margin-bottom: 20px;
+            }
+
+            .subtitle {
+                line-height: 1.55;
+            }
+
+            .exp-intro p {
+                line-height: 1.6;
+            }
+
+            .section-padding {
+                padding: 60px 0;
+            }
+
+            .exp-intro {
+                margin-bottom: 50px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .chapter .narrative {
+                line-height: 1.7;
+                margin-bottom: 22px;
+            }
+
+            .exp-intro p {
+                line-height: 1.65;
+            }
+        }
+
+        /* ═══════════════════════════════════════════════
+           SCROLL TO TOP BUTTON
+           ═══════════════════════════════════════════════ */
+        .scroll-top-btn {
+            position: fixed;
+            bottom: 80px;
+            right: 24px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--bg-alt);
+            border: 1px solid var(--border);
+            color: var(--text-2);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 990;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s var(--ease);
+            box-shadow: var(--shadow-md);
+        }
+
+        .scroll-top-btn.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .scroll-top-btn:hover {
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.3);
+        }
+
+        .scroll-top-btn svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* ═══════════════════════════════════════════════
+           STICKY CTA BUTTON
+           ═══════════════════════════════════════════════ */
+        .sticky-cta {
+            position: fixed;
+            bottom: 24px;
+            left: 24px;
+            z-index: 991;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.4s var(--ease);
+        }
+
+        .sticky-cta.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .sticky-cta a {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 24px;
+            background: var(--accent);
+            color: #fff;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.88rem;
+            font-family: var(--font);
+            box-shadow: 0 8px 32px rgba(37, 99, 235, 0.35);
+            transition: all 0.3s var(--ease);
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .sticky-cta a:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(37, 99, 235, 0.45);
+        }
+
+        .sticky-cta a svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Hide sticky CTA text on very small screens, show icon only */
+        @media (max-width: 480px) {
+            .sticky-cta a {
+                padding: 14px;
+                border-radius: 50%;
+            }
+
+            .sticky-cta a .sticky-cta-text {
+                display: none;
+            }
+
+            .scroll-top-btn {
+                bottom: 80px;
+                right: 16px;
+                width: 40px;
+                height: 40px;
+            }
+
+            .sticky-cta {
+                bottom: 16px;
+                left: 16px;
+            }
+        }
+
+        @media (min-width: 481px) and (max-width: 768px) {
+            .sticky-cta a {
+                padding: 12px 18px;
+                font-size: 0.82rem;
+            }
+
+            .scroll-top-btn {
+                bottom: 76px;
+            }
+        }
+
+        /* ═══════════════════════════════════════════════
+           FORM LOADING BAR
+           ═══════════════════════════════════════════════ */
+        .form-progress-container {
+            display: none;
+            margin-top: 16px;
+            background: var(--bg-subtle);
+            border-radius: 12px;
+            overflow: hidden;
+            height: 6px;
+            position: relative;
+        }
+
+        .form-progress-container.active {
+            display: block;
+            animation: slideIn 0.3s var(--ease);
+        }
+
+        .form-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), #60a5fa);
+            border-radius: 12px;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .form-progress-text {
+            display: none;
+            margin-top: 8px;
+            font-size: 0.8rem;
+            color: var(--text-3);
+            text-align: center;
+        }
+
+        .form-progress-text.active {
+            display: block;
+            animation: slideIn 0.3s var(--ease);
         }
 
         /* ═══════════════════════════════════════════════
@@ -1457,6 +1661,7 @@
                 display: flex;
             }
         }
+
         /* ═══════════════════════════════════════════════
            FORM TOAST MESSAGES
            ═══════════════════════════════════════════════ */
@@ -1510,8 +1715,13 @@
             margin-bottom: 2px;
         }
 
-        .form-toast-success .form-toast-title { color: #22c55e; }
-        .form-toast-error .form-toast-title { color: #ef4444; }
+        .form-toast-success .form-toast-title {
+            color: #22c55e;
+        }
+
+        .form-toast-error .form-toast-title {
+            color: #ef4444;
+        }
 
         .form-toast-desc {
             font-size: 0.82rem;
@@ -1520,8 +1730,15 @@
         }
 
         @keyframes slideIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* ═══════════════════════════════════════════════
@@ -1606,13 +1823,84 @@
             text-align: center;
             background: var(--bg);
         }
+
+        /* ═══════════════════════════════════════════════
+           FORM ROW
+           ═══════════════════════════════════════════════ */
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        @media (max-width: 600px) {
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+
+        /* ═══════════════════════════════════════════════
+           HEADER — SMALL MOBILE LAYOUT
+           ═══════════════════════════════════════════════ */
+        @media (max-width: 480px) {
+            .nav-container {
+                flex-wrap: wrap;
+                height: auto;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                gap: 6px;
+            }
+
+            /* Hide logo initially and reorder to second row */
+            .nav-container .logo {
+                order: 3;
+                width: 100%;
+                justify-content: center;
+                font-size: 1.1rem;
+            }
+
+            /* Nav stays hidden on mobile already via menu-toggle */
+            .nav-container nav {
+                display: none;
+            }
+
+            /* Social + lang + hamburger go to first row */
+            .nav-container .header-right {
+                order: 1;
+                width: 100%;
+                justify-content: center;
+                gap: 12px;
+            }
+
+            .nav-container .header-right .lang-toggle {
+                margin-left: 0;
+            }
+
+            /* Adjust Hero padding to prevent overlap with taller header */
+            #hero {
+                padding-top: 130px;
+                align-items: flex-start;
+                /* Optional: align top to ensure content fits */
+            }
+
+            /* Adjust Mobile Menu position */
+            .mobile-menu {
+                top: 100px;
+                height: calc(100vh - 100px);
+                padding-top: 20px;
+            }
+        }
     </style>
 </head>
 
 <body>
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KCH5LGBG"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KCH5LGBG" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
     <!-- Scroll Progress -->
@@ -1639,11 +1927,12 @@
             </nav>
             <div class="header-right">
                 <div class="social-nav">
-                    <a href="https://linkedin.com/in/nickperot" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i
-                            data-lucide="linkedin"></i></a>
-                    <a href="https://x.com/nickperot" target="_blank" rel="noopener noreferrer" aria-label="X"><i data-lucide="twitter"></i></a>
-                    <a href="https://instagram.com/nickperot" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i
-                            data-lucide="instagram"></i></a>
+                    <a href="https://linkedin.com/in/nickperot" target="_blank" rel="noopener noreferrer"
+                        aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
+                    <a href="https://x.com/nickperot" target="_blank" rel="noopener noreferrer" aria-label="X"><i
+                            data-lucide="twitter"></i></a>
+                    <a href="https://instagram.com/nickperot" target="_blank" rel="noopener noreferrer"
+                        aria-label="Instagram"><i data-lucide="instagram"></i></a>
                 </div>
                 <div class="lang-toggle">
                     <button class="lang-btn active" id="btn-es" onclick="setLang('es')">ES</button>
@@ -1701,10 +1990,12 @@
                 </ul>
 
                 <div class="btn-row">
-                    <a href="#contacto" class="btn btn-primary">
-                        <span data-lang="es">Empezar un proyecto</span><span data-lang="en">Start a project</span>
+                    <a href="#contacto" class="btn btn-primary" id="join-btn">
+                        <span data-lang="es">Me sumo a la Transformación Digital</span><span data-lang="en">Join the
+                            Digital Transformation</span>
                     </a>
-                    <a href="https://youtube.com/@formulalegal" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+                    <a href="https://youtube.com/@formulalegal" target="_blank" rel="noopener noreferrer"
+                        class="btn btn-outline">
                         <i data-lucide="youtube"></i> Fórmula Legal
                     </a>
                 </div>
@@ -1712,7 +2003,8 @@
 
             <div class="hero-image">
                 <div class="hero-img-container">
-                    <img src="assets/images/profile_3.jpg" alt="Nick Perot — Abogado y Consultor en Derecho, Tecnología y Gestión" loading="eager">
+                    <img src="assets/images/profile_3.jpg"
+                        alt="Nick Perot — Abogado y Consultor en Derecho, Tecnología y Gestión" loading="eager">
                 </div>
             </div>
         </div>
@@ -2042,16 +2334,27 @@
                                     intersección entre salud
                                     pública y normativa legal.
                                 </p>
-                                <p class="narrative">Desde 2023, formo parte de esa Dirección dependiente del
-                                    <strong>Ministerio de
-                                        Economía de la Provincia de Santa Fe</strong>, donde sigo construyendo una
-                                    carrera al
-                                    servicio del Estado y la ciudadanía, aplicando todo lo aprendido con un enfoque
-                                    en la gestión
+                                <p class="narrative">Durante el año 2022, me desempeñé en el <strong>Programa
+                                        Padrinos</strong> de la <strong>Universidad Nacional del Litoral</strong>,
+                                    lo que me permitió estar en contacto directo con empresas y organizaciones que
+                                    aportan a la Universidad, gestionando aspectos técnicos, legales y
+                                    administrativos de ese vínculo.
+                                </p>
+                                <p class="narrative">En 2023, continué en la Dirección donde realicé mi práctica
+                                    profesional, dependiente del <strong>Ministerio de Economía de la Provincia de
+                                        Santa Fe</strong>, donde sigo construyendo una carrera al servicio del Estado
+                                    y la ciudadanía, aplicando todo lo aprendido con un enfoque en la gestión
                                     pública eficiente e innovadora.
                                 </p>
-                                <p class="narrative">Desde 2023 integro el <strong>Área Política y Sociedad</strong> de la <strong>Pastoral Social de la Arquidiócesis de Santa Fe de la Vera Cruz</strong>. Es un espacio donde confluyen <strong>política, sociedad civil y compromiso social</strong>; donde las ideas se convierten en acciones concretas frente a los desafíos que enfrentamos como sociedad.</p>
-                                <p class="narrative">En 2025, integré el <strong>equipo interdiocesano</strong> —conformado por representantes de las cinco diócesis de la provincia— que trabajó sobre la <strong>Reforma de la Constitución de la Provincia de Santa Fe</strong>.</p>
+                                <p class="narrative">Desde 2023 integro el <strong>Área Política y Sociedad</strong> de
+                                    la <strong>Pastoral Social de la Arquidiócesis de Santa Fe de la Vera Cruz</strong>.
+                                    Es un espacio donde confluyen <strong>política, sociedad civil y compromiso
+                                        social</strong>; donde las ideas se convierten en acciones concretas frente a
+                                    los desafíos que enfrentamos como sociedad.</p>
+                                <p class="narrative">En 2025, integré el <strong>equipo interdiocesano</strong>
+                                    —conformado por representantes de las cinco diócesis de la provincia— que trabajó
+                                    sobre la <strong>Reforma de la Constitución de la Provincia de Santa Fe</strong>.
+                                </p>
                             </div>
                             <div data-lang="en">
                                 <h3>Serving the State: the public vocation</h3>
@@ -2066,16 +2369,26 @@
                                     General Directorate of Legal Affairs of a state agency, where I worked at the
                                     intersection of
                                     public health and legal regulation.</p>
-                                <p class="narrative">Since 2023, I've been part of that Directorate under the
-                                    <strong>Ministry of
-                                        Economy of the Province of Santa Fe</strong>, where I continue building a
-                                    career in public
-                                    service, applying everything I've learned with a focus on efficient and
-                                    innovative public
+                                <p class="narrative">In 2022, I worked at the <strong>Padrinos
+                                        Program</strong> of the <strong>Universidad Nacional del Litoral</strong>,
+                                    which allowed me to engage directly with companies and organizations that
+                                    support the University, managing the technical, legal, and administrative
+                                    aspects of those partnerships.
+                                </p>
+                                <p class="narrative">In 2023, I continued at the Directorate where I completed my
+                                    practicum, under the <strong>Ministry of Economy of the Province of Santa
+                                        Fe</strong>, where I continue building a career in public service, applying
+                                    everything I've learned with a focus on efficient and innovative public
                                     management.
                                 </p>
-                                <p class="narrative">Since 2023, I have been part of the <strong>Politics and Society Area</strong> of the <strong>Pastoral Social of the Archdiocese of Santa Fe de la Vera Cruz</strong>. It is a space where <strong>politics, civil society, and social commitment</strong> converge; where ideas become concrete actions in the face of the challenges we face as a society.</p>
-                                <p class="narrative">In 2025, I joined the <strong>inter-diocesan team</strong> — composed of representatives from the five dioceses of the province — that worked on the <strong>Reform of the Constitution of the Province of Santa Fe</strong>.</p>
+                                <p class="narrative">Since 2023, I have been part of the <strong>Politics and Society
+                                        Area</strong> of the <strong>Pastoral Social of the Archdiocese of Santa Fe de
+                                        la Vera Cruz</strong>. It is a space where <strong>politics, civil society, and
+                                        social commitment</strong> converge; where ideas become concrete actions in the
+                                    face of the challenges we face as a society.</p>
+                                <p class="narrative">In 2025, I joined the <strong>inter-diocesan team</strong> —
+                                    composed of representatives from the five dioceses of the province — that worked on
+                                    the <strong>Reform of the Constitution of the Province of Santa Fe</strong>.</p>
                             </div>
                             <div class="exp-grid">
                                 <div class="exp-card">
@@ -2102,6 +2415,22 @@
                                             Provincia de
                                             Santa Fe</span><span data-lang="en">Provincial Pension Fund of Santa
                                             Fe</span></div>
+                                </div>
+                                <div class="exp-card">
+                                    <div class="exp-card-header">
+                                        <span class="exp-role"><span data-lang="es">Programa Padrinos —
+                                                Rectorado</span><span data-lang="en">Padrinos Program —
+                                                Rector's Office</span></span>
+                                        <span class="exp-period">2022</span>
+                                    </div>
+                                    <div class="exp-org"><span data-lang="es">Universidad Nacional del
+                                            Litoral</span><span data-lang="en">Universidad Nacional del
+                                            Litoral</span></div>
+                                    <p class="exp-desc"><span data-lang="es">Gestión del vínculo con empresas y
+                                            organizaciones aportantes, abarcando aspectos técnicos, legales y
+                                            administrativos.</span><span data-lang="en">Management of partnerships
+                                            with supporting companies and organizations, covering technical, legal,
+                                            and administrative aspects.</span></p>
                                 </div>
                                 <div class="exp-card">
                                     <div class="exp-card-header">
@@ -2163,7 +2492,10 @@
                                         Política"</strong> de la FCJS-UNL (desde abril de 2025), sigo convencido de
                                     que enseñar es
                                     la forma más disruptiva de transformar la realidad.</p>
-                                <p class="narrative">También, formo parte de la <strong>Cátedra de la materia optativa "Economía Social y Solidaria"</strong>, e integro el <strong>Observatorio de Economía Social FCJS UNL</strong> y el <strong>Programa de Extensión de Economía Social</strong> de la Universidad Nacional del Litoral.</p>
+                                <p class="narrative">También, formo parte de la <strong>Cátedra de la materia optativa
+                                        "Economía Social y Solidaria"</strong>, e integro el <strong>Observatorio de
+                                        Economía Social FCJS UNL</strong> y el <strong>Programa de Extensión de Economía
+                                        Social</strong> de la Universidad Nacional del Litoral.</p>
                             </div>
                             <div data-lang="en">
                                 <h3>The calling to teach</h3>
@@ -2192,7 +2524,10 @@
                                         B</strong> at FCJS-UNL (since April 2025), I remain convinced that teaching
                                     is the most
                                     disruptive way to transform reality.</p>
-                                <p class="narrative">I also serve as part of the <strong>"Social and Solidarity Economy" elective course</strong>, and I am a member of the <strong>Social Economy Observatory at FCJS UNL</strong> and the <strong>Social Economy Extension Program</strong> at the Universidad Nacional del Litoral.</p>
+                                <p class="narrative">I also serve as part of the <strong>"Social and Solidarity Economy"
+                                        elective course</strong>, and I am a member of the <strong>Social Economy
+                                        Observatory at FCJS UNL</strong> and the <strong>Social Economy Extension
+                                        Program</strong> at the Universidad Nacional del Litoral.</p>
                             </div>
                             <div class="exp-grid">
                                 <div class="exp-card">
@@ -2689,18 +3024,21 @@
                                         Poder
                                         Legislativo"</strong>, el proyecto de extensión en la Universidad Nacional
                                     del Litoral.</p>
-                                <p class="narrative">Trabajamos junto a la UNR y la UNL para que los jóvenes <strong>no solo
-                                    aprendan sobre
-                                    instituciones, sino que las habiten</strong>. Que discutan, propongan, se equivoquen y
+                                <p class="narrative">Trabajamos junto a la UNR y la UNL para que los jóvenes <strong>no
+                                        solo
+                                        aprendan sobre
+                                        instituciones, sino que las habiten</strong>. Que discutan, propongan, se
+                                    equivoquen y
                                     entiendan que la
                                     democracia no es algo que se estudia: <strong>es algo que se practica</strong>.</p>
                                 <p class="narrative">Para mí, Jóvenes Ciudadanos es el laboratorio donde confluyen
                                     la educación, la
                                     innovación pedagógica y el trabajo en equipo. Es donde puedo ver en tiempo real
                                     cómo las
-                                    metodologías activas transforman el aprendizaje, y cómo <strong>los estudiantes pasan de
-                                    ser
-                                    espectadores a protagonistas</strong> de su propia formación ciudadana.</p>
+                                    metodologías activas transforman el aprendizaje, y cómo <strong>los estudiantes
+                                        pasan de
+                                        ser
+                                        espectadores a protagonistas</strong> de su propia formación ciudadana.</p>
                                 <p class="narrative">Es también un recordatorio constante: la tecnología puede
                                     escalar procesos,
                                     pero <strong>el cambio real sigue pasando por las personas</strong>.</p>
@@ -2726,21 +3064,25 @@
                                     co-direction of the <strong>"Legislative Power Model"</strong>, the extension
                                     project at the
                                     Universidad Nacional del Litoral.</p>
-                                <p class="narrative">We work alongside UNR and UNL so that young people <strong>don't just
-                                    learn about
-                                    institutions, but inhabit them</strong>. So they discuss, propose, make mistakes, and
+                                <p class="narrative">We work alongside UNR and UNL so that young people <strong>don't
+                                        just
+                                        learn about
+                                        institutions, but inhabit them</strong>. So they discuss, propose, make
+                                    mistakes, and
                                     understand that
-                                    democracy is not something you study: <strong>it's something you practice</strong>.</p>
+                                    democracy is not something you study: <strong>it's something you practice</strong>.
+                                </p>
                                 <p class="narrative">For me, Jóvenes Ciudadanos is the laboratory where education,
                                     pedagogical
                                     innovation, and teamwork converge. It's where I can see in real time how active
                                     methodologies
-                                    transform learning, and how <strong>students go from being spectators to protagonists</strong> of
+                                    transform learning, and how <strong>students go from being spectators to
+                                        protagonists</strong> of
                                     their own civic
                                     education.</p>
                                 <p class="narrative">It is also a constant reminder: technology can scale processes,
                                     but <strong>real change
-                                    still happens through people</strong>.</p>
+                                        still happens through people</strong>.</p>
                             </div>
                             <div class="exp-grid">
                                 <div class="exp-card">
@@ -2819,8 +3161,9 @@
                             </div>
                             <div data-lang="es">
                                 <h3>La tecnología como lenguaje transversal</h3>
-                                <p class="narrative">En un mundo donde el Derecho y la tecnología convergen cada día
-                                    más, elegí no
+                                <p class="narrative">Mi vínculo con la tecnología empezó temprano: <strong>aprendí a
+                                        programar a los 11 años</strong>, y esa curiosidad nunca se detuvo. En un
+                                    mundo donde el Derecho y la tecnología convergen cada día más, elegí no
                                     quedarme atrás. Me formé en <strong>redes sociales, diseño y
                                         fotografía</strong>; profundicé en
                                     <strong>analítica web, análisis de datos, KPIs y Google Analytics</strong>; y
@@ -2851,8 +3194,9 @@
                             </div>
                             <div data-lang="en">
                                 <h3>Technology as a transversal language</h3>
-                                <p class="narrative">In a world where Law and technology converge more every day, I
-                                    chose not to be
+                                <p class="narrative">My connection with technology started early: <strong>I learned to
+                                        program at age 11</strong>, and that curiosity never stopped. In a world
+                                    where Law and technology converge more every day, I chose not to be
                                     left behind. I trained in <strong>social media management, design, and
                                         photography</strong>;
                                     deepened my knowledge in <strong>web analytics, data analysis, KPIs, and Google
@@ -2940,109 +3284,7 @@
 
     </section>
 
-    <!-- ═══════════════════════════════════════════════
-     ARTÍCULOS
-     ═══════════════════════════════════════════════ -->
-    <section id="articulos" class="section-padding" style="background: var(--bg-alt);">
-        <div class="container fade-in">
-            <div class="section-header">
-                <h2><span data-lang="es">Artículos recientes</span><span data-lang="en">Recent articles</span></h2>
-            </div>
 
-            <!-- Substack Unified Card -->
-            <div class="substack-card" style="cursor: default; transform: none;">
-                <div class="substack-inner" style="flex-direction: column; text-align: center; gap: 20px;">
-                    <!-- Header Row -->
-                    <div style="display: flex; align-items: center; gap: 16px; width: 100%; flex-wrap: wrap;">
-                        <div class="substack-icon">
-                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M4 4h16v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4z"></path>
-                                <polyline points="22 4 12 13 2 4"></polyline>
-                            </svg>
-                        </div>
-                        <div style="flex: 1; min-width: 200px; text-align: left;">
-                            <div style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1.5px; color: #FF6719; font-weight: 700; margin-bottom: 6px;">
-                                SUBSTACK NEWSLETTER</div>
-                            <div style="font-family: var(--serif); font-size: 1.2rem; font-weight: 700; margin-bottom: 4px; letter-spacing: -0.3px;">
-                                Nick Perot</div>
-                            <div style="font-size: 0.88rem; color: var(--text-2); line-height: 1.5;">
-                                <span data-lang="es">Artículos sobre derecho, tecnología, educación e inteligencia artificial.</span>
-                                <span data-lang="en">Articles on law, technology, education, and artificial intelligence.</span>
-                            </div>
-                        </div>
-                        <div style="flex-shrink: 0;">
-                            <a href="https://nickperot.substack.com" target="_blank" rel="noopener noreferrer" class="substack-cta" style="text-decoration: none;">
-                                <span data-lang="es">Leer en Substack</span>
-                                <span data-lang="en">Read on Substack</span>
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                    <polyline points="9 18 15 12 9 6"></polyline>
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                    <!-- Divider -->
-                    <div style="width: 100%; height: 1px; background: var(--border);"></div>
-                    <!-- Subscribe Section -->
-                    <div style="width: 100%; text-align: center;">
-                        <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 12px;">
-                            <i data-lucide="mail" style="width: 18px; height: 18px; color: var(--accent); stroke-width: 2;"></i>
-                            <h3 style="font-family: var(--serif); font-size: 1.05rem; letter-spacing: -0.5px; margin: 0;">
-                                <span data-lang="es">Suscribite al newsletter</span>
-                                <span data-lang="en">Subscribe to the newsletter</span>
-                            </h3>
-                        </div>
-                        <p style="color: var(--text-2); font-size: 0.85rem; margin-bottom: 14px;">
-                            <span data-lang="es">Recibí mis artículos directamente en tu casilla</span>
-                            <span data-lang="en">Get my articles directly in your inbox</span>
-                        </p>
-                        <form id="substack-subscribe" style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; max-width: 440px; margin: 0 auto;">
-                            <input type="email" id="substack-email" required placeholder="tu@email.com"
-                                style="flex: 1; min-width: 200px; padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px; font-family: var(--font); font-size: 0.9rem; background: var(--bg-alt); color: var(--text); outline: none; transition: border-color 0.3s;">
-                            <button type="submit" class="btn btn-primary" id="substack-btn" style="white-space: nowrap; padding: 10px 20px;">
-                                <i data-lucide="send" style="width: 14px; height: 14px;"></i>
-                                <span data-lang="es">Suscribirme</span>
-                                <span data-lang="en">Subscribe</span>
-                            </button>
-                        </form>
-                        <!-- Substack Success Toast -->
-                        <div id="substackSuccess" class="form-toast form-toast-success" style="margin-top: 14px; text-align: left;">
-                            <div class="form-toast-icon">
-                                <i data-lucide="check-circle" style="width: 20px; height: 20px;"></i>
-                            </div>
-                            <div>
-                                <div class="form-toast-title">
-                                    <span data-lang="es">¡Suscripción exitosa!</span>
-                                    <span data-lang="en">Successfully subscribed!</span>
-                                </div>
-                                <div class="form-toast-desc">
-                                    <span data-lang="es">Revisá tu email para confirmar la suscripción.</span>
-                                    <span data-lang="en">Check your email to confirm your subscription.</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Substack Error Toast -->
-                        <div id="substackError" class="form-toast form-toast-error" style="margin-top: 14px; text-align: left;">
-                            <div class="form-toast-icon">
-                                <i data-lucide="alert-circle" style="width: 20px; height: 20px;"></i>
-                            </div>
-                            <div>
-                                <div class="form-toast-title">
-                                    <span data-lang="es">Error al suscribir</span>
-                                    <span data-lang="en">Subscription failed</span>
-                                </div>
-                                <div class="form-toast-desc">
-                                    <span data-lang="es">Intentá suscribirte directamente en <a href="https://nickperot.substack.com" target="_blank" rel="noopener noreferrer" style="color: #ef4444; text-decoration: underline;">nickperot.substack.com</a></span>
-                                    <span data-lang="en">Try subscribing directly at <a href="https://nickperot.substack.com" target="_blank" rel="noopener noreferrer" style="color: #ef4444; text-decoration: underline;">nickperot.substack.com</a></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- ═══════════════════════════════════════════════
      SERVICIOS
@@ -3112,21 +3354,29 @@
             <div class="contact-grid">
                 <div class="contact-info">
                     <div data-lang="es">
-                        <h2>Hablemos.</h2>
-                        <p style="margin: 20px 0; color: var(--text-2);">¿Tenés una idea, una propuesta académica o
-                            simplemente querés charlar sobre el impacto de la IA?</p>
+                        <h2>Sumate a la transformación digital</h2>
+                        <p style="margin: 20px 0; color: var(--text-2); line-height: 1.7;">La revolución digital llegó
+                            para quedarse. La tecnología está al servicio. Accedé a las mejores herramientas para
+                            potenciar tu día a día con tecnología e IA aplicada.</p>
                     </div>
                     <div data-lang="en">
-                        <h2>Let's talk.</h2>
-                        <p style="margin: 20px 0; color: var(--text-2);">Have an idea, an academic proposal, or just
-                            want to chat about the impact of AI?</p>
+                        <h2>Join the Digital Transformation</h2>
+                        <p style="margin: 20px 0; color: var(--text-2); line-height: 1.7;">The digital revolution is
+                            here to stay. Technology is at your service. Access the best tools to enhance your daily life
+                            with technology and applied AI.</p>
                     </div>
                     <p><strong>Email:</strong> contacto@nickperot.com</p>
                 </div>
                 <form id="contact-form">
-                    <div class="form-group">
-                        <label><span data-lang="es">Nombre</span><span data-lang="en">Name</span></label>
-                        <input type="text" id="name" required placeholder="">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label><span data-lang="es">Nombre</span><span data-lang="en">First Name</span></label>
+                            <input type="text" id="firstname" required placeholder="">
+                        </div>
+                        <div class="form-group">
+                            <label><span data-lang="es">Apellido</span><span data-lang="en">Last Name</span></label>
+                            <input type="text" id="lastname" required placeholder="">
+                        </div>
                     </div>
                     <div class="form-group">
                         <label>Email</label>
@@ -3135,11 +3385,14 @@
                     <div class="form-group">
                         <label><span data-lang="es">Motivo</span><span data-lang="en">Subject</span></label>
                         <select id="reason"
-                            data-options-es="Asesoramiento profesional,Ámbito Académico y Docencia,Instituciones Educativas,Otras consultas"
-                            data-options-en="Professional Advisory,Academic & Teaching,Educational Institutions,Other inquiries">
-                            <option>Asesoramiento profesional</option>
+                            data-options-es="Consulta profesional,Consultoría estratégica,Ámbito Académico y Docencia,Instituciones Educativas,Me sumo a la Transformación Digital,Otras consultas"
+                            data-options-en="Professional Consultation,Strategic Consulting,Academic & Teaching,Educational Institutions,Join the Digital Transformation,Other inquiries">
+                            <option>Consulta profesional</option>
+                            <option>Consultoría estratégica</option>
                             <option>Ámbito Académico y Docencia</option>
                             <option>Instituciones Educativas</option>
+                            <option value="Me sumo a la Transformación Digital">Me sumo a la Transformación Digital
+                            </option>
                             <option>Otras consultas</option>
                         </select>
                     </div>
@@ -3150,6 +3403,14 @@
                     <button type="submit" class="btn btn-primary" id="submit-btn">
                         <span data-lang="es">Enviar mensaje</span><span data-lang="en">Send message</span>
                     </button>
+                    <!-- Loading Progress Bar -->
+                    <div class="form-progress-container" id="formProgress">
+                        <div class="form-progress-bar" id="formProgressBar"></div>
+                    </div>
+                    <div class="form-progress-text" id="formProgressText">
+                        <span data-lang="es">Enviando mensaje...</span>
+                        <span data-lang="en">Sending message...</span>
+                    </div>
                     <!-- Success Toast -->
                     <div id="formSuccess" class="form-toast form-toast-success">
                         <div class="form-toast-icon">
@@ -3190,16 +3451,160 @@
     <!-- reCAPTCHA Notice -->
     <div style="text-align: center; padding: 16px 28px; font-size: 0.72rem; color: var(--text-3); line-height: 1.6;">
         <span data-lang="es">Este sitio está protegido por reCAPTCHA y se aplican la
-            <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" style="color: var(--text-3); text-decoration: underline;">Política de privacidad</a> y los
-            <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer" style="color: var(--text-3); text-decoration: underline;">Términos de servicio</a> de Google.</span>
+            <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer"
+                style="color: var(--text-3); text-decoration: underline;">Política de privacidad</a> y los
+            <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer"
+                style="color: var(--text-3); text-decoration: underline;">Términos de servicio</a> de Google.</span>
         <span data-lang="en">This site is protected by reCAPTCHA and the Google
-            <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" style="color: var(--text-3); text-decoration: underline;">Privacy Policy</a> and
-            <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer" style="color: var(--text-3); text-decoration: underline;">Terms of Service</a> apply.</span>
+            <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer"
+                style="color: var(--text-3); text-decoration: underline;">Privacy Policy</a> and
+            <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer"
+                style="color: var(--text-3); text-decoration: underline;">Terms of Service</a> apply.</span>
     </div>
 
     <!-- ═══════════════════════════════════════════════
      FOOTER
      ═══════════════════════════════════════════════ -->
+    <!-- ═══════════════════════════════════════════════
+     ARTÍCULOS
+     ═══════════════════════════════════════════════ -->
+    <section id="articulos" class="section-padding" style="background: var(--bg-alt);">
+        <div class="container fade-in">
+            <div class="section-header">
+                <h2><span data-lang="es">Artículos recientes</span><span data-lang="en">Recent articles</span></h2>
+            </div>
+
+            <!-- Substack Unified Card -->
+            <div class="substack-card" style="cursor: default; transform: none;">
+                <div class="substack-inner" style="flex-direction: column; text-align: center; gap: 20px;">
+                    <!-- Header Row -->
+                    <div style="display: flex; align-items: center; gap: 16px; width: 100%; flex-wrap: wrap;">
+                        <div class="substack-icon">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 4h16v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4z"></path>
+                                <polyline points="22 4 12 13 2 4"></polyline>
+                            </svg>
+                        </div>
+                        <div style="flex: 1; min-width: 200px; text-align: left;">
+                            <div
+                                style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1.5px; color: #FF6719; font-weight: 700; margin-bottom: 6px;">
+                                SUBSTACK NEWSLETTER</div>
+                            <div
+                                style="font-family: var(--serif); font-size: 1.2rem; font-weight: 700; margin-bottom: 4px; letter-spacing: -0.3px;">
+                                Nick Perot</div>
+                            <div style="font-size: 0.88rem; color: var(--text-2); line-height: 1.5;">
+                                <span data-lang="es">Artículos sobre derecho, tecnología, educación e inteligencia
+                                    artificial.</span>
+                                <span data-lang="en">Articles on law, technology, education, and artificial
+                                    intelligence.</span>
+                            </div>
+                        </div>
+                        <div style="flex-shrink: 0;">
+                            <a href="https://nickperot.substack.com" target="_blank" rel="noopener noreferrer"
+                                class="substack-cta" style="text-decoration: none;">
+                                <span data-lang="es">Leer en Substack</span>
+                                <span data-lang="en">Read on Substack</span>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="9 18 15 12 9 6"></polyline>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Divider -->
+                    <div style="width: 100%; height: 1px; background: var(--border);"></div>
+                    <!-- Subscribe Section -->
+                    <div style="width: 100%; text-align: center;">
+                        <div
+                            style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 12px;">
+                            <i data-lucide="mail"
+                                style="width: 18px; height: 18px; color: var(--accent); stroke-width: 2;"></i>
+                            <h3
+                                style="font-family: var(--serif); font-size: 1.05rem; letter-spacing: -0.5px; margin: 0;">
+                                <span data-lang="es">Suscribite al newsletter</span>
+                                <span data-lang="en">Subscribe to the newsletter</span>
+                            </h3>
+                        </div>
+                        <p style="color: var(--text-2); font-size: 0.85rem; margin-bottom: 14px;">
+                            <span data-lang="es">Recibí mis artículos directamente en tu casilla</span>
+                            <span data-lang="en">Get my articles directly in your inbox</span>
+                        </p>
+                        <form id="substack-subscribe"
+                            style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; max-width: 440px; margin: 0 auto;">
+                            <input type="email" id="substack-email" required placeholder="tu@email.com"
+                                style="flex: 1; min-width: 200px; padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px; font-family: var(--font); font-size: 0.9rem; background: var(--bg-alt); color: var(--text); outline: none; transition: border-color 0.3s;">
+                            <button type="submit" class="btn btn-primary" id="substack-btn"
+                                style="white-space: nowrap; padding: 10px 20px;">
+                                <i data-lucide="send" style="width: 14px; height: 14px;"></i>
+                                <span data-lang="es">Suscribirme</span>
+                                <span data-lang="en">Subscribe</span>
+                            </button>
+                        </form>
+                        <!-- Substack Success Toast -->
+                        <div id="substackSuccess" class="form-toast form-toast-success"
+                            style="margin-top: 14px; text-align: left;">
+                            <div class="form-toast-icon">
+                                <i data-lucide="check-circle" style="width: 20px; height: 20px;"></i>
+                            </div>
+                            <div>
+                                <div class="form-toast-title">
+                                    <span data-lang="es">¡Suscripción exitosa!</span>
+                                    <span data-lang="en">Successfully subscribed!</span>
+                                </div>
+                                <div class="form-toast-desc">
+                                    <span data-lang="es">Revisá tu email para confirmar la suscripción.</span>
+                                    <span data-lang="en">Check your email to confirm your subscription.</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Substack Error Toast -->
+                        <div id="substackError" class="form-toast form-toast-error"
+                            style="margin-top: 14px; text-align: left;">
+                            <div class="form-toast-icon">
+                                <i data-lucide="alert-circle" style="width: 20px; height: 20px;"></i>
+                            </div>
+                            <div>
+                                <div class="form-toast-title">
+                                    <span data-lang="es">Error al suscribir</span>
+                                    <span data-lang="en">Subscription failed</span>
+                                </div>
+                                <div class="form-toast-desc">
+                                    <span data-lang="es">Intentá suscribirte directamente en <a
+                                            href="https://nickperot.substack.com" target="_blank"
+                                            rel="noopener noreferrer"
+                                            style="color: #ef4444; text-decoration: underline;">nickperot.substack.com</a></span>
+                                    <span data-lang="en">Try subscribing directly at <a
+                                            href="https://nickperot.substack.com" target="_blank"
+                                            rel="noopener noreferrer"
+                                            style="color: #ef4444; text-decoration: underline;">nickperot.substack.com</a></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Volver arriba" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
+
+    <!-- Sticky CTA Button -->
+    <div class="sticky-cta" id="stickyCta">
+        <a href="#contacto" id="sticky-join-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
+            </svg>
+            <span class="sticky-cta-text" data-lang="es">Sumate a la transformación</span>
+            <span class="sticky-cta-text" data-lang="en">Join the transformation</span>
+        </a>
+    </div>
+
     <footer>
         <p><span data-lang="es">&copy; 2026 Nick Perot. Construido con tecnología y enfoque humano.</span><span
                 data-lang="en">&copy; 2026 Nick Perot. Built with technology and a human touch.</span></p>
@@ -3287,12 +3692,57 @@
         });
 
         // ─── Contact Form (via Google Apps Script + reCAPTCHA v3) ───
+        function showProgressBar() {
+            const container = document.getElementById('formProgress');
+            const bar = document.getElementById('formProgressBar');
+            const text = document.getElementById('formProgressText');
+            container.classList.add('active');
+            text.classList.add('active');
+            bar.style.width = '0%';
+
+            // Animate to ~55% quickly
+            setTimeout(() => { bar.style.transition = 'width 1.2s ease'; bar.style.width = '55%'; }, 50);
+            // Then slowly crawl to ~75%
+            setTimeout(() => { bar.style.transition = 'width 3s ease-out'; bar.style.width = '78%'; }, 1400);
+        }
+
+        function completeProgressBar(success) {
+            const container = document.getElementById('formProgress');
+            const bar = document.getElementById('formProgressBar');
+            const text = document.getElementById('formProgressText');
+            bar.style.transition = 'width 0.4s ease';
+            bar.style.width = '100%';
+            if (success) {
+                bar.style.background = 'linear-gradient(90deg, #22c55e, #4ade80)';
+            } else {
+                bar.style.background = 'linear-gradient(90deg, #ef4444, #f87171)';
+            }
+            setTimeout(() => {
+                container.style.transition = 'opacity 0.5s ease';
+                container.style.opacity = '0';
+                text.style.transition = 'opacity 0.5s ease';
+                text.style.opacity = '0';
+                setTimeout(() => {
+                    container.classList.remove('active');
+                    text.classList.remove('active');
+                    container.style.opacity = '';
+                    container.style.transition = '';
+                    text.style.opacity = '';
+                    text.style.transition = '';
+                    bar.style.width = '0%';
+                    bar.style.background = '';
+                }, 500);
+            }, 600);
+        }
+
         document.getElementById('contact-form').addEventListener('submit', async (e) => {
             e.preventDefault();
             const btn = document.getElementById('submit-btn');
             const successToast = document.getElementById('formSuccess');
             const errorToast = document.getElementById('formError');
-            const name = sanitize(document.getElementById('name').value);
+            const firstname = sanitize(document.getElementById('firstname').value);
+            const lastname = sanitize(document.getElementById('lastname').value);
+            const fullname = firstname + ' ' + lastname;
             const email = sanitize(document.getElementById('email').value);
             const reason = sanitize(document.getElementById('reason').value);
             const msg = sanitize(document.getElementById('message').value);
@@ -3303,6 +3753,7 @@
 
             btn.disabled = true;
             btn.style.opacity = '0.6';
+            showProgressBar();
 
             try {
                 // Get reCAPTCHA token
@@ -3314,26 +3765,58 @@
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                     body: new URLSearchParams({
                         action: 'contact',
-                        name: name,
+                        name: fullname,
                         email: email,
                         reason: reason,
                         message: msg,
                         'g-recaptcha-response': token
                     })
                 });
-                successToast.classList.add('show');
-                document.getElementById('contact-form').reset();
-                setTimeout(() => successToast.classList.remove('show'), 8000);
+                completeProgressBar(true);
+                setTimeout(() => {
+                    successToast.classList.add('show');
+                    document.getElementById('contact-form').reset();
+                    setTimeout(() => successToast.classList.remove('show'), 8000);
+                }, 1200);
             } catch (err) {
-                errorToast.classList.add('show');
-                setTimeout(() => errorToast.classList.remove('show'), 8000);
+                completeProgressBar(false);
+                setTimeout(() => {
+                    errorToast.classList.add('show');
+                    setTimeout(() => errorToast.classList.remove('show'), 8000);
+                }, 1200);
             } finally {
-                btn.disabled = false;
-                btn.style.opacity = '1';
+                setTimeout(() => {
+                    btn.disabled = false;
+                    btn.style.opacity = '1';
+                }, 1200);
             }
         });
 
-        // ─── Header Scroll ───
+        // ─── Handle 'Join' / CTA Button Action ───
+        function prefillContactForm() {
+            setTimeout(() => {
+                const reasonSelect = document.getElementById('reason');
+                const messageBox = document.getElementById('message');
+
+                // Select the option
+                reasonSelect.value = "Me sumo a la Transformación Digital";
+
+                // Fill the message
+                const msgEs = "Me sumo a la Transformación Digital!";
+                const msgEn = "Join the Digital Transformation!";
+                const currentLang = document.documentElement.lang;
+                messageBox.value = currentLang === 'en' ? msgEn : msgEs;
+            }, 100);
+        }
+
+        document.getElementById('join-btn').addEventListener('click', prefillContactForm);
+        document.getElementById('sticky-join-btn').addEventListener('click', prefillContactForm);
+
+        // ─── Header Scroll + Scroll-to-top + Sticky CTA ───
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+        const stickyCta = document.getElementById('stickyCta');
+        const contactSection = document.getElementById('contacto');
+
         window.addEventListener('scroll', () => {
             document.querySelector('header').classList.toggle('scrolled', window.scrollY > 50);
 
@@ -3342,6 +3825,14 @@
             const docHeight = document.documentElement.scrollHeight - window.innerHeight;
             const progress = (scrollTop / docHeight) * 100;
             document.getElementById('scrollProgress').style.width = progress + '%';
+
+            // Show/hide scroll-to-top button
+            scrollTopBtn.classList.toggle('visible', scrollTop > 600);
+
+            // Show/hide sticky CTA (hide when near contact section)
+            const contactRect = contactSection.getBoundingClientRect();
+            const isNearContact = contactRect.top < window.innerHeight && contactRect.bottom > 0;
+            stickyCta.classList.toggle('visible', scrollTop > 400 && !isNearContact);
         });
 
         // ─── Fade-in Observer ───
