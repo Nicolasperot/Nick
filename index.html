@@ -15,6 +15,11 @@
         })(window, document, 'script', 'dataLayer', 'GTM-KCH5LGBG');</script>
     <!-- End Google Tag Manager -->
     <title>Nick Perot | Derecho, Tecnología y Gestión</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="manifest" href="site.webmanifest">
     <meta name="description"
         content="Sitio personal de Nick Perot. Abogado, docente en UNL y consultor en derecho, tecnología, gestión e IA.">
 
@@ -1176,6 +1181,102 @@
         }
 
         /* ═══════════════════════════════════════════════
+           SOCIAL MEDIA CTA SECTION
+           ═══════════════════════════════════════════════ */
+        .social-cta-section {
+            padding: 80px 0;
+            background: var(--bg-alt);
+            border-top: 1px solid var(--border);
+        }
+
+        .social-cta-inner {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .social-cta-inner h2 {
+            font-family: var(--serif);
+            font-size: clamp(1.6rem, 3vw, 2.2rem);
+            letter-spacing: -1px;
+            margin-bottom: 12px;
+        }
+
+        .social-cta-inner p {
+            color: var(--text-2);
+            font-size: 1rem;
+            margin-bottom: 36px;
+            line-height: 1.7;
+        }
+
+        .social-cta-grid {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .social-cta-card {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 24px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: var(--bg);
+            transition: all 0.3s var(--ease);
+            text-decoration: none;
+            color: var(--text);
+        }
+
+        .social-cta-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .social-cta-card .social-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .social-cta-card .social-icon svg,
+        .social-cta-card .social-icon i {
+            width: 20px;
+            height: 20px;
+            color: #fff;
+        }
+
+        .social-icon.linkedin { background: #0A66C2; }
+        .social-icon.x-icon { background: #000; }
+        @media (prefers-color-scheme: dark) {
+            .social-icon.x-icon { background: #fff; }
+            .social-icon.x-icon svg { color: #000; }
+        }
+        .social-icon.instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+        .social-icon.youtube { background: #FF0000; }
+        .social-icon.substack { background: #FF6719; }
+
+        .social-cta-card .social-info {
+            text-align: left;
+        }
+
+        .social-cta-card .social-name {
+            font-weight: 600;
+            font-size: 0.92rem;
+        }
+
+        .social-cta-card .social-handle {
+            font-size: 0.78rem;
+            color: var(--text-3);
+        }
+
+        /* ═══════════════════════════════════════════════
            FOOTER
            ═══════════════════════════════════════════════ */
         footer {
@@ -1929,8 +2030,7 @@
                 <div class="social-nav">
                     <a href="https://linkedin.com/in/nickperot" target="_blank" rel="noopener noreferrer"
                         aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
-                    <a href="https://x.com/nickperot" target="_blank" rel="noopener noreferrer" aria-label="X"><i
-                            data-lucide="twitter"></i></a>
+                    <a href="https://x.com/nickperot" target="_blank" rel="noopener noreferrer" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="width:16px;height:16px;"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
                     <a href="https://instagram.com/nickperot" target="_blank" rel="noopener noreferrer"
                         aria-label="Instagram"><i data-lucide="instagram"></i></a>
                 </div>
@@ -1965,12 +2065,12 @@
         <div class="container hero-content fade-in">
             <div class="hero-text">
                 <div data-lang="es">
-                    <h1>Derecho, <span class="accent-text">Tecnología <br>& Gestión.</span></h1>
+                    <h1>Derecho, <span class="accent-text">Tecnología <br>y Gestión</span></h1>
                     <p class="subtitle">Estamos transitando la revolución digital. Acompaño a personas y organizaciones
                         en su transformación digital responsable.</p>
                 </div>
                 <div data-lang="en">
-                    <h1>Law, <span class="accent-text">Technology <br>& Management.</span></h1>
+                    <h1>Law, <span class="accent-text">Technology <br>and Management</span></h1>
                     <p class="subtitle">We are going through the digital revolution. I support individuals and
                         organizations in their responsible digital transformation.</p>
                 </div>
@@ -2329,8 +2429,7 @@
                                     trabajé en el Sector Resoluciones, aprendiendo la mecánica del derecho
                                     previsional desde
                                     adentro. Luego, una <strong>Práctica Profesional</strong> me llevó a la
-                                    Dirección General de
-                                    Asuntos Jurídicos de un organismo del Estado, donde pude trabajar en la
+                                    Asesoría Letrada de un organismo bajo la órbita del Ministerio de Economía, donde pude trabajar en la
                                     intersección entre salud
                                     pública y normativa legal.
                                 </p>
@@ -2340,7 +2439,7 @@
                                     aportan a la Universidad, gestionando aspectos técnicos, legales y
                                     administrativos de ese vínculo.
                                 </p>
-                                <p class="narrative">En 2023, continué en la Dirección donde realicé mi práctica
+                                <p class="narrative">En 2023, continué en la Asesoría Letrada donde realicé mi práctica
                                     profesional, dependiente del <strong>Ministerio de Economía de la Provincia de
                                         Santa Fe</strong>, donde sigo construyendo una carrera al servicio del Estado
                                     y la ciudadanía, aplicando todo lo aprendido con un enfoque en la gestión
@@ -2366,7 +2465,7 @@
                                     Department, learning
                                     pension law from the inside. Then, a <strong>Professional Practicum</strong>
                                     brought me to the
-                                    General Directorate of Legal Affairs of a state agency, where I worked at the
+                                    Legal Counsel of an agency under the Ministry of Economy, where I worked at the
                                     intersection of
                                     public health and legal regulation.</p>
                                 <p class="narrative">In 2022, I worked at the <strong>Padrinos
@@ -2375,7 +2474,7 @@
                                     support the University, managing the technical, legal, and administrative
                                     aspects of those partnerships.
                                 </p>
-                                <p class="narrative">In 2023, I continued at the Directorate where I completed my
+                                <p class="narrative">In 2023, I continued at the Legal Counsel office where I completed my
                                     practicum, under the <strong>Ministry of Economy of the Province of Santa
                                         Fe</strong>, where I continue building a career in public service, applying
                                     everything I've learned with a focus on efficient and innovative public
@@ -2393,13 +2492,9 @@
                             <div class="exp-grid">
                                 <div class="exp-card">
                                     <div class="exp-card-header">
-                                        <span class="exp-role"><span data-lang="es">Dirección General de Asuntos
-                                                Jurídicos —
-                                                Ministerio de Economía</span><span data-lang="en">General
-                                                Directorate of Legal
-                                                Affairs — Ministry of Economy</span></span>
-                                        <span class="exp-period"><span data-lang="es">2023 – Presente</span><span
-                                                data-lang="en">2023 – Present</span></span>
+                                        <span class="exp-role"><span data-lang="es">Asesoría Letrada de un organismo bajo la órbita del Ministerio de Economía</span><span data-lang="en">Legal Counsel of an agency under the Ministry of Economy</span></span>
+                                        <span class="exp-period"><span data-lang="es">2024 – 2025</span><span
+                                                data-lang="en">2024 – 2025</span></span>
                                     </div>
                                     <div class="exp-org"><span data-lang="es">Provincia de Santa Fe</span><span
                                             data-lang="en">Province of Santa Fe</span></div>
@@ -2434,11 +2529,7 @@
                                 </div>
                                 <div class="exp-card">
                                     <div class="exp-card-header">
-                                        <span class="exp-role"><span data-lang="es">Práctica Profesional — Dir.
-                                                Gral. de Asuntos
-                                                Jurídicos</span><span data-lang="en">Professional Practicum —
-                                                General Directorate of
-                                                Legal Affairs</span></span>
+                                        <span class="exp-role"><span data-lang="es">Práctica Profesional — Asesoría Letrada de un organismo bajo la órbita del Ministerio de Economía</span><span data-lang="en">Professional Practicum — Legal Counsel of an agency under the Ministry of Economy</span></span>
                                         <span class="exp-period">08/2022 – 11/2022</span>
                                     </div>
                                     <div class="exp-org"><span data-lang="es">Organismo dependiente del Ministerio
@@ -2696,6 +2787,7 @@
                                         Criminal</strong> y <strong>Cibercrimen</strong> hasta <strong>Derecho
                                         Constitucional</strong> y <strong>Derecho Público</strong>.
                                 </p>
+                                <p class="narrative">También invertí en el desarrollo de habilidades que van más allá del conocimiento técnico. Realicé formación en <strong>Programación Neurolingüística (PNL)</strong>, <strong>oratoria y comunicación</strong>, <strong>comunicación no verbal</strong> y <strong>nuevos paradigmas educativos</strong>. Porque entendí que no alcanza con saber: hay que poder transmitirlo, conectar con quien tenés enfrente y comunicar con claridad e impacto. Esas herramientas hoy atraviesan todo lo que hago, ya sea frente a un aula, en una reunión institucional o en la construcción de contenido.</p>
                             </div>
                             <div data-lang="en">
                                 <h3>Learning never stops</h3>
@@ -2720,6 +2812,7 @@
                                     <strong>Constitutional Law</strong>
                                     and <strong>Public Law</strong>.
                                 </p>
+                                <p class="narrative">I also invested in developing skills that go beyond technical knowledge. I completed training in <strong>Neuro-Linguistic Programming (NLP)</strong>, <strong>public speaking and communication</strong>, <strong>non-verbal communication</strong>, and <strong>new educational practices</strong>. Because I understood early on that knowing something isn't enough — you have to be able to convey it, connect with the person in front of you, and communicate with clarity and impact. These tools now run through everything I do, whether in a classroom, an institutional meeting, or content creation.</p>
                             </div>
 
                             <div class="exp-grid">
@@ -3362,7 +3455,8 @@
                     <div data-lang="en">
                         <h2>Join the Digital Transformation</h2>
                         <p style="margin: 20px 0; color: var(--text-2); line-height: 1.7;">The digital revolution is
-                            here to stay. Technology is at your service. Access the best tools to enhance your daily life
+                            here to stay. Technology is at your service. Access the best tools to enhance your daily
+                            life
                             with technology and applied AI.</p>
                     </div>
                     <p><strong>Email:</strong> contacto@nickperot.com</p>
@@ -3385,13 +3479,14 @@
                     <div class="form-group">
                         <label><span data-lang="es">Motivo</span><span data-lang="en">Subject</span></label>
                         <select id="reason"
-                            data-options-es="Consulta profesional,Consultoría estratégica,Ámbito Académico y Docencia,Instituciones Educativas,Me sumo a la Transformación Digital,Otras consultas"
-                            data-options-en="Professional Consultation,Strategic Consulting,Academic & Teaching,Educational Institutions,Join the Digital Transformation,Other inquiries">
+                            data-options-es="Consulta profesional,Consultoría estratégica,Ámbito Académico y Docencia,Instituciones Educativas,Capacitación para organizaciones,Me sumo a la Transformación Digital,Otras consultas"
+                            data-options-en="Professional Consultation,Strategic Consulting,Academic & Teaching,Educational Institutions,Training for Organizations,Join the Digital Transformation,Other inquiries">
                             <option>Consulta profesional</option>
                             <option>Consultoría estratégica</option>
                             <option>Ámbito Académico y Docencia</option>
                             <option>Instituciones Educativas</option>
-                            <option value="Me sumo a la Transformación Digital">Me sumo a la Transformación Digital
+                            <option>Capacitación para organizaciones</option>
+                            <option value="Me sumo a la Transformación Digital" selected>Me sumo a la Transformación Digital
                             </option>
                             <option>Otras consultas</option>
                         </select>
@@ -3451,13 +3546,13 @@
     <!-- reCAPTCHA Notice -->
     <div style="text-align: center; padding: 16px 28px; font-size: 0.72rem; color: var(--text-3); line-height: 1.6;">
         <span data-lang="es">Este sitio está protegido por reCAPTCHA y se aplican la
-            <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer"
+            <a href="/politica-privacidad.html"
                 style="color: var(--text-3); text-decoration: underline;">Política de privacidad</a> y los
             <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer"
                 style="color: var(--text-3); text-decoration: underline;">Términos de servicio</a> de Google.</span>
-        <span data-lang="en">This site is protected by reCAPTCHA and the Google
-            <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer"
-                style="color: var(--text-3); text-decoration: underline;">Privacy Policy</a> and
+        <span data-lang="en">This site is protected by reCAPTCHA and the
+            <a href="/politica-privacidad.html"
+                style="color: var(--text-3); text-decoration: underline;">Privacy Policy</a> and Google
             <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer"
                 style="color: var(--text-3); text-decoration: underline;">Terms of Service</a> apply.</span>
     </div>
@@ -3541,6 +3636,14 @@
                                 <span data-lang="en">Subscribe</span>
                             </button>
                         </form>
+                        <!-- Substack Loading Progress Bar -->
+                        <div class="form-progress-container" id="substackProgress" style="max-width: 440px; margin: 10px auto 0;">
+                            <div class="form-progress-bar" id="substackProgressBar"></div>
+                        </div>
+                        <div class="form-progress-text" id="substackProgressText" style="max-width: 440px; margin: 6px auto 0;">
+                            <span data-lang="es">Enviando suscripción...</span>
+                            <span data-lang="en">Sending subscription...</span>
+                        </div>
                         <!-- Substack Success Toast -->
                         <div id="substackSuccess" class="form-toast form-toast-success"
                             style="margin-top: 14px; text-align: left;">
@@ -3553,8 +3656,8 @@
                                     <span data-lang="en">Successfully subscribed!</span>
                                 </div>
                                 <div class="form-toast-desc">
-                                    <span data-lang="es">Revisá tu email para confirmar la suscripción.</span>
-                                    <span data-lang="en">Check your email to confirm your subscription.</span>
+                                    <span data-lang="es">¡Pronto vas a recibir novedades en tu correo electrónico!</span>
+                                    <span data-lang="en">You'll start receiving updates straight to your inbox soon.</span>
                                 </div>
                             </div>
                         </div>
@@ -3588,8 +3691,10 @@
     </section>
 
     <!-- Scroll to Top Button -->
-    <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Volver arriba" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Volver arriba"
+        onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
             <polyline points="18 15 12 9 6 15"></polyline>
         </svg>
     </button>
@@ -3597,7 +3702,8 @@
     <!-- Sticky CTA Button -->
     <div class="sticky-cta" id="stickyCta">
         <a href="#contacto" id="sticky-join-btn">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
             </svg>
             <span class="sticky-cta-text" data-lang="es">Sumate a la transformación</span>
@@ -3605,9 +3711,74 @@
         </a>
     </div>
 
+    <!-- ═══════════════════════════════════════════════
+     SOCIAL MEDIA CTA
+     ═══════════════════════════════════════════════ -->
+    <section class="social-cta-section fade-in">
+        <div class="container">
+            <div class="social-cta-inner">
+                <h2><span data-lang="es">Conectemos</span><span data-lang="en">Let's connect</span></h2>
+                <p><span data-lang="es">Seguime en redes para más contenido sobre derecho, tecnología, gestión e inteligencia artificial.</span><span data-lang="en">Follow me on social media for more content on law, technology, management and artificial intelligence.</span></p>
+                <div class="social-cta-grid">
+                    <a href="https://linkedin.com/in/nickperot" target="_blank" rel="noopener noreferrer" class="social-cta-card">
+                        <div class="social-icon linkedin">
+                            <i data-lucide="linkedin"></i>
+                        </div>
+                        <div class="social-info">
+                            <div class="social-name">LinkedIn</div>
+                            <div class="social-handle">@nickperot</div>
+                        </div>
+                    </a>
+                    <a href="https://x.com/nickperot" target="_blank" rel="noopener noreferrer" class="social-cta-card">
+                        <div class="social-icon x-icon">
+                            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        </div>
+                        <div class="social-info">
+                            <div class="social-name">X</div>
+                            <div class="social-handle">@nickperot</div>
+                        </div>
+                    </a>
+                    <a href="https://instagram.com/nickperot" target="_blank" rel="noopener noreferrer" class="social-cta-card">
+                        <div class="social-icon instagram">
+                            <i data-lucide="instagram"></i>
+                        </div>
+                        <div class="social-info">
+                            <div class="social-name">Instagram</div>
+                            <div class="social-handle">@nickperot</div>
+                        </div>
+                    </a>
+                    <a href="https://youtube.com/@formulalegal" target="_blank" rel="noopener noreferrer" class="social-cta-card">
+                        <div class="social-icon youtube">
+                            <i data-lucide="youtube"></i>
+                        </div>
+                        <div class="social-info">
+                            <div class="social-name">YouTube</div>
+                            <div class="social-handle">@formulalegal</div>
+                        </div>
+                    </a>
+                    <a href="https://nickperot.substack.com" target="_blank" rel="noopener noreferrer" class="social-cta-card">
+                        <div class="social-icon substack">
+                            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg>
+                        </div>
+                        <div class="social-info">
+                            <div class="social-name">Substack</div>
+                            <div class="social-handle">nickperot.substack.com</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <footer>
-        <p><span data-lang="es">&copy; 2026 Nick Perot. Construido con tecnología y enfoque humano.</span><span
-                data-lang="en">&copy; 2026 Nick Perot. Built with technology and a human touch.</span></p>
+        <div class="container">
+            <p><span data-lang="es">&copy; 2026 Nick Perot. Construido con tecnología y enfoque humano.</span><span
+                    data-lang="en">&copy; 2026 Nick Perot. Built with technology and a human touch.</span></p>
+            <p style="margin-top: 12px; font-size: 0.72rem; color: var(--text-3); line-height: 1.6;">
+                <span data-lang="es">Al usar este sitio aceptás nuestros <a href="/terminos-condiciones.html" style="color: var(--text-3); text-decoration: underline;">Términos y Condiciones</a> y nuestra <a href="/politica-privacidad.html" style="color: var(--text-3); text-decoration: underline;">Política de Privacidad</a>.</span>
+                <span data-lang="en">By using this site you accept our <a href="/terminos-condiciones.html" style="color: var(--text-3); text-decoration: underline;">Terms & Conditions</a> and our <a href="/politica-privacidad.html" style="color: var(--text-3); text-decoration: underline;">Privacy Policy</a>.</span>
+            </p>
+        </div>
     </footer>
 
     <!-- ═══════════════════════════════════════════════
@@ -3650,6 +3821,48 @@
         const GAS_ENDPOINT = 'https://script.google.com/macros/s/AKfycbx0BLyUwZZXaGh8hqsRaKnth571244ekabk9Bb7Bq6D5_6laIC-Lu2GUlNz-ElToF9LJg/exec';
         const RECAPTCHA_SITE_KEY = '6Lc4A28sAAAAAA5iWDiguVk_O2KZNR4KBycQKv0k';
 
+        // ─── Substack Progress Bar Helpers ───
+        function showSubstackProgress() {
+            const container = document.getElementById('substackProgress');
+            const bar = document.getElementById('substackProgressBar');
+            const text = document.getElementById('substackProgressText');
+            container.classList.add('active');
+            text.classList.add('active');
+            bar.style.width = '0%';
+            bar.style.background = '';
+            setTimeout(() => { bar.style.transition = 'width 1.2s ease'; bar.style.width = '55%'; }, 50);
+            setTimeout(() => { bar.style.transition = 'width 3s ease-out'; bar.style.width = '78%'; }, 1400);
+        }
+
+        function completeSubstackProgress(success) {
+            const container = document.getElementById('substackProgress');
+            const bar = document.getElementById('substackProgressBar');
+            const text = document.getElementById('substackProgressText');
+            bar.style.transition = 'width 0.4s ease';
+            bar.style.width = '100%';
+            if (success) {
+                bar.style.background = 'linear-gradient(90deg, #22c55e, #4ade80)';
+            } else {
+                bar.style.background = 'linear-gradient(90deg, #ef4444, #f87171)';
+            }
+            setTimeout(() => {
+                container.style.transition = 'opacity 0.5s ease';
+                container.style.opacity = '0';
+                text.style.transition = 'opacity 0.5s ease';
+                text.style.opacity = '0';
+                setTimeout(() => {
+                    container.classList.remove('active');
+                    text.classList.remove('active');
+                    container.style.opacity = '';
+                    container.style.transition = '';
+                    text.style.opacity = '';
+                    text.style.transition = '';
+                    bar.style.width = '0%';
+                    bar.style.background = '';
+                }, 500);
+            }, 600);
+        }
+
         // ─── Substack Subscribe (via Google Apps Script Bridge + reCAPTCHA v3) ───
         document.getElementById('substack-subscribe').addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -3664,6 +3877,7 @@
 
             btn.disabled = true;
             btn.style.opacity = '0.6';
+            showSubstackProgress();
 
             try {
                 // Get reCAPTCHA token
@@ -3679,15 +3893,23 @@
                         'g-recaptcha-response': token
                     })
                 });
-                successToast.classList.add('show');
-                document.getElementById('substack-email').value = '';
-                setTimeout(() => successToast.classList.remove('show'), 8000);
+                completeSubstackProgress(true);
+                setTimeout(() => {
+                    successToast.classList.add('show');
+                    document.getElementById('substack-email').value = '';
+                    setTimeout(() => successToast.classList.remove('show'), 8000);
+                }, 1200);
             } catch (err) {
-                errorToast.classList.add('show');
-                setTimeout(() => errorToast.classList.remove('show'), 8000);
+                completeSubstackProgress(false);
+                setTimeout(() => {
+                    errorToast.classList.add('show');
+                    setTimeout(() => errorToast.classList.remove('show'), 8000);
+                }, 1200);
             } finally {
-                btn.disabled = false;
-                btn.style.opacity = '1';
+                setTimeout(() => {
+                    btn.disabled = false;
+                    btn.style.opacity = '1';
+                }, 1200);
             }
         });
 
@@ -3964,4 +4186,3 @@
 </body>
 
 </html>
-
