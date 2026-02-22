@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Términos y Condiciones — Nick Perot</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="shortcut icon" href="favicon.ico">
+    <meta name="description" content="Términos y Condiciones de nickperot.com">
+    <meta name="robots" content="noindex, follow">
+
+    <!-- Security -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #fafafa;
+            --bg-alt: #ffffff;
+            --bg-subtle: #f0f0f0;
+            --text: #1a1a1a;
+            --text-2: #555555;
+            --text-3: #888888;
+            --accent: #2563eb;
+            --accent-glow: rgba(37, 99, 235, 0.12);
+            --border: #e5e5e5;
+            --border-hover: #cccccc;
+            --font: 'Inter', -apple-system, sans-serif;
+            --serif: 'Playfair Display', Georgia, serif;
+            --ease: cubic-bezier(0.25, 0.8, 0.25, 1);
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.06);
+            --radius: 12px;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #0f0f0f;
+                --bg-alt: #1a1a1a;
+                --bg-subtle: #222222;
+                --text: #ededed;
+                --text-2: #a0a0a0;
+                --text-3: #666666;
+                --border: #2a2a2a;
+                --border-hover: #444444;
+                --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
+                --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.2);
+            }
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+        a { text-decoration: none; color: inherit; transition: all 0.3s var(--ease); }
+        ul { list-style: none; }
+
+        /* ─── HEADER ─── */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: transparent;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            transition: all 0.4s var(--ease);
+        }
+        header { background: rgba(250, 250, 250, 0.92); }
+        @media (prefers-color-scheme: dark) {
+            header { background: rgba(15, 15, 15, 0.92); }
+        }
+        .nav-container {
+            max-width: 1060px;
+            margin: 0 auto;
+            padding: 0 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 68px;
+        }
+        .logo {
+            font-weight: 900;
+            font-size: 1.25rem;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .logo-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .social-nav { display: flex; gap: 12px; }
+        .social-nav a {
+            width: 34px;
+            height: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            transition: all 0.3s var(--ease);
+        }
+        .social-nav a:hover { background: var(--bg-subtle); }
+        .social-nav i { width: 16px; height: 16px; }
+        .back-link {
+            font-size: 0.85rem;
+            color: var(--text-2);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .back-link:hover { color: var(--accent); }
+
+        /* ─── CONTENT ─── */
+        .container { max-width: 1060px; margin: 0 auto; padding: 0 28px; }
+        main {
+            max-width: 780px;
+            margin: 0 auto;
+            padding: 120px 28px 80px;
+        }
+        .page-title {
+            font-family: var(--serif);
+            font-size: clamp(1.8rem, 3vw, 2.4rem);
+            font-weight: 700;
+            letter-spacing: -1px;
+            margin-bottom: 8px;
+        }
+        .page-subtitle {
+            color: var(--text-3);
+            font-size: 0.88rem;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+        }
+        .page-subtitle span { color: var(--accent); font-weight: 600; }
+
+        h2 {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-top: 36px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+        main p {
+            margin-bottom: 14px;
+            color: var(--text-2);
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+        main ul {
+            margin: 8px 0 16px 24px;
+            list-style: disc;
+            color: var(--text-2);
+        }
+        main ul li {
+            margin-bottom: 6px;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+        main a { color: var(--accent); }
+        main a:hover { text-decoration: underline; }
+        main strong { color: var(--text); font-weight: 600; }
+
+        .highlight-box {
+            background: var(--bg-alt);
+            border-left: 3px solid var(--accent);
+            padding: 20px 24px;
+            margin: 20px 0;
+            border-radius: 0 var(--radius) var(--radius) 0;
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--accent);
+        }
+        .highlight-box p { margin: 0; font-size: 0.92rem; }
+
+        /* ─── FOOTER ─── */
+        footer {
+            padding: 48px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            font-size: 0.82rem;
+            color: var(--text-3);
+        }
+        .footer-links {
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            font-size: 0.78rem;
+        }
+        .footer-links a { color: var(--text-3); }
+        .footer-links a:hover { color: var(--accent); }
+
+        @media (max-width: 768px) {
+            .social-nav { display: none; }
+            main { padding: 100px 20px 60px; }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="nav-container">
+            <a href="/" class="logo"><span class="logo-dot"></span> Nick Perot</a>
+            <div class="header-right">
+                <div class="social-nav">
+                    <a href="https://linkedin.com/in/nickperot" target="_blank" rel="noopener noreferrer"
+                        aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
+                    <a href="https://x.com/nickperot" target="_blank" rel="noopener noreferrer" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="width:16px;height:16px;"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                    <a href="https://instagram.com/nickperot" target="_blank" rel="noopener noreferrer"
+                        aria-label="Instagram"><i data-lucide="instagram"></i></a>
+                </div>
+                <a href="/" class="back-link">
+                    <i data-lucide="arrow-left" style="width: 16px; height: 16px;"></i>
+                    Volver al sitio
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <h1 class="page-title">Términos y Condiciones</h1>
+        <p class="page-subtitle">
+            Última actualización: <span>Febrero 2026</span> &nbsp;·&nbsp; Aplicable a <span>nickperot.com</span>
+        </p>
+
+        <div class="highlight-box">
+            <p>Al acceder y utilizar este sitio web, aceptás los presentes Términos y Condiciones en su totalidad. Si no estás de acuerdo con alguno de los términos aquí establecidos, te pedimos que no utilices el sitio.</p>
+        </div>
+
+        <h2>1. Titularidad del sitio</h2>
+        <p>El sitio web <strong>nickperot.com</strong> es de titularidad de <strong>Nicolás Perot</strong>, Abogado, con domicilio en la ciudad de Santa Fe, provincia de Santa Fe, República Argentina.</p>
+
+        <h2>2. Objeto</h2>
+        <p>El presente sitio tiene como finalidad la presentación de la trayectoria profesional de Nicolás Perot, la difusión de contenido en materia de derecho, tecnología y educación, y la posibilidad de establecer contacto para servicios de consultoría, asesoramiento y programas de formación.</p>
+
+        <h2>3. Edad mínima y consentimiento</h2>
+        <p>El acceso y uso de este sitio, la suscripción al newsletter, el envío de formularios de contacto y la contratación de cualquier servicio o programa de formación están destinados exclusivamente a personas que cuenten con la <strong>edad mínima legal requerida</strong> para realizar actos jurídicos válidos en la jurisdicción donde se encuentren o bajo cuyo derecho estén comprendidas.</p>
+        <p>Al utilizar el sitio, completar cualquier formulario, suscribirte o adquirir un programa, <strong>declarás expresamente</strong> que:</p>
+        <ul>
+            <li>Contás con la edad mínima legal exigida en tu país o jurisdicción para obligarte contractualmente.</li>
+            <li>Tenés plena capacidad legal para aceptar estos términos y asumir las obligaciones que de ellos derivan.</li>
+            <li>En caso de ser menor de edad conforme a tu legislación local, contás con la autorización de tu representante legal para realizar las acciones correspondientes.</li>
+        </ul>
+        <p>Nos reservamos el derecho de cancelar suscripciones, bloquear accesos o anular contrataciones si tenemos motivos fundados para creer que un usuario no cumple con estos requisitos.</p>
+
+        <h2>4. Programas de formación — Transformá tu práctica profesional</h2>
+        <p>A través de este sitio se pueden ofrecer y comercializar <strong>programas de formación profesional</strong> en las áreas de derecho aplicado, tecnología, inteligencia artificial, transformación digital e innovación educativa, bajo la marca <em>Nick Perot</em>.</p>
+        <p>Estos programas pueden adoptar distintos formatos: cursos online en vivo o grabados, talleres intensivos, mentorías individuales, cohortes grupales o materiales de acceso bajo demanda. Las condiciones específicas de cada programa —precio, modalidad, duración, política de reembolso y acceso al contenido— se detallan en la página de venta correspondiente al momento de la contratación y forman parte integrante de los presentes términos.</p>
+        <p>La adquisición de un programa implica una <strong>licencia de uso personal e intransferible</strong> del contenido. Queda expresamente prohibida la reproducción, redistribución, reventa o compartición del material con terceros sin autorización escrita previa.</p>
+        <p>Salvo que se indique lo contrario en la página de cada programa, <strong>no se realizan reembolsos</strong> una vez iniciado el acceso al contenido. Ante cualquier inconveniente, te invito a escribirme antes de completar la compra.</p>
+
+        <h2>5. Uso del sitio</h2>
+        <p>El usuario se compromete a utilizar el sitio de forma lícita, conforme a la buena fe y al ordenamiento jurídico vigente. Queda expresamente prohibido:</p>
+        <ul>
+            <li>Utilizar el sitio con fines fraudulentos, ilegales o que vulneren derechos de terceros.</li>
+            <li>Enviar comunicaciones no solicitadas (spam) a través de los formularios.</li>
+            <li>Intentar acceder, modificar o dañar los sistemas o contenidos del sitio.</li>
+            <li>Reproducir, distribuir o comunicar públicamente el contenido del sitio sin autorización expresa.</li>
+        </ul>
+
+        <h2>6. Naturaleza de la información publicada</h2>
+        <p>El contenido publicado en este sitio —artículos, notas, publicaciones del newsletter y cualquier otro material— tiene carácter <strong>informativo y divulgativo</strong>. No constituye asesoramiento legal, impositivo, financiero ni de ninguna otra naturaleza profesional, salvo que exista un contrato de servicios vigente entre las partes.</p>
+        <div class="highlight-box">
+            <p>Si necesitás asesoramiento profesional específico, te invito a ponerte en contacto a través del formulario del sitio para evaluar tu situación concreta.</p>
+        </div>
+
+        <h2>7. Servicios de consultoría</h2>
+        <p>Los servicios profesionales ofrecidos a través de este sitio (consultoría jurídica, innovación educativa, transformación digital, análisis de datos, entre otros) se rigen por los términos específicos acordados en cada propuesta o contrato de servicios. El presente sitio no establece por sí mismo ninguna relación contractual.</p>
+
+        <h2>8. Propiedad intelectual</h2>
+        <p>Todos los contenidos del sitio —textos, diseño, logotipo, imágenes, código fuente y demás elementos— son propiedad de Nicolás Perot o de sus respectivos titulares, y están protegidos por la Ley N° 11.723 de Propiedad Intelectual y la normativa internacional aplicable.</p>
+        <p>Se permite la reproducción parcial con fines personales y no comerciales, siempre que se cite la fuente con enlace al sitio original. Cualquier otro uso requiere autorización previa y por escrito.</p>
+
+        <h2>9. Newsletter</h2>
+        <p>La suscripción al newsletter es voluntaria y gratuita. El usuario puede darse de baja en cualquier momento a través del enlace incluido en cada correo o escribiendo a <a href="mailto:contacto@nickperot.com">contacto@nickperot.com</a>. Los contenidos del newsletter son de carácter informativo y no constituyen asesoramiento profesional.</p>
+
+        <h2>10. Limitación de responsabilidad</h2>
+        <p>Nicolás Perot no será responsable por:</p>
+        <ul>
+            <li>Interrupciones, errores técnicos o indisponibilidad del sitio.</li>
+            <li>Decisiones tomadas por los usuarios basándose en el contenido informativo del sitio.</li>
+            <li>Contenidos de sitios web de terceros a los que el sitio pudiera enlazar.</li>
+            <li>Daños derivados de accesos no autorizados al sitio por parte de terceros.</li>
+        </ul>
+
+        <h2>11. Enlaces externos</h2>
+        <p>El sitio puede contener enlaces a sitios web de terceros (Substack, YouTube, LinkedIn, redes sociales, etc.). Estos enlaces se proporcionan únicamente por conveniencia y no implican responsabilidad por el contenido, la privacidad o las prácticas de dichos sitios.</p>
+
+        <h2>12. Legislación aplicable y jurisdicción</h2>
+        <p>Los presentes Términos y Condiciones se rigen por el derecho de la República Argentina. Para cualquier controversia derivada del uso de este sitio, las partes se someten a la jurisdicción de los tribunales ordinarios de la ciudad de Santa Fe, Argentina, con renuncia a cualquier otro fuero que pudiera corresponder.</p>
+        <p>Para usuarios de la Unión Europea, se aplican adicionalmente los derechos reconocidos por el RGPD y la normativa de protección al consumidor vigente en su país de residencia.</p>
+
+        <h2>13. Modificaciones</h2>
+        <p>Nos reservamos el derecho de modificar estos Términos y Condiciones en cualquier momento. Las modificaciones entrarán en vigor desde su publicación en el sitio. El uso continuado del sitio después de dichas modificaciones implica la aceptación de los nuevos términos.</p>
+
+        <h2>14. Contacto</h2>
+        <p>Para cualquier consulta relacionada con estos términos, podés escribirme a: <a href="mailto:contacto@nickperot.com">contacto@nickperot.com</a></p>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Nick Perot. Construido con tecnología y enfoque humano.</p>
+            <div class="footer-links">
+                <a href="/politica-privacidad.html">Política de Privacidad</a>
+                <a href="/terminos-condiciones.html">Términos y Condiciones</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>lucide.createIcons();</script>
+</body>
+
+</html>

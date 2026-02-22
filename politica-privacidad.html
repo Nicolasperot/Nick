@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Política de Privacidad — Nick Perot</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="shortcut icon" href="favicon.ico">
+    <meta name="description" content="Política de Privacidad de nickperot.com">
+    <meta name="robots" content="noindex, follow">
+
+    <!-- Security -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #fafafa;
+            --bg-alt: #ffffff;
+            --bg-subtle: #f0f0f0;
+            --text: #1a1a1a;
+            --text-2: #555555;
+            --text-3: #888888;
+            --accent: #2563eb;
+            --accent-glow: rgba(37, 99, 235, 0.12);
+            --border: #e5e5e5;
+            --border-hover: #cccccc;
+            --font: 'Inter', -apple-system, sans-serif;
+            --serif: 'Playfair Display', Georgia, serif;
+            --ease: cubic-bezier(0.25, 0.8, 0.25, 1);
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.06);
+            --radius: 12px;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #0f0f0f;
+                --bg-alt: #1a1a1a;
+                --bg-subtle: #222222;
+                --text: #ededed;
+                --text-2: #a0a0a0;
+                --text-3: #666666;
+                --border: #2a2a2a;
+                --border-hover: #444444;
+                --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
+                --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.2);
+            }
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+        a { text-decoration: none; color: inherit; transition: all 0.3s var(--ease); }
+        ul { list-style: none; }
+
+        /* ─── HEADER ─── */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: transparent;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            transition: all 0.4s var(--ease);
+        }
+        header { background: rgba(250, 250, 250, 0.92); }
+        @media (prefers-color-scheme: dark) {
+            header { background: rgba(15, 15, 15, 0.92); }
+        }
+        .nav-container {
+            max-width: 1060px;
+            margin: 0 auto;
+            padding: 0 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 68px;
+        }
+        .logo {
+            font-weight: 900;
+            font-size: 1.25rem;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .logo-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .social-nav { display: flex; gap: 12px; }
+        .social-nav a {
+            width: 34px;
+            height: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            transition: all 0.3s var(--ease);
+        }
+        .social-nav a:hover { background: var(--bg-subtle); }
+        .social-nav i { width: 16px; height: 16px; }
+        .back-link {
+            font-size: 0.85rem;
+            color: var(--text-2);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .back-link:hover { color: var(--accent); }
+
+        /* ─── CONTENT ─── */
+        .container { max-width: 1060px; margin: 0 auto; padding: 0 28px; }
+        main {
+            max-width: 780px;
+            margin: 0 auto;
+            padding: 120px 28px 80px;
+        }
+        .page-title {
+            font-family: var(--serif);
+            font-size: clamp(1.8rem, 3vw, 2.4rem);
+            font-weight: 700;
+            letter-spacing: -1px;
+            margin-bottom: 8px;
+        }
+        .page-subtitle {
+            color: var(--text-3);
+            font-size: 0.88rem;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+        }
+        .page-subtitle span { color: var(--accent); font-weight: 600; }
+
+        h2 {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-top: 36px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+        main p {
+            margin-bottom: 14px;
+            color: var(--text-2);
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+        main ul {
+            margin: 8px 0 16px 24px;
+            list-style: disc;
+            color: var(--text-2);
+        }
+        main ul li {
+            margin-bottom: 6px;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+        main a { color: var(--accent); }
+        main a:hover { text-decoration: underline; }
+        main strong { color: var(--text); font-weight: 600; }
+
+        .highlight-box {
+            background: var(--bg-alt);
+            border-left: 3px solid var(--accent);
+            padding: 20px 24px;
+            margin: 20px 0;
+            border-radius: 0 var(--radius) var(--radius) 0;
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--accent);
+        }
+        .highlight-box p { margin: 0; font-size: 0.92rem; }
+
+        /* ─── FOOTER ─── */
+        footer {
+            padding: 48px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            font-size: 0.82rem;
+            color: var(--text-3);
+        }
+        .footer-links {
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            font-size: 0.78rem;
+        }
+        .footer-links a { color: var(--text-3); }
+        .footer-links a:hover { color: var(--accent); }
+
+        @media (max-width: 768px) {
+            .social-nav { display: none; }
+            main { padding: 100px 20px 60px; }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="nav-container">
+            <a href="/" class="logo"><span class="logo-dot"></span> Nick Perot</a>
+            <div class="header-right">
+                <div class="social-nav">
+                    <a href="https://linkedin.com/in/nickperot" target="_blank" rel="noopener noreferrer"
+                        aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
+                    <a href="https://x.com/nickperot" target="_blank" rel="noopener noreferrer" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="width:16px;height:16px;"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                    <a href="https://instagram.com/nickperot" target="_blank" rel="noopener noreferrer"
+                        aria-label="Instagram"><i data-lucide="instagram"></i></a>
+                </div>
+                <a href="/" class="back-link">
+                    <i data-lucide="arrow-left" style="width: 16px; height: 16px;"></i>
+                    Volver al sitio
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <h1 class="page-title">Política de Privacidad</h1>
+        <p class="page-subtitle">
+            Última actualización: <span>Febrero 2026</span> &nbsp;·&nbsp; Aplicable a <span>nickperot.com</span>
+        </p>
+
+        <div class="highlight-box">
+            <p>Esta política explica de forma clara qué datos recopilamos, para qué los usamos y cuáles son tus derechos. Si tenés alguna consulta, podés escribirme a <a href="mailto:contacto@nickperot.com">contacto@nickperot.com</a>.</p>
+        </div>
+
+        <h2>1. Responsable del tratamiento</h2>
+        <p>El responsable del tratamiento de los datos personales recopilados a través de este sitio web es:</p>
+        <p><strong>Nicolás Perot</strong> — Abogado y Consultor<br>
+        Santa Fe, Argentina<br>
+        Email: <a href="mailto:contacto@nickperot.com">contacto@nickperot.com</a><br>
+        Sitio web: <a href="https://www.nickperot.com">www.nickperot.com</a></p>
+
+        <h2>2. Qué datos recopilamos</h2>
+        <p>Recopilamos los siguientes datos personales en función de cómo interactuás con el sitio:</p>
+        <ul>
+            <li><strong>Formulario de contacto:</strong> nombre, apellido, dirección de email, motivo de contacto y mensaje.</li>
+            <li><strong>Suscripción al newsletter:</strong> dirección de email.</li>
+            <li><strong>Datos de navegación:</strong> a través de Google Tag Manager y Google Analytics, recopilamos datos técnicos anónimos como páginas visitadas, tiempo de sesión, tipo de dispositivo y ubicación geográfica aproximada.</li>
+            <li><strong>reCAPTCHA:</strong> Google recopila datos técnicos para verificar que las interacciones sean humanas (ver sección 7).</li>
+        </ul>
+
+        <h2>3. Para qué usamos tus datos</h2>
+        <p>Los datos que recopilamos se utilizan exclusivamente para:</p>
+        <ul>
+            <li>Responder a consultas y mensajes enviados a través del formulario de contacto.</li>
+            <li>Enviar el newsletter y comunicaciones de contenido a quienes se suscriban voluntariamente.</li>
+            <li>Analizar el tráfico y comportamiento en el sitio con fines estadísticos para mejorar la experiencia del usuario.</li>
+            <li>Proteger el sitio contra spam y abusos automatizados.</li>
+        </ul>
+        <p>No utilizamos tus datos para tomar decisiones automatizadas ni para elaborar perfiles comerciales.</p>
+
+        <h2>4. Base legal del tratamiento</h2>
+        <p>El tratamiento de tus datos personales se realiza bajo las siguientes bases legales:</p>
+        <ul>
+            <li><strong>Consentimiento:</strong> para el envío de newsletter y el uso de cookies analíticas.</li>
+            <li><strong>Interés legítimo:</strong> para responder consultas profesionales y proteger la seguridad del sitio.</li>
+            <li><strong>Cumplimiento normativo:</strong> conforme a la Ley N° 25.326 de Protección de los Datos Personales (Argentina) y, en lo aplicable, al Reglamento General de Protección de Datos (RGPD/GDPR) de la Unión Europea.</li>
+        </ul>
+
+        <h2>5. Almacenamiento y conservación de datos</h2>
+        <p>Los datos del formulario de contacto y newsletter se almacenan en <strong>Google Sheets</strong> como registro interno. Los datos de newsletter se reenvían a <strong>Substack</strong> para la gestión de envíos.</p>
+        <p>Los datos se conservan durante el tiempo necesario para cumplir con la finalidad para la que fueron recopilados, o mientras la relación profesional esté vigente. Las suscripciones al newsletter se mantienen hasta que el usuario solicite su baja.</p>
+
+        <h2>6. Transferencia internacional de datos</h2>
+        <p>Al utilizar servicios de terceros como Google (Analytics, Tag Manager, reCAPTCHA) y Substack, tus datos pueden ser transferidos y procesados en servidores ubicados fuera de Argentina, incluyendo Estados Unidos. Estos servicios cuentan con sus propias políticas de privacidad y mecanismos de adecuación.</p>
+
+        <h2>7. Servicios de terceros</h2>
+        <p>Este sitio utiliza los siguientes servicios externos que pueden recopilar datos independientemente:</p>
+        <ul>
+            <li><strong>Google Analytics y Google Tag Manager:</strong> recopilan datos de navegación anónimos. Política de privacidad: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">policies.google.com/privacy</a></li>
+            <li><strong>Google reCAPTCHA v3:</strong> analiza el comportamiento del usuario para detectar bots. Al usar el sitio, aceptás los <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer">Términos de servicio</a> y la <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Política de privacidad</a> de Google.</li>
+            <li><strong>Substack:</strong> plataforma de newsletter. Política de privacidad: <a href="https://substack.com/privacy" target="_blank" rel="noopener noreferrer">substack.com/privacy</a></li>
+            <li><strong>Google Sheets / Google Apps Script:</strong> utilizados como puente para el almacenamiento de datos de formularios.</li>
+        </ul>
+
+        <h2>8. Tus derechos</h2>
+        <p>De acuerdo a la normativa vigente, tenés derecho a:</p>
+        <ul>
+            <li><strong>Acceder</strong> a los datos personales que tenemos sobre vos.</li>
+            <li><strong>Rectificar</strong> datos incorrectos o incompletos.</li>
+            <li><strong>Suprimir</strong> tus datos ("derecho al olvido").</li>
+            <li><strong>Oponerte</strong> al tratamiento de tus datos en determinadas circunstancias.</li>
+            <li><strong>Revocar el consentimiento</strong> en cualquier momento, sin que ello afecte la licitud del tratamiento previo.</li>
+            <li><strong>Darte de baja</strong> del newsletter en cualquier momento a través del enlace incluido en cada email.</li>
+        </ul>
+        <p>Para ejercer cualquiera de estos derechos, escribime a <a href="mailto:contacto@nickperot.com">contacto@nickperot.com</a>. Responderé en un plazo máximo de 30 días hábiles.</p>
+        <p>Si sos residente de la Unión Europea y considerás que el tratamiento de tus datos no es conforme al RGPD, tenés derecho a presentar una reclamación ante la autoridad de control de tu país.</p>
+
+        <h2>9. Edad mínima y capacidad legal</h2>
+        <p>El uso de este sitio web, el envío de formularios, la suscripción al newsletter y la contratación de cualquier servicio o programa están destinados a personas que cuenten con la <strong>edad mínima legal requerida</strong> para realizar actos jurídicos válidos en la jurisdicción donde se encuentren o bajo cuyo derecho estén comprendidas.</p>
+        <p>Al utilizar el sitio, suscribirte, completar un formulario o adquirir cualquier programa o servicio, declarás y garantizás que contás con dicha edad mínima y con la capacidad legal necesaria para obligarte contractualmente conforme a la normativa que te rige.</p>
+        <p>Si tenemos motivos razonables para creer que un usuario no cumple con este requisito, nos reservamos el derecho de cancelar la suscripción, bloquear el acceso o anular la contratación, según corresponda.</p>
+
+        <h2>10. Seguridad</h2>
+        <p>Adoptamos medidas técnicas y organizativas razonables para proteger tus datos contra accesos no autorizados, alteración, divulgación o destrucción. Sin embargo, ningún sistema de transmisión por internet es completamente seguro.</p>
+
+        <h2>11. Cambios a esta política</h2>
+        <p>Podemos actualizar esta Política de Privacidad periódicamente. Cualquier cambio significativo será comunicado a través del sitio. La fecha de última actualización siempre estará indicada al inicio del documento.</p>
+
+        <h2>12. Contacto</h2>
+        <p>Para cualquier consulta relacionada con esta Política de Privacidad, podés escribirme a: <a href="mailto:contacto@nickperot.com">contacto@nickperot.com</a></p>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Nick Perot. Construido con tecnología y enfoque humano.</p>
+            <div class="footer-links">
+                <a href="/politica-privacidad.html">Política de Privacidad</a>
+                <a href="/terminos-condiciones.html">Términos y Condiciones</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>lucide.createIcons();</script>
+</body>
+
+</html>
