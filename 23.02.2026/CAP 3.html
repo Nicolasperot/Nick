@@ -1,0 +1,1515 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fórmula Legal — El análisis del acuerdo comercial entre Williams F1 y Claude</title>
+  <meta name="description" content="Análisis legal y estratégico del acuerdo entre Anthropic (Claude) y Williams F1. Por Nick Perot — Fórmula Legal.">
+  <meta name="author" content="Nick Perot">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="El análisis del acuerdo comercial entre Williams F1 y Claude — Fórmula Legal">
+  <meta property="og:description" content="Análisis legal y estratégico del acuerdo entre Anthropic y Williams F1.">
+  <meta property="og:locale" content="es_AR">
+
+  <!-- Fonts: matching index 8 testing.html -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    /* ═══════════════════════════════════════════════
+       VARIABLES & RESET — from index 8 testing.html
+       ═══════════════════════════════════════════════ */
+    :root {
+      --bg: #fafafa;
+      --bg-alt: #ffffff;
+      --bg-subtle: #f0f0f0;
+      --bg-exp: #0a0a0a;
+      --bg-exp-card: #141414;
+      --text: #1a1a1a;
+      --text-2: #555555;
+      --text-3: #888888;
+      --accent: #2563eb;
+      --accent-glow: rgba(37, 99, 235, 0.12);
+      --accent-warm: #f97316;
+      --accent-green: #22c55e;
+      --border: #e5e5e5;
+      --border-hover: #cccccc;
+      --font: 'Inter', -apple-system, sans-serif;
+      --serif: 'Playfair Display', Georgia, serif;
+      --ease: cubic-bezier(0.25, 0.8, 0.25, 1);
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+      --shadow-md: 0 8px 30px rgba(0,0,0,0.06);
+      --shadow-lg: 0 20px 50px rgba(0,0,0,0.08);
+      --radius: 12px;
+      /* Article-specific accents */
+      --williams-blue: #003E7E;
+      --williams-mid: #0057A8;
+      --claude-sand: #C8A97A;
+      --claude-warm: #E8D4B4;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0f0f0f;
+        --bg-alt: #1a1a1a;
+        --bg-subtle: #222222;
+        --bg-exp: #050505;
+        --bg-exp-card: #111111;
+        --text: #ededed;
+        --text-2: #a0a0a0;
+        --text-3: #666666;
+        --border: #2a2a2a;
+        --border-hover: #444444;
+        --shadow-sm: 0 1px 3px rgba(0,0,0,0.2);
+        --shadow-md: 0 8px 30px rgba(0,0,0,0.2);
+        --shadow-lg: 0 20px 50px rgba(0,0,0,0.3);
+      }
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    a { text-decoration: none; color: inherit; transition: all 0.3s var(--ease); }
+    ul { list-style: none; }
+    img { max-width: 100%; display: block; }
+
+    .container {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    /* ═══════════════════════════════════════════════
+       HEADER — matches index 8 testing.html
+       ═══════════════════════════════════════════════ */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      background: transparent;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid transparent;
+      transition: all 0.4s var(--ease);
+    }
+
+    header.scrolled {
+      border-bottom: 1px solid var(--border);
+      background: rgba(250, 250, 250, 0.92);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      header.scrolled { background: rgba(15, 15, 15, 0.92); }
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 68px;
+    }
+
+    .logo {
+      font-weight: 900;
+      font-size: 1.25rem;
+      letter-spacing: -0.5px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+    }
+
+    nav ul { display: flex; gap: 28px; }
+
+    nav a {
+      font-size: 0.85rem;
+      color: var(--text-2);
+      font-weight: 500;
+      position: relative;
+      padding: 4px 0;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: width 0.3s var(--ease);
+    }
+
+    nav a:hover { color: var(--text); }
+    nav a:hover::after { width: 100%; }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .social-nav { display: flex; gap: 12px; }
+
+    .social-nav a {
+      width: 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      transition: all 0.3s var(--ease);
+    }
+
+    .social-nav a:hover { background: var(--bg-subtle); }
+    .social-nav i { width: 16px; height: 16px; }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      width: 36px;
+      height: 36px;
+      position: relative;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+    }
+
+    .menu-toggle span {
+      width: 22px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: all 0.3s var(--ease);
+    }
+
+    .menu-toggle.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .menu-toggle.active span:nth-child(2) { opacity: 0; }
+    .menu-toggle.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 68px;
+      left: 0;
+      width: 100%;
+      height: calc(100vh - 68px);
+      background: var(--bg);
+      z-index: 999;
+      padding: 40px 28px;
+      flex-direction: column;
+      gap: 24px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .mobile-menu.open { display: flex; opacity: 1; }
+
+    .mobile-menu a {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--text);
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* ═══════════════════════════════════════════════
+       HERO
+       ═══════════════════════════════════════════════ */
+    .hero {
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      padding-top: 120px;
+      padding-bottom: 60px;
+      background: var(--bg-exp);
+      color: #f0f0f0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 70% 50%, rgba(0,87,168,0.25) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--claude-sand), var(--williams-mid), var(--claude-sand));
+    }
+
+    .hero-inner { position: relative; }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: rgba(200,169,122,0.12);
+      border: 1px solid rgba(200,169,122,0.3);
+      border-radius: 100px;
+      padding: .35rem 1.1rem;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--claude-sand);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      line-height: 1.1;
+      letter-spacing: -1.5px;
+      max-width: 800px;
+      margin-bottom: 1.2rem;
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--claude-sand);
+    }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.6);
+      max-width: 620px;
+      margin-bottom: 2rem;
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    .hero-meta {
+      display: flex;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-meta-item { display: flex; flex-direction: column; gap: .2rem; }
+
+    .meta-label {
+      font-size: .68rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      font-weight: 600;
+    }
+
+    .meta-value {
+      font-size: .88rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.85);
+    }
+
+    /* ═══════════════════════════════════════════════
+       ABOUT SECTION (Formula Legal intro)
+       ═══════════════════════════════════════════════ */
+    .about-section {
+      padding: 80px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .about-img {
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+    }
+
+    .about-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      aspect-ratio: 3/4;
+    }
+
+    .about-eyebrow {
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .about-content h2 {
+      font-family: var(--serif);
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      line-height: 1.2;
+      letter-spacing: -1px;
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+
+    .about-content p {
+      color: var(--text-2);
+      margin-bottom: 16px;
+      line-height: 1.7;
+    }
+
+    .about-content p:last-child { margin-bottom: 0; }
+
+    .about-contact {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 16px;
+      padding: 10px 20px;
+      background: var(--accent-glow);
+      border: 1px solid rgba(37,99,235,0.15);
+      border-radius: 8px;
+      font-size: .85rem;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    /* ═══════════════════════════════════════════════
+       ARTICLE SECTIONS
+       ═══════════════════════════════════════════════ */
+    .article-section {
+      padding: 70px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .article-section:last-of-type { border-bottom: none; }
+
+    .section-label {
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+      max-width: 60px;
+    }
+
+    h2 {
+      font-family: var(--serif);
+      font-size: clamp(1.7rem, 3.5vw, 2.5rem);
+      letter-spacing: -1px;
+      line-height: 1.2;
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+
+    h3 {
+      font-size: .95rem;
+      font-weight: 700;
+      margin-bottom: .6rem;
+      color: var(--williams-blue);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      h3 { color: var(--claude-sand); }
+    }
+
+    p { margin-bottom: 16px; color: var(--text-2); line-height: 1.7; }
+    p:last-child { margin-bottom: 0; }
+
+    .highlight { color: var(--accent); font-weight: 600; }
+
+    /* ═══════════════════════════════════════════════
+       VIDEO SECTION
+       ═══════════════════════════════════════════════ */
+    .video-section {
+      background: var(--bg-exp);
+      padding: 70px 0;
+    }
+
+    .video-wrapper { max-width: 900px; margin: 0 auto; }
+
+    .video-label {
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--claude-sand);
+      margin-bottom: 10px;
+    }
+
+    .video-title {
+      font-family: var(--serif);
+      font-size: 1.6rem;
+      color: #fff;
+      margin-bottom: .4rem;
+      font-weight: 700;
+    }
+
+    .video-desc {
+      color: rgba(255,255,255,0.5);
+      font-size: .88rem;
+      margin-bottom: 2rem;
+    }
+
+    .video-embed {
+      position: relative;
+      padding-bottom: 56.25%;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid rgba(200,169,122,0.2);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    }
+
+    .video-embed iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .video-caption {
+      margin-top: 14px;
+      font-size: .78rem;
+      color: rgba(255,255,255,0.3);
+      font-style: italic;
+      line-height: 1.6;
+    }
+
+    /* ═══════════════════════════════════════════════
+       DEFINITION BLOCK
+       ═══════════════════════════════════════════════ */
+    .definition-block {
+      background: var(--williams-blue);
+      color: #fff;
+      border-radius: var(--radius);
+      padding: 2.2rem 2.5rem;
+      margin: 2rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .definition-block { background: #001A40; }
+    }
+
+    .definition-block::before {
+      content: '\201C';
+      position: absolute;
+      top: -1rem;
+      left: 1.5rem;
+      font-family: var(--serif);
+      font-size: 10rem;
+      color: rgba(255,255,255,0.05);
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .def-source {
+      font-size: .72rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--claude-sand);
+      margin-bottom: 1rem;
+    }
+
+    .def-entry {
+      margin-bottom: 1rem;
+      padding-left: 1.2rem;
+      border-left: 2px solid rgba(200,169,122,0.35);
+    }
+
+    .def-number { font-size: .72rem; font-weight: 700; color: var(--claude-sand); margin-bottom: .3rem; }
+    .def-text { font-size: 1rem; line-height: 1.6; margin-bottom: 0; color: rgba(255,255,255,0.9); }
+    .def-syn { font-size: .8rem; color: rgba(200,169,122,0.7); margin-top: .3rem; }
+
+    /* ═══════════════════════════════════════════════
+       TWO-COLUMN GRID & CARDS
+       ═══════════════════════════════════════════════ */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .card {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.6rem;
+      transition: box-shadow 0.3s var(--ease);
+    }
+
+    .card:hover { box-shadow: var(--shadow-md); }
+
+    .card-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      margin-bottom: .8rem;
+      background: var(--accent-glow);
+    }
+
+    .card-sand .card-icon { background: rgba(200,169,122,0.12); }
+
+    /* ═══════════════════════════════════════════════
+       QUOTE BLOCK
+       ═══════════════════════════════════════════════ */
+    .quote {
+      border-left: 3px solid var(--accent);
+      padding: 1rem 1.5rem;
+      margin: 2rem 0;
+      background: var(--accent-glow);
+      border-radius: 0 var(--radius) var(--radius) 0;
+    }
+
+    .quote p {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--text);
+      margin-bottom: .5rem;
+      line-height: 1.5;
+    }
+
+    .quote-attr {
+      font-size: .78rem;
+      font-weight: 600;
+      color: var(--text-3);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+
+    /* ═══════════════════════════════════════════════
+       TIMELINE
+       ═══════════════════════════════════════════════ */
+    .timeline {
+      position: relative;
+      margin: 2rem 0;
+      padding-left: 2.5rem;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 10px;
+      top: 8px;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 2rem;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -2rem;
+      top: 6px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid var(--bg);
+    }
+
+    /* ═══════════════════════════════════════════════
+       QUESTION CARDS
+       ═══════════════════════════════════════════════ */
+    .questions-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 1.2rem;
+      margin: 2rem 0;
+    }
+
+    .question-card {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.4rem;
+      border-top: 3px solid var(--accent-warm);
+      transition: box-shadow 0.3s var(--ease);
+    }
+
+    .question-card:hover { box-shadow: var(--shadow-md); }
+
+    .question-icon { font-size: 1.3rem; margin-bottom: .7rem; }
+
+    .question-card h4 {
+      font-size: .9rem;
+      font-weight: 700;
+      color: var(--accent-warm);
+      margin-bottom: .4rem;
+    }
+
+    .question-card p { font-size: .85rem; color: var(--text-3); }
+
+    /* ═══════════════════════════════════════════════
+       IMPACT SECTION
+       ═══════════════════════════════════════════════ */
+    .impact-section {
+      background: var(--bg-exp);
+      color: #f0f0f0;
+      padding: 70px 0;
+    }
+
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 1.2rem;
+      margin-top: 2rem;
+    }
+
+    .impact-item {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius);
+      padding: 1.4rem;
+      transition: background 0.2s;
+    }
+
+    .impact-item:hover { background: rgba(255,255,255,0.09); }
+
+    .impact-number {
+      font-family: var(--serif);
+      font-size: 2.2rem;
+      color: var(--claude-sand);
+      line-height: 1;
+      margin-bottom: .4rem;
+    }
+
+    .impact-title {
+      font-weight: 700;
+      font-size: .88rem;
+      color: #fff;
+      margin-bottom: .3rem;
+    }
+
+    .impact-desc { font-size: .82rem; color: rgba(255,255,255,0.5); margin-bottom: 0; }
+
+    /* ═══════════════════════════════════════════════
+       COMPARISON TABLE
+       ═══════════════════════════════════════════════ */
+    .ai-comparison {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin: 2rem 0;
+    }
+
+    .ai-comparison table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .85rem;
+    }
+
+    .ai-comparison th {
+      background: var(--williams-blue);
+      color: #fff;
+      padding: .85rem 1.1rem;
+      text-align: left;
+      font-size: .72rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .ai-comparison td {
+      padding: .85rem 1.1rem;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    .ai-comparison tr:last-child td { border-bottom: none; }
+    .ai-comparison tr:nth-child(even) td { background: rgba(37,99,235,0.03); }
+    .highlight-row td { background: rgba(200,169,122,0.08) !important; }
+    .check { color: var(--accent-green); font-weight: 700; }
+    .cross { color: var(--text-3); }
+
+    .badge {
+      display: inline-block;
+      padding: .2rem .55rem;
+      border-radius: 100px;
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      background: rgba(200,169,122,0.18);
+      color: #8B6914;
+    }
+
+    /* ═══════════════════════════════════════════════
+       BRAND MESSAGE
+       ═══════════════════════════════════════════════ */
+    .brand-message {
+      background: var(--bg-subtle);
+      border-radius: var(--radius);
+      padding: 2.5rem;
+      margin: 2.5rem 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .brand-message::before {
+      content: '';
+      position: absolute;
+      inset: -40px;
+      background: radial-gradient(circle at center, var(--accent-glow) 0%, transparent 70%);
+    }
+
+    .brand-message-text {
+      font-family: var(--serif);
+      font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+      color: var(--text);
+      line-height: 1.2;
+      position: relative;
+      margin-bottom: .6rem;
+    }
+
+    .brand-message-sub {
+      font-size: .88rem;
+      color: var(--text-3);
+      position: relative;
+    }
+
+    /* ═══════════════════════════════════════════════
+       CTA SECTION
+       ═══════════════════════════════════════════════ */
+    .cta-section {
+      background: var(--bg-exp);
+      padding: 70px 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 50% 100%, rgba(37,99,235,0.15) 0%, transparent 70%);
+    }
+
+    .cta-inner { position: relative; max-width: 620px; margin: 0 auto; }
+
+    .cta-eyebrow {
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--claude-sand);
+      margin-bottom: 1rem;
+    }
+
+    .cta-title {
+      font-family: var(--serif);
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      color: #fff;
+      margin-bottom: .8rem;
+      line-height: 1.15;
+      font-weight: 700;
+    }
+
+    .cta-sub {
+      color: rgba(255,255,255,0.5);
+      font-size: .92rem;
+      margin-bottom: 2rem;
+    }
+
+    .cta-links {
+      display: flex;
+      gap: .8rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .7rem 1.3rem;
+      border-radius: 8px;
+      font-size: .82rem;
+      font-weight: 600;
+      transition: all 0.2s var(--ease);
+    }
+
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-primary:hover { background: #1d4ed8; }
+    .btn-outline { background: transparent; border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.75); }
+    .btn-outline:hover { border-color: var(--claude-sand); color: var(--claude-sand); }
+
+    /* ═══════════════════════════════════════════════
+       FOOTER — matches index 8 testing.html
+       ═══════════════════════════════════════════════ */
+    footer {
+      padding: 48px 0;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      font-size: 0.82rem;
+      color: var(--text-3);
+    }
+
+    footer a { color: var(--accent); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ═══════════════════════════════════════════════
+       SOURCE NOTE
+       ═══════════════════════════════════════════════ */
+    .source-note {
+      font-size: .75rem;
+      color: var(--text-3);
+      font-style: italic;
+      margin-top: .4rem;
+    }
+
+    .divider { height: 1px; background: var(--border); margin: 2rem 0; }
+
+    /* ═══════════════════════════════════════════════
+       ANIMATIONS
+       ═══════════════════════════════════════════════ */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .fade-in-delay-1 { transition-delay: 0.1s; }
+    .fade-in-delay-2 { transition-delay: 0.2s; }
+
+    /* ═══════════════════════════════════════════════
+       RESPONSIVE
+       ═══════════════════════════════════════════════ */
+    @media (max-width: 768px) {
+      .about-grid { grid-template-columns: 1fr; text-align: center; }
+      .about-img { max-width: 280px; margin: 0 auto; }
+      .two-col { grid-template-columns: 1fr; }
+      .questions-grid { grid-template-columns: 1fr; }
+      nav { display: none; }
+      .menu-toggle { display: flex; }
+      .ai-comparison { overflow-x: auto; }
+      .ai-comparison table { min-width: 580px; }
+    }
+
+    @media (max-width: 480px) {
+      .nav-container {
+        flex-wrap: wrap;
+        height: auto;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        gap: 6px;
+      }
+      .nav-container .logo {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        font-size: 1.1rem;
+      }
+      .nav-container nav { display: none; }
+      .nav-container .header-right {
+        order: 1;
+        width: 100%;
+        justify-content: center;
+        gap: 12px;
+      }
+      .hero { padding-top: 130px; }
+      .mobile-menu { top: 100px; height: calc(100vh - 100px); padding-top: 20px; }
+      h1 { font-size: 2rem; }
+      .hero h1 { font-size: 2rem; }
+    }
+
+    /* Vowles box */
+    .vowles-box {
+      margin-top: 2rem;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius);
+      padding: 1.8rem;
+    }
+
+    .vowles-box h3 { color: var(--claude-sand); margin-bottom: .8rem; }
+    .vowles-box p { color: rgba(255,255,255,0.7); }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════
+     HEADER — replicated from index 8 testing.html
+     ═══════════════════════════════════════════════ -->
+<header id="main-header">
+  <div class="container nav-container">
+    <a href="https://nickperot.com" class="logo"><span class="logo-dot"></span> FORMULA LEGAL</a>
+    <nav>
+      <ul>
+        <li><a href="#about">Sobre</a></li>
+        <li><a href="#pensamiento">Pensamiento</a></li>
+        <li><a href="#partnership">El Acuerdo</a></li>
+        <li><a href="#impacto">Impacto</a></li>
+        <li><a href="#preguntas">Dudas</a></li>
+      </ul>
+    </nav>
+    <div class="header-right">
+      <div class="social-nav">
+        <a href="https://linkedin.com/in/nickperot" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
+        <a href="https://x.com/nickperot" target="_blank" rel="noopener noreferrer" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="width:16px;height:16px;"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        <a href="https://instagram.com/nickperot" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+      </div>
+      <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" onclick="closeMenu()">Sobre</a>
+  <a href="#pensamiento" onclick="closeMenu()">Pensamiento</a>
+  <a href="#partnership" onclick="closeMenu()">El Acuerdo</a>
+  <a href="#impacto" onclick="closeMenu()">Impacto</a>
+  <a href="#preguntas" onclick="closeMenu()">Dudas</a>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     HERO
+     ═══════════════════════════════════════════════ -->
+<div class="hero">
+  <div class="container hero-inner">
+    <div class="hero-tag">Fórmula Legal — Análisis</div>
+    <h1>El análisis del acuerdo comercial entre <em>Williams F1</em> y <em>Claude</em></h1>
+    <p class="hero-sub">Un acuerdo histórico entre Anthropic y Williams F1 que va mucho más allá de un logo en el auto. Analizamos el contrato, el mensaje y lo que todavía no sabemos.</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <span class="meta-label">Equipo</span>
+        <span class="meta-value">Atlassian Williams F1</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="meta-label">IA</span>
+        <span class="meta-value">Claude · Anthropic</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="meta-label">Vigencia</span>
+        <span class="meta-value">Plurianual · 2026+</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="meta-label">Temporada</span>
+        <span class="meta-value">2026</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     ABOUT — Fórmula Legal + Nick Perot intro
+     ═══════════════════════════════════════════════ -->
+<section class="about-section" id="about">
+  <div class="container">
+    <div class="about-grid fade-in">
+      <div class="about-img">
+        <img src="Perfil.png" alt="Nick Perot — creador de Fórmula Legal">
+      </div>
+      <div class="about-content">
+        <div class="about-eyebrow">Sobre Fórmula Legal</div>
+        <h2>Donde el derecho, la tecnología y la Fórmula 1 se cruzan</h2>
+        <p><strong>Fórmula Legal</strong> es un proyecto de análisis creado por Nick Perot que explora la intersección entre el derecho, la tecnología y el mundo de la Fórmula 1. Desde acuerdos comerciales hasta regulaciones de la FIA, el objetivo es traducir la complejidad legal y técnica en contenido accesible, riguroso y relevante.</p>
+        <p><strong>Nick Perot</strong> es abogado, docente en la Universidad Nacional del Litoral y consultor en derecho, tecnología, gestión e inteligencia artificial. Desde Santa Fe, Argentina, combina su formación jurídica con una perspectiva tecnológica para analizar cómo la IA está transformando industrias de alto rendimiento.</p>
+        <p>Este artículo analiza en profundidad el acuerdo entre Anthropic (creadora de Claude) y el equipo Williams F1 — un movimiento sin precedentes en la historia del deporte y la inteligencia artificial.</p>
+        <a href="mailto:formulalegal@nickperot.com" class="about-contact">
+          formulalegal@nickperot.com
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     VIDEO
+     ═══════════════════════════════════════════════ -->
+<div class="video-section">
+  <div class="container video-wrapper">
+    <div class="video-label">Video del Análisis</div>
+    <div class="video-title">El acuerdo Williams F1 × Claude</div>
+    <p class="video-desc">Análisis completo en video del acuerdo entre Anthropic y Williams F1 para la temporada 2026.</p>
+    <div class="fade-in" style="margin-bottom:2rem;border-radius:var(--radius);overflow:hidden;border:1px solid rgba(200,169,122,0.2);">
+      <img src="Presentacion.png" alt="Captura de la presentación Williams F1 × Claude" style="width:100%;height:auto;display:block;">
+    </div>
+
+    <p class="video-caption" style="margin-top:1rem;">Análisis de Fórmula Legal sobre el acuerdo Anthropic · Atlassian Williams F1 Team (2026). Mirá el video completo en <a href="https://www.youtube.com/watch?v=xpmag2Gvi0g" target="_blank" rel="noopener noreferrer" style="color:var(--claude-sand);text-decoration:underline;">YouTube</a>.</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     BLOQUE I: PENSAMIENTO
+     ═══════════════════════════════════════════════ -->
+<section class="article-section" id="pensamiento">
+  <div class="container">
+    <div class="section-label fade-in">Bloque I</div>
+    <h2 class="fade-in">¿Qué significa pensar?</h2>
+    <p class="fade-in">Antes de hablar de Inteligencia Artificial, de contratos millonarios y de logos en el FW48, hay que hacer lo que en filosofía llamamos <span class="highlight">definir los términos</span>. Si vamos a discutir si una IA puede ser un "socio de pensamiento", primero tenemos que ponernos de acuerdo en qué es pensar.</p>
+
+    <div class="definition-block fade-in">
+      <div class="def-source">Definición · Real Academia Española (RAE) — Diccionario de la Lengua Española</div>
+      <div class="def-entry">
+        <div class="def-number">1.</div>
+        <p class="def-text"><strong>Pensamiento</strong> (m.) — Facultad o capacidad de pensar.</p>
+        <p class="def-syn">Sin.: raciocinio, reflexión, inteligencia, razonamiento, juicio.</p>
+      </div>
+      <div class="def-entry">
+        <div class="def-number">2.</div>
+        <p class="def-text">Acción y efecto de pensar.</p>
+        <p class="def-syn">Sin.: idea, concepto.</p>
+      </div>
+      <div class="def-entry">
+        <div class="def-number">3.</div>
+        <p class="def-text">Actividad del pensar. <em>"Los comienzos del pensamiento occidental."</em></p>
+      </div>
+      <p class="source-note" style="color:rgba(200,169,122,0.6);margin-top:1rem">Fuente: <a href="https://dle.rae.es/pensamiento" target="_blank" rel="noopener noreferrer" style="color:var(--claude-sand);text-decoration:underline;">dle.rae.es/pensamiento</a> — Real Academia Española y Asociación de Academias de la Lengua Española.</p>
+    </div>
+
+    <p class="fade-in">La RAE define pensamiento como <span class="highlight">facultad</span>, como <span class="highlight">acción</span> y como <span class="highlight">actividad</span>. No como un resultado. No como una respuesta correcta. Sino como un proceso. Y eso ya complica la pregunta: ¿tiene una IA ese proceso?</p>
+
+    <div class="two-col fade-in">
+      <div class="card">
+        <div class="card-icon">🧠</div>
+        <h3>Pensamiento Crítico — Definición académica</h3>
+        <p>Según Paul & Elder (Foundation for Critical Thinking, 2006), el pensamiento crítico es <em>"el proceso intelectualmente disciplinado de conceptualizar, aplicar, analizar, sintetizar o evaluar información recabada de la observación, experiencia, reflexión, razonamiento o comunicación, como guía para actuar y creer."</em></p>
+        <p class="source-note">Paul, R. & Elder, L. (2006). <em>Critical Thinking: The Nature of Critical and Creative Thought.</em> Journal of Developmental Education. — <a href="https://www.criticalthinking.org/" target="_blank" rel="noopener noreferrer" style="color:var(--accent);text-decoration:underline;">Foundation for Critical Thinking</a></p>
+      </div>
+      <div class="card card-sand">
+        <div class="card-icon" style="background:rgba(200,169,122,0.12)">⚡</div>
+        <h3>El pensamiento en la Fórmula 1</h3>
+        <p>En la F1, pensar bien no es un lujo: es una <span class="highlight">ventaja competitiva medible en décimas de segundo</span>. El equipo de estrategia tiene a veces menos de 20 segundos para decidir si un piloto entra a los pits. Equivocarse puede costar diez posiciones. Acertar puede ganar una carrera.</p>
+        <p>El director de Williams, James Vowles, lo resumió con claridad: <em>"La cantidad de datos que hoy tenemos simplemente supera la capacidad humana de procesarlos solo."</em></p>
+      </div>
+    </div>
+
+    <div class="quote fade-in">
+      <p>"Para vos, qué significa que Claude se convierta en Socio de Pensamiento de Williams F1? Dejame tu respuesta en los comentarios."</p>
+      <span class="quote-attr">— Perspectiva Fórmula Legal</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     BLOQUE II: EL ACUERDO
+     ═══════════════════════════════════════════════ -->
+<section class="article-section" id="partnership" style="background:var(--bg-alt)">
+  <div class="container">
+    <div class="section-label fade-in">Bloque II</div>
+    <h2 class="fade-in">El acuerdo: ¿qué es exactamente?</h2>
+    <p class="fade-in">El 3 de febrero de 2026, Anthropic —la empresa creadora de Claude— y el equipo Atlassian Williams F1 anunciaron un acuerdo <span class="highlight">plurianual</span>. No es un patrocinador convencional: es una integración funcional de la IA en toda la organización del equipo.</p>
+
+    <div class="fade-in" style="margin:2rem 0;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-md);">
+      <img src="Foto.webp" alt="Presentación oficial del acuerdo Williams F1 × Claude — Anthropic 2026" style="width:100%;height:auto;display:block;">
+      <p class="source-note" style="text-align:center;padding:0.6rem;margin:0;background:var(--bg-subtle);">Presentación oficial del acuerdo entre Anthropic (Claude) y Atlassian Williams F1 Team.</p>
+    </div>
+
+    <div class="timeline fade-in">
+      <div class="timeline-item">
+        <h3>3 de febrero de 2026 — Anuncio oficial</h3>
+        <p>Anthropic y Williams publican el acuerdo y el film "Thinking Formations". Aparece el logo de Claude en la presentación del FW48 2026. Primer patrocinio deportivo en la historia de Anthropic.</p>
+      </div>
+      <div class="timeline-item">
+        <h3>16 de marzo de 2026 — Melbourne, Australia</h3>
+        <p>Primer Gran Premio con Claude como socio activo del equipo. Carlos Sainz y Alex Albon debutan con la integración operativa de la IA en la estrategia de carrera.</p>
+      </div>
+      <div class="timeline-item">
+        <h3>Temporadas 2027+ — Acuerdo plurianual</h3>
+        <p>El objetivo declarado: demostrar el valor de la IA "reflexiva" en entornos de alta presión a lo largo de varias temporadas. Los resultados definirán si el modelo escala al resto de la industria.</p>
+      </div>
+    </div>
+
+    <h3 class="fade-in" style="margin-top:2rem;font-size:1.05rem;color:var(--text)">¿Qué hará Claude concretamente?</h3>
+    <p class="fade-in">Los documentos oficiales confirman tres áreas de integración, aunque los detalles operativos siguen siendo parcialmente confidenciales:</p>
+
+    <div class="two-col fade-in">
+      <div class="card">
+        <div class="card-icon">🏁</div>
+        <h3>Estrategia de carrera</h3>
+        <p>Soporte en la planificación de escenarios, verificación de restricciones reglamentarias, y claridad comunicativa cuando los segundos cuentan. Claude ayuda a los estrategas a evaluar opciones de pit stop, compuestos de neumáticos y respuesta a safety cars con información procesada en tiempo real.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🔧</div>
+        <h3>Desarrollo del auto</h3>
+        <p>Análisis de investigación técnica densa, depuración de código de simulación y apoyo en el proceso de toma de decisiones sobre configuración aerodinámica y mecánica. Con el mayor cambio reglamentario en una generación, la velocidad de procesamiento importa.</p>
+      </div>
+      <div class="card card-sand">
+        <div class="card-icon" style="background:rgba(200,169,122,0.12)">⚙️</div>
+        <h3>Operaciones generales</h3>
+        <p>Integración en toda la organización: desde el trabajo administrativo hasta la gestión de conocimiento institucional. Claude puede actuar como repositorio activo: un ingeniero puede preguntarle sobre un protocolo sin buscar en archivos durante media hora.</p>
+      </div>
+      <div class="card card-sand">
+        <div class="card-icon" style="background:rgba(200,169,122,0.12)">💬</div>
+        <h3>Construcción de nuevos productos</h3>
+        <p>El comunicado oficial menciona explícitamente que Claude puede ayudar a <em>"construir productos enteramente nuevos"</em>. Una puerta abierta a innovaciones internas que todavía no se han revelado públicamente.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     BLOQUE III: ¿LA IA PIENSA?
+     ═══════════════════════════════════════════════ -->
+<section class="article-section" id="ia-piensa">
+  <div class="container">
+    <div class="section-label fade-in">Bloque III</div>
+    <h2 class="fade-in">¿La IA realmente piensa? Cómo funciona Claude</h2>
+    <p class="fade-in">Esta es la pregunta filosófica y técnica central. Vamos sin tecnicismos innecesarios.</p>
+
+    <div class="two-col fade-in">
+      <div>
+        <h3>Lo que hace Claude</h3>
+        <p>Claude es un <span class="highlight">modelo de lenguaje a gran escala (LLM)</span>. Fue entrenado con enormes volúmenes de texto y aprendió a predecir qué viene después de cada fragmento de información. Su nivel de sofisticación le permite razonar, sintetizar, generar hipótesis y encontrar patrones en datos complejos.</p>
+        <p>En términos prácticos: puede leer en segundos lo que un analista tardaría horas, cruzar información de fuentes distintas, identificar inconsistencias en código, y presentar opciones comparadas con sus pros y contras.</p>
+        <p>Anthropic se posiciona como líder en <span class="highlight">razonamiento y seguridad</span> entre las IA empresariales. A diferencia de otros modelos, Claude fue diseñado con un énfasis especial en ser predecible, explicar su proceso y no alucinar con la misma frecuencia que modelos competidores.</p>
+      </div>
+      <div>
+        <h3>Lo que no hace Claude</h3>
+        <p>Claude no tiene conciencia. No tiene intuición en el sentido humano. No <em>siente</em> la presión de un pit stop bajo la lluvia en Interlagos.</p>
+        <p>No improvisa desde la emoción, no se bloquea bajo presión, no tiene un mal día. Pero tampoco tiene el olfato del ingeniero que lleva 15 años mirando ese motor y sabe, <em>casi sin datos</em>, que algo no cierra.</p>
+        <p>La diferencia clave con el pensamiento humano está en la <span class="highlight">experiencia encarnada</span>: Claude procesa lenguaje sobre el mundo. Los ingenieros de Williams viven en ese mundo.</p>
+      </div>
+    </div>
+
+    <div class="quote fade-in">
+      <p>"Nuestra visión siempre fue que IA y humanos juntos son mejores que cualquiera de los dos por separado. Esta asociación nos da la oportunidad de demostrar que ese principio funciona en el entorno más exigente que existe."</p>
+      <span class="quote-attr">— James Vowles, Team Principal, Atlassian Williams F1 Team</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     BLOQUE IV: IMPACTO HUMANO
+     ═══════════════════════════════════════════════ -->
+<div class="impact-section" id="impacto">
+  <div class="container">
+    <div class="section-label fade-in" style="color:var(--claude-sand)">Bloque IV</div>
+    <h2 class="fade-in" style="color:#fff">Impacto humano: los trabajadores con Claude</h2>
+    <p class="fade-in" style="color:rgba(255,255,255,0.6);max-width:680px;margin-bottom:0">El debate más importante no es si Claude piensa. Es cómo cambia el trabajo de las personas que tienen Claude al lado. Williams tiene más de 800 empleados. ¿Qué pasa con ellos?</p>
+
+    <div class="impact-grid fade-in">
+      <div class="impact-item">
+        <div class="impact-number">1.200+</div>
+        <div class="impact-title">Personas en Williams ya con IA</div>
+        <p class="impact-desc">Williams ya tenía 1.200–1.300 personas usando IA a través de su socio título Atlassian. Claude se suma a ese ecosistema, no lo reemplaza.</p>
+      </div>
+      <div class="impact-item">
+        <div class="impact-number">↑</div>
+        <div class="impact-title">Estrategas más rápidos</div>
+        <p class="impact-desc">Claude puede procesar escenarios de pit stop en segundos. El estratega humano decide — pero con más información y más rápido.</p>
+      </div>
+      <div class="impact-item">
+        <div class="impact-number">📋</div>
+        <div class="impact-title">Operaciones administrativas</div>
+        <p class="impact-desc">Redacción de documentos, síntesis de reportes, gestión de comunicaciones internas. Tiempo liberado para trabajo de mayor valor.</p>
+      </div>
+      <div class="impact-item">
+        <div class="impact-number">🔬</div>
+        <div class="impact-title">Investigadores más productivos</div>
+        <p class="impact-desc">Análisis de papers técnicos, regulaciones de la FIA, comparativas de datos históricos. Claude como asistente de investigación permanente.</p>
+      </div>
+    </div>
+
+    <div class="vowles-box fade-in">
+      <h3>La posición oficial de Vowles: apoyar, no reemplazar</h3>
+      <p>El director de Williams fue explícito: Claude está diseñado para <span style="color:var(--claude-sand)">apoyar a los expertos, no para reemplazarlos</span>. En un entorno donde la experiencia vivida y el contexto son cruciales, la IA augmenta la decisión humana pero no la suplanta. Vowles también reconoció el impacto ambiental de la IA —consumo masivo de agua en centros de datos— como una tensión real con los objetivos de Net Zero de la F1 para 2030.</p>
+      <p class="source-note" style="color:rgba(255,255,255,0.3)">Fuente: <a href="https://www.si.com/grandprix" target="_blank" rel="noopener noreferrer" style="color:rgba(200,169,122,0.5);text-decoration:underline;">Sports Illustrated / Grand Prix on SI</a> — entrevista exclusiva con James Vowles, febrero 2026.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     BLOQUE V: PREGUNTAS SIN RESPUESTA
+     ═══════════════════════════════════════════════ -->
+<section class="article-section" id="preguntas" style="background:var(--bg-alt)">
+  <div class="container">
+    <div class="section-label fade-in">Bloque V</div>
+    <h2 class="fade-in">Lo que todavía no sabemos</h2>
+    <p class="fade-in">El comunicado oficial es deliberadamente amplio. Anthropic y Williams no han revelado los detalles operativos completos. Estas son las preguntas que el acuerdo no responde — y que nos deberíamos hacer.</p>
+
+    <div class="questions-grid fade-in">
+      <div class="question-card">
+        <div class="question-icon">📊</div>
+        <h4>¿Analizará datos de telemetría en tiempo real?</h4>
+        <p>El comunicado habla de estrategia de carrera, pero no queda claro si Claude procesa datos del auto durante la carrera o solamente en la preparación previa. La diferencia es enorme.</p>
+      </div>
+      <div class="question-card">
+        <div class="question-icon">📁</div>
+        <h4>¿Hará trabajo administrativo?</h4>
+        <p>Se menciona integración en "toda la organización", lo que sugiere uso en RR.HH., comunicaciones, contratos, logística. Nadie lo ha confirmado explícitamente.</p>
+      </div>
+      <div class="question-card">
+        <div class="question-icon">🔒</div>
+        <h4>¿Qué datos tiene acceso? ¿Y quién los ve?</h4>
+        <p>Williams comparte datos altamente sensibles: configuraciones aerodinámicas, estrategias de carrera, información de rendimiento de pilotos. ¿Cómo se protegen?</p>
+      </div>
+      <div class="question-card">
+        <div class="question-icon">💰</div>
+        <h4>¿Cuánto vale el acuerdo?</h4>
+        <p>Los términos financieros no fueron revelados. En la F1, los acuerdos de título oscilan entre 5 y 50 millones de dólares por temporada.</p>
+      </div>
+      <div class="question-card">
+        <div class="question-icon">🏆</div>
+        <h4>¿Cómo se medirá el éxito?</h4>
+        <p>Sin métricas claras — ¿posición en el campeonato? ¿Velocidad de análisis? ¿Reducción de errores? — el éxito será interpretable.</p>
+      </div>
+      <div class="question-card">
+        <div class="question-icon">⚖️</div>
+        <h4>¿Qué permite el reglamento de la FIA?</h4>
+        <p>La FIA regula estrictamente el uso de tecnología durante los fines de semana de carrera. ¿Qué uso de IA generativa está permitido en pista? Hasta ahora, silencio regulatorio.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     BLOQUE VI: MENSAJE DE CLAUDE AL MUNDO
+     ═══════════════════════════════════════════════ -->
+<section class="article-section" id="mensaje">
+  <div class="container">
+    <div class="section-label fade-in">Bloque VI</div>
+    <h2 class="fade-in">¿Qué mensaje le está dando Claude al mundo?</h2>
+    <p class="fade-in">Este acuerdo no es solo entre Anthropic y Williams. Es la primera vez que Anthropic entra al mundo del deporte de alto nivel. Y eligió comunicar algo muy concreto.</p>
+
+    <div class="timeline fade-in">
+      <div class="timeline-item">
+        <h3>"Keep Thinking" — La campaña madre</h3>
+        <p>En septiembre de 2025, Anthropic lanzó su primera campaña publicitaria paga: <span class="highlight">"Keep Thinking"</span> (Seguí pensando). El mensaje: en un mundo saturado de información, la IA no reemplaza el pensamiento humano — lo profundiza. El acuerdo con Williams es la extensión en vivo de esa idea.</p>
+      </div>
+      <div class="timeline-item">
+        <h3>"No sos el más grande — pensá mejor"</h3>
+        <p>Anthropic eligió Williams deliberadamente, no a Red Bull, Ferrari o Mercedes. Williams es el <span class="highlight">equipo independiente</span> por excelencia: gana sin el presupuesto más grande, con ingenio. El mensaje implícito: <em>no necesitás ser el más grande para competir, necesitás pensar mejor.</em></p>
+      </div>
+      <div class="timeline-item">
+        <h3>"La IA es confiable en situaciones de alta presión"</h3>
+        <p>La F1 es el ambiente más exigente del deporte. Si Claude funciona ahí, funciona en tu empresa, en tu consultora, en tu estudio jurídico. El campo de prueba más visible del mundo valida la herramienta para el mercado masivo.</p>
+      </div>
+      <div class="timeline-item">
+        <h3>"Somos los outsiders que piensan diferente"</h3>
+        <p>Tanto Anthropic como Williams se definen como organizaciones que empezaron desde afuera del establishment. La narrativa del emprendedor que desafía al sistema conecta emocionalmente con millones de espectadores en todo el mundo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     BLOQUE VII: COMPARATIVA CON OTRAS IA
+     ═══════════════════════════════════════════════ -->
+<section class="article-section" style="background:var(--bg-alt)">
+  <div class="container">
+    <div class="section-label fade-in">Bloque VII</div>
+    <h2 class="fade-in">¿Otras IAs usan "socio de pensamiento"?</h2>
+    <p class="fade-in">La categoría "thinking partner" existía antes de Claude, pero en un contexto muy distinto — era un concepto de coaching ejecutivo y consultoría organizacional, no de IA. El movimiento de Anthropic es apropiarse de ese término para posicionar a Claude en un nivel diferente al de sus competidores.</p>
+
+    <div class="ai-comparison fade-in">
+      <table>
+        <thead>
+          <tr>
+            <th>Herramienta</th>
+            <th>Posicionamiento</th>
+            <th>¿"Thinking Partner"?</th>
+            <th>Deporte / F1</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="highlight-row">
+            <td><strong>Claude (Anthropic)</strong> <span class="badge">Este análisis</span></td>
+            <td>Razonamiento profundo, seguridad, empresa</td>
+            <td><span class="check">✓ Oficial · Williams F1</span></td>
+            <td><span class="check">✓ F1 2026</span></td>
+          </tr>
+          <tr>
+            <td><strong>ChatGPT (OpenAI)</strong></td>
+            <td>"AI for everyone" — uso masivo</td>
+            <td><span class="cross">No oficial — no en F1</span></td>
+            <td><span class="cross">Sin acuerdo F1</span></td>
+          </tr>
+          <tr>
+            <td><strong>Microsoft Copilot</strong></td>
+            <td>"Tu copiloto en el trabajo"</td>
+            <td><span class="cross">Copiloto ≠ Thinking Partner</span></td>
+            <td><span class="check">Oracle Red Bull Racing</span></td>
+          </tr>
+          <tr>
+            <td><strong>Google Gemini</strong></td>
+            <td>Integración con Google Workspace</td>
+            <td><span class="cross">No usa "Thinking Partner"</span></td>
+            <td><span class="check">McLaren F1</span></td>
+          </tr>
+          <tr>
+            <td><strong>IBM Watson</strong></td>
+            <td>IA empresarial — fue pionero</td>
+            <td><span class="cross">Reemplazado por nuevos modelos</span></td>
+            <td><span class="check">Fue socio de varios equipos F1</span></td>
+          </tr>
+          <tr>
+            <td><strong>Thinking Partner (coaching)</strong></td>
+            <td>Concepto de consultoría organizacional humana</td>
+            <td><span class="check">✓ Origen del término — humano</span></td>
+            <td><span class="cross">Concepto pre-IA</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="fade-in">El dato clave: <span class="highlight">ninguna IA generativa de uso masivo había adoptado el título "Thinking Partner" antes que Claude</span>. Los competidores son "copilotos", "asistentes" o "herramientas". Claude eligió "socio de pensamiento" — una apuesta semántica que lo coloca en un plano de igual a igual con el humano.</p>
+
+    <div class="quote fade-in">
+      <p>"Elegimos a Williams porque son uno de los últimos equipos verdaderamente independientes de la F1 — compiten por la calidad de su pensamiento y su atención al detalle."</p>
+      <span class="quote-attr">— Andrew Stirk, Head of Brand Marketing, Anthropic</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     CIERRE
+     ═══════════════════════════════════════════════ -->
+<section class="article-section" id="cierre">
+  <div class="container">
+    <div class="section-label fade-in">Cierre · Fórmula Legal</div>
+    <h2 class="fade-in">Conclusión: ¿qué nos dice esto sobre la tecnología y el trabajo?</h2>
+
+    <p class="fade-in">Este acuerdo es un espejo. Nos muestra en qué etapa está la integración de la IA en las organizaciones de alto rendimiento: ya no es experimental, ya no es solo marketing. Es una apuesta funcional medible en resultados sobre la pista.</p>
+
+    <p class="fade-in">La pregunta que queda abierta no es si Claude piensa. La pregunta que importa es: <span class="highlight">¿cómo cambia el trabajo de los ingenieros, estrategas y administrativos de Williams cuando tienen una IA capaz de procesar en segundos lo que antes tomaba horas?</span></p>
+
+    <p class="fade-in">Y más profundamente: si esto funciona en la Fórmula 1, ¿qué significa para un estudio jurídico en Santa Fe? ¿Para una universidad que quiere transformarse? ¿Para cualquier organización que compite con recursos limitados y necesita pensar mejor que los demás?</p>
+
+    <div class="brand-message fade-in" style="margin-top:2.5rem">
+      <div class="brand-message-text">"La tecnología está al servicio."</div>
+      <p class="brand-message-sub">No de los grandes. No de los que más gastan. De los que mejor piensan.<br>Ese es el mensaje. Y empieza en la temporada 2026.</p>
+      <p style="font-size:.82rem;font-weight:600;color:var(--text-2);margin-top:1rem;position:relative;">— Nick Perot</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     CTA FINAL
+     ═══════════════════════════════════════════════ -->
+<div class="cta-section">
+  <div class="container cta-inner">
+    <div class="cta-eyebrow">Fórmula Legal · Nick Perot</div>
+    <div class="cta-title">¿La IA cambia el resultado en pista?</div>
+    <p class="cta-sub">Dejá tu opinión en los comentarios. Y si este análisis te resultó útil, suscribite al canal y seguime en @nickperot para más contenido en la intersección entre Fórmula 1, tecnología y derecho.</p>
+    <div class="cta-links">
+      <a class="btn btn-primary" href="https://youtube.com/@formulalegal" target="_blank">Canal YouTube</a>
+      <a class="btn btn-outline" href="https://instagram.com/nickperot" target="_blank">Instagram</a>
+      <a class="btn btn-outline" href="https://nickperot.substack.com" target="_blank">Newsletter</a>
+      <a class="btn btn-outline" href="https://x.com/nickperot" target="_blank">X (Twitter)</a>
+      <a class="btn btn-outline" href="https://nickperot.com" target="_blank">nickperot.com</a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     FOOTER — matches index 8 testing.html
+     ═══════════════════════════════════════════════ -->
+<footer>
+  <div class="container">
+    <p>&copy; 2026 <a href="https://nickperot.com">Nick Perot</a> · <a href="https://youtube.com/@formulalegal">Fórmula Legal</a> — Derecho, Tecnología y Gestión · Santa Fe, Argentina</p>
+    <p style="margin-top:18px;font-size:0.65rem;color:var(--text-3);line-height:1.5;font-style:italic;max-width:600px;margin-left:auto;margin-right:auto;">
+      La IA Generativa puede ser nuestra mejor aliada, y también comete errores. Usala con responsabilidad, compromiso y consciencia.
+    </p>
+    <p style="margin-top:12px;font-size:0.72rem;color:var(--text-3);line-height:1.6;">
+      Fuentes:
+      <a href="https://www.williamsf1.com/" target="_blank" rel="noopener noreferrer">Williams F1 Official</a> ·
+      <a href="https://www.anthropic.com/" target="_blank" rel="noopener noreferrer">Anthropic</a> ·
+      <a href="https://www.anthropic.com/news/williams-racing" target="_blank" rel="noopener noreferrer">Anthropic — Williams Racing Announcement</a> ·
+      <a href="https://dle.rae.es/pensamiento" target="_blank" rel="noopener noreferrer">RAE — Diccionario de la Lengua Española</a> ·
+      <a href="https://www.si.com/grandprix" target="_blank" rel="noopener noreferrer">Sports Illustrated / Grand Prix on SI</a> ·
+      <a href="https://www.adweek.com/" target="_blank" rel="noopener noreferrer">AdWeek</a> ·
+      <a href="https://www.lbbonline.com/" target="_blank" rel="noopener noreferrer">LBBOnline</a> ·
+      <a href="https://www.designrush.com/" target="_blank" rel="noopener noreferrer">DesignRush</a> ·
+      <a href="https://www.criticalthinking.org/" target="_blank" rel="noopener noreferrer">Paul & Elder (2006) — Foundation for Critical Thinking</a>
+    </p>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════════
+     SCRIPTS
+     ═══════════════════════════════════════════════ -->
+<script>
+  // Initialize Lucide icons
+  lucide.createIcons();
+
+  // ─── Header scroll effect ───
+  const header = document.getElementById('main-header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // ─── Mobile menu ───
+  const menuToggle = document.getElementById('menuToggle');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  menuToggle.addEventListener('click', () => {
+    menuToggle.classList.toggle('active');
+    mobileMenu.classList.toggle('open');
+  });
+
+  function closeMenu() {
+    menuToggle.classList.remove('active');
+    mobileMenu.classList.remove('open');
+  }
+
+  // ─── Scroll reveal animations ───
+  const observer = new IntersectionObserver(
+    entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+    { threshold: 0.08 }
+  );
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
