@@ -134,44 +134,6 @@
             display: block;
         }
 
-        /* ═══════════════════════════════════════════════
-           LANGUAGE SYSTEM
-           ═══════════════════════════════════════════════ */
-        [data-lang] {
-            display: none;
-        }
-
-        [data-lang="es"] {
-            display: block;
-        }
-
-        body.lang-en [data-lang="es"] {
-            display: none;
-        }
-
-        body.lang-en [data-lang="en"] {
-            display: block;
-        }
-
-        span[data-lang],
-        a[data-lang] {
-            display: none;
-        }
-
-        span[data-lang="es"],
-        a[data-lang="es"] {
-            display: inline;
-        }
-
-        body.lang-en span[data-lang="es"],
-        body.lang-en a[data-lang="es"] {
-            display: none;
-        }
-
-        body.lang-en span[data-lang="en"],
-        body.lang-en a[data-lang="en"] {
-            display: inline;
-        }
 
         /* ═══════════════════════════════════════════════
            LAYOUT
@@ -311,36 +273,6 @@
             height: 16px;
         }
 
-        .lang-toggle {
-            display: flex;
-            background: var(--bg-subtle);
-            border-radius: 20px;
-            padding: 3px;
-            margin-left: 8px;
-        }
-
-        .lang-btn {
-            padding: 5px 12px;
-            border: none;
-            background: transparent;
-            font-family: var(--font);
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--text-3);
-            cursor: pointer;
-            border-radius: 18px;
-            transition: all 0.3s ease;
-            letter-spacing: 0.3px;
-        }
-
-        .lang-btn.active {
-            background: var(--accent);
-            color: #fff;
-        }
-
-        .lang-btn:hover:not(.active) {
-            color: var(--text);
-        }
 
         /* Mobile menu */
         .menu-toggle {
@@ -699,133 +631,6 @@
             border-radius: 50%;
         }
 
-        /* ═══════════════════════════════════════════════
-           MULTIMEDIA SECTIONS
-           ═══════════════════════════════════════════════ */
-        .media-section {
-            padding: 60px 0;
-            border-top: 1px solid var(--border);
-        }
-
-        .media-card {
-            max-width: 760px;
-            margin: 0 auto;
-            background: var(--bg-alt);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 36px;
-            transition: all 0.3s var(--ease);
-        }
-
-        .media-card:hover {
-            box-shadow: var(--shadow-md);
-            border-color: var(--border-hover);
-        }
-
-        .media-card .media-label {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--accent);
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-
-        .media-card .media-label i {
-            width: 18px;
-            height: 18px;
-        }
-
-        .media-card .media-title {
-            font-family: var(--serif);
-            font-size: 1.3rem;
-            margin-bottom: 8px;
-            letter-spacing: -0.5px;
-        }
-
-        .media-card .media-desc {
-            font-size: 0.9rem;
-            color: var(--text-2);
-            line-height: 1.6;
-            margin-bottom: 24px;
-        }
-
-        .media-card .video-wrapper {
-            position: relative;
-            width: 100%;
-            padding-bottom: 56.25%;
-            border-radius: 10px;
-            overflow: hidden;
-            background: #000;
-        }
-
-        .media-card .video-wrapper iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        .media-card audio {
-            width: 100%;
-            border-radius: 8px;
-        }
-
-        /* Notebook LM card */
-        .notebook-card {
-            max-width: 760px;
-            margin: 0 auto;
-            background: linear-gradient(135deg, var(--accent-glow), rgba(37, 99, 235, 0.04));
-            border: 1px solid var(--accent);
-            border-radius: var(--radius);
-            padding: 36px;
-            text-align: center;
-            transition: all 0.3s var(--ease);
-        }
-
-        .notebook-card:hover {
-            box-shadow: 0 8px 30px rgba(37, 99, 235, 0.15);
-            transform: translateY(-3px);
-        }
-
-        .notebook-card .nb-icon {
-            width: 56px;
-            height: 56px;
-            border-radius: 16px;
-            background: var(--accent);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 16px;
-            color: #fff;
-        }
-
-        .notebook-card .nb-icon i {
-            width: 28px;
-            height: 28px;
-        }
-
-        .notebook-card h3 {
-            font-family: var(--serif);
-            font-size: 1.3rem;
-            margin-bottom: 8px;
-            letter-spacing: -0.5px;
-        }
-
-        .notebook-card p {
-            color: var(--text-2);
-            font-size: 0.92rem;
-            line-height: 1.6;
-            margin-bottom: 20px;
-            max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
-        }
 
         /* ═══════════════════════════════════════════════
            BUTTONS
@@ -1330,9 +1135,6 @@
                 gap: 40px;
             }
 
-            .media-card, .notebook-card {
-                padding: 24px;
-            }
         }
 
         @media (max-width: 480px) {
@@ -1374,9 +1176,6 @@
                 gap: 12px;
             }
 
-            .nav-container .header-right .lang-toggle {
-                margin-left: 0;
-            }
 
             #about-hero {
                 padding-top: 130px;
@@ -1416,13 +1215,10 @@
             <nav>
                 <ul>
                     <li><a href="/#hero">Bio</a></li>
-                    <li><a href="/#experiencias"><span data-lang="es">Experiencias</span><span
-                                data-lang="en">Experience</span></a></li>
-                    <li><a href="/#articulos"><span data-lang="es">Artículos</span><span
-                                data-lang="en">Articles</span></a></li>
-                    <li><a href="/#servicios"><span data-lang="es">Servicios</span><span
-                                data-lang="en">Services</span></a></li>
-                    <li><a href="#contacto"><span data-lang="es">Contacto</span><span data-lang="en">Contact</span></a>
+                    <li><a href="/#experiencias"><span>Experiencias</span></a></li>
+                    <li><a href="/#articulos"><span>Artículos</span></a></li>
+                    <li><a href="/#servicios"><span>Servicios</span></a></li>
+                    <li><a href="#contacto"><span>Contacto</span></a>
                     </li>
                 </ul>
             </nav>
@@ -1434,12 +1230,8 @@
                     <a href="https://instagram.com/nickperot" target="_blank" rel="noopener noreferrer"
                         aria-label="Instagram"><i data-lucide="instagram"></i></a>
                 </div>
-                <div class="lang-toggle">
-                    <button class="lang-btn active" id="btn-es" onclick="setLang('es')">ES</button>
-                    <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
-                </div>
                 <button class="menu-toggle" id="menuToggle" aria-label="Menu">
-                    <span></span><span></span><span></span>
+                    
                 </button>
             </div>
         </div>
@@ -1448,14 +1240,10 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
         <a href="/" onclick="closeMenu()">Bio</a>
-        <a href="/#experiencias" onclick="closeMenu()"><span data-lang="es">Experiencias</span><span
-                data-lang="en">Experience</span></a>
-        <a href="/#articulos" onclick="closeMenu()"><span data-lang="es">Artículos</span><span
-                data-lang="en">Articles</span></a>
-        <a href="/#servicios" onclick="closeMenu()"><span data-lang="es">Servicios</span><span
-                data-lang="en">Services</span></a>
-        <a href="#contacto" onclick="closeMenu()"><span data-lang="es">Contacto</span><span
-                data-lang="en">Contact</span></a>
+        <a href="/#experiencias" onclick="closeMenu()"><span>Experiencias</span></a>
+        <a href="/#articulos" onclick="closeMenu()"><span>Artículos</span></a>
+        <a href="/#servicios" onclick="closeMenu()"><span>Servicios</span></a>
+        <a href="#contacto" onclick="closeMenu()"><span>Contacto</span></a>
     </div>
 
     <!-- ═══════════════════════════════════════════════
@@ -1468,21 +1256,17 @@
                     <img src="perfil.jpg" alt="Nick Perot">
                 </div>
                 <div class="about-text">
-                    <div data-lang="es">
+                    <div>
                         <h1>Acerca de <span class="accent-text">Nick Perot</span></h1>
                         <p class="subtitle">Abogado y docente en la Facultad de Ciencias Jurídicas y Sociales de la Universidad Nacional del Litoral (FCJS · UNL). Especializado en derecho, tecnología, gestión e inteligencia artificial aplicada. Con un enfoque orientado a tender puentes entre disciplinas, acompaña a personas y organizaciones en su transformación digital responsable.</p>
                     </div>
-                    <div data-lang="en">
-                        <h1>About <span class="accent-text">Nick Perot</span></h1>
-                        <p class="subtitle">Lawyer and professor at the Faculty of Legal and Social Sciences of the Universidad Nacional del Litoral (FCJS · UNL). Specialized in law, technology, management and applied artificial intelligence. With a focus on bridging disciplines, he supports individuals and organizations in their responsible digital transformation.</p>
-                    </div>
 
                     <ul class="pilares">
-                        <li><i data-lucide="scale"></i> <span data-lang="es">Abogado</span><span data-lang="en">Lawyer</span></li>
-                        <li><i data-lucide="graduation-cap"></i> <span data-lang="es">Docente en FCJS · UNL</span><span data-lang="en">Professor at FCJS · UNL</span></li>
-                        <li><i data-lucide="cpu"></i> <span data-lang="es">Inteligencia Artificial Aplicada</span><span data-lang="en">Applied Artificial Intelligence</span></li>
-                        <li><i data-lucide="briefcase"></i> <span data-lang="es">Técnico en Gestión de Organizaciones</span><span data-lang="en">Technician in Organizational Management</span></li>
-                        <li><i data-lucide="book-open"></i> <span data-lang="es">Cursos: Derecho, Tecnología, Gestión e IA</span><span data-lang="en">Courses: Law, Technology, Management & AI</span></li>
+                        <li><i data-lucide="scale"></i> <span>Abogado</span></li>
+                        <li><i data-lucide="graduation-cap"></i> <span>Docente en FCJS · UNL</span></li>
+                        <li><i data-lucide="cpu"></i> <span>Inteligencia Artificial Aplicada</span></li>
+                        <li><i data-lucide="briefcase"></i> <span>Técnico en Gestión de Organizaciones</span></li>
+                        <li><i data-lucide="book-open"></i> <span>Cursos: Derecho, Tecnología, Gestión e IA</span></li>
                     </ul>
                 </div>
             </div>
@@ -1516,7 +1300,7 @@
 
             <!-- Table of Contents -->
             <div class="toc-nav">
-                <h4><span data-lang="es">Contenidos</span><span data-lang="en">Contents</span></h4>
+                <h4><span>Contenidos</span></h4>
                 <ol>
                     <li><a href="#sec-intro">Introducción: un momento bisagra</a></li>
                     <li><a href="#sec-contexto">El contexto actual: coordenadas de un nuevo mapa</a></li>
@@ -1695,54 +1479,8 @@
         </div>
     </div>
 
-    <!-- ═══════════════════════════════════════════════
-     VIDEO
-     ═══════════════════════════════════════════════ -->
-    <section class="media-section">
-        <div class="container">
-            <div class="media-card">
-                <div class="media-label"><i data-lucide="video"></i> Video</div>
-                <div class="media-title">Educación y Tecnología: Tiempos de transformación</div>
-                <p class="media-desc">Este video fue generado por <strong>NotebookLM</strong> a partir del archivo fuente de este recurso. Ofrece una síntesis visual del documento de reflexión pedagógica.</p>
-                <div class="video-wrapper">
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/Htsytd4rT90" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- ═══════════════════════════════════════════════
-     PODCAST
-     ═══════════════════════════════════════════════ -->
-    <section class="media-section">
-        <div class="container">
-            <div class="media-card">
-                <div class="media-label"><i data-lucide="headphones"></i> Podcast</div>
-                <div class="media-title">Escuchá el podcast</div>
-                <p class="media-desc">Este podcast fue generado por <strong>NotebookLM</strong> a partir del mismo archivo fuente de este recurso. Una forma alternativa de recorrer las ideas del documento.</p>
-                <audio controls preload="metadata">
-                    <source src="podcast.m4a" type="audio/mp4">
-                    Tu navegador no soporta el reproductor de audio.
-                </audio>
-            </div>
-        </div>
-    </section>
 
-    <!-- ═══════════════════════════════════════════════
-     NOTEBOOK LM
-     ═══════════════════════════════════════════════ -->
-    <section class="media-section">
-        <div class="container">
-            <div class="notebook-card">
-                <div class="nb-icon"><i data-lucide="bot"></i></div>
-                <h3>Interactuá con NotebookLM</h3>
-                <p>Explorá este material de forma interactiva en el cuaderno de NotebookLM. Hacé preguntas, profundizá en los temas y generá tus propias reflexiones.</p>
-                <a href="https://notebooklm.google.com/notebook/479c99b2-6813-4916-8812-0947728b1027?authuser=1" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
-                    <i data-lucide="external-link"></i> Abrir cuaderno en NotebookLM
-                </a>
-            </div>
-        </div>
-    </section>
 
     <!-- ═══════════════════════════════════════════════
      CONTACTO
@@ -1751,28 +1489,22 @@
         <div class="container">
             <div class="contact-grid">
                 <div class="contact-info">
-                    <div data-lang="es">
+                    <div>
                         <h2>Sumate a la transformación digital</h2>
                         <p style="margin: 20px 0; color: var(--text-2); line-height: 1.7;">La revolución digital llegó
                             para quedarse. La tecnología está al servicio. Accedé a las mejores herramientas para
                             potenciar tu día a día con tecnología e IA aplicada.</p>
-                    </div>
-                    <div data-lang="en">
-                        <h2>Join the Digital Transformation</h2>
-                        <p style="margin: 20px 0; color: var(--text-2); line-height: 1.7;">The digital revolution is
-                            here to stay. Technology is at your service. Access the best tools to enhance your daily
-                            life with technology and applied AI.</p>
                     </div>
                     <p><strong>Email:</strong> educacion@nickperot.com</p>
                 </div>
                 <form id="contact-form">
                     <div class="form-row">
                         <div class="form-group">
-                            <label><span data-lang="es">Nombre</span><span data-lang="en">First Name</span></label>
+                            <label><span>Nombre</span></label>
                             <input type="text" id="firstname" required placeholder="">
                         </div>
                         <div class="form-group">
-                            <label><span data-lang="es">Apellido</span><span data-lang="en">Last Name</span></label>
+                            <label><span>Apellido</span></label>
                             <input type="text" id="lastname" required placeholder="">
                         </div>
                     </div>
@@ -1781,10 +1513,8 @@
                         <input type="email" id="email" required placeholder="">
                     </div>
                     <div class="form-group">
-                        <label><span data-lang="es">Motivo</span><span data-lang="en">Subject</span></label>
-                        <select id="reason"
-                            data-options-es="Feedback,Consulta profesional,Consultoría estratégica,Ámbito Académico y Docencia,Instituciones Educativas,Capacitación para organizaciones,Me sumo a la Transformación Digital,Otras consultas"
-                            data-options-en="Feedback,Professional Consultation,Strategic Consulting,Academic & Teaching,Educational Institutions,Training for Organizations,Join the Digital Transformation,Other inquiries">
+                        <label><span>Motivo</span></label>
+                        <select id="reason">
                             <option selected>Feedback</option>
                             <option>Consulta profesional</option>
                             <option>Consultoría estratégica</option>
@@ -1796,19 +1526,19 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label><span data-lang="es">Mensaje</span><span data-lang="en">Message</span></label>
+                        <label><span>Mensaje</span></label>
                         <textarea id="message" rows="4" placeholder=""></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary" id="submit-btn">
-                        <span data-lang="es">Enviar mensaje</span><span data-lang="en">Send message</span>
+                        <span>Enviar mensaje</span>
                     </button>
                     <!-- Loading Progress Bar -->
                     <div class="form-progress-container" id="formProgress">
                         <div class="form-progress-bar" id="formProgressBar"></div>
                     </div>
                     <div class="form-progress-text" id="formProgressText">
-                        <span data-lang="es">Enviando mensaje...</span>
-                        <span data-lang="en">Sending message...</span>
+                        <span>Enviando mensaje...</span>
+                        
                     </div>
                     <!-- Success Toast -->
                     <div id="formSuccess" class="form-toast form-toast-success">
@@ -1817,12 +1547,12 @@
                         </div>
                         <div>
                             <div class="form-toast-title">
-                                <span data-lang="es">¡Mensaje enviado!</span>
-                                <span data-lang="en">Message sent!</span>
+                                <span>¡Mensaje enviado!</span>
+                                
                             </div>
                             <div class="form-toast-desc">
-                                <span data-lang="es">Gracias por escribirme. Te responderé a la brevedad.</span>
-                                <span data-lang="en">Thanks for reaching out. I'll get back to you soon.</span>
+                                <span>Gracias por escribirme. Te responderé a la brevedad.</span>
+                                
                             </div>
                         </div>
                     </div>
@@ -1833,12 +1563,12 @@
                         </div>
                         <div>
                             <div class="form-toast-title">
-                                <span data-lang="es">Error al enviar</span>
-                                <span data-lang="en">Sending failed</span>
+                                <span>Error al enviar</span>
+                                
                             </div>
                             <div class="form-toast-desc">
-                                <span data-lang="es">Intentá de nuevo o escribí a educacion@nickperot.com</span>
-                                <span data-lang="en">Please try again or email educacion@nickperot.com</span>
+                                <span>Intentá de nuevo o escribí a educacion@nickperot.com</span>
+                                
                             </div>
                         </div>
                     </div>
@@ -1849,16 +1579,11 @@
 
     <!-- reCAPTCHA Notice -->
     <div style="text-align: center; padding: 16px 28px; font-size: 0.72rem; color: var(--text-3); line-height: 1.6;">
-        <span data-lang="es">Este sitio está protegido por reCAPTCHA y se aplican la
+        <span>Este sitio está protegido por reCAPTCHA y se aplican la
             <a href="/politica-privacidad/"
                 style="color: var(--text-3); text-decoration: underline;">Política de privacidad</a> y los
             <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer"
                 style="color: var(--text-3); text-decoration: underline;">Términos de servicio</a> de Google.</span>
-        <span data-lang="en">This site is protected by reCAPTCHA and the
-            <a href="/politica-privacidad/"
-                style="color: var(--text-3); text-decoration: underline;">Privacy Policy</a> and Google
-            <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer"
-                style="color: var(--text-3); text-decoration: underline;">Terms of Service</a> apply.</span>
     </div>
 
     <!-- ═══════════════════════════════════════════════
@@ -1867,8 +1592,8 @@
     <section class="social-cta-section">
         <div class="container">
             <div class="social-cta-inner">
-                <h2><span data-lang="es">Conectemos</span><span data-lang="en">Let's connect</span></h2>
-                <p><span data-lang="es">Seguime en redes para más contenido sobre derecho, tecnología, gestión e inteligencia artificial.</span><span data-lang="en">Follow me on social media for more content on law, technology, management and artificial intelligence.</span></p>
+                <h2><span>Conectemos</span></h2>
+                <p><span>Seguime en redes para más contenido sobre derecho, tecnología, gestión e inteligencia artificial.</span></p>
                 <div class="social-cta-grid">
                     <a href="https://linkedin.com/in/nickperot" target="_blank" rel="noopener noreferrer" class="social-cta-card">
                         <div class="social-icon linkedin">
@@ -1925,11 +1650,9 @@
      ═══════════════════════════════════════════════ -->
     <footer>
         <div class="container">
-            <p><span data-lang="es">&copy; 2026 Nick Perot. Construido con tecnología y enfoque humano.</span><span
-                    data-lang="en">&copy; 2026 Nick Perot. Built with technology and a human touch.</span></p>
+            <p><span>&copy; 2026 Nick Perot. Construido con tecnología y enfoque humano.</span></p>
             <p style="margin-top: 12px; font-size: 0.72rem; color: var(--text-3); line-height: 1.6;">
-                <span data-lang="es">Al usar este sitio aceptás nuestros <a href="/terminos-condiciones/" style="color: var(--text-3); text-decoration: underline;">Términos y Condiciones</a> y nuestra <a href="/politica-privacidad/" style="color: var(--text-3); text-decoration: underline;">Política de Privacidad</a>.</span>
-                <span data-lang="en">By using this site you accept our <a href="/terminos-condiciones/" style="color: var(--text-3); text-decoration: underline;">Terms & Conditions</a> and our <a href="/politica-privacidad/" style="color: var(--text-3); text-decoration: underline;">Privacy Policy</a>.</span>
+                <span>Al usar este sitio aceptás nuestros <a href="/terminos-condiciones/" style="color: var(--text-3); text-decoration: underline;">Términos y Condiciones</a> y nuestra <a href="/politica-privacidad/" style="color: var(--text-3); text-decoration: underline;">Política de Privacidad</a>.</span>
             </p>
             <p style="margin-top: 16px; font-size: 0.78rem; color: var(--accent); line-height: 1.6; font-style: italic;">
                 La IA Generativa puede ser nuestra mejor aliada, y también comete errores. Usala con responsabilidad, compromiso y consciencia.
@@ -1953,19 +1676,6 @@
         // Initialize icons
         try { lucide.createIcons(); } catch(e) { console.warn('Lucide icons failed to load:', e); }
 
-        // ─── Language Toggle ───
-        function setLang(lang) {
-            document.body.classList.toggle('lang-en', lang === 'en');
-            document.getElementById('btn-es').classList.toggle('active', lang === 'es');
-            document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-            document.documentElement.lang = lang;
-
-            // Update <select> options
-            document.querySelectorAll('select[data-options-es]').forEach(sel => {
-                const opts = (lang === 'en' ? sel.dataset.optionsEn : sel.dataset.optionsEs).split(',');
-                Array.from(sel.options).forEach((opt, i) => { if (opts[i]) opt.textContent = opts[i]; });
-            });
-        }
 
         // ─── Mobile Menu ───
         const menuToggle = document.getElementById('menuToggle');
