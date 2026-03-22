@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Desafío de la Docencia en la Era de la IA | Nick Perot</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="shortcut icon" href="favicon.ico">
+    <meta name="description"
+        content="Reflexión pedagógica sobre el desafío de la docencia en la era de la inteligencia artificial. Por Nick Perot.">
+    <meta name="author" content="Nick Perot">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="El Desafío de la Docencia en la Era de la IA | Nick Perot">
+    <meta property="og:description"
+        content="Una conversación sobre lo que cambia, lo que permanece y lo que depende de las decisiones que tomemos hoy.">
+    <meta property="og:url" content="https://nickperot.com/ar2.html">
+    <meta property="og:site_name" content="Nick Perot">
+    <meta property="og:locale" content="es_AR">
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* ═══════════════════════════════════════════════
+           VARIABLES & RESET (same as index)
+           ═══════════════════════════════════════════════ */
+        :root {
+            --bg: #fafafa;
+            --bg-alt: #ffffff;
+            --bg-subtle: #f0f0f0;
+            --bg-exp: #0a0a0a;
+            --bg-exp-card: #141414;
+            --text: #1a1a1a;
+            --text-2: #555555;
+            --text-3: #888888;
+            --text-exp: #f0f0f0;
+            --text-exp-2: #a0a0a0;
+            --text-exp-3: #666666;
+            --accent: #2563eb;
+            --accent-glow: rgba(37, 99, 235, 0.12);
+            --accent-warm: #f97316;
+            --accent-green: #22c55e;
+            --border: #e5e5e5;
+            --border-hover: #cccccc;
+            --font: 'Inter', -apple-system, sans-serif;
+            --serif: 'Playfair Display', Georgia, serif;
+            --ease: cubic-bezier(0.25, 0.8, 0.25, 1);
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.08);
+            --radius: 12px;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #0f0f0f;
+                --bg-alt: #1a1a1a;
+                --bg-subtle: #222222;
+                --bg-exp: #050505;
+                --bg-exp-card: #111111;
+                --text: #ededed;
+                --text-2: #a0a0a0;
+                --text-3: #666666;
+                --border: #2a2a2a;
+                --border-hover: #444444;
+                --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
+                --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.2);
+                --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.3);
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s var(--ease);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        /* ═══════════════════════════════════════════════
+           SCROLL PROGRESS
+           ═══════════════════════════════════════════════ */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 2px;
+            z-index: 9999;
+            background: var(--accent);
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+
+        /* ═══════════════════════════════════════════════
+           HEADER
+           ═══════════════════════════════════════════════ */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: transparent;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid transparent;
+            transition: all 0.4s var(--ease);
+        }
+
+        header.scrolled {
+            border-bottom: 1px solid var(--border);
+            background: rgba(250, 250, 250, 0.92);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            header.scrolled {
+                background: rgba(15, 15, 15, 0.92);
+            }
+        }
+
+        .nav-container {
+            max-width: 1060px;
+            margin: 0 auto;
+            padding: 0 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 68px;
+        }
+
+        .logo {
+            font-weight: 900;
+            font-size: 1.25rem;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 28px;
+        }
+
+        nav a {
+            font-size: 0.85rem;
+            color: var(--text-2);
+            font-weight: 500;
+            position: relative;
+            padding: 4px 0;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s var(--ease);
+        }
+
+        nav a:hover {
+            color: var(--text);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .social-nav {
+            display: flex;
+            gap: 12px;
+        }
+
+        .social-nav a {
+            width: 34px;
+            height: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            transition: all 0.3s var(--ease);
+        }
+
+        .social-nav a:hover {
+            background: var(--bg-subtle);
+        }
+
+        .social-nav i {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Mobile menu */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            width: 36px;
+            height: 36px;
+            position: relative;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .menu-toggle span {
+            width: 22px;
+            height: 2px;
+            background: var(--text);
+            border-radius: 2px;
+            transition: all 0.3s var(--ease);
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 68px;
+            left: 0;
+            width: 100%;
+            height: calc(100vh - 68px);
+            background: var(--bg);
+            z-index: 999;
+            padding: 40px 28px;
+            flex-direction: column;
+            gap: 24px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .mobile-menu.open {
+            display: flex;
+            opacity: 1;
+        }
+
+        .mobile-menu a {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--text);
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        /* ═══════════════════════════════════════════════
+           LAYOUT
+           ═══════════════════════════════════════════════ */
+        .container {
+            max-width: 1060px;
+            margin: 0 auto;
+            padding: 0 28px;
+        }
+
+        .content-container {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 28px;
+        }
+
+        .section-padding {
+            padding: 100px 0;
+        }
+
+        /* ═══════════════════════════════════════════════
+           HERO
+           ═══════════════════════════════════════════════ */
+        .article-hero {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            padding-top: 100px;
+            padding-bottom: 60px;
+            background: var(--bg-exp);
+            color: var(--text-exp);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .article-hero::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            background: linear-gradient(to top, var(--bg), var(--bg-exp));
+        }
+
+        .hero-label {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 24px;
+        }
+
+        .article-hero h1 {
+            font-family: var(--serif);
+            font-size: clamp(2.4rem, 5vw, 3.8rem);
+            line-height: 1.1;
+            margin-bottom: 24px;
+            letter-spacing: -2px;
+            font-weight: 700;
+            color: var(--text-exp);
+        }
+
+        .article-hero h1 .accent-text {
+            color: var(--accent);
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-exp-2);
+            font-weight: 300;
+            line-height: 1.7;
+            max-width: 600px;
+            margin-bottom: 32px;
+        }
+
+        .hero-meta {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            font-size: 0.85rem;
+            color: var(--text-exp-2);
+            flex-wrap: wrap;
+        }
+
+        .hero-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+        }
+
+        .hero-meta span:not(:last-child)::after {
+            content: '·';
+            margin: 0 12px;
+            color: var(--text-exp-3);
+            font-weight: 700;
+        }
+
+        .hero-meta i {
+            width: 14px;
+            height: 14px;
+            flex-shrink: 0;
+        }
+
+        /* ═══════════════════════════════════════════════
+           ARTICLE CONTENT
+           ═══════════════════════════════════════════════ */
+        .article-section {
+            padding: 80px 0;
+        }
+
+        .article-section + .article-section {
+            padding-top: 0;
+        }
+
+        .article-section h2 {
+            font-family: var(--serif);
+            font-size: clamp(1.6rem, 3vw, 2.2rem);
+            letter-spacing: -1px;
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+
+        .article-section h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            margin-top: 40px;
+            color: var(--text);
+        }
+
+        .article-section p {
+            font-size: 1.05rem;
+            color: var(--text-2);
+            line-height: 1.8;
+            margin-bottom: 24px;
+            font-weight: 300;
+        }
+
+        .article-section p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Blockquote */
+        .pullquote {
+            margin: 48px 0;
+            padding: 32px 36px;
+            border-left: 3px solid var(--accent);
+            background: var(--accent-glow);
+            border-radius: 0 var(--radius) var(--radius) 0;
+        }
+
+        .pullquote p {
+            font-family: var(--serif);
+            font-size: 1.2rem;
+            font-style: italic;
+            color: var(--text);
+            line-height: 1.7;
+            font-weight: 400;
+            margin-bottom: 0;
+        }
+
+        /* Divider */
+        .section-divider {
+            border: none;
+            height: 1px;
+            background: var(--border);
+            margin: 0;
+            max-width: 760px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ═══════════════════════════════════════════════
+           NOTA INTRO
+           ═══════════════════════════════════════════════ */
+        .nota-box {
+            background: var(--bg-alt);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 32px;
+            margin-bottom: 48px;
+        }
+
+        .nota-box .nota-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+
+        .nota-box p {
+            font-size: 0.95rem;
+            color: var(--text-2);
+            line-height: 1.7;
+            margin-bottom: 0;
+        }
+
+        /* ═══════════════════════════════════════════════
+           INFOGRAPHIC
+           ═══════════════════════════════════════════════ */
+        .infographic-wrapper {
+            margin: 40px 0;
+        }
+
+        .infographic-wrapper img {
+            width: 100%;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-md);
+        }
+
+        .infographic-caption {
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-3);
+            margin-top: 16px;
+            font-style: italic;
+        }
+
+        .download-row {
+            text-align: center;
+            margin-top: 16px;
+        }
+
+        /* ═══════════════════════════════════════════════
+           TABLE
+           ═══════════════════════════════════════════════ */
+        .responsive-table {
+            width: 100%;
+            overflow-x: auto;
+            margin: 32px 0;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+        }
+
+        .responsive-table table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        .responsive-table th {
+            background: var(--bg-subtle);
+            font-weight: 600;
+            text-align: left;
+            padding: 14px 18px;
+            font-size: 0.82rem;
+            letter-spacing: 0.3px;
+            color: var(--text);
+            border-bottom: 2px solid var(--border);
+        }
+
+        .responsive-table td {
+            padding: 14px 18px;
+            color: var(--text-2);
+            border-bottom: 1px solid var(--border);
+            line-height: 1.5;
+            vertical-align: top;
+        }
+
+        .responsive-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* ═══════════════════════════════════════════════
+           RESISTANCE Q&A
+           ═══════════════════════════════════════════════ */
+        .qa-item {
+            margin-bottom: 32px;
+        }
+
+        .qa-question {
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--text);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .qa-question i {
+            width: 20px;
+            height: 20px;
+            color: var(--accent);
+            flex-shrink: 0;
+            margin-top: 3px;
+        }
+
+        /* ═══════════════════════════════════════════════
+           CTA SECTION
+           ═══════════════════════════════════════════════ */
+        .cta-section {
+            background: var(--bg-exp);
+            color: var(--text-exp);
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            background: linear-gradient(to bottom, var(--bg), var(--bg-exp));
+        }
+
+        .cta-section h2 {
+            font-family: var(--serif);
+            font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+            letter-spacing: -1px;
+            margin-bottom: 20px;
+            color: var(--text-exp);
+        }
+
+        .cta-section p {
+            color: var(--text-exp-2);
+            font-size: 1.05rem;
+            font-weight: 300;
+            line-height: 1.8;
+            max-width: 600px;
+            margin: 0 auto 36px;
+        }
+
+        .cta-section::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            background: linear-gradient(to top, var(--bg), var(--bg-exp));
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 13px 26px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s var(--ease);
+            cursor: pointer;
+            border: none;
+            font-family: var(--font);
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-outline {
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--text);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline-light {
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: transparent;
+            color: var(--text-exp);
+        }
+
+        .btn-outline-light:hover {
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .btn i {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* ═══════════════════════════════════════════════
+           FOOTER
+           ═══════════════════════════════════════════════ */
+        footer {
+            padding: 48px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            font-size: 0.82rem;
+            color: var(--text-3);
+        }
+
+        /* ═══════════════════════════════════════════════
+           ANIMATIONS
+           ═══════════════════════════════════════════════ */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fade-in-delay-1 { transition-delay: 0.1s; }
+        .fade-in-delay-2 { transition-delay: 0.2s; }
+        .fade-in-delay-3 { transition-delay: 0.3s; }
+
+        /* ═══════════════════════════════════════════════
+           RESPONSIVE
+           ═══════════════════════════════════════════════ */
+        @media (max-width: 768px) {
+            nav { display: none; }
+            .menu-toggle { display: flex; }
+
+            .article-hero { min-height: auto; padding-top: 100px; padding-bottom: 40px; }
+            .article-hero h1 { font-size: 2rem; }
+            .hero-subtitle { font-size: 1rem; }
+            .hero-meta { flex-wrap: wrap; }
+            .hero-meta span:not(:last-child)::after { margin: 0 8px; }
+
+            .article-section { padding: 60px 0; }
+            .article-section + .article-section { padding-top: 0; }
+
+            .pullquote { padding: 24px; margin: 32px 0; }
+            .pullquote p { font-size: 1.05rem; }
+        }
+
+        @media (max-width: 480px) {
+            .article-hero h1 { font-size: 1.7rem; letter-spacing: -1px; }
+
+            .article-section h2 { font-size: 1.4rem; }
+            .article-section p { font-size: 0.95rem; line-height: 1.7; }
+
+            .nota-box { padding: 24px; }
+
+            .responsive-table { font-size: 0.82rem; }
+            .responsive-table th, .responsive-table td { padding: 10px 12px; }
+
+            .section-padding { padding: 60px 0; }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- ═══════════════════════════════════════════════
+     HEADER
+     ═══════════════════════════════════════════════ -->
+    <header id="main-header">
+        <div class="nav-container">
+            <a href="index 8 testing.html" class="logo"><span class="logo-dot"></span> NICK PEROT</a>
+            <nav>
+                <ul>
+                    <li><a href="index 8 testing.html#hero">Bio</a></li>
+                    <li><a href="index 8 testing.html#experiencias">Experiencias</a></li>
+                    <li><a href="index 8 testing.html#articulos">Artículos</a></li>
+                    <li><a href="index 8 testing.html#servicios">Servicios</a></li>
+                    <li><a href="index 8 testing.html#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+            <div class="header-right">
+                <div class="social-nav">
+                    <a href="https://linkedin.com/in/nickperot" target="_blank" rel="noopener noreferrer"
+                        aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
+                    <a href="https://x.com/nickperot" target="_blank" rel="noopener noreferrer" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="width:16px;height:16px;"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                    <a href="https://instagram.com/nickperot" target="_blank" rel="noopener noreferrer"
+                        aria-label="Instagram"><i data-lucide="instagram"></i></a>
+                </div>
+                <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="index 8 testing.html#hero" onclick="closeMenu()">Bio</a>
+        <a href="index 8 testing.html#experiencias" onclick="closeMenu()">Experiencias</a>
+        <a href="index 8 testing.html#articulos" onclick="closeMenu()">Artículos</a>
+        <a href="index 8 testing.html#servicios" onclick="closeMenu()">Servicios</a>
+        <a href="index 8 testing.html#contacto" onclick="closeMenu()">Contacto</a>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════
+     HERO
+     ═══════════════════════════════════════════════ -->
+    <section class="article-hero">
+        <div class="container fade-in">
+            <div class="hero-label">Reflexión Pedagógica</div>
+            <h1>El Desafío de la Docencia<br>en la Era de la <span class="accent-text">Inteligencia Artificial</span></h1>
+            <p class="hero-subtitle">Una conversación sobre lo que cambia, lo que permanece y lo que depende de las decisiones que tomemos hoy.</p>
+            <div class="hero-meta">
+                <span><i data-lucide="user"></i> Nick Perot</span>
+                <span><i data-lucide="calendar"></i> Febrero 2026</span>
+                <span><i data-lucide="clock"></i> 12 min de lectura</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════
+     INTRODUCCIÓN
+     ═══════════════════════════════════════════════ -->
+    <section class="article-section">
+        <div class="content-container fade-in">
+            <div class="nota-box">
+                <div class="nota-label">Antes de empezar</div>
+                <p>Este texto no llega desde un lugar de certeza. Está escrito desde adentro del sistema educativo, con sus contradicciones, sus tiempos imposibles y su enorme potencial todavía sin realizar. No trae respuestas definitivas. Trae observaciones de campo, evidencia disponible y preguntas que vale la pena sostener juntos.</p>
+            </div>
+
+            <h2>La pregunta que ya no podemos esquivar</h2>
+            <p>Imaginá la escena: un estudiante entrega un trabajo impecable. Estructura clara, argumentación sólida, referencias pertinentes. Lo aprobás. Días después, te cuenta que lo generó con inteligencia artificial en diez minutos.</p>
+            <p>La primera reacción es enojarse. Con el estudiante, con la tecnología, con el mundo que cambia demasiado rápido. Pero si te quedás un momento con esa incomodidad en vez de reaccionar, aparece una pregunta mucho más poderosa: <strong>¿qué estaba midiendo esa evaluación? ¿Qué evidencia de aprendizaje real nos daba?</strong></p>
+
+            <div class="pullquote">
+                <p>La inteligencia artificial no rompió el contrato implícito de la educación tradicional. Lo que hizo fue demostrar, con una claridad que ya no admite evasivas, que ese contrato ya no es indicador de aprendizaje real.</p>
+            </div>
+
+            <p>Durante décadas funcionamos bajo una lógica aparentemente sólida: enseñamos contenidos, los estudiantes memorizaban, los reproducían en un examen, y eso certificaba que habían aprendido. Era un sistema diseñado para un mundo donde la información era escasa y el acceso al conocimiento dependía de instituciones y expertos. <strong>Ese mundo ya no existe.</strong></p>
+            <p>Pero esto no significa que la educación haya perdido su razón de ser. Significa exactamente lo contrario: tiene una oportunidad histórica para volver a su misión más profunda, que nunca fue transmitir datos sino formar personas capaces de pensar, decidir y actuar en contextos complejos.</p>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ═══════════════════════════════════════════════
+     PUNTO DE INFLEXIÓN
+     ═══════════════════════════════════════════════ -->
+    <section class="article-section">
+        <div class="content-container fade-in">
+            <h2>Enero de 2026: el punto de inflexión</h2>
+            <p>Hay fechas que funcionan como bisagras. No porque el mundo cambie de un día para el otro, sino porque ciertos desarrollos tecnológicos alcanzan una masa crítica que hace imposible seguir mirando para otro lado. Para quienes trabajamos en tecnología y educación, enero de 2026 fue una de esas fechas.</p>
+            <p>No fue un único evento. Fue la confluencia de herramientas que dieron un salto cualitativo en capacidades, accesibilidad y facilidad de uso. Dejaron de ser recursos para especialistas y se convirtieron en parte del ecosistema cotidiano de cualquier persona con un dispositivo y conexión a internet.</p>
+            <p>La pregunta dejó de ser teórica. Ya no era "¿cómo afectará la IA a la educación?" sino algo mucho más concreto: <strong>¿cómo la uso yo, hoy, de manera responsable y con criterio pedagógico?</strong></p>
+
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ═══════════════════════════════════════════════
+     LAS TRES CRISIS
+     ═══════════════════════════════════════════════ -->
+    <section class="article-section">
+        <div class="content-container fade-in">
+            <h2>Tres crisis que la tecnología hizo visibles</h2>
+            <p>La inteligencia artificial no creó los problemas del sistema educativo. Los hizo más difíciles de ignorar. Hay tres fracturas que venían creciendo hace décadas y que hoy se presentan con una urgencia que no admite demoras.</p>
+
+            <h3>1. La crisis de relevancia</h3>
+            <p>Los contenidos que enseñamos se desactualizan más rápido que los ciclos curriculares que los contienen. Un estudiante que hoy inicia sus estudios va a graduarse en un contexto laboral, normativo y tecnológico que todavía no existe con claridad. Según la OCDE y el Foro Económico Mundial, una fracción significativa de los roles profesionales que van a ocupar los graduados de hoy no existían cuando comenzaron a estudiar.</p>
+            <p>La pregunta incómoda es directa: <strong>¿qué parte de lo que enseñamos hoy va a seguir siendo relevante dentro de cinco años?</strong> El conocimiento disciplinar sigue siendo fundamental, pero necesitamos revisar con honestidad qué estamos priorizando y por qué.</p>
+
+            <h3>2. La crisis de productividad</h3>
+            <p>Si miramos con distancia la agenda de un docente, aparece una paradoja: buena parte de nuestras horas se van en actividades que no requieren nuestra formación específica ni nuestro criterio pedagógico. La corrección mecánica de ejercicios, la generación de materiales estándar, los informes administrativos repetitivos: todo eso consume tiempo que podría destinarse a lo que realmente hace la diferencia.</p>
+            <p>Los datos del estudio TALIS 2024 de la OCDE son claros: alrededor de la mitad de los docentes identifica las tareas administrativas como fuente significativa de estrés laboral. No la enseñanza en sí, sino todo lo que rodea a la enseñanza. La IA puede asumir una parte sustancial de esa carga, liberando tiempo para lo que realmente importa.</p>
+
+            <h3>3. La crisis de autoridad epistémica</h3>
+            <p>Ya no somos los únicos proveedores de información en la vida de nuestros estudiantes. Un estudiante con un dispositivo conectado puede consultar explicaciones adaptadas a su nivel, acceder a investigación en múltiples idiomas, interactuar con sistemas que responden en tiempo real, y participar en comunidades globales sobre cualquier tema.</p>
+            <p>Si nuestro valor residiera exclusivamente en "saber más que nuestros alumnos", esa disputa estaría perdida de antemano. Los sistemas de IA actuales acceden a conocimientos con una profundidad que ningún individuo puede igualar.</p>
+
+            <div class="pullquote">
+                <p>Pero hay algo que esos sistemas no pueden hacer: saber qué pregunta debería formular este estudiante concreto, en este momento de su trayectoria, dado lo que ya sabe y lo que todavía no sabe. Eso sigue siendo nuestro.</p>
+            </div>
+
+            <p>La autoridad docente no muere con la democratización de la información. Se transforma: pasa de residir en el acceso exclusivo al conocimiento a residir en la capacidad de orientar cómo se construye ese conocimiento.</p>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ═══════════════════════════════════════════════
+     INFOGRAFÍA
+     ═══════════════════════════════════════════════ -->
+    <section class="article-section">
+        <div class="content-container fade-in">
+            <h2>Usos concretos: qué cambia el lunes a las 8</h2>
+            <p>Hay una distancia enorme entre entender la transformación en términos abstractos y saber qué hacer el lunes a la mañana con cuarenta estudiantes, un programa que cumplir y tres reuniones más en el día. Lo que sigue son usos concretos que producen cambios verificables en la calidad del trabajo y la distribución del tiempo.</p>
+
+            <div class="responsive-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Herramienta / Tarea</th>
+                            <th>¿Qué se hace?</th>
+                            <th>¿Qué cambia?</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Preparación de clases</strong></td>
+                            <td>Generar esquemas de clase a partir del tema y el perfil del grupo. Producir múltiples versiones de una misma explicación para distintos niveles.</td>
+                            <td>Se reduce el tiempo de arranque. Se gana variedad de abordajes.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Diseño de consignas</strong></td>
+                            <td>Reformular preguntas para que no se resuelvan con respuestas genéricas. Generar análisis de casos, dilemas éticos, situaciones problema.</td>
+                            <td>Las evaluaciones miden lo que importa. Los estudiantes no evaden el pensar.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Materiales audiovisuales</strong></td>
+                            <td>Transformar apuntes en guiones para videos cortos. Generar presentaciones con estructura visual clara.</td>
+                            <td>Mejor calidad sin más tiempo de producción. Formatos de acceso diversificados.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Seguimiento del grupo</strong></td>
+                            <td>Generar resúmenes, guías de lectura y preguntas de comprensión adaptadas a los textos del programa.</td>
+                            <td>Recursos personalizados para estudiantes. El docente no genera todo desde cero.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Tareas administrativas</strong></td>
+                            <td>Redactar informes, planificaciones anuales, comunicaciones institucionales.</td>
+                            <td>Se recuperan horas semanales. Mejor calidad de documentos porque hay tiempo para revisarlos.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p>Las herramientas nombradas no son las únicas ni necesariamente las mejores para cada contexto. El criterio de selección es simple: ¿qué necesito hacer y qué herramienta me ayuda a hacerlo mejor?</p>
+
+            <div class="pullquote">
+                <p>La tecnología amplía el espacio de lo posible dentro del tiempo disponible. El criterio sobre qué es pedagógicamente valioso sigue siendo completamente humano.</p>
+            </div>
+
+            <div class="infographic-wrapper">
+                <img src="Infograf%C3%ADa.png" alt="Infografía: El desafío de la docencia en la era de la inteligencia artificial. Mapa visual con las ideas clave sobre las tres crisis educativas, los usos concretos de IA en el aula y la importancia del vínculo pedagógico." loading="lazy">
+                <p class="infographic-caption">Infografía: visión integral de los desafíos y oportunidades de la IA en la docencia.</p>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ═══════════════════════════════════════════════
+     USO CONSCIENTE
+     ═══════════════════════════════════════════════ -->
+    <section class="article-section">
+        <div class="content-container fade-in">
+            <h2>Uso consciente: esto no es automático</h2>
+            <p>Algo que es importante decir con claridad, porque el entusiasmo tecnológico a veces lo omite: la IA generativa comete errores. Produce información incorrecta con la misma fluidez que la correcta. Tiene sesgos que reflejan los datos con que fue entrenada. Y no siempre señala sus propias limitaciones.</p>
+            <p>¿Entonces no debemos usarla? En absoluto. Ese es un argumento para usarla <strong>con criterio</strong>. Y enseñar a usarla con criterio es, quizás, una de las responsabilidades más nuevas e importantes que tenemos como docentes.</p>
+
+            <div class="pullquote">
+                <p>El objetivo no es que los estudiantes usen inteligencia artificial. El objetivo es que sepan cuándo usarla, para qué, con qué precauciones y con qué criterio crítico. Eso no se aprende solo. Se enseña.</p>
+            </div>
+
+            <p>La diferencia entre quienes incorporan estas herramientas de manera productiva y quienes las usan superficialmente no pasa por el acceso ni por las habilidades técnicas. Pasa por si alguien les enseñó a interrogar los resultados, a verificar las fuentes, a entender que la fluidez del lenguaje no garantiza la veracidad del contenido.</p>
+
+            <h3>¿Qué significa enseñar uso consciente?</h3>
+            <p>No se trata de dar una clase sobre IA (que no sería mala idea). Se trata de integrar el pensamiento crítico en las prácticas cotidianas del aula:</p>
+            <p><strong>Usá la herramienta en clase, en vivo.</strong> Señalá cuándo produce algo incorrecto o incompleto. Esa demostración vale más que cualquier advertencia abstracta.</p>
+            <p><strong>Diseñá actividades donde los estudiantes evalúen lo que generó la IA</strong> y argumenten por qué están de acuerdo o no. Eso convierte la tecnología en objeto de análisis, no solo en atajo.</p>
+            <p><strong>Incluí en las consignas la instrucción de documentar</strong> qué herramientas se usaron, cómo, y qué ajustes se hicieron al resultado. Hacer visible el proceso es la diferencia entre aprendizaje y evasión del aprendizaje.</p>
+            <p><strong>Discutí abiertamente los límites éticos:</strong> cuándo el uso de estas herramientas es trabajo intelectual legítimo y cuándo es una forma de no hacer el trabajo que corresponde. Esa conversación, si se da con seriedad, produce reflexiones más ricas de lo que se espera.</p>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ═══════════════════════════════════════════════
+     LO QUE NO CAMBIA
+     ═══════════════════════════════════════════════ -->
+    <section class="article-section">
+        <div class="content-container fade-in">
+            <h2>Lo que no cambia: el vínculo</h2>
+            <p>En medio de toda esta discusión sobre herramientas y modelos de lenguaje, hay algo que vale la pena defender con convicción: <strong>la centralidad del vínculo pedagógico</strong>.</p>
+            <p>Ningún sistema de IA puede percibir que un estudiante está a punto de abandonar la materia aunque sus notas no lo muestren. Ninguno puede ajustar en tiempo real el nivel de una explicación según lo que lee en la cara de quien escucha. Ninguno puede hacer que un estudiante sienta que su pregunta, por más básica que parezca, es bienvenida y merece una respuesta seria.</p>
+            <p>La investigación sobre efectividad docente es consistente: la calidad del vínculo entre docente y estudiante es uno de los predictores más robustos del aprendizaje real. Si usamos la tecnología para liberar tiempo que hoy se va en tareas mecánicas y lo destinamos a construir vínculos más ricos y atentos, habremos usado bien la tecnología.</p>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ═══════════════════════════════════════════════
+     RESISTENCIAS Y RESPUESTAS
+     ═══════════════════════════════════════════════ -->
+    <section class="article-section">
+        <div class="content-container fade-in">
+            <h2>Resistencias reales, respuestas honestas</h2>
+            <p>Las resistencias a incorporar tecnología no son irracionales. Son respuestas comprensibles a condiciones reales: falta de tiempo, falta de formación, incertidumbre, y una preocupación legítima por lo que se pierde en la transformación.</p>
+
+            <div class="qa-item">
+                <div class="qa-question"><i data-lucide="message-circle"></i> "No tengo tiempo para aprender nada nuevo"</div>
+                <p>Es cierto: la agenda docente está sobrecargada. Pero no se trata de agregar a la agenda, sino de <strong>sustituir dentro de ella</strong>. Identificá tres tareas de tu semana que sean repetitivas y no requieran tu criterio específico. Invertí noventa minutos en aprender a delegarlas. Probablemente recuperes ese tiempo en la primera semana. Y mientras aprendés, vas a estar actualizando contenidos, preparando mejor tus clases y generando nuevas herramientas para tus estudiantes.</p>
+            </div>
+
+            <div class="qa-item">
+                <div class="qa-question"><i data-lucide="message-circle"></i> "No confío en los resultados que produce"</div>
+                <p>Bien. Esa desconfianza es exactamente el punto de partida correcto. La IA produce resultados que requieren verificación, ajuste y criterio. No es un oráculo: es una herramienta que trabaja mejor cuando quien la usa sabe lo suficiente como para distinguir lo que está bien de lo que no. <strong>Un docente con años de experiencia es, potencialmente, el usuario más capaz del sistema.</strong></p>
+            </div>
+
+            <div class="qa-item">
+                <div class="qa-question"><i data-lucide="message-circle"></i> "Mis estudiantes van a usarla para no trabajar"</div>
+                <p>Algunos, sí. Igual que siempre encontraron maneras de evadir el trabajo que no entendían para qué servía. La pregunta útil no es cómo impedirlo, sino cómo diseñar situaciones de aprendizaje donde evadir sea más difícil que hacerlo. Si una consigna se puede responder con IA sin ningún procesamiento propio, esa consigna estaba midiendo memorización, no pensamiento. La tecnología no creó ese problema. Lo puso en evidencia.</p>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ═══════════════════════════════════════════════
+     CTA / CIERRE
+     ═══════════════════════════════════════════════ -->
+    <section class="cta-section">
+        <div class="container fade-in" style="position: relative; z-index: 1;">
+            <h2>Sobre lo que elegimos construir</h2>
+            <p>La IA puede generar contenidos. Solo nosotros podemos generar sentido. Puede resolver problemas. Solo nosotros podemos enseñar a formular las preguntas correctas. Puede procesar información. Solo nosotros podemos acompañar a alguien en el proceso de transformarla en comprensión.</p>
+            <p>Este es el momento. No para resolver todas las preguntas de una vez, sino para empezar a hacerlas con seriedad, con colegas, y con la convicción de que la educación depende de las personas que la sostienen.</p>
+            <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 12px;">
+                <a href="index 8 testing.html#contacto" class="btn btn-primary">
+                    <i data-lucide="mail"></i> Contactame
+                </a>
+                <a href="index 8 testing.html" class="btn btn-outline-light">
+                    <i data-lucide="arrow-left"></i> Volver al sitio
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════
+     FOOTER
+     ═══════════════════════════════════════════════ -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Nick Perot. Construido con tecnología y enfoque humano.</p>
+            <p style="margin-top: 12px; font-size: 0.72rem; color: var(--text-3); line-height: 1.6;">
+                Al usar este sitio aceptás nuestros <a href="/terminos-condiciones/" style="color: var(--text-3); text-decoration: underline;">Términos y Condiciones</a> y nuestra <a href="/politica-privacidad/" style="color: var(--text-3); text-decoration: underline;">Política de Privacidad</a>.
+            </p>
+        </div>
+    </footer>
+
+    <!-- ═══════════════════════════════════════════════
+     SCRIPTS
+     ═══════════════════════════════════════════════ -->
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // ─── Scroll Progress ───
+        window.addEventListener('scroll', () => {
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrolled = (window.scrollY / docHeight) * 100;
+            document.getElementById('scrollProgress').style.width = scrolled + '%';
+
+            // Header scroll state
+            document.getElementById('main-header').classList.toggle('scrolled', window.scrollY > 40);
+        });
+
+        // ─── Mobile Menu ───
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            mobileMenu.classList.toggle('open');
+        });
+        function closeMenu() {
+            menuToggle.classList.remove('active');
+            mobileMenu.classList.remove('open');
+        }
+
+        // ─── Fade-in Observer ───
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
