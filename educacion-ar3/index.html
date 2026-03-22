@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Método CAEI - Marco de Adopción Tecnológica Consciente | Nick Perot</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="shortcut icon" href="favicon.ico">
+    <meta name="description"
+        content="Método CAEI: Un marco para incorporar tecnología de forma consciente, responsable y sostenida — sin necesitar ser especialista. Por Nick Perot.">
+    <meta name="author" content="Nick Perot">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Método CAEI - Marco de Adopción Tecnológica Consciente | Nick Perot">
+    <meta property="og:description"
+        content="Conocer · Aprender · Experimentar · Implementar. Un marco para incorporar tecnología de forma consciente, responsable y sostenida.">
+    <meta property="og:url" content="https://nickperot.com/ar3.html">
+    <meta property="og:site_name" content="Nick Perot">
+    <meta property="og:locale" content="es_AR">
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* ═══════════════════════════════════════════════
+           VARIABLES & RESET (same as index)
+           ═══════════════════════════════════════════════ */
+        :root {
+            --bg: #fafafa;
+            --bg-alt: #ffffff;
+            --bg-subtle: #f0f0f0;
+            --bg-exp: #0a0a0a;
+            --bg-exp-card: #141414;
+            --text: #1a1a1a;
+            --text-2: #555555;
+            --text-3: #888888;
+            --text-exp: #f0f0f0;
+            --text-exp-2: #a0a0a0;
+            --text-exp-3: #666666;
+            --accent: #2563eb;
+            --accent-glow: rgba(37, 99, 235, 0.12);
+            --accent-warm: #f97316;
+            --accent-green: #22c55e;
+            --border: #e5e5e5;
+            --border-hover: #cccccc;
+            --font: 'Inter', -apple-system, sans-serif;
+            --serif: 'Playfair Display', Georgia, serif;
+            --ease: cubic-bezier(0.25, 0.8, 0.25, 1);
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.08);
+            --radius: 12px;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #0f0f0f;
+                --bg-alt: #1a1a1a;
+                --bg-subtle: #222222;
+                --bg-exp: #050505;
+                --bg-exp-card: #111111;
+                --text: #ededed;
+                --text-2: #a0a0a0;
+                --text-3: #666666;
+                --border: #2a2a2a;
+                --border-hover: #444444;
+                --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
+                --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.2);
+                --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.3);
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s var(--ease);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        /* ═══════════════════════════════════════════════
+           SCROLL PROGRESS
+           ═══════════════════════════════════════════════ */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 2px;
+            z-index: 9999;
+            background: var(--accent);
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+
+        /* ═══════════════════════════════════════════════
+           HEADER
+           ═══════════════════════════════════════════════ */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: transparent;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid transparent;
+            transition: all 0.4s var(--ease);
+        }
+
+        header.scrolled {
+            border-bottom: 1px solid var(--border);
+            background: rgba(250, 250, 250, 0.92);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            header.scrolled {
+                background: rgba(15, 15, 15, 0.92);
+            }
+        }
+
+        .nav-container {
+            max-width: 1060px;
+            margin: 0 auto;
+            padding: 0 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 68px;
+        }
+
+        .logo {
+            font-weight: 900;
+            font-size: 1.25rem;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 28px;
+        }
+
+        nav a {
+            font-size: 0.85rem;
+            color: var(--text-2);
+            font-weight: 500;
+            position: relative;
+            padding: 4px 0;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s var(--ease);
+        }
+
+        nav a:hover {
+            color: var(--text);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .social-nav {
+            display: flex;
+            gap: 12px;
+        }
+
+        .social-nav a {
+            width: 34px;
+            height: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            transition: all 0.3s var(--ease);
+        }
+
+        .social-nav a:hover {
+            background: var(--bg-subtle);
+        }
+
+        .social-nav i {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Mobile menu */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            width: 36px;
+            height: 36px;
+            position: relative;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .menu-toggle span {
+            width: 22px;
+            height: 2px;
+            background: var(--text);
+            border-radius: 2px;
+            transition: all 0.3s var(--ease);
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 68px;
+            left: 0;
+            width: 100%;
+            height: calc(100vh - 68px);
+            background: var(--bg);
+            z-index: 999;
+            padding: 40px 28px;
+            flex-direction: column;
+            gap: 24px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .mobile-menu.open {
+            display: flex;
+            opacity: 1;
+        }
+
+        .mobile-menu a {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--text);
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        /* ═══════════════════════════════════════════════
+           LAYOUT
+           ═══════════════════════════════════════════════ */
+        .container {
+            max-width: 1060px;
+            margin: 0 auto;
+            padding: 0 28px;
+        }
+
+        .content-container {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 28px;
+        }
+
+        .section-padding {
+            padding: 100px 0;
+        }
+
+        /* ═══════════════════════════════════════════════
+           HERO
+           ═══════════════════════════════════════════════ */
+        .article-hero {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            padding-top: 100px;
+            padding-bottom: 60px;
+            background: var(--bg-exp);
+            color: var(--text-exp);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .article-hero::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            background: linear-gradient(to top, var(--bg), var(--bg-exp));
+        }
+
+        .hero-label {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 24px;
+        }
+
+        .article-hero h1 {
+            font-family: var(--serif);
+            font-size: clamp(2.4rem, 5vw, 3.8rem);
+            line-height: 1.1;
+            margin-bottom: 24px;
+            letter-spacing: -2px;
+            font-weight: 700;
+            color: var(--text-exp);
+        }
+
+        .article-hero h1 .accent-text {
+            color: var(--accent);
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-exp-2);
+            font-weight: 300;
+            line-height: 1.7;
+            max-width: 600px;
+            margin-bottom: 32px;
+        }
+
+        .hero-meta {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            font-size: 0.85rem;
+            color: var(--text-exp-2);
+            flex-wrap: wrap;
+        }
+
+        .hero-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+        }
+
+        .hero-meta span:not(:last-child)::after {
+            content: '·';
+            margin: 0 12px;
+            color: var(--text-exp-3);
+            font-weight: 700;
+        }
+
+        .hero-meta i {
+            width: 14px;
+            height: 14px;
+            flex-shrink: 0;
+        }
+
+        /* ═══════════════════════════════════════════════
+           ARTICLE CONTENT
+           ═══════════════════════════════════════════════ */
+        .article-section {
+            padding: 80px 0;
+        }
+
+        .article-section + .article-section {
+            padding-top: 0;
+        }
+
+        .article-section h2 {
+            font-family: var(--serif);
+            font-size: clamp(1.6rem, 3vw, 2.2rem);
+            letter-spacing: -1px;
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+
+        .article-section h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            margin-top: 40px;
+            color: var(--text);
+        }
+
+        .article-section p {
+            font-size: 1.05rem;
+            color: var(--text-2);
+            line-height: 1.8;
+            margin-bottom: 24px;
+            font-weight: 300;
+        }
+
+        .article-section p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Blockquote */
+        .pullquote {
+            margin: 48px 0;
+            padding: 32px 36px;
+            border-left: 3px solid var(--accent);
+            background: var(--accent-glow);
+            border-radius: 0 var(--radius) var(--radius) 0;
+        }
+
+        .pullquote p {
+            font-family: var(--serif);
+            font-size: 1.2rem;
+            font-style: italic;
+            color: var(--text);
+            line-height: 1.7;
+            font-weight: 400;
+            margin-bottom: 0;
+        }
+
+        /* Callout boxes for practice insights */
+        .callout-box {
+            margin: 32px 0;
+            padding: 24px 28px;
+            border-left: 4px solid var(--accent);
+            background: var(--bg-alt);
+            border-radius: 0 var(--radius) var(--radius) 0;
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--accent);
+        }
+
+        .callout-label {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+
+        .callout-box p {
+            margin-bottom: 0;
+            font-size: 1rem;
+            font-style: italic;
+            color: var(--text-2);
+        }
+
+        /* Divider */
+        .section-divider {
+            border: none;
+            height: 1px;
+            background: var(--border);
+            margin: 0;
+            max-width: 760px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ═══════════════════════════════════════════════
+           CTA SECTION
+           ═══════════════════════════════════════════════ */
+        .cta-section {
+            background: var(--bg-exp);
+            color: var(--text-exp);
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            background: linear-gradient(to bottom, var(--bg), var(--bg-exp));
+        }
+
+        .cta-section h2 {
+            font-family: var(--serif);
+            font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+            letter-spacing: -1px;
+            margin-bottom: 20px;
+            color: var(--text-exp);
+        }
+
+        .cta-section p {
+            color: var(--text-exp-2);
+            font-size: 1.05rem;
+            font-weight: 300;
+            line-height: 1.8;
+            max-width: 600px;
+            margin: 0 auto 36px;
+        }
+
+        .cta-section::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            background: linear-gradient(to top, var(--bg), var(--bg-exp));
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 13px 26px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s var(--ease);
+            cursor: pointer;
+            border: none;
+            font-family: var(--font);
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-outline {
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--text);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline-light {
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: transparent;
+            color: var(--text-exp);
+        }
+
+        .btn-outline-light:hover {
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .btn i {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* ═══════════════════════════════════════════════
+           FOOTER
+           ═══════════════════════════════════════════════ */
+        footer {
+            padding: 48px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            font-size: 0.82rem;
+            color: var(--text-3);
+        }
+
+        /* ═══════════════════════════════════════════════
+           ANIMATIONS
+           ═══════════════════════════════════════════════ */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fade-in-delay-1 { transition-delay: 0.1s; }
+        .fade-in-delay-2 { transition-delay: 0.2s; }
+        .fade-in-delay-3 { transition-delay: 0.3s; }
+
+        /* ═══════════════════════════════════════════════
+           RESPONSIVE
+           ═══════════════════════════════════════════════ */
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 0;
+            }
+
+            nav a {
+                font-size: 0.95rem;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .article-hero {
+                min-height: 60vh;
+                padding-top: 100px;
+            }
+
+            .article-section {
+                padding: 50px 0;
+            }
+
+            .article-section h2 {
+                font-size: clamp(1.4rem, 5vw, 1.8rem);
+            }
+
+            .article-section h3 {
+                font-size: 1.05rem;
+            }
+
+            .article-section p {
+                font-size: 0.95rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .cta-section {
+                padding: 60px 0;
+            }
+
+            .cta-section h2 {
+                font-size: clamp(1.4rem, 5vw, 1.8rem);
+            }
+
+            .callout-box {
+                padding: 20px 24px;
+                margin: 24px 0;
+            }
+
+            .pullquote {
+                padding: 24px 28px;
+                margin: 32px 0;
+            }
+
+            .pullquote p {
+                font-size: 1.05rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- ═══════════════════════════════════════════════
+     HEADER
+     ═══════════════════════════════════════════════ -->
+    <header id="main-header">
+        <div class="nav-container">
+            <div class="logo">
+                <span>NICK PEROT</span>
+                <div class="logo-dot"></div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index 8 testing.html#hero">Bio</a></li>
+                    <li><a href="index 8 testing.html#experiencias">Experiencias</a></li>
+                    <li><a href="index 8 testing.html#articulos">Artículos</a></li>
+                    <li><a href="index 8 testing.html#servicios">Servicios</a></li>
+                    <li><a href="index 8 testing.html#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+            <div class="header-right">
+                <div class="social-nav">
+                    <a href="https://linkedin.com/in/nickperot" target="_blank" rel="noopener noreferrer"
+                        aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
+                    <a href="https://x.com/nickperot" target="_blank" rel="noopener noreferrer" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="width:16px;height:16px;"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                    <a href="https://instagram.com/nickperot" target="_blank" rel="noopener noreferrer"
+                        aria-label="Instagram"><i data-lucide="instagram"></i></a>
+                </div>
+                <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="index 8 testing.html#hero" onclick="closeMenu()">Bio</a>
+        <a href="index 8 testing.html#experiencias" onclick="closeMenu()">Experiencias</a>
+        <a href="index 8 testing.html#articulos" onclick="closeMenu()">Artículos</a>
+        <a href="index 8 testing.html#servicios" onclick="closeMenu()">Servicios</a>
+        <a href="index 8 testing.html#contacto" onclick="closeMenu()">Contacto</a>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════
+     HERO
+     ═══════════════════════════════════════════════ -->
+    <section class="article-hero">
+        <div class="container fade-in">
+            <div class="hero-label">Marco de Adopción Tecnológica Consciente</div>
+            <h1>Método <span class="accent-text">CAEI</span></h1>
+            <p class="hero-subtitle">Conocer · Aprender · Experimentar · Implementar. Un marco para incorporar tecnología de forma consciente, responsable y sostenida — sin necesitar ser especialista.</p>
+            <div class="hero-meta">
+                <span><i data-lucide="user"></i> Nick Perot</span>
+                <span><i data-lucide="calendar"></i> Marzo 2026</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════
+     INTRODUCCIÓN
+     ═══════════════════════════════════════════════ -->
+    <section class="article-section">
+        <div class="content-container fade-in">
+            <h2>Introducción</h2>
+            <p>Hay una escena que se repite, con pequeñas variaciones, en muchas conversaciones que tuve en los últimos años. Alguien —un colega, un alumno, un familiar— menciona una herramienta tecnológica que está usando, y en algún momento de la charla aparece la misma frase, dicha en voz baja y casi con vergüenza: <em>no sé bien cómo funciona, pero algo hago con ella.</em></p>
+            <p>Esa frase me detuvo muchas veces. Porque no hablaba de ignorancia. Hablaba de algo más parecido a la incomodidad de quien usa algo sin haberlo elegido del todo, sin haber tenido el tiempo de entenderlo, sin saber bien si lo que hace con esa herramienta es lo que debería hacer o apenas un uso a medias.</p>
+            <p>Esa frase me devolvió muchas veces. Porque no hablaba de ignorancia. Hablaba de algo más parecido a la incomodidad de quien usa algo sin haberlo elegido del todo, sin haber tenido el tiempo de entenderlo, sin saber bien si lo que hace con esa herramienta es lo que debería hacer o apenas un uso a medias. Es la sensación de ir a remolque de algo que cambia más rápido de lo que se puede procesar. Y es, aunque no siempre se nombre así, una forma de ansiedad.</p>
+            <p>Este texto nace de ahí. No de una teoría, ni de un estudio académico, ni de una tendencia global. De esa incomodidad concreta y cotidiana que siente cualquier persona que tiene su trabajo, su vida, sus prioridades, su agenda casi llena, y de repente se encuentra con que el entorno tecnológico a su alrededor cambió y nadie le explicó bien cómo moverse en él.</p>
+            <div class="pullquote">
+                <p>No se trata de convertirse en especialista. Se trata de dejar de sentir que la tecnología le pasa a uno encima, y empezar a sentir que uno toma decisiones sobre ella.</p>
+            </div>
+            <p>Lo que sigue es un método. Uno que fui construyendo desde mi propia experiencia —como abogado, como docente, como alguien que lleva años integrando tecnología en su trabajo— observando cómo las personas nos relacionamos con las herramientas nuevas. Cómo las adoptamos por impulso. Cómo las abandonamos demasiado rápido y, otras veces, las sostenemos demasiado tiempo por inercia.</p>
+            <p>Se llama Método CAEI: Conocer, Aprender, Experimentar, Implementar. Cuatro palabras simples para un proceso que, cuando se recorre con atención, transforma la relación con la tecnología de un modo significativo. No porque garantice que toda herramienta resulte útil. Sino porque garantiza que la decisión de adoptarla o descartarla sea deliberada e informada.</p>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ═══════════════════════════════════════════════
+     POR QUÉ HACE FALTA UN MÉTODO
+     ═══════════════════════════════════════════════ -->
+    <section class="article-section">
+        <div class="content-container fade-in">
+            <h2>Por qué hace falta un método</h2>
+            <p>Vivimos en un entorno donde las herramientas tecnológicas se multiplican a un ritmo que supera la capacidad de cualquier persona de procesarlas con calma. Cada semana aparece algo nuevo: una aplicación, una funcionalidad, una plataforma que promete cambiar algo. Y la mayoría de las personas, frente a ese flujo constante, oscila entre dos respuestas igualmente insatisfactorias.</p>
+            <p>La primera es adoptarlo todo de inmediato. Se acumulan cuentas sin usar, suscripciones sin aprovechar, herramientas que se instalan con entusiasmo un martes y se abandonan el siguiente. El resultado es ruidoso. La segunda respuesta es ignorarlo todo hasta que resulte inevitable. Y cuando finalmente se incorpora algo, se hace desde la urgencia, sin tiempo para entenderlo, con la sensación incómoda de llegar tarde a algo que los demás ya dominan.</p>
+            <p>Entre esos dos extremos hay un espacio que pocas personas logran habitar: el de quien se relaciona con la tecnología de manera activa y deliberada. No como consumidor que reacciona, sino como usuario que decide. Ese espacio no se ocupa por talento ni por formación técnica. Se ocupa con un proceso.</p>
+            <div class="callout-box">
+                <div class="callout-label">Para reflexionar:</div>
+                <p>La diferencia entre usar una herramienta y apropiarse de ella es de actitud. Apropiarse implica haberla recorrido con una pregunta simple, lo que podría ser relevante de lo que es ruido: ¿esto podría serme útil?</p>
+            </div>
+            <p>El Método CAEI propone exactamente eso: un recorrido de cuatro etapas que convierte el encuentro con una tecnología nueva en un proceso deliberado. No garantiza que toda herramienta valga la pena. Pero sí garantiza que la decisión sea informada, y que quien la toma sea la persona — no el algoritmo de recomendación ni la presión del entorno.</p>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ═══════════════════════════════════════════════
+     EL MÉTODO CAEI
+     ═══════════════════════════════════════════════ -->
+    <section class="article-section">
+        <div class="content-container fade-in">
+            <h2>El Método CAEI</h2>
+            <p>Las cuatro etapas no son arbitrarias. Cada una responde a un momento real del proceso de incorporación tecnológica, y cada una exige un tipo de atención distinto. La secuencia importa: no se puede aprender bien lo que todavía no se conoce, ni se puede implementar con criterio lo que no se experimentó. Y al mismo tiempo, una vez transitado el ciclo completo, las etapas empiezan a retroalimentarse. El método no es una escalera. Es un ciclo.</p>
+
+            <h3>C — Conocer</h3>
+            <p>Todo empieza por el conocimiento. Y conocer, en este contexto, no significa entender: significa simplemente tomar nota de que algo existe. Puede ocurrir en los lugares más inesperados. Una conversación informal. Un artículo que aparece en el momento justo. Una frase dicha al pasar en una reunión. El punto, en esta primera etapa, no es la profundidad sino la apertura.</p>
+            <p>Con el tiempo, quien practica el Método CAEI desarrolla algo que podría llamarse una antena: una disposición activa a notar cuándo aparece algo nuevo en el entorno tecnológico. No para registrarlo todo —eso es agotador e imposible— sino para distinguir, con una pregunta simple, lo que podría ser relevante de lo que es ruido: ¿esto podría serme útil?</p>
+            <div class="callout-box">
+                <div class="callout-label">Desde mi práctica:</div>
+                <p>Muchas de las herramientas que hoy uso en mi trabajo cotidiano las conocí en conversaciones que no tenían nada que ver con ellas. Alguien las mencionó al pasar. La clave no fue haberlas prestado atención —es agotador e imposible— sino haberme detenido el tiempo suficiente para hacerme esa pregunta: ¿esto podría serme útil?</p>
+            </div>
+            <p>El resultado de esta etapa es modesto, pero esencial: una puerta abierta. No un compromiso de adopción, no una lista de tareas pendientes. Solo la decisión de prestar atención a algo que podría merecer más.</p>
+
+            <h3>A — Aprender</h3>
+            <p>Conocer que algo existe es muy distinto a entender qué hace y cómo funciona. La segunda etapa es la del aprendizaje deliberado: acceder a información de calidad sobre la herramienta antes de usarla. Y la palabra <em>calidad</em> acá importa más de lo que parece.</p>
+            <p>En un ecosistema saturado de contenido de segundo y tercer orden, ir a la fuente original —la documentación oficial, el sitio del desarrollador, los términos de uso reales— hace una diferencia concreta. No porque el contenido de terceros siempre sea incorrecto, sino porque suele estar desactualizado, simplificado en exceso, o influido por intereses que no siempre coinciden con los del usuario que lee.</p>
+            <p>En esta etapa conviene explorar al menos cuatro dimensiones. La primera es funcional: qué hace la herramienta, cuáles son sus capacidades reales y cuáles sus límites declarados. La segunda es de acceso: cómo se usa, desde qué dispositivos, bajo qué condiciones. La tercera es económica: qué ofrece gratis, cuánto cuesta lo que no. La cuarta —y la que más suele saltarse— es la de privacidad y seguridad: qué datos recoge, cómo los usa, qué políticas aplica.</p>
+            <div class="pullquote">
+                <p>Entender una herramienta antes de usarla es la diferencia entre adoptarla por impulso y elegirla por criterio. Y esa diferencia, aunque no siempre se vea desde afuera, se siente desde dentro.</p>
+            </div>
+            <p>El resultado de esta etapa es una comprensión básica pero sólida. No es necesario ser experto. Es necesario saber de qué se trata, qué puede hacer y bajo qué condiciones. Con eso alcanza para dar el siguiente paso sin improvisación.</p>
+
+            <h3>E — Experimentar</h3>
+            <p>Ningún aprendizaje teórico reemplaza el contacto directo. La tercera etapa es la de la experimentación: usar la herramienta, probablemente en distintos contextos, explorar posibilidades sin la presión de que todo funcione perfectamente desde el principio. Esa presión —la de tener que usar bien algo nuevo desde el día uno— es una de las razones más frecuentes por las que las personas abandonan herramientas que podrían haberles resultado valiosas.</p>
+            <p>La experimentación bien entendida tiene su propia lógica. No es usar la herramienta para resolver un problema urgente —eso es implementar antes de tiempo, y suele salir caro— Es usarla para conocerla. Crear situaciones de prueba. Explorar funciones que no se necesitan de inmediato. Buscar los bordes del sistema, los momentos en que falla, las condiciones en que rinde mejor.</p>
+            <div class="callout-box">
+                <div class="callout-label">Caso concreto:</div>
+                <p>Cuando empecé a usar herramientas de inteligencia artificial generativa en mi trabajo, no las introdu­je directamente en documentos reales. Durante las primeras semanas las usé solo con material ficticio, variando deliberadamente las instrucciones para entender cómo respondían antes de confiarles tareas con consecuencias reales. Esa inversión inicial de tiempo ahorró errores que habrían costado mucho más.</p>
+            </div>
+            <p>La experimentación también tiene una dimensión de registro que suele omitirse: tomar nota de lo que funciona, lo que no, las sorpresas y los límites que se encuentran. Esa documentación personal —aunque sea informal, aunque sean tres líneas en un cuaderno— es lo que permite que la experiencia se convierta en conocimiento propio, en lugar de evaporarse.</p>
+            <p>El resultado de esta etapa es una familiaridad real. No la familiaridad superficial de haber tocado algo una vez, sino la que viene de haberlo explorado con atención y haber salido de ahí con algo concreto: saber qué esperar.</p>
+
+            <h3>I — Implementar</h3>
+            <p>La cuarta etapa es la de la decisión. Con el conocimiento adquirido y la experimentación hecha, se trata ahora de responder una pregunta concreta: ¿para qué sirve esta herramienta en mi contexto específico? No en abstracto. No según lo que promete el sitio oficial. En la vida cotidiana, el trabajo real, las necesidades reales.</p>
+            <p>Implementar no es sinónimo de adoptar. A veces el resultado honesto de este proceso es decidir que la herramienta no es útil para el propio contexto. Y esa también es una decisión valiosa —quizás la más valiosa— : ahorra tiempo, energía, y cierra el ciclo sin pendiente. La implementación consciente no exige un resultado positivo. Exige honestidad.</p>
+            <p>Cuando la decisión es positiva, implementar implica integrar la herramienta en flujos de trabajo reales, asignarle un rol específico y establecer algún mecanismo para evaluar si está cumpliendo ese rol. Una herramienta implementada sin propósito definido tiende a abandonarse, o usarse de forma ineficiente —que es casi lo mismo.</p>
+            <div class="callout-box">
+                <div class="callout-label">Para reflexionar:</div>
+                <p>Implementar bien no significa implementar para siempre. Las herramientas cambian, los contextos cambian, las necesidades cambian. Lo que implementa hoy puede revisarse mañana. La implementación consciente incluye, desde el principio, la disposición a dejar ir lo que ya no sirve.</p>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ═══════════════════════════════════════════════
+     UN CICLO, NO UNA SECUENCIA
+     ═══════════════════════════════════════════════ -->
+    <section class="article-section">
+        <div class="content-container fade-in">
+            <h2>Un ciclo, no una secuencia</h2>
+            <p>Presentar el método como una secuencia de cuatro pasos puede generar una impresión equivocada: que se trata de un proceso lineal que, una vez completado, termina. No es así.</p>
+            <p>Las cuatro etapas son sucesivas en el primer contacto con una tecnología. Pero una vez que se transita el ciclo completo, las etapas empiezan a retroalimentarse de manera continua. Cada actualización significativa de una herramienta es, en parte, una vuelta al principio: hay algo nuevo que conocer, aprender, experimentar e integrar. Cada nuevo patrón de uso que se descubre en la experimentación puede llevar a revisitar cómo se implementa. Cada cambio de contexto — personal, laboral, institucional— puede hacer que una herramienta antes descartada vuelva a merecer atención.</p>
+            <div class="pullquote">
+                <p>El Método CAEI no es un mapa que se recorre una vez. Es una brújula que orienta cada vez que el territorio cambia. Y en el ecosistema tecnológico actual, el territorio cambia con mucha frecuencia.</p>
+            </div>
+            <p>Esto tiene una implicación práctica importante: el método no termina cuando se implementa una herramienta. Termina, provisionalmente, cuando se toma una decisión informada. Y empieza de nuevo cuando algo en el entorno cambia lo suficiente como para que esa decisión merezca revisarse.</p>
+            <p>El Método CAEI no es una tarea que se completa. Es un hábito que se cultiva.</p>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ═══════════════════════════════════════════════
+     PARA QUIÉN ES ESTE MÉTODO
+     ═══════════════════════════════════════════════ -->
+    <section class="article-section">
+        <div class="content-container fade-in">
+            <h2>Para quién es este método</h2>
+            <p>El Método CAEI no fue diseñado para especialistas en tecnología. Fue diseñado para personas que quieren relacionarse con ella de forma activa, sin necesitar formación técnica avanzada ni tiempo libre infinito.</p>
+            <p>Es útil para el docente que quiere incorporar nuevas herramientas en su práctica sin perderse en el proceso. Para el profesional independiente que necesita decidir qué adoptar sin poderlo probarlo todo. Para el funcionario público que enfrenta procesos de transformación digital en su organización. Para el estudiante que quiere construir un criterio propio en lugar de dejarse llevar por lo que usa todo el mundo. Para cualquier persona que prefiera decidir a reaccionar.</p>
+            <p>Lo que el método requiere no es conocimiento técnico previo. Requiere curiosidad sostenida, disposición a dedicar tiempo a cada etapa sin apresurarse, y honestidad para evaluar si una herramienta realmente sirve o simplemente parece prometedora.</p>
+            <p>Esas tres cosas —curiosidad, tiempo, honestidad— no son habilidades técnicas. Son actitudes. Y se pueden elegir.</p>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ═══════════════════════════════════════════════
+     PARA TERMINAR, ALGO PERSONAL
+     ═══════════════════════════════════════════════ -->
+    <section class="article-section">
+        <div class="content-container fade-in">
+            <h2>Para terminar, algo personal</h2>
+            <p>Hubo un momento, hace algunos años, en que me di cuenta de que estaba usando la tecnología de una manera que no me gustaba. No porque usara herramientas malas ni porque tuviera malas intenciones. Sino porque no era yo quien decidía. Probaba lo que llegaba, adoptaba lo que adoptaban los demás, descartaba cuando me cansaba. Sin criterio propio. Sin proceso. Como si la tecnología fuera algo que simplemente sucede, y mi rol fuera apenas adaptarme.</p>
+            <p>Eso me incomodó profundamente. No de manera dramática, sino de esa forma silenciosa en que incomodan las cosas cuando uno se da cuenta de que está actuando en piloto automático en algo que importa. Y de esa incomodidad —no de una teoría, no de un mandato externo— nació el método. Primero como un intento de ordenar mi propio caos. Después, con el tiempo, como algo que podía compartir. Porque la incomodidad que sentía yo no era mía: era de mucha gente.</p>
+            <p>La mayoría de las personas no necesita más información sobre tecnología. Necesita una forma de relacionarse con ella que no le genere ansiedad, que no le exija convertirse en experto, que le permita seguir siendo dueña de sus propias decisiones en un entorno que cambia sin pedir permiso. Eso es lo que el Método CAEI intenta ofrecer.</p>
+            <p>No es una solución definitiva. No existe tal cosa en un territorio que se mueve constantemente. Pero sí es un proceso que, cuando se sostiene en el tiempo, produce algo que vale más que cualquier herramienta en particular: la sensación de que la tecnología es un territorio en el que uno puede moverse con criterio. No sin incertidumbre. Con criterio.</p>
+            <p>Eso, desde mi experiencia, cambia bastante.</p>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ═══════════════════════════════════════════════
+     CTA / CIERRE
+     ═══════════════════════════════════════════════ -->
+    <section class="cta-section">
+        <div class="container fade-in" style="position: relative; z-index: 1;">
+            <h2>Descargar el documento</h2>
+            <p>Este artículo está disponible en formato PDF para descargarlo y compartirlo. Ideal para tenerlo a mano, para reflexionar sobre él, o para estudiarlo junto a otros.</p>
+            <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 12px;">
+                <a href="ar3.pdf" download class="btn btn-primary">
+                    <i data-lucide="download"></i> Descargar PDF
+                </a>
+                <a href="index 8 testing.html" class="btn btn-outline-light">
+                    <i data-lucide="arrow-left"></i> Volver al sitio
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════
+     FOOTER
+     ═══════════════════════════════════════════════ -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Nick Perot. Construido con tecnología y enfoque humano.</p>
+            <p style="margin-top: 12px; font-size: 0.72rem; color: var(--text-3); line-height: 1.6;">
+                Este documento puede ser compartido libremente con fines educativos citando la fuente. · 2026
+            </p>
+        </div>
+    </footer>
+
+    <!-- ═══════════════════════════════════════════════
+     SCRIPTS
+     ═══════════════════════════════════════════════ -->
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // ─── Scroll Progress ───
+        window.addEventListener('scroll', () => {
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrolled = (window.scrollY / docHeight) * 100;
+            document.getElementById('scrollProgress').style.width = scrolled + '%';
+
+            // Header scroll state
+            document.getElementById('main-header').classList.toggle('scrolled', window.scrollY > 40);
+        });
+
+        // ─── Mobile Menu ───
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            mobileMenu.classList.toggle('open');
+        });
+        function closeMenu() {
+            menuToggle.classList.remove('active');
+            mobileMenu.classList.remove('open');
+        }
+
+        // ─── Fade-in Observer ───
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+</body>
+
+</html>
