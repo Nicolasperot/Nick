@@ -378,33 +378,12 @@
             margin-bottom: 32px;
         }
 
-        .hero-meta {
-            display: flex;
-            align-items: center;
-            gap: 0;
-            font-size: 0.85rem;
+        .hero-meta-text {
+            font-size: 0.9rem;
             color: var(--text-exp-2);
-            flex-wrap: wrap;
-        }
-
-        .hero-meta span {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            white-space: nowrap;
-        }
-
-        .hero-meta span:not(:last-child)::after {
-            content: '·';
-            margin: 0 12px;
-            color: var(--text-exp-3);
-            font-weight: 700;
-        }
-
-        .hero-meta i {
-            width: 14px;
-            height: 14px;
-            flex-shrink: 0;
+            font-weight: 400;
+            letter-spacing: 0.3px;
+            margin: 0;
         }
 
         /* ═══════════════════════════════════════════════
@@ -712,17 +691,14 @@
      ═══════════════════════════════════════════════ -->
     <header id="main-header">
         <div class="nav-container">
-            <div class="logo">
-                <span>NICK PEROT</span>
-                <div class="logo-dot"></div>
-            </div>
+            <a href="https://nickperot.com" class="logo"><span class="logo-dot"></span> NICK PEROT</a>
             <nav>
                 <ul>
-                    <li><a href="index 8 testing.html#hero">Bio</a></li>
-                    <li><a href="index 8 testing.html#experiencias">Experiencias</a></li>
-                    <li><a href="index 8 testing.html#articulos">Artículos</a></li>
-                    <li><a href="index 8 testing.html#servicios">Servicios</a></li>
-                    <li><a href="index 8 testing.html#contacto">Contacto</a></li>
+                    <li><a href="https://nickperot.com#hero">Bio</a></li>
+                    <li><a href="https://nickperot.com#experiencias">Experiencias</a></li>
+                    <li><a href="https://nickperot.com#articulos">Artículos</a></li>
+                    <li><a href="https://nickperot.com#servicios">Servicios</a></li>
+                    <li><a href="https://nickperot.com#contacto">Contacto</a></li>
                 </ul>
             </nav>
             <div class="header-right">
@@ -742,11 +718,11 @@
 
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
-        <a href="index 8 testing.html#hero" onclick="closeMenu()">Bio</a>
-        <a href="index 8 testing.html#experiencias" onclick="closeMenu()">Experiencias</a>
-        <a href="index 8 testing.html#articulos" onclick="closeMenu()">Artículos</a>
-        <a href="index 8 testing.html#servicios" onclick="closeMenu()">Servicios</a>
-        <a href="index 8 testing.html#contacto" onclick="closeMenu()">Contacto</a>
+        <a href="https://nickperot.com#hero" onclick="closeMenu()">Bio</a>
+        <a href="https://nickperot.com#experiencias" onclick="closeMenu()">Experiencias</a>
+        <a href="https://nickperot.com#articulos" onclick="closeMenu()">Artículos</a>
+        <a href="https://nickperot.com#servicios" onclick="closeMenu()">Servicios</a>
+        <a href="https://nickperot.com#contacto" onclick="closeMenu()">Contacto</a>
     </div>
 
     <!-- ═══════════════════════════════════════════════
@@ -757,10 +733,7 @@
             <div class="hero-label">Marco de Adopción Tecnológica Consciente</div>
             <h1>Método <span class="accent-text">CAEI</span></h1>
             <p class="hero-subtitle">Conocer · Aprender · Experimentar · Implementar. Un marco para incorporar tecnología de forma consciente, responsable y sostenida — sin necesitar ser especialista.</p>
-            <div class="hero-meta">
-                <span><i data-lucide="user"></i> Nick Perot</span>
-                <span><i data-lucide="calendar"></i> Marzo 2026</span>
-            </div>
+            <p class="hero-meta-text">Nick Perot · Marzo 2026</p>
         </div>
     </section>
 
@@ -912,7 +885,7 @@
                 <a href="ar3.pdf" download class="btn btn-primary">
                     <i data-lucide="download"></i> Descargar PDF
                 </a>
-                <a href="index 8 testing.html" class="btn btn-outline-light">
+                <a href="https://nickperot.com" class="btn btn-outline-light">
                     <i data-lucide="arrow-left"></i> Volver al sitio
                 </a>
             </div>
