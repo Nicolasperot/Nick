@@ -1,0 +1,1860 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-KCH5LGBG');</script>
+    <!-- End Google Tag Manager -->
+    <title>Inteligencia artificial generalizada | Nick Perot</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="manifest" href="site.webmanifest">
+    <meta name="description"
+        content="Inteligencia artificial generalizada: Un primer análisis sobre lo que viene y cómo prepararse. Por Nick Perot.">
+
+    <!-- SEO Meta Tags -->
+    <meta name="author" content="Nick Perot">
+    <meta name="keywords"
+        content="Nick Perot, inteligencia artificial, IAG, IA generalizada, transformación digital, economía, trabajo, salud mental">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Inteligencia artificial generalizada | Nick Perot">
+    <meta property="og:description" content="Un primer análisis sobre lo que viene y cómo prepararse.">
+    <meta property="og:url" content="https://nickperot.com/ar8.html">
+    <meta property="og:site_name" content="Nick Perot">
+    <meta property="og:locale" content="es_AR">
+
+    <!-- Security -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+
+    <!-- reCAPTCHA v3 -->
+    <script src="https://www.google.com/recaptcha/api.js?render=6Lc4A28sAAAAAA5iWDiguVk_O2KZNR4KBycQKv0k"></script>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* ═══════════════════════════════════════════════
+           VARIABLES & RESET
+           ═══════════════════════════════════════════════ */
+        :root {
+            --bg: #fafafa;
+            --bg-alt: #ffffff;
+            --bg-subtle: #f0f0f0;
+            --bg-exp: #0a0a0a;
+            --bg-exp-card: #141414;
+            --text: #1a1a1a;
+            --text-2: #555555;
+            --text-3: #888888;
+            --text-exp: #f0f0f0;
+            --text-exp-2: #a0a0a0;
+            --text-exp-3: #666666;
+            --accent: #2563eb;
+            --accent-glow: rgba(37, 99, 235, 0.12);
+            --accent-warm: #f97316;
+            --accent-green: #22c55e;
+            --border: #e5e5e5;
+            --border-hover: #cccccc;
+            --font: 'Inter', -apple-system, sans-serif;
+            --serif: 'Playfair Display', Georgia, serif;
+            --ease: cubic-bezier(0.25, 0.8, 0.25, 1);
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.08);
+            --radius: 12px;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #0f0f0f;
+                --bg-alt: #1a1a1a;
+                --bg-subtle: #222222;
+                --bg-exp: #050505;
+                --bg-exp-card: #111111;
+                --text: #ededed;
+                --text-2: #a0a0a0;
+                --text-3: #666666;
+                --border: #2a2a2a;
+                --border-hover: #444444;
+                --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
+                --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.2);
+                --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.3);
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s var(--ease);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+
+        /* ═══════════════════════════════════════════════
+           LAYOUT
+           ═══════════════════════════════════════════════ */
+        .container {
+            max-width: 1060px;
+            margin: 0 auto;
+            padding: 0 28px;
+        }
+
+        .section-padding {
+            padding: 100px 0;
+        }
+
+        /* ═══════════════════════════════════════════════
+           SCROLL PROGRESS
+           ═══════════════════════════════════════════════ */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 2px;
+            z-index: 9999;
+            background: var(--accent);
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+
+        /* ═══════════════════════════════════════════════
+           HEADER
+           ═══════════════════════════════════════════════ */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: transparent;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid transparent;
+            transition: all 0.4s var(--ease);
+        }
+
+        header.scrolled {
+            border-bottom: 1px solid var(--border);
+            background: rgba(250, 250, 250, 0.92);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            header.scrolled {
+                background: rgba(15, 15, 15, 0.92);
+            }
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 68px;
+        }
+
+        .logo {
+            font-weight: 900;
+            font-size: 1.25rem;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 28px;
+        }
+
+        nav a {
+            font-size: 0.85rem;
+            color: var(--text-2);
+            font-weight: 500;
+            position: relative;
+            padding: 4px 0;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s var(--ease);
+        }
+
+        nav a:hover {
+            color: var(--text);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .social-nav {
+            display: flex;
+            gap: 12px;
+        }
+
+        .social-nav a {
+            width: 34px;
+            height: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            transition: all 0.3s var(--ease);
+        }
+
+        .social-nav a:hover {
+            background: var(--bg-subtle);
+        }
+
+        .social-nav i {
+            width: 16px;
+            height: 16px;
+        }
+
+
+        /* Mobile menu */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            width: 36px;
+            height: 36px;
+            position: relative;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .menu-toggle span {
+            width: 22px;
+            height: 2px;
+            background: var(--text);
+            border-radius: 2px;
+            transition: all 0.3s var(--ease);
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 68px;
+            left: 0;
+            width: 100%;
+            height: calc(100vh - 68px);
+            background: var(--bg);
+            z-index: 999;
+            padding: 40px 28px;
+            flex-direction: column;
+            gap: 24px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .mobile-menu.open {
+            display: flex;
+            opacity: 1;
+        }
+
+        .mobile-menu a {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--text);
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        /* ═══════════════════════════════════════════════
+           ABOUT / HERO SECTION
+           ═══════════════════════════════════════════════ */
+        #about-hero {
+            padding-top: 120px;
+            padding-bottom: 60px;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 0.6fr 1.4fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-img-container {
+            width: 100%;
+            border-radius: 20px;
+            overflow: hidden;
+            aspect-ratio: 4/5;
+            background: var(--border);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .about-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(10%);
+        }
+
+        .about-text h1 {
+            font-family: var(--serif);
+            font-size: clamp(2rem, 4vw, 3rem);
+            line-height: 1.1;
+            margin-bottom: 16px;
+            letter-spacing: -1.5px;
+            font-weight: 700;
+        }
+
+        .about-text h1 .accent-text {
+            color: var(--accent);
+        }
+
+        .about-text .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-2);
+            margin-bottom: 24px;
+            font-weight: 300;
+            line-height: 1.7;
+        }
+
+        .about-text .pilares {
+            display: grid;
+            gap: 10px;
+            margin-bottom: 0;
+        }
+
+        .about-text .pilares li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 500;
+            font-size: 0.92rem;
+        }
+
+        .about-text .pilares li i {
+            color: var(--accent);
+            width: 20px;
+            height: 20px;
+            stroke-width: 1.8;
+        }
+
+        /* ═══════════════════════════════════════════════
+           ARTICLE CONTENT
+           ═══════════════════════════════════════════════ */
+        .article-header {
+            text-align: center;
+            padding: 40px 0 60px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        .article-header .doc-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--accent);
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .article-header h2 {
+            font-family: var(--serif);
+            font-size: clamp(2rem, 4vw, 3rem);
+            letter-spacing: -1.5px;
+            line-height: 1.1;
+            margin-bottom: 12px;
+        }
+
+        .article-header .article-subtitle {
+            font-size: 1.05rem;
+            color: var(--text-2);
+            font-weight: 300;
+            max-width: 600px;
+            margin: 0 auto 20px;
+        }
+
+        .article-header .article-meta {
+            font-size: 0.82rem;
+            color: var(--text-3);
+        }
+
+        .article-header .article-meta a {
+            color: var(--accent);
+        }
+
+        .article-body {
+            max-width: 760px;
+            margin: 0 auto;
+        }
+
+        .article-body h3 {
+            font-family: var(--serif);
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            letter-spacing: -0.5px;
+            margin-top: 56px;
+            margin-bottom: 20px;
+            color: var(--text);
+            line-height: 1.2;
+        }
+
+        .article-body h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-top: 36px;
+            margin-bottom: 14px;
+            color: var(--text);
+        }
+
+        .article-body p {
+            font-size: 1rem;
+            color: var(--text-2);
+            line-height: 1.85;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .article-body p strong {
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .article-body .highlight-box {
+            background: var(--accent-glow);
+            border-left: 4px solid var(--accent);
+            padding: 24px 28px;
+            border-radius: 0 var(--radius) var(--radius) 0;
+            margin: 32px 0;
+            font-size: 1.05rem;
+            font-weight: 500;
+            line-height: 1.7;
+            color: var(--text);
+        }
+
+        .article-body .callout {
+            background: var(--bg-alt);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px 28px;
+            margin: 32px 0;
+            font-size: 0.95rem;
+            color: var(--text-2);
+            line-height: 1.75;
+            font-style: italic;
+        }
+
+        .article-body .callout strong {
+            font-style: normal;
+            color: var(--accent);
+        }
+
+        /* ═══════════════════════════════════════════════
+           TABLES
+           ═══════════════════════════════════════════════ */
+        .article-body table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 32px 0;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+
+        .article-body table thead {
+            background: var(--text);
+            color: var(--bg-alt);
+        }
+
+        .article-body table th {
+            padding: 16px;
+            text-align: left;
+            font-weight: 700;
+            font-size: 0.95rem;
+            border: none;
+        }
+
+        .article-body table td {
+            padding: 16px;
+            border: none;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.95rem;
+            color: var(--text-2);
+            line-height: 1.6;
+        }
+
+        .article-body table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .article-body table tbody tr:nth-child(even) {
+            background: var(--bg-subtle);
+        }
+
+        .article-body .principles-list {
+            list-style: none;
+            padding: 0;
+            margin: 24px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .article-body .principles-list li {
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+            padding: 18px 22px;
+            background: var(--bg-alt);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            transition: all 0.3s var(--ease);
+        }
+
+        .article-body .principles-list li:hover {
+            border-color: var(--accent);
+            transform: translateX(4px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .article-body .principles-list li .principle-icon {
+            flex-shrink: 0;
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            background: var(--accent-glow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            margin-top: 2px;
+        }
+
+        .article-body .principles-list li .principle-icon i {
+            width: 16px;
+            height: 16px;
+        }
+
+        .article-body .principles-list li .principle-text {
+            font-size: 0.95rem;
+            color: var(--text-2);
+            line-height: 1.7;
+            font-weight: 400;
+        }
+
+        .article-body .principles-list li .principle-text strong {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .article-signature {
+            text-align: center;
+            padding: 48px 0 0;
+            margin-top: 48px;
+            border-top: 1px solid var(--border);
+        }
+
+        .article-signature .sig-name {
+            font-family: var(--serif);
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .article-signature .sig-links {
+            font-size: 0.88rem;
+            color: var(--text-3);
+        }
+
+        .article-signature .sig-links a {
+            color: var(--accent);
+        }
+
+        .article-signature .sig-share {
+            font-size: 0.82rem;
+            color: var(--text-3);
+            margin-top: 16px;
+            font-style: italic;
+        }
+
+        /* ═══════════════════════════════════════════════
+           SECTION DIVIDER
+           ═══════════════════════════════════════════════ */
+        .section-divider {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 20px 0 32px;
+        }
+
+        .section-divider .line {
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        .section-divider .dot {
+            width: 4px;
+            height: 4px;
+            background: var(--text-3);
+            border-radius: 50%;
+        }
+
+
+        /* ═══════════════════════════════════════════════
+           BUTTONS
+           ═══════════════════════════════════════════════ */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 13px 26px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s var(--ease);
+            cursor: pointer;
+            border: none;
+            font-family: var(--font);
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn i {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* ═══════════════════════════════════════════════
+           CONTACT FORM
+           ═══════════════════════════════════════════════ */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .contact-info h2 {
+            font-family: var(--serif);
+            font-size: clamp(2rem, 3vw, 2.6rem);
+            letter-spacing: -1px;
+        }
+
+        form {
+            display: grid;
+            gap: 18px;
+        }
+
+        .form-group {
+            display: grid;
+            gap: 6px;
+        }
+
+        .form-group label {
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        input,
+        textarea,
+        select {
+            padding: 12px 16px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font);
+            font-size: 0.9rem;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        @media (max-width: 600px) {
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+
+        /* Form loading bar */
+        .form-progress-container {
+            display: none;
+            margin-top: 16px;
+            background: var(--bg-subtle);
+            border-radius: 12px;
+            overflow: hidden;
+            height: 6px;
+            position: relative;
+        }
+
+        .form-progress-container.active {
+            display: block;
+            animation: slideIn 0.3s var(--ease);
+        }
+
+        .form-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), #60a5fa);
+            border-radius: 12px;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .form-progress-text {
+            display: none;
+            margin-top: 8px;
+            font-size: 0.8rem;
+            color: var(--text-3);
+            text-align: center;
+        }
+
+        .form-progress-text.active {
+            display: block;
+            animation: slideIn 0.3s var(--ease);
+        }
+
+        /* Form toast messages */
+        .form-toast {
+            display: none;
+            margin-top: 16px;
+            padding: 16px 20px;
+            border-radius: 10px;
+            animation: slideIn 0.4s var(--ease);
+            align-items: flex-start;
+            gap: 14px;
+        }
+
+        .form-toast.show {
+            display: flex;
+        }
+
+        .form-toast-success {
+            background: rgba(34, 197, 94, 0.08);
+            border: 1px solid rgba(34, 197, 94, 0.25);
+        }
+
+        .form-toast-error {
+            background: rgba(239, 68, 68, 0.08);
+            border: 1px solid rgba(239, 68, 68, 0.25);
+        }
+
+        .form-toast-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .form-toast-success .form-toast-icon {
+            background: rgba(34, 197, 94, 0.15);
+            color: #22c55e;
+        }
+
+        .form-toast-error .form-toast-icon {
+            background: rgba(239, 68, 68, 0.15);
+            color: #ef4444;
+        }
+
+        .form-toast-title {
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 2px;
+        }
+
+        .form-toast-success .form-toast-title {
+            color: #22c55e;
+        }
+
+        .form-toast-error .form-toast-title {
+            color: #ef4444;
+        }
+
+        .form-toast-desc {
+            font-size: 0.82rem;
+            color: var(--text-2);
+            line-height: 1.5;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ═══════════════════════════════════════════════
+           SOCIAL MEDIA CTA SECTION
+           ═══════════════════════════════════════════════ */
+        .social-cta-section {
+            padding: 80px 0;
+            background: var(--bg-alt);
+            border-top: 1px solid var(--border);
+        }
+
+        .social-cta-inner {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .social-cta-inner h2 {
+            font-family: var(--serif);
+            font-size: clamp(1.6rem, 3vw, 2.2rem);
+            letter-spacing: -1px;
+            margin-bottom: 12px;
+        }
+
+        .social-cta-inner p {
+            color: var(--text-2);
+            font-size: 1rem;
+            margin-bottom: 36px;
+            line-height: 1.7;
+        }
+
+        .social-cta-grid {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .social-cta-card {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 24px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: var(--bg);
+            transition: all 0.3s var(--ease);
+            text-decoration: none;
+            color: var(--text);
+        }
+
+        .social-cta-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .social-cta-card .social-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .social-cta-card .social-icon svg,
+        .social-cta-card .social-icon i {
+            width: 20px;
+            height: 20px;
+            color: #fff;
+        }
+
+        .social-icon.linkedin { background: #0A66C2; }
+        .social-icon.x-icon { background: #000; }
+        @media (prefers-color-scheme: dark) {
+            .social-icon.x-icon { background: #fff; }
+            .social-icon.x-icon svg { color: #000; }
+        }
+        .social-icon.instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+        .social-icon.youtube { background: #FF0000; }
+        .social-icon.substack { background: #FF6719; }
+
+        .social-cta-card .social-info {
+            text-align: left;
+        }
+
+        .social-cta-card .social-name {
+            font-weight: 600;
+            font-size: 0.92rem;
+        }
+
+        .social-cta-card .social-handle {
+            font-size: 0.78rem;
+            color: var(--text-3);
+        }
+
+        /* ═══════════════════════════════════════════════
+           FOOTER
+           ═══════════════════════════════════════════════ */
+        footer {
+            padding: 48px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            font-size: 0.82rem;
+            color: var(--text-3);
+        }
+
+        /* ═══════════════════════════════════════════════
+           PDF CTA BUTTON
+           ═══════════════════════════════════════════════ */
+        .pdf-cta {
+            text-align: center;
+            padding: 32px 0;
+        }
+
+        .pdf-cta a {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 32px;
+            background: linear-gradient(135deg, var(--accent), #1d4ed8);
+            color: #fff;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            font-family: var(--font);
+            box-shadow: 0 8px 32px rgba(37, 99, 235, 0.3);
+            transition: all 0.3s var(--ease);
+            text-decoration: none;
+        }
+
+        .pdf-cta a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(37, 99, 235, 0.45);
+            background: linear-gradient(135deg, #1d4ed8, #1e40af);
+        }
+
+        .pdf-cta a i {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* ═══════════════════════════════════════════════
+           ANIMATIONS
+           ═══════════════════════════════════════════════ */
+        .js-ready .fade-in {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .js-ready .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ═══════════════════════════════════════════════
+           SCROLL TO TOP BUTTON
+           ═══════════════════════════════════════════════ */
+        .scroll-top-btn {
+            position: fixed;
+            bottom: 80px;
+            right: 24px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--bg-alt);
+            border: 1px solid var(--border);
+            color: var(--text-2);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 990;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s var(--ease);
+            box-shadow: var(--shadow-md);
+        }
+
+        .scroll-top-btn.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .scroll-top-btn:hover {
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.3);
+        }
+
+        .scroll-top-btn svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* ═══════════════════════════════════════════════
+           TABLE OF CONTENTS
+           ═══════════════════════════════════════════════ */
+        .toc-nav {
+            max-width: 760px;
+            margin: 0 auto 48px;
+            padding: 28px 32px;
+            background: var(--bg-alt);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+        }
+
+        .toc-nav h4 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent);
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .toc-nav ol {
+            list-style: none;
+            counter-reset: toc;
+            display: grid;
+            gap: 8px;
+        }
+
+        .toc-nav ol li {
+            counter-increment: toc;
+        }
+
+        .toc-nav ol li a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: var(--text-2);
+            font-weight: 500;
+            transition: all 0.3s var(--ease);
+        }
+
+        .toc-nav ol li a:hover {
+            color: var(--accent);
+            background: var(--accent-glow);
+        }
+
+        .toc-nav ol li a::before {
+            content: counter(toc, upper-roman) ".";
+            font-weight: 700;
+            color: var(--accent);
+            font-size: 0.78rem;
+            min-width: 32px;
+        }
+
+        /* ═══════════════════════════════════════════════
+           RESPONSIVE
+           ═══════════════════════════════════════════════ */
+        @media (max-width: 768px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .about-img-container {
+                order: -1;
+                max-width: 240px;
+                margin: 0 auto;
+                aspect-ratio: 3/4;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .about-text .pilares {
+                justify-items: center;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+        }
+
+        @media (max-width: 480px) {
+            .about-img-container {
+                max-width: 180px;
+            }
+
+            .about-text h1 {
+                font-size: 2rem;
+            }
+
+            .section-padding {
+                padding: 60px 0;
+            }
+
+            .nav-container {
+                flex-wrap: wrap;
+                height: auto;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                gap: 6px;
+            }
+
+            .nav-container .logo {
+                order: 3;
+                width: 100%;
+                justify-content: center;
+                font-size: 1.1rem;
+            }
+
+            .nav-container nav {
+                display: none;
+            }
+
+            .nav-container .header-right {
+                order: 1;
+                width: 100%;
+                justify-content: center;
+                gap: 12px;
+            }
+
+
+            #about-hero {
+                padding-top: 130px;
+            }
+
+            .mobile-menu {
+                top: 100px;
+                height: calc(100vh - 100px);
+                padding-top: 20px;
+            }
+
+            .scroll-top-btn {
+                bottom: 80px;
+                right: 16px;
+                width: 40px;
+                height: 40px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KCH5LGBG" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <!-- Scroll Progress -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- ═══════════════════════════════════════════════
+     HEADER
+     ═══════════════════════════════════════════════ -->
+    <header id="main-header">
+        <div class="container nav-container">
+            <a href="https://nickperot.com" class="logo"><span class="logo-dot"></span> NICK PEROT</a>
+            <nav>
+                <ul>
+                    <li><a href="https://nickperot.com#hero">Bio</a></li>
+                    <li><a href="https://nickperot.com#experiencias"><span>Experiencias</span></a></li>
+                    <li><a href="https://nickperot.com#articulos"><span>Artículos</span></a></li>
+                    <li><a href="https://nickperot.com#servicios"><span>Servicios</span></a></li>
+                    <li><a href="#contacto"><span>Contacto</span></a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="header-right">
+                <div class="social-nav">
+                    <a href="https://linkedin.com/in/nickperot" target="_blank" rel="noopener noreferrer"
+                        aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
+                    <a href="https://x.com/nickperot" target="_blank" rel="noopener noreferrer" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="width:16px;height:16px;"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                    <a href="https://instagram.com/nickperot" target="_blank" rel="noopener noreferrer"
+                        aria-label="Instagram"><i data-lucide="instagram"></i></a>
+                </div>
+                <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="https://nickperot.com" onclick="closeMenu()">Bio</a>
+        <a href="https://nickperot.com#experiencias" onclick="closeMenu()"><span>Experiencias</span></a>
+        <a href="https://nickperot.com#articulos" onclick="closeMenu()"><span>Artículos</span></a>
+        <a href="https://nickperot.com#servicios" onclick="closeMenu()"><span>Servicios</span></a>
+        <a href="#contacto" onclick="closeMenu()"><span>Contacto</span></a>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════
+     ACERCA DE NICK PEROT
+     ═══════════════════════════════════════════════ -->
+    <section id="about-hero">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-img-container">
+                    <img src="perfil.jpg" alt="Nick Perot">
+                </div>
+                <div class="about-text">
+                    <div>
+                        <h1>Acerca de <span class="accent-text">Nick Perot</span></h1>
+                        <p class="subtitle">Abogado y docente en la Facultad de Ciencias Jurídicas y Sociales de la Universidad Nacional del Litoral (FCJS · UNL). Especializado en derecho, tecnología, gestión e inteligencia artificial aplicada. Con un enfoque orientado a tender puentes entre disciplinas, acompaña a personas y organizaciones en su transformación digital responsable.</p>
+                    </div>
+
+                    <ul class="pilares">
+                        <li><i data-lucide="scale"></i> <span>Abogado</span></li>
+                        <li><i data-lucide="graduation-cap"></i> <span>Docente en FCJS · UNL</span></li>
+                        <li><i data-lucide="cpu"></i> <span>Inteligencia Artificial Aplicada</span></li>
+                        <li><i data-lucide="briefcase"></i> <span>Técnico en Gestión de Organizaciones</span></li>
+                        <li><i data-lucide="book-open"></i> <span>Cursos: Derecho, Tecnología, Gestión e IA</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PDF CTA — TOP -->
+    <div class="container">
+        <div class="pdf-cta">
+            <a href="ar8.pdf" target="_blank" rel="noopener noreferrer">
+                <i data-lucide="file-down"></i> Accedé aquí a este material en PDF gratuito
+            </a>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════
+     CONTENIDO PRINCIPAL — AR8
+     ═══════════════════════════════════════════════ -->
+    <section class="section-padding" style="padding-top: 0;">
+        <div class="container">
+
+            <!-- Article Header -->
+            <div class="article-header">
+                <div class="doc-label">Documento de análisis</div>
+                <h2>Inteligencia artificial<br><span style="color: var(--accent);">generalizada</span></h2>
+                <p class="article-subtitle">Un primer análisis sobre lo que viene y cómo prepararse</p>
+                <p class="article-meta">Nick Perot · Derecho, Tecnología y Gestión · Marzo 2026<br>
+                    <a href="https://www.nickperot.com" target="_blank">www.nickperot.com</a> · <a href="mailto:educacion@nickperot.com">educacion@nickperot.com</a>
+                </p>
+            </div>
+
+            <!-- Table of Contents -->
+            <div class="toc-nav">
+                <h4><span>Contenidos</span></h4>
+                <ol>
+                    <li><a href="#sec-alcance">Alcance de este documento</a></li>
+                    <li><a href="#sec-definicion">Qué entendemos por inteligencia artificial generalizada</a></li>
+                    <li><a href="#sec-cuando">La discusión sobre cuándo llegará</a></li>
+                    <li><a href="#sec-economico">El impacto económico: lo que ya anticipan los datos</a></li>
+                    <li><a href="#sec-salud">El impacto en la salud mental</a></li>
+                    <li><a href="#sec-estado">Nuevos paradigmas para el Estado y el contrato social</a></li>
+                    <li><a href="#sec-prepararse">Cómo prepararse</a></li>
+                    <li><a href="#sec-finales">Consideraciones finales</a></li>
+                </ol>
+            </div>
+
+            <!-- Article Body -->
+            <div class="article-body">
+
+                <!-- 1. Alcance -->
+                <h3 id="sec-alcance">1. Alcance de este documento</h3>
+                <p>Este no es un tratado sobre inteligencia artificial generalizada. Es un primer análisis que sobrevuela los aspectos centrales de una transformación tecnológica que aún no ocurrió pero que ya condiciona decisiones de política pública, de inversión y de formación profesional en todo el mundo.</p>
+                <p>El objetivo es ofrecer un mapa inicial: qué es la IAG, en qué se diferencia de la IA que usamos hoy, qué dicen las estimaciones sobre cuándo podría llegar, cómo va a afectar la economía y el trabajo, qué implica para la salud mental de las personas y qué nuevas preguntas plantea para el Estado y el contrato social. Cada uno de estos temas merecería un documento propio. Aquí se ofrecen las coordenadas para orientar esa conversación.</p>
+
+                <div class="section-divider"><div class="line"></div><div class="dot"></div><div class="line"></div></div>
+
+                <!-- 2. Definición -->
+                <h3 id="sec-definicion">2. Qué entendemos por inteligencia artificial generalizada</h3>
+                <p>La inteligencia artificial que usamos en 2026 es, en sentido técnico, inteligencia artificial estrecha. Cada sistema está diseñado para una tarea o un conjunto acotado de tareas: generar texto, reconocer imágenes, traducir idiomas, jugar al ajedrez. Puede ser extraordinariamente competente en su dominio, pero no puede transferir esa competencia a dominios nuevos sin entrenamiento específico.</p>
+                <p>La inteligencia artificial generalizada (IAG) es un concepto diferente. Se refiere a un sistema hipotético capaz de realizar todas las tareas intelectuales que un ser humano puede realizar, con un nivel de competencia comparable o superior. La IAG podría aprender, razonar, planificar y adaptarse a situaciones nuevas sin necesidad de ser reprogramada para cada dominio.</p>
+                <p style="font-style: italic; color: var(--text-3); margin: 20px 0;">Council of Economic Advisers (EE.UU.), Artificial Intelligence and the Great Divergence, enero de 2026, pp. 4–5.</p>
+                <p>La definición exacta de IAG es materia de debate. Algunos la definen como un sistema que puede igualar el rendimiento humano en cualquier tarea cognitiva. Otros incluyen requisitos de agencia autónoma, capacidad de descubrimiento científico original o habilidad para operar en el mundo físico. No hay consenso sobre dónde trazar la línea, lo que explica en parte por qué las estimaciones de cuándo llegará varían tanto.</p>
+
+                <h4>IA estrecha, IAG e inteligencia artificial superior</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Categoría</th>
+                            <th>Descripción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>IA estrecha (ANI)</strong></td>
+                            <td>Sistemas competentes en tareas específicas: generación de texto, reconocimiento facial, análisis de datos. No pueden transferir conocimiento entre dominios. Es lo que existe hoy.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>IA generalizada (IAG)</strong></td>
+                            <td>Sistema hipotético capaz de realizar cualquier tarea intelectual humana con competencia comparable. Incluiría razonamiento, planificación, aprendizaje autónomo y adaptación a contextos nuevos. No existe aún.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>IA superior (ASI)</strong></td>
+                            <td>Inteligencia que superaría a los mejores cerebros humanos en prácticamente todos los dominios: ciencia, creatividad, estrategia. Concepto teórico. No existe.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p style="font-style: italic; color: var(--text-3); margin: 20px 0; font-size: 0.9rem;">Elaboración propia a partir de Council of Economic Advisers (2026) y 80,000 Hours (2025).</p>
+
+                <div class="section-divider"><div class="line"></div><div class="dot"></div><div class="line"></div></div>
+
+                <!-- 3. Cuándo llegará -->
+                <h3 id="sec-cuando">3. La discusión sobre cuándo llegará</h3>
+                <p>Las estimaciones sobre cuándo se alcanzará la IAG se han acortado drásticamente en los últimos años. En la plataforma de predicciones Metaculus, la estimación mediana pasó de 50 años en 2020 a aproximadamente 5 años en 2025. La encuesta de Grace et al. a miles de investigadores publicados en IA arrojó una probabilidad del 50% de alcanzar una inteligencia de máquina de alto nivel para 2047, pero con una probabilidad del 25% ya para principios de la década de 2030.</p>
+                <p style="font-style: italic; color: var(--text-3); margin: 20px 0;">80,000 Hours, "Shrinking AGI timelines: a review of expert forecasts," marzo de 2025. Grace et al., 2023 AI Researcher Survey.</p>
+                <p>Los líderes de las principales empresas de IA han dado plazos aún más cortos. A principios de 2025, los directores de las tres empresas líderes en desarrollo de modelos de lenguaje declararon públicamente estimar que la IAG podría llegar entre 2027 y 2030. Un informe de agosto de 2025, citado por AI Frontiers, estima una probabilidad del 50% de que varios hitos asociados a la IAG se alcancen para 2028.</p>
+                <p style="font-style: italic; color: var(--text-3); margin: 20px 0;">80,000 Hours, "Will we have AGI by 2030?," marzo de 2025. AI Frontiers, "AGI's Last Bottlenecks," octubre de 2025.</p>
+                <p>Sin embargo, la cautela es necesaria. El Council of Economic Advisers de Estados Unidos, en su informe de enero de 2026, advierte que las implicancias de la IAG son un tema que merece estudio profundo, pero que están fuera del alcance de su análisis económico actual, que se concentra en la IA estrecha o especializada. La razón: una IA que pudiera realizar todas las tareas humanas llevaría a un crecimiento explosivo y a un mundo radicalmente diferente del actual.</p>
+                <p style="font-style: italic; color: var(--text-3); margin: 20px 0;">Council of Economic Advisers (2026), p. 5.</p>
+
+                <div class="highlight-box">
+                    Las predicciones varían entre 3 y 30 años. Pero todas las estimaciones serias se acortaron en los últimos cinco años. El desacuerdo no es sobre si la IAG llegará, sino sobre cuándo.
+                </div>
+
+                <div class="section-divider"><div class="line"></div><div class="dot"></div><div class="line"></div></div>
+
+                <!-- 4. Impacto económico -->
+                <h3 id="sec-economico">4. El impacto económico: lo que ya anticipan los datos</h3>
+                <p>No es necesario esperar a la IAG para medir el impacto económico de la IA. El FMI publicó en enero de 2024 un análisis que estima que cerca del 40% del empleo global está expuesto a la inteligencia artificial. En las economías avanzadas, esa cifra sube al 60%. Aproximadamente la mitad de los empleos expuestos podría beneficiarse de la integración con IA, aumentando la productividad. La otra mitad enfrenta el riesgo de que la IA ejecute tareas que actualmente realizan personas, lo que podría reducir la demanda laboral, presionar salarios a la baja y, en los casos más extremos, eliminar puestos de trabajo.</p>
+                <p style="font-style: italic; color: var(--text-3); margin: 20px 0;">Cazzaniga, M. et al., "Gen-AI: Artificial Intelligence and the Future of Work," IMF Staff Discussion Note SDN2024/001, enero de 2024.</p>
+                <p>En mercados emergentes y países de bajos ingresos, la exposición es menor (40% y 26% respectivamente), pero la capacidad de absorber los beneficios de la IA también lo es. El FMI advierte que estas economías enfrentan menos disrupciones inmediatas, pero carecen de la infraestructura y las competencias necesarias para aprovechar la IA, lo que podría ampliar la desigualdad entre países.</p>
+
+                <h4>El cambio en el valor del trabajo humano</h4>
+                <p>Lo que hace diferente a la IA respecto a olas tecnológicas anteriores es qué tipo de trabajo afecta. La automatización industrial sustituyó tareas manuales repetitivas. La IA afecta tareas cognitivas de alta calificación. El FMI identifica un patrón consistente: las mujeres y las personas con educación universitaria están más expuestas a la IA, pero también mejor posicionadas para beneficiarse de ella. Los trabajadores de mayor edad enfrentan mayores dificultades de adaptación.</p>
+                <p style="font-style: italic; color: var(--text-3); margin: 20px 0;">Cazzaniga et al. (2024), FMI.</p>
+                <p>Si la complementariedad entre IA y trabajadores de altos ingresos es fuerte, la desigualdad salarial podría aumentar. Los trabajadores que puedan integrar la IA en su tarea cotidiana verán crecer su productividad y sus ingresos. Los que no puedan hacerlo quedarán rezagados. La IA no elimina el trabajo humano en abstracto. Cambia qué tipo de trabajo tiene valor económico.</p>
+
+                <div class="highlight-box">
+                    El riesgo no es que la IA reemplace a las personas. Es que reemplace el valor de lo que las personas saben hacer hoy, sin darles tiempo ni herramientas para aprender lo que van a necesitar mañana.
+                </div>
+
+                <div class="section-divider"><div class="line"></div><div class="dot"></div><div class="line"></div></div>
+
+                <!-- 5. Salud mental -->
+                <h3 id="sec-salud">5. El impacto en la salud mental</h3>
+                <p>La relación entre inteligencia artificial y salud mental es un campo de investigación en expansión que muestra resultados ambivalentes. La IA tiene el potencial de ampliar el acceso a intervenciones de salud mental (chatbots terapéuticos, detección temprana de trastornos, soporte emocional escalonado), pero también genera riesgos documentados.</p>
+                <p>Un estudio publicado en Frontiers in Psychology en 2025 analiza la relación entre el tecnóestrés derivado de la implementación acelerada de IA y los trastornos de ansiedad y depresión. Los hallazgos sugieren que las herramientas de IA funcionan simultáneamente como potenciadores de productividad y amplificadores de ansiedad. La incertidumbre laboral asociada a la automatización, la pérdida de agencia humana y el monitoreo digital constante se asocian significativamente con agotamiento emocional y síntomas depresivos.</p>
+                <p style="font-style: italic; color: var(--text-3); margin: 20px 0;">Frontiers in Psychology (2025), "Mental health in the era of artificial intelligence: technostress and the perceived impact on anxiety and depressive disorders."</p>
+                <p>En el terreno de la soledad y las relaciones sociales, la evidencia es particularmente compleja. Un ensayo controlado aleatorizado con cerca de 1.000 participantes, realizado conjuntamente por investigadores de OpenAI y el MIT Media Lab, encontró que el uso a corto plazo de chatbots de IA reduce la soledad percibida, pero que el uso intensivo diario podría relacionarse con mayor soledad, dependencia emocional y reducción de la socialización en el mundo real.</p>
+                <p style="font-style: italic; color: var(--text-3); margin: 20px 0;">Fang, C.M. et al. (2025), "How AI and human behaviors shape psychosocial effects of chatbot use," arXiv. Citado en Global Wellness Institute y George Mason University.</p>
+
+                <div class="highlight-box">
+                    La salud mental no es un efecto colateral de la transformación tecnológica. Es una variable central que debe estar presente en cualquier análisis serio sobre el impacto de la IA en la sociedad.
+                </div>
+
+                <div class="section-divider"><div class="line"></div><div class="dot"></div><div class="line"></div></div>
+
+                <!-- 6. Estado y contrato social -->
+                <h3 id="sec-estado">6. Nuevos paradigmas para el Estado y el contrato social</h3>
+                <p>Si la IA estrecha ya está transformando el mercado laboral, la IAG plantearía preguntas de una escala completamente diferente. Las instituciones del Estado moderno fueron diseñadas en torno a ciertos supuestos: que el trabajo humano es la principal fuente de ingresos para la mayoría de la población, que la educación formal prepara para una carrera profesional estable, y que los sistemas de seguridad social se financian con contribuciones vinculadas al empleo.</p>
+                <p>Cada uno de esos supuestos queda en cuestión si la IA puede realizar una proporción creciente de las tareas cognitivas que hoy sostienen la estructura económica. El FMI ya lo señala: las disrupciones laborales inducidas por la IA tienen el potencial de generar malestar social. La recomendación del organismo es clara: para todas las economías, las redes de seguridad social y los programas de reconversión para trabajadores vulnerables a la IA son esenciales para un crecimiento inclusivo.</p>
+                <p style="font-style: italic; color: var(--text-3); margin: 20px 0;">Cazzaniga et al. (2024), FMI: "AI-induced labor market disruptions have the potential to create social unrest."</p>
+
+                <h4>Las preguntas que el Estado debe hacerse</h4>
+                <p>Si una proporción significativa del trabajo humano pierde valor económico, ¿cómo se financia la seguridad social? Si la educación formal no puede garantizar empleabilidad de largo plazo, ¿qué tipo de formación continua necesita el sistema? Si la IA concentra productividad y riqueza en quienes la desarrollan y poseen, ¿qué mecanismos redistributivos son necesarios? Si los ciudadanos pierden agencia frente a sistemas automatizados que toman decisiones que los afectan, ¿cómo se protegen los derechos fundamentales?</p>
+                <p>Estas son preguntas de política pública que ya tienen urgencia operativa. El FMI desarrolló un AI Preparedness Index que evalúa la preparación de 125 países en cuatro dimensiones: infraestructura digital, capital humano y políticas de mercado laboral, innovación e integración económica, y regulación y ética. Los resultados muestran que las economías más ricas están mejor preparadas, pero con variaciones considerables entre países.</p>
+                <p style="font-style: italic; color: var(--text-3); margin: 20px 0;">Cazzaniga et al. (2024), FMI, AI Preparedness Index.</p>
+
+                <div class="section-divider"><div class="line"></div><div class="dot"></div><div class="line"></div></div>
+
+                <!-- 7. Cómo prepararse -->
+                <h3 id="sec-prepararse">7. Cómo prepararse</h3>
+                <p>No existe un manual para prepararse para una tecnología que aún no llegó. Pero los marcos internacionales, los datos disponibles y la experiencia con la IA estrecha ofrecen orientaciones concretas.</p>
+
+                <h4>Para las personas</h4>
+                <p>Desarrollar competencias digitales no como un evento sino como un proceso continuo. Entender los fundamentos de cómo funcionan los sistemas de IA, no para programarlos sino para evaluar sus resultados y sus límites. Cultivar las capacidades que la IA estrecha no replica bien: juicio crítico, empatía, creatividad contextual, liderazgo relacional. Y mantener las conexiones humanas reales, que la evidencia muestra como factor protector de la salud mental.</p>
+
+                <h4>Para las organizaciones</h4>
+                <p>Hacer el diagnóstico de competencias digitales de sus equipos antes de invertir en herramientas. Implementar políticas de uso responsable de IA. Medir resultados. Proteger datos. Capacitar de manera continua. Y asumir que las herramientas que se usan hoy van a cambiar antes de lo esperado.</p>
+
+                <h4>Para los Estados</h4>
+                <p>Invertir en infraestructura digital y en formación de capital humano adaptativo. Construir marcos regulatorios que equilibren innovación y protección de derechos. Fortalecer las redes de seguridad social para absorber las disrupciones laborales. Y abrir una conversación pública informada sobre las decisiones que vienen, antes de que las decisiones se tomen sin conversación.</p>
+
+                <div class="section-divider"><div class="line"></div><div class="dot"></div><div class="line"></div></div>
+
+                <!-- 8. Consideraciones finales -->
+                <h3 id="sec-finales">8. Consideraciones finales</h3>
+                <p>La inteligencia artificial generalizada puede estar a tres años o a treinta. No lo sabemos. Lo que sí sabemos es que la IA estrecha que ya existe está transformando la economía, el trabajo, la salud mental y la relación entre las personas y las instituciones. Y que esa transformación se va a acelerar.</p>
+                <p>Prepararse no significa predecir el futuro. Significa tomar las decisiones que ya se pueden tomar con la información disponible: diagnosticar competencias, proteger datos, capacitar equipos, construir marcos éticos y regulatorios, y fortalecer lo que la tecnología no puede reemplazar: el juicio humano, la conexión social y la capacidad de hacerse las preguntas correctas.</p>
+
+                <div class="highlight-box">
+                    Lo que está en juego no es si la IAG va a llegar. Es si cuando llegue vamos a tener las instituciones, las competencias y las decisiones que permitan que funcione al servicio de las personas y no al revés.
+                </div>
+
+                <!-- Referencias -->
+                <h3 style="margin-top: 80px;">Referencias</h3>
+                <p style="font-size: 0.95rem; line-height: 1.8; color: var(--text-2);">
+                    80,000 Hours (2025). Shrinking AGI timelines: a review of expert forecasts. Marzo de 2025. 80000hours.org.<br><br>
+                    80,000 Hours (2025). Will we have AGI by 2030? Marzo de 2025. 80000hours.org.<br><br>
+                    AI Frontiers (2025). AGI's Last Bottlenecks. Khoja, A. et al., octubre de 2025. ai-frontiers.org.<br><br>
+                    Cazzaniga, M. et al. (2024). Gen-AI: Artificial Intelligence and the Future of Work. IMF Staff Discussion Note SDN2024/001, enero de 2024.<br><br>
+                    Council of Economic Advisers (2026). Artificial Intelligence and the Great Divergence. The White House, enero de 2026.<br><br>
+                    Fang, C.M. et al. (2025). How AI and human behaviors shape psychosocial effects of chatbot use: A longitudinal randomized controlled study. arXiv:2503.17473.<br><br>
+                    Frontiers in Psychology (2025). Mental health in the era of artificial intelligence: technostress and the perceived impact on anxiety and depressive disorders. Frontiers in Psychology, mayo de 2025.<br><br>
+                    Georgieva, K. (2024). AI Will Transform the Global Economy. Let's Make Sure It Benefits Humanity. Blog del FMI, 14 de enero de 2024.
+                </p>
+
+                <!-- Firma -->
+                <div class="article-signature">
+                    <div class="sig-name">— Nick Perot</div>
+                    <div class="sig-links"><a href="https://nickperot.com" target="_blank">nickperot.com</a> · <a href="mailto:educacion@nickperot.com">educacion@nickperot.com</a></div>
+                    <div class="sig-share">Este documento puede ser compartido libremente con fines educativos citando la fuente · Marzo 2026</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PDF CTA — BOTTOM -->
+    <div class="container">
+        <div class="pdf-cta" style="padding-bottom: 48px;">
+            <a href="ar8.pdf" target="_blank" rel="noopener noreferrer">
+                <i data-lucide="file-down"></i> Accedé aquí a este material en PDF gratuito
+            </a>
+        </div>
+    </div>
+
+
+
+
+    <!-- ═══════════════════════════════════════════════
+     CONTACTO
+     ═══════════════════════════════════════════════ -->
+    <section id="contacto" class="section-padding">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div>
+                        <h2>Sumate a la transformación digital</h2>
+                        <p style="margin: 20px 0; color: var(--text-2); line-height: 1.7;">La revolución digital llegó
+                            para quedarse. La tecnología está al servicio. Accedé a las mejores herramientas para
+                            potenciar tu día a día con tecnología e IA aplicada.</p>
+                    </div>
+                    <p><strong>Email:</strong> educacion@nickperot.com</p>
+                </div>
+                <form id="contact-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label><span>Nombre</span></label>
+                            <input type="text" id="firstname" required placeholder="">
+                        </div>
+                        <div class="form-group">
+                            <label><span>Apellido</span></label>
+                            <input type="text" id="lastname" required placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="email" required placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label><span>Motivo</span></label>
+                        <select id="reason">
+                            <option selected>Feedback</option>
+                            <option>Consulta profesional</option>
+                            <option>Consultoría estratégica</option>
+                            <option>Ámbito Académico y Docencia</option>
+                            <option>Instituciones Educativas</option>
+                            <option>Capacitación para organizaciones</option>
+                            <option>Me sumo a la Transformación Digital</option>
+                            <option>Otras consultas</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label><span>Mensaje</span></label>
+                        <textarea id="message" rows="4" placeholder=""></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="submit-btn">
+                        <span>Enviar mensaje</span>
+                    </button>
+                    <!-- Loading Progress Bar -->
+                    <div class="form-progress-container" id="formProgress">
+                        <div class="form-progress-bar" id="formProgressBar"></div>
+                    </div>
+                    <div class="form-progress-text" id="formProgressText">
+                        <span>Enviando mensaje...</span>
+
+                    </div>
+                    <!-- Success Toast -->
+                    <div id="formSuccess" class="form-toast form-toast-success">
+                        <div class="form-toast-icon">
+                            <i data-lucide="check-circle" style="width: 20px; height: 20px;"></i>
+                        </div>
+                        <div>
+                            <div class="form-toast-title">
+                                <span>¡Mensaje enviado!</span>
+
+                            </div>
+                            <div class="form-toast-desc">
+                                <span>Gracias por escribirme. Te responderé a la brevedad.</span>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Error Toast -->
+                    <div id="formError" class="form-toast form-toast-error">
+                        <div class="form-toast-icon">
+                            <i data-lucide="alert-circle" style="width: 20px; height: 20px;"></i>
+                        </div>
+                        <div>
+                            <div class="form-toast-title">
+                                <span>Error al enviar</span>
+
+                            </div>
+                            <div class="form-toast-desc">
+                                <span>Intentá de nuevo o escribí a educacion@nickperot.com</span>
+
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- reCAPTCHA Notice -->
+    <div style="text-align: center; padding: 16px 28px; font-size: 0.72rem; color: var(--text-3); line-height: 1.6;">
+        <span>Este sitio está protegido por reCAPTCHA y se aplican la
+            <a href="/politica-privacidad/"
+                style="color: var(--text-3); text-decoration: underline;">Política de privacidad</a> y los
+            <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer"
+                style="color: var(--text-3); text-decoration: underline;">Términos de servicio</a> de Google.</span>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════
+     SOCIAL MEDIA CTA
+     ═══════════════════════════════════════════════ -->
+    <section class="social-cta-section">
+        <div class="container">
+            <div class="social-cta-inner">
+                <h2><span>Conectemos</span></h2>
+                <p><span>Seguime en redes para más contenido sobre derecho, tecnología, gestión e inteligencia artificial.</span></p>
+                <div class="social-cta-grid">
+                    <a href="https://linkedin.com/in/nickperot" target="_blank" rel="noopener noreferrer" class="social-cta-card">
+                        <div class="social-icon linkedin">
+                            <i data-lucide="linkedin"></i>
+                        </div>
+                        <div class="social-info">
+                            <div class="social-name">LinkedIn</div>
+                            <div class="social-handle">@nickperot</div>
+                        </div>
+                    </a>
+                    <a href="https://x.com/nickperot" target="_blank" rel="noopener noreferrer" class="social-cta-card">
+                        <div class="social-icon x-icon">
+                            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        </div>
+                        <div class="social-info">
+                            <div class="social-name">X</div>
+                            <div class="social-handle">@nickperot</div>
+                        </div>
+                    </a>
+                    <a href="https://instagram.com/nickperot" target="_blank" rel="noopener noreferrer" class="social-cta-card">
+                        <div class="social-icon instagram">
+                            <i data-lucide="instagram"></i>
+                        </div>
+                        <div class="social-info">
+                            <div class="social-name">Instagram</div>
+                            <div class="social-handle">@nickperot</div>
+                        </div>
+                    </a>
+                    <a href="https://youtube.com/@formulalegal" target="_blank" rel="noopener noreferrer" class="social-cta-card">
+                        <div class="social-icon youtube">
+                            <i data-lucide="youtube"></i>
+                        </div>
+                        <div class="social-info">
+                            <div class="social-name">YouTube</div>
+                            <div class="social-handle">@formulalegal</div>
+                        </div>
+                    </a>
+                    <a href="https://nickperot.substack.com" target="_blank" rel="noopener noreferrer" class="social-cta-card">
+                        <div class="social-icon substack">
+                            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg>
+                        </div>
+                        <div class="social-info">
+                            <div class="social-name">Substack</div>
+                            <div class="social-handle">nickperot.substack.com</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════
+     FOOTER
+     ═══════════════════════════════════════════════ -->
+    <footer>
+        <div class="container">
+            <p><span>&copy; 2026 Nick Perot. Construido con tecnología y enfoque humano.</span></p>
+            <p style="margin-top: 12px; font-size: 0.72rem; color: var(--text-3); line-height: 1.6;">
+                <span>Al usar este sitio aceptás nuestros <a href="/terminos-condiciones/" style="color: var(--text-3); text-decoration: underline;">Términos y Condiciones</a> y nuestra <a href="/politica-privacidad/" style="color: var(--text-3); text-decoration: underline;">Política de Privacidad</a>.</span>
+            </p>
+            <p style="margin-top: 16px; font-size: 0.78rem; color: var(--accent); line-height: 1.6; font-style: italic;">
+                La IA Generativa puede ser nuestra mejor aliada, y también comete errores. Usala con responsabilidad, compromiso y consciencia.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Volver arriba"
+        onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
+
+    <!-- ═══════════════════════════════════════════════
+     SCRIPTS
+     ═══════════════════════════════════════════════ -->
+    <script>
+        // Initialize icons
+        try { lucide.createIcons(); } catch(e) { console.warn('Lucide icons failed to load:', e); }
+
+
+        // ─── Mobile Menu ───
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            mobileMenu.classList.toggle('open');
+        });
+        function closeMenu() {
+            menuToggle.classList.remove('active');
+            mobileMenu.classList.remove('open');
+        }
+
+        // ─── Input Sanitization ───
+        function sanitize(str) { return str.replace(/[<>]/g, ''); }
+
+        // ─── Google Apps Script Unified Endpoint ───
+        const GAS_ENDPOINT = 'https://script.google.com/macros/s/AKfycbx0BLyUwZZXaGh8hqsRaKnth571244ekabk9Bb7Bq6D5_6laIC-Lu2GUlNz-ElToF9LJg/exec';
+        const RECAPTCHA_SITE_KEY = '6Lc4A28sAAAAAA5iWDiguVk_O2KZNR4KBycQKv0k';
+
+        // ─── Contact Form Progress Bar ───
+        function showProgressBar() {
+            const container = document.getElementById('formProgress');
+            const bar = document.getElementById('formProgressBar');
+            const text = document.getElementById('formProgressText');
+            container.classList.add('active');
+            text.classList.add('active');
+            bar.style.width = '0%';
+            setTimeout(() => { bar.style.transition = 'width 1.2s ease'; bar.style.width = '55%'; }, 50);
+            setTimeout(() => { bar.style.transition = 'width 3s ease-out'; bar.style.width = '78%'; }, 1400);
+        }
+
+        function completeProgressBar(success) {
+            const container = document.getElementById('formProgress');
+            const bar = document.getElementById('formProgressBar');
+            const text = document.getElementById('formProgressText');
+            bar.style.transition = 'width 0.4s ease';
+            bar.style.width = '100%';
+            if (success) {
+                bar.style.background = 'linear-gradient(90deg, #22c55e, #4ade80)';
+            } else {
+                bar.style.background = 'linear-gradient(90deg, #ef4444, #f87171)';
+            }
+            setTimeout(() => {
+                container.style.transition = 'opacity 0.5s ease';
+                container.style.opacity = '0';
+                text.style.transition = 'opacity 0.5s ease';
+                text.style.opacity = '0';
+                setTimeout(() => {
+                    container.classList.remove('active');
+                    text.classList.remove('active');
+                    container.style.opacity = '';
+                    container.style.transition = '';
+                    text.style.opacity = '';
+                    text.style.transition = '';
+                    bar.style.width = '0%';
+                    bar.style.background = '';
+                }, 500);
+            }, 600);
+        }
+
+        // ─── Contact Form (via Google Apps Script + reCAPTCHA v3) ───
+        document.getElementById('contact-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('submit-btn');
+            const successToast = document.getElementById('formSuccess');
+            const errorToast = document.getElementById('formError');
+            const firstname = sanitize(document.getElementById('firstname').value);
+            const lastname = sanitize(document.getElementById('lastname').value);
+            const fullname = firstname + ' ' + lastname;
+            const email = sanitize(document.getElementById('email').value);
+            const reason = sanitize(document.getElementById('reason').value);
+            const msg = sanitize(document.getElementById('message').value);
+
+            // Hide any previous toasts
+            successToast.classList.remove('show');
+            errorToast.classList.remove('show');
+
+            btn.disabled = true;
+            btn.style.opacity = '0.6';
+            showProgressBar();
+
+            try {
+                // Get reCAPTCHA token
+                const token = await grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: 'contact' });
+
+                await fetch(GAS_ENDPOINT, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: new URLSearchParams({
+                        action: 'contact',
+                        name: fullname,
+                        email: email,
+                        reason: reason,
+                        message: msg,
+                        'g-recaptcha-response': token
+                    })
+                });
+                completeProgressBar(true);
+                setTimeout(() => {
+                    successToast.classList.add('show');
+                    document.getElementById('contact-form').reset();
+                    setTimeout(() => successToast.classList.remove('show'), 8000);
+                }, 1200);
+            } catch (err) {
+                completeProgressBar(false);
+                setTimeout(() => {
+                    errorToast.classList.add('show');
+                    setTimeout(() => errorToast.classList.remove('show'), 8000);
+                }, 1200);
+            } finally {
+                setTimeout(() => {
+                    btn.disabled = false;
+                    btn.style.opacity = '1';
+                }, 1200);
+            }
+        });
+
+        // ─── Header Scroll + Scroll-to-top ───
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+
+        window.addEventListener('scroll', () => {
+            document.querySelector('header').classList.toggle('scrolled', window.scrollY > 50);
+
+            // Scroll progress
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = (scrollTop / docHeight) * 100;
+            document.getElementById('scrollProgress').style.width = progress + '%';
+
+            // Show/hide scroll-to-top button
+            scrollTopBtn.classList.toggle('visible', scrollTop > 600);
+        });
+
+        // ─── Fade-in Observer ───
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+</body>
+
+</html>

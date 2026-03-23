@@ -1,0 +1,1811 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-KCH5LGBG');</script>
+    <!-- End Google Tag Manager -->
+    <title>Datos y privacidad en la inteligencia artificial | Nick Perot</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="manifest" href="site.webmanifest">
+    <meta name="description"
+        content="Documento de análisis: Datos y privacidad en la inteligencia artificial. Cómo los principales motores de IA procesan los datos de sus usuarios. Por Nick Perot.">
+
+    <!-- SEO Meta Tags -->
+    <meta name="author" content="Nick Perot">
+    <meta name="keywords"
+        content="Nick Perot, privacidad, datos, inteligencia artificial, IA, protección de datos, GDPR, seguridad">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Datos y privacidad en la inteligencia artificial | Nick Perot">
+    <meta property="og:description" content="Cómo los principales motores de IA procesan los datos de sus usuarios, qué varía según el plan contratado y qué buenas prácticas pueden adoptar las organizaciones.">
+    <meta property="og:url" content="https://nickperot.com/ar7.html">
+    <meta property="og:site_name" content="Nick Perot">
+    <meta property="og:locale" content="es_AR">
+
+    <!-- Security -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+
+    <!-- reCAPTCHA v3 -->
+    <script src="https://www.google.com/recaptcha/api.js?render=6Lc4A28sAAAAAA5iWDiguVk_O2KZNR4KBycQKv0k"></script>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* ═══════════════════════════════════════════════
+           VARIABLES & RESET
+           ═══════════════════════════════════════════════ */
+        :root {
+            --bg: #fafafa;
+            --bg-alt: #ffffff;
+            --bg-subtle: #f0f0f0;
+            --bg-exp: #0a0a0a;
+            --bg-exp-card: #141414;
+            --text: #1a1a1a;
+            --text-2: #555555;
+            --text-3: #888888;
+            --text-exp: #f0f0f0;
+            --text-exp-2: #a0a0a0;
+            --text-exp-3: #666666;
+            --accent: #2563eb;
+            --accent-glow: rgba(37, 99, 235, 0.12);
+            --accent-warm: #f97316;
+            --accent-green: #22c55e;
+            --border: #e5e5e5;
+            --border-hover: #cccccc;
+            --font: 'Inter', -apple-system, sans-serif;
+            --serif: 'Playfair Display', Georgia, serif;
+            --ease: cubic-bezier(0.25, 0.8, 0.25, 1);
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.08);
+            --radius: 12px;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #0f0f0f;
+                --bg-alt: #1a1a1a;
+                --bg-subtle: #222222;
+                --bg-exp: #050505;
+                --bg-exp-card: #111111;
+                --text: #ededed;
+                --text-2: #a0a0a0;
+                --text-3: #666666;
+                --border: #2a2a2a;
+                --border-hover: #444444;
+                --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
+                --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.2);
+                --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.3);
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s var(--ease);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+
+        /* ═══════════════════════════════════════════════
+           LAYOUT
+           ═══════════════════════════════════════════════ */
+        .container {
+            max-width: 1060px;
+            margin: 0 auto;
+            padding: 0 28px;
+        }
+
+        .section-padding {
+            padding: 100px 0;
+        }
+
+        /* ═══════════════════════════════════════════════
+           SCROLL PROGRESS
+           ═══════════════════════════════════════════════ */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 2px;
+            z-index: 9999;
+            background: var(--accent);
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+
+        /* ═══════════════════════════════════════════════
+           HEADER
+           ═══════════════════════════════════════════════ */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: transparent;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid transparent;
+            transition: all 0.4s var(--ease);
+        }
+
+        header.scrolled {
+            border-bottom: 1px solid var(--border);
+            background: rgba(250, 250, 250, 0.92);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            header.scrolled {
+                background: rgba(15, 15, 15, 0.92);
+            }
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 68px;
+        }
+
+        .logo {
+            font-weight: 900;
+            font-size: 1.25rem;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 28px;
+        }
+
+        nav a {
+            font-size: 0.85rem;
+            color: var(--text-2);
+            font-weight: 500;
+            position: relative;
+            padding: 4px 0;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s var(--ease);
+        }
+
+        nav a:hover {
+            color: var(--text);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .social-nav {
+            display: flex;
+            gap: 12px;
+        }
+
+        .social-nav a {
+            width: 34px;
+            height: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            transition: all 0.3s var(--ease);
+        }
+
+        .social-nav a:hover {
+            background: var(--bg-subtle);
+        }
+
+        .social-nav i {
+            width: 16px;
+            height: 16px;
+        }
+
+
+        /* Mobile menu */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            width: 36px;
+            height: 36px;
+            position: relative;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .menu-toggle span {
+            width: 22px;
+            height: 2px;
+            background: var(--text);
+            border-radius: 2px;
+            transition: all 0.3s var(--ease);
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 68px;
+            left: 0;
+            width: 100%;
+            height: calc(100vh - 68px);
+            background: var(--bg);
+            z-index: 999;
+            padding: 40px 28px;
+            flex-direction: column;
+            gap: 24px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .mobile-menu.open {
+            display: flex;
+            opacity: 1;
+        }
+
+        .mobile-menu a {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--text);
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        /* ═══════════════════════════════════════════════
+           ABOUT / HERO SECTION
+           ═══════════════════════════════════════════════ */
+        #about-hero {
+            padding-top: 120px;
+            padding-bottom: 60px;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 0.6fr 1.4fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-img-container {
+            width: 100%;
+            border-radius: 20px;
+            overflow: hidden;
+            aspect-ratio: 4/5;
+            background: var(--border);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .about-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(10%);
+        }
+
+        .about-text h1 {
+            font-family: var(--serif);
+            font-size: clamp(2rem, 4vw, 3rem);
+            line-height: 1.1;
+            margin-bottom: 16px;
+            letter-spacing: -1.5px;
+            font-weight: 700;
+        }
+
+        .about-text h1 .accent-text {
+            color: var(--accent);
+        }
+
+        .about-text .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-2);
+            margin-bottom: 24px;
+            font-weight: 300;
+            line-height: 1.7;
+        }
+
+        .about-text .pilares {
+            display: grid;
+            gap: 10px;
+            margin-bottom: 0;
+        }
+
+        .about-text .pilares li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 500;
+            font-size: 0.92rem;
+        }
+
+        .about-text .pilares li i {
+            color: var(--accent);
+            width: 20px;
+            height: 20px;
+            stroke-width: 1.8;
+        }
+
+        /* ═══════════════════════════════════════════════
+           ARTICLE CONTENT
+           ═══════════════════════════════════════════════ */
+        .article-header {
+            text-align: center;
+            padding: 40px 0 60px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        .article-header .doc-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--accent);
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .article-header h2 {
+            font-family: var(--serif);
+            font-size: clamp(2rem, 4vw, 3rem);
+            letter-spacing: -1.5px;
+            line-height: 1.1;
+            margin-bottom: 12px;
+        }
+
+        .article-header .article-subtitle {
+            font-size: 1.05rem;
+            color: var(--text-2);
+            font-weight: 300;
+            max-width: 600px;
+            margin: 0 auto 20px;
+        }
+
+        .article-header .article-meta {
+            font-size: 0.82rem;
+            color: var(--text-3);
+        }
+
+        .article-header .article-meta a {
+            color: var(--accent);
+        }
+
+        .article-body {
+            max-width: 760px;
+            margin: 0 auto;
+        }
+
+        .article-body h3 {
+            font-family: var(--serif);
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            letter-spacing: -0.5px;
+            margin-top: 56px;
+            margin-bottom: 20px;
+            color: var(--text);
+            line-height: 1.2;
+        }
+
+        .article-body h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-top: 36px;
+            margin-bottom: 14px;
+            color: var(--text);
+        }
+
+        .article-body p {
+            font-size: 1rem;
+            color: var(--text-2);
+            line-height: 1.85;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .article-body p strong {
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .article-body .highlight-box {
+            background: var(--accent-glow);
+            border-left: 4px solid var(--accent);
+            padding: 24px 28px;
+            border-radius: 0 var(--radius) var(--radius) 0;
+            margin: 32px 0;
+            font-size: 1.05rem;
+            font-weight: 500;
+            line-height: 1.7;
+            color: var(--text);
+        }
+
+        .article-body .callout {
+            background: var(--bg-alt);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px 28px;
+            margin: 32px 0;
+            font-size: 0.95rem;
+            color: var(--text-2);
+            line-height: 1.75;
+            font-style: italic;
+        }
+
+        .article-body .callout strong {
+            font-style: normal;
+            color: var(--accent);
+        }
+
+        /* Table styling */
+        .article-body table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 32px 0;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+
+        .article-body table th {
+            background: var(--bg-subtle);
+            padding: 16px;
+            text-align: left;
+            font-weight: 700;
+            color: var(--text);
+            border-bottom: 2px solid var(--border);
+            font-size: 0.95rem;
+        }
+
+        .article-body table td {
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-2);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .article-body table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .article-body table tr:hover td {
+            background: var(--bg-subtle);
+        }
+
+        .article-body .principles-list {
+            list-style: none;
+            padding: 0;
+            margin: 24px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .article-body .principles-list li {
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+            padding: 18px 22px;
+            background: var(--bg-alt);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            transition: all 0.3s var(--ease);
+        }
+
+        .article-body .principles-list li:hover {
+            border-color: var(--accent);
+            transform: translateX(4px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .article-body .principles-list li .principle-icon {
+            flex-shrink: 0;
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            background: var(--accent-glow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            margin-top: 2px;
+        }
+
+        .article-body .principles-list li .principle-icon i {
+            width: 16px;
+            height: 16px;
+        }
+
+        .article-body .principles-list li .principle-text {
+            font-size: 0.95rem;
+            color: var(--text-2);
+            line-height: 1.7;
+            font-weight: 400;
+        }
+
+        .article-body .principles-list li .principle-text strong {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .article-signature {
+            text-align: center;
+            padding: 48px 0 0;
+            margin-top: 48px;
+            border-top: 1px solid var(--border);
+        }
+
+        .article-signature .sig-name {
+            font-family: var(--serif);
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .article-signature .sig-links {
+            font-size: 0.88rem;
+            color: var(--text-3);
+        }
+
+        .article-signature .sig-links a {
+            color: var(--accent);
+        }
+
+        .article-signature .sig-share {
+            font-size: 0.82rem;
+            color: var(--text-3);
+            margin-top: 16px;
+            font-style: italic;
+        }
+
+        /* ═══════════════════════════════════════════════
+           SECTION DIVIDER
+           ═══════════════════════════════════════════════ */
+        .section-divider {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 20px 0 32px;
+        }
+
+        .section-divider .line {
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        .section-divider .dot {
+            width: 4px;
+            height: 4px;
+            background: var(--text-3);
+            border-radius: 50%;
+        }
+
+
+        /* ═══════════════════════════════════════════════
+           BUTTONS
+           ═══════════════════════════════════════════════ */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 13px 26px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s var(--ease);
+            cursor: pointer;
+            border: none;
+            font-family: var(--font);
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn i {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* ═══════════════════════════════════════════════
+           CONTACT FORM
+           ═══════════════════════════════════════════════ */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .contact-info h2 {
+            font-family: var(--serif);
+            font-size: clamp(2rem, 3vw, 2.6rem);
+            letter-spacing: -1px;
+        }
+
+        form {
+            display: grid;
+            gap: 18px;
+        }
+
+        .form-group {
+            display: grid;
+            gap: 6px;
+        }
+
+        .form-group label {
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        input,
+        textarea,
+        select {
+            padding: 12px 16px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font);
+            font-size: 0.9rem;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        @media (max-width: 600px) {
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+
+        /* Form loading bar */
+        .form-progress-container {
+            display: none;
+            margin-top: 16px;
+            background: var(--bg-subtle);
+            border-radius: 12px;
+            overflow: hidden;
+            height: 6px;
+            position: relative;
+        }
+
+        .form-progress-container.active {
+            display: block;
+            animation: slideIn 0.3s var(--ease);
+        }
+
+        .form-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), #60a5fa);
+            border-radius: 12px;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .form-progress-text {
+            display: none;
+            margin-top: 8px;
+            font-size: 0.8rem;
+            color: var(--text-3);
+            text-align: center;
+        }
+
+        .form-progress-text.active {
+            display: block;
+            animation: slideIn 0.3s var(--ease);
+        }
+
+        /* Form toast messages */
+        .form-toast {
+            display: none;
+            margin-top: 16px;
+            padding: 16px 20px;
+            border-radius: 10px;
+            animation: slideIn 0.4s var(--ease);
+            align-items: flex-start;
+            gap: 14px;
+        }
+
+        .form-toast.show {
+            display: flex;
+        }
+
+        .form-toast-success {
+            background: rgba(34, 197, 94, 0.08);
+            border: 1px solid rgba(34, 197, 94, 0.25);
+        }
+
+        .form-toast-error {
+            background: rgba(239, 68, 68, 0.08);
+            border: 1px solid rgba(239, 68, 68, 0.25);
+        }
+
+        .form-toast-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .form-toast-success .form-toast-icon {
+            background: rgba(34, 197, 94, 0.15);
+            color: #22c55e;
+        }
+
+        .form-toast-error .form-toast-icon {
+            background: rgba(239, 68, 68, 0.15);
+            color: #ef4444;
+        }
+
+        .form-toast-title {
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 2px;
+        }
+
+        .form-toast-success .form-toast-title {
+            color: #22c55e;
+        }
+
+        .form-toast-error .form-toast-title {
+            color: #ef4444;
+        }
+
+        .form-toast-desc {
+            font-size: 0.82rem;
+            color: var(--text-2);
+            line-height: 1.5;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ═══════════════════════════════════════════════
+           SOCIAL MEDIA CTA SECTION
+           ═══════════════════════════════════════════════ */
+        .social-cta-section {
+            padding: 80px 0;
+            background: var(--bg-alt);
+            border-top: 1px solid var(--border);
+        }
+
+        .social-cta-inner {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .social-cta-inner h2 {
+            font-family: var(--serif);
+            font-size: clamp(1.6rem, 3vw, 2.2rem);
+            letter-spacing: -1px;
+            margin-bottom: 12px;
+        }
+
+        .social-cta-inner p {
+            color: var(--text-2);
+            font-size: 1rem;
+            margin-bottom: 36px;
+            line-height: 1.7;
+        }
+
+        .social-cta-grid {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .social-cta-card {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 24px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: var(--bg);
+            transition: all 0.3s var(--ease);
+            text-decoration: none;
+            color: var(--text);
+        }
+
+        .social-cta-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .social-cta-card .social-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .social-cta-card .social-icon svg,
+        .social-cta-card .social-icon i {
+            width: 20px;
+            height: 20px;
+            color: #fff;
+        }
+
+        .social-icon.linkedin { background: #0A66C2; }
+        .social-icon.x-icon { background: #000; }
+        @media (prefers-color-scheme: dark) {
+            .social-icon.x-icon { background: #fff; }
+            .social-icon.x-icon svg { color: #000; }
+        }
+        .social-icon.instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+        .social-icon.youtube { background: #FF0000; }
+        .social-icon.substack { background: #FF6719; }
+
+        .social-cta-card .social-info {
+            text-align: left;
+        }
+
+        .social-cta-card .social-name {
+            font-weight: 600;
+            font-size: 0.92rem;
+        }
+
+        .social-cta-card .social-handle {
+            font-size: 0.78rem;
+            color: var(--text-3);
+        }
+
+        /* ═══════════════════════════════════════════════
+           FOOTER
+           ═══════════════════════════════════════════════ */
+        footer {
+            padding: 48px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            font-size: 0.82rem;
+            color: var(--text-3);
+        }
+
+        /* ═══════════════════════════════════════════════
+           PDF CTA BUTTON
+           ═══════════════════════════════════════════════ */
+        .pdf-cta {
+            text-align: center;
+            padding: 32px 0;
+        }
+
+        .pdf-cta a {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 32px;
+            background: linear-gradient(135deg, var(--accent), #1d4ed8);
+            color: #fff;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            font-family: var(--font);
+            box-shadow: 0 8px 32px rgba(37, 99, 235, 0.3);
+            transition: all 0.3s var(--ease);
+            text-decoration: none;
+        }
+
+        .pdf-cta a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(37, 99, 235, 0.45);
+            background: linear-gradient(135deg, #1d4ed8, #1e40af);
+        }
+
+        .pdf-cta a i {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* ═══════════════════════════════════════════════
+           ANIMATIONS
+           ═══════════════════════════════════════════════ */
+        .js-ready .fade-in {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .js-ready .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .scroll-top-btn {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            width: 48px;
+            height: 48px;
+            background: var(--text);
+            color: var(--bg);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.3s var(--ease);
+            opacity: 0;
+            visibility: hidden;
+            z-index: 100;
+        }
+
+        .scroll-top-btn.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .scroll-top-btn svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* ═══════════════════════════════════════════════
+           TABLE OF CONTENTS
+           ═══════════════════════════════════════════════ */
+        .toc-nav {
+            max-width: 760px;
+            margin: 0 auto 48px;
+            padding: 28px 32px;
+            background: var(--bg-alt);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+        }
+
+        .toc-nav h4 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent);
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .toc-nav ol {
+            list-style: none;
+            counter-reset: toc;
+            display: grid;
+            gap: 8px;
+        }
+
+        .toc-nav ol li {
+            counter-increment: toc;
+        }
+
+        .toc-nav ol li a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: var(--text-2);
+            font-weight: 500;
+            transition: all 0.3s var(--ease);
+        }
+
+        .toc-nav ol li a:hover {
+            color: var(--accent);
+            background: var(--accent-glow);
+        }
+
+        .toc-nav ol li a::before {
+            content: counter(toc, upper-roman) ".";
+            font-weight: 700;
+            color: var(--accent);
+            font-size: 0.78rem;
+            min-width: 32px;
+        }
+
+        /* ═══════════════════════════════════════════════
+           RESPONSIVE
+           ═══════════════════════════════════════════════ */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+
+            .social-cta-card {
+                flex: 1;
+                min-width: 150px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 16px;
+            }
+
+            .article-header {
+                padding: 24px 0 40px;
+            }
+
+            .article-body h3 {
+                margin-top: 40px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KCH5LGBG" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <!-- Scroll Progress -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- ═══════════════════════════════════════════════
+     HEADER
+     ═══════════════════════════════════════════════ -->
+    <header id="main-header">
+        <div class="container nav-container">
+            <a href="https://nickperot.com" class="logo"><span class="logo-dot"></span> NICK PEROT</a>
+            <nav>
+                <ul>
+                    <li><a href="https://nickperot.com#hero">Bio</a></li>
+                    <li><a href="https://nickperot.com#experiencias"><span>Experiencias</span></a></li>
+                    <li><a href="https://nickperot.com#articulos"><span>Artículos</span></a></li>
+                    <li><a href="https://nickperot.com#servicios"><span>Servicios</span></a></li>
+                    <li><a href="#contacto"><span>Contacto</span></a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="header-right">
+                <div class="social-nav">
+                    <a href="https://linkedin.com/in/nickperot" target="_blank" rel="noopener noreferrer"
+                        aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
+                    <a href="https://x.com/nickperot" target="_blank" rel="noopener noreferrer" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="width:16px;height:16px;"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                    <a href="https://instagram.com/nickperot" target="_blank" rel="noopener noreferrer"
+                        aria-label="Instagram"><i data-lucide="instagram"></i></a>
+                </div>
+                <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="https://nickperot.com" onclick="closeMenu()">Bio</a>
+        <a href="https://nickperot.com#experiencias" onclick="closeMenu()"><span>Experiencias</span></a>
+        <a href="https://nickperot.com#articulos" onclick="closeMenu()"><span>Artículos</span></a>
+        <a href="https://nickperot.com#servicios" onclick="closeMenu()"><span>Servicios</span></a>
+        <a href="#contacto" onclick="closeMenu()"><span>Contacto</span></a>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════
+     ACERCA DE NICK PEROT
+     ═══════════════════════════════════════════════ -->
+    <section id="about-hero">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-img-container">
+                    <img src="perfil.jpg" alt="Nick Perot">
+                </div>
+                <div class="about-text">
+                    <div>
+                        <h1>Acerca de <span class="accent-text">Nick Perot</span></h1>
+                        <p class="subtitle">Abogado y docente en la Facultad de Ciencias Jurídicas y Sociales de la Universidad Nacional del Litoral (FCJS · UNL). Especializado en derecho, tecnología, gestión e inteligencia artificial aplicada. Con un enfoque orientado a tender puentes entre disciplinas, acompaña a personas y organizaciones en su transformación digital responsable.</p>
+                    </div>
+
+                    <ul class="pilares">
+                        <li><i data-lucide="scale"></i> <span>Abogado</span></li>
+                        <li><i data-lucide="graduation-cap"></i> <span>Docente en FCJS · UNL</span></li>
+                        <li><i data-lucide="cpu"></i> <span>Inteligencia Artificial Aplicada</span></li>
+                        <li><i data-lucide="briefcase"></i> <span>Técnico en Gestión de Organizaciones</span></li>
+                        <li><i data-lucide="book-open"></i> <span>Cursos: Derecho, Tecnología, Gestión e IA</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PDF CTA — TOP -->
+    <div class="container">
+        <div class="pdf-cta">
+            <a href="ar7.pdf" target="_blank" rel="noopener noreferrer"><i data-lucide="download"></i> Descargar en PDF</a>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════
+     ARTICLE SECTION
+     ═══════════════════════════════════════════════ -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="article-header fade-in">
+                <div class="doc-label">DOCUMENTO DE ANÁLISIS</div>
+                <h2>Datos y privacidad en la inteligencia artificial</h2>
+                <p class="article-subtitle">Lo que las condiciones de uso no dicen en voz alta</p>
+                <p class="article-meta">
+                    Nick Perot | Abogado · Consultor en transformación digital · Docente | <a href="https://www.nickperot.com" target="_blank">www.nickperot.com</a> | Marzo 2026
+                </p>
+            </div>
+
+            <!-- Table of Contents -->
+            <div class="toc-nav fade-in">
+                <h4>Contenidos</h4>
+                <ol>
+                    <li><a href="#sec1">Lo que la mayoría de los usuarios no lee</a></li>
+                    <li><a href="#sec2">Entrenamiento con datos del usuario: la regla, no la excepción</a></li>
+                    <li><a href="#sec3">Lo que cambia según el plan contratado</a></li>
+                    <li><a href="#sec4">Retroalimentación, usos en segundo plano y la letra chica</a></li>
+                    <li><a href="#sec5">El marco regulatorio: dónde hay protección y dónde no</a></li>
+                    <li><a href="#sec6">Qué pueden hacer las organizaciones</a></li>
+                    <li><a href="#sec7">Síntesis: lo que hay que verificar antes de usar un motor de IA</a></li>
+                    <li><a href="#sec8">Consideraciones finales</a></li>
+                </ol>
+            </div>
+
+            <div class="article-body js-ready">
+                <h3 id="sec1">1. Lo que la mayoría de los usuarios no lee</h3>
+                <p class="fade-in">Cada vez que una persona interactúa con un motor de inteligencia artificial generativa, envía datos. A veces es un texto. A veces es un archivo. A veces es información personal, financiera o confidencial. Lo que ocurre con esos datos después de enviarse depende de algo que la mayoría de los usuarios no lee: las condiciones de uso y las políticas de privacidad del proveedor.</p>
+
+                <p class="fade-in">Un estudio publicado en 2025 por el Stanford Institute for Human-Centered Artificial Intelligence (HAI) analizó las políticas de privacidad de seis desarrolladores líderes de modelos de lenguaje en Estados Unidos. La conclusión principal fue directa: las seis compañías utilizan los datos de las conversaciones de sus usuarios para entrenar sus modelos por defecto, y algunas conservan esa información en sus sistemas de manera indefinida.</p>
+
+                <p class="fade-in" style="font-size: 0.92rem; color: var(--text-3); font-style: italic;">King, J. et al., "User Privacy and Large Language Models: An Analysis of Frontier Developers' Privacy Policies," Stanford Institute for Human-Centered AI, 2025.</p>
+
+                <p class="fade-in">Este documento analiza qué hacen los principales motores de IA con los datos de sus usuarios, cómo varían las condiciones según el plan contratado, qué ocurre cuando se envía retroalimentación, y qué buenas prácticas pueden adoptar personas y organizaciones para proteger su información.</p>
+
+                <div class="highlight-box fade-in">
+                    Si la información ingresada a un motor de IA no desaparece cuando se cierra la aplicación, la pregunta operativa no es si se usan los datos. Es en qué condiciones y por cuánto tiempo.
+                </div>
+
+                <h3 id="sec2">2. Entrenamiento con datos del usuario: la regla, no la excepción</h3>
+
+                <p class="fade-in">El hallazgo central del estudio de Stanford es que el uso de datos de conversación para entrenamiento de modelos no es una práctica excepcional. Es el estándar de la industria. Los seis proveedores analizados alimentan sus modelos con los datos de las interacciones de sus usuarios por defecto, a menos que el usuario tome medidas activas para impedirlo.</p>
+
+                <p class="fade-in">Esto significa que cuando una persona pega un contrato, comparte datos de salud, sube un archivo con información financiera o simplemente hace una pregunta que revela preferencias personales, esa información puede ser incorporada al proceso de entrenamiento del modelo. El estudio de Stanford describe un escenario ilustrativo: un usuario que pide recetas bajas en azúcar o aptas para problemas cardíacos está revelando información de salud que el sistema puede clasificar y que, a través del ecosistema del proveedor, podría terminar influyendo en la publicidad o en los perfiles comerciales que recibe.</p>
+
+                <p class="fade-in" style="font-size: 0.92rem; color: var(--text-3); font-style: italic;">King et al. (2025), Stanford HAI.</p>
+
+                <h3 id="sec3">3. Lo que cambia según el plan contratado</h3>
+
+                <p class="fade-in">Una de las variables más relevantes y menos visibles es que las condiciones de privacidad no son uniformes dentro de un mismo proveedor. Varían significativamente según el tipo de plan contratado. El patrón es consistente en la industria.</p>
+
+                <h4>Planes gratuitos y de consumo individual</h4>
+
+                <p class="fade-in">En la mayoría de los proveedores, los planes gratuitos y los planes individuales pagos operan bajo las mismas condiciones de privacidad. Las conversaciones se utilizan para entrenamiento por defecto. La retención de datos puede extenderse durante meses o incluso de manera indefinida. Algunos proveedores permiten que revisores humanos lean transcripciones de conversaciones como parte de sus procesos de seguridad y mejora. En ciertos casos, incluso el pago de una suscripción mensual no cambia la política de entrenamiento: el usuario sigue necesitando desactivar la opción manualmente.</p>
+
+                <h4>Planes empresariales y acceso por API</h4>
+
+                <p class="fade-in">Los planes empresariales y el acceso a través de API suelen tener condiciones sustancialmente diferentes. En general, los proveedores declaran que no utilizan datos de clientes empresariales para entrenar modelos por defecto. La retención de datos tiende a ser más corta. Los controles de acceso son más granulares. La documentación de procesamiento de datos suele estar disponible.</p>
+
+                <h4>La diferencia crítica</h4>
+
+                <p class="fade-in">La distinción entre plan de consumo y plan empresarial no es un detalle comercial. Es una decisión de privacidad. Una organización que permite que sus equipos usen herramientas de IA en planes gratuitos o individuales para procesar información institucional está enviando datos a un entorno donde esos datos pueden ser incorporados al entrenamiento de modelos, revisados por personas y retenidos por períodos prolongados.</p>
+
+                <div class="highlight-box fade-in">
+                    El precio del plan no es solo una decisión de presupuesto. Es una decisión de privacidad y de riesgo institucional.
+                </div>
+
+                <h3 id="sec4">4. Retroalimentación, usos en segundo plano y la letra chica</h3>
+
+                <h4>El envío de retroalimentación como envío de datos</h4>
+
+                <p class="fade-in">Cuando un usuario marca una respuesta como útil o inútil, o corrige un resultado, está enviando retroalimentación al proveedor. Esa retroalimentación, en la mayoría de los casos, se utiliza para mejorar el modelo. Lo que muchos usuarios no advierten es que la retroalimentación no viaja sola: viaja con el contexto de la conversación. Marcar un pulgar hacia abajo en una respuesta sobre un contrato confidencial es, en la práctica, enviar el contenido de ese contrato al sistema de mejora del proveedor.</p>
+
+                <h4>Usos en segundo plano y ecosistemas integrados</h4>
+
+                <p class="fade-in">En los proveedores que operan ecosistemas de múltiples productos (buscadores, correo electrónico, redes sociales, asistentes de voz, plataformas de productividad), las interacciones con el motor de IA pueden combinarse con información proveniente de otros servicios del mismo proveedor. El estudio de Stanford identifica esta práctica en proveedores multiproducto: las consultas al motor de IA se fusionan con historiales de búsqueda, compras, interacciones en redes sociales y otros datos de la plataforma.</p>
+
+                <p class="fade-in" style="font-size: 0.92rem; color: var(--text-3); font-style: italic;">King et al. (2025), Stanford HAI: "User interactions routinely get merged with information gleaned from other products consumers use on those platforms."</p>
+
+                <p class="fade-in">Esto significa que el motor de IA no opera de manera aislada. Opera dentro de un ecosistema de datos donde la información fluye entre servicios. Para el usuario, puede parecer una conversación privada. Para el proveedor, es una pieza más en un perfil integrado.</p>
+
+                <h4>Lo que dicen las condiciones sobre eliminación de datos</h4>
+
+                <p class="fade-in">La mayoría de los proveedores ofrecen la opción de eliminar conversaciones. Pero eliminar no siempre significa borrar. Algunos proveedores retienen datos eliminados por períodos de 30 días. Otros pueden estar obligados por orden judicial a retener conversaciones incluso después de que el usuario las haya borrado. Y en todos los casos, si los datos ya fueron incorporados a un ciclo de entrenamiento, la eliminación de la conversación original no revierte la influencia que esos datos ejercieron sobre el modelo.</p>
+
+                <h4>Datos de menores</h4>
+
+                <p class="fade-in">El estudio de Stanford encontró que las prácticas respecto a datos de menores varían entre proveedores, pero la mayoría no toma medidas activas para excluir los datos de menores de sus procesos de entrenamiento. Algunos proveedores declaran que no permiten cuentas a menores de 18 años pero no requieren verificación de edad. Otros permiten explícitamente la recolección de datos de menores bajo ciertas condiciones.</p>
+
+                <p class="fade-in" style="font-size: 0.92rem; color: var(--text-3); font-style: italic;">King et al. (2025): "Developers' practices vary, but most are not taking steps to remove children's input from their data collection and model training processes."</p>
+
+                <h3 id="sec5">5. El marco regulatorio: dónde hay protección y dónde no</h3>
+
+                <p class="fade-in">La protección efectiva de los datos que se envían a motores de IA depende, en gran medida, de la jurisdicción bajo la cual opera el proveedor y el usuario.</p>
+
+                <p class="fade-in">En la Unión Europea, el Reglamento General de Protección de Datos (GDPR) establece un piso de protección que incluye transparencia, minimización de datos, limitación de finalidad y el derecho del usuario a solicitar la eliminación de sus datos. En 2024, la autoridad italiana de protección de datos sancionó a uno de los principales proveedores de IA con una multa de 15 millones de euros por falta de transparencia en la recolección y el uso de datos a través de su motor de IA generativa.</p>
+
+                <p class="fade-in" style="font-size: 0.92rem; color: var(--text-3); font-style: italic;">Garante per la protezione dei dati personali (Italia), resolución contra proveedor de IA por infracción de GDPR, 2024; Reglamento (UE) 2016/679 (GDPR).</p>
+
+                <p class="fade-in">En Estados Unidos, la situación es diferente. No existe una ley federal integral de privacidad de datos. La protección es fragmentaria, depende de regulaciones estatales y, en la práctica, deja a los usuarios con menos garantías legales frente a los proveedores de IA. El estudio de Stanford lo resume con claridad: hay cientos de millones de personas interactuando con motores de IA que recolectan datos personales para entrenamiento, y prácticamente no se ha realizado investigación para examinar las prácticas de privacidad de estas herramientas.</p>
+
+                <p class="fade-in">En América Latina, como se analizó en documentos anteriores de esta serie, la regulación específica de IA es incipiente. Los usuarios y organizaciones de la región operan, en la mayoría de los casos, bajo las condiciones que los proveedores definen unilateralmente en sus términos de servicio, sin un marco regulatorio local que establezca estándares mínimos de protección para el uso de datos en sistemas de IA.</p>
+
+                <h3 id="sec6">6. Qué pueden hacer las organizaciones</h3>
+
+                <h4>Elegir el plan y el canal con criterio de privacidad</h4>
+
+                <p class="fade-in">La primera decisión de privacidad no es técnica. Es contractual. Antes de usar un motor de IA para procesar información institucional, la organización necesita saber si el plan contratado utiliza los datos para entrenamiento, cuánto tiempo los retiene, quién puede revisarlos y bajo qué jurisdicción se procesan. Si la respuesta a cualquiera de estas preguntas no está clara, el motor no está listo para recibir información sensible.</p>
+
+                <h4>Desactivar el entrenamiento con datos del usuario</h4>
+
+                <p class="fade-in">En la mayoría de los proveedores, la opción de exclusión del entrenamiento existe pero no está activada por defecto. La organización debe verificar y documentar que la opción está desactivada en cada cuenta que utilice herramientas de IA. Esto incluye tanto las cuentas institucionales como las cuentas personales que los empleados puedan usar para tareas laborales.</p>
+
+                <h4>No ingresar información sensible en planes de consumo</h4>
+
+                <p class="fade-in">Datos personales de terceros, información financiera, documentos legales, datos de salud, credenciales de acceso, código propietario y estrategias confidenciales no deberían procesarse a través de planes gratuitos o individuales de motores de IA. Si la organización necesita procesar este tipo de información con IA, debería utilizar planes empresariales, acceso por API con retención mínima o, en casos críticos, modelos de ejecución local que no transmitan datos a servidores externos.</p>
+
+                <h4>Anonimizar antes de enviar</h4>
+
+                <p class="fade-in">Cuando no es posible evitar el uso de motores de IA en la nube, la información debería anonimizarse antes de enviarse. Reemplazar nombres reales por genéricos, empresas por "Companía X", fechas específicas por referencias temporales relativas. Esto no elimina el riesgo, pero lo reduce significativamente.</p>
+
+                <h4>Revisar periódicamente las condiciones de uso</h4>
+
+                <p class="fade-in">Las políticas de privacidad de los proveedores de IA cambian. En 2025, al menos un proveedor que se posicionaba como la opción de mayor privacidad modificó sus términos para pasar de un modelo de consentimiento explícito (opt-in) a un modelo de exclusión voluntaria (opt-out), donde el silencio del usuario se interpreta como aceptación. Las organizaciones deberían revisar las condiciones de uso de sus herramientas de IA al menos dos veces al año.</p>
+
+                <p class="fade-in" style="font-size: 0.92rem; color: var(--text-3); font-style: italic;">Sobre el cambio de modelo opt-in a opt-out en 2025: Stanford HAI, King et al. (2025); Psychiatric Times, "Chatbot Privacy Is an Oxymoron," marzo de 2026.</p>
+
+                <h4>Documentar y capacitar</h4>
+
+                <p class="fade-in">Todo equipo que use herramientas de IA debería conocer las condiciones de privacidad del motor que utiliza, saber qué datos puede y no puede ingresar, y entender qué ocurre con la información después de enviarla. Esto requiere capacitación específica, no solo un documento de política interna.</p>
+
+                <h3 id="sec7">7. Síntesis: lo que hay que verificar antes de usar un motor de IA</h3>
+
+                <h4>Checklist de privacidad para organizaciones</h4>
+
+                <table class="fade-in">
+                    <thead>
+                        <tr>
+                            <th>Variable</th>
+                            <th>Pregunta que la organización debe responder</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Entrenamiento</strong></td>
+                            <td>¿El proveedor usa los datos de las conversaciones para entrenar modelos? ¿Es opt-in u opt-out? ¿Está desactivado en todas las cuentas?</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Retención</strong></td>
+                            <td>¿Cuánto tiempo retiene el proveedor los datos después de la interacción? ¿Qué ocurre cuando el usuario elimina una conversación?</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Revisión humana</strong></td>
+                            <td>¿Pueden empleados o contratistas del proveedor leer transcripciones de conversaciones?</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Ecosistema</strong></td>
+                            <td>¿Se combinan los datos de la IA con información de otros productos del mismo proveedor?</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Jurisdicción</strong></td>
+                            <td>¿Bajo qué legislación se procesan los datos? ¿Aplica GDPR u otra normativa de protección?</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Plan contratado</strong></td>
+                            <td>¿Las condiciones de privacidad del plan utilizado son adecuadas para el tipo de información que se procesa?</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Menores</strong></td>
+                            <td>¿Se procesan datos de menores? ¿Qué medidas tiene el proveedor al respecto?</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Retroalimentación</strong></td>
+                            <td>¿La retroalimentación enviada al proveedor incluye el contenido de la conversación? ¿Puede desactivarse?</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p class="fade-in" style="font-size: 0.92rem; color: var(--text-3); font-style: italic; margin-top: 16px;">Elaboración propia a partir de King et al. (2025), Stanford HAI; NIST AI RMF 1.0; Reglamento (UE) 2016/679 (GDPR).</p>
+
+                <h3 id="sec8">8. Consideraciones finales</h3>
+
+                <p class="fade-in">Los motores de inteligencia artificial generativa operan, en su configuración por defecto, bajo condiciones de privacidad que favorecen al proveedor. Los datos de las conversaciones se utilizan para entrenamiento. La retención puede ser prolongada. La información puede cruzarse con otros servicios del mismo ecosistema. Y las condiciones cambian, a veces sin aviso prominente.</p>
+
+                <p class="fade-in">La protección efectiva de los datos no depende del motor en sí. Depende del plan contratado, de la configuración elegida, de la jurisdicción aplicable y, sobre todo, de las decisiones que toma la organización antes de enviar información a un sistema que no controla.</p>
+
+                <p class="fade-in">El estudio de Stanford concluye con una recomendación que funciona como regla de mínima: los usuarios deberían pensar dos veces antes de compartir información en conversaciones con motores de IA y, siempre que sea posible, optar activamente por la exclusión del entrenamiento. Para una organización, esa recomendación individual se convierte en una política institucional.</p>
+
+                <div class="highlight-box fade-in">
+                    La privacidad en la IA no se protege con confianza. Se protege con configuración, con contratos leídos y con la decisión de no enviar a un sistema externo lo que no se está dispuesto a compartir.
+                </div>
+
+                <h3>Referencias</h3>
+
+                <p class="fade-in">Garante per la protezione dei dati personali (2024). Resolución sancionatoria contra proveedor de IA por infracción de GDPR. Italia, 2024. Multa de 15 millones de euros.</p>
+
+                <p class="fade-in">King, J. et al. (2025). User Privacy and Large Language Models: An Analysis of Frontier Developers' Privacy Policies. Stanford Institute for Human-Centered Artificial Intelligence (HAI).</p>
+
+                <p class="fade-in">MIT Technology Review (2025). The State of AI: Chatbot companions and the future of our privacy. Noviembre de 2025.</p>
+
+                <p class="fade-in">NIST (2023). Artificial Intelligence Risk Management Framework (AI RMF 1.0). NIST AI 100-1. Gaithersburg: National Institute of Standards and Technology.</p>
+
+                <p class="fade-in">Psychiatric Times (2026). Chatbot Privacy Is an Oxymoron: Assume Your Data Is Always At Risk. Marzo de 2026.</p>
+
+                <p class="fade-in">Unión Europea (2016). Reglamento (UE) 2016/679 — Reglamento General de Protección de Datos (GDPR). Diario Oficial de la UE.</p>
+
+                <p class="fade-in">Unión Europea (2024). Reglamento (UE) 2024/1689 — Ley de Inteligencia Artificial (AI Act). Diario Oficial de la UE, 13 de junio de 2024.</p>
+
+                <div class="article-signature fade-in">
+                    <div class="sig-name">Nick Perot</div>
+                    <div class="sig-links">Abogado | Consultor en transformación digital | Docente | <a href="https://www.nickperot.com" target="_blank">www.nickperot.com</a> | <a href="mailto:educacion@nickperot.com">educacion@nickperot.com</a></div>
+                    <div class="sig-share">Compartir este documento</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════
+     CONTACT SECTION
+     ═══════════════════════════════════════════════ -->
+    <section id="contacto" class="section-padding" style="background: var(--bg-alt);">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h2>Contacto</h2>
+                    <p style="color: var(--text-2); line-height: 1.8; margin-top: 20px;">Escribime si querés colaborar, discutir ideas o simplemente conectar. Respondo personalmente cada mensaje.</p>
+                </div>
+                <div>
+                    <form id="contact-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label><span>Nombre</span></label>
+                                <input type="text" id="firstname" placeholder="" required>
+                            </div>
+                            <div class="form-group">
+                                <label><span>Apellido</span></label>
+                                <input type="text" id="lastname" placeholder="" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label><span>Email</span></label>
+                            <input type="email" id="email" placeholder="" required>
+                        </div>
+                        <div class="form-group">
+                            <label><span>¿Sobre qué querés escribirme?</span></label>
+                            <select id="reason" required>
+                                <option value="">Selecciona una opción</option>
+                                <option>Trabajo / Consultoría</option>
+                                <option>Educación / Capacitación</option>
+                                <option>Colaboración</option>
+                                <option>Consulta técnica o legal</option>
+                                <option>Otras consultas</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label><span>Mensaje</span></label>
+                            <textarea id="message" rows="4" placeholder=""></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" id="submit-btn">
+                            <span>Enviar mensaje</span>
+                        </button>
+                        <!-- Loading Progress Bar -->
+                        <div class="form-progress-container" id="formProgress">
+                            <div class="form-progress-bar" id="formProgressBar"></div>
+                        </div>
+                        <div class="form-progress-text" id="formProgressText">
+                            <span>Enviando mensaje...</span>
+                        </div>
+                        <!-- Success Toast -->
+                        <div id="formSuccess" class="form-toast form-toast-success">
+                            <div class="form-toast-icon">
+                                <i data-lucide="check-circle" style="width: 20px; height: 20px;"></i>
+                            </div>
+                            <div>
+                                <div class="form-toast-title">
+                                    <span>¡Mensaje enviado!</span>
+                                </div>
+                                <div class="form-toast-desc">
+                                    <span>Gracias por escribirme. Te responderé a la brevedad.</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Error Toast -->
+                        <div id="formError" class="form-toast form-toast-error">
+                            <div class="form-toast-icon">
+                                <i data-lucide="alert-circle" style="width: 20px; height: 20px;"></i>
+                            </div>
+                            <div>
+                                <div class="form-toast-title">
+                                    <span>Error al enviar</span>
+                                </div>
+                                <div class="form-toast-desc">
+                                    <span>Intentá de nuevo o escribí a educacion@nickperot.com</span>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- reCAPTCHA Notice -->
+    <div style="text-align: center; padding: 16px 28px; font-size: 0.72rem; color: var(--text-3); line-height: 1.6;">
+        <span>Este sitio está protegido por reCAPTCHA y se aplican la
+            <a href="/politica-privacidad/"
+                style="color: var(--text-3); text-decoration: underline;">Política de privacidad</a> y los
+            <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer"
+                style="color: var(--text-3); text-decoration: underline;">Términos de servicio</a> de Google.</span>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════
+     SOCIAL MEDIA CTA
+     ═══════════════════════════════════════════════ -->
+    <section class="social-cta-section">
+        <div class="container">
+            <div class="social-cta-inner">
+                <h2><span>Conectemos</span></h2>
+                <p><span>Seguime en redes para más contenido sobre derecho, tecnología, gestión e inteligencia artificial.</span></p>
+                <div class="social-cta-grid">
+                    <a href="https://linkedin.com/in/nickperot" target="_blank" rel="noopener noreferrer" class="social-cta-card">
+                        <div class="social-icon linkedin">
+                            <i data-lucide="linkedin"></i>
+                        </div>
+                        <div class="social-info">
+                            <div class="social-name">LinkedIn</div>
+                            <div class="social-handle">@nickperot</div>
+                        </div>
+                    </a>
+                    <a href="https://x.com/nickperot" target="_blank" rel="noopener noreferrer" class="social-cta-card">
+                        <div class="social-icon x-icon">
+                            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        </div>
+                        <div class="social-info">
+                            <div class="social-name">X</div>
+                            <div class="social-handle">@nickperot</div>
+                        </div>
+                    </a>
+                    <a href="https://instagram.com/nickperot" target="_blank" rel="noopener noreferrer" class="social-cta-card">
+                        <div class="social-icon instagram">
+                            <i data-lucide="instagram"></i>
+                        </div>
+                        <div class="social-info">
+                            <div class="social-name">Instagram</div>
+                            <div class="social-handle">@nickperot</div>
+                        </div>
+                    </a>
+                    <a href="https://youtube.com/@formulalegal" target="_blank" rel="noopener noreferrer" class="social-cta-card">
+                        <div class="social-icon youtube">
+                            <i data-lucide="youtube"></i>
+                        </div>
+                        <div class="social-info">
+                            <div class="social-name">YouTube</div>
+                            <div class="social-handle">@formulalegal</div>
+                        </div>
+                    </a>
+                    <a href="https://nickperot.substack.com" target="_blank" rel="noopener noreferrer" class="social-cta-card">
+                        <div class="social-icon substack">
+                            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg>
+                        </div>
+                        <div class="social-info">
+                            <div class="social-name">Substack</div>
+                            <div class="social-handle">nickperot.substack.com</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════
+     FOOTER
+     ═══════════════════════════════════════════════ -->
+    <footer>
+        <div class="container">
+            <p><span>&copy; 2026 Nick Perot. Construido con tecnología y enfoque humano.</span></p>
+            <p style="margin-top: 12px; font-size: 0.72rem; color: var(--text-3); line-height: 1.6;">
+                <span>Al usar este sitio aceptás nuestros <a href="/terminos-condiciones/" style="color: var(--text-3); text-decoration: underline;">Términos y Condiciones</a> y nuestra <a href="/politica-privacidad/" style="color: var(--text-3); text-decoration: underline;">Política de Privacidad</a>.</span>
+            </p>
+            <p style="margin-top: 16px; font-size: 0.78rem; color: var(--accent); line-height: 1.6; font-style: italic;">
+                La IA Generativa puede ser nuestra mejor aliada, y también comete errores. Usala con responsabilidad, compromiso y consciencia.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Volver arriba"
+        onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
+
+    <!-- ═══════════════════════════════════════════════
+     SCRIPTS
+     ═══════════════════════════════════════════════ -->
+    <script>
+        // Initialize icons
+        try { lucide.createIcons(); } catch(e) { console.warn('Lucide icons failed to load:', e); }
+
+
+        // ─── Mobile Menu ───
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            mobileMenu.classList.toggle('open');
+        });
+        function closeMenu() {
+            menuToggle.classList.remove('active');
+            mobileMenu.classList.remove('open');
+        }
+
+        // ─── Input Sanitization ───
+        function sanitize(str) { return str.replace(/[<>]/g, ''); }
+
+        // ─── Google Apps Script Unified Endpoint ───
+        const GAS_ENDPOINT = 'https://script.google.com/macros/s/AKfycbx0BLyUwZZXaGh8hqsRaKnth571244ekabk9Bb7Bq6D5_6laIC-Lu2GUlNz-ElToF9LJg/exec';
+        const RECAPTCHA_SITE_KEY = '6Lc4A28sAAAAAA5iWDiguVk_O2KZNR4KBycQKv0k';
+
+        // ─── Contact Form Progress Bar ───
+        function showProgressBar() {
+            const container = document.getElementById('formProgress');
+            const bar = document.getElementById('formProgressBar');
+            const text = document.getElementById('formProgressText');
+            container.classList.add('active');
+            text.classList.add('active');
+            bar.style.width = '0%';
+            setTimeout(() => { bar.style.transition = 'width 1.2s ease'; bar.style.width = '55%'; }, 50);
+            setTimeout(() => { bar.style.transition = 'width 3s ease-out'; bar.style.width = '78%'; }, 1400);
+        }
+
+        function completeProgressBar(success) {
+            const container = document.getElementById('formProgress');
+            const bar = document.getElementById('formProgressBar');
+            const text = document.getElementById('formProgressText');
+            bar.style.transition = 'width 0.4s ease';
+            bar.style.width = '100%';
+            if (success) {
+                bar.style.background = 'linear-gradient(90deg, #22c55e, #4ade80)';
+            } else {
+                bar.style.background = 'linear-gradient(90deg, #ef4444, #f87171)';
+            }
+            setTimeout(() => {
+                container.style.transition = 'opacity 0.5s ease';
+                container.style.opacity = '0';
+                text.style.transition = 'opacity 0.5s ease';
+                text.style.opacity = '0';
+                setTimeout(() => {
+                    container.classList.remove('active');
+                    text.classList.remove('active');
+                    container.style.opacity = '';
+                    container.style.transition = '';
+                    text.style.opacity = '';
+                    text.style.transition = '';
+                    bar.style.width = '0%';
+                    bar.style.background = '';
+                }, 500);
+            }, 600);
+        }
+
+        // ─── Contact Form (via Google Apps Script + reCAPTCHA v3) ───
+        document.getElementById('contact-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('submit-btn');
+            const successToast = document.getElementById('formSuccess');
+            const errorToast = document.getElementById('formError');
+            const firstname = sanitize(document.getElementById('firstname').value);
+            const lastname = sanitize(document.getElementById('lastname').value);
+            const fullname = firstname + ' ' + lastname;
+            const email = sanitize(document.getElementById('email').value);
+            const reason = sanitize(document.getElementById('reason').value);
+            const msg = sanitize(document.getElementById('message').value);
+
+            // Hide any previous toasts
+            successToast.classList.remove('show');
+            errorToast.classList.remove('show');
+
+            btn.disabled = true;
+            btn.style.opacity = '0.6';
+            showProgressBar();
+
+            try {
+                // Get reCAPTCHA token
+                const token = await grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: 'contact' });
+
+                await fetch(GAS_ENDPOINT, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: new URLSearchParams({
+                        action: 'contact',
+                        name: fullname,
+                        email: email,
+                        reason: reason,
+                        message: msg,
+                        'g-recaptcha-response': token
+                    })
+                });
+                completeProgressBar(true);
+                setTimeout(() => {
+                    successToast.classList.add('show');
+                    document.getElementById('contact-form').reset();
+                    setTimeout(() => successToast.classList.remove('show'), 8000);
+                }, 1200);
+            } catch (err) {
+                completeProgressBar(false);
+                setTimeout(() => {
+                    errorToast.classList.add('show');
+                    setTimeout(() => errorToast.classList.remove('show'), 8000);
+                }, 1200);
+            } finally {
+                setTimeout(() => {
+                    btn.disabled = false;
+                    btn.style.opacity = '1';
+                }, 1200);
+            }
+        });
+
+        // ─── Header Scroll + Scroll-to-top ───
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+
+        window.addEventListener('scroll', () => {
+            document.querySelector('header').classList.toggle('scrolled', window.scrollY > 50);
+
+            // Scroll progress
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = (scrollTop / docHeight) * 100;
+            document.getElementById('scrollProgress').style.width = progress + '%';
+
+            // Show/hide scroll-to-top button
+            scrollTopBtn.classList.toggle('visible', scrollTop > 600);
+        });
+
+        // ─── Fade-in Observer ───
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
