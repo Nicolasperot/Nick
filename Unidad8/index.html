@@ -1,0 +1,1480 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unidad 5 · El Sistema Capitalista Internacional · Cátedra B</title>
+<style>
+  :root {
+    --color-primary: #8e44ad;
+    --color-primary-dark: #6c3483;
+    --color-anchor: #4a235a;
+    --color-deepest: #2a1133;
+    --color-soft: #d2b4de;
+    --color-bg-tinted: #fdfbff;
+    --color-bg-gradient-end: #f4f0f7;
+    --color-text-primary: #1a1a1a;
+    --color-text-body: #444444;
+    --color-text-secondary: #555555;
+    --color-text-muted: #666666;
+    --color-text-faint: #888888;
+    --color-border: #eaeaea;
+    --color-border-card: #e0e0e0;
+    --color-bg-footer: #fbfbfb;
+    --font-display: 'Georgia', 'Times New Roman', serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-body);
+    color: var(--color-text-body);
+    background: #f8f7fc;
+    line-height: 1.7;
+    padding: 20px 10px;
+  }
+  .doc-wrapper { max-width: 900px; margin: 0 auto; }
+
+  /* ============ PORTADA ============ */
+  .portada {
+    background: linear-gradient(135deg, #2a1133 0%, #4a235a 100%);
+    border-radius: 16px;
+    padding: 50px 40px;
+    color: #fff;
+    margin-bottom: 30px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(42,17,51,0.25);
+  }
+  .portada::before {
+    content: '5';
+    position: absolute;
+    right: -30px;
+    top: -60px;
+    font-family: 'Georgia', serif;
+    font-size: 22em;
+    color: rgba(255,255,255,0.04);
+    font-weight: 900;
+    line-height: 1;
+    pointer-events: none;
+  }
+  .portada-content { position: relative; z-index: 1; }
+  .portada .etiqueta {
+    display: inline-block;
+    font-size: 0.7em;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: var(--color-soft);
+    font-weight: bold;
+    border: 1px solid rgba(210,180,222,0.3);
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+  }
+  .portada h1 {
+    font-family: var(--font-display);
+    font-size: 3.2em;
+    font-weight: normal;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    margin-bottom: 15px;
+  }
+  .portada h1 .acento { color: var(--color-soft); }
+  .portada .subtitulo {
+    font-size: 1.1em;
+    color: rgba(255,255,255,0.85);
+    max-width: 600px;
+    line-height: 1.6;
+    font-weight: 300;
+  }
+  .portada .meta {
+    margin-top: 30px;
+    padding-top: 25px;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    font-size: 0.85em;
+    color: rgba(255,255,255,0.7);
+  }
+  .portada .meta strong { color: #fff; display: block; font-size: 0.8em; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 3px; }
+
+  /* ============ NAV INTERNA ============ */
+  .nav-interna {
+    background: #fff;
+    border-radius: 12px;
+    border: 1px solid var(--color-border);
+    padding: 25px 30px;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+  }
+  .nav-interna h3 {
+    font-family: var(--font-display);
+    font-size: 1.3em;
+    color: var(--color-anchor);
+    font-weight: normal;
+    margin-bottom: 15px;
+  }
+  .nav-interna ol {
+    list-style: none;
+    counter-reset: navsec;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 10px;
+  }
+  .nav-interna li {
+    counter-increment: navsec;
+  }
+  .nav-interna a {
+    display: block;
+    padding: 10px 14px;
+    background-color: rgba(142,68,173,0.04);
+    border-left: 3px solid var(--color-primary);
+    border-radius: 0 6px 6px 0;
+    color: var(--color-text-primary);
+    text-decoration: none;
+    font-size: 0.9em;
+    transition: all 0.2s;
+  }
+  .nav-interna a::before {
+    content: counter(navsec, decimal-leading-zero) " · ";
+    color: var(--color-primary);
+    font-weight: bold;
+    font-size: 0.85em;
+  }
+  .nav-interna a:hover {
+    background-color: rgba(142,68,173,0.1);
+    transform: translateX(3px);
+  }
+
+  /* ============ SECCIONES PRINCIPALES ============ */
+  .seccion {
+    background: #fff;
+    border-radius: 12px;
+    border: 1px solid var(--color-border);
+    border-top: 4px solid var(--color-primary);
+    padding: 40px;
+    margin-bottom: 35px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+    scroll-margin-top: 20px;
+  }
+  .seccion-header {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .seccion .num {
+    display: inline-block;
+    font-size: 0.7em;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--color-primary-dark);
+    font-weight: bold;
+    background-color: rgba(108,52,131,0.05);
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+  }
+  .seccion h2 {
+    font-family: var(--font-display);
+    font-size: 2.2em;
+    color: var(--color-deepest);
+    font-weight: normal;
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+  }
+  .seccion h2 .acento { color: var(--color-primary); }
+  .seccion h3 {
+    font-family: var(--font-display);
+    font-size: 1.4em;
+    color: var(--color-anchor);
+    font-weight: normal;
+    margin: 30px 0 15px;
+  }
+  .seccion h4 {
+    font-size: 1em;
+    color: var(--color-text-primary);
+    margin: 20px 0 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .seccion p { margin-bottom: 15px; font-size: 1em; }
+  .seccion strong { color: var(--color-anchor); }
+
+  /* ============ CALLOUTS ============ */
+  .callout-brujula {
+    background: linear-gradient(135deg, rgba(142,68,173,0.05), rgba(210,180,222,0.08));
+    border-left: 4px solid var(--color-primary);
+    padding: 22px 28px;
+    border-radius: 0 12px 12px 0;
+    margin: 25px 0;
+  }
+  .callout-brujula .label {
+    font-size: 0.7em;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    color: var(--color-primary-dark);
+    font-weight: bold;
+    display: block;
+    margin-bottom: 8px;
+  }
+  .callout-brujula .titulo {
+    font-family: var(--font-display);
+    font-size: 1.25em;
+    color: var(--color-deepest);
+    margin-bottom: 8px;
+  }
+  .callout-brujula ol {
+    margin: 10px 0 0 20px;
+    color: var(--color-text-secondary);
+  }
+  .callout-brujula ol li { margin-bottom: 6px; padding-left: 5px; }
+
+  .callout-clave {
+    background-color: rgba(108,52,131,0.03);
+    border: 1px solid rgba(108,52,131,0.12);
+    border-radius: 12px;
+    padding: 20px 25px;
+    margin: 20px 0;
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+  }
+  .callout-clave .arrow {
+    color: var(--color-primary-dark);
+    font-size: 1.4em;
+    line-height: 1.2;
+    flex-shrink: 0;
+  }
+  .callout-clave strong {
+    display: block;
+    font-size: 0.85em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+    color: var(--color-anchor);
+  }
+
+  /* ============ TARJETAS DE CONCEPTOS ============ */
+  .grid-tarjetas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 18px;
+    margin: 25px 0;
+  }
+  .tarjeta-concepto {
+    background-color: rgba(255,255,255,0.7);
+    backdrop-filter: blur(10px);
+    padding: 22px;
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+    border-top: 3px solid var(--color-primary-dark);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+  }
+  .tarjeta-concepto.v2 { border-top-color: var(--color-anchor); }
+  .tarjeta-concepto.v3 { border-top-color: var(--color-primary); }
+  .tarjeta-concepto.v4 { border-top-color: var(--color-deepest); }
+  .tarjeta-concepto p.cat {
+    font-size: 0.7em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--color-primary-dark);
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  .tarjeta-concepto h4 {
+    font-family: var(--font-display);
+    font-size: 1.2em;
+    color: var(--color-deepest);
+    font-weight: normal;
+    text-transform: none;
+    letter-spacing: normal;
+    margin: 0 0 10px 0;
+  }
+  .tarjeta-concepto p.desc {
+    font-size: 0.9em;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* ============ TIMELINE ============ */
+  .timeline { margin: 30px 0; }
+  .timeline-item {
+    display: flex;
+    gap: 20px;
+    position: relative;
+  }
+  .timeline-rail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+    width: 50px;
+  }
+  .timeline-dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: var(--color-primary);
+    border: 3px solid var(--color-bg-tinted);
+    box-shadow: 0 0 0 2px var(--color-primary);
+    z-index: 1;
+    margin-top: 4px;
+  }
+  .timeline-item:nth-child(2) .timeline-dot { background-color: var(--color-primary-dark); box-shadow: 0 0 0 2px var(--color-primary-dark); }
+  .timeline-item:nth-child(3) .timeline-dot { background-color: var(--color-primary); box-shadow: 0 0 0 2px var(--color-primary); }
+  .timeline-item:nth-child(4) .timeline-dot { background-color: var(--color-anchor); box-shadow: 0 0 0 2px var(--color-anchor), 0 0 12px rgba(74,35,90,0.3); width: 18px; height: 18px; }
+  .timeline-line {
+    width: 2px;
+    flex-grow: 1;
+    background: linear-gradient(to bottom, var(--color-primary), rgba(142,68,173,0.15));
+  }
+  .timeline-item:last-child .timeline-line { display: none; }
+  .timeline-content {
+    padding-bottom: 35px;
+    flex: 1;
+  }
+  .timeline-content .periodo {
+    font-size: 0.7em;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    color: var(--color-primary-dark);
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  .timeline-item:nth-child(4) .timeline-content .periodo { color: var(--color-anchor); }
+  .timeline-content h4 {
+    font-family: var(--font-display);
+    font-size: 1.35em;
+    color: var(--color-deepest);
+    font-weight: normal;
+    margin-bottom: 10px;
+    text-transform: none;
+    letter-spacing: normal;
+  }
+  .timeline-content p { margin: 0 0 8px 0; font-size: 0.95em; color: var(--color-text-secondary); line-height: 1.6; }
+
+  /* ============ ACTIVIDADES INTERACTIVAS ============ */
+  .actividad {
+    background: linear-gradient(135deg, #fdfbff 0%, #f4f0f7 100%);
+    border-radius: 14px;
+    border: 2px dashed var(--color-primary);
+    padding: 30px;
+    margin: 35px 0;
+    position: relative;
+  }
+  .actividad-tag {
+    position: absolute;
+    top: -12px;
+    left: 25px;
+    background-color: var(--color-primary);
+    color: #fff;
+    font-size: 0.7em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-weight: bold;
+  }
+  .actividad h4 {
+    font-family: var(--font-display);
+    font-size: 1.3em;
+    color: var(--color-deepest);
+    font-weight: normal;
+    margin: 5px 0 12px;
+    text-transform: none;
+    letter-spacing: normal;
+  }
+  .actividad .pregunta {
+    font-style: italic;
+    color: var(--color-anchor);
+    margin-bottom: 18px;
+    font-size: 1.02em;
+  }
+
+  /* Quiz */
+  .quiz-options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 15px; }
+  .quiz-opt {
+    background: #fff;
+    border: 1px solid var(--color-border-card);
+    border-radius: 8px;
+    padding: 12px 16px;
+    cursor: pointer;
+    font-size: 0.95em;
+    color: var(--color-text-body);
+    text-align: left;
+    transition: all 0.2s;
+    font-family: inherit;
+  }
+  .quiz-opt:hover { border-color: var(--color-primary); background-color: rgba(142,68,173,0.03); }
+  .quiz-opt.correcta { border-color: #27ae60; background-color: rgba(39,174,96,0.08); color: #1e6d3e; }
+  .quiz-opt.incorrecta { border-color: #c0392b; background-color: rgba(192,57,43,0.06); color: #8b2c20; }
+  .quiz-opt.disabled { cursor: default; opacity: 0.7; }
+  .quiz-feedback {
+    display: none;
+    padding: 14px 16px;
+    border-radius: 8px;
+    font-size: 0.92em;
+    line-height: 1.6;
+    margin-top: 10px;
+  }
+  .quiz-feedback.ok { background-color: rgba(39,174,96,0.08); color: #1e6d3e; border-left: 3px solid #27ae60; }
+  .quiz-feedback.fail { background-color: rgba(192,57,43,0.06); color: #8b2c20; border-left: 3px solid #c0392b; }
+  .quiz-feedback.show { display: block; }
+
+  /* Acordeón de conceptos */
+  .acordeon-item {
+    background: #fff;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    overflow: hidden;
+  }
+  .acordeon-trigger {
+    width: 100%;
+    background: #fff;
+    border: none;
+    padding: 16px 20px;
+    text-align: left;
+    cursor: pointer;
+    font-size: 1em;
+    font-family: inherit;
+    color: var(--color-anchor);
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.2s;
+  }
+  .acordeon-trigger:hover { background-color: rgba(142,68,173,0.03); }
+  .acordeon-trigger .icon {
+    color: var(--color-primary);
+    font-size: 1.2em;
+    transition: transform 0.3s;
+  }
+  .acordeon-trigger.activo .icon { transform: rotate(45deg); }
+  .acordeon-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    font-size: 0.95em;
+    color: var(--color-text-secondary);
+  }
+  .acordeon-body.activo { max-height: 500px; }
+  .acordeon-body-inner { padding: 5px 22px 20px; line-height: 1.7; }
+
+  /* Empareja conceptos */
+  .empareja {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 20px 0;
+  }
+  .empareja-col h5 {
+    font-size: 0.75em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--color-primary-dark);
+    font-weight: bold;
+    margin-bottom: 12px;
+    text-align: center;
+  }
+  .empareja-item {
+    background: #fff;
+    border: 2px solid var(--color-border-card);
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    font-size: 0.9em;
+    color: var(--color-text-body);
+    text-align: center;
+    transition: all 0.2s;
+    user-select: none;
+  }
+  .empareja-item:hover:not(.matched) { border-color: var(--color-primary); }
+  .empareja-item.selected { border-color: var(--color-primary); background-color: rgba(142,68,173,0.08); }
+  .empareja-item.matched { border-color: #27ae60; background-color: rgba(39,174,96,0.08); color: #1e6d3e; cursor: default; }
+  .empareja-item.error { border-color: #c0392b; background-color: rgba(192,57,43,0.06); animation: shake 0.3s; }
+  @keyframes shake { 0%,100%{transform:translateX(0);} 25%{transform:translateX(-5px);} 75%{transform:translateX(5px);} }
+  .empareja-status {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 0.9em;
+    color: var(--color-text-secondary);
+  }
+
+  /* Reflexión */
+  .reflexion-textarea {
+    width: 100%;
+    min-height: 100px;
+    padding: 14px;
+    border: 1px solid var(--color-border-card);
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.95em;
+    color: var(--color-text-body);
+    resize: vertical;
+    margin-bottom: 10px;
+  }
+  .reflexion-textarea:focus { outline: none; border-color: var(--color-primary); }
+  .reflexion-btn {
+    background: linear-gradient(180deg, #ffffff 0%, #fcfcfc 100%);
+    color: var(--color-anchor);
+    border: 1px solid var(--color-border-card);
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 0.8em;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    font-family: inherit;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+    transition: all 0.2s;
+  }
+  .reflexion-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(0,0,0,0.06); }
+  .reflexion-saved {
+    display: none;
+    margin-top: 12px;
+    padding: 12px 16px;
+    background-color: rgba(39,174,96,0.08);
+    border-left: 3px solid #27ae60;
+    border-radius: 0 6px 6px 0;
+    font-size: 0.9em;
+    color: #1e6d3e;
+  }
+  .reflexion-saved.show { display: block; }
+
+  /* ============ TABLAS ============ */
+  .tabla-comparativa {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 0.92em;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+  }
+  .tabla-comparativa th {
+    background: linear-gradient(to right, var(--color-bg-tinted), var(--color-bg-gradient-end));
+    color: var(--color-anchor);
+    text-align: left;
+    padding: 12px 16px;
+    font-size: 0.78em;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    border-bottom: 2px solid var(--color-primary);
+  }
+  .tabla-comparativa td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--color-border);
+    vertical-align: top;
+  }
+  .tabla-comparativa tr:last-child td { border-bottom: none; }
+  .tabla-comparativa tr:hover td { background-color: rgba(142,68,173,0.02); }
+
+  /* ============ CITA / PIE DE PÁGINA ============ */
+  .cita-textual {
+    border-left: 4px solid var(--color-primary);
+    background-color: rgba(142,68,173,0.03);
+    padding: 18px 25px;
+    margin: 22px 0;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.05em;
+    color: var(--color-deepest);
+    border-radius: 0 8px 8px 0;
+    line-height: 1.6;
+  }
+  .cita-textual .autor {
+    display: block;
+    margin-top: 10px;
+    font-family: var(--font-body);
+    font-style: normal;
+    font-size: 0.8em;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+  }
+
+  /* ============ FUENTES BIBLIOGRÁFICAS ============ */
+  .fuentes {
+    background: linear-gradient(135deg, #2a1133 0%, #4a235a 100%);
+    border-radius: 16px;
+    padding: 40px;
+    margin-top: 40px;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+  .fuentes::before {
+    content: '📚';
+    position: absolute;
+    right: -20px;
+    top: -30px;
+    font-size: 8em;
+    opacity: 0.05;
+    pointer-events: none;
+  }
+  .fuentes h2 {
+    font-family: var(--font-display);
+    font-size: 1.8em;
+    font-weight: normal;
+    margin-bottom: 8px;
+    color: #fff;
+  }
+  .fuentes .label {
+    font-size: 0.7em;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--color-soft);
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+  }
+  .fuentes p.intro { color: rgba(255,255,255,0.8); margin-bottom: 25px; font-size: 0.95em; }
+  .fuente-item {
+    background-color: rgba(255,255,255,0.05);
+    border-left: 3px solid var(--color-soft);
+    padding: 18px 22px;
+    border-radius: 0 8px 8px 0;
+    margin-bottom: 15px;
+  }
+  .fuente-item .num {
+    display: inline-block;
+    font-size: 0.7em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--color-soft);
+    font-weight: bold;
+    margin-bottom: 6px;
+  }
+  .fuente-item h4 {
+    font-family: var(--font-display);
+    font-size: 1.1em;
+    color: #fff;
+    font-weight: normal;
+    margin-bottom: 4px;
+    text-transform: none;
+    letter-spacing: normal;
+  }
+  .fuente-item .autor-fuente {
+    font-size: 0.85em;
+    color: var(--color-soft);
+    margin-bottom: 8px;
+  }
+  .fuente-item p.descrip {
+    font-size: 0.88em;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* ============ FOOTER ============ */
+  .footer-doc {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 25px;
+    border-top: 1px solid rgba(142,68,173,0.15);
+  }
+  .footer-doc p {
+    font-size: 0.75em;
+    color: var(--color-text-faint);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+  }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 700px) {
+    body { padding: 10px 5px; }
+    .portada { padding: 35px 25px; }
+    .portada h1 { font-size: 2.2em; }
+    .seccion { padding: 25px 20px; }
+    .seccion h2 { font-size: 1.7em; }
+    .actividad { padding: 25px 18px; }
+    .empareja { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="doc-wrapper">
+
+<!-- ═══════════════════════════════════════════
+     PORTADA
+     ═══════════════════════════════════════════ -->
+<div class="portada">
+  <div class="portada-content">
+    <span class="etiqueta">Unidad 8 · Documento de Cátedra</span>
+    <h1>El Sistema <br><span class="acento">Capitalista Internacional</span></h1>
+    <p class="subtitulo">Origen, evolución, etapas históricas y crisis del sistema económico que da forma al mundo en el que vivimos. Una guía didáctica para acompañar el estudio de la Unidad 5.</p>
+    <div class="meta">
+      <div><strong>Materia</strong>Economía Política</div>
+      <div><strong>Carreras</strong>Abogacía · Trabajo Social</div>
+      <div><strong>Nivel</strong>Primer año</div>
+      <div><strong>Modalidad</strong>Lectura autónoma</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     NAVEGACIÓN INTERNA
+     ═══════════════════════════════════════════ -->
+<nav class="nav-interna" aria-label="Índice de la unidad">
+  <h3>Recorrido de la Unidad</h3>
+  <ol>
+    <li><a href="#sec-1">Bienvenida y orientación</a></li>
+    <li><a href="#sec-2">¿Qué es el capitalismo?</a></li>
+    <li><a href="#sec-3">Tendencias estructurales</a></li>
+    <li><a href="#sec-4">Las cuatro etapas históricas</a></li>
+    <li><a href="#sec-5">Centro y periferia</a></li>
+    <li><a href="#sec-6">Capitalismo contemporáneo</a></li>
+    <li><a href="#sec-7">La crisis del fordismo</a></li>
+    <li><a href="#sec-8">Globalización y finanzas</a></li>
+    <li><a href="#sec-9">Cierre y síntesis</a></li>
+    <li><a href="#sec-fuentes">Fuentes bibliográficas</a></li>
+  </ol>
+</nav>
+
+<!-- ═══════════════════════════════════════════
+     SECCIÓN 1: BIENVENIDA
+     ═══════════════════════════════════════════ -->
+<section class="seccion" id="sec-1">
+  <header class="seccion-header">
+    <span class="num">Sección 01 · Apertura</span>
+    <h2>Bienvenidas y bienvenidos <span class="acento">a la Unidad 8</span></h2>
+  </header>
+
+  <p>Les damos la bienvenida a una de las unidades más importantes de la materia. Hasta acá vinieron trabajando con conceptos económicos básicos: necesidades, bienes, mercados, oferta, demanda. En esta unidad, damos un paso decisivo: <strong>vamos a estudiar el sistema económico real en el que vivimos</strong>, cómo nació, cómo cambió a lo largo de los siglos y cómo influye hoy en la sociedad argentina y latinoamericana.</p>
+
+  <p>El sistema capitalista no es un dato natural ni algo que existió desde siempre. Es una construcción histórica que tiene apenas unos 500 años, y que en ese tiempo transformó completamente el modo en que producimos, consumimos, trabajamos y nos relacionamos. Comprenderlo es fundamental tanto para futuros abogados y abogadas como para futuros trabajadores y trabajadoras sociales: porque el derecho regula relaciones que ocurren <em>dentro</em> de este sistema, y la intervención social busca dar respuesta a problemas que surgen <em>de</em> este sistema.</p>
+
+  <div class="callout-brujula">
+    <span class="label">Brújula de Análisis</span>
+    <div class="titulo">¿Qué nos preguntamos en esta unidad?</div>
+    <ol>
+      <li>¿Cómo y dónde surge el capitalismo, y qué lo distingue de los sistemas económicos previos?</li>
+      <li>¿Qué tendencias estructurales caracterizan a este sistema más allá de cada época particular?</li>
+      <li>¿Por qué algunos países se convirtieron en <em>centro</em> y otros en <em>periferia</em>, y qué lugar ocupa la Argentina en ese mapa?</li>
+      <li>¿Qué cambió con la globalización financiera de las últimas décadas, y qué consecuencias tiene para América Latina?</li>
+    </ol>
+  </div>
+
+  <p>No tengan miedo de preguntar, dudar o equivocarse. Son temas densos que requieren tiempo, relectura y conversación. Encontrarán en este documento conceptos clave, líneas de tiempo, actividades para ejercitarse y referencias a la bibliografía obligatoria que profundiza cada tema.</p>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SECCIÓN 2: QUÉ ES EL CAPITALISMO
+     ═══════════════════════════════════════════ -->
+<section class="seccion" id="sec-2">
+  <header class="seccion-header">
+    <span class="num">Sección 02 · Conceptos fundantes</span>
+    <h2>¿Qué es el <span class="acento">capitalismo</span>?</h2>
+  </header>
+
+  <p>Empecemos con una definición operativa que nos sirva de punto de partida. Tomamos la formulación clásica que utiliza la cátedra (Bowles y Edwards, citados en el documento de Unidad 5):</p>
+
+  <div class="cita-textual">
+    El capitalismo es un sistema económico en el que las mercancías se producen con ánimo de lucro, utilizando bienes de capital de propiedad privada y trabajo asalariado.
+    <span class="autor">— Bowles & Edwards, Introducción a la economía</span>
+  </div>
+
+  <p>Esta definición, aunque breve, contiene cuatro elementos que conviene desarmar para entender. Veamos cada uno:</p>
+
+  <div class="grid-tarjetas">
+    <div class="tarjeta-concepto">
+      <p class="cat">Elemento 01</p>
+      <h4>Producción de mercancías</h4>
+      <p class="desc">No se produce para el autoconsumo, como en sistemas anteriores. Se produce <strong>para vender</strong>: los bienes son mercancías, cosas hechas para ser intercambiadas en un mercado.</p>
+    </div>
+    <div class="tarjeta-concepto v2">
+      <p class="cat">Elemento 02</p>
+      <h4>Ánimo de lucro</h4>
+      <p class="desc">El motor no es la satisfacción de necesidades sino la <strong>búsqueda de la máxima ganancia</strong>. Producir es un medio; el fin es ganar dinero.</p>
+    </div>
+    <div class="tarjeta-concepto v3">
+      <p class="cat">Elemento 03</p>
+      <h4>Bienes de capital privados</h4>
+      <p class="desc">Las máquinas, fábricas, tierras y herramientas (los <em>medios de producción</em>) son <strong>propiedad privada</strong> de una clase social: los capitalistas.</p>
+    </div>
+    <div class="tarjeta-concepto v4">
+      <p class="cat">Elemento 04</p>
+      <h4>Trabajo asalariado</h4>
+      <p class="desc">Quienes no son dueños de medios de producción venden libremente <strong>su fuerza de trabajo</strong> a cambio de un salario. Esa relación es el corazón del sistema.</p>
+    </div>
+  </div>
+
+  <h3>La relación social que define todo</h3>
+  <p>La característica decisiva del capitalismo es la <strong>relación entre dos grupos</strong>: por un lado, quienes poseen los medios de producción (capitalistas o empresarios); por el otro, quienes solo poseen su capacidad de trabajar y deben venderla a cambio de un salario para vivir (asalariados o trabajadoras y trabajadores).</p>
+
+  <p>Como explica Lafferriere en sus apuntes de cátedra, esto no es solo una descripción técnica: es una relación social que organiza toda la economía y produce efectos sobre el conjunto de la sociedad.</p>
+
+  <div class="actividad">
+    <span class="actividad-tag">✏️ Actividad 1 · Quiz</span>
+    <h4>¿Lo entendiste?</h4>
+    <p class="pregunta">Una pequeña agricultora cultiva hortalizas en su huerta y guarda toda la cosecha para alimentar a su familia. Esta producción, ¿es típicamente capitalista? Elegí la respuesta correcta:</p>
+    <div class="quiz-options" data-quiz="q1">
+      <button class="quiz-opt" data-correct="false" data-feedback="No es la respuesta correcta. La huerta familiar usa medios de producción propios y trabajo familiar, pero le falta un elemento clave del capitalismo: la producción de mercancías para vender en el mercado.">a) Sí, porque hay producción y trabajo.</button>
+      <button class="quiz-opt" data-correct="true" data-feedback="¡Correcto! No se trata de producción capitalista porque la cosecha no se produce para vender (no es mercancía) sino para el autoconsumo familiar. Falta el ánimo de lucro y la relación de mercado.">b) No, porque no se produce para vender ni hay ánimo de lucro.</button>
+      <button class="quiz-opt" data-correct="false" data-feedback="No es la respuesta correcta. El tamaño de la unidad productiva no define si algo es capitalista. Lo que importa es para qué se produce y qué tipo de relaciones laborales hay.">c) Sí, porque toda producción agrícola es capitalista.</button>
+      <button class="quiz-opt" data-correct="false" data-feedback="No es la respuesta correcta. El factor decisivo no es el tamaño sino el destino de la producción: si es para vender en el mercado o para el autoconsumo.">d) No, porque la huerta es muy pequeña.</button>
+    </div>
+    <div class="quiz-feedback" data-feedback-for="q1"></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SECCIÓN 3: TENDENCIAS ESTRUCTURALES
+     ═══════════════════════════════════════════ -->
+<section class="seccion" id="sec-3">
+  <header class="seccion-header">
+    <span class="num">Sección 03 · Lo que se repite</span>
+    <h2>Cuatro tendencias <span class="acento">estructurales</span></h2>
+  </header>
+
+  <p>Una cosa es definir qué es el capitalismo, y otra distinta es entender cómo se comporta a lo largo del tiempo. Más allá de cada etapa histórica, el sistema muestra cuatro tendencias que se repiten y que conviene tener siempre presentes. La cátedra las enuncia así:</p>
+
+  <div class="acordeon">
+    <div class="acordeon-item">
+      <button class="acordeon-trigger" aria-expanded="false">
+        <span>1. Concentración y centralización del capital</span>
+        <span class="icon">+</span>
+      </button>
+      <div class="acordeon-body">
+        <div class="acordeon-body-inner">
+          La competencia tiende a hacer que las empresas más grandes absorban o desplacen a las más chicas. Con el tiempo, los mercados se vuelven cada vez más <strong>concentrados</strong>: pasan de tener muchos productores a tener pocos (oligopolio) o uno solo (monopolio). Lafferriere muestra cómo este proceso se vio claramente en la Argentina de fines del siglo XIX, donde los frigoríficos quedaron en manos de un puñado de empresas que controlaban toda la cadena de la carne.
+        </div>
+      </div>
+    </div>
+    <div class="acordeon-item">
+      <button class="acordeon-trigger" aria-expanded="false">
+        <span>2. Internacionalización creciente</span>
+        <span class="icon">+</span>
+      </button>
+      <div class="acordeon-body">
+        <div class="acordeon-body-inner">
+          El capitalismo no se queda quieto en sus fronteras. Tiene una tendencia permanente a expandirse hacia el exterior. Esa expansión pasa por tres formas históricas que se superponen: <strong>internacionalización comercial</strong> (desde 1750, con fuerza desde 1990), <strong>internacionalización financiera</strong> (desde 1880, intensificada desde 1980) e <strong>internacionalización productiva</strong> (con las multinacionales desde los años 60).
+        </div>
+      </div>
+    </div>
+    <div class="acordeon-item">
+      <button class="acordeon-trigger" aria-expanded="false">
+        <span>3. Crecimiento polarizado y desigual</span>
+        <span class="icon">+</span>
+      </button>
+      <div class="acordeon-body">
+        <div class="acordeon-body-inner">
+          El capitalismo crece, pero ese crecimiento <strong>no se reparte igual</strong>. Algunos países, regiones, sectores y personas ganan mucho más que otros. La desigualdad no es una falla puntual: es un rasgo estructural. Lafferriere lo señala incluso para la Argentina: el extraordinario crecimiento económico de fines del siglo XIX se concentró en una franja entre los puertos bonaerenses y Rosario; el resto del país quedó relativamente estancado.
+        </div>
+      </div>
+    </div>
+    <div class="acordeon-item">
+      <button class="acordeon-trigger" aria-expanded="false">
+        <span>4. Acumulación cíclica (auges y crisis)</span>
+        <span class="icon">+</span>
+      </button>
+      <div class="acordeon-body">
+        <div class="acordeon-body-inner">
+          El crecimiento no es una línea recta hacia arriba: tiene altibajos. Hay períodos de <strong>expansión</strong> (auge, optimismo, inversión) y períodos de <strong>recesión y crisis</strong> (caída de producción, desempleo, quiebras). Las crisis no son accidentes: son parte del funcionamiento normal del sistema. Sevares lo muestra con claridad: entre 1970 y 1998 hubo 64 crisis bancarias y 79 crisis cambiarias en el mundo.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout-clave">
+    <span class="arrow">→</span>
+    <div>
+      <strong>Idea clave para retener</strong>
+      Estas cuatro tendencias no son cosas que ocurren <em>a pesar</em> del capitalismo: ocurren <em>porque</em> es capitalismo. Tenerlas presentes les permitirá leer cualquier coyuntura económica con mejores herramientas.
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SECCIÓN 4: LAS CUATRO ETAPAS
+     ═══════════════════════════════════════════ -->
+<section class="seccion" id="sec-4">
+  <header class="seccion-header">
+    <span class="num">Sección 04 · Recorrido histórico</span>
+    <h2>Las cuatro <span class="acento">etapas históricas</span></h2>
+  </header>
+
+  <p>El capitalismo no fue siempre igual. Lafferriere y el documento de cátedra distinguen <strong>cuatro etapas</strong> con características propias. No memoricen las fechas como si fueran un recetario: úsenlas como anclajes para ubicar procesos. Aquí va una línea de tiempo:</p>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-rail">
+        <div class="timeline-dot"></div>
+        <div class="timeline-line"></div>
+      </div>
+      <div class="timeline-content">
+        <p class="periodo">1500 — 1750 · Capitalismo Mercantil</p>
+        <h4>Los orígenes en Inglaterra</h4>
+        <p>Capitalismo aún débil, basado en manufacturas. Se distinguen dos sub-etapas: <strong>mercantilismo temprano</strong>, donde se creía que la riqueza estaba en acumular metales preciosos; y <strong>mercantilismo tardío</strong>, cuando se comprendió que la riqueza venía de la producción.</p>
+        <p>Hacia afuera: factorías, saqueo de la periferia, esclavitud y trabajo servil en minas y plantaciones. Política proteccionista en los Estados europeos.</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-rail">
+        <div class="timeline-dot"></div>
+        <div class="timeline-line"></div>
+      </div>
+      <div class="timeline-content">
+        <p class="periodo">1750 — 1880 · Libre Competencia</p>
+        <h4>La revolución industrial</h4>
+        <p>Estalla la industria textil, llega la máquina de vapor, aparecen las fábricas modernas. Inglaterra exporta manufacturas e importa materias primas, organizando una <strong>división internacional del trabajo</strong> que asignaba a la periferia el rol de proveedora de bienes primarios.</p>
+        <p>El Estado tiene una intervención todavía limitada: es el llamado «Estado gendarme». Aparece el famoso <strong>deterioro de los términos del intercambio</strong>: los bienes industrializados del centro se vuelven cada vez más caros frente a los bienes primarios de la periferia.</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-rail">
+        <div class="timeline-dot"></div>
+        <div class="timeline-line"></div>
+      </div>
+      <div class="timeline-content">
+        <p class="periodo">1880 — 1930 · Capitalismo Monopolista</p>
+        <h4>La era de los grandes monopolios</h4>
+        <p>Las crisis sucesivas concentran el capital. Aparecen las grandes empresas que dominan ramas enteras. Comienza la <strong>exportación de capitales</strong>: los países centrales no solo venden mercancías, sino que invierten directamente en la periferia (ferrocarriles, frigoríficos, puertos) y prestan a sus gobiernos.</p>
+        <p>La Argentina recibe inversiones británicas masivas desde 1880. Se conforma la economía agroexportadora subordinada a Gran Bretaña.</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-rail">
+        <div class="timeline-dot"></div>
+      </div>
+      <div class="timeline-content">
+        <p class="periodo">1940 en adelante · Capitalismo Contemporáneo</p>
+        <h4>De la posguerra hasta hoy</h4>
+        <p>Predominan las <strong>multinacionales</strong> con competencia a escala mundial. Hay reconocimiento legal de los sindicatos. El Estado interviene fuertemente en la economía. Surgen las ideas de <strong>Keynes</strong>, que se vuelven dominantes durante los «treinta gloriosos» (1945-1970): expansión sostenida, pleno empleo, ampliación del Estado de bienestar.</p>
+        <p>Esta etapa entra en crisis hacia los años setenta y se transforma con la globalización financiera de las últimas décadas. La estudiamos con más detalle en las próximas secciones.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout-clave">
+    <span class="arrow">→</span>
+    <div>
+      <strong>Soporte de lectura</strong>
+      Para profundizar esta línea de tiempo, lean el documento de Lafferriere «Orígenes y Evolución del Sistema Capitalista Internacional». Es un texto breve y muy didáctico que hila los conceptos de centro, periferia y división internacional del trabajo.
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SECCIÓN 5: CENTRO Y PERIFERIA
+     ═══════════════════════════════════════════ -->
+<section class="seccion" id="sec-5">
+  <header class="seccion-header">
+    <span class="num">Sección 05 · Geografía del sistema</span>
+    <h2>Centro, periferia y <span class="acento">la Argentina</span></h2>
+  </header>
+
+  <p>Una de las consecuencias más importantes del desarrollo capitalista es que produjo <strong>dos grupos de países claramente diferenciados</strong>. Como explica Lafferriere:</p>
+
+  <div class="cita-textual">
+    A lo largo del desarrollo histórico del sistema capitalista internacional se van conformando dos grupos de países claramente diferenciados: los países centrales, desarrollados o dominantes, por un lado, y los países periféricos, subdesarrollados o dependientes, que constituyen la gran mayoría de las naciones del planeta.
+    <span class="autor">— Luis Lafferriere</span>
+  </div>
+
+  <p>Esta no es una distribución natural ni casual. Es <strong>resultado del propio funcionamiento del sistema</strong>: los países centrales crecieron extrayendo riquezas de la periferia a través de mecanismos que cambiaron con el tiempo (saqueo, comercio desigual, inversiones que remiten utilidades, deuda externa).</p>
+
+  <h3>Las dos formas de extracción</h3>
+  <p>Lafferriere identifica varios mecanismos por los cuales el centro se beneficia de la periferia:</p>
+
+  <table class="tabla-comparativa">
+    <thead>
+      <tr><th>Mecanismo</th><th>Cómo funciona</th><th>Etapa donde domina</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Saqueo y conquista</strong></td>
+        <td>Apropiación directa de metales preciosos, esclavización de poblaciones, control militar.</td>
+        <td>Mercantilismo (1500-1750)</td>
+      </tr>
+      <tr>
+        <td><strong>Comercio desigual</strong></td>
+        <td>El deterioro de los términos del intercambio: la periferia paga cada vez más por las manufacturas y recibe cada vez menos por sus materias primas.</td>
+        <td>Libre competencia (1750-1880)</td>
+      </tr>
+      <tr>
+        <td><strong>Remisión de utilidades</strong></td>
+        <td>Las inversiones extranjeras producen ganancias que se envían al país de origen del capital.</td>
+        <td>Monopolista (1880 en adelante)</td>
+      </tr>
+      <tr>
+        <td><strong>Servicio de la deuda</strong></td>
+        <td>Los préstamos a gobiernos generan intereses que la periferia debe pagar permanentemente.</td>
+        <td>Desde fines del siglo XIX hasta hoy</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>El caso argentino</h3>
+  <p>La Argentina ofrece un ejemplo paradigmático. Lafferriere explica que en una primera etapa la penetración inglesa se reducía a vender manufacturas y comprar materias primas. <strong>Hacia 1880 la situación cambia</strong>: llegan crecientes inversiones británicas dirigidas a ferrocarriles, puertos, frigoríficos e ingenios azucareros. También llegan préstamos a los gobiernos.</p>
+
+  <p>Esto produjo varios efectos combinados: desarrolló las relaciones capitalistas, expandió el mercado interno, pero <strong>configuró nuestra economía como complementaria de la británica</strong>. Y todo esto con una característica adicional: el extraordinario crecimiento se concentró en una franja territorial que iba desde los puertos bonaerenses hasta Rosario, dejando relativamente estancado al resto del país.</p>
+
+  <div class="actividad">
+    <span class="actividad-tag">🎯 Actividad 2 · Empareja</span>
+    <h4>Conceptos y ejemplos</h4>
+    <p class="pregunta">Hacé clic en un concepto de la izquierda y luego en su ejemplo correspondiente a la derecha:</p>
+    <div class="empareja" id="empareja1">
+      <div class="empareja-col">
+        <h5>Concepto</h5>
+        <div class="empareja-item" data-pair="a">Saqueo colonial</div>
+        <div class="empareja-item" data-pair="b">Deterioro de términos del intercambio</div>
+        <div class="empareja-item" data-pair="c">Inversión directa con remisión de utilidades</div>
+        <div class="empareja-item" data-pair="d">Endeudamiento improductivo</div>
+      </div>
+      <div class="empareja-col">
+        <h5>Ejemplo histórico</h5>
+        <div class="empareja-item" data-pair="b">Argentina vende lana barata, compra textiles caros</div>
+        <div class="empareja-item" data-pair="d">Préstamos para financiar la guerra del Paraguay</div>
+        <div class="empareja-item" data-pair="a">500 millones de pesos oro extraídos de América española</div>
+        <div class="empareja-item" data-pair="c">Frigoríficos británicos en Buenos Aires hacia 1900</div>
+      </div>
+    </div>
+    <p class="empareja-status" id="empareja1-status">0 de 4 emparejamientos correctos.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SECCIÓN 6: CAPITALISMO CONTEMPORÁNEO
+     ═══════════════════════════════════════════ -->
+<section class="seccion" id="sec-6">
+  <header class="seccion-header">
+    <span class="num">Sección 06 · La era dorada</span>
+    <h2>El capitalismo <span class="acento">contemporáneo</span></h2>
+  </header>
+
+  <p>La etapa que se abre después de la Segunda Guerra Mundial (1945-1970) es conocida como la «expansión de posguerra» o, técnicamente, el <strong>régimen fordista-keynesiano</strong>. Es un período excepcional: nunca antes el capitalismo había crecido tanto, tan sostenidamente, con tanta mejora del nivel de vida en los países centrales.</p>
+
+  <p>Como explica Armando Córdova, este régimen se apoyaba en tres pilares articulados:</p>
+
+  <div class="grid-tarjetas">
+    <div class="tarjeta-concepto">
+      <p class="cat">Pilar 01</p>
+      <h4>Estructura productiva fordista</h4>
+      <p class="desc">Producción en cadena de montaje (la línea de Ford), con fuerte aumento de productividad. El sistema combinaba tres sectores: el científico-técnico, el de ingeniería calificada y el de ensamblaje descalificado.</p>
+    </div>
+    <div class="tarjeta-concepto v2">
+      <p class="cat">Pilar 02</p>
+      <h4>Políticas keynesianas</h4>
+      <p class="desc">El Estado interviene activamente en la economía: regula, gasta, distribuye. La seguridad social y el Estado de bienestar atenúan la contradicción capital-trabajo.</p>
+    </div>
+    <div class="tarjeta-concepto v3">
+      <p class="cat">Pilar 03</p>
+      <h4>Articulación mundial</h4>
+      <p class="desc">Una división internacional del trabajo que organiza la producción a escala global, con Estados Unidos como potencia hegemónica y el «american way of life» como modelo.</p>
+    </div>
+  </div>
+
+  <h3>El círculo virtuoso</h3>
+  <p>¿Cómo funcionaba el sistema? Córdova lo describe como un círculo: la productividad creciente del trabajo permitía aumentar los salarios reales, lo cual ampliaba la demanda, lo cual estimulaba la inversión, lo cual aumentaba la producción y la productividad… y así sucesivamente. La <strong>seguridad social</strong> y la garantía de pleno empleo daban estabilidad al conjunto.</p>
+
+  <h3>América Latina: el fordismo periférico</h3>
+  <p>Pero esto era el centro. ¿Qué pasaba en la periferia? Córdova introduce un concepto clave: <strong>fordismo periférico</strong>. La industrialización por sustitución de importaciones (ISI) que llevó adelante América Latina entre 1930 y 1970 incorporó solo el sector de ensamblaje (sector 3), pero quedó dependiente de los aportes científico-técnicos (sector 1) y de ingeniería calificada (sector 2) que seguían en los países centrales.</p>
+
+  <div class="callout-clave">
+    <span class="arrow">→</span>
+    <div>
+      <strong>Por qué importa este detalle</strong>
+      Esta industrialización «incompleta» o «apendicular» explica gran parte de los problemas que tuvo América Latina cuando el modelo entró en crisis. No teníamos los sectores estratégicos para reconvertirnos por nuestra cuenta. Por eso, cuando el centro se reestructuró, la periferia quedó descolocada.
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SECCIÓN 7: LA CRISIS
+     ═══════════════════════════════════════════ -->
+<section class="seccion" id="sec-7">
+  <header class="seccion-header">
+    <span class="num">Sección 07 · El quiebre</span>
+    <h2>La crisis del régimen <span class="acento">fordista-keynesiano</span></h2>
+  </header>
+
+  <p>Ningún régimen dura para siempre. Hacia fines de los años sesenta empezaron a aparecer síntomas de agotamiento. El documento de cátedra los enumera con precisión:</p>
+
+  <table class="tabla-comparativa">
+    <thead>
+      <tr><th>Síntoma</th><th>Qué significa</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Agotamiento del modelo de acumulación</strong></td>
+        <td>El círculo virtuoso productividad-salarios-demanda-inversión deja de funcionar.</td>
+      </tr>
+      <tr>
+        <td><strong>Caída de la productividad</strong></td>
+        <td>Los métodos tayloristas son rechazados por los trabajadores, los costos salariales indirectos crecen, la rentabilidad cae.</td>
+      </tr>
+      <tr>
+        <td><strong>Incompetencia de las políticas keynesianas</strong></td>
+        <td>Aparece la «estanflación»: estancamiento con inflación, algo que la teoría keynesiana no podía explicar ni resolver.</td>
+      </tr>
+      <tr>
+        <td><strong>Crisis del petróleo (1973 y 1979)</strong></td>
+        <td>El precio del crudo se multiplica varias veces, encareciendo la producción y trasladando excedentes hacia los países petroleros.</td>
+      </tr>
+      <tr>
+        <td><strong>Deterioro de la hegemonía estadounidense</strong></td>
+        <td>EE.UU. abandona la convertibilidad del dólar en oro (1971). El sistema monetario de Bretton Woods colapsa.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>La traslación a América Latina</h3>
+  <p>La crisis no se quedó en el centro. Córdova explica que se trasladó a la periferia desactivando los <strong>dos motores</strong> del crecimiento latinoamericano: el motor externo (la demanda mundial de materias primas se contrae a partir de 1973) y el motor interno (la ISI fordista periférica se vuelve obsoleta junto con el fordismo central).</p>
+
+  <p>A esto se sumó la <strong>crisis de la deuda</strong> (1982). Pero atención: como advierte Córdova, la deuda no fue la causa de la crisis latinoamericana, fue su <em>detonante</em>. La crisis estructural ya estaba ahí desde los setenta; el endeudamiento externo masivo solo permitió ocultarla por una década.</p>
+
+  <div class="actividad">
+    <span class="actividad-tag">🤔 Actividad 3 · Reflexión</span>
+    <h4>Pensá y escribí</h4>
+    <p class="pregunta">Córdova distingue entre «pequeñas crisis» (recesiones que se resuelven dentro del mismo régimen) y «grandes crisis» o depresiones (que exigen un nuevo régimen de acumulación). ¿Por qué te parece que esta distinción es importante para entender lo que pasó en los años setenta? Escribí 3-5 líneas con tu reflexión.</p>
+    <textarea class="reflexion-textarea" id="reflexion1" placeholder="Escribí acá tu reflexión..."></textarea>
+    <button class="reflexion-btn" data-target="reflexion1">Guardar respuesta</button>
+    <div class="reflexion-saved" id="reflexion1-saved">✓ Tu respuesta quedó guardada en este navegador. Te recomendamos también copiarla a tus apuntes de clase.</div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SECCIÓN 8: GLOBALIZACIÓN Y FINANZAS
+     ═══════════════════════════════════════════ -->
+<section class="seccion" id="sec-8">
+  <header class="seccion-header">
+    <span class="num">Sección 08 · El presente</span>
+    <h2>Globalización, finanzas y <span class="acento">desarrollo endógeno</span></h2>
+  </header>
+
+  <p>A partir de los años setenta y, con más fuerza, desde los ochenta, el sistema capitalista entra en una nueva fase. Hay dos grandes lecturas que la cátedra propone para entenderla, y conviene tener ambas en mente porque iluminan aspectos distintos.</p>
+
+  <h3>Lectura 1 · La financiarización (Sevares)</h3>
+
+  <p>Julio Sevares, en su libro <em>El Imperio de las Finanzas</em>, muestra cómo en las últimas décadas el capital financiero pasó a dominar la escena. Hasta hace poco, las grandes corporaciones del mundo eran productoras de bienes (autos, electrónica, energía). Hoy, los primeros puestos los ocupan conglomerados financieros como Citigroup.</p>
+
+  <div class="cita-textual">
+    El hecho de que las corporaciones más grandes del mundo sean grupos financieros es un claro reflejo de la preeminencia que el capital financiero ha llegado a ocupar en la economía, en las relaciones de poder y en la vida cotidiana.
+    <span class="autor">— Julio Sevares</span>
+  </div>
+
+  <p>Algunos datos que ilustran este cambio:</p>
+
+  <ul style="margin: 15px 0 15px 25px; color: var(--color-text-secondary);">
+    <li style="margin-bottom: 8px;">En la década del ochenta el comercio diario de divisas equivalía a <strong>seis veces</strong> el valor del comercio mundial anual. Hoy equivale a <strong>50 veces</strong>.</li>
+    <li style="margin-bottom: 8px;">Entre 1980 y 2003, el promedio de activos y pasivos externos de los países industriales se multiplicó por 15, mientras la producción aumentó solo un 50%.</li>
+    <li>Entre 1970 y 1998 hubo 64 crisis bancarias, 79 crisis cambiarias y 35 programas de ayuda del FMI.</li>
+  </ul>
+
+  <p>La consecuencia es lo que Sevares, citando a Keynes, llama el peligro de la <strong>«economía casino»</strong>: las actividades financieras crecen mucho más que la producción real, generando burbujas y crisis recurrentes que afectan especialmente a las economías periféricas.</p>
+
+  <h3>Lectura 2 · El desarrollo endógeno (Vázquez Barquero)</h3>
+
+  <p>Pero la globalización no es solo financiarización. Antonio Vázquez Barquero propone una lectura distinta, complementaria: la del <strong>desarrollo endógeno</strong>. Según él, en la economía global asimétrica que se está formando, las viejas categorías de Norte/Sur o Centro/Periferia perdieron parte de su capacidad explicativa.</p>
+
+  <div class="cita-textual">
+    Existen ciudades y regiones en el Sur articuladas a la economía global y existen ciudades y regiones del Norte que no lo están.
+    <span class="autor">— Antonio Vázquez Barquero</span>
+  </div>
+
+  <p>En esta lectura, las ciudades y regiones que ganan no son las que están en un Norte predefinido, sino las que <strong>logran articular su sistema productivo local con la economía global</strong> a través de innovación, redes de empresas, recursos humanos calificados e instituciones que aprenden. Vázquez Barquero llama a esto «desarrollo endógeno»: un desarrollo que se apoya en los recursos del territorio pero que está abierto al mundo.</p>
+
+  <div class="callout-clave">
+    <span class="arrow">→</span>
+    <div>
+      <strong>Dos lecturas que dialogan</strong>
+      No tienen que elegir entre Sevares y Vázquez Barquero como si fueran rivales. Sevares describe los riesgos y las dinámicas de poder de la globalización financiera. Vázquez Barquero describe los caminos que tienen los territorios para responder activamente. Ambas miradas son útiles para pensar la Argentina y América Latina hoy.
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SECCIÓN 9: SÍNTESIS
+     ═══════════════════════════════════════════ -->
+<section class="seccion" id="sec-9">
+  <header class="seccion-header">
+    <span class="num">Sección 09 · Cierre</span>
+    <h2>Síntesis e <span class="acento">ideas para llevar</span></h2>
+  </header>
+
+  <p>Recorrimos un trayecto largo: desde el origen mercantil del capitalismo en el siglo XVI hasta la globalización financiera del siglo XXI, pasando por la libre competencia, la era monopolista y el régimen fordista-keynesiano de la posguerra. ¿Qué ideas conviene que se lleven de toda la unidad?</p>
+
+  <div class="grid-tarjetas">
+    <div class="tarjeta-concepto">
+      <p class="cat">Idea 01</p>
+      <h4>El capitalismo es histórico</h4>
+      <p class="desc">No siempre existió ni existirá igual. Tiene origen, etapas, transformaciones. Estudiarlo es estudiar una construcción humana que puede analizarse, criticarse y transformarse.</p>
+    </div>
+    <div class="tarjeta-concepto v2">
+      <p class="cat">Idea 02</p>
+      <h4>Las tendencias se repiten</h4>
+      <p class="desc">Concentración, internacionalización, desigualdad y crisis cíclicas no son fallas del sistema sino rasgos estructurales. Identifíquenlas en cualquier coyuntura.</p>
+    </div>
+    <div class="tarjeta-concepto v3">
+      <p class="cat">Idea 03</p>
+      <h4>Centro y periferia importan</h4>
+      <p class="desc">La división internacional del trabajo no es un mapa neutro. Define quién produce qué, quién recibe utilidades, y quién paga los costos de las crisis.</p>
+    </div>
+    <div class="tarjeta-concepto v4">
+      <p class="cat">Idea 04</p>
+      <h4>La Argentina no es una isla</h4>
+      <p class="desc">Cada coyuntura argentina se entiende mejor leyendo a la vez lo interno y lo externo. Aislar uno del otro es perder la mitad de la película.</p>
+    </div>
+  </div>
+
+  <div class="actividad">
+    <span class="actividad-tag">📋 Actividad 4 · Autoevaluación final</span>
+    <h4>Diez preguntas rápidas para repasar</h4>
+    <p class="pregunta">Acordeón con preguntas y respuestas. Pensá tu respuesta antes de abrir cada una.</p>
+
+    <div class="acordeon" style="margin-top: 18px;">
+      <div class="acordeon-item">
+        <button class="acordeon-trigger" aria-expanded="false">
+          <span>1. ¿Cuáles son los cuatro elementos que definen al capitalismo?</span>
+          <span class="icon">+</span>
+        </button>
+        <div class="acordeon-body"><div class="acordeon-body-inner">Producción de mercancías (para vender, no para autoconsumo); ánimo de lucro; bienes de capital de propiedad privada; trabajo asalariado.</div></div>
+      </div>
+      <div class="acordeon-item">
+        <button class="acordeon-trigger" aria-expanded="false">
+          <span>2. ¿Qué diferencia al mercantilismo temprano del tardío?</span>
+          <span class="icon">+</span>
+        </button>
+        <div class="acordeon-body"><div class="acordeon-body-inner">El temprano creía que la riqueza estaba en acumular metales preciosos. El tardío comprendió que la base de la riqueza era la producción.</div></div>
+      </div>
+      <div class="acordeon-item">
+        <button class="acordeon-trigger" aria-expanded="false">
+          <span>3. ¿Qué es el deterioro de los términos del intercambio?</span>
+          <span class="icon">+</span>
+        </button>
+        <div class="acordeon-body"><div class="acordeon-body-inner">El fenómeno por el cual los bienes industrializados que el centro vende a la periferia se vuelven cada vez más caros en relación con los bienes primarios que la periferia produce.</div></div>
+      </div>
+      <div class="acordeon-item">
+        <button class="acordeon-trigger" aria-expanded="false">
+          <span>4. ¿Cuándo y por qué empieza la exportación de capitales?</span>
+          <span class="icon">+</span>
+        </button>
+        <div class="acordeon-body"><div class="acordeon-body-inner">Hacia 1880, cuando el proceso de monopolización en los países centrales reduce las oportunidades de inversión rentable internas y los capitales buscan mayores tasas de ganancia en la periferia.</div></div>
+      </div>
+      <div class="acordeon-item">
+        <button class="acordeon-trigger" aria-expanded="false">
+          <span>5. ¿Qué es el régimen fordista-keynesiano?</span>
+          <span class="icon">+</span>
+        </button>
+        <div class="acordeon-body"><div class="acordeon-body-inner">El régimen de acumulación dominante entre 1945 y los setenta, basado en la producción en cadena de montaje (fordismo), las políticas estatales activas (keynesianismo) y una articulación mundial liderada por Estados Unidos.</div></div>
+      </div>
+      <div class="acordeon-item">
+        <button class="acordeon-trigger" aria-expanded="false">
+          <span>6. ¿Qué significa «fordismo periférico» según Córdova?</span>
+          <span class="icon">+</span>
+        </button>
+        <div class="acordeon-body"><div class="acordeon-body-inner">La industrialización por sustitución de importaciones latinoamericana, que copió solo el sector 3 del esquema productivo central (ensamblaje descalificado) sin desarrollar plenamente los sectores científico-técnico y de ingeniería calificada. Por eso es «incompleta» o «apendicular».</div></div>
+      </div>
+      <div class="acordeon-item">
+        <button class="acordeon-trigger" aria-expanded="false">
+          <span>7. ¿Por qué Córdova dice que la crisis de la deuda no es la causa sino el detonante?</span>
+          <span class="icon">+</span>
+        </button>
+        <div class="acordeon-body"><div class="acordeon-body-inner">Porque la crisis estructural latinoamericana ya estaba en marcha desde los setenta (con el agotamiento de los dos motores: exportación primaria e ISI). El endeudamiento externo solo permitió ocultarla hasta 1982, cuando los bancos cerraron el grifo.</div></div>
+      </div>
+      <div class="acordeon-item">
+        <button class="acordeon-trigger" aria-expanded="false">
+          <span>8. ¿Qué es la «economía casino» según Sevares?</span>
+          <span class="icon">+</span>
+        </button>
+        <div class="acordeon-body"><div class="acordeon-body-inner">El término que retomamos de Keynes para describir la situación en que las actividades financieras crecen muy por encima de la producción real, generando burbujas, especulación y crisis recurrentes que afectan a la economía productiva.</div></div>
+      </div>
+      <div class="acordeon-item">
+        <button class="acordeon-trigger" aria-expanded="false">
+          <span>9. ¿Qué propone Vázquez Barquero con el desarrollo endógeno?</span>
+          <span class="icon">+</span>
+        </button>
+        <div class="acordeon-body"><div class="acordeon-body-inner">Un enfoque del desarrollo basado en el potencial local, las redes de empresas, la innovación y la articulación activa con la economía global. No depende de un Norte predefinido sino de las respuestas estratégicas de cada territorio.</div></div>
+      </div>
+      <div class="acordeon-item">
+        <button class="acordeon-trigger" aria-expanded="false">
+          <span>10. ¿Por qué importa estudiar todo esto si voy a ser abogada/abogado o trabajadora/trabajador social?</span>
+          <span class="icon">+</span>
+        </button>
+        <div class="acordeon-body"><div class="acordeon-body-inner">Porque el derecho regula relaciones que ocurren <em>dentro</em> de este sistema económico, y la intervención social busca dar respuesta a problemas que surgen <em>de</em> este sistema. Sin comprender el marco económico-histórico, las normas jurídicas y los problemas sociales se vuelven inexplicables.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <p style="margin-top: 30px;">Felicitaciones: si llegaron hasta acá, hicieron un recorrido importante. La economía política no se aprende en una sola lectura: se aprende volviendo, conversando, conectando con la realidad cotidiana. Les sugerimos releer estas páginas después de leer la bibliografía obligatoria, y traer al foro de consultas todas las dudas que les surjan.</p>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     FUENTES BIBLIOGRÁFICAS
+     ═══════════════════════════════════════════ -->
+<section class="fuentes" id="sec-fuentes">
+  <span class="label">Fuentes utilizadas</span>
+  <h2>Bibliografía de la unidad</h2>
+  <p class="intro">Este documento fue elaborado a partir de las siguientes fuentes obligatorias y complementarias. Lean cada una con la guía que ofrece este texto y profundicen los pasajes que más les interesen.</p>
+
+  <div class="fuente-item">
+    <span class="num">Fuente 01 · Documento central de cátedra</span>
+    <h4>Unidad 5 · El Sistema Capitalista Internacional</h4>
+    <p class="autor-fuente">Cátedra B · Economía Política · FCJS UNL</p>
+    <p class="descrip">Documento que estructura los conceptos centrales: definición del capitalismo, tendencias estructurales (concentración, internacionalización, desigualdad, ciclos) y las cuatro etapas históricas, hasta llegar al régimen fordista-keynesiano y su crisis.</p>
+  </div>
+
+  <div class="fuente-item">
+    <span class="num">Fuente 02 · Apuntes de cátedra</span>
+    <h4>Orígenes y Evolución del Sistema Capitalista Internacional</h4>
+    <p class="autor-fuente">Luis Lafferriere · Apuntes de Cátedra</p>
+    <p class="descrip">Recorrido histórico por las tres grandes etapas del capitalismo (mercantil, libre competencia y monopolista), con énfasis en la expansión hacia la periferia, la división internacional del trabajo y consideraciones específicas sobre el capital británico en la Argentina.</p>
+  </div>
+
+  <div class="fuente-item">
+    <span class="num">Fuente 03 · Texto de profundización</span>
+    <h4>Crisis económica mundial y futuro de América Latina</h4>
+    <p class="autor-fuente">Armando Córdova</p>
+    <p class="descrip">Análisis del agotamiento del régimen fordista-keynesiano y su traslación a la periferia. Introduce los conceptos de fordismo periférico, los dos motores del crecimiento latinoamericano (exportación primaria e ISI) y discute por qué la crisis de la deuda fue detonante, no causa.</p>
+  </div>
+
+  <div class="fuente-item">
+    <span class="num">Fuente 04 · Texto de profundización</span>
+    <h4>Desarrollo, redes e innovación. Lecciones sobre desarrollo endógeno</h4>
+    <p class="autor-fuente">Antonio Vázquez Barquero · Ediciones Pirámide (Cap. 1)</p>
+    <p class="descrip">Propone una lectura alternativa de la globalización: el desarrollo endógeno como estrategia de los territorios para articularse con la economía global desde sus propios recursos, innovaciones y redes locales. Cuestiona la rigidez del esquema Centro/Periferia o Norte/Sur.</p>
+  </div>
+
+  <div class="fuente-item">
+    <span class="num">Fuente 05 · Texto de profundización</span>
+    <h4>El Imperio de las Finanzas (Cap. 1, 2 y 3)</h4>
+    <p class="autor-fuente">Julio Sevares · Grupo Editorial Norma</p>
+    <p class="descrip">Describe la financiarización del capitalismo contemporáneo: el casino global, la liberalización y desregulación financiera de los setenta y ochenta, y el papel de los petrodólares y el Euromercado en el armado del sistema financiero internacional actual.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div class="footer-doc">
+  <p>Cátedra B · Economía Política · FCJS UNL</p>
+</div>
+
+</div><!-- /.doc-wrapper -->
+
+<script>
+// ============ QUIZ ============
+document.querySelectorAll('.quiz-options').forEach(group => {
+  const quizName = group.dataset.quiz;
+  const feedbackBox = document.querySelector(`[data-feedback-for="${quizName}"]`);
+  group.querySelectorAll('.quiz-opt').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (group.classList.contains('answered')) return;
+      group.classList.add('answered');
+      const isCorrect = btn.dataset.correct === 'true';
+      btn.classList.add(isCorrect ? 'correcta' : 'incorrecta');
+      group.querySelectorAll('.quiz-opt').forEach(b => {
+        b.classList.add('disabled');
+        if (b !== btn && b.dataset.correct === 'true') b.classList.add('correcta');
+      });
+      feedbackBox.textContent = btn.dataset.feedback;
+      feedbackBox.classList.remove('ok', 'fail');
+      feedbackBox.classList.add(isCorrect ? 'ok' : 'fail');
+      feedbackBox.classList.add('show');
+    });
+  });
+});
+
+// ============ ACORDEÓN ============
+document.querySelectorAll('.acordeon-trigger').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const body = btn.nextElementSibling;
+    const isActive = btn.classList.contains('activo');
+    btn.classList.toggle('activo');
+    body.classList.toggle('activo');
+    btn.setAttribute('aria-expanded', !isActive);
+  });
+});
+
+// ============ EMPAREJA ============
+function setupEmpareja(containerId, statusId) {
+  const container = document.getElementById(containerId);
+  const status = document.getElementById(statusId);
+  if (!container) return;
+  let selected = null;
+  let matches = 0;
+  const total = container.querySelectorAll('.empareja-col:first-child .empareja-item').length;
+
+  container.querySelectorAll('.empareja-item').forEach(item => {
+    item.addEventListener('click', () => {
+      if (item.classList.contains('matched')) return;
+      if (!selected) {
+        selected = item;
+        item.classList.add('selected');
+        return;
+      }
+      if (selected === item) {
+        item.classList.remove('selected');
+        selected = null;
+        return;
+      }
+      // Verificar si es de columnas distintas
+      const sameCol = selected.parentElement === item.parentElement;
+      if (sameCol) {
+        selected.classList.remove('selected');
+        selected = item;
+        item.classList.add('selected');
+        return;
+      }
+      // Comparar pares
+      if (selected.dataset.pair === item.dataset.pair) {
+        selected.classList.remove('selected');
+        selected.classList.add('matched');
+        item.classList.add('matched');
+        matches++;
+        status.textContent = `${matches} de ${total} emparejamientos correctos.`;
+        if (matches === total) {
+          status.textContent = `🎉 ¡Completaste los ${total} emparejamientos!`;
+          status.style.color = '#1e6d3e';
+          status.style.fontWeight = 'bold';
+        }
+      } else {
+        selected.classList.add('error');
+        item.classList.add('error');
+        const s = selected;
+        setTimeout(() => {
+          s.classList.remove('error', 'selected');
+          item.classList.remove('error');
+        }, 600);
+      }
+      selected = null;
+    });
+  });
+}
+setupEmpareja('empareja1', 'empareja1-status');
+
+// ============ REFLEXIÓN (almacenamiento en memoria) ============
+const reflexionesGuardadas = {};
+document.querySelectorAll('.reflexion-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const targetId = btn.dataset.target;
+    const textarea = document.getElementById(targetId);
+    const savedMsg = document.getElementById(targetId + '-saved');
+    if (textarea.value.trim().length < 10) {
+      savedMsg.textContent = '⚠ Tu respuesta es muy corta. Escribí al menos un par de oraciones.';
+      savedMsg.style.background = 'rgba(230,126,34,0.08)';
+      savedMsg.style.borderLeftColor = '#e67e22';
+      savedMsg.style.color = '#a85a17';
+      savedMsg.classList.add('show');
+      return;
+    }
+    reflexionesGuardadas[targetId] = textarea.value;
+    savedMsg.textContent = '✓ Tu respuesta quedó guardada en este navegador (durante esta sesión). Te recomendamos también copiarla a tus apuntes de clase.';
+    savedMsg.style.background = '';
+    savedMsg.style.borderLeftColor = '';
+    savedMsg.style.color = '';
+    savedMsg.classList.add('show');
+  });
+});
+</script>
+
+</body>
+</html>
