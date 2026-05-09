@@ -1,0 +1,2164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unidad 7 · La Inflación · Cátedra B · Economía Política · FCJS UNL</title>
+<style>
+  /* ════════════════════════════════════════════
+     DESIGN TOKENS
+     ════════════════════════════════════════════ */
+  :root {
+    --color-primary: #8e44ad;
+    --color-primary-dark: #6c3483;
+    --color-anchor: #4a235a;
+    --color-deepest: #2a1133;
+    --color-soft: #d2b4de;
+    --color-bg-tinted: #fdfbff;
+    --color-bg-gradient-end: #f4f0f7;
+    --color-text-primary: #1a1a1a;
+    --color-text-body: #444;
+    --color-text-secondary: #555;
+    --color-text-muted: #666;
+    --color-text-faint: #888;
+    --color-border: #eaeaea;
+    --color-win: #2e7d4f;
+    --color-win-bg: #ecf5ee;
+    --color-loss: #b5384a;
+    --color-loss-bg: #fbecee;
+    --color-warn: #b87513;
+    --color-warn-bg: #fcf3e2;
+    --font-display: 'Georgia', 'Times New Roman', serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --sidebar-width: 280px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-body);
+    color: var(--color-text-body);
+    background: #faf8fc;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* ════════════════════════════════════════════
+     PROGRESS BAR (lectura)
+     ════════════════════════════════════════════ */
+  .progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    width: 0%;
+    background: linear-gradient(to right, var(--color-primary), var(--color-anchor));
+    z-index: 200;
+    transition: width 0.1s;
+  }
+
+  /* ════════════════════════════════════════════
+     SIDEBAR
+     ════════════════════════════════════════════ */
+  .sidebar {
+    width: var(--sidebar-width);
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    overflow-y: auto;
+    background: var(--color-deepest);
+    color: #fff;
+    padding: 35px 22px;
+    z-index: 100;
+  }
+  .sidebar-brand {
+    display: block;
+    font-size: 0.65em;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--color-soft);
+    margin-bottom: 6px;
+  }
+  .sidebar-title {
+    font-family: var(--font-display);
+    font-size: 1.35em;
+    font-weight: normal;
+    margin-bottom: 6px;
+    color: #fff;
+    line-height: 1.2;
+  }
+  .sidebar-subtitle {
+    font-size: 0.75em;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 28px;
+    display: block;
+  }
+  .sidebar-nav-title {
+    font-size: 0.65em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--color-soft);
+    font-weight: 700;
+    margin: 18px 0 10px;
+    padding: 0 12px;
+  }
+  .sidebar nav a {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    padding: 8px 12px;
+    color: rgba(255,255,255,0.72);
+    text-decoration: none;
+    font-size: 0.85em;
+    border-radius: 4px;
+    transition: all 0.18s;
+    margin-bottom: 1px;
+    line-height: 1.4;
+  }
+  .sidebar nav a .num {
+    font-size: 0.75em;
+    color: rgba(210,180,222,0.7);
+    font-variant-numeric: tabular-nums;
+    min-width: 20px;
+  }
+  .sidebar nav a:hover {
+    background: rgba(255,255,255,0.08);
+    color: #fff;
+  }
+  .sidebar nav a.active {
+    background: rgba(142,68,173,0.28);
+    color: #fff;
+    border-left: 2px solid var(--color-primary);
+  }
+  .sidebar-foot {
+    margin-top: 30px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    font-size: 0.7em;
+    color: rgba(255,255,255,0.4);
+    line-height: 1.5;
+  }
+
+  /* ════════════════════════════════════════════
+     MAIN CONTENT
+     ════════════════════════════════════════════ */
+  .main {
+    margin-left: var(--sidebar-width);
+    min-height: 100vh;
+  }
+  .container {
+    max-width: 820px;
+    padding: 0 60px;
+    margin: 0 auto;
+  }
+
+  /* ════════════════════════════════════════════
+     HERO
+     ════════════════════════════════════════════ */
+  .hero {
+    padding: 90px 0 70px;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .hero-tag {
+    font-size: 0.75em;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    color: var(--color-primary-dark);
+    font-weight: 700;
+    margin-bottom: 30px;
+    display: block;
+  }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-weight: normal;
+    font-size: clamp(2.8em, 6vw, 4.5em);
+    line-height: 1.05;
+    letter-spacing: -2px;
+    color: var(--color-text-primary);
+    margin-bottom: 30px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--color-primary);
+  }
+  .hero-lead {
+    font-size: 1.15em;
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+    max-width: 680px;
+    font-weight: 300;
+    margin-bottom: 50px;
+  }
+  .hero-meta {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    padding: 30px 0;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: 50px;
+  }
+  .hero-meta-item .lbl {
+    display: block;
+    font-size: 0.65em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--color-text-faint);
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .hero-meta-item .val {
+    font-size: 0.95em;
+    color: var(--color-text-primary);
+    font-weight: 500;
+  }
+  @media (max-width: 700px) {
+    .hero-meta { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  }
+  .recorrido {
+    background: var(--color-bg-tinted);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 35px 40px;
+  }
+  .recorrido h3 {
+    font-family: var(--font-display);
+    font-size: 1.4em;
+    color: var(--color-anchor);
+    font-weight: normal;
+    margin-bottom: 18px;
+  }
+  .recorrido ol {
+    list-style: none;
+    counter-reset: recor;
+  }
+  .recorrido ol li {
+    counter-increment: recor;
+    padding: 9px 0;
+    border-bottom: 1px solid rgba(142,68,173,0.08);
+    display: flex;
+    gap: 16px;
+    align-items: baseline;
+  }
+  .recorrido ol li:last-child { border-bottom: none; }
+  .recorrido ol li::before {
+    content: counter(recor, decimal-leading-zero);
+    font-family: var(--font-display);
+    font-size: 0.85em;
+    color: var(--color-primary);
+    font-weight: 700;
+    min-width: 28px;
+  }
+  .recorrido ol li a {
+    color: var(--color-text-primary);
+    text-decoration: none;
+    font-size: 0.95em;
+    flex: 1;
+    transition: color 0.15s;
+  }
+  .recorrido ol li a:hover { color: var(--color-primary); }
+
+  /* ════════════════════════════════════════════
+     SECCIONES
+     ════════════════════════════════════════════ */
+  .section {
+    padding: 75px 0;
+    border-bottom: 1px solid var(--color-border);
+    scroll-margin-top: 20px;
+  }
+  .section:last-of-type { border-bottom: none; }
+  .section-tag {
+    font-size: 0.7em;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: var(--color-primary-dark);
+    font-weight: 700;
+    margin-bottom: 18px;
+    display: block;
+  }
+  .section h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2em, 4.5vw, 2.7em);
+    color: var(--color-text-primary);
+    font-weight: normal;
+    line-height: 1.15;
+    letter-spacing: -1px;
+    margin-bottom: 18px;
+  }
+  .section h2 em {
+    font-style: italic;
+    color: var(--color-primary);
+  }
+  .section h3 {
+    font-family: var(--font-display);
+    font-size: 1.4em;
+    color: var(--color-anchor);
+    font-weight: normal;
+    margin: 35px 0 14px;
+    line-height: 1.3;
+  }
+  .section h4 {
+    font-size: 0.95em;
+    color: var(--color-text-primary);
+    font-weight: 700;
+    margin: 22px 0 10px;
+  }
+  .section p {
+    margin-bottom: 18px;
+    font-size: 1em;
+  }
+  .section ul, .section ol {
+    margin: 0 0 18px 0;
+    padding-left: 22px;
+  }
+  .section ul li, .section ol li {
+    margin-bottom: 8px;
+    padding-left: 4px;
+  }
+  .source-line {
+    font-size: 0.85em;
+    color: var(--color-text-faint);
+    font-style: italic;
+    margin-bottom: 28px;
+  }
+
+  /* ════════════════════════════════════════════
+     TL;DR — RESUMEN AL INICIO DE BLOQUE
+     ════════════════════════════════════════════ */
+  .tldr {
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+    padding: 20px 24px;
+    background: linear-gradient(135deg, #fdfbff 0%, #f4f0f7 100%);
+    border: 1px solid rgba(142,68,173,0.18);
+    border-radius: 12px;
+    margin: 30px 0 35px;
+  }
+  .tldr-mark {
+    flex-shrink: 0;
+    width: 38px;
+    height: 38px;
+    background: var(--color-primary);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-size: 1em;
+    font-weight: 700;
+    font-style: italic;
+  }
+  .tldr-body p {
+    margin: 0;
+    font-size: 0.97em;
+    color: var(--color-deepest);
+    line-height: 1.55;
+  }
+  .tldr-body p strong { color: var(--color-primary-dark); }
+  .tldr-body .tldr-label {
+    display: block;
+    font-size: 0.65em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--color-primary-dark);
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+
+  /* ════════════════════════════════════════════
+     BRÚJULA / ARROW BOX / KEYLINE
+     ════════════════════════════════════════════ */
+  .brujula {
+    background: var(--color-bg-tinted);
+    border: 1px solid rgba(108,52,131,0.12);
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin: 30px 0;
+  }
+  .brujula-label {
+    display: block;
+    font-size: 0.65em;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--color-primary-dark);
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .brujula h4 {
+    font-family: var(--font-display);
+    font-size: 1.3em;
+    color: var(--color-deepest);
+    font-weight: normal;
+    margin-bottom: 14px;
+  }
+  .arrow-box {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 22px 26px;
+    background-color: rgba(108,52,131,0.025);
+    border: 1px solid rgba(108,52,131,0.1);
+    border-radius: 12px;
+    margin: 24px 0;
+  }
+  .arrow-box-mark {
+    color: var(--color-primary-dark);
+    font-size: 1.5em;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .arrow-box strong.arrow-title {
+    display: block;
+    color: var(--color-text-primary);
+    font-size: 0.85em;
+    margin-bottom: 4px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+  }
+  .arrow-box p { margin-bottom: 0; font-size: 0.95em; line-height: 1.6; color: var(--color-text-secondary); }
+  .keyline {
+    background: linear-gradient(to right, rgba(142,68,173,0.06), transparent);
+    border-left: 3px solid var(--color-primary);
+    padding: 14px 20px;
+    border-radius: 0 4px 4px 0;
+    margin: 22px 0;
+  }
+  .keyline p { margin: 0; font-size: 0.97em; color: var(--color-deepest); line-height: 1.6; }
+  .keyline strong { color: var(--color-primary-dark); }
+
+  /* ════════════════════════════════════════════
+     ELEMENTO TIPADO
+     ════════════════════════════════════════════ */
+  .elemento {
+    padding: 26px 0;
+    border-top: 1px solid var(--color-border);
+  }
+  .elemento-tag {
+    font-size: 0.7em;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--color-primary-dark);
+    font-weight: 700;
+    margin-bottom: 8px;
+    display: block;
+  }
+  .elemento h4 {
+    font-family: var(--font-display);
+    font-size: 1.35em;
+    color: var(--color-deepest);
+    font-weight: normal;
+    margin-bottom: 12px;
+  }
+
+  /* ════════════════════════════════════════════
+     PULL QUOTE
+     ════════════════════════════════════════════ */
+  .pullquote {
+    margin: 35px 0;
+    padding: 30px 40px;
+    border-left: 4px solid var(--color-primary);
+    background: var(--color-bg-tinted);
+    border-radius: 0 12px 12px 0;
+    position: relative;
+  }
+  .pullquote::before {
+    content: '\201C';
+    position: absolute;
+    top: -10px;
+    left: 18px;
+    font-family: var(--font-display);
+    font-size: 4em;
+    color: var(--color-primary);
+    line-height: 1;
+    opacity: 0.4;
+    font-style: italic;
+  }
+  .pullquote blockquote {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.18em;
+    line-height: 1.5;
+    color: var(--color-deepest);
+    margin: 0 0 14px 0;
+    font-weight: normal;
+  }
+  .pullquote cite {
+    display: block;
+    font-style: normal;
+    font-size: 0.78em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--color-primary-dark);
+    font-weight: 700;
+  }
+
+  /* ════════════════════════════════════════════
+     WIN/LOSS — quien gana y quien pierde
+     ════════════════════════════════════════════ */
+  .winloss {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 30px 0;
+  }
+  .winloss-card {
+    padding: 22px 26px;
+    border-radius: 12px;
+    border: 1px solid;
+  }
+  .winloss-card.win {
+    background: var(--color-win-bg);
+    border-color: rgba(46,125,79,0.25);
+  }
+  .winloss-card.loss {
+    background: var(--color-loss-bg);
+    border-color: rgba(181,56,74,0.22);
+  }
+  .winloss-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.7em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .win .winloss-label { color: var(--color-win); }
+  .loss .winloss-label { color: var(--color-loss); }
+  .winloss-icon {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.95em;
+    font-weight: 700;
+    color: #fff;
+  }
+  .win .winloss-icon { background: var(--color-win); }
+  .loss .winloss-icon { background: var(--color-loss); }
+  .winloss-card h4 {
+    font-family: var(--font-display);
+    font-size: 1.1em;
+    color: var(--color-deepest);
+    font-weight: normal;
+    margin-bottom: 8px;
+  }
+  .winloss-card p {
+    margin: 0;
+    font-size: 0.92em;
+    line-height: 1.55;
+    color: var(--color-text-secondary);
+  }
+  @media (max-width: 700px) {
+    .winloss { grid-template-columns: 1fr; }
+  }
+
+  /* ════════════════════════════════════════════
+     PROCESO / CADENA CAUSAL
+     ════════════════════════════════════════════ */
+  .proceso {
+    margin: 30px 0;
+    padding: 26px 28px;
+    background: #fff;
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+  }
+  .proceso-label {
+    display: block;
+    font-size: 0.65em;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    color: var(--color-primary-dark);
+    font-weight: 700;
+    margin-bottom: 18px;
+  }
+  .proceso-flow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: stretch;
+  }
+  .proceso-step {
+    flex: 1 1 130px;
+    min-width: 0;
+    background: var(--color-bg-tinted);
+    border: 1px solid rgba(142,68,173,0.15);
+    border-radius: 8px;
+    padding: 14px 16px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .proceso-step .step-num {
+    font-family: var(--font-display);
+    font-size: 0.7em;
+    font-weight: 700;
+    color: var(--color-primary);
+    letter-spacing: 1px;
+  }
+  .proceso-step .step-text {
+    font-size: 0.85em;
+    line-height: 1.45;
+    color: var(--color-deepest);
+  }
+  .proceso-step + .proceso-step::before {
+    content: '→';
+    position: absolute;
+    left: -14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-primary);
+    font-size: 1.1em;
+    font-weight: 700;
+  }
+  @media (max-width: 700px) {
+    .proceso-flow { flex-direction: column; }
+    .proceso-step + .proceso-step::before {
+      content: '↓';
+      left: 50%;
+      top: -14px;
+      transform: translateX(-50%);
+    }
+  }
+
+  /* ════════════════════════════════════════════
+     EJEMPLO ARGENTINO — caja
+     ════════════════════════════════════════════ */
+  .ejemplo {
+    margin: 28px 0;
+    padding: 22px 26px;
+    background: var(--color-warn-bg);
+    border-left: 3px solid var(--color-warn);
+    border-radius: 0 10px 10px 0;
+  }
+  .ejemplo-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.7em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--color-warn);
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .ejemplo-icon {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--color-warn);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-style: italic;
+    font-family: var(--font-display);
+    font-size: 0.85em;
+  }
+  .ejemplo h4 {
+    font-family: var(--font-display);
+    font-size: 1.15em;
+    color: var(--color-deepest);
+    font-weight: normal;
+    margin-bottom: 8px;
+  }
+  .ejemplo p { margin: 0 0 10px 0; font-size: 0.94em; line-height: 1.6; color: var(--color-deepest); }
+  .ejemplo p:last-child { margin-bottom: 0; }
+
+  /* ════════════════════════════════════════════
+     METRIC CARDS — para ficha técnica de cada tipo
+     ════════════════════════════════════════════ */
+  .ficha {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin: 28px 0;
+  }
+  .ficha-item {
+    padding: 16px 18px;
+    background: #fff;
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    border-top: 3px solid var(--color-primary-dark);
+  }
+  .ficha-item:nth-child(2) { border-top-color: var(--color-anchor); }
+  .ficha-item:nth-child(3) { border-top-color: var(--color-primary); }
+  .ficha-item:nth-child(4) { border-top-color: var(--color-deepest); }
+  .ficha-lbl {
+    display: block;
+    font-size: 0.65em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--color-text-faint);
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .ficha-val {
+    font-family: var(--font-display);
+    font-size: 1em;
+    color: var(--color-deepest);
+    line-height: 1.4;
+  }
+  @media (max-width: 700px) {
+    .ficha { grid-template-columns: 1fr; }
+  }
+
+  /* ════════════════════════════════════════════
+     SVG INLINE — diagramas
+     ════════════════════════════════════════════ */
+  .diagram {
+    margin: 30px 0;
+    padding: 24px;
+    background: #fff;
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    overflow-x: auto;
+  }
+  .diagram-label {
+    display: block;
+    font-size: 0.65em;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    color: var(--color-primary-dark);
+    font-weight: 700;
+    margin-bottom: 14px;
+  }
+  .diagram svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* ════════════════════════════════════════════
+     TABS
+     ════════════════════════════════════════════ */
+  .tabs-container { margin: 35px 0; }
+  .tabs-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    border-bottom: 2px solid rgba(142,68,173,0.15);
+  }
+  .tab-btn {
+    background: transparent;
+    border: none;
+    padding: 12px 20px;
+    font-family: inherit;
+    font-size: 0.78em;
+    font-weight: 700;
+    color: var(--color-text-faint);
+    cursor: pointer;
+    border-radius: 8px 8px 0 0;
+    transition: all 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px;
+  }
+  .tab-btn:hover { color: var(--color-primary-dark); background: rgba(142,68,173,0.04); }
+  .tab-btn.active {
+    color: var(--color-primary-dark);
+    border-bottom-color: var(--color-primary);
+    background: rgba(142,68,173,0.06);
+  }
+  .tab-content { display: none; padding: 30px 0; }
+  .tab-content.active { display: block; animation: fadeIn 0.3s; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* ════════════════════════════════════════════
+     QUIZ
+     ════════════════════════════════════════════ */
+  .quiz {
+    background: var(--color-bg-tinted);
+    border: 1px solid rgba(142,68,173,0.15);
+    border-radius: 12px;
+    padding: 30px 34px;
+    margin: 35px 0;
+  }
+  .quiz-label {
+    font-size: 0.65em;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--color-primary-dark);
+    font-weight: 700;
+    margin-bottom: 12px;
+    display: block;
+  }
+  .quiz h4 {
+    font-family: var(--font-display);
+    font-size: 1.2em;
+    color: var(--color-deepest);
+    font-weight: normal;
+    margin-bottom: 20px;
+    line-height: 1.4;
+  }
+  .quiz-options { display: flex; flex-direction: column; gap: 10px; }
+  .quiz-opt {
+    background: #fff;
+    border: 1px solid rgba(142,68,173,0.2);
+    border-radius: 8px;
+    padding: 14px 20px;
+    font-family: inherit;
+    font-size: 0.95em;
+    color: var(--color-text-body);
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.15s;
+    line-height: 1.5;
+  }
+  .quiz-opt:hover { border-color: var(--color-primary); background: var(--color-bg-tinted); }
+  .quiz-opt.correct { background: var(--color-win-bg); border-color: var(--color-win); color: var(--color-win); font-weight: 600; }
+  .quiz-opt.incorrect { background: var(--color-loss-bg); border-color: var(--color-loss); color: var(--color-loss); }
+  .quiz-opt:disabled { cursor: default; }
+  .quiz-feedback {
+    margin-top: 16px;
+    padding: 14px 18px;
+    border-radius: 6px;
+    font-size: 0.92em;
+    line-height: 1.6;
+    display: none;
+  }
+  .quiz-feedback.show { display: block; }
+  .quiz-feedback.ok { background: rgba(46,125,79,0.08); border-left: 3px solid var(--color-win); color: #1a4d2e; }
+  .quiz-feedback.bad { background: rgba(181,56,74,0.07); border-left: 3px solid var(--color-loss); color: #6e2118; }
+
+  /* ════════════════════════════════════════════
+     TABLA DE COMPARACIÓN
+     ════════════════════════════════════════════ */
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 25px 0;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+    font-size: 0.9em;
+  }
+  .compare-table th {
+    background: linear-gradient(to right, var(--color-primary-dark), var(--color-anchor));
+    color: #fff;
+    text-align: left;
+    padding: 14px 18px;
+    font-size: 0.72em;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 700;
+  }
+  .compare-table td {
+    padding: 14px 18px;
+    border-bottom: 1px solid #eaddf5;
+    vertical-align: top;
+  }
+  .compare-table td:first-child {
+    font-weight: 700;
+    color: var(--color-deepest);
+    background: var(--color-bg-tinted);
+    width: 22%;
+  }
+  .compare-table tr:last-child td { border-bottom: none; }
+
+  /* ════════════════════════════════════════════
+     FUENTES
+     ════════════════════════════════════════════ */
+  .fuente-card {
+    background: linear-gradient(135deg, var(--color-deepest) 0%, var(--color-anchor) 100%);
+    border-radius: 12px;
+    padding: 32px 36px;
+    margin-bottom: 18px;
+    box-shadow: 0 15px 35px rgba(42,17,51,0.12);
+    border: 1px solid rgba(210,180,222,0.1);
+    color: #fff;
+  }
+  .fuente-card.alt {
+    background: linear-gradient(135deg, #1f0d26 0%, #3a164f 100%);
+  }
+  .fuente-tag {
+    display: inline-block;
+    font-size: 0.65em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--color-soft);
+    font-weight: 700;
+    border: 1px solid rgba(210,180,222,0.3);
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 14px;
+    background-color: rgba(255,255,255,0.04);
+  }
+  .fuente-card h4 {
+    font-family: var(--font-display);
+    font-size: 1.4em;
+    color: #fff;
+    font-weight: normal;
+    margin-bottom: 8px;
+  }
+  .fuente-card p { color: rgba(255,255,255,0.78); font-size: 0.95em; line-height: 1.55; margin-bottom: 0; }
+  .fuente-card p.cite { color: rgba(255,255,255,0.88); margin-bottom: 8px; }
+
+  /* ════════════════════════════════════════════
+     SCROLL TOP & MOBILE
+     ════════════════════════════════════════════ */
+  .scroll-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 48px;
+    height: 48px;
+    background: var(--color-primary);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(108,52,131,0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3em;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.25s;
+    z-index: 90;
+  }
+  .scroll-top.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  .scroll-top:hover {
+    background: var(--color-primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(108,52,131,0.45);
+  }
+  .doc-footer {
+    padding: 50px 0 70px;
+    text-align: center;
+    border-top: 1px solid var(--color-border);
+  }
+  .doc-footer p {
+    font-size: 0.75em;
+    color: var(--color-text-faint);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .doc-footer p.fine {
+    text-transform: none;
+    letter-spacing: 0.5px;
+    color: #aaa;
+    font-weight: 400;
+    margin-top: 8px;
+  }
+  .mobile-toggle {
+    display: none;
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 110;
+    background: var(--color-deepest);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    width: 44px;
+    height: 44px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    font-size: 1.2em;
+  }
+  @media (max-width: 1000px) {
+    .sidebar { transform: translateX(-100%); transition: transform 0.3s; }
+    .sidebar.open { transform: translateX(0); }
+    .main { margin-left: 0; }
+    .container { padding: 0 25px; }
+    .mobile-toggle { display: block; }
+    .hero { padding: 80px 0 50px; }
+    .section { padding: 60px 0; }
+  }
+  @media print {
+    .sidebar, .scroll-top, .mobile-toggle, .progress-bar { display: none; }
+    .main { margin-left: 0; }
+    .tab-content { display: block !important; page-break-inside: avoid; }
+    .tab-btn { display: none; }
+    .quiz, .ejemplo, .pullquote { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<!-- ══════════════════════════════════════════════
+     SIDEBAR
+     ══════════════════════════════════════════════ -->
+<aside class="sidebar" id="sidebar">
+  <span class="sidebar-brand">Cátedra B</span>
+  <h2 class="sidebar-title">Unidad 7</h2>
+  <span class="sidebar-subtitle">La Inflación</span>
+
+  <span class="sidebar-nav-title">Recorrido</span>
+  <nav>
+    <a href="#sec-1"><span class="num">01</span><span>Bienvenida</span></a>
+    <a href="#sec-2"><span class="num">02</span><span>Mercado y Estado</span></a>
+    <a href="#sec-3"><span class="num">03</span><span>Política económica</span></a>
+    <a href="#sec-4"><span class="num">04</span><span>Tipos de inflación</span></a>
+    <a href="#sec-5"><span class="num">05</span><span>Inflación de demanda</span></a>
+    <a href="#sec-6"><span class="num">06</span><span>Inflación de costos</span></a>
+    <a href="#sec-7"><span class="num">07</span><span>Inflación estructural</span></a>
+    <a href="#sec-8"><span class="num">08</span><span>Inflación cambiaria</span></a>
+    <a href="#sec-9"><span class="num">09</span><span>Cuadro integrador</span></a>
+    <a href="#sec-10"><span class="num">10</span><span>Cierre y síntesis</span></a>
+    <a href="#sec-fuentes"><span class="num">11</span><span>Fuentes</span></a>
+  </nav>
+
+  <div class="sidebar-foot">
+    Economía Política · FCJS · UNL<br>
+    Equipo de Cátedra · Ciclo 2026
+  </div>
+</aside>
+
+<button class="mobile-toggle" id="mobileToggle" aria-label="Abrir navegación">☰</button>
+
+<!-- ══════════════════════════════════════════════
+     MAIN
+     ══════════════════════════════════════════════ -->
+<main class="main">
+
+<!-- ════════════════════════════════════════════
+     HERO
+     ════════════════════════════════════════════ -->
+<header class="hero" id="top">
+  <div class="container">
+
+    <span class="hero-tag">Unidad 7 · Documento de Cátedra</span>
+
+    <h1>La <em>inflación</em></h1>
+
+    <p class="hero-lead">Tres tipos, un fenómeno mal entendido. Una guía didáctica para reconocer las causas, los beneficiarios, los perjudicados y las formas de abordar cada inflación, con foco en la realidad de las economías periféricas como la argentina.</p>
+
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <span class="lbl">Materia</span>
+        <span class="val">Economía Política</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="lbl">Carreras</span>
+        <span class="val">Abogacía · Trabajo Social</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="lbl">Nivel</span>
+        <span class="val">Primer año</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="lbl">Modalidad</span>
+        <span class="val">Lectura autónoma</span>
+      </div>
+    </div>
+
+    <div class="recorrido">
+      <h3>Recorrido de la Unidad</h3>
+      <ol>
+        <li><a href="#sec-1">Bienvenida y orientación</a></li>
+        <li><a href="#sec-2">Mercado y Estado: dos formas de regulación</a></li>
+        <li><a href="#sec-3">Política económica: objetivos e instrumentos</a></li>
+        <li><a href="#sec-4">Los tres tipos de inflación</a></li>
+        <li><a href="#sec-5">Inflación de demanda</a></li>
+        <li><a href="#sec-6">Inflación de costos</a></li>
+        <li><a href="#sec-7">Inflación estructural</a></li>
+        <li><a href="#sec-8">Inflación cambiaria (subtipo)</a></li>
+        <li><a href="#sec-9">Cuadro comparativo integrador</a></li>
+        <li><a href="#sec-10">Cierre y síntesis</a></li>
+        <li><a href="#sec-fuentes">Fuentes bibliográficas</a></li>
+      </ol>
+    </div>
+
+  </div>
+</header>
+
+
+<!-- ════════════════════════════════════════════
+     SECCIÓN 01 · BIENVENIDA
+     ════════════════════════════════════════════ -->
+<section class="section" id="sec-1">
+  <div class="container">
+    <span class="section-tag">Sección 01 · Apertura</span>
+    <h2>Bienvenidas y bienvenidos a la Unidad <em>7</em></h2>
+
+    <div class="tldr">
+      <div class="tldr-mark">i</div>
+      <div class="tldr-body">
+        <span class="tldr-label">Idea fuerza de la unidad</span>
+        <p>Lo que llamamos "inflación" en singular es engañoso. Hay <strong>distintos tipos de inflación</strong>, con causas y soluciones diferentes. Confundirlos lleva a aplicar el remedio equivocado, y eso —dice Diamand— es lo que explica por qué muchos planes antiinflacionarios fracasan o, peor aún, agravan el problema.</p>
+      </div>
+    </div>
+
+    <p>Cuando hablamos de inflación, solemos imaginar una sola cosa: precios que suben. Pero detrás de esa imagen única se esconden procesos económicos muy distintos. Como advierte Marcelo Diamand, confundirlos es como agrupar enfermedades infecciosas distintas bajo el nombre común de "fiebre": termina llevando a aplicar el remedio equivocado.</p>
+
+    <p>En esta unidad vamos a comprender que existen <strong>tres grandes tipos de inflación</strong> —de demanda, de costos y estructural— y un subtipo especialmente importante para países como la Argentina: la <strong>inflación cambiaria</strong>. Para situarlas, primero vamos a recordar el rol del Estado en la regulación de la economía: ese marco nos permitirá entender por qué cada inflación exige una intervención estatal distinta.</p>
+
+    <div class="brujula">
+      <span class="brujula-label">Brújula de Análisis</span>
+      <h4>¿Qué nos preguntamos en esta unidad?</h4>
+      <ol>
+        <li>¿Por qué decimos que el mercado solo no alcanza para regular la economía?</li>
+        <li>¿Qué diferencia hay entre que los precios suban porque sobra demanda y que suban porque alguien decide subirlos?</li>
+        <li>¿Por qué en países como Argentina aparece un tipo de inflación que en los países industriales casi no existe?</li>
+        <li>¿Quiénes ganan y quiénes pierden en cada tipo de inflación?</li>
+        <li>¿Por qué un mismo "remedio" puede curar una inflación y empeorar otra?</li>
+      </ol>
+    </div>
+
+    <p>No tengan miedo de preguntar, dudar o equivocarse. Son temas densos que requieren tiempo, relectura y conversación. El documento combina lectura tradicional con espacios interactivos: encontrarán <strong>pestañas comparativas</strong>, <strong>diagramas de procesos</strong> y <strong>preguntas de autoevaluación</strong> para ejercitarse. Si una idea no queda clara, vuelvan a las fuentes obligatorias listadas al final.</p>
+
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     SECCIÓN 02 · MERCADO Y ESTADO
+     ════════════════════════════════════════════ -->
+<section class="section" id="sec-2">
+  <div class="container">
+    <span class="section-tag">Sección 02 · Punto de partida</span>
+    <h2>Mercado y Estado: dos formas de <em>regulación</em></h2>
+    <p class="source-line">Basado en Spagnolo y Mercado, <em>Introducción a la Economía</em>, Capítulo VI</p>
+
+    <div class="tldr">
+      <div class="tldr-mark">i</div>
+      <div class="tldr-body">
+        <span class="tldr-label">Lo esencial</span>
+        <p>La economía capitalista <strong>no se regula sola</strong>. Coexisten dos mecanismos que se complementan: el mercado (espontáneo, privado, disperso) y el Estado (planificado, público, centralizado). Sin el segundo, las tensiones que produce el primero pueden destruir el sistema entero.</p>
+      </div>
+    </div>
+
+    <p>Antes de entrar al fenómeno de la inflación necesitamos un punto de apoyo: ¿quién regula la economía? La respuesta de Spagnolo y Mercado es clara: la economía capitalista se regula por <strong>dos vías que coexisten permanentemente</strong>: el mercado y el Estado.</p>
+
+    <p>El mercado regula a través de la ganancia y la competencia: son fuerzas espontáneas, dispersas, privadas. Pero —y esto es central— el mercado por sí solo no alcanza. La búsqueda individual de ganancia, dejada sin freno, puede convertirse en disputa abierta y poner en riesgo la reproducción económica del conjunto. Por eso la regulación incorpora otro elemento clave: el Estado, una entidad <strong>pública, universal y centralizada</strong>, que opera de manera planificada para acotar los desequilibrios del mercado.</p>
+
+    <div class="pullquote">
+      <blockquote>El mercado por sí mismo no puede asegurar una regulación plenamente eficaz, ya que no logra contener todas las heterogeneidades y desequilibrios que surgen de la acumulación de capital.</blockquote>
+      <cite>Spagnolo y Mercado · Cap. VI</cite>
+    </div>
+
+    <h3>Las cuatro formas de intervención estatal</h3>
+    <p>Spagnolo y Mercado distinguen cuatro grandes modalidades de intervención del Estado en la economía. Conocerlas nos permite ubicar mejor lo que viene después:</p>
+
+    <div class="elemento">
+      <span class="elemento-tag">Tipo 01 · Fundacional</span>
+      <h4>El Estado funda la economía de mercado</h4>
+      <p>Cuando el Estado impulsa el paso del feudalismo a la economía de mercado: unifica el mercado interno, abole aduanas internas, impone una moneda única, libera la mano de obra del régimen de servidumbre. Es una intervención histórica, propia del nacimiento del capitalismo.</p>
+    </div>
+
+    <div class="elemento">
+      <span class="elemento-tag">Tipo 02 · Básica</span>
+      <h4>Marco permanente para la actividad económica</h4>
+      <p>Una vez instaurada la economía mercantil, el Estado queda como práctica normal y se convierte en la <strong>base que opera como marco</strong> del desenvolvimiento de las actividades económicas. Garantiza contratos, controla calidad de bienes, regula condiciones de trabajo, sostiene la seguridad social, fija normas de higiene. Sin esta intervención permanente, los circuitos productivos no pueden sostenerse.</p>
+    </div>
+
+    <div class="elemento">
+      <span class="elemento-tag">Tipo 03 · Infraestructural</span>
+      <h4>El Estado donde el privado no llega</h4>
+      <p>El Estado asume actividades que el sector privado no cubre por baja rentabilidad o alto riesgo: rutas, energía, agua, redes cloacales, represas. Especialmente importante en países periféricos, donde estas inversiones imprescindibles para el conjunto suelen tener tiempos de maduración largos.</p>
+    </div>
+
+    <div class="elemento">
+      <span class="elemento-tag">Tipo 04 · Coyuntural</span>
+      <h4>La política económica propiamente dicha</h4>
+      <p>Es la intervención que requiere <strong>revisión y readecuación constante</strong>. Comprende la política monetaria y financiera, la política fiscal, la política de ingresos y la política de desarrollo. Es donde se juega la lucha contra la inflación y donde se moviliza la mayor parte del debate público.</p>
+    </div>
+
+    <div class="quiz">
+      <span class="quiz-label">Autoevaluación · Sección 02</span>
+      <h4>Según Spagnolo y Mercado, ¿por qué el mercado por sí solo no logra regular plenamente la economía capitalista?</h4>
+      <div class="quiz-options">
+        <button class="quiz-opt" data-correct="false" data-feedback="Esa visión correspondería a una postura que niega los fenómenos de concentración. Spagnolo y Mercado plantean lo contrario: el mercado dejado solo tiende a la disputa y al desequilibrio.">Porque el mercado siempre tiende espontáneamente al equilibrio.</button>
+        <button class="quiz-opt" data-correct="true" data-feedback="Correcto. Los autores señalan que la búsqueda permanente de ganancia individual y la lucha competitiva pueden 'transformarse en ansia desenfrenada y disputa abierta', poniendo en peligro la reproducción económico-social en su totalidad. Por eso es necesario el Estado como complemento.">Porque la búsqueda individual de ganancia genera conflictos y desequilibrios que pueden poner en riesgo la reproducción económica del conjunto.</button>
+        <button class="quiz-opt" data-correct="false" data-feedback="Los autores no critican el funcionamiento del mercado por una cuestión moral, sino por sus efectos económico-sociales reales. Y el Estado no reemplaza al mercado, sino que coexiste con él.">Porque el mercado es éticamente injusto y debe ser reemplazado por el Estado.</button>
+        <button class="quiz-opt" data-correct="false" data-feedback="Justamente al revés: en los países periféricos la intervención estatal infraestructural y básica suele ser más necesaria, no menos.">Porque solo funciona en países industriales, no en los periféricos.</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     SECCIÓN 03 · POLÍTICA ECONÓMICA
+     ════════════════════════════════════════════ -->
+<section class="section" id="sec-3">
+  <div class="container">
+    <span class="section-tag">Sección 03 · La lente</span>
+    <h2>Política económica: <em>objetivos</em> e instrumentos</h2>
+    <p class="source-line">Basado en Rossetti, <em>Introducción a la Economía. Enfoque latinoamericano</em>, Capítulo 3</p>
+
+    <div class="tldr">
+      <div class="tldr-mark">i</div>
+      <div class="tldr-body">
+        <span class="tldr-label">Lo esencial</span>
+        <p>La política económica trabaja con dos cosas: <strong>objetivos</strong> que persigue (desarrollo, estabilidad, distribución más justa) e <strong>instrumentos</strong> con los que actúa (monetarios, fiscales, cambiarios, complementarios). Combatir la inflación es elegir bien la combinación: cada tipo de inflación pide instrumentos distintos.</p>
+      </div>
+    </div>
+
+    <p>Rossetti aporta una distinción que nos será muy útil: la economía se divide en una parte <strong>positiva</strong> (descripción y teoría: cómo son las cosas) y una parte <strong>normativa</strong> (política económica: cómo deben ser y cómo actuar para llevarlas hacia ahí).</p>
+
+    <p>La política económica no aparece sola: trabaja con dos elementos interdependientes que conviene tener en mente cuando estudiamos cualquier intento de combatir la inflación.</p>
+
+    <h3>Tres objetivos centrales</h3>
+
+    <div class="elemento">
+      <span class="elemento-tag">Objetivo 01</span>
+      <h4>Desarrollo económico</h4>
+      <p>Especialmente prioritario para los países periféricos: mejora de las condiciones de vida, infraestructura, salud, educación, electrificación, transporte. Es el "despertar" histórico de los países subdesarrollados después de la Segunda Guerra Mundial.</p>
+    </div>
+
+    <div class="elemento">
+      <span class="elemento-tag">Objetivo 02</span>
+      <h4>Estabilidad económica</h4>
+      <p>Reúne tres metas articuladas: <strong>mantenimiento del pleno empleo</strong>, <strong>estabilidad general de los precios</strong> (es decir, ausencia de inflación significativa) y <strong>equilibrio de la balanza de pagos</strong> internacional. Las tres están interconectadas: la inflación, el desempleo y los problemas externos suelen aparecer juntos.</p>
+    </div>
+
+    <div class="elemento">
+      <span class="elemento-tag">Objetivo 03</span>
+      <h4>Eficiencia distributiva</h4>
+      <p>Reducir las desigualdades, tanto regionales como entre familias. Rossetti señala datos elocuentes para América Latina: en Argentina el 5% más rico se quedaba con cerca del 29% del ingreso nacional, mientras el 20% más pobre recibía aproximadamente el 7%.</p>
+    </div>
+
+    <h3>Cuatro tipos de instrumentos</h3>
+    <p>Para alcanzar esos objetivos, la política económica cuenta con un conjunto de herramientas. La mayoría provienen del análisis macroeconómico:</p>
+
+    <div class="ficha">
+      <div class="ficha-item">
+        <span class="ficha-lbl">Instrumento 01</span>
+        <div class="ficha-val"><strong>Monetarios</strong> · regulan la cantidad de dinero y crédito en circulación. Manejo del Banco Central, tasas de interés, líneas de crédito.</div>
+      </div>
+      <div class="ficha-item">
+        <span class="ficha-lbl">Instrumento 02</span>
+        <div class="ficha-val"><strong>Fiscales</strong> · gestión de las finanzas públicas. Gastos del Estado e ingresos por impuestos.</div>
+      </div>
+      <div class="ficha-item">
+        <span class="ficha-lbl">Instrumento 03</span>
+        <div class="ficha-val"><strong>Cambiarios</strong> · manejo del tipo de cambio. Influyen sobre importaciones, exportaciones y flujos de capital.</div>
+      </div>
+      <div class="ficha-item">
+        <span class="ficha-lbl">Instrumento 04</span>
+        <div class="ficha-val"><strong>Coadyuvantes</strong> · controles directos sobre precios, salarios y actividades específicas. Complementan a los anteriores.</div>
+      </div>
+    </div>
+
+    <div class="arrow-box">
+      <span class="arrow-box-mark">→</span>
+      <div>
+        <strong class="arrow-title">¿Por qué importa esto?</strong>
+        <p>Como veremos en las próximas secciones, <strong>no hay una sola "política antiinflacionaria"</strong>. Cada tipo de inflación llama a un mix distinto de instrumentos. Aplicar el mix equivocado no solo no resuelve el problema: puede empeorarlo.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     SECCIÓN 04 · TIPOS DE INFLACIÓN — INTRO
+     ════════════════════════════════════════════ -->
+<section class="section" id="sec-4">
+  <div class="container">
+    <span class="section-tag">Sección 04 · Núcleo conceptual</span>
+    <h2>Los tres tipos de <em>inflación</em></h2>
+    <p class="source-line">Basado en Diamand, <em>Doctrinas económicas, desarrollo e independencia</em>, Capítulos 5 y 6</p>
+
+    <div class="pullquote">
+      <blockquote>Confundir los diferentes fenómenos inflacionarios en uno solo, bajo el nombre común de "inflación", equivale a unificar varios tipos de enfermedades infecciosas, de origen y terapia distintos, con la denominación común de "la fiebre".</blockquote>
+      <cite>Marcelo Diamand · Cap. 5</cite>
+    </div>
+
+    <p>Cada inflación tiene su <strong>origen</strong>, su <strong>distribución de ingresos característica</strong>, su <strong>efecto sobre el empleo</strong> y exige una <strong>terapia distinta</strong>. Conviene retener desde el inicio el cuadro general que vamos a desarrollar:</p>
+
+    <div class="ficha">
+      <div class="ficha-item">
+        <span class="ficha-lbl">Tipo 01</span>
+        <div class="ficha-val"><strong>De demanda</strong> · la demanda global excede la capacidad productiva. Hay auge económico.</div>
+      </div>
+      <div class="ficha-item">
+        <span class="ficha-lbl">Tipo 02</span>
+        <div class="ficha-val"><strong>De costos</strong> · aumentos por decisión (sindical o monopólica), independientes del mercado. Compatible con recesión.</div>
+      </div>
+      <div class="ficha-item">
+        <span class="ficha-lbl">Tipo 03</span>
+        <div class="ficha-val"><strong>Estructural</strong> · cuello de botella en la oferta de un bien específico. Recesiva. Típica de las EPD.</div>
+      </div>
+      <div class="ficha-item">
+        <span class="ficha-lbl">Subtipo</span>
+        <div class="ficha-val"><strong>Cambiaria</strong> · subtipo de la estructural, donde el bien escaso son las divisas. La más importante en Argentina.</div>
+      </div>
+    </div>
+
+    <p>En las próximas cuatro secciones desarrollamos cada una. Antes de seguir, un pequeño truco diagnóstico que les va a servir todo el tiempo:</p>
+
+    <div class="arrow-box">
+      <span class="arrow-box-mark">→</span>
+      <div>
+        <strong class="arrow-title">El nivel de empleo es la mejor pista</strong>
+        <p>Cuando vean un escenario inflacionario, miren primero el empleo. Si hay <strong>auge</strong> y mercado comprador, casi seguro es inflación de demanda. Si hay <strong>recesión</strong> o desempleo, definitivamente <em>no</em> lo es: hay que buscar el motor decisional o el cuello de botella en alguna parte.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     SECCIÓN 05 · INFLACIÓN DE DEMANDA
+     ════════════════════════════════════════════ -->
+<section class="section" id="sec-5">
+  <div class="container">
+    <span class="section-tag">Sección 05 · Tipo 01</span>
+    <h2>Inflación de <em>demanda</em></h2>
+    <p class="source-line">Diamand, Capítulo 5</p>
+
+    <div class="tldr">
+      <div class="tldr-mark">i</div>
+      <div class="tldr-body">
+        <span class="tldr-label">En una frase</span>
+        <p>Sobra plata para gastar y la economía no puede producir más. Hay <strong>auge, no recesión</strong>: las fábricas trabajan a tope y todavía falta producto, así que los precios suben.</p>
+      </div>
+    </div>
+
+    <h3>Cómo funciona el proceso</h3>
+
+    <div class="diagram">
+      <span class="diagram-label">Cadena causal</span>
+      <svg viewBox="0 0 760 130" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagrama de la inflación de demanda">
+        <defs>
+          <marker id="arr-d" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#8e44ad"/>
+          </marker>
+        </defs>
+        <g font-family="Inter, sans-serif" font-size="11.5">
+          <!-- Step 1 -->
+          <rect x="10" y="20" width="155" height="80" rx="8" fill="#fdfbff" stroke="#8e44ad" stroke-width="1.5"/>
+          <text x="87" y="42" text-anchor="middle" fill="#6c3483" font-weight="700" font-size="9.5" letter-spacing="1">PASO 01</text>
+          <text x="87" y="62" text-anchor="middle" fill="#2a1133" font-weight="600">Expansión monetaria</text>
+          <text x="87" y="80" text-anchor="middle" fill="#444">o gasto público en alza</text>
+          <text x="87" y="94" text-anchor="middle" fill="#444">sobre pleno empleo</text>
+
+          <line x1="170" y1="60" x2="200" y2="60" stroke="#8e44ad" stroke-width="2" marker-end="url(#arr-d)"/>
+
+          <!-- Step 2 -->
+          <rect x="205" y="20" width="155" height="80" rx="8" fill="#fdfbff" stroke="#8e44ad" stroke-width="1.5"/>
+          <text x="282" y="42" text-anchor="middle" fill="#6c3483" font-weight="700" font-size="9.5" letter-spacing="1">PASO 02</text>
+          <text x="282" y="62" text-anchor="middle" fill="#2a1133" font-weight="600">Demanda &gt; Oferta</text>
+          <text x="282" y="80" text-anchor="middle" fill="#444">la capacidad productiva</text>
+          <text x="282" y="94" text-anchor="middle" fill="#444">no puede acompañar</text>
+
+          <line x1="365" y1="60" x2="395" y2="60" stroke="#8e44ad" stroke-width="2" marker-end="url(#arr-d)"/>
+
+          <!-- Step 3 -->
+          <rect x="400" y="20" width="155" height="80" rx="8" fill="#fdfbff" stroke="#8e44ad" stroke-width="1.5"/>
+          <text x="477" y="42" text-anchor="middle" fill="#6c3483" font-weight="700" font-size="9.5" letter-spacing="1">PASO 03</text>
+          <text x="477" y="62" text-anchor="middle" fill="#2a1133" font-weight="600">Suben los precios</text>
+          <text x="477" y="80" text-anchor="middle" fill="#444">el desbalance se resuelve</text>
+          <text x="477" y="94" text-anchor="middle" fill="#444">por la vía de los precios</text>
+
+          <line x1="560" y1="60" x2="590" y2="60" stroke="#8e44ad" stroke-width="2" marker-end="url(#arr-d)"/>
+
+          <!-- Step 4 -->
+          <rect x="595" y="20" width="155" height="80" rx="8" fill="#f4e7ed" stroke="#4a235a" stroke-width="1.5"/>
+          <text x="672" y="42" text-anchor="middle" fill="#4a235a" font-weight="700" font-size="9.5" letter-spacing="1">PASO 04</text>
+          <text x="672" y="62" text-anchor="middle" fill="#2a1133" font-weight="600">Auge inflacionario</text>
+          <text x="672" y="80" text-anchor="middle" fill="#444">súper-pleno empleo,</text>
+          <text x="672" y="94" text-anchor="middle" fill="#444">utilidades empresarias</text>
+        </g>
+      </svg>
+    </div>
+
+    <h3>Causas y diagnóstico</h3>
+    <p>Las causas posibles, según Diamand: cambios de hábito que reducen el ahorro, gran auge de inversiones, mejora de precios internacionales para las exportaciones, y —la más frecuente— una <strong>expansión monetaria excesiva</strong> originada en expansión de créditos al sector privado o en déficit fiscal financiado con emisión.</p>
+
+    <div class="keyline">
+      <p><strong>Atención:</strong> No <em>toda</em> emisión genera inflación de demanda. Si hay capacidad ociosa (recursos sin usar), la nueva demanda hace subir la producción <em>sin</em> subir los precios. La inflación de demanda aparece solo cuando la capacidad productiva ya está al máximo.</p>
+    </div>
+
+    <p>Diamand cita a Hansen para reforzar el punto: en una situación de desempleo y recursos ociosos, los aumentos del gasto afectan principalmente a la producción, con muy poco efecto sobre los precios.</p>
+
+    <h3>Quién gana, quién pierde</h3>
+
+    <div class="winloss">
+      <div class="winloss-card win">
+        <div class="winloss-label"><span class="winloss-icon">+</span> Beneficiarios</div>
+        <h4>Empresarios del mercado interno</h4>
+        <p>Los precios suben primero; los salarios y el tipo de cambio quedan momentáneamente fijos. Resultado: las utilidades empresarias se expanden y se redistribuye el ingreso a su favor.</p>
+      </div>
+      <div class="winloss-card loss">
+        <div class="winloss-label"><span class="winloss-icon">−</span> Perjudicados</div>
+        <h4>Asalariados y exportadores</h4>
+        <p>Los ingresos nominales no acompañan al alza de precios. Pero en este caso el perjuicio sobre los asalariados queda <em>parcialmente neutralizado</em> por el auge: hay más empleo y más actividad.</p>
+      </div>
+    </div>
+
+    <h3>Forma de abordaje</h3>
+    <p>El remedio es directo: <strong>reducir la demanda hasta el nivel de la oferta</strong>. ¿Cómo? Equilibrando el presupuesto público (o financiando el déficit con ahorro genuino, no con emisión) y, si la liquidez fuera excesiva, contrayendo la oferta monetaria al sector privado.</p>
+
+    <p>Lo importante es que <em>en este caso</em> la política restrictiva <strong>no es recesiva</strong>: el sistema venía con sobreabundancia de liquidez. Reducir la demanda lo lleva al equilibrio sin generar desempleo. El problema —insiste Diamand— aparece cuando este mismo remedio se aplica a inflaciones que no son de demanda.</p>
+
+    <table class="compare-table">
+      <tr><td>Origen</td><td>Demanda global &gt; capacidad productiva</td></tr>
+      <tr><td>Mercado</td><td>Netamente comprador, súper-pleno empleo</td></tr>
+      <tr><td>Distribución</td><td>A favor de empresarios del mercado interno</td></tr>
+      <tr><td>Empleo</td><td>Auge inflacionario (alta actividad)</td></tr>
+      <tr><td>Remedio</td><td>Reducir demanda (no es recesivo en este caso)</td></tr>
+    </table>
+
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     SECCIÓN 06 · INFLACIÓN DE COSTOS
+     ════════════════════════════════════════════ -->
+<section class="section" id="sec-6">
+  <div class="container">
+    <span class="section-tag">Sección 06 · Tipo 02</span>
+    <h2>Inflación de <em>costos</em></h2>
+    <p class="source-line">Diamand, Capítulo 5</p>
+
+    <div class="tldr">
+      <div class="tldr-mark">i</div>
+      <div class="tldr-body">
+        <span class="tldr-label">En una frase</span>
+        <p>Los precios suben porque <strong>alguien decide subirlos</strong>: un sindicato fuerte que negocia un aumento, una empresa monopólica que sube su tarifa. <em>No</em> hay exceso de demanda: puede haber incluso recesión. Por eso reducir la demanda no soluciona nada.</p>
+      </div>
+    </div>
+
+    <h3>Cómo funciona el proceso</h3>
+
+    <div class="diagram">
+      <span class="diagram-label">Cadena causal</span>
+      <svg viewBox="0 0 760 130" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagrama de la inflación de costos">
+        <defs>
+          <marker id="arr-c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#8e44ad"/>
+          </marker>
+        </defs>
+        <g font-family="Inter, sans-serif" font-size="11.5">
+          <rect x="10" y="20" width="155" height="80" rx="8" fill="#fdfbff" stroke="#8e44ad" stroke-width="1.5"/>
+          <text x="87" y="42" text-anchor="middle" fill="#6c3483" font-weight="700" font-size="9.5" letter-spacing="1">PASO 01</text>
+          <text x="87" y="62" text-anchor="middle" fill="#2a1133" font-weight="600">Decisión de subir</text>
+          <text x="87" y="80" text-anchor="middle" fill="#444">acuerdo salarial o</text>
+          <text x="87" y="94" text-anchor="middle" fill="#444">aumento monopólico</text>
+
+          <line x1="170" y1="60" x2="200" y2="60" stroke="#8e44ad" stroke-width="2" marker-end="url(#arr-c)"/>
+
+          <rect x="205" y="20" width="155" height="80" rx="8" fill="#fdfbff" stroke="#8e44ad" stroke-width="1.5"/>
+          <text x="282" y="42" text-anchor="middle" fill="#6c3483" font-weight="700" font-size="9.5" letter-spacing="1">PASO 02</text>
+          <text x="282" y="62" text-anchor="middle" fill="#2a1133" font-weight="600">Suben los costos</text>
+          <text x="282" y="80" text-anchor="middle" fill="#444">independientemente</text>
+          <text x="282" y="94" text-anchor="middle" fill="#444">de la demanda</text>
+
+          <line x1="365" y1="60" x2="395" y2="60" stroke="#8e44ad" stroke-width="2" marker-end="url(#arr-c)"/>
+
+          <rect x="400" y="20" width="155" height="80" rx="8" fill="#fdfbff" stroke="#8e44ad" stroke-width="1.5"/>
+          <text x="477" y="42" text-anchor="middle" fill="#6c3483" font-weight="700" font-size="9.5" letter-spacing="1">PASO 03</text>
+          <text x="477" y="62" text-anchor="middle" fill="#2a1133" font-weight="600">Traslado a precios</text>
+          <text x="477" y="80" text-anchor="middle" fill="#444">las empresas trasladan</text>
+          <text x="477" y="94" text-anchor="middle" fill="#444">el aumento</text>
+
+          <line x1="560" y1="60" x2="590" y2="60" stroke="#8e44ad" stroke-width="2" marker-end="url(#arr-c)"/>
+
+          <rect x="595" y="20" width="155" height="80" rx="8" fill="#f4e7ed" stroke="#4a235a" stroke-width="1.5"/>
+          <text x="672" y="42" text-anchor="middle" fill="#4a235a" font-weight="700" font-size="9.5" letter-spacing="1">PASO 04</text>
+          <text x="672" y="62" text-anchor="middle" fill="#2a1133" font-weight="600">Inflación con o sin</text>
+          <text x="672" y="80" text-anchor="middle" fill="#2a1133" font-weight="600">recesión</text>
+          <text x="672" y="94" text-anchor="middle" fill="#444">sin exceso de demanda</text>
+        </g>
+      </svg>
+    </div>
+
+    <h3>Causas y diagnóstico</h3>
+    <p>Diamand identifica dos motores típicos:</p>
+
+    <ul>
+      <li><strong>Aumentos monopólicos</strong>: empresas con demanda inelástica (especialmente productoras de materias primas y bienes semielaborados) suben precios por decisión, sin que la demanda lo reclame.</li>
+      <li><strong>Aumentos salariales masivos</strong>: en una sociedad industrial, los salarios no se fijan por mercado sino por <em>negociación colectiva</em>. Cuando los aumentos superan el incremento de productividad, se trasladan a precios.</li>
+    </ul>
+
+    <p>Diagnóstico clave: <strong>la demanda no excede la oferta</strong>. Puede incluso haber recesión. La distinción con la inflación de demanda se hace mirando el nivel de empleo: si hay alza de precios <em>con</em> recesión o sin súper-pleno empleo, no es inflación de demanda.</p>
+
+    <h3>Quién gana, quién pierde</h3>
+
+    <div class="winloss">
+      <div class="winloss-card win">
+        <div class="winloss-label"><span class="winloss-icon">+</span> Beneficiarios</div>
+        <h4>Quien impuso el aumento</h4>
+        <p>El sector asalariado (cuando el motor son los aumentos salariales) o las empresas monopólicas (cuando son ellas las que suben precios). En la Argentina, los aumentos posdevaluatorios suelen ser inflaciones de costos donde los asalariados reconquistan participación perdida.</p>
+      </div>
+      <div class="winloss-card loss">
+        <div class="winloss-label"><span class="winloss-icon">−</span> Perjudicados</div>
+        <h4>Quien no logra trasladar</h4>
+        <p>Empresarios con poco poder de mercado, asalariados con sindicatos débiles, y eventualmente el conjunto si el Estado responde con políticas restrictivas que generan recesión sin frenar el motor inflacionario.</p>
+      </div>
+    </div>
+
+    <h3>Forma de abordaje</h3>
+    <p>Aquí Diamand es enfático: <strong>la receta de "reducir la demanda" no funciona</strong>. ¿Por qué? Porque los precios y salarios no se fijan por mercado. Reducir la demanda genera recesión <em>sin</em> frenar los aumentos por decisión. Es lo que Galbraith y Kaldor venían sosteniendo y que se confirmó con el fracaso del plan Nixon en EE.UU.</p>
+
+    <p>La forma adecuada combina dos vías:</p>
+
+    <ol>
+      <li><strong>Política decisional de ingresos</strong>: acuerdos de precios y salarios entre sectores, eventualmente con intervención del gobierno. La Argentina tuvo en 1967 una experiencia interesante en esta línea.</li>
+      <li><strong>Institucionalizar la inflación</strong> mientras tanto: ajustar tasas de interés, impuestos y tipo de cambio (mediante un "tipo de cambio reptante" o <em>crawling peg</em>) para que los efectos nocivos —desaliento del ahorro, descapitalización de empresas, desequilibrio externo— se atenúen.</li>
+    </ol>
+
+    <div class="ejemplo">
+      <div class="ejemplo-label"><span class="ejemplo-icon">★</span> El caso argentino</div>
+      <h4>Argentina 1967: una estabilización por acuerdos</h4>
+      <p>El programa estabilizador de 1967 atacó la inflación de costos con una <strong>política decisional de ingresos</strong>: congeló todos los salarios en un valor correspondiente al promedio real percibido durante la inflación, con compromiso de reajustes futuros, y simultáneamente cerró acuerdos de precios con las grandes empresas líderes del mercado. Eliminados los motores inflacionarios decisionales, la expansión monetaria posterior no fue inflacionaria.</p>
+      <p>Aun así, según Diamand, el plan tuvo un defecto crucial que terminaría haciéndolo fracasar: <strong>ignoró por completo los problemas estructurales</strong> (el cuello de botella ganadero y el del sector externo), que estallaron pocos años después.</p>
+    </div>
+
+    <div class="arrow-box">
+      <span class="arrow-box-mark">→</span>
+      <div>
+        <strong class="arrow-title">Detalle clave</strong>
+        <p>En la inflación de costos, el déficit fiscal es <strong>consecuencia</strong>, no causa. La inflación encarece los gastos del Estado mientras las recaudaciones siguen los precios anteriores. Por eso la "obsesión con el déficit" como causante de inflación, dice Diamand, suele ser un diagnóstico equivocado.</p>
+      </div>
+    </div>
+
+    <table class="compare-table">
+      <tr><td>Origen</td><td>Aumentos por decisión (sindical o monopólica)</td></tr>
+      <tr><td>Mercado</td><td>Sin exceso de demanda; puede haber recesión</td></tr>
+      <tr><td>Distribución</td><td>A favor del sector que impuso el aumento</td></tr>
+      <tr><td>Empleo</td><td>Compatible con pleno empleo o con recesión</td></tr>
+      <tr><td>Remedio</td><td>Política de ingresos / acuerdos de precios y salarios. Restringir la demanda NO funciona.</td></tr>
+    </table>
+
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     SECCIÓN 07 · INFLACIÓN ESTRUCTURAL
+     ════════════════════════════════════════════ -->
+<section class="section" id="sec-7">
+  <div class="container">
+    <span class="section-tag">Sección 07 · Tipo 03</span>
+    <h2>Inflación <em>estructural</em></h2>
+    <p class="source-line">Diamand, Capítulo 5</p>
+
+    <div class="tldr">
+      <div class="tldr-mark">i</div>
+      <div class="tldr-body">
+        <span class="tldr-label">En una frase</span>
+        <p>Falta un bien específico —no toda la economía, solo uno— y ese cuello de botella hace subir su precio, que arrastra al resto. Es la inflación típica de las <strong>EPD (Estructuras Productivas Desequilibradas)</strong> y muy difícil de combatir con política monetaria.</p>
+      </div>
+    </div>
+
+    <p>Diamand acuña el concepto de EPD para describir economías como la argentina, donde el sector industrial trabaja con costos muy por encima de los precios internacionales y el sector exportador (típicamente primario-agropecuario) opera a precios internacionales. Esa divergencia estructural genera tensiones permanentes.</p>
+
+    <p>En estas economías, mucho antes de que la demanda global agote la capacidad productiva, aparecen <strong>cuellos de botella</strong> en rubros específicos de la oferta. La demanda por ese producto escaso eleva su precio y el aumento se propaga por la vía de los costos o del costo de vida.</p>
+
+    <div class="ejemplo">
+      <div class="ejemplo-label"><span class="ejemplo-icon">★</span> El caso argentino · La carne</div>
+      <h4>Por qué subir el precio de la carne reduce la oferta</h4>
+      <p>Diamand desarrolla el ejemplo del sector ganadero argentino. La intuición común dice: si sube el precio, los productores ofrecen más. Pero con la carne pasa lo contrario.</p>
+      <p>El stock de ganado es el propio bien de capital. Para producir más terneros mañana, hace falta retener vacas hoy. Cuando sube el precio, los productores <strong>retienen vientres</strong> para reproducir más ganado, y eso <em>reduce</em> la oferta a corto plazo en lugar de aumentarla.</p>
+      <p>El ciclo ganadero requiere unos tres años. La oferta no responde al precio sino mucho después, y mientras tanto el mercado se ajusta de la única manera que puede: subiendo aún más el precio hasta que la demanda baje al nivel de la oferta. En la práctica, entre enero de 1970 y enero de 1971, el precio de venta al público de la carne llegó a duplicarse.</p>
+    </div>
+
+    <h3>Cómo funciona el proceso</h3>
+
+    <div class="diagram">
+      <span class="diagram-label">Cadena causal</span>
+      <svg viewBox="0 0 760 130" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagrama de la inflación estructural">
+        <defs>
+          <marker id="arr-e" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#8e44ad"/>
+          </marker>
+        </defs>
+        <g font-family="Inter, sans-serif" font-size="11.5">
+          <rect x="10" y="20" width="155" height="80" rx="8" fill="#fdfbff" stroke="#8e44ad" stroke-width="1.5"/>
+          <text x="87" y="42" text-anchor="middle" fill="#6c3483" font-weight="700" font-size="9.5" letter-spacing="1">PASO 01</text>
+          <text x="87" y="62" text-anchor="middle" fill="#2a1133" font-weight="600">Cuello de botella</text>
+          <text x="87" y="80" text-anchor="middle" fill="#444">en oferta de un</text>
+          <text x="87" y="94" text-anchor="middle" fill="#444">bien específico</text>
+
+          <line x1="170" y1="60" x2="200" y2="60" stroke="#8e44ad" stroke-width="2" marker-end="url(#arr-e)"/>
+
+          <rect x="205" y="20" width="155" height="80" rx="8" fill="#fdfbff" stroke="#8e44ad" stroke-width="1.5"/>
+          <text x="282" y="42" text-anchor="middle" fill="#6c3483" font-weight="700" font-size="9.5" letter-spacing="1">PASO 02</text>
+          <text x="282" y="62" text-anchor="middle" fill="#2a1133" font-weight="600">Sube su precio</text>
+          <text x="282" y="80" text-anchor="middle" fill="#444">para igualar demanda</text>
+          <text x="282" y="94" text-anchor="middle" fill="#444">y oferta escasa</text>
+
+          <line x1="365" y1="60" x2="395" y2="60" stroke="#8e44ad" stroke-width="2" marker-end="url(#arr-e)"/>
+
+          <rect x="400" y="20" width="155" height="80" rx="8" fill="#fdfbff" stroke="#8e44ad" stroke-width="1.5"/>
+          <text x="477" y="42" text-anchor="middle" fill="#6c3483" font-weight="700" font-size="9.5" letter-spacing="1">PASO 03</text>
+          <text x="477" y="62" text-anchor="middle" fill="#2a1133" font-weight="600">Propagación</text>
+          <text x="477" y="80" text-anchor="middle" fill="#444">por costos o por</text>
+          <text x="477" y="94" text-anchor="middle" fill="#444">costo de vida</text>
+
+          <line x1="560" y1="60" x2="590" y2="60" stroke="#8e44ad" stroke-width="2" marker-end="url(#arr-e)"/>
+
+          <rect x="595" y="20" width="155" height="80" rx="8" fill="#f4e7ed" stroke="#4a235a" stroke-width="1.5"/>
+          <text x="672" y="42" text-anchor="middle" fill="#4a235a" font-weight="700" font-size="9.5" letter-spacing="1">PASO 04</text>
+          <text x="672" y="62" text-anchor="middle" fill="#2a1133" font-weight="600">Recesión</text>
+          <text x="672" y="80" text-anchor="middle" fill="#444">cae la demanda agregada</text>
+          <text x="672" y="94" text-anchor="middle" fill="#444">de los demás bienes</text>
+        </g>
+      </svg>
+    </div>
+
+    <h3>Causas y diagnóstico</h3>
+    <p>El origen es un <strong>estrangulamiento real en la oferta de un bien específico</strong>, no un exceso de demanda global. En los países industriales este tipo de inflación es poco intenso porque pueden importar el bien escaso. En las EPD la falta crónica de divisas impide ese remedio: por eso, dice Diamand, casi todas las inflaciones estructurales son <em>indirectamente</em> consecuencia del estrangulamiento externo.</p>
+
+    <h3>Quién gana, quién pierde</h3>
+
+    <div class="winloss">
+      <div class="winloss-card win">
+        <div class="winloss-label"><span class="winloss-icon">+</span> Beneficiarios</div>
+        <h4>Productor del bien escaso</h4>
+        <p>En el ejemplo de la carne, los productores ganaderos: capturan una proporción mayor del ingreso nacional gracias al alza del precio del bien que dominan.</p>
+      </div>
+      <div class="winloss-card loss">
+        <div class="winloss-label"><span class="winloss-icon">−</span> Perjudicados</div>
+        <h4>Asalariados, industria, comercio</h4>
+        <p>La familia gasta más en el bien escaso, le queda menos para el resto. Cae la demanda de otros bienes y el sector industrial, comercial y de servicios entra en recesión. La redistribución regresiva es <em>el mecanismo</em> mediante el cual el mercado iguala demanda y oferta del bien escaso.</p>
+      </div>
+    </div>
+
+    <h3>Forma de abordaje</h3>
+    <p>Diamand insiste: cualquier abordaje serio tiene que <strong>actuar sobre el estrangulamiento de oferta</strong>. Si solo se aumentan los salarios para compensar a los perjudicados, el mercado vuelve a generar la transferencia regresiva. Las herramientas posibles, según Diamand:</p>
+
+    <div class="proceso">
+      <span class="proceso-label">Tres herramientas, tres horizontes</span>
+      <div class="proceso-flow">
+        <div class="proceso-step">
+          <span class="step-num">CORTO PLAZO</span>
+          <span class="step-text"><strong>Racionamiento directo</strong> de la demanda del bien escaso. La "veda" a la carne en 1971 fue un ejemplo, mal aplicado pero conceptualmente válido.</span>
+        </div>
+        <div class="proceso-step">
+          <span class="step-num">PLAZO INTERMEDIO</span>
+          <span class="step-text"><strong>Sustitutos</strong> del bien escaso, promovidos activamente para descomprimir la demanda original.</span>
+        </div>
+        <div class="proceso-step">
+          <span class="step-num">LARGO PLAZO</span>
+          <span class="step-text"><strong>Inversión</strong> en el rubro vulnerable para aumentar su oferta y eliminar el cuello de botella.</span>
+        </div>
+      </div>
+    </div>
+
+    <p>Lo que <em>no</em> funciona —y es la ruta tradicional— es aplicar política monetaria restrictiva tratando esto como si fuera inflación de demanda. La definición tradicional, dice Diamand, "impide visualizar el cuello de botella".</p>
+
+    <table class="compare-table">
+      <tr><td>Origen</td><td>Estrangulamiento de oferta en un bien específico</td></tr>
+      <tr><td>Mercado</td><td>Demanda global no excede la oferta global, pero sí la del bien escaso</td></tr>
+      <tr><td>Distribución</td><td>A favor del productor del bien escaso</td></tr>
+      <tr><td>Empleo</td><td>Esencialmente recesiva</td></tr>
+      <tr><td>Remedio</td><td>Acción directa sobre el cuello de botella</td></tr>
+    </table>
+
+    <div class="quiz">
+      <span class="quiz-label">Autoevaluación · Bloque tipos de inflación</span>
+      <h4>Una economía muestra alza generalizada de precios <em>junto con</em> recesión y desempleo. Según Diamand, ¿qué tipo de inflación es <strong>imposible</strong> que sea?</h4>
+      <div class="quiz-options">
+        <button class="quiz-opt" data-correct="true" data-feedback="Correcto. Diamand insiste en que la inflación de demanda siempre trae auge: la demanda excede la capacidad productiva, hay súper-pleno empleo. Si hay recesión, definitivamente no es inflación de demanda. Podría ser de costos, estructural o cambiaria.">Inflación de demanda.</button>
+        <button class="quiz-opt" data-correct="false" data-feedback="La inflación de costos puede coexistir con recesión, especialmente si el gobierno aplica políticas monetarias restrictivas. Diamand lo señala expresamente.">Inflación de costos.</button>
+        <button class="quiz-opt" data-correct="false" data-feedback="Las inflaciones estructurales son 'esencialmente recesivas' según Diamand. Es perfectamente compatible con este escenario.">Inflación estructural.</button>
+        <button class="quiz-opt" data-correct="false" data-feedback="La inflación cambiaria es justamente fuertemente recesiva: opera por 'efecto-ingreso'. Es una de las posibilidades más probables aquí.">Inflación cambiaria.</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     SECCIÓN 08 · INFLACIÓN CAMBIARIA
+     ════════════════════════════════════════════ -->
+<section class="section" id="sec-8">
+  <div class="container">
+    <span class="section-tag">Sección 08 · Subtipo · El caso argentino</span>
+    <h2>Inflación <em>cambiaria</em></h2>
+    <p class="source-line">Diamand, Capítulo 6</p>
+
+    <div class="tldr">
+      <div class="tldr-mark">i</div>
+      <div class="tldr-body">
+        <span class="tldr-label">En una frase</span>
+        <p>Es una inflación estructural donde el bien escaso son las <strong>divisas</strong>. La devaluación obligada arranca una espiral de precios que se resuelve por recesión, no por reactivación. Probablemente la causa más importante de inflación en países como Argentina.</p>
+      </div>
+    </div>
+
+    <div class="pullquote">
+      <blockquote>La inflación cambiaria, por sus efectos directos o indirectos, constituye con toda probabilidad la fuente más importante de fenómenos inflacionarios en las EPD, ya que en última instancia es la que interrumpe todos los esfuerzos estabilizadores.</blockquote>
+      <cite>Marcelo Diamand · Cap. 5</cite>
+    </div>
+
+    <p>Diamand le dedica un análisis aparte porque la teoría tradicional la confunde sistemáticamente con inflación de demanda, llevando a planes de "estabilización" que terminan agravándola.</p>
+
+    <h3>Cómo funciona el proceso</h3>
+
+    <div class="diagram">
+      <span class="diagram-label">Cadena causal · ¿qué hace la devaluación?</span>
+      <svg viewBox="0 0 760 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagrama de la inflación cambiaria">
+        <defs>
+          <marker id="arr-x" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#8e44ad"/>
+          </marker>
+          <marker id="arr-x2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#4a235a"/>
+          </marker>
+        </defs>
+        <g font-family="Inter, sans-serif" font-size="11.5">
+          <!-- Step 1 -->
+          <rect x="10" y="60" width="170" height="80" rx="8" fill="#fdfbff" stroke="#8e44ad" stroke-width="1.5"/>
+          <text x="95" y="82" text-anchor="middle" fill="#6c3483" font-weight="700" font-size="9.5" letter-spacing="1">PASO 01</text>
+          <text x="95" y="102" text-anchor="middle" fill="#2a1133" font-weight="600">Faltan divisas</text>
+          <text x="95" y="120" text-anchor="middle" fill="#444">déficit de balanza</text>
+          <text x="95" y="134" text-anchor="middle" fill="#444">de pagos</text>
+
+          <line x1="185" y1="100" x2="215" y2="100" stroke="#8e44ad" stroke-width="2" marker-end="url(#arr-x)"/>
+
+          <!-- Step 2 -->
+          <rect x="220" y="60" width="170" height="80" rx="8" fill="#fdfbff" stroke="#8e44ad" stroke-width="1.5"/>
+          <text x="305" y="82" text-anchor="middle" fill="#6c3483" font-weight="700" font-size="9.5" letter-spacing="1">PASO 02</text>
+          <text x="305" y="102" text-anchor="middle" fill="#2a1133" font-weight="600">Devaluación obligada</text>
+          <text x="305" y="120" text-anchor="middle" fill="#444">el BCRA pierde el</text>
+          <text x="305" y="134" text-anchor="middle" fill="#444">control del tipo de cambio</text>
+
+          <!-- Branch out to two effects -->
+          <line x1="395" y1="80" x2="425" y2="50" stroke="#8e44ad" stroke-width="2" marker-end="url(#arr-x)"/>
+          <line x1="395" y1="120" x2="425" y2="150" stroke="#8e44ad" stroke-width="2" marker-end="url(#arr-x)"/>
+
+          <!-- Effect A -->
+          <rect x="430" y="20" width="170" height="60" rx="8" fill="#f4e7ed" stroke="#4a235a" stroke-width="1.5"/>
+          <text x="515" y="40" text-anchor="middle" fill="#4a235a" font-weight="700" font-size="9.5" letter-spacing="1">EFECTO-PROPAGACIÓN</text>
+          <text x="515" y="58" text-anchor="middle" fill="#2a1133">suben insumos importados,</text>
+          <text x="515" y="72" text-anchor="middle" fill="#2a1133">combustibles, bienes K</text>
+
+          <!-- Effect B -->
+          <rect x="430" y="120" width="170" height="60" rx="8" fill="#f4e7ed" stroke="#4a235a" stroke-width="1.5"/>
+          <text x="515" y="140" text-anchor="middle" fill="#4a235a" font-weight="700" font-size="9.5" letter-spacing="1">EFECTO-ARRASTRE</text>
+          <text x="515" y="158" text-anchor="middle" fill="#2a1133">precio interno de cereales</text>
+          <text x="515" y="172" text-anchor="middle" fill="#2a1133">y carne sigue al exportable</text>
+
+          <!-- Convergencia -->
+          <line x1="605" y1="50" x2="635" y2="80" stroke="#4a235a" stroke-width="2" marker-end="url(#arr-x2)"/>
+          <line x1="605" y1="150" x2="635" y2="120" stroke="#4a235a" stroke-width="2" marker-end="url(#arr-x2)"/>
+
+          <!-- Step 3 -->
+          <rect x="640" y="60" width="115" height="80" rx="8" fill="#2a1133" stroke="#2a1133"/>
+          <text x="697" y="84" text-anchor="middle" fill="#d2b4de" font-weight="700" font-size="9.5" letter-spacing="1">RESULTADO</text>
+          <text x="697" y="106" text-anchor="middle" fill="#fff" font-weight="600">Recesión por</text>
+          <text x="697" y="121" text-anchor="middle" fill="#fff" font-weight="600">efecto-ingreso</text>
+        </g>
+      </svg>
+    </div>
+
+    <h3>Causas y diagnóstico</h3>
+    <p>El proceso típico: aparece un <strong>déficit en la balanza de pagos</strong> (faltan divisas para sostener las importaciones que la economía necesita). Como las reservas no alcanzan, el Banco Central pierde el control de la cotización y se produce una <strong>devaluación obligada</strong>. Esa devaluación dispara dos efectos sobre los precios internos:</p>
+
+    <ul>
+      <li><strong>Efecto-propagación</strong>: la devaluación encarece los insumos importados, los combustibles y los bienes de capital, lo que se transmite a los precios industriales y luego a los servicios.</li>
+      <li><strong>Efecto-arrastre</strong>: en países como Argentina, donde se exportan bienes que también se consumen internamente (carne, cereales), el precio interno de esos bienes sube hasta igualar el precio que se obtendría exportando. La devaluación arrastra hacia arriba el costo de vida.</li>
+    </ul>
+
+    <div class="keyline">
+      <p><strong>Inversión de la causalidad:</strong> En la teoría tradicional, la inflación interna provoca la devaluación. En la inflación cambiaria, la relación se invierte: <em>la devaluación es la causa, no la consecuencia</em> de la inflación posterior.</p>
+    </div>
+
+    <p>Diamand también explica por qué en las EPD <strong>la devaluación no equilibra el sector externo por la vía del "efecto-precio"</strong> (como ocurre en países industriales). Las importaciones argentinas son mayoritariamente esenciales (insumos, combustibles) y no se pueden sustituir a corto plazo; las exportaciones primarias tienen oferta inelástica (el ciclo ganadero, otra vez) y no responden inmediatamente a mejores precios. ¿Cómo se equilibra entonces el sector externo? Por el <strong>"efecto-ingreso"</strong>: vía recesión.</p>
+
+    <h3>Quién gana, quién pierde</h3>
+
+    <div class="winloss">
+      <div class="winloss-card win">
+        <div class="winloss-label"><span class="winloss-icon">+</span> Beneficiarios</div>
+        <h4>Sector exportador, rural y financiero</h4>
+        <p>El sector exportador y propietario rural ganan con el alza de precios agropecuarios. El sector financiero gana porque la iliquidez monetaria eleva las tasas de interés extra-bancarias. Es una transferencia <strong>múltiple y regresiva</strong>.</p>
+      </div>
+      <div class="winloss-card loss">
+        <div class="winloss-label"><span class="winloss-icon">−</span> Perjudicados</div>
+        <h4>Asalariados, industria, servicios</h4>
+        <p>Caen los salarios reales (sube costo de vida sin que suban los nominales). Cae la rentabilidad industrial: suben los costos, baja la demanda, aumenta el desempleo. Caen las inversiones, se contrae la recaudación fiscal. Aparece el déficit del presupuesto como <em>consecuencia</em>, no causa.</p>
+      </div>
+    </div>
+
+    <h3>Forma de abordaje</h3>
+    <p>Diamand contrapone dos caminos:</p>
+
+    <div class="elemento">
+      <span class="elemento-tag">Camino A · Estabilización tradicional (FMI)</span>
+      <h4>Devaluación + restricción + liberalización</h4>
+      <p>Combina devaluación, restricción monetaria y liberalización del comercio exterior. Para Diamand, este paquete <em>no es estabilizador</em> sino "inflacionario y recesivo": detiene la espiral en un punto recesivo, aceptando el desempleo como costo. El nombre "estabilización" disfraza una transferencia regresiva del ingreso al sector primario y financiero. Diamand lo describe como una "burla" terminológica.</p>
+    </div>
+
+    <div class="elemento">
+      <span class="elemento-tag">Camino B · Estabilización no recesiva</span>
+      <h4>Política orgánica de balanza de pagos</h4>
+      <p>Apunta directamente al estrangulamiento de divisas. Sus componentes:</p>
+      <ul>
+        <li><strong>Promoción de exportaciones industriales</strong> (no solo primarias).</li>
+        <li><strong>Estímulo a las exportaciones tradicionales</strong>.</li>
+        <li><strong>Sustitución orgánica de importaciones</strong>.</li>
+        <li>A corto plazo, control selectivo de cambios y restricción de importaciones no esenciales.</li>
+      </ul>
+    </div>
+
+    <div class="pullquote">
+      <blockquote>En esto consiste esencialmente la fórmula ortodoxa de estabilización monetaria: comprimir el ingreso hasta que las importaciones desciendan al nivel que pueda cubrirse con exportaciones. No lo disimulan sus partidarios: es el sacrificio temporal que hay que realizar para el saneamiento de la economía.</blockquote>
+      <cite>Raúl Prebisch · citado por Diamand, Cap. 6</cite>
+    </div>
+
+    <table class="compare-table">
+      <tr><td>Origen</td><td>Estrangulamiento de divisas en el sector externo</td></tr>
+      <tr><td>Mecanismo</td><td>Devaluación obligada → efecto-propagación + efecto-arrastre</td></tr>
+      <tr><td>Distribución</td><td>A favor del sector exportador, rural y financiero</td></tr>
+      <tr><td>Empleo</td><td>Fuertemente recesiva (vía efecto-ingreso)</td></tr>
+      <tr><td>Remedio</td><td>Política orgánica de balanza de pagos</td></tr>
+    </table>
+
+    <div class="quiz">
+      <span class="quiz-label">Autoevaluación · Inflación cambiaria</span>
+      <h4>En la inflación cambiaria, ¿quiénes son los <strong>principales beneficiarios</strong> según el análisis de Diamand?</h4>
+      <div class="quiz-options">
+        <button class="quiz-opt" data-correct="false" data-feedback="Los empresarios industriales son justamente perjudicados: cae la rentabilidad porque suben los costos (insumos importados) y baja la demanda (por menores salarios reales) sin que puedan trasladar todo a precios.">Los empresarios industriales y comerciales.</button>
+        <button class="quiz-opt" data-correct="true" data-feedback="Correcto. Diamand identifica una transferencia 'múltiple y regresiva' a favor del sector propietario rural (sube el precio interno de cereales y carnes), del sector exportador (mejora su tipo de cambio efectivo) y del sector financiero (la iliquidez monetaria eleva las tasas de interés extra-bancarias).">El sector propietario rural, el sector exportador y el sector financiero.</button>
+        <button class="quiz-opt" data-correct="false" data-feedback="Los asalariados son el sector más perjudicado: caen sus salarios reales, sube el costo de vida (especialmente alimentos, por el efecto-arrastre) y aumenta el desempleo.">Los asalariados, porque suben los salarios nominales.</button>
+        <button class="quiz-opt" data-correct="false" data-feedback="Aunque el Estado puede recaudar más en términos nominales por el sector exportador, en términos reales la recaudación cae más que proporcionalmente con la recesión. Diamand muestra que el déficit fiscal es consecuencia, no beneficio, de la inflación cambiaria.">El sector público, que recauda más impuestos.</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     SECCIÓN 09 · CUADRO INTEGRADOR
+     ════════════════════════════════════════════ -->
+<section class="section" id="sec-9">
+  <div class="container">
+    <span class="section-tag">Sección 09 · Síntesis</span>
+    <h2>Cuadro <em>comparativo</em> integrador</h2>
+
+    <p>Esta tabla resume las cuatro inflaciones lado a lado. Tenerla a mano les va a ser útil para distinguir los procesos cuando aparecen en la realidad económica argentina, que rara vez se presenta "en estado puro".</p>
+
+    <div class="tabs-container">
+      <div class="tabs-nav" role="tablist">
+        <button class="tab-btn active" data-tab="tab-cuadro" role="tab">Cuadro completo</button>
+        <button class="tab-btn" data-tab="tab-diag" role="tab">Cómo diagnosticar</button>
+        <button class="tab-btn" data-tab="tab-remedios" role="tab">Remedios</button>
+      </div>
+
+      <div class="tab-content active" id="tab-cuadro">
+        <div style="overflow-x: auto;">
+          <table class="compare-table" style="font-size: 0.82em; min-width: 600px;">
+            <tr>
+              <th>Dimensión</th>
+              <th>Demanda</th>
+              <th>Costos</th>
+              <th>Estructural</th>
+              <th>Cambiaria</th>
+            </tr>
+            <tr>
+              <td>Causa primaria</td>
+              <td>Exceso de demanda global sobre capacidad productiva</td>
+              <td>Aumentos por decisión (sindical/monopólica)</td>
+              <td>Cuello de botella en oferta interna</td>
+              <td>Cuello de botella en oferta de divisas</td>
+            </tr>
+            <tr>
+              <td>Empleo</td>
+              <td>Súper-pleno (auge)</td>
+              <td>Compatible con pleno o recesión</td>
+              <td>Recesiva</td>
+              <td>Fuertemente recesiva</td>
+            </tr>
+            <tr>
+              <td>Beneficiarios</td>
+              <td>Empresarios del mercado interno</td>
+              <td>Sector que impuso el aumento</td>
+              <td>Productor del bien escaso</td>
+              <td>Sector exportador, rural y financiero</td>
+            </tr>
+            <tr>
+              <td>Perjudicados</td>
+              <td>Asalariados, exportadores</td>
+              <td>Sectores rezagados</td>
+              <td>Asalariados, industria, comercio</td>
+              <td>Asalariados, industria, servicios</td>
+            </tr>
+            <tr>
+              <td>Déficit fiscal</td>
+              <td>Causa</td>
+              <td>Consecuencia</td>
+              <td>Consecuencia</td>
+              <td>Consecuencia (acumulativa)</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="tab-content" id="tab-diag">
+        <p>El nivel de empleo es la mejor pista para distinguir:</p>
+        <ul>
+          <li><strong>Inflación con auge</strong> (mercado comprador, súper-pleno empleo) → <strong>de demanda</strong>.</li>
+          <li><strong>Inflación con recesión</strong> y mercado vendedor → <em>nunca</em> es de demanda. Hay que mirar:
+            <ul style="margin-top: 8px;">
+              <li>¿Hay aumento por decisión sindical o monopólica? → <strong>de costos</strong>.</li>
+              <li>¿Hay un bien específico escaso por cuello de botella interno? → <strong>estructural</strong>.</li>
+              <li>¿Hay devaluación reciente y déficit de divisas? → <strong>cambiaria</strong>.</li>
+            </ul>
+          </li>
+        </ul>
+        <p>En la realidad argentina rara vez hay un único tipo en estado puro: suelen combinarse. Pero identificar el motor <em>predominante</em> es lo que permite elegir la herramienta adecuada.</p>
+      </div>
+
+      <div class="tab-content" id="tab-remedios">
+        <ul>
+          <li><strong>Demanda</strong> → reducir demanda (equilibrar presupuesto, contraer crédito). En este caso <em>no</em> es recesivo.</li>
+          <li><strong>Costos</strong> → política de ingresos / acuerdos de precios y salarios. Restringir la demanda <strong>no funciona</strong>.</li>
+          <li><strong>Estructural</strong> → acción directa sobre el cuello de botella (racionamiento, sustitución, inversión en el rubro escaso).</li>
+          <li><strong>Cambiaria</strong> → política orgánica de balanza de pagos (promover exportaciones industriales, sustituir importaciones, estimular exportaciones tradicionales).</li>
+        </ul>
+        <div class="keyline">
+          <p><strong>Lección integradora:</strong> El error tradicional —que Diamand denuncia con insistencia— es aplicar el remedio de la inflación de demanda (restricción monetaria) a inflaciones que no son de demanda. El resultado siempre es el mismo: recesión y desempleo sin solución del problema de fondo.</p>
+        </div>
+      </div>
+    </div>
+
+    <h3>Conexión con el rol del Estado</h3>
+    <p>Volvamos al punto de partida: las cuatro modalidades de intervención estatal de Spagnolo y Mercado. Cada tipo de inflación exige un tipo distinto de intervención <strong>coyuntural</strong>:</p>
+
+    <ul>
+      <li>La <strong>inflación de demanda</strong> se enfrenta principalmente con política <em>monetaria y fiscal</em>: ambas restrictivas, sin generar recesión porque se parte del sobrecalentamiento.</li>
+      <li>La <strong>inflación de costos</strong> requiere <em>política de ingresos</em>: una herramienta menos visible pero que Spagnolo y Mercado incluyen como uno de los componentes esenciales de la política económica.</li>
+      <li>Las <strong>inflaciones estructurales</strong> demandan <em>política de desarrollo</em> y, frecuentemente, intervención <em>infraestructural</em>: el Estado debe actuar sobre la matriz productiva, no solo sobre las variables monetarias.</li>
+      <li>La <strong>inflación cambiaria</strong> es el caso más complejo: combina política <em>cambiaria</em>, <em>de desarrollo</em> e <em>industrial</em>. Apunta a transformar la estructura productiva desequilibrada para resolver el problema de fondo.</li>
+    </ul>
+
+    <p>Como decía Rossetti, los objetivos de la política económica (desarrollo, estabilidad, eficiencia distributiva) están entrelazados. La gran lección de Diamand es que en las EPD esa interconexión es aún más fuerte: <strong>no hay estabilidad de precios duradera sin pensar simultáneamente en el desarrollo industrial y en el sector externo</strong>.</p>
+
+    <div class="quiz">
+      <span class="quiz-label">Caso integrador final</span>
+      <h4>Un país periférico viene de varios meses con suba sostenida de precios. La actividad industrial cae, hay desempleo creciente, las importaciones de insumos se complican por falta de divisas y el gobierno acaba de devaluar. Los precios de los alimentos de consumo masivo aumentan fuertemente. ¿Cuál es el diagnóstico <strong>más adecuado</strong> según el marco de Diamand?</h4>
+      <div class="quiz-options">
+        <button class="quiz-opt" data-correct="false" data-feedback="No: la presencia de recesión y desempleo descarta la inflación de demanda, que se caracteriza por el auge económico y el súper-pleno empleo.">Inflación de demanda, porque hay aumento generalizado de precios.</button>
+        <button class="quiz-opt" data-correct="false" data-feedback="No es el diagnóstico más completo. Aunque puede haber componentes de costos (presión salarial defensiva), el cuadro descripto —falta de divisas, devaluación reciente, suba fuerte de alimentos— apunta a algo más específico.">Inflación de costos pura por presión salarial.</button>
+        <button class="quiz-opt" data-correct="true" data-feedback="Correcto. Todos los síntomas coinciden con el cuadro de inflación cambiaria: estrangulamiento de divisas, devaluación obligada, efecto-arrastre sobre alimentos exportables, recesión por efecto-ingreso. El remedio adecuado, según Diamand, sería una política orgánica de balanza de pagos, no más restricción monetaria.">Inflación cambiaria: el cuello de botella está en la oferta de divisas y la devaluación reciente disparó la espiral por efecto-propagación y efecto-arrastre.</button>
+        <button class="quiz-opt" data-correct="false" data-feedback="Es plausible que haya componentes estructurales internos, pero el escenario describe específicamente problemas de divisas y devaluación: el subtipo cambiario es el diagnóstico más preciso.">Inflación estructural por cuello de botella en oferta interna de alimentos.</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz">
+      <span class="quiz-label">Caso integrador (continúa)</span>
+      <h4>Frente al cuadro anterior, las autoridades aplican un plan tradicional del FMI: nueva devaluación, fuerte restricción monetaria, congelamiento salarial y liberalización de importaciones. ¿Por qué Diamand sostiene que este "plan estabilizador" probablemente <strong>no</strong> resuelva el problema?</h4>
+      <div class="quiz-options">
+        <button class="quiz-opt" data-correct="false" data-feedback="Esa es justamente la lógica del plan tradicional, que Diamand cuestiona. Los aumentos salariales son consecuencia (defensiva) de la inflación cambiaria, no su causa primaria.">Porque los aumentos salariales seguirán empujando los precios hacia arriba.</button>
+        <button class="quiz-opt" data-correct="true" data-feedback="Exacto. Diamand muestra que en las EPD la devaluación no equilibra el sector externo por efecto-precio (las importaciones son esenciales y la oferta primaria es inelástica). Solo lo equilibra por efecto-ingreso, vía recesión y desempleo. La 'estabilización' frena la espiral en un punto recesivo, sin curar la causa estructural.">Porque el plan ataca síntomas (suba de precios) sin tocar la causa estructural (escasez crónica de divisas) y termina equilibrando el sector externo por la vía de la recesión y el desempleo.</button>
+        <button class="quiz-opt" data-correct="false" data-feedback="Es cierto que estos planes contraen la demanda, pero el problema central que señala Diamand no es ese: es que tratan una inflación cambiaria como si fuera de demanda, aplicando una herramienta inadecuada.">Porque la restricción monetaria contrae la demanda y eso siempre es malo.</button>
+        <button class="quiz-opt" data-correct="false" data-feedback="No es una cuestión de impopularidad sino de inadecuación técnica del diagnóstico. Diamand no rechaza estos planes por motivos políticos sino por su propio fracaso económico para resolver el problema de fondo.">Porque esos planes son políticamente impopulares y generan protestas.</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     SECCIÓN 10 · CIERRE
+     ════════════════════════════════════════════ -->
+<section class="section" id="sec-10">
+  <div class="container">
+    <span class="section-tag">Sección 10 · Cierre</span>
+    <h2>Síntesis e ideas <em>para llevar</em></h2>
+
+    <p>Recorrimos un trayecto largo: desde el rol del Estado en la regulación económica hasta los cuatro tipos de inflación y sus respectivas formas de abordaje. ¿Qué ideas conviene que se lleven de toda la unidad?</p>
+
+    <div class="elemento">
+      <span class="elemento-tag">Idea 01</span>
+      <h4>"Inflación" en singular es engañoso</h4>
+      <p>Hay tipos distintos con causas, beneficiarios y remedios distintos. Confundirlos es la principal causa del fracaso de los planes antiinflacionarios.</p>
+    </div>
+
+    <div class="elemento">
+      <span class="elemento-tag">Idea 02</span>
+      <h4>El nivel de empleo es la mejor pista</h4>
+      <p>Si hay inflación con auge, es de demanda. Si hay inflación con recesión, no lo es: hay que buscar dónde está el cuello de botella o el motor decisional.</p>
+    </div>
+
+    <div class="elemento">
+      <span class="elemento-tag">Idea 03</span>
+      <h4>En las EPD, el sector externo manda</h4>
+      <p>La inflación cambiaria es probablemente la fuente más importante de inflación en países como Argentina, y exige soluciones que tocan la matriz productiva, no solo la política monetaria.</p>
+    </div>
+
+    <div class="elemento">
+      <span class="elemento-tag">Idea 04</span>
+      <h4>El Estado y el mercado son complementarios</h4>
+      <p>No hay regulación posible solo con uno de los dos. Cada tipo de inflación llama a un tipo distinto de intervención coyuntural del Estado.</p>
+    </div>
+
+    <div class="elemento">
+      <span class="elemento-tag">Idea 05</span>
+      <h4>El diagnóstico es político, no neutral</h4>
+      <p>Llamar "estabilización" a un plan que produce recesión y transferencias regresivas, dice Diamand, es usar la palabra como arma. Ser críticos del lenguaje económico es parte de la formación.</p>
+    </div>
+
+    <p style="margin-top: 35px;">Felicitaciones: si llegaron hasta acá, hicieron un recorrido importante. La economía política no se aprende en una sola lectura: se aprende volviendo, conversando, conectando con la realidad cotidiana. Les sugerimos releer estas páginas después de leer la bibliografía obligatoria, y traer al foro de consultas todas las dudas que les surjan.</p>
+
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     SECCIÓN FUENTES
+     ════════════════════════════════════════════ -->
+<section class="section" id="sec-fuentes">
+  <div class="container">
+    <span class="section-tag">Fuentes utilizadas</span>
+    <h2>Bibliografía de la <em>unidad</em></h2>
+
+    <p>Este documento fue elaborado a partir de las siguientes fuentes obligatorias. Lean cada una con la guía que ofrece este texto y profundicen los pasajes que más les interesen.</p>
+
+    <div class="fuente-card">
+      <span class="fuente-tag">Fuente 01 · Texto base</span>
+      <h4>Diamand, Marcelo</h4>
+      <p class="cite"><em>Doctrinas económicas, desarrollo e independencia</em>. Buenos Aires: Paidós, 1974.</p>
+      <p>Capítulo 5: <strong>Inflación de demanda, inflación de costos e inflación estructural</strong>. Capítulo 6: <strong>Devaluación, inflación cambiaria y "estabilización" tradicional del FMI</strong>. Texto central de la unidad: ofrece la clasificación completa de los fenómenos inflacionarios y discute por qué los planes tradicionales del FMI fracasan en las EPD.</p>
+    </div>
+
+    <div class="fuente-card alt">
+      <span class="fuente-tag">Fuente 02 · Marco teórico</span>
+      <h4>Spagnolo, Alberto y Mercado, Pedro Rubén</h4>
+      <p class="cite"><em>Introducción a la Economía</em>. Fundación Friedrich Ebert.</p>
+      <p>Capítulo VI: <strong>La regulación estatal</strong>. Distingue las cuatro modalidades de intervención estatal en la economía: fundacional, básica, infraestructural y coyuntural. Marco indispensable para comprender el rol del Estado frente a los desequilibrios económicos.</p>
+    </div>
+
+    <div class="fuente-card">
+      <span class="fuente-tag">Fuente 03 · Política económica</span>
+      <h4>Rossetti, José Paschoal</h4>
+      <p class="cite"><em>Introducción a la Economía. Enfoque latinoamericano</em>. México: Harla, 1979.</p>
+      <p>Capítulo 3 (pp. 46-50): <strong>La economía descriptiva, la teoría económica y la política económica</strong>. Distingue los principios positivos de los normativos y presenta los objetivos (desarrollo, estabilidad, eficiencia distributiva) e instrumentos (monetarios, fiscales, cambiarios y coadyuvantes) de la política económica.</p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     FOOTER
+     ════════════════════════════════════════════ -->
+<footer class="doc-footer">
+  <div class="container">
+    <p>Cátedra B · Economía Política · FCJS · UNL</p>
+    <p class="fine">Unidad 7 · Documento de estudio · Equipo de Cátedra · Ciclo Lectivo 2026</p>
+  </div>
+</footer>
+
+</main>
+
+
+<button class="scroll-top" id="scrollTop" aria-label="Volver arriba" title="Volver arriba">↑</button>
+
+
+<script>
+// === MOBILE TOGGLE ===
+const sidebar = document.getElementById('sidebar');
+const mobileToggle = document.getElementById('mobileToggle');
+mobileToggle.addEventListener('click', () => {
+  sidebar.classList.toggle('open');
+});
+sidebar.querySelectorAll('nav a').forEach(a => {
+  a.addEventListener('click', () => {
+    if (window.innerWidth <= 1000) sidebar.classList.remove('open');
+  });
+});
+
+// === PROGRESS BAR ===
+const progressBar = document.getElementById('progressBar');
+function updateProgress() {
+  const h = document.documentElement;
+  const total = h.scrollHeight - h.clientHeight;
+  const pct = total > 0 ? (h.scrollTop / total) * 100 : 0;
+  progressBar.style.width = Math.min(100, pct) + '%';
+}
+window.addEventListener('scroll', updateProgress);
+
+// === SCROLL TO TOP ===
+const scrollTopBtn = document.getElementById('scrollTop');
+window.addEventListener('scroll', () => {
+  scrollTopBtn.classList.toggle('visible', window.scrollY > 400);
+});
+scrollTopBtn.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// === ACTIVE SECTION HIGHLIGHTING ===
+const sections = document.querySelectorAll('section[id], header[id]');
+const navLinks = sidebar.querySelectorAll('nav a');
+function updateActiveSection() {
+  const scrollPos = window.scrollY + 120;
+  let currentId = '';
+  sections.forEach(sec => {
+    if (sec.offsetTop <= scrollPos) currentId = sec.id;
+  });
+  navLinks.forEach(link => {
+    link.classList.toggle('active', link.getAttribute('href') === '#' + currentId);
+  });
+}
+window.addEventListener('scroll', updateActiveSection);
+updateActiveSection();
+
+// === TABS ===
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const targetId = btn.getAttribute('data-tab');
+    const container = btn.closest('.tabs-container');
+    container.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    container.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(targetId).classList.add('active');
+  });
+});
+
+// === QUIZ ===
+document.querySelectorAll('.quiz').forEach(quiz => {
+  const opts = quiz.querySelectorAll('.quiz-opt');
+  const feedback = quiz.querySelector('.quiz-feedback');
+  opts.forEach(opt => {
+    opt.addEventListener('click', () => {
+      const correct = opt.getAttribute('data-correct') === 'true';
+      const fbText = opt.getAttribute('data-feedback') || '';
+      opts.forEach(o => {
+        o.disabled = true;
+        if (o.getAttribute('data-correct') === 'true') {
+          o.classList.add('correct');
+        } else if (o === opt && !correct) {
+          o.classList.add('incorrect');
+        }
+      });
+      feedback.textContent = fbText;
+      feedback.classList.remove('ok', 'bad');
+      feedback.classList.add(correct ? 'ok' : 'bad', 'show');
+    });
+  });
+});
+</script>
+
+</body>
+</html>
