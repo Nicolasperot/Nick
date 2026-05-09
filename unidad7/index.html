@@ -48,7 +48,7 @@
      ════════════════════════════════════════════ */
   .progress-bar {
     position: fixed;
-    top: 0;
+    bottom: 0;
     left: 0;
     height: 3px;
     width: 0%;
@@ -738,6 +738,190 @@
   }
 
   /* ════════════════════════════════════════════
+     BIG-NUMBER CARDS — para los 4 tipos de intervención y los 3 objetivos
+     ════════════════════════════════════════════ */
+  .bignum-stack {
+    margin: 30px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .bignum-card {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 0;
+    background: #fff;
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .bignum-card:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(108,52,131,0.08);
+  }
+  .bignum-num {
+    background: linear-gradient(160deg, var(--color-deepest), var(--color-anchor));
+    color: var(--color-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-size: 3.6em;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -2px;
+    padding: 22px 0;
+    position: relative;
+  }
+  .bignum-num::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 14%;
+    bottom: 14%;
+    width: 3px;
+    background: var(--color-primary);
+  }
+  .bignum-body {
+    padding: 22px 28px;
+  }
+  .bignum-body .lbl {
+    display: block;
+    font-size: 0.65em;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    color: var(--color-primary-dark);
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .bignum-body h4 {
+    font-family: var(--font-display);
+    font-size: 1.3em;
+    color: var(--color-deepest);
+    font-weight: normal;
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+  .bignum-body p {
+    margin: 0;
+    font-size: 0.95em;
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+  }
+  @media (max-width: 700px) {
+    .bignum-card { grid-template-columns: 1fr; }
+    .bignum-num { padding: 14px 0; font-size: 2.4em; }
+    .bignum-num::after {
+      right: 14%;
+      left: 14%;
+      top: auto;
+      bottom: 0;
+      width: auto;
+      height: 3px;
+    }
+  }
+
+  /* ════════════════════════════════════════════
+     DEFINICIÓN DESTACADA — definición operativa de inflación
+     ════════════════════════════════════════════ */
+  .definicion {
+    margin: 32px 0;
+    padding: 0;
+    background: linear-gradient(135deg, var(--color-deepest) 0%, var(--color-anchor) 100%);
+    border-radius: 14px;
+    overflow: hidden;
+    color: #fff;
+    box-shadow: 0 12px 28px rgba(42,17,51,0.18);
+  }
+  .definicion-inner {
+    padding: 32px 36px;
+    position: relative;
+  }
+  .definicion-label {
+    display: block;
+    font-size: 0.65em;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--color-soft);
+    font-weight: 700;
+    margin-bottom: 14px;
+  }
+  .definicion-text {
+    font-family: var(--font-display);
+    font-size: 1.35em;
+    line-height: 1.45;
+    color: #fff;
+    font-weight: normal;
+    margin: 0;
+  }
+  .definicion-text em {
+    font-style: italic;
+    color: var(--color-soft);
+  }
+  .definicion-mark {
+    position: absolute;
+    top: 18px;
+    right: 28px;
+    font-family: var(--font-display);
+    font-size: 5em;
+    color: rgba(255,255,255,0.08);
+    line-height: 1;
+    font-weight: 700;
+    pointer-events: none;
+  }
+
+  /* ════════════════════════════════════════════
+     SUB-CARD para motor de costos (split)
+     ════════════════════════════════════════════ */
+  .motor-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin: 24px 0;
+  }
+  .motor-card {
+    padding: 22px 24px;
+    background: #fff;
+    border: 1px solid var(--color-border);
+    border-top: 4px solid var(--color-primary);
+    border-radius: 10px;
+  }
+  .motor-card:nth-child(2) { border-top-color: var(--color-anchor); }
+  .motor-tag {
+    display: inline-block;
+    font-size: 0.6em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--color-primary-dark);
+    font-weight: 700;
+    background: rgba(142,68,173,0.08);
+    padding: 3px 10px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+  }
+  .motor-card:nth-child(2) .motor-tag {
+    color: var(--color-anchor);
+    background: rgba(74,35,90,0.08);
+  }
+  .motor-card h4 {
+    font-family: var(--font-display);
+    font-size: 1.15em;
+    color: var(--color-deepest);
+    font-weight: normal;
+    margin-bottom: 8px;
+  }
+  .motor-card p {
+    margin: 0;
+    font-size: 0.92em;
+    line-height: 1.55;
+    color: var(--color-text-secondary);
+  }
+  @media (max-width: 700px) {
+    .motor-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ════════════════════════════════════════════
      TABS
      ════════════════════════════════════════════ */
   .tabs-container { margin: 35px 0; }
@@ -1152,28 +1336,44 @@
     <h3>Las cuatro formas de intervención estatal</h3>
     <p>Spagnolo y Mercado distinguen cuatro grandes modalidades de intervención del Estado en la economía. Conocerlas nos permite ubicar mejor lo que viene después:</p>
 
-    <div class="elemento">
-      <span class="elemento-tag">Tipo 01 · Fundacional</span>
-      <h4>El Estado funda la economía de mercado</h4>
-      <p>Cuando el Estado impulsa el paso del feudalismo a la economía de mercado: unifica el mercado interno, abole aduanas internas, impone una moneda única, libera la mano de obra del régimen de servidumbre. Es una intervención histórica, propia del nacimiento del capitalismo.</p>
-    </div>
+    <div class="bignum-stack">
 
-    <div class="elemento">
-      <span class="elemento-tag">Tipo 02 · Básica</span>
-      <h4>Marco permanente para la actividad económica</h4>
-      <p>Una vez instaurada la economía mercantil, el Estado queda como práctica normal y se convierte en la <strong>base que opera como marco</strong> del desenvolvimiento de las actividades económicas. Garantiza contratos, controla calidad de bienes, regula condiciones de trabajo, sostiene la seguridad social, fija normas de higiene. Sin esta intervención permanente, los circuitos productivos no pueden sostenerse.</p>
-    </div>
+      <div class="bignum-card">
+        <div class="bignum-num">01</div>
+        <div class="bignum-body">
+          <span class="lbl">Tipo · Fundacional</span>
+          <h4>El Estado funda la economía de mercado</h4>
+          <p>Cuando el Estado impulsa el paso del feudalismo a la economía de mercado: unifica el mercado interno, abole aduanas internas, impone una moneda única, libera la mano de obra del régimen de servidumbre. Es una intervención histórica, propia del nacimiento del capitalismo.</p>
+        </div>
+      </div>
 
-    <div class="elemento">
-      <span class="elemento-tag">Tipo 03 · Infraestructural</span>
-      <h4>El Estado donde el privado no llega</h4>
-      <p>El Estado asume actividades que el sector privado no cubre por baja rentabilidad o alto riesgo: rutas, energía, agua, redes cloacales, represas. Especialmente importante en países periféricos, donde estas inversiones imprescindibles para el conjunto suelen tener tiempos de maduración largos.</p>
-    </div>
+      <div class="bignum-card">
+        <div class="bignum-num">02</div>
+        <div class="bignum-body">
+          <span class="lbl">Tipo · Básica</span>
+          <h4>Marco permanente para la actividad económica</h4>
+          <p>Una vez instaurada la economía mercantil, el Estado queda como práctica normal y se convierte en la <strong>base que opera como marco</strong> del desenvolvimiento de las actividades económicas. Garantiza contratos, controla calidad de bienes, regula condiciones de trabajo, sostiene la seguridad social, fija normas de higiene. Sin esta intervención permanente, los circuitos productivos no pueden sostenerse.</p>
+        </div>
+      </div>
 
-    <div class="elemento">
-      <span class="elemento-tag">Tipo 04 · Coyuntural</span>
-      <h4>La política económica propiamente dicha</h4>
-      <p>Es la intervención que requiere <strong>revisión y readecuación constante</strong>. Comprende la política monetaria y financiera, la política fiscal, la política de ingresos y la política de desarrollo. Es donde se juega la lucha contra la inflación y donde se moviliza la mayor parte del debate público.</p>
+      <div class="bignum-card">
+        <div class="bignum-num">03</div>
+        <div class="bignum-body">
+          <span class="lbl">Tipo · Infraestructural</span>
+          <h4>El Estado donde el privado no llega</h4>
+          <p>El Estado asume actividades que el sector privado no cubre por baja rentabilidad o alto riesgo: rutas, energía, agua, redes cloacales, represas. Especialmente importante en países periféricos, donde estas inversiones imprescindibles para el conjunto suelen tener tiempos de maduración largos.</p>
+        </div>
+      </div>
+
+      <div class="bignum-card">
+        <div class="bignum-num">04</div>
+        <div class="bignum-body">
+          <span class="lbl">Tipo · Coyuntural</span>
+          <h4>La política económica propiamente dicha</h4>
+          <p>Es la intervención que requiere <strong>revisión y readecuación constante</strong>. Comprende la política monetaria y financiera, la política fiscal, la política de ingresos y la política de desarrollo. Es donde se juega la lucha contra la inflación y donde se moviliza la mayor parte del debate público.</p>
+        </div>
+      </div>
+
     </div>
 
     <div class="quiz">
@@ -1215,22 +1415,35 @@
 
     <h3>Tres objetivos centrales</h3>
 
-    <div class="elemento">
-      <span class="elemento-tag">Objetivo 01</span>
-      <h4>Desarrollo económico</h4>
-      <p>Especialmente prioritario para los países periféricos: mejora de las condiciones de vida, infraestructura, salud, educación, electrificación, transporte. Es el "despertar" histórico de los países subdesarrollados después de la Segunda Guerra Mundial.</p>
-    </div>
+    <div class="bignum-stack">
 
-    <div class="elemento">
-      <span class="elemento-tag">Objetivo 02</span>
-      <h4>Estabilidad económica</h4>
-      <p>Reúne tres metas articuladas: <strong>mantenimiento del pleno empleo</strong>, <strong>estabilidad general de los precios</strong> (es decir, ausencia de inflación significativa) y <strong>equilibrio de la balanza de pagos</strong> internacional. Las tres están interconectadas: la inflación, el desempleo y los problemas externos suelen aparecer juntos.</p>
-    </div>
+      <div class="bignum-card">
+        <div class="bignum-num">01</div>
+        <div class="bignum-body">
+          <span class="lbl">Objetivo · Crecimiento</span>
+          <h4>Desarrollo económico</h4>
+          <p>Especialmente prioritario para los países periféricos: mejora de las condiciones de vida, infraestructura, salud, educación, electrificación, transporte. Es el "despertar" histórico de los países subdesarrollados después de la Segunda Guerra Mundial.</p>
+        </div>
+      </div>
 
-    <div class="elemento">
-      <span class="elemento-tag">Objetivo 03</span>
-      <h4>Eficiencia distributiva</h4>
-      <p>Reducir las desigualdades, tanto regionales como entre familias. Rossetti señala datos elocuentes para América Latina: en Argentina el 5% más rico se quedaba con cerca del 29% del ingreso nacional, mientras el 20% más pobre recibía aproximadamente el 7%.</p>
+      <div class="bignum-card">
+        <div class="bignum-num">02</div>
+        <div class="bignum-body">
+          <span class="lbl">Objetivo · Equilibrio</span>
+          <h4>Estabilidad económica</h4>
+          <p>Reúne tres metas articuladas: <strong>mantenimiento del pleno empleo</strong>, <strong>estabilidad general de los precios</strong> (es decir, ausencia de inflación significativa) y <strong>equilibrio de la balanza de pagos</strong> internacional. Las tres están interconectadas: la inflación, el desempleo y los problemas externos suelen aparecer juntos.</p>
+        </div>
+      </div>
+
+      <div class="bignum-card">
+        <div class="bignum-num">03</div>
+        <div class="bignum-body">
+          <span class="lbl">Objetivo · Justicia</span>
+          <h4>Eficiencia distributiva</h4>
+          <p>Reducir las desigualdades, tanto regionales como entre familias. Rossetti señala datos elocuentes para América Latina: en Argentina el 5% más rico se quedaba con cerca del 29% del ingreso nacional, mientras el 20% más pobre recibía aproximadamente el 7%.</p>
+        </div>
+      </div>
+
     </div>
 
     <h3>Cuatro tipos de instrumentos</h3>
@@ -1276,10 +1489,26 @@
     <h2>Los tres tipos de <em>inflación</em></h2>
     <p class="source-line">Basado en Diamand, <em>Doctrinas económicas, desarrollo e independencia</em>, Capítulos 5 y 6</p>
 
+    <h3>Antes que nada: ¿qué es la inflación?</h3>
+
+    <p>Hablamos de <strong>inflación</strong> cuando el nivel general de precios sube de manera sostenida en el tiempo. No es que un producto particular se encarezca (eso es una variación de precios relativos), sino que el conjunto de los bienes y servicios cuesta cada vez más en unidades monetarias. Como contrapartida, cada peso compra cada vez menos: la moneda pierde valor.</p>
+
+    <div class="definicion">
+      <div class="definicion-inner">
+        <span class="definicion-mark">"</span>
+        <span class="definicion-label">Definición operativa</span>
+        <p class="definicion-text">La inflación es un <em> proceso de aumento precios sostenido y generalizado -persistente en el tiempo-</em> que se traduce en una pérdida del poder adquisitivo de la moneda y reorganiza la distribución del ingreso entre sectores.</p>
+      </div>
+    </div>
+
+    <p>Esa definición sirve para reconocer el fenómeno. Pero —y acá está la gran lección de Diamand— <strong>reconocerlo no alcanza para entenderlo</strong>: detrás de un mismo síntoma (los precios suben) puede haber procesos económicos completamente distintos. Saber cuál tenemos enfrente cambia todo: a quiénes beneficia, a quiénes perjudica, y qué política puede frenarlo sin generar nuevos problemas.</p>
+
     <div class="pullquote">
       <blockquote>Confundir los diferentes fenómenos inflacionarios en uno solo, bajo el nombre común de "inflación", equivale a unificar varios tipos de enfermedades infecciosas, de origen y terapia distintos, con la denominación común de "la fiebre".</blockquote>
       <cite>Marcelo Diamand · Cap. 5</cite>
     </div>
+
+    <h3>El mapa de los tipos</h3>
 
     <p>Cada inflación tiene su <strong>origen</strong>, su <strong>distribución de ingresos característica</strong>, su <strong>efecto sobre el empleo</strong> y exige una <strong>terapia distinta</strong>. Conviene retener desde el inicio el cuadro general que vamos a desarrollar:</p>
 
@@ -1290,7 +1519,7 @@
       </div>
       <div class="ficha-item">
         <span class="ficha-lbl">Tipo 02</span>
-        <div class="ficha-val"><strong>De costos</strong> · aumentos por decisión (sindical o monopólica), independientes del mercado. Compatible con recesión.</div>
+        <div class="ficha-val"><strong>De costos</strong> · aumentos por decisión, al margen del mercado. Pueden ser monopólicos o salariales. Compatible con recesión.</div>
       </div>
       <div class="ficha-item">
         <span class="ficha-lbl">Tipo 03</span>
@@ -1435,8 +1664,12 @@
       <div class="tldr-mark">i</div>
       <div class="tldr-body">
         <span class="tldr-label">En una frase</span>
-        <p>Los precios suben porque <strong>alguien decide subirlos</strong>: un sindicato fuerte que negocia un aumento, una empresa monopólica que sube su tarifa. <em>No</em> hay exceso de demanda: puede haber incluso recesión. Por eso reducir la demanda no soluciona nada.</p>
+        <p>Los precios suben porque <strong>alguien decide subirlos</strong>: una empresa monopólica que sube su tarifa, un sindicato fuerte que negocia un aumento. <em>No</em> hay exceso de demanda: puede haber incluso recesión. Por eso reducir la demanda no soluciona nada.</p>
       </div>
+    </div>
+
+    <div class="keyline">
+      <p><strong>Aclaración importante:</strong> Es muy común asociar la inflación de costos solo con aumentos de salarios. Pero Diamand es preciso: el motor puede ser <em>cualquier</em> aumento por <strong>decisión</strong>, al margen de los mecanismos del mercado. Los aumentos salariales son el caso más frecuente en países industriales con sindicatos fuertes, pero no son el único.</p>
     </div>
 
     <h3>Cómo funciona el proceso</h3>
@@ -1483,15 +1716,26 @@
       </svg>
     </div>
 
-    <h3>Causas y diagnóstico</h3>
-    <p>Diamand identifica dos motores típicos:</p>
+    <h3>Los dos motores típicos</h3>
+    <p>Diamand identifica dos fuentes posibles para el aumento por decisión. Tienen lógicas distintas pero comparten un rasgo: ninguna de las dos responde al juego clásico de oferta y demanda.</p>
 
-    <ul>
-      <li><strong>Aumentos monopólicos</strong>: empresas con demanda inelástica (especialmente productoras de materias primas y bienes semielaborados) suben precios por decisión, sin que la demanda lo reclame.</li>
-      <li><strong>Aumentos salariales masivos</strong>: en una sociedad industrial, los salarios no se fijan por mercado sino por <em>negociación colectiva</em>. Cuando los aumentos superan el incremento de productividad, se trasladan a precios.</li>
-    </ul>
+    <div class="motor-grid">
+      <div class="motor-card">
+        <span class="motor-tag">Motor A</span>
+        <h4>Aumentos monopólicos</h4>
+        <p>Empresas con poder de mercado y demanda inelástica suben sus precios por decisión, aprovechando que sus clientes no pueden cambiarse fácilmente a otro proveedor. Es típico en productoras de materias primas y bienes semielaborados, cuya demanda depende del volumen de las etapas a las que abastecen.</p>
+        <p style="margin-top: 10px;">Diamand subraya que en las EPD este problema es <strong>especialmente grave</strong>: el "colchón de protección" frente a las importaciones (necesario para evitar gastar divisas en bienes no esenciales) hace que el control externo sobre los precios sea más débil que en países industriales. Sin competencia importada, las empresas dominantes pueden subir precios con menos límites.</p>
+      </div>
+      <div class="motor-card">
+        <span class="motor-tag">Motor B</span>
+        <h4>Aumentos salariales masivos</h4>
+        <p>En sociedades industriales con sindicatos fuertes, los salarios no se fijan por mercado sino por <em>negociación colectiva</em>. Cuando los aumentos superan el incremento de productividad, las empresas trasladan la diferencia a precios. Es el caso más frecuente y visible.</p>
+        <p style="margin-top: 10px;">A diferencia del Motor A, las posiciones negociadoras pueden estar influidas por el nivel de empleo, pero también por factores como el poder relativo de los sindicatos, el costo de una huelga, o la voluntad política de los gobiernos.</p>
+      </div>
+    </div>
 
-    <p>Diagnóstico clave: <strong>la demanda no excede la oferta</strong>. Puede incluso haber recesión. La distinción con la inflación de demanda se hace mirando el nivel de empleo: si hay alza de precios <em>con</em> recesión o sin súper-pleno empleo, no es inflación de demanda.</p>
+    <h3>Diagnóstico</h3>
+    <p>Cualquiera sea el motor, el rasgo común es central: <strong>la demanda no excede la oferta</strong>. Puede incluso haber recesión. La distinción con la inflación de demanda se hace mirando el nivel de empleo: si hay alza de precios <em>con</em> recesión o sin súper-pleno empleo, no es inflación de demanda. Si hay aumento decisional sin escasez física en algún rubro, tampoco es estructural: es de costos.</p>
 
     <h3>Quién gana, quién pierde</h3>
 
@@ -1499,12 +1743,12 @@
       <div class="winloss-card win">
         <div class="winloss-label"><span class="winloss-icon">+</span> Beneficiarios</div>
         <h4>Quien impuso el aumento</h4>
-        <p>El sector asalariado (cuando el motor son los aumentos salariales) o las empresas monopólicas (cuando son ellas las que suben precios). En la Argentina, los aumentos posdevaluatorios suelen ser inflaciones de costos donde los asalariados reconquistan participación perdida.</p>
+        <p>Si el motor fue salarial, el sector asalariado captura una porción mayor del ingreso. Si fue monopólico, son las empresas dominantes las que ganan participación. En ambos casos, el sector que pudo "mover primero" sale fortalecido.</p>
       </div>
       <div class="winloss-card loss">
         <div class="winloss-label"><span class="winloss-icon">−</span> Perjudicados</div>
         <h4>Quien no logra trasladar</h4>
-        <p>Empresarios con poco poder de mercado, asalariados con sindicatos débiles, y eventualmente el conjunto si el Estado responde con políticas restrictivas que generan recesión sin frenar el motor inflacionario.</p>
+        <p>Empresarios con poco poder de mercado, asalariados con sindicatos débiles, sectores rezagados. Y eventualmente el conjunto, si el Estado responde con políticas restrictivas que generan recesión sin frenar el motor inflacionario.</p>
       </div>
     </div>
 
@@ -1519,10 +1763,11 @@
     </ol>
 
     <div class="ejemplo">
-      <div class="ejemplo-label"><span class="ejemplo-icon">★</span> El caso argentino</div>
-      <h4>Argentina 1967: una estabilización por acuerdos</h4>
-      <p>El programa estabilizador de 1967 atacó la inflación de costos con una <strong>política decisional de ingresos</strong>: congeló todos los salarios en un valor correspondiente al promedio real percibido durante la inflación, con compromiso de reajustes futuros, y simultáneamente cerró acuerdos de precios con las grandes empresas líderes del mercado. Eliminados los motores inflacionarios decisionales, la expansión monetaria posterior no fue inflacionaria.</p>
-      <p>Aun así, según Diamand, el plan tuvo un defecto crucial que terminaría haciéndolo fracasar: <strong>ignoró por completo los problemas estructurales</strong> (el cuello de botella ganadero y el del sector externo), que estallaron pocos años después.</p>
+      <div class="ejemplo-label"><span class="ejemplo-icon">★</span> El caso argentino · Dos variantes</div>
+      <h4>Inflación posdevaluatoria y espiral salario-salario</h4>
+      <p>Diamand distingue dos formas argentinas típicas de inflación de costos. La primera son las <strong>inflaciones posdevaluatorias</strong>: tras grandes devaluaciones (1955, 1959, 1962, 1971, 1972), los asalariados luchan por reconquistar el ingreso real perdido, vía sucesivos aumentos nominales. Es una inflación de costos defensiva.</p>
+      <p>La segunda es la <strong>espiral salario-salario</strong>, característica del período 1964-1966. Los convenios de los distintos gremios vencen en distintas épocas del año: cada uno consigue aumento al renovar, pero al rato lo pierde por la inflación que generan los aumentos de los demás. Una vez que el proceso entra en régimen, ningún sector mejora realmente: simplemente se rotan los ganadores y perdedores a lo largo del año.</p>
+      <p>Diamand también muestra el caso argentino del <strong>plan estabilizador de 1967</strong>: congeló todos los salarios en su valor real promedio de la inflación previa, con compromiso de reajustes futuros, y simultáneamente cerró acuerdos de precios con las grandes empresas líderes del mercado. Eliminados los motores decisionales (salarial y monopólico), la expansión monetaria posterior no fue inflacionaria. Aun así, el plan terminó fracasando porque <strong>ignoró por completo los problemas estructurales</strong> (el cuello de botella ganadero y el del sector externo), que estallaron pocos años después.</p>
     </div>
 
     <div class="arrow-box">
@@ -1534,7 +1779,7 @@
     </div>
 
     <table class="compare-table">
-      <tr><td>Origen</td><td>Aumentos por decisión (sindical o monopólica)</td></tr>
+      <tr><td>Origen</td><td>Aumentos por decisión: salariales <em>o</em> monopólicos</td></tr>
       <tr><td>Mercado</td><td>Sin exceso de demanda; puede haber recesión</td></tr>
       <tr><td>Distribución</td><td>A favor del sector que impuso el aumento</td></tr>
       <tr><td>Empleo</td><td>Compatible con pleno empleo o con recesión</td></tr>
