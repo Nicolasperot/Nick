@@ -1,0 +1,2488 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unidad 9 · Las Teorías Económicas · Cátedra B</title>
+<style>
+  :root {
+    --color-primary: #8e44ad;
+    --color-primary-dark: #6c3483;
+    --color-anchor: #4a235a;
+    --color-deepest: #2a1133;
+    --color-soft: #d2b4de;
+    --color-bg-tinted: #fdfbff;
+    --color-bg-gradient-end: #f4f0f7;
+    --color-text-primary: #1a1a1a;
+    --color-text-body: #444444;
+    --color-text-secondary: #555555;
+    --color-text-muted: #666666;
+    --color-text-faint: #888888;
+    --color-border: #eaeaea;
+    --color-border-card: #e0e0e0;
+    --color-bg-footer: #fbfbfb;
+    --font-display: 'Georgia', 'Times New Roman', serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --sidebar-width: 290px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-body);
+    color: var(--color-text-body);
+    background: #f8f7fc;
+    line-height: 1.7;
+  }
+  .doc-wrapper {
+    margin-left: var(--sidebar-width);
+    padding: 30px 40px 60px;
+    min-height: 100vh;
+  }
+  .doc-wrapper > * { max-width: 920px; margin-left: auto; margin-right: auto; }
+  section[id], header[id] { scroll-margin-top: 20px; }
+
+  /* PROGRESS BAR */
+  .progress-bar {
+    position: fixed; bottom: 0; left: 0;
+    height: 3px; width: 0%;
+    background: linear-gradient(to right, var(--color-primary), var(--color-anchor));
+    z-index: 200; transition: width 0.1s;
+  }
+
+  /* SIDEBAR */
+  .sidebar {
+    width: var(--sidebar-width);
+    position: fixed; top: 0; left: 0; height: 100vh;
+    overflow-y: auto;
+    background: var(--color-deepest);
+    color: #fff;
+    padding: 35px 22px;
+    z-index: 100;
+  }
+  .sidebar-brand {
+    display: block;
+    font-size: 0.65em;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--color-soft);
+    margin-bottom: 6px;
+  }
+  .sidebar-title {
+    font-family: var(--font-display);
+    font-size: 1.35em;
+    font-weight: normal;
+    margin-bottom: 6px;
+    color: #fff;
+    line-height: 1.2;
+  }
+  .sidebar-subtitle {
+    font-size: 0.75em;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 28px;
+    display: block;
+    line-height: 1.4;
+  }
+  .sidebar-nav-title {
+    font-size: 0.65em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--color-soft);
+    font-weight: 700;
+    margin: 18px 0 10px;
+    padding: 0 12px;
+  }
+  .sidebar nav a {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    padding: 8px 12px;
+    color: rgba(255,255,255,0.72);
+    text-decoration: none;
+    font-size: 0.85em;
+    border-radius: 4px;
+    transition: all 0.18s;
+    margin-bottom: 1px;
+    line-height: 1.4;
+  }
+  .sidebar nav a .num {
+    font-size: 0.75em;
+    color: rgba(210,180,222,0.7);
+    font-variant-numeric: tabular-nums;
+    min-width: 20px;
+  }
+  .sidebar nav a:hover { background: rgba(255,255,255,0.08); color: #fff; }
+  .sidebar nav a.active {
+    background: rgba(142,68,173,0.28);
+    color: #fff;
+    border-left: 2px solid var(--color-primary);
+  }
+  .sidebar-section-divider {
+    margin: 14px 12px 8px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    font-size: 0.6em;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    color: rgba(210,180,222,0.6);
+    font-weight: 700;
+  }
+  .sidebar-foot {
+    margin-top: 30px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    font-size: 0.7em;
+    color: rgba(255,255,255,0.4);
+    line-height: 1.5;
+  }
+
+  /* SCROLL TOP & MOBILE TOGGLE */
+  .scroll-top {
+    position: fixed; bottom: 30px; right: 30px;
+    width: 48px; height: 48px;
+    background: var(--color-primary);
+    color: #fff; border: none; border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(108,52,131,0.35);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3em;
+    opacity: 0; visibility: hidden; transform: translateY(10px);
+    transition: all 0.25s; z-index: 90;
+  }
+  .scroll-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+  .scroll-top:hover {
+    background: var(--color-primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(108,52,131,0.45);
+  }
+  .mobile-toggle {
+    display: none;
+    position: fixed; top: 15px; left: 15px;
+    z-index: 110;
+    background: var(--color-deepest);
+    color: #fff; border: none; border-radius: 8px;
+    width: 44px; height: 44px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    font-size: 1.2em;
+  }
+  @media (max-width: 1000px) {
+    .sidebar { transform: translateX(-100%); transition: transform 0.3s; }
+    .sidebar.open { transform: translateX(0); }
+    .doc-wrapper { margin-left: 0; padding: 70px 20px 60px; }
+    .mobile-toggle { display: block; }
+  }
+  @media print {
+    .sidebar, .scroll-top, .mobile-toggle, .progress-bar { display: none; }
+    .doc-wrapper { margin-left: 0; padding: 20px; }
+  }
+
+  /* HERO */
+  .hero {
+    padding: 60px 0 50px;
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: 40px;
+  }
+  .hero-tag {
+    font-size: 0.75em;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    color: var(--color-primary-dark);
+    font-weight: 700;
+    margin-bottom: 30px;
+    display: block;
+  }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-weight: normal;
+    font-size: clamp(2.4em, 5.5vw, 4em);
+    line-height: 1.05;
+    letter-spacing: -1.5px;
+    color: var(--color-text-primary);
+    margin-bottom: 30px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--color-primary);
+  }
+  .hero-lead {
+    font-size: 1.13em;
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+    max-width: 720px;
+    font-weight: 300;
+    margin-bottom: 50px;
+  }
+  .hero-meta {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    padding: 28px 0;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: 45px;
+  }
+  .hero-meta-item .lbl {
+    display: block;
+    font-size: 0.65em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--color-text-faint);
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .hero-meta-item .val {
+    font-size: 0.95em;
+    color: var(--color-text-primary);
+    font-weight: 500;
+  }
+  @media (max-width: 700px) {
+    .hero-meta { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  }
+
+  .recorrido {
+    background: var(--color-bg-tinted);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 32px 38px;
+  }
+  .recorrido h3 {
+    font-family: var(--font-display);
+    font-size: 1.4em;
+    color: var(--color-anchor);
+    font-weight: normal;
+    margin-bottom: 8px;
+  }
+  .recorrido > p.lead {
+    font-size: 0.95em;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    margin-bottom: 22px;
+  }
+  .recorrido-grupo {
+    margin-bottom: 18px;
+  }
+  .recorrido-grupo:last-child { margin-bottom: 0; }
+  .recorrido-grupo h4 {
+    font-size: 0.7em;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    color: var(--color-primary-dark);
+    font-weight: 700;
+    margin-bottom: 8px;
+    padding-bottom: 5px;
+    border-bottom: 1px dashed rgba(142,68,173,0.2);
+  }
+  .recorrido ol {
+    list-style: none;
+    counter-reset: recor;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 4px;
+    padding: 0;
+  }
+  .recorrido li { counter-increment: recor; margin: 0; }
+  .recorrido a {
+    display: block;
+    padding: 8px 12px;
+    color: var(--color-text-primary);
+    text-decoration: none;
+    font-size: 0.92em;
+    border-radius: 6px;
+    transition: all 0.18s;
+    border-left: 2px solid transparent;
+  }
+  .recorrido a::before {
+    content: counter(recor, decimal-leading-zero) "  ";
+    color: var(--color-primary);
+    font-weight: 700;
+    font-size: 0.85em;
+    font-variant-numeric: tabular-nums;
+  }
+  .recorrido a:hover {
+    background: rgba(142,68,173,0.06);
+    border-left-color: var(--color-primary);
+    color: var(--color-anchor);
+  }
+
+  /* SECCIONES PRINCIPALES */
+  .seccion {
+    background: #fff;
+    border-radius: 12px;
+    border: 1px solid var(--color-border);
+    border-top: 4px solid var(--color-primary);
+    padding: 40px;
+    margin-bottom: 35px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+    scroll-margin-top: 20px;
+  }
+  .seccion.bloque-al { border-top-color: var(--color-anchor); }
+  .seccion-header {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--color-border);
+    position: relative;
+  }
+  .seccion .num {
+    display: inline-block;
+    font-size: 0.7em;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--color-primary-dark);
+    font-weight: bold;
+    background-color: rgba(108,52,131,0.05);
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+  }
+  .seccion.bloque-al .num {
+    color: var(--color-anchor);
+    background-color: rgba(74,35,90,0.07);
+  }
+  .seccion h2 {
+    font-family: var(--font-display);
+    font-size: 2.1em;
+    color: var(--color-deepest);
+    font-weight: normal;
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+  }
+  .seccion h2 .acento { color: var(--color-primary); }
+  .seccion.bloque-al h2 .acento { color: var(--color-anchor); }
+  .seccion h3 {
+    font-family: var(--font-display);
+    font-size: 1.4em;
+    color: var(--color-anchor);
+    font-weight: normal;
+    margin: 30px 0 15px;
+  }
+  .seccion h4 {
+    font-size: 1em;
+    color: var(--color-text-primary);
+    margin: 20px 0 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .seccion p { margin-bottom: 15px; font-size: 1em; }
+  .seccion strong { color: var(--color-anchor); }
+
+  .seccion-header .big-num {
+    position: absolute;
+    top: -28px;
+    right: 0;
+    font-family: var(--font-display);
+    font-size: 6em;
+    font-weight: 900;
+    color: rgba(142, 68, 173, 0.06);
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+    letter-spacing: -3px;
+  }
+  .seccion.bloque-al .seccion-header .big-num { color: rgba(74, 35, 90, 0.07); }
+  .seccion-header > *:not(.big-num) { position: relative; z-index: 1; }
+  @media (max-width: 700px) {
+    .seccion-header .big-num { font-size: 4em; top: -10px; }
+  }
+
+  /* TL;DR */
+  .tldr {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    background: var(--color-bg-tinted);
+    border: 1px solid var(--color-border);
+    border-left: 3px solid var(--color-primary);
+    padding: 18px 22px;
+    border-radius: 0 10px 10px 0;
+    margin: 22px 0 28px;
+  }
+  .seccion.bloque-al .tldr { border-left-color: var(--color-anchor); }
+  .tldr-mark {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 700;
+    font-size: 1.05em;
+    margin-top: 1px;
+  }
+  .seccion.bloque-al .tldr-mark { background: var(--color-anchor); }
+  .tldr-body { flex: 1; }
+  .tldr-body .tldr-label {
+    display: block;
+    font-size: 0.7em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--color-primary-dark);
+    font-weight: 700;
+    margin-bottom: 5px;
+  }
+  .seccion.bloque-al .tldr-label { color: var(--color-anchor); }
+  .tldr-body p {
+    margin: 0 !important;
+    font-size: 0.98em;
+    color: var(--color-deepest);
+    line-height: 1.55;
+  }
+  .tldr-body p strong { color: var(--color-anchor); }
+
+  /* AUTOR CARD (ficha de autor económico) */
+  .autor-card {
+    display: flex;
+    gap: 22px;
+    background: linear-gradient(135deg, #fdfbff 0%, #f4f0f7 100%);
+    border: 1px solid var(--color-border);
+    border-left: 4px solid var(--color-primary);
+    border-radius: 0 12px 12px 0;
+    padding: 24px 28px;
+    margin: 24px 0;
+    align-items: flex-start;
+  }
+  .autor-card.alt { border-left-color: var(--color-primary-dark); }
+  .autor-card.deep { border-left-color: var(--color-anchor); }
+  .autor-card-foto {
+    flex-shrink: 0;
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    background: var(--color-deepest);
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display);
+    font-size: 1.4em;
+    font-weight: 700;
+    box-shadow: 0 4px 12px rgba(42,17,51,0.15);
+  }
+  .autor-card-body { flex: 1; min-width: 0; }
+  .autor-card-vida {
+    display: block;
+    font-size: 0.7em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--color-primary-dark);
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .autor-card-nombre {
+    font-family: var(--font-display);
+    font-size: 1.35em;
+    color: var(--color-deepest);
+    margin-bottom: 4px;
+    line-height: 1.2;
+  }
+  .autor-card-obra {
+    font-style: italic;
+    font-size: 0.92em;
+    color: var(--color-text-muted);
+    margin-bottom: 10px;
+  }
+  .autor-card-desc {
+    font-size: 0.95em;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    margin: 0 !important;
+  }
+  @media (max-width: 600px) {
+    .autor-card { flex-direction: column; }
+    .autor-card-foto { width: 50px; height: 50px; font-size: 1.2em; }
+  }
+
+  /* TARJETAS DE CONCEPTOS */
+  .grid-tarjetas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 18px;
+    margin: 25px 0;
+  }
+  .tarjeta-concepto {
+    background-color: rgba(255,255,255,0.7);
+    backdrop-filter: blur(10px);
+    padding: 22px;
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+    border-top: 3px solid var(--color-primary-dark);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+  }
+  .tarjeta-concepto.v2 { border-top-color: var(--color-anchor); }
+  .tarjeta-concepto.v3 { border-top-color: var(--color-primary); }
+  .tarjeta-concepto.v4 { border-top-color: var(--color-deepest); }
+  .tarjeta-concepto p.cat {
+    font-size: 0.7em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--color-primary-dark);
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  .tarjeta-concepto h4 {
+    font-family: var(--font-display);
+    font-size: 1.15em;
+    color: var(--color-deepest);
+    font-weight: normal;
+    text-transform: none;
+    letter-spacing: normal;
+    margin: 0 0 10px 0;
+  }
+  .tarjeta-concepto p.desc {
+    font-size: 0.9em;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* CALLOUTS */
+  .callout-clave {
+    background-color: rgba(108,52,131,0.03);
+    border: 1px solid rgba(108,52,131,0.12);
+    border-radius: 12px;
+    padding: 20px 25px;
+    margin: 22px 0;
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+  }
+  .callout-clave .arrow {
+    color: var(--color-primary-dark);
+    font-size: 1.4em;
+    line-height: 1.2;
+    flex-shrink: 0;
+  }
+  .callout-clave > div > strong:first-child {
+    display: block;
+    font-size: 0.85em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+    color: var(--color-anchor);
+  }
+  .callout-clave p { margin: 0 !important; }
+  .callout-clave p strong { color: var(--color-anchor); }
+
+  .callout-brujula {
+    background: linear-gradient(135deg, rgba(142,68,173,0.05), rgba(210,180,222,0.08));
+    border-left: 4px solid var(--color-primary);
+    padding: 22px 28px;
+    border-radius: 0 12px 12px 0;
+    margin: 25px 0;
+  }
+  .callout-brujula .label {
+    font-size: 0.7em;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    color: var(--color-primary-dark);
+    font-weight: bold;
+    display: block;
+    margin-bottom: 8px;
+  }
+  .callout-brujula .titulo {
+    font-family: var(--font-display);
+    font-size: 1.25em;
+    color: var(--color-deepest);
+    margin-bottom: 8px;
+  }
+  .callout-brujula ol {
+    margin: 10px 0 0 20px;
+    color: var(--color-text-secondary);
+  }
+  .callout-brujula ol li { margin-bottom: 6px; padding-left: 5px; }
+
+  /* CITA TEXTUAL */
+  .cita-textual {
+    border-left: 4px solid var(--color-primary);
+    background-color: rgba(142,68,173,0.03);
+    padding: 18px 25px;
+    margin: 22px 0;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.05em;
+    color: var(--color-deepest);
+    border-radius: 0 8px 8px 0;
+    line-height: 1.6;
+  }
+  .cita-textual .autor {
+    display: block;
+    margin-top: 10px;
+    font-family: var(--font-body);
+    font-style: normal;
+    font-size: 0.8em;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+  }
+
+  /* PULL QUOTE */
+  .pullquote {
+    position: relative;
+    margin: 36px 0;
+    padding: 28px 30px 22px 60px;
+    border-left: 3px solid var(--color-primary);
+    background: linear-gradient(to right, rgba(142,68,173,0.03), transparent);
+  }
+  .pullquote::before {
+    content: '\201C';
+    position: absolute;
+    top: -20px;
+    left: 16px;
+    font-family: var(--font-display);
+    font-size: 6em;
+    color: var(--color-soft);
+    line-height: 1;
+    font-weight: 700;
+    pointer-events: none;
+  }
+  .pullquote blockquote {
+    font-family: var(--font-display);
+    font-size: 1.2em;
+    line-height: 1.5;
+    color: var(--color-deepest);
+    font-style: italic;
+    margin: 0 0 10px 0;
+  }
+  .pullquote cite {
+    display: block;
+    font-family: var(--font-body);
+    font-style: normal;
+    font-size: 0.85em;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+  }
+
+  /* MICRO-RESPIRADERO */
+  .breath {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 32px auto;
+    max-width: 200px;
+  }
+  .breath::before, .breath::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(142,68,173,0.25), transparent);
+  }
+  .breath-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--color-primary);
+    margin: 0 12px;
+    opacity: 0.6;
+  }
+
+  /* CIERRE CARD */
+  .cierre-card {
+    margin-top: 36px;
+    padding: 28px 32px;
+    background: linear-gradient(135deg, var(--color-bg-tinted), var(--color-bg-gradient-end));
+    border: 1px solid var(--color-border);
+    border-left: 4px solid var(--color-primary);
+    border-radius: 0 12px 12px 0;
+  }
+  .cierre-label {
+    display: block;
+    font-size: 0.7em;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--color-primary-dark);
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .cierre-card h4 {
+    font-family: var(--font-display) !important;
+    font-size: 1.45em !important;
+    color: var(--color-deepest) !important;
+    font-weight: normal !important;
+    margin: 0 0 12px 0 !important;
+    text-transform: none !important;
+    letter-spacing: 0 !important;
+    line-height: 1.3 !important;
+  }
+  .cierre-card p {
+    margin: 0 0 12px 0 !important;
+    font-size: 1em !important;
+    color: var(--color-text-secondary) !important;
+    line-height: 1.65;
+  }
+  .cierre-card p:last-child { margin-bottom: 0 !important; }
+
+  /* TABLA COMPARATIVA */
+  .tabla-comparativa {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.92em;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+  }
+  .tabla-comparativa th {
+    background: linear-gradient(to right, var(--color-bg-tinted), var(--color-bg-gradient-end));
+    color: var(--color-anchor);
+    text-align: left;
+    padding: 12px 16px;
+    font-size: 0.78em;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    border-bottom: 2px solid var(--color-primary);
+  }
+  .tabla-comparativa td {
+    padding: 13px 16px;
+    border-bottom: 1px solid var(--color-border);
+    vertical-align: top;
+    line-height: 1.55;
+  }
+  .tabla-comparativa td.dim { color: var(--color-anchor); font-weight: 600; white-space: nowrap; }
+  .tabla-comparativa tr:last-child td { border-bottom: none; }
+  .tabla-comparativa tr:hover td { background-color: rgba(142,68,173,0.02); }
+  .tabla-wrap { overflow-x: auto; }
+
+  /* TIMELINE */
+  .timeline { margin: 30px 0; }
+  .timeline-item { display: flex; gap: 20px; position: relative; }
+  .timeline-rail {
+    display: flex; flex-direction: column; align-items: center;
+    flex-shrink: 0; width: 50px;
+  }
+  .timeline-dot {
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background-color: var(--color-primary);
+    border: 3px solid var(--color-bg-tinted);
+    box-shadow: 0 0 0 2px var(--color-primary);
+    z-index: 1; margin-top: 4px;
+  }
+  .timeline-item:nth-child(2) .timeline-dot { background-color: var(--color-primary-dark); box-shadow: 0 0 0 2px var(--color-primary-dark); }
+  .timeline-item:nth-child(3) .timeline-dot { background-color: var(--color-primary); box-shadow: 0 0 0 2px var(--color-primary); }
+  .timeline-item:nth-child(4) .timeline-dot { background-color: var(--color-anchor); box-shadow: 0 0 0 2px var(--color-anchor), 0 0 12px rgba(74,35,90,0.3); width: 18px; height: 18px; }
+  .timeline-line {
+    width: 2px; flex-grow: 1;
+    background: linear-gradient(to bottom, var(--color-primary), rgba(142,68,173,0.15));
+  }
+  .timeline-item:last-child .timeline-line { display: none; }
+  .timeline-content { padding-bottom: 30px; flex: 1; }
+  .timeline-content .periodo {
+    font-size: 0.7em;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    color: var(--color-primary-dark);
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  .timeline-item:nth-child(4) .timeline-content .periodo { color: var(--color-anchor); }
+  .timeline-content h4 {
+    font-family: var(--font-display);
+    font-size: 1.3em;
+    color: var(--color-deepest);
+    font-weight: normal;
+    margin-bottom: 10px;
+    text-transform: none;
+    letter-spacing: normal;
+  }
+  .timeline-content p { margin: 0 0 8px 0; font-size: 0.95em; color: var(--color-text-secondary); line-height: 1.6; }
+
+  /* ACTIVIDAD */
+  .actividad {
+    background: linear-gradient(135deg, #fdfbff 0%, #f4f0f7 100%);
+    border-radius: 14px;
+    border: 2px dashed var(--color-primary);
+    padding: 30px;
+    margin: 35px 0;
+    position: relative;
+  }
+  .seccion.bloque-al .actividad { border-color: var(--color-anchor); }
+  .actividad-tag {
+    position: absolute;
+    top: -12px;
+    left: 25px;
+    background-color: var(--color-primary);
+    color: #fff;
+    font-size: 0.7em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-weight: bold;
+  }
+  .seccion.bloque-al .actividad-tag { background-color: var(--color-anchor); }
+  .actividad h4 {
+    font-family: var(--font-display);
+    font-size: 1.3em;
+    color: var(--color-deepest);
+    font-weight: normal;
+    margin: 5px 0 12px;
+    text-transform: none;
+    letter-spacing: normal;
+  }
+  .actividad .pregunta {
+    font-style: italic;
+    color: var(--color-anchor);
+    margin-bottom: 18px;
+    font-size: 1.02em;
+  }
+
+  /* QUIZ */
+  .quiz-options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 15px; }
+  .quiz-opt {
+    background: #fff;
+    border: 1px solid var(--color-border-card);
+    border-radius: 8px;
+    padding: 12px 16px;
+    cursor: pointer;
+    font-size: 0.95em;
+    color: var(--color-text-body);
+    text-align: left;
+    transition: all 0.2s;
+    font-family: inherit;
+  }
+  .quiz-opt:hover { border-color: var(--color-primary); background-color: rgba(142,68,173,0.03); }
+  .quiz-opt.correcta { border-color: #27ae60; background-color: rgba(39,174,96,0.08); color: #1e6d3e; }
+  .quiz-opt.incorrecta { border-color: #c0392b; background-color: rgba(192,57,43,0.06); color: #8b2c20; }
+  .quiz-opt.disabled { cursor: default; opacity: 0.7; }
+  .quiz-feedback {
+    display: none;
+    padding: 14px 16px;
+    border-radius: 8px;
+    font-size: 0.92em;
+    line-height: 1.6;
+    margin-top: 10px;
+  }
+  .quiz-feedback.ok { background-color: rgba(39,174,96,0.08); color: #1e6d3e; border-left: 3px solid #27ae60; }
+  .quiz-feedback.fail { background-color: rgba(192,57,43,0.06); color: #8b2c20; border-left: 3px solid #c0392b; }
+  .quiz-feedback.show { display: block; }
+
+  /* ACORDEÓN */
+  .acordeon-item {
+    background: #fff;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    overflow: hidden;
+  }
+  .acordeon-trigger {
+    width: 100%;
+    background: #fff;
+    border: none;
+    padding: 16px 20px;
+    text-align: left;
+    cursor: pointer;
+    font-size: 1em;
+    font-family: inherit;
+    color: var(--color-anchor);
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.2s;
+  }
+  .acordeon-trigger:hover { background-color: rgba(142,68,173,0.03); }
+  .acordeon-trigger .icon {
+    color: var(--color-primary);
+    font-size: 1.2em;
+    transition: transform 0.3s;
+  }
+  .acordeon-trigger.activo .icon { transform: rotate(45deg); }
+  .acordeon-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    font-size: 0.95em;
+    color: var(--color-text-secondary);
+  }
+  .acordeon-body.activo { max-height: 800px; }
+  .acordeon-body-inner { padding: 5px 22px 20px; line-height: 1.7; }
+  .acordeon-body-inner p { margin-bottom: 10px; }
+  .acordeon-body-inner p:last-child { margin-bottom: 0; }
+
+  /* EMPAREJA */
+  .empareja {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 20px 0;
+  }
+  .empareja-col h5 {
+    font-size: 0.75em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--color-primary-dark);
+    font-weight: bold;
+    margin-bottom: 12px;
+    text-align: center;
+  }
+  .seccion.bloque-al .empareja-col h5 { color: var(--color-anchor); }
+  .empareja-item {
+    background: #fff;
+    border: 2px solid var(--color-border-card);
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    font-size: 0.9em;
+    color: var(--color-text-body);
+    text-align: center;
+    transition: all 0.2s;
+    user-select: none;
+    line-height: 1.4;
+  }
+  .empareja-item:hover:not(.matched) { border-color: var(--color-primary); }
+  .empareja-item.selected { border-color: var(--color-primary); background-color: rgba(142,68,173,0.08); }
+  .empareja-item.matched { border-color: #27ae60; background-color: rgba(39,174,96,0.08); color: #1e6d3e; cursor: default; }
+  .empareja-item.error { border-color: #c0392b; background-color: rgba(192,57,43,0.06); animation: shake 0.3s; }
+  @keyframes shake { 0%,100%{transform:translateX(0);} 25%{transform:translateX(-5px);} 75%{transform:translateX(5px);} }
+  .empareja-status {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 0.9em;
+    color: var(--color-text-secondary);
+  }
+
+  /* REFLEXIÓN */
+  .reflexion-textarea {
+    width: 100%;
+    min-height: 100px;
+    padding: 14px;
+    border: 1px solid var(--color-border-card);
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.95em;
+    color: var(--color-text-body);
+    resize: vertical;
+    margin-bottom: 10px;
+  }
+  .reflexion-textarea:focus { outline: none; border-color: var(--color-primary); }
+  .reflexion-btn {
+    background: linear-gradient(180deg, #ffffff 0%, #fcfcfc 100%);
+    color: var(--color-anchor);
+    border: 1px solid var(--color-border-card);
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 0.8em;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    font-family: inherit;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+    transition: all 0.2s;
+  }
+  .reflexion-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(0,0,0,0.06); }
+  .reflexion-saved {
+    display: none;
+    margin-top: 12px;
+    padding: 12px 16px;
+    background-color: rgba(39,174,96,0.08);
+    border-left: 3px solid #27ae60;
+    border-radius: 0 6px 6px 0;
+    font-size: 0.9em;
+    color: #1e6d3e;
+  }
+  .reflexion-saved.show { display: block; }
+
+  /* COMPARACIÓN VISUAL CENTRO/PERIFERIA */
+  .comparacion-cp {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 25px 0;
+  }
+  .comparacion-cp-card {
+    background: #fff;
+    border: 1px solid var(--color-border);
+    border-top: 3px solid var(--color-primary);
+    border-radius: 8px;
+    padding: 22px;
+  }
+  .comparacion-cp-card.alt { border-top-color: var(--color-anchor); }
+  .comparacion-cp-card .tag {
+    display: inline-block;
+    font-size: 0.7em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--color-primary-dark);
+    font-weight: 700;
+    background: rgba(142,68,173,0.06);
+    padding: 3px 10px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+  }
+  .comparacion-cp-card.alt .tag {
+    color: var(--color-anchor);
+    background: rgba(74,35,90,0.08);
+  }
+  .comparacion-cp-card h4 {
+    font-family: var(--font-display);
+    font-size: 1.15em !important;
+    color: var(--color-deepest) !important;
+    font-weight: normal !important;
+    margin: 0 0 10px 0 !important;
+    text-transform: none !important;
+    letter-spacing: 0 !important;
+  }
+  .comparacion-cp-card p {
+    margin: 0 !important;
+    font-size: 0.92em !important;
+    color: var(--color-text-secondary) !important;
+    line-height: 1.55;
+  }
+  @media (max-width: 700px) {
+    .comparacion-cp { grid-template-columns: 1fr; }
+  }
+
+  /* FUENTES BIBLIOGRÁFICAS */
+  .fuentes {
+    background: linear-gradient(135deg, #2a1133 0%, #4a235a 100%);
+    border-radius: 16px;
+    padding: 40px;
+    margin-top: 40px;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+  .fuentes::before {
+    content: '\01F4DA';
+    position: absolute;
+    right: -20px; top: -30px;
+    font-size: 8em;
+    opacity: 0.05;
+    pointer-events: none;
+  }
+  .fuentes h2 {
+    font-family: var(--font-display);
+    font-size: 1.8em;
+    font-weight: normal;
+    margin-bottom: 8px;
+    color: #fff;
+  }
+  .fuentes .label {
+    font-size: 0.7em;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--color-soft);
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+  }
+  .fuentes .intro {
+    color: rgba(255,255,255,0.8);
+    font-size: 0.95em;
+    line-height: 1.65;
+    margin: 0 0 25px 0;
+    max-width: 720px;
+  }
+  .fuente-item {
+    background-color: rgba(255,255,255,0.04);
+    border: 1px solid rgba(210,180,222,0.1);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-bottom: 14px;
+    position: relative;
+    z-index: 1;
+  }
+  .fuente-item .num {
+    display: block;
+    font-size: 0.7em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--color-soft);
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .fuente-item h4 {
+    font-family: var(--font-display);
+    font-size: 1.15em;
+    color: #fff;
+    font-weight: normal;
+    margin: 0 0 4px 0;
+    text-transform: none;
+    letter-spacing: 0;
+    line-height: 1.3;
+  }
+  .fuente-item .autor-fuente {
+    font-size: 0.85em;
+    color: var(--color-soft);
+    margin: 0 0 8px 0 !important;
+    font-style: italic;
+  }
+  .fuente-item .descrip {
+    font-size: 0.9em;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.6;
+    margin: 0 !important;
+  }
+
+  /* FOOTER */
+  .footer-doc {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 25px;
+    border-top: 1px solid rgba(142,68,173,0.15);
+  }
+  .footer-doc p {
+    font-size: 0.75em;
+    color: var(--color-text-faint);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 700px) {
+    .seccion { padding: 25px 20px; }
+    .seccion h2 { font-size: 1.65em; }
+    .actividad { padding: 25px 18px; }
+    .empareja { grid-template-columns: 1fr; }
+    .recorrido { padding: 22px 20px; }
+    .fuentes { padding: 28px 22px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<!-- ══════════════════════════════════════════════
+     SIDEBAR
+     ══════════════════════════════════════════════ -->
+<aside class="sidebar" id="sidebar">
+  <span class="sidebar-brand">Cátedra B</span>
+  <h2 class="sidebar-title">Unidad 9</h2>
+  <span class="sidebar-subtitle">Las teorías económicas</span>
+
+  <span class="sidebar-nav-title">Recorrido</span>
+  <nav>
+    <a href="#top"><span class="num">★</span><span>Portada</span></a>
+    <a href="#sec-1"><span class="num">01</span><span>Bienvenida</span></a>
+    <a href="#sec-2"><span class="num">02</span><span>¿Qué es una teoría económica?</span></a>
+
+    <div class="sidebar-section-divider">Países centrales</div>
+    <a href="#sec-3"><span class="num">03</span><span>Los Clásicos</span></a>
+    <a href="#sec-4"><span class="num">04</span><span>Marx y la crítica</span></a>
+    <a href="#sec-5"><span class="num">05</span><span>Los Neoclásicos</span></a>
+    <a href="#sec-6"><span class="num">06</span><span>Keynes</span></a>
+
+    <div class="sidebar-section-divider">América Latina</div>
+    <a href="#sec-7"><span class="num">07</span><span>Liberalismo en AL</span></a>
+    <a href="#sec-8"><span class="num">08</span><span>Estructuralismo · CEPAL</span></a>
+    <a href="#sec-9"><span class="num">09</span><span>Teoría de la Dependencia</span></a>
+
+    <div class="sidebar-section-divider">Síntesis</div>
+    <a href="#sec-10"><span class="num">10</span><span>Cierre y mapa final</span></a>
+    <a href="#sec-fuentes"><span class="num">11</span><span>Bibliografía</span></a>
+  </nav>
+
+  <div class="sidebar-foot">
+    Economía Política · FCJS · UNL<br>
+    Equipo de Cátedra · Ciclo 2026
+  </div>
+</aside>
+
+<button class="mobile-toggle" id="mobileToggle" aria-label="Abrir navegación">☰</button>
+
+<div class="doc-wrapper">
+
+<!-- ═══════════════════════════════════════════
+     HERO
+     ═══════════════════════════════════════════ -->
+<header class="hero" id="top">
+
+  <span class="hero-tag">Unidad 9 · Documento de Cátedra</span>
+
+  <h1>Las teorías <em>económicas</em></h1>
+
+  <p class="hero-lead">Cómo distintos pensadores y escuelas explicaron, a lo largo de más de dos siglos, el funcionamiento del sistema económico. De los clásicos británicos a Marx, de los neoclásicos a Keynes, y de allí al pensamiento latinoamericano sobre el desarrollo, la dependencia y la periferia. Una guía para entender por qué hay distintas miradas sobre la economía y qué implica adoptar una u otra.</p>
+
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="lbl">Materia</span>
+      <span class="val">Economía Política</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="lbl">Carreras</span>
+      <span class="val">Abogacía · Trabajo Social</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="lbl">Nivel</span>
+      <span class="val">Primer año</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="lbl">Modalidad</span>
+      <span class="val">Lectura autónoma</span>
+    </div>
+  </div>
+
+  <div class="recorrido">
+    <h3>Recorrido de la Unidad</h3>
+    <p class="lead">Diez secciones organizadas en tres bloques: las teorías nacidas en los países centrales, las teorías que pensaron a América Latina, y un cierre con el mapa completo. Pueden leerse en orden o saltar a la sección que les interese desde el menú lateral.</p>
+
+    <div class="recorrido-grupo">
+      <h4>Apertura</h4>
+      <ol>
+        <li><a href="#sec-1">Bienvenida y orientación</a></li>
+        <li><a href="#sec-2">¿Qué es una teoría económica?</a></li>
+      </ol>
+    </div>
+
+    <div class="recorrido-grupo">
+      <h4>Teorías de los países centrales</h4>
+      <ol>
+        <li><a href="#sec-3">Los Clásicos: Smith, Ricardo y compañía</a></li>
+        <li><a href="#sec-4">Marx y la crítica al capitalismo</a></li>
+        <li><a href="#sec-5">Los Neoclásicos: el mercado como centro</a></li>
+        <li><a href="#sec-6">Keynes: el Estado al rescate</a></li>
+      </ol>
+    </div>
+
+    <div class="recorrido-grupo">
+      <h4>Teorías en América Latina</h4>
+      <ol>
+        <li><a href="#sec-7">El liberalismo en América Latina</a></li>
+        <li><a href="#sec-8">Estructuralismo y CEPAL</a></li>
+        <li><a href="#sec-9">La teoría de la dependencia</a></li>
+      </ol>
+    </div>
+
+    <div class="recorrido-grupo">
+      <h4>Síntesis</h4>
+      <ol>
+        <li><a href="#sec-10">Cierre y mapa final</a></li>
+        <li><a href="#sec-fuentes">Fuentes bibliográficas</a></li>
+      </ol>
+    </div>
+  </div>
+
+</header>
+
+<!-- ═══════════════════════════════════════════
+     SECCIÓN 1: BIENVENIDA
+     ═══════════════════════════════════════════ -->
+<section class="seccion" id="sec-1">
+  <header class="seccion-header">
+    <span class="big-num">01</span>
+    <span class="num">Sección 01 · Apertura</span>
+    <h2>Bienvenidas y bienvenidos <span class="acento">a la Unidad 9</span></h2>
+  </header>
+
+  <div class="tldr">
+    <div class="tldr-mark">i</div>
+    <div class="tldr-body">
+      <span class="tldr-label">En una frase</span>
+      <p>No existe <strong>una sola</strong> teoría económica, sino varias, en disputa. Cada una mira el mismo fenómeno desde un lugar distinto, hace preguntas diferentes y llega a conclusiones de política económica también diferentes. Esta unidad les enseña a reconocerlas.</p>
+    </div>
+  </div>
+
+  <p>Llegamos a la última unidad del Programa de la materia. Hasta acá vinieron trabajando con conceptos económicos básicos y con la historia del sistema capitalista. En esta unidad damos un paso más: vamos a estudiar <strong>cómo distintos pensadores intentaron explicar ese sistema</strong>, qué preguntas se hicieron y qué respuestas dieron.</p>
+
+  <p>¿Por qué importa esto? Porque cuando alguien hoy dice "hay que bajar el gasto público", "hay que devaluar", "hay que proteger la industria nacional" o "hay que dejar funcionar al mercado", está hablando, lo sepa o no, desde alguna de estas tradiciones teóricas. Conocerlas les permite identificar de dónde vienen las ideas económicas que circulan en los medios, en el debate político y en las normas jurídicas que van a estudiar a lo largo de su carrera.</p>
+
+  <div class="callout-brujula">
+    <span class="label">Brújula de Análisis</span>
+    <div class="titulo">¿Qué nos preguntamos en esta unidad?</div>
+    <ol>
+      <li>¿Cuáles son las grandes corrientes que pensaron al capitalismo en sus países de origen (los <em>centrales</em>)?</li>
+      <li>¿En qué se diferencian Smith, Marx, Marshall y Keynes, y por qué siguen siendo referencias hoy?</li>
+      <li>¿Cómo pensó América Latina su propia situación económica, marcadamente <em>periférica</em>?</li>
+      <li>¿Qué aportaron Prebisch, la CEPAL y los teóricos de la dependencia que no estaba en las teorías europeas?</li>
+    </ol>
+  </div>
+
+  <p>Algunas advertencias antes de empezar. Primero: estos autores se leen mejor <strong>en su contexto histórico</strong>. Smith escribe a fines del siglo XVIII en plena Revolución Industrial; Marx en el medio del siglo XIX cuando el capitalismo industrial ya muestra sus contradicciones; Keynes en plena Gran Depresión de los años 30; Prebisch después de la Segunda Guerra Mundial. Cada texto es respuesta a un problema real de su época.</p>
+
+  <p>Segundo: no se trata de elegir "el bueno" y "los malos". Cada teoría ilumina aspectos del sistema que las otras dejan en sombra. Nuestro trabajo es <strong>comprender cada una en sus propios términos</strong> antes de tomar posición.</p>
+
+  <p>Tercero: este documento es una guía didáctica para entrar a la bibliografía obligatoria, no un reemplazo de ella. Hidalgo, Preston, Mochón &amp; Becker y Ferrucci ofrecen profundidades que acá no podemos cubrir. Úsenlo como mapa.</p>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SECCIÓN 2: QUÉ ES UNA TEORÍA ECONÓMICA
+     ═══════════════════════════════════════════ -->
+<section class="seccion" id="sec-2">
+  <header class="seccion-header">
+    <span class="big-num">02</span>
+    <span class="num">Sección 02 · Marco general</span>
+    <h2>¿Qué es una <span class="acento">teoría económica</span>?</h2>
+  </header>
+
+  <div class="tldr">
+    <div class="tldr-mark">i</div>
+    <div class="tldr-body">
+      <span class="tldr-label">En una frase</span>
+      <p>Una teoría económica es <strong>un conjunto ordenado de ideas</strong> que intenta explicar cómo funciona la economía, cómo se crea y distribuye la riqueza, y qué papel debe cumplir el Estado. No es ciencia neutra: tiene supuestos, valores y consecuencias prácticas.</p>
+    </div>
+  </div>
+
+  <p>Antes de meternos con cada escuela, conviene aclarar qué estamos buscando cuando hablamos de "teorías económicas". Toda teoría económica intenta responder, con distintos énfasis, a un puñado de preguntas centrales:</p>
+
+  <div class="grid-tarjetas">
+    <div class="tarjeta-concepto">
+      <p class="cat">Pregunta 01</p>
+      <h4>¿De dónde viene la riqueza?</h4>
+      <p class="desc">¿Qué genera valor en la economía? ¿El comercio? ¿La tierra? ¿El trabajo? ¿La utilidad que las cosas tienen para las personas?</p>
+    </div>
+    <div class="tarjeta-concepto v2">
+      <p class="cat">Pregunta 02</p>
+      <h4>¿Cómo se distribuye?</h4>
+      <p class="desc">¿Por qué los trabajadores reciben salarios, los capitalistas ganancias y los terratenientes rentas? ¿Es justa esa distribución? ¿Es modificable?</p>
+    </div>
+    <div class="tarjeta-concepto v3">
+      <p class="cat">Pregunta 03</p>
+      <h4>¿Cómo se determinan los precios?</h4>
+      <p class="desc">¿Los precios reflejan el costo de producir las cosas, o las preferencias de quienes las consumen? ¿O alguna combinación de ambos?</p>
+    </div>
+    <div class="tarjeta-concepto v4">
+      <p class="cat">Pregunta 04</p>
+      <h4>¿Qué papel cumple el Estado?</h4>
+      <p class="desc">¿Debe dejar al mercado funcionar solo? ¿Debe corregirlo? ¿Reemplazarlo? ¿Cuándo, cómo, hasta dónde?</p>
+    </div>
+  </div>
+
+  <p>Cada escuela responde estas preguntas de manera distinta. Y, dato no menor, las respuestas no son inocentes: tienen consecuencias muy concretas en la vida de la gente. Decir que el mercado se regula solo lleva a un tipo de política. Decir que produce desigualdades estructurales que requieren intervención lleva a otra. Decir que necesita ser superado, a otra más.</p>
+
+  <div class="callout-clave">
+    <span class="arrow">→</span>
+    <div>
+      <strong>Idea clave</strong>
+      <p>Las teorías económicas no flotan en el aire: nacen en contextos históricos concretos, responden a problemas reales y dan lugar a políticas que afectan la vida de millones. Por eso tiene tanto sentido estudiarlas críticamente.</p>
+    </div>
+  </div>
+
+  <h3>Una división útil para esta unidad</h3>
+  <p>Para ordenar el recorrido, vamos a separar las teorías en dos grandes bloques:</p>
+
+  <div class="comparacion-cp">
+    <div class="comparacion-cp-card">
+      <span class="tag">Bloque A</span>
+      <h4>Teorías de los países centrales</h4>
+      <p>Surgen en Inglaterra, Alemania y otros países europeos a partir del siglo XVIII. Piensan al capitalismo desde adentro de las economías que lo crearon: Inglaterra industrial, la Europa de la Gran Depresión. Son <strong>los Clásicos, Marx, los Neoclásicos y Keynes</strong>.</p>
+    </div>
+    <div class="comparacion-cp-card alt">
+      <span class="tag">Bloque B</span>
+      <h4>Teorías en América Latina</h4>
+      <p>Surgen, en su mayoría, en el siglo XX. Piensan al capitalismo desde el otro lado: el de las economías que se incorporaron al sistema mundial en posición subordinada. Son <strong>el liberalismo aplicado, el estructuralismo cepalino y la teoría de la dependencia</strong>.</p>
+    </div>
+  </div>
+
+  <p>No es una división rígida (el liberalismo latinoamericano, por ejemplo, es la aplicación local de las ideas clásicas), pero ayuda a ver que <strong>el lugar desde el que se piensa importa</strong>. Pensar la economía desde Londres en 1850 no es lo mismo que pensarla desde Buenos Aires o Santiago de Chile en 1950.</p>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SECCIÓN 3: LOS CLÁSICOS
+     ═══════════════════════════════════════════ -->
+<section class="seccion" id="sec-3">
+  <header class="seccion-header">
+    <span class="big-num">03</span>
+    <span class="num">Sección 03 · Países centrales</span>
+    <h2>Los <span class="acento">Clásicos</span>: Smith, Ricardo y compañía</h2>
+  </header>
+
+  <div class="tldr">
+    <div class="tldr-mark">i</div>
+    <div class="tldr-body">
+      <span class="tldr-label">En una frase</span>
+      <p>Los economistas clásicos (siglos XVIII y XIX) creían que <strong>el mercado se autorregula</strong>, que la riqueza viene del <strong>trabajo</strong>, y que la mejor política económica es <strong>dejar hacer</strong>. Fundaron la disciplina de la economía política tal como la conocemos.</p>
+    </div>
+  </div>
+
+  <p>El pensamiento económico clásico nace en la segunda mitad del siglo XVIII, en plena Revolución Industrial, con un objetivo central: explicar por qué unos países prosperan más que otros y cómo se crea la riqueza de las naciones. Sus referencias principales son tres autores británicos: <strong>Adam Smith</strong>, <strong>David Ricardo</strong> y, con un tono más pesimista, <strong>Thomas Malthus</strong>. A ellos se suman Jean-Baptiste Say (con su famosa "ley de los mercados") y John Stuart Mill.</p>
+
+  <h3>El contexto histórico</h3>
+  <p>Smith escribe en Escocia mientras Inglaterra es el primer país del mundo en industrializarse. La burguesía industrial está creciendo y necesita una doctrina que justifique su rol y desplace los privilegios del viejo orden mercantilista (donde el Estado intervenía con monopolios y aranceles). El pensamiento clásico es, en buena medida, <strong>la ideología económica de esa burguesía industrial naciente</strong>, presentada como si fueran leyes universales y naturales.</p>
+
+  <div class="autor-card">
+    <div class="autor-card-foto">AS</div>
+    <div class="autor-card-body">
+      <span class="autor-card-vida">Escocia · 1723–1790</span>
+      <h4 class="autor-card-nombre">Adam Smith</h4>
+      <p class="autor-card-obra">La riqueza de las naciones (1776)</p>
+      <p class="autor-card-desc">El padre fundador. Estudia ética y filosofía moral antes de pasar a la economía. Su obra principal sostiene que la búsqueda del interés individual, regulada por la competencia, conduce al bienestar general como guiada por una "mano invisible".</p>
+    </div>
+  </div>
+
+  <h3>Las grandes ideas de Smith</h3>
+
+  <p>Smith escribe <em>La riqueza de las naciones</em> en 1776. El libro abre con un análisis que se volvió famoso: la <strong>división del trabajo</strong>. Si en una fábrica de alfileres cada obrero hace todo el proceso, la producción es muy baja. Si se especializan (uno corta el alambre, otro lo afila, otro coloca la cabeza, etc.), la productividad se multiplica. Para Smith, la división del trabajo es el principal motor del crecimiento económico.</p>
+
+  <p>Pero Smith no se queda ahí. Su gran tesis es que <strong>el mercado, dejado a su suerte, organiza la producción mejor que cualquier autoridad</strong>. La famosa metáfora de la "mano invisible" dice que cuando cada uno persigue su propio interés, sin proponérselo termina contribuyendo al bien común, porque la competencia entre productores los obliga a vender barato y producir lo que la gente quiere.</p>
+
+  <div class="pullquote">
+    <blockquote>No esperamos nuestra cena de la benevolencia del carnicero, del cervecero o del panadero, sino del cuidado que ponen ellos en su propio interés.</blockquote>
+    <cite>— Adam Smith, La riqueza de las naciones (1776)</cite>
+  </div>
+
+  <p>Smith también desarrolla una <strong>teoría del valor-trabajo</strong>: el valor de una mercancía depende, en última instancia, de la cantidad de trabajo necesaria para producirla. Esta idea va a ser central para Ricardo y, sobre todo, para Marx. La acumulación de capital (es decir, la reinversión de las ganancias en más producción) es para Smith el motor que pone en marcha la mejora de la sociedad.</p>
+
+  <p>Y hay una idea política que recorre todo: el Estado debe intervenir lo menos posible. Smith desconfía de los gobiernos —los considera derrochadores y propensos a otorgar privilegios— y defiende el principio del <em>laissez faire, laissez passer</em> (dejar hacer, dejar pasar). El Estado solo debe garantizar la propiedad, la justicia y unos pocos servicios públicos.</p>
+
+  <div class="autor-card alt">
+    <div class="autor-card-foto">DR</div>
+    <div class="autor-card-body">
+      <span class="autor-card-vida">Inglaterra · 1772–1823</span>
+      <h4 class="autor-card-nombre">David Ricardo</h4>
+      <p class="autor-card-obra">Principios de Economía Política y Tributación (1817)</p>
+      <p class="autor-card-desc">El sistematizador. Llevó las ideas de Smith a un nivel mucho más riguroso y abstracto. Aporta la teoría de la renta diferencial de la tierra, el principio de los rendimientos decrecientes y una visión pesimista del crecimiento económico a largo plazo (el "estado estacionario").</p>
+    </div>
+  </div>
+
+  <h3>Lo que aporta Ricardo</h3>
+
+  <p>Ricardo, que era un próspero comerciante antes que economista, profundiza el método de Smith y lo formaliza. Tres aportes fundamentales suyos:</p>
+
+  <ul style="margin: 15px 0 20px 25px; color: var(--color-text-secondary);">
+    <li style="margin-bottom: 10px;"><strong>Renta diferencial de la tierra:</strong> los terratenientes ganan rentas crecientes no porque trabajen más, sino simplemente porque sus tierras son más fértiles que otras. La renta es, en su análisis, una transferencia desde la sociedad hacia una clase improductiva.</li>
+    <li style="margin-bottom: 10px;"><strong>Visión pesimista del crecimiento:</strong> a medida que la población crece, hay que cultivar tierras peores. Eso encarece los alimentos, sube los salarios de subsistencia y baja las ganancias del capital. Llega un momento en que la economía se estanca: el "estado estacionario".</li>
+    <li><strong>Teoría de las ventajas comparativas:</strong> la base del libre comercio internacional. Cada país debe especializarse en lo que produce relativamente mejor, y todos ganan con el intercambio. Esta idea va a ser muy discutida cuando lleguemos a Prebisch.</li>
+  </ul>
+
+  <h3>Otros nombres clave</h3>
+
+  <div class="grid-tarjetas">
+    <div class="tarjeta-concepto">
+      <p class="cat">Francia · 1767–1832</p>
+      <h4>J. B. Say</h4>
+      <p class="desc">Formuló la <em>"ley de los mercados"</em>: <strong>la oferta crea su propia demanda</strong>. Si todo lo producido se vende, no puede haber crisis generales de superproducción. Esta idea va a ser el blanco principal de Keynes en el siglo XX.</p>
+    </div>
+    <div class="tarjeta-concepto v2">
+      <p class="cat">Inglaterra · 1766–1834</p>
+      <h4>T. R. Malthus</h4>
+      <p class="desc">El más pesimista de todos. Sostuvo que <strong>la población crece más rápido que los alimentos</strong>, por lo que el hambre, las guerras y las plagas son inevitables reguladores demográficos. Una visión sombría que Marx luego criticaría duramente.</p>
+    </div>
+    <div class="tarjeta-concepto v3">
+      <p class="cat">Inglaterra · 1806–1873</p>
+      <h4>J. S. Mill</h4>
+      <p class="desc">El último gran clásico. A diferencia de los anteriores, sostuvo que <strong>las leyes de la distribución son humanas y modificables</strong>: pueden ser alteradas por la política. Abre la puerta a una mirada más reformista que sus predecesores.</p>
+    </div>
+  </div>
+
+  <div class="actividad">
+    <span class="actividad-tag">✏️ Actividad 1 · Quiz</span>
+    <h4>¿Lo entendiste?</h4>
+    <p class="pregunta">Una empresaria explica que su fábrica de zapatos fue creciendo simplemente porque "cada uno haciendo lo suyo, persiguiendo su propio interés, hace que las cosas funcionen". ¿A qué autor clásico se acerca más esa idea?</p>
+    <div class="quiz-options" data-quiz="q1">
+      <button class="quiz-opt" data-correct="false" data-feedback="No exactamente. Ricardo profundizó las ideas de Smith pero lo más característico de él es la renta diferencial de la tierra y la visión pesimista del crecimiento.">a) David Ricardo, por su teoría de la renta diferencial.</button>
+      <button class="quiz-opt" data-correct="true" data-feedback="¡Correcto! La idea de que la búsqueda del interés individual, regulada por la competencia, conduce al bien común sin necesidad de coordinación central, es la famosa metáfora de la 'mano invisible' de Adam Smith.">b) Adam Smith, por su idea de la mano invisible.</button>
+      <button class="quiz-opt" data-correct="false" data-feedback="No es la respuesta correcta. Malthus es famoso por su teoría sobre la población y los alimentos, no por una visión optimista del mercado.">c) Thomas Malthus, por su ley de la población.</button>
+      <button class="quiz-opt" data-correct="false" data-feedback="No es la respuesta correcta. La 'ley de los mercados' de Say sostiene que la oferta crea su propia demanda, una idea relacionada pero distinta a la de la mano invisible.">d) Jean-Baptiste Say, por su ley de los mercados.</button>
+    </div>
+    <div class="quiz-feedback" data-feedback-for="q1"></div>
+  </div>
+
+  <div class="callout-clave">
+    <span class="arrow">→</span>
+    <div>
+      <strong>Para retener</strong>
+      <p>Los clásicos creen que <em>el mercado funciona</em>, que la riqueza nace del <em>trabajo</em>, que el Estado debe <em>intervenir poco</em>, y que la economía tiende espontáneamente al equilibrio. Estas cuatro ideas son la base de toda la tradición liberal posterior, incluida la que llegó a la Argentina del siglo XIX.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SECCIÓN 4: MARX
+     ═══════════════════════════════════════════ -->
+<section class="seccion" id="sec-4">
+  <header class="seccion-header">
+    <span class="big-num">04</span>
+    <span class="num">Sección 04 · Países centrales</span>
+    <h2>Marx y la <span class="acento">crítica al capitalismo</span></h2>
+  </header>
+
+  <div class="tldr">
+    <div class="tldr-mark">i</div>
+    <div class="tldr-body">
+      <span class="tldr-label">En una frase</span>
+      <p>Marx parte de los clásicos pero les da vuelta el resultado: si la riqueza viene del trabajo, entonces la <strong>ganancia capitalista</strong> debe explicarse como <strong>apropiación</strong> de parte de ese trabajo. Su nombre para eso: <strong>plusvalía</strong>.</p>
+    </div>
+  </div>
+
+  <div class="autor-card deep">
+    <div class="autor-card-foto">KM</div>
+    <div class="autor-card-body">
+      <span class="autor-card-vida">Prusia · 1818–1883</span>
+      <h4 class="autor-card-nombre">Karl Marx</h4>
+      <p class="autor-card-obra">El Capital. Crítica de la Economía Política (1867)</p>
+      <p class="autor-card-desc">Filósofo, economista y militante revolucionario. Estudia derecho, historia y filosofía. Vive exiliado entre París y Londres, donde investiga durante años en el Museo Británico. Su objetivo: descubrir las "leyes del movimiento" del capitalismo y mostrar por qué entrará en crisis.</p>
+    </div>
+  </div>
+
+  <h3>Lo que toma de los clásicos y lo que rompe</h3>
+
+  <p>Marx no llega de la nada: estudia obsesivamente a Smith y a Ricardo, los respeta intelectualmente y toma de ellos la teoría del valor-trabajo. Pero rompe con ellos en dos puntos centrales:</p>
+
+  <ol style="margin: 15px 0 20px 25px; color: var(--color-text-secondary);">
+    <li style="margin-bottom: 12px;"><strong>Rechaza las "leyes naturales".</strong> Para Marx, el capitalismo no es el orden natural de las cosas; es <em>una forma histórica</em> de organizar la producción, que tuvo un origen y tendrá un fin. Lo que los clásicos presentan como leyes universales, Marx las muestra como rasgos de una época.</li>
+    <li><strong>Explica el origen de la ganancia.</strong> Los clásicos hablan de "ganancia" pero no explican bien de dónde sale. Marx sí: sale de la diferencia entre lo que el trabajador produce y lo que recibe como salario.</li>
+  </ol>
+
+  <h3>El concepto central: la plusvalía</h3>
+
+  <p>Para entender a Marx, hay que detenerse en un razonamiento clave. Marx dice que en el capitalismo, el trabajador <strong>vende su fuerza de trabajo</strong> (su capacidad de trabajar durante un tiempo) a cambio de un salario. Ese salario equivale al costo de "producir y reproducir" esa fuerza de trabajo: lo que el trabajador necesita para alimentarse, vestirse, descansar y mantener a su familia.</p>
+
+  <p>Pero acá viene el punto: <strong>el trabajador, durante su jornada, produce mercancías por un valor mayor al de su salario</strong>. Si su salario equivale a 4 horas de trabajo socialmente necesario, pero la jornada es de 8 horas, las otras 4 horas son trabajo no pagado. Ese trabajo no pagado, materializado en mercancías, es lo que Marx llama <strong>plusvalía</strong>, y es de donde sale la ganancia del capitalista.</p>
+
+  <div class="callout-clave">
+    <span class="arrow">→</span>
+    <div>
+      <strong>Fórmula central</strong>
+      <p>Para Marx, el valor de toda mercancía se compone de tres partes: <strong>V = c + v + p</strong>. Donde <em>c</em> es el capital constante (materias primas, máquinas), <em>v</em> es el capital variable (los salarios) y <em>p</em> es la plusvalía (lo que el trabajador produce de más y que el capitalista se apropia).</p>
+    </div>
+  </div>
+
+  <h3>El "trabajador libre"</h3>
+
+  <p>Marx introduce un concepto irónico: el <em>trabajador "libre"</em>. Es libre en dos sentidos. Por un lado, ya no es esclavo ni siervo: nadie lo obliga a trabajar para tal o cual amo. Por el otro, está <strong>"libre" de medios de producción</strong>: no tiene tierra, taller ni máquinas propias. Por eso, para sobrevivir, no le queda otra que vender su fuerza de trabajo en el mercado a cambio de un salario. Esa "libertad" doble es lo que distingue al capitalismo de la esclavitud y del feudalismo.</p>
+
+  <div class="cita-textual">
+    El trabajador está "librado" a la suerte del mercado. Entre él y el capitalista propietario de los medios de producción surge una relación social que tiene lugar en el proceso de producción. Y esta relación no es armónica, sino una relación de clases antagónicas que, por tener intereses encontrados, colisionan, están en permanente conflicto.
+    <span class="autor">— Hidalgo, sobre la concepción de Marx del trabajo asalariado</span>
+  </div>
+
+  <h3>Las crisis: una tendencia interna del sistema</h3>
+
+  <p>Para los clásicos (especialmente Say) las crisis generales son imposibles. Para Marx, son <strong>inevitables y recurrentes</strong>. La explicación: a medida que el capitalismo se expande, los capitalistas compiten entre sí incorporando máquinas para abaratar costos. Esto reduce la proporción de trabajo (que es la fuente de plusvalía) en el total del capital. La tasa de ganancia tiende a caer.</p>
+
+  <p>Al mismo tiempo, los trabajadores reciben salarios bajos y no pueden comprar todo lo que se produce. La maquinización genera además un <strong>ejército industrial de reserva</strong>: una masa permanente de desocupados que mantiene los salarios bajos, pero que también limita el mercado interno. Resultado: <em>crisis de sobreproducción</em>, donde hay mercancías que nadie compra y trabajadores sin trabajo al mismo tiempo.</p>
+
+  <h3>El método: materialismo histórico</h3>
+
+  <p>Marx no es solo un economista. Su mirada parte del <strong>materialismo histórico</strong>: la idea de que la base de toda sociedad es su modo de producir y reproducir su vida material. La economía es la base ("estructura"), y sobre ella se levantan las instituciones jurídicas, políticas, ideológicas ("superestructura"). Esto no significa un determinismo simple, pero sí que para entender el derecho, la política o la ideología hay que partir de la economía.</p>
+
+  <div class="actividad">
+    <span class="actividad-tag">🎯 Actividad 2 · Empareja</span>
+    <h4>Conceptos clave de Marx</h4>
+    <p class="pregunta">Asociá cada concepto con su definición. Hacé clic primero en uno de la izquierda y luego en su par de la derecha.</p>
+    <div class="empareja" id="empareja1">
+      <div class="empareja-col">
+        <h5>Concepto</h5>
+        <div class="empareja-item" data-pair="1">Plusvalía</div>
+        <div class="empareja-item" data-pair="2">Fuerza de trabajo</div>
+        <div class="empareja-item" data-pair="3">Capital constante</div>
+        <div class="empareja-item" data-pair="4">Ejército industrial de reserva</div>
+      </div>
+      <div class="empareja-col">
+        <h5>Definición</h5>
+        <div class="empareja-item" data-pair="3">Materias primas y maquinaria que no crean valor nuevo</div>
+        <div class="empareja-item" data-pair="1">Trabajo no pagado del que el capitalista se apropia</div>
+        <div class="empareja-item" data-pair="4">Masa de desocupados que presiona a la baja los salarios</div>
+        <div class="empareja-item" data-pair="2">Capacidad de trabajar que el obrero vende a cambio de salario</div>
+      </div>
+    </div>
+    <p class="empareja-status" id="empareja1-status">0 de 4 emparejamientos correctos.</p>
+  </div>
+
+  <div class="callout-clave">
+    <span class="arrow">→</span>
+    <div>
+      <strong>Para retener</strong>
+      <p>Marx no propone simplemente "mejor distribución" del ingreso: muestra que la <em>relación social</em> entre quien posee los medios de producción y quien solo posee su fuerza de trabajo es la matriz oculta del sistema. Aceptar o discutir esa matriz cambia profundamente lo que se entiende por economía y por política económica.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SECCIÓN 5: NEOCLÁSICOS
+     ═══════════════════════════════════════════ -->
+<section class="seccion" id="sec-5">
+  <header class="seccion-header">
+    <span class="big-num">05</span>
+    <span class="num">Sección 05 · Países centrales</span>
+    <h2>Los <span class="acento">Neoclásicos</span>: el mercado como centro</h2>
+  </header>
+
+  <div class="tldr">
+    <div class="tldr-mark">i</div>
+    <div class="tldr-body">
+      <span class="tldr-label">En una frase</span>
+      <p>A fines del siglo XIX, una nueva camada de economistas <strong>desplazó la atención de la producción a la demanda</strong>. Abandonaron la teoría del valor-trabajo y reemplazaron al "homo trabajador" por el <strong>"homo económico"</strong>: un individuo racional que maximiza su utilidad eligiendo entre opciones escasas.</p>
+    </div>
+  </div>
+
+  <h3>De los clásicos a los neoclásicos: qué cambia</h3>
+
+  <p>Hacia 1870, las economías centrales ya estaban industrializadas, los mercados se habían expandido y los grandes problemas que preocupaban a Smith y Ricardo (cómo crece la riqueza nacional, cómo se distribuye entre clases) habían cedido lugar a otros: cómo se forman los precios en el mercado, cómo asignan recursos los consumidores y empresarios, cómo se logra el equilibrio.</p>
+
+  <p>Los neoclásicos —también llamados <em>marginalistas</em>— son la respuesta a esa nueva agenda. Sus diferencias con los clásicos son profundas:</p>
+
+  <div class="tabla-wrap">
+    <table class="tabla-comparativa">
+      <thead>
+        <tr><th>Dimensión</th><th>Clásicos (Smith, Ricardo)</th><th>Neoclásicos (Marshall, Walras)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="dim">Foco</td><td>Producción y crecimiento</td><td>Demanda del consumidor</td></tr>
+        <tr><td class="dim">Valor</td><td>Teoría del valor-trabajo</td><td>Teoría de la utilidad marginal</td></tr>
+        <tr><td class="dim">Sujeto central</td><td>Clases sociales (trabajadores, capitalistas, terratenientes)</td><td>Individuo racional ("homo económico")</td></tr>
+        <tr><td class="dim">Excedente</td><td>Cuestión central (¿quién se lo lleva?)</td><td>Tema abandonado</td></tr>
+        <tr><td class="dim">Método</td><td>Histórico, institucional</td><td>Matemático, formalizado</td></tr>
+        <tr><td class="dim">Estado</td><td>Mínimo, garante</td><td>Mínimo, no perjudicar al mercado</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Tres principios básicos</h3>
+
+  <p>El programa neoclásico se sostiene en tres pilares que conviene tener bien presentes:</p>
+
+  <div class="grid-tarjetas">
+    <div class="tarjeta-concepto">
+      <p class="cat">Pilar 01</p>
+      <h4>El "homo económico"</h4>
+      <p class="desc">El sujeto de la teoría es un individuo <strong>racional</strong> que persigue su máximo beneficio (placer si es consumidor; ganancia si es productor) <strong>con recursos escasos</strong>. Todos los individuos se comportan así.</p>
+    </div>
+    <div class="tarjeta-concepto v2">
+      <p class="cat">Pilar 02</p>
+      <h4>Costo de producción</h4>
+      <p class="desc">El precio de los bienes se forma como suma de costos: salarios, intereses, alquileres, ganancia. <strong>No hay teoría del excedente</strong>: cada factor recibe lo que aporta.</p>
+    </div>
+    <div class="tarjeta-concepto v3">
+      <p class="cat">Pilar 03</p>
+      <h4>Laissez faire</h4>
+      <p class="desc">El mercado libre <strong>asigna los recursos mejor que cualquier otra institución</strong>. Cualquier intervención estatal genera distorsiones e ineficiencias. La economía tiende espontáneamente al equilibrio con pleno empleo.</p>
+    </div>
+  </div>
+
+  <h3>La "utilidad marginal": la idea técnica que cambió todo</h3>
+
+  <p>El concepto técnico que da nombre a la escuela es el de <strong>utilidad marginal</strong>. Suena complicado pero es una idea simple:</p>
+
+  <div class="callout-clave">
+    <span class="arrow">→</span>
+    <div>
+      <strong>Definición intuitiva</strong>
+      <p>La utilidad marginal de un bien es <em>la satisfacción adicional</em> que da consumir una unidad más de ese bien. Y es <strong>decreciente</strong>: el primer vaso de agua después de correr da muchísima utilidad; el segundo, menos; el quinto, casi nada. Por eso pagamos cada vez menos por cada unidad adicional.</p>
+    </div>
+  </div>
+
+  <p>Con este concepto, los neoclásicos resuelven una vieja paradoja que los clásicos no podían resolver: la del valor del agua y el diamante. ¿Por qué el agua, esencial para la vida, vale tan poco, y los diamantes, inútiles, valen tanto? Respuesta neoclásica: porque la abundancia del agua hace que su utilidad <em>marginal</em> sea bajísima, mientras que la escasez del diamante hace que su utilidad marginal sea altísima. El valor no depende del trabajo, sino de la utilidad de la última unidad disponible.</p>
+
+  <h3>Los grandes nombres</h3>
+
+  <div class="autor-card">
+    <div class="autor-card-foto">AM</div>
+    <div class="autor-card-body">
+      <span class="autor-card-vida">Inglaterra · 1842–1924</span>
+      <h4 class="autor-card-nombre">Alfred Marshall</h4>
+      <p class="autor-card-obra">Principios de Economía (1890)</p>
+      <p class="autor-card-desc">El gran sintetizador. Inventó las curvas de oferta y demanda como las conocemos hoy. Sostuvo que el precio se forma en la intersección entre lo que los consumidores están dispuestos a pagar (utilidad marginal) y lo que los productores aceptan (costo marginal). Ambas hojas son necesarias, como las dos hojas de una tijera.</p>
+    </div>
+  </div>
+
+  <div class="autor-card alt">
+    <div class="autor-card-foto">LW</div>
+    <div class="autor-card-body">
+      <span class="autor-card-vida">Francia · 1834–1910</span>
+      <h4 class="autor-card-nombre">León Walras</h4>
+      <p class="autor-card-obra">Elementos de Economía Política Pura (1874)</p>
+      <p class="autor-card-desc">El formalizador matemático. Su obsesión: probar que existe un equilibrio simultáneo en <em>todos</em> los mercados de la economía a la vez. Su teoría del equilibrio general es la base matemática de toda la microeconomía moderna.</p>
+    </div>
+  </div>
+
+  <p>A ellos hay que sumar a Carl Menger (escuela austríaca), William Stanley Jevons (escuela inglesa), Vilfredo Pareto y Lionel Robbins. Robbins dejó la definición más famosa de la economía neoclásica:</p>
+
+  <div class="pullquote">
+    <blockquote>La economía es la ciencia que estudia la conducta humana como una relación entre fines y medios limitados que tienen diversa aplicación.</blockquote>
+    <cite>— Lionel Robbins, citado por Hidalgo</cite>
+  </div>
+
+  <p>Con esta definición, la economía deja de ser el estudio de las clases sociales y la riqueza de las naciones para convertirse en una <strong>ciencia formal de la elección</strong>. Aplicable, en principio, a cualquier situación donde haya recursos escasos y fines múltiples: desde decidir qué comprar en el supermercado hasta cómo asignar tiempo entre estudiar y descansar.</p>
+
+  <div class="callout-clave">
+    <span class="arrow">→</span>
+    <div>
+      <strong>Para retener</strong>
+      <p>El giro neoclásico es <em>despolitizador</em>: al abandonar la teoría del valor-trabajo y la pregunta por el excedente, hace desaparecer las clases sociales del centro del análisis. La economía se vuelve una ciencia de individuos eligiendo, no de sociedades produciendo y distribuyendo.</p>
+    </div>
+  </div>
+
+  <p>Esta tradición, modernizada y matematizada a lo largo del siglo XX, es la base de la mayor parte de la enseñanza estándar de la economía hoy. Cuando ustedes vean en otras materias gráficos de oferta y demanda, equilibrios de mercado o análisis de elección racional, están viendo la herencia neoclásica.</p>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SECCIÓN 6: KEYNES
+     ═══════════════════════════════════════════ -->
+<section class="seccion" id="sec-6">
+  <header class="seccion-header">
+    <span class="big-num">06</span>
+    <span class="num">Sección 06 · Países centrales</span>
+    <h2>Keynes: el <span class="acento">Estado al rescate</span></h2>
+  </header>
+
+  <div class="tldr">
+    <div class="tldr-mark">i</div>
+    <div class="tldr-body">
+      <span class="tldr-label">En una frase</span>
+      <p>Frente al desastre de los años 30, Keynes demostró que <strong>el mercado puede quedar atrapado en el desempleo</strong> y no salir solo. Propuso una solución revolucionaria para su tiempo: que el <strong>Estado intervenga activamente</strong> con gasto público para reactivar la demanda.</p>
+    </div>
+  </div>
+
+  <h3>El contexto: la Gran Depresión</h3>
+
+  <p>Para entender a Keynes hay que entender el momento en que escribe. En 1929 estalla la crisis financiera en Wall Street, y arrastra al mundo a la <strong>Gran Depresión</strong>: caída brutal de la inversión, desempleo masivo (en EE. UU. llegó al 25% de la población activa), deflación, desplome del comercio mundial. La economía no se recuperaba <em>sola</em>, como decían los neoclásicos. Año tras año, el sistema seguía paralizado.</p>
+
+  <p>A esto se sumaba un dato político inquietante: doce años antes, en 1917, la Revolución Rusa había mostrado que el capitalismo podía ser <em>reemplazado</em>. Si el sistema seguía sin dar respuesta al desempleo masivo, su legitimidad se desmoronaba. Era un momento de pánico para las economías capitalistas occidentales.</p>
+
+  <div class="autor-card deep">
+    <div class="autor-card-foto">JK</div>
+    <div class="autor-card-body">
+      <span class="autor-card-vida">Inglaterra · 1883–1946</span>
+      <h4 class="autor-card-nombre">John Maynard Keynes</h4>
+      <p class="autor-card-obra">Teoría General de la Ocupación, el Interés y el Dinero (1936)</p>
+      <p class="autor-card-desc">Economista británico, formado por Marshall y Pigou. Funcionario del Tesoro, financista exitoso y miembro influyente del establishment. Su libro de 1936 quiebra el consenso neoclásico al mostrar que <em>el equilibrio normal del capitalismo es con desempleo</em>, no con pleno empleo.</p>
+    </div>
+  </div>
+
+  <h3>El golpe a la Ley de Say</h3>
+
+  <p>Recordemos: Say había dicho que "la oferta crea su propia demanda". Si todo lo producido necesariamente se vende, no puede haber crisis general de superproducción. Y si los salarios y precios son flexibles, cualquier desempleo es transitorio.</p>
+
+  <p>Keynes responde: <strong>esto es falso</strong>. La gente no necesariamente gasta toda su renta. Puede ahorrar. Y los empresarios no necesariamente invierten todo el ahorro disponible: invierten solo si tienen <em>expectativas</em> favorables sobre el futuro. Si predomina el pesimismo, el ahorro se queda inmóvil, la demanda cae, las empresas venden menos, despiden trabajadores, y la economía se contrae.</p>
+
+  <div class="callout-clave">
+    <span class="arrow">→</span>
+    <div>
+      <strong>Idea central de Keynes</strong>
+      <p>El nivel de empleo y producción de la economía no depende de la oferta sino de la <strong>demanda efectiva</strong>: lo que efectivamente la gente y las empresas están dispuestas a gastar (consumo + inversión). Si la demanda efectiva es insuficiente, hay desempleo aunque los precios sean flexibles.</p>
+    </div>
+  </div>
+
+  <h3>Las tres ideas clave de Keynes</h3>
+
+  <div class="grid-tarjetas">
+    <div class="tarjeta-concepto">
+      <p class="cat">Idea 01</p>
+      <h4>La función consumo</h4>
+      <p class="desc">El consumo total <strong>depende del ingreso</strong>: a más ingreso, más consumo. Pero la <em>propensión a consumir</em> es decreciente: a medida que la gente tiene más, ahorra una proporción mayor. Esto puede generar caídas de demanda agregada.</p>
+    </div>
+    <div class="tarjeta-concepto v2">
+      <p class="cat">Idea 02</p>
+      <h4>La inversión y la tasa de interés</h4>
+      <p class="desc">La inversión empresarial <strong>depende de la tasa de interés</strong> (cuánto cuesta el dinero) y de las <em>expectativas</em>. Si las expectativas son pesimistas, ni siquiera tasas bajas reactivan la inversión. La política monetaria sola, entonces, puede no alcanzar.</p>
+    </div>
+    <div class="tarjeta-concepto v3">
+      <p class="cat">Idea 03</p>
+      <h4>El multiplicador</h4>
+      <p class="desc">Un aumento de la inversión genera <strong>un aumento mayor del ingreso</strong>: lo invertido genera salarios, que generan consumo, que generan más producción y empleo, en cadena. Por eso el gasto público en infraestructura es tan potente para reactivar.</p>
+    </div>
+  </div>
+
+  <h3>El papel del Estado: la novedad política</h3>
+
+  <p>Si la inversión privada no responde y la economía queda atrapada en desempleo, ¿qué hacer? La respuesta de Keynes —escándalo en su momento, sentido común hoy— es: <strong>que el Estado intervenga directamente</strong>. No para sustituir al mercado, no para nacionalizar la economía, sino para <em>apuntalarlo</em> cuando se traba.</p>
+
+  <p>Concretamente: el Estado debe aumentar el gasto público (obras públicas, infraestructura, contratación), bajar tasas de interés, expandir la cantidad de dinero. Todo orientado a aumentar la demanda efectiva y mover el multiplicador. Una vez que la economía se reactiva, los privados retoman la iniciativa.</p>
+
+  <div class="cita-textual">
+    Jamás se propuso Keynes reemplazar los mecanismos de asignación de recursos a través del mercado, ni sustituir la inversión privada por la inversión pública, ni modificar las formas de contratación de los factores de la producción. Por el contrario, su propósito fue apuntalar los mercados frente a los desequilibrios inherentes al mismo funcionamiento del sistema capitalista.
+    <span class="autor">— Hidalgo, sobre el rol del Estado en Keynes</span>
+  </div>
+
+  <h3>Macroeconomía: una nueva mirada</h3>
+
+  <p>Otro aporte central de Keynes: distinguir claramente entre <strong>microeconomía</strong> (el comportamiento de empresas y consumidores individuales) y <strong>macroeconomía</strong> (el funcionamiento de la economía como un todo). Lo que es racional para un individuo (ahorrar más en tiempos malos) puede ser desastroso para el conjunto (si todos ahorran a la vez, la demanda se desploma). Esta es la famosa <em>paradoja del ahorro</em>.</p>
+
+  <p>La política económica keynesiana dominó el mundo desarrollado entre 1945 y los años 70. Es la base teórica del Estado de Bienestar europeo, del New Deal estadounidense y de la edad de oro del capitalismo. En la sección 7 vamos a ver cómo, en una versión propia, también influyó en el desarrollismo argentino y latinoamericano.</p>
+
+  <div class="actividad">
+    <span class="actividad-tag">🤔 Actividad 3 · Reflexión</span>
+    <h4>Conectá con la actualidad</h4>
+    <p class="pregunta">Cuando un gobierno, frente a una crisis, anuncia un plan de obras públicas o un aumento del salario mínimo "para reactivar el consumo", ¿desde qué tradición teórica está pensando? Justificá brevemente con dos o tres conceptos vistos en esta sección.</p>
+    <textarea class="reflexion-textarea" id="reflexion1" placeholder="Escribí acá tu reflexión..."></textarea>
+    <button class="reflexion-btn" data-target="reflexion1">Guardar respuesta</button>
+    <div class="reflexion-saved" id="reflexion1-saved"></div>
+  </div>
+
+  <div class="callout-clave">
+    <span class="arrow">→</span>
+    <div>
+      <strong>Para retener</strong>
+      <p>Keynes salva al capitalismo de sí mismo: muestra que necesita <em>al Estado</em> para no entrar en crisis terminales. Después de él, la pregunta ya no será "¿debe intervenir el Estado?", sino <em>cómo</em> y <em>cuándo</em> debe hacerlo. Esa pregunta sigue abierta.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SECCIÓN 7: LIBERALISMO EN AMÉRICA LATINA
+     ═══════════════════════════════════════════ -->
+<section class="seccion bloque-al" id="sec-7">
+  <header class="seccion-header">
+    <span class="big-num">07</span>
+    <span class="num">Sección 07 · América Latina</span>
+    <h2>El <span class="acento">liberalismo</span> en América Latina</h2>
+  </header>
+
+  <div class="tldr">
+    <div class="tldr-mark">i</div>
+    <div class="tldr-body">
+      <span class="tldr-label">En una frase</span>
+      <p>Las ideas clásicas y neoclásicas <strong>cruzaron el Atlántico</strong> y se aplicaron en países cuya economía era muy distinta a la inglesa. Resultado: una versión local del liberalismo que organizó el modelo agroexportador y, después de su crisis, una versión <em>conservadora</em> y <em>monetarista</em>.</p>
+    </div>
+  </div>
+
+  <p>Cruzamos al Bloque B: las teorías que se ocuparon específicamente de América Latina. Y empezamos por la primera que se aplicó masivamente en la región: el liberalismo económico, traído desde Europa por las élites locales en el siglo XIX.</p>
+
+  <h3>El caso argentino como ejemplo</h3>
+
+  <p>Argentina ofrece un caso muy claro de aplicación del liberalismo en una economía periférica. Ferrucci distingue dos grandes momentos:</p>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-rail">
+        <div class="timeline-dot"></div>
+        <div class="timeline-line"></div>
+      </div>
+      <div class="timeline-content">
+        <p class="periodo">1853 – 1930 · Liberalismo originario</p>
+        <h4>El modelo agroexportador</h4>
+        <p>Inspirado en Juan Bautista Alberdi y plasmado en la Constitución de 1853, este liberalismo "puro" buscó garantizar las libertades económicas, atraer capital y mano de obra extranjera, y especializar al país en la exportación de granos y carnes. Roca, Pellegrini y Avellaneda son sus referentes políticos. Resultado: un fuerte crecimiento económico, una expansión territorial brutal (la "Conquista del Desierto"), y una estructura concentrada en la región pampeana, con escaso desarrollo del interior.</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-rail">
+        <div class="timeline-dot"></div>
+        <div class="timeline-line"></div>
+      </div>
+      <div class="timeline-content">
+        <p class="periodo">1930 – 1943 · Conservadorismo</p>
+        <h4>La crisis del modelo y los Conservadores</h4>
+        <p>La Gran Crisis de 1930 mostró brutalmente la vulnerabilidad externa del modelo: el precio de los granos cayó, las exportaciones se desplomaron, hubo desabastecimiento y desocupación. Los Conservadores (Pinedo, Pueyrredón, Hueyo) intentan una <em>medida pragmática</em>: conservar el liberalismo en su esencia, pero implementar ajustes intervencionistas (control de cambios, creación del Banco Central en 1936, abandono del patrón oro). Una conciliación incómoda entre el liberalismo y la realidad económica nacional y mundial.</p>
+      </div>
+    </div>
+  </div>
+
+  <h3>Las tendencias del modelo agroexportador</h3>
+
+  <p>Ferrucci identifica dos consecuencias estructurales del liberalismo originario aplicado en Argentina, que conviene tener bien presentes porque son los problemas que el estructuralismo va a denunciar:</p>
+
+  <div class="comparacion-cp">
+    <div class="comparacion-cp-card alt">
+      <span class="tag">Consecuencia A</span>
+      <h4>Concentración geográfica y desigualdad regional</h4>
+      <p>El desarrollo se concentró en la región pampeana y en la zona puerto-ciudad. El interior quedó relegado, generando una desigualdad territorial que persiste hasta hoy. La estructura productiva quedó <em>sectorialmente desbalanceada</em>: agro fuerte, industria débil.</p>
+    </div>
+    <div class="comparacion-cp-card alt">
+      <span class="tag">Consecuencia B</span>
+      <h4>Vulnerabilidad externa</h4>
+      <p>Al especializarse en la exportación de productos primarios, el país quedó <em>"colgado"</em> de los precios internacionales. Cuando estos caen (como en 1930), la economía se hunde. Esta dependencia estructural es lo que Prebisch va a teorizar décadas después.</p>
+    </div>
+  </div>
+
+  <h3>El "monetarismo" de los Conservadores</h3>
+
+  <p>Cuando estalla la crisis del 30, los Conservadores buscan respuestas. Pero, como explica Ferrucci, lo hacen desde una mirada muy particular: identifican <strong>liberalismo con monetarismo</strong>. Sus medidas se concentran en el sector monetario (control de cambios, emisión, creación del Banco Central, manejo de títulos públicos), bajo la creencia de que el problema era esencialmente monetario.</p>
+
+  <p>El problema, señala Ferrucci, es que esa mirada confunde el síntoma con la causa: las alteraciones monetarias eran <em>manifestación</em> de la crisis del modelo agroexportador, no su causa. Los desequilibrios estructurales (caída de precios primarios, migraciones del campo a la ciudad, extensividad agotada del agro) no se podían resolver solo desde lo monetario.</p>
+
+  <div class="cita-textual">
+    Existiría una aparente contradicción entre el mercado monetario y el mercado real. Pero la contradicción no es tal. Obligados por las circunstancias a actuar sobre el mecanismo económico, prefirieron hacerlo sobre aquella área en que su participación fuera menos notable: el mercado monetario.
+    <span class="autor">— Ferrucci, sobre los Conservadores ante la crisis</span>
+  </div>
+
+  <h3>El neoliberalismo posterior</h3>
+
+  <p>Esta tradición liberal-conservadora-monetarista no terminó en 1943. Resurgió varias veces a lo largo del siglo XX (algunos episodios de los gobiernos militares, los años 90 con la Convertibilidad, debates más recientes). Conviene leerla en su versión histórica original para reconocerla cuando vuelve a aparecer con otros nombres.</p>
+
+  <div class="callout-clave">
+    <span class="arrow">→</span>
+    <div>
+      <strong>Para retener</strong>
+      <p>Aplicar al pie de la letra una teoría nacida para Inglaterra industrial en una economía agroexportadora periférica produce <em>otra cosa</em>: un país especializado en commodities, vulnerable a los precios internacionales, con desarrollo geográfico desigual. Esa "otra cosa" es lo que las teorías latinoamericanas posteriores van a tratar de explicar y de superar.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SECCIÓN 8: ESTRUCTURALISMO CEPAL
+     ═══════════════════════════════════════════ -->
+<section class="seccion bloque-al" id="sec-8">
+  <header class="seccion-header">
+    <span class="big-num">08</span>
+    <span class="num">Sección 08 · América Latina</span>
+    <h2>Estructuralismo y la <span class="acento">CEPAL</span></h2>
+  </header>
+
+  <div class="tldr">
+    <div class="tldr-mark">i</div>
+    <div class="tldr-body">
+      <span class="tldr-label">En una frase</span>
+      <p>Después de la Segunda Guerra, un grupo de economistas latinoamericanos liderados por <strong>Raúl Prebisch</strong> dijo algo simple y revolucionario: la teoría económica del Norte <strong>no sirve para entendernos</strong>. La economía mundial está dividida en <strong>centros</strong> y <strong>periferias</strong>, y eso lo cambia todo.</p>
+    </div>
+  </div>
+
+  <h3>El nacimiento de la CEPAL</h3>
+
+  <p>Termina la Segunda Guerra Mundial. El mundo se reconstruye. Estados Unidos reemplaza a Gran Bretaña como centro del sistema mundial. En 1948 las Naciones Unidas crean la <strong>CEPAL</strong> (Comisión Económica para América Latina y el Caribe), con sede en Santiago de Chile. Su director más influyente sería el argentino Raúl Prebisch.</p>
+
+  <p>El proyecto intelectual de la CEPAL no es modesto: <strong>construir una teoría económica propia para la región</strong>, que reemplace o complemente a las teorías neoclásicas y ricardianas que se enseñaban en las universidades pero que no explicaban bien lo que pasaba en América Latina.</p>
+
+  <div class="autor-card">
+    <div class="autor-card-foto">RP</div>
+    <div class="autor-card-body">
+      <span class="autor-card-vida">Argentina · 1901–1986</span>
+      <h4 class="autor-card-nombre">Raúl Prebisch</h4>
+      <p class="autor-card-obra">El desarrollo económico de la América Latina y algunos de sus principales problemas (1949)</p>
+      <p class="autor-card-desc">Economista argentino, fue presidente del Banco Central durante la crisis del 30 antes de dirigir la CEPAL desde 1950. Su trabajo dio nombre a la "tesis Prebisch" y fundó la economía estructuralista latinoamericana. Más tarde dirigió la UNCTAD (Conferencia de Naciones Unidas sobre Comercio y Desarrollo).</p>
+    </div>
+  </div>
+
+  <h3>La crítica a Ricardo</h3>
+
+  <p>El blanco principal de Prebisch fue la <strong>teoría ricardiana de las ventajas comparativas</strong>. Recordemos: Ricardo decía que cada país debía especializarse en lo que produjera relativamente mejor, y que el comercio internacional beneficiaba a todos los participantes.</p>
+
+  <p>Prebisch responde con datos: el sistema global <em>no es</em> un mercado uniforme donde todos negocian en igualdad. Está dividido en <strong>economías centrales poderosas y economías periféricas relativamente débiles</strong>. Y el comercio entre ambos no las beneficia por igual.</p>
+
+  <div class="comparacion-cp">
+    <div class="comparacion-cp-card alt">
+      <span class="tag">Centro</span>
+      <h4>Economías industrializadas</h4>
+      <p>Producen y exportan <strong>manufacturas</strong>: bienes con alto valor agregado, alta complejidad tecnológica, demanda creciente. Concentran el progreso técnico. Capturan la mayor parte de los frutos de la productividad.</p>
+    </div>
+    <div class="comparacion-cp-card alt">
+      <span class="tag">Periferia</span>
+      <h4>Economías primario-exportadoras</h4>
+      <p>Producen y exportan <strong>productos primarios</strong>: bienes con bajo valor agregado, baja complejidad, demanda inelástica. El progreso técnico llega tarde y poco. Sus ingresos dependen de precios que tienden a caer.</p>
+    </div>
+  </div>
+
+  <h3>El deterioro de los términos de intercambio</h3>
+
+  <p>El núcleo técnico de la tesis Prebisch es lo que se llama <strong>deterioro secular de los términos de intercambio</strong>. ¿Qué significa?</p>
+
+  <div class="callout-clave">
+    <span class="arrow">→</span>
+    <div>
+      <strong>Definición intuitiva</strong>
+      <p>A lo largo del tiempo, los precios de los productos primarios (que vende la periferia) tienden a <em>caer</em> en relación con los precios de las manufacturas (que vende el centro). Resultado: la periferia necesita exportar cada vez más toneladas de granos para comprar la misma cantidad de tractores. Aunque exporte más, transfiere riqueza al centro.</p>
+    </div>
+  </div>
+
+  <p>Esto significa que la especialización ricardiana, lejos de beneficiar a todos, <strong>condena a la periferia a una posición subordinada y declinante</strong>. Lo que Ricardo presenta como una ley natural beneficiosa, Prebisch lo desenmascara como un mecanismo de transferencia de valor del centro a la periferia.</p>
+
+  <h3>La propuesta: industrialización por sustitución de importaciones</h3>
+
+  <p>La conclusión política es clara: si la especialización primaria condena, hay que <strong>industrializarse</strong>. Pero no a través del libre mercado, que no la haría espontáneamente, sino con un papel activo del Estado:</p>
+
+  <div class="grid-tarjetas">
+    <div class="tarjeta-concepto">
+      <p class="cat">Pieza 01</p>
+      <h4>Protección arancelaria</h4>
+      <p class="desc">Aranceles altos a las importaciones para que la industria nacional pueda nacer y crecer sin ser aplastada por la competencia externa.</p>
+    </div>
+    <div class="tarjeta-concepto v2">
+      <p class="cat">Pieza 02</p>
+      <h4>Planificación estatal</h4>
+      <p class="desc">El Estado define qué industrias son prioritarias y orienta la inversión hacia ellas mediante crédito, subsidios y obras públicas.</p>
+    </div>
+    <div class="tarjeta-concepto v3">
+      <p class="cat">Pieza 03</p>
+      <h4>Sustituir importaciones</h4>
+      <p class="desc">Producir localmente lo que antes se compraba afuera. Empezando por bienes de consumo, avanzando hacia bienes intermedios y, eventualmente, bienes de capital.</p>
+    </div>
+    <div class="tarjeta-concepto v4">
+      <p class="cat">Pieza 04</p>
+      <h4>Integración regional</h4>
+      <p class="desc">Crear mercados ampliados entre países latinoamericanos, para superar las limitaciones del mercado interno de cada país individual.</p>
+    </div>
+  </div>
+
+  <p>Este programa se conoce como <strong>Industrialización por Sustitución de Importaciones (ISI)</strong> y orientó la política económica de varios países latinoamericanos —Argentina, Brasil, México, Chile— durante varias décadas, especialmente entre los años 50 y 70.</p>
+
+  <h3>Los aciertos y los límites del estructuralismo</h3>
+
+  <p>El estructuralismo cepalino tuvo éxitos notables: aceleró la industrialización, expandió el empleo urbano, modernizó las economías. Pero también encontró límites duros que terminaron generando una nueva crisis hacia los años 60 y 70:</p>
+
+  <div class="tabla-wrap">
+    <table class="tabla-comparativa">
+      <thead>
+        <tr><th>Aciertos</th><th>Límites</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Industrialización rápida y urbanización extensa</td>
+          <td>Mercados internos pequeños limitaron la escala</td>
+        </tr>
+        <tr>
+          <td>Crecimiento del empleo y de la clase media</td>
+          <td>Industrialización dependiente de insumos importados</td>
+        </tr>
+        <tr>
+          <td>Conciencia regional sobre la posición periférica</td>
+          <td>Aumentó el peso del capital extranjero, no disminuyó</td>
+        </tr>
+        <tr>
+          <td>Políticas activas de Estado y planificación</td>
+          <td>Aparecieron problemas de balanza de pagos y deuda externa</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>Hacia fines de los 60, el modelo se trababa: la industria local consumía importaciones que había que pagar exportando, los desequilibrios externos se acumulaban, y la inflación se hacía crónica. Algunos teóricos siguieron en la línea estructuralista buscando reformas. Otros, más radicales, dieron un paso teórico distinto: la teoría de la dependencia.</p>
+
+  <div class="callout-clave">
+    <span class="arrow">→</span>
+    <div>
+      <strong>Para retener</strong>
+      <p>El estructuralismo cepalino le dio a América Latina <em>su primer marco teórico propio</em>. La división centro-periferia, el deterioro de los términos de intercambio y la idea de industrialización dirigida son aportes que cambiaron la conversación económica en la región y que siguen siendo usados, en versiones actualizadas, hasta hoy.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SECCIÓN 9: TEORÍA DE LA DEPENDENCIA
+     ═══════════════════════════════════════════ -->
+<section class="seccion bloque-al" id="sec-9">
+  <header class="seccion-header">
+    <span class="big-num">09</span>
+    <span class="num">Sección 09 · América Latina</span>
+    <h2>La teoría de la <span class="acento">dependencia</span></h2>
+  </header>
+
+  <div class="tldr">
+    <div class="tldr-mark">i</div>
+    <div class="tldr-body">
+      <span class="tldr-label">En una frase</span>
+      <p>Si el estructuralismo proponía industrializar para superar la posición periférica, la teoría de la dependencia dijo: <strong>no alcanza con eso</strong>. La periferia está estructuralmente <em>subordinada</em> al centro y, mientras siga integrada al sistema capitalista mundial, esa subordinación se reproduce.</p>
+    </div>
+  </div>
+
+  <h3>El paso de Prebisch a la dependencia</h3>
+
+  <p>La teoría de la dependencia surge a fines de los años 60, en parte como <strong>respuesta a los problemas que el estructuralismo no había resuelto</strong>. Sus representantes —entre otros, Celso Furtado, Fernando H. Cardoso y Enzo Faletto, André Gunder Frank— toman la división centro-periferia de Prebisch y la profundizan.</p>
+
+  <p>Donde el estructuralismo veía una <em>posición</em> periférica modificable mediante industrialización, los dependentistas ven una <em>relación</em> de dependencia que la propia industrialización (al menos como se hizo) no logra romper. La industrialización por sustitución de importaciones, lejos de generar autonomía, generó nuevas formas de dependencia: <strong>tecnológica, financiera y empresarial</strong> (porque las industrias clave terminaron en manos de multinacionales).</p>
+
+  <div class="autor-card">
+    <div class="autor-card-foto">CF</div>
+    <div class="autor-card-body">
+      <span class="autor-card-vida">Brasil · 1920–2004</span>
+      <h4 class="autor-card-nombre">Celso Furtado</h4>
+      <p class="autor-card-obra">Desarrollo y subdesarrollo (1964) · Diagnóstico de la crisis del Brasil (1965)</p>
+      <p class="autor-card-desc">Economista brasileño, comenzó como estructuralista cepalino y fue evolucionando hacia la dependencia. Su gran aporte: el subdesarrollo no es una etapa atrasada del desarrollo, sino una <em>condición específica</em> producida históricamente por la expansión del capitalismo europeo desde el siglo XVIII.</p>
+    </div>
+  </div>
+
+  <div class="autor-card alt">
+    <div class="autor-card-foto">CF</div>
+    <div class="autor-card-body">
+      <span class="autor-card-vida">Brasil · 1931–</span> · <span class="autor-card-vida" style="display:inline-block; margin-left:8px;">Chile · 1935–</span>
+      <h4 class="autor-card-nombre">F. H. Cardoso y Enzo Faletto</h4>
+      <p class="autor-card-obra">Dependencia y desarrollo en América Latina (1969)</p>
+      <p class="autor-card-desc">Sociólogo brasileño y sociólogo chileno, formados en la CEPAL. Ofrecieron la versión más sofisticada de la teoría de la dependencia. Su tesis: la dependencia <em>no es</em> determinismo total. Hay márgenes de acción política y proyectos de desarrollo posibles, pero siempre dentro de los límites de la posición subordinada en el sistema mundial.</p>
+    </div>
+  </div>
+
+  <h3>Tres ideas centrales</h3>
+
+  <div class="acordeon">
+    <div class="acordeon-item">
+      <button class="acordeon-trigger" aria-expanded="false">
+        <span>1. El subdesarrollo no es atraso, es producto histórico</span>
+        <span class="icon">+</span>
+      </button>
+      <div class="acordeon-body">
+        <div class="acordeon-body-inner">
+          <p>La teoría de la modernización (dominante en EE.UU. en los 50-60) decía: los países pobres son simplemente "atrasados", están en una etapa que los desarrollados ya superaron, y deben recorrer el mismo camino para llegar al desarrollo.</p>
+          <p>La dependencia responde: <strong>falso</strong>. El subdesarrollo no es un punto de partida sino el resultado de un proceso histórico concreto: la expansión del capitalismo industrial europeo desde fines del siglo XVIII, que incorporó a América Latina como periferia productora de materias primas. Subdesarrollo y desarrollo son <em>las dos caras de la misma moneda</em>: existen porque existe el sistema capitalista mundial que los produce a ambos.</p>
+        </div>
+      </div>
+    </div>
+    <div class="acordeon-item">
+      <button class="acordeon-trigger" aria-expanded="false">
+        <span>2. Las economías periféricas son "híbridas"</span>
+        <span class="icon">+</span>
+      </button>
+      <div class="acordeon-body">
+        <div class="acordeon-body-inner">
+          <p>Furtado describe a las economías latinoamericanas como compuestas por sectores heterogéneos: una <em>economía remanente</em> de subsistencia, un sector vinculado al comercio exterior y un sector vinculado al mercado interno. No son economías nacionales unificadas, sino estructuras fragmentadas, donde cada parte tiene una lógica distinta.</p>
+          <p>Esto contrasta fuertemente con las economías centrales, que sí tienen estructuras integradas y autonomía relativa. La fragmentación periférica es estructural y dificulta cualquier proyecto de desarrollo nacional autónomo.</p>
+        </div>
+      </div>
+    </div>
+    <div class="acordeon-item">
+      <button class="acordeon-trigger" aria-expanded="false">
+        <span>3. El Estado y los proyectos políticos importan</span>
+        <span class="icon">+</span>
+      </button>
+      <div class="acordeon-body">
+        <div class="acordeon-body-inner">
+          <p>Especialmente en Cardoso y Faletto, la dependencia <em>no es</em> un destino mecánico. Hay márgenes de acción política, proyectos posibles, alianzas de clases que pueden orientar el desarrollo en una u otra dirección. La dependencia limita pero no determina por completo.</p>
+          <p>Para los dependentistas más radicales (Frank, por ejemplo), en cambio, sin ruptura con el sistema mundial no hay desarrollo posible: la dependencia produce <em>"lumpendesarrollo"</em>, no desarrollo real.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3>Las propuestas de política</h3>
+
+  <p>Furtado, en sus textos posteriores, sintetiza un programa de transformación que va mucho más allá del estructuralismo cepalino:</p>
+
+  <ul style="margin: 15px 0 20px 25px; color: var(--color-text-secondary);">
+    <li style="margin-bottom: 8px;">Reconstrucción de las estructuras económicas para usar tecnología moderna sin depender de ella.</li>
+    <li style="margin-bottom: 8px;">Integración de los sectores marginalizados de la población.</li>
+    <li style="margin-bottom: 8px;">Reorganización del Estado para que cumpla un papel apropiado como agente del desarrollo.</li>
+    <li style="margin-bottom: 8px;">Búsqueda de autonomía tecnológica.</li>
+    <li>Establecimiento de cooperación regional efectiva.</li>
+  </ul>
+
+  <p>Como señala Preston, este programa es esencialmente político: requiere transformaciones que no son solo económicas sino también sociales, institucionales y, en última instancia, de poder. La dependencia no se rompe con un mejor manual de política económica, sino con un proyecto político de transformación.</p>
+
+  <h3>El legado: presencias y ausencias</h3>
+
+  <p>La teoría de la dependencia influyó fuertemente en el pensamiento económico y social latinoamericano de los 60 y 70. Después de las dictaduras militares y de la crisis de la deuda de los 80 perdió centralidad académica, especialmente en su versión más radical. Pero sus ideas centrales —la división centro-periferia, la dependencia tecnológica y financiera, la crítica al determinismo de la modernización— siguen siendo recuperadas en debates actuales sobre globalización, neocolonialismo y desarrollo.</p>
+
+  <div class="actividad">
+    <span class="actividad-tag">✏️ Actividad 4 · Quiz</span>
+    <h4>¿Lo entendiste?</h4>
+    <p class="pregunta">¿Cuál es la principal diferencia entre el estructuralismo cepalino (Prebisch) y la teoría de la dependencia (Furtado, Cardoso-Faletto)?</p>
+    <div class="quiz-options" data-quiz="q2">
+      <button class="quiz-opt" data-correct="false" data-feedback="No es la respuesta correcta. Ambas tradiciones critican la teoría ricardiana, pero lo hacen con énfasis y profundidad diferentes.">a) El estructuralismo critica a Ricardo y la dependencia no.</button>
+      <button class="quiz-opt" data-correct="true" data-feedback="¡Correcto! El estructuralismo creyó que la posición periférica podía superarse con políticas activas (industrialización dirigida) sin cuestionar la integración al sistema mundial. La dependencia mostró que esa industrialización generaba nuevas formas de dependencia (tecnológica, financiera, empresarial) y que el problema era estructural y relacional.">b) El estructuralismo creía que se podía superar la dependencia con buenas políticas; la teoría de la dependencia mostró que esa industrialización generó nuevas dependencias.</button>
+      <button class="quiz-opt" data-correct="false" data-feedback="No es la respuesta correcta. La dependencia no es marxista clásica, aunque dialoga con el marxismo. Sus referentes (Furtado, Cardoso) provenían en buena medida de la propia CEPAL.">c) Una es marxista y la otra es liberal.</button>
+      <button class="quiz-opt" data-correct="false" data-feedback="No es la respuesta correcta. La división centro-periferia es de Prebisch (estructuralismo), no de la dependencia. La dependencia la profundiza pero no la inventa.">d) La dependencia inventó la división centro-periferia.</button>
+    </div>
+    <div class="quiz-feedback" data-feedback-for="q2"></div>
+  </div>
+
+  <div class="callout-clave">
+    <span class="arrow">→</span>
+    <div>
+      <strong>Para retener</strong>
+      <p>El gran aporte de la dependencia es haber pensado a las economías latinoamericanas <em>en función del sistema mundial</em>, no como casos aislados de "atraso" o "subdesarrollo". El subdesarrollo se produce activamente, en tiempo real, en la relación con el centro. No es un problema de "ponerse al día"; es un problema de transformar relaciones.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SECCIÓN 10: CIERRE Y MAPA FINAL
+     ═══════════════════════════════════════════ -->
+<section class="seccion" id="sec-10">
+  <header class="seccion-header">
+    <span class="big-num">10</span>
+    <span class="num">Sección 10 · Síntesis</span>
+    <h2>Cierre y <span class="acento">mapa final</span></h2>
+  </header>
+
+  <p>Llegamos al final del recorrido. Vimos siete grandes tradiciones de pensamiento económico, cada una con sus preguntas, sus respuestas y sus puntos ciegos. Antes de cerrar, conviene ponerlas al lado para tener el mapa completo.</p>
+
+  <div class="tabla-wrap">
+    <table class="tabla-comparativa">
+      <thead>
+        <tr>
+          <th>Escuela</th>
+          <th>Origen del valor</th>
+          <th>Rol del Estado</th>
+          <th>Preocupación central</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="dim">Clásicos</td>
+          <td>Trabajo</td>
+          <td>Mínimo (laissez faire)</td>
+          <td>Crecimiento de la riqueza nacional</td>
+        </tr>
+        <tr>
+          <td class="dim">Marx</td>
+          <td>Trabajo (radicalizado)</td>
+          <td>Sin solución dentro del capitalismo</td>
+          <td>Explotación, plusvalía, crisis</td>
+        </tr>
+        <tr>
+          <td class="dim">Neoclásicos</td>
+          <td>Utilidad marginal</td>
+          <td>Mínimo, garante del mercado</td>
+          <td>Asignación eficiente de recursos escasos</td>
+        </tr>
+        <tr>
+          <td class="dim">Keynes</td>
+          <td>(Cuestión secundaria)</td>
+          <td>Activo, anticíclico</td>
+          <td>Pleno empleo, demanda efectiva</td>
+        </tr>
+        <tr>
+          <td class="dim">Liberalismo en AL</td>
+          <td>(Aplicado, no innova)</td>
+          <td>Mínimo (originario) / Monetarista (conservador)</td>
+          <td>Inserción agroexportadora</td>
+        </tr>
+        <tr>
+          <td class="dim">CEPAL</td>
+          <td>(Heterogéneo, mixto)</td>
+          <td>Activo, planificador</td>
+          <td>Industrialización, autonomía</td>
+        </tr>
+        <tr>
+          <td class="dim">Dependencia</td>
+          <td>(Trabajo, en clave global)</td>
+          <td>Activo, transformador</td>
+          <td>Romper la subordinación al centro</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Tres preguntas para llevarse</h3>
+
+  <p>Cada teoría que vimos se posiciona, explícita o implícitamente, ante tres preguntas. Identificar esas posiciones es la mejor herramienta práctica que les puede dejar esta unidad para leer críticamente cualquier texto, discurso o noticia económica:</p>
+
+  <div class="grid-tarjetas">
+    <div class="tarjeta-concepto">
+      <p class="cat">Pregunta clave 01</p>
+      <h4>¿El mercado se autorregula?</h4>
+      <p class="desc">Sí dicen los clásicos y los neoclásicos. <strong>No</strong> dicen Marx, Keynes, los cepalinos y los dependentistas, aunque cada uno por razones distintas.</p>
+    </div>
+    <div class="tarjeta-concepto v2">
+      <p class="cat">Pregunta clave 02</p>
+      <h4>¿La economía es nacional o global?</h4>
+      <p class="desc">Los clásicos y neoclásicos la piensan como <strong>universal</strong>; Marx en clave de sistema mundial; Keynes principalmente nacional. La CEPAL y la dependencia <strong>obligan</strong> a pensarla globalmente: lo que pasa adentro depende del lugar en el sistema mundial.</p>
+    </div>
+    <div class="tarjeta-concepto v3">
+      <p class="cat">Pregunta clave 03</p>
+      <h4>¿Hay un único modelo de capitalismo?</h4>
+      <p class="desc">Los clásicos y neoclásicos tienden a pensar que sí: las leyes son universales. Marx ve un sistema único pero variable. Keynes acepta variantes nacionales. <strong>Las teorías latinoamericanas</strong> insisten: hay capitalismos distintos, y los periféricos no son etapas atrasadas de los centrales.</p>
+    </div>
+    <div class="tarjeta-concepto v4">
+      <p class="cat">Pregunta clave 04</p>
+      <h4>¿Qué hacer con la economía?</h4>
+      <p class="desc">Dejarla sola (clásicos, neoclásicos), superarla (Marx), corregirla (Keynes), acompañarla con planificación (estructuralismo) o transformarla en su relación global (dependencia). Toda política económica es heredera de alguna de estas respuestas.</p>
+    </div>
+  </div>
+
+  <h3>Por qué esto les importa profesionalmente</h3>
+
+  <p>Para futuros abogados y abogadas: las leyes económicas, fiscales, laborales, comerciales y regulatorias no son neutras. Cada conjunto de normas asume una mirada económica determinada. Una ley que protege fuertemente al consumidor está más cerca de Keynes; una que prioriza la libre contratación, más cerca del liberalismo; una que regula precios para garantizar el abastecimiento popular, más cerca del estructuralismo. Saber leer esa carga teórica es parte de saber leer una norma.</p>
+
+  <p>Para futuros trabajadores y trabajadoras sociales: los problemas que van a abordar (pobreza, desigualdad, marginalidad, vulnerabilidad) son, en buena medida, <strong>productos del sistema económico</strong>. Cómo se los explique determina cómo se los aborde. Una mirada neoclásica los explicará como "fallas individuales" o "fricciones de mercado"; una mirada estructuralista los verá como producto de un modelo de desarrollo desbalanceado; una mirada dependentista los pondrá en relación con el lugar del país en el sistema mundial. La intervención cambia radicalmente según la mirada.</p>
+
+  <div class="cierre-card">
+    <span class="cierre-label">Para terminar</span>
+    <h4>Llegaron al final del recorrido</h4>
+    <p>Las teorías económicas no son verdades cerradas: son <em>modos de mirar</em> que iluminan unas cosas y dejan otras en sombra. Estudiarlas no es elegir un bando, sino aprender a reconocer el bando desde el que cada texto, política o discurso se posiciona.</p>
+    <p>Les sugerimos volver sobre esta unidad después de leer la bibliografía obligatoria, y traer al foro de consultas las dudas que les surjan. Y, sobre todo: empiecen a probar estas categorías leyendo el diario, escuchando debates políticos, mirando una norma. Van a sorprenderse de cuánto reaparecen estos siete autores que vieron acá.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     FUENTES BIBLIOGRÁFICAS
+     ═══════════════════════════════════════════ -->
+<section class="fuentes" id="sec-fuentes">
+  <span class="label">Fuentes utilizadas</span>
+  <h2>Bibliografía de la unidad</h2>
+  <p class="intro">Este documento fue elaborado a partir de las siguientes fuentes obligatorias y complementarias. Lean cada una con la guía que ofrece este texto y profundicen los pasajes que más les interesen.</p>
+
+  <div class="fuente-item">
+    <span class="num">Fuente 01 · Texto de profundización</span>
+    <h4>Las principales teorías económicas y el contexto</h4>
+    <p class="autor-fuente">Juan Carlos Hidalgo · Ficha de cátedra (1994)</p>
+    <p class="descrip">Síntesis didáctica de las grandes corrientes (preclásicos, clásicos, marxismo, neoclásicos, keynesianismo) con énfasis en los conceptos centrales y las preguntas que cada escuela se planteó. Buen punto de partida para fijar términos y autores.</p>
+  </div>
+
+  <div class="fuente-item">
+    <span class="num">Fuente 02 · Texto base</span>
+    <h4>Objeto de la economía política e historia del pensamiento económico</h4>
+    <p class="autor-fuente">Juan Carlos Hidalgo · Universidad Nacional del Litoral</p>
+    <p class="descrip">Tratamiento extenso y sistemático del recorrido teórico: clásicos (Smith, Ricardo), economía política marxista (con desarrollo detallado de la teoría de la plusvalía y la transformación de los valores en precios), economía neoclásica (Marshall, Walras, Menger, Pareto, Robbins) y economía keynesiana. Este es el texto principal para profundizar las teorías de los países centrales.</p>
+  </div>
+
+  <div class="fuente-item">
+    <span class="num">Fuente 03 · Texto base</span>
+    <h4>Una introducción a la teoría del desarrollo</h4>
+    <p class="autor-fuente">P. W. Preston · Siglo XXI Editores</p>
+    <p class="descrip">Capítulos 3 y 10. Adam Smith y el orden espontáneo del mercado, y la experiencia del desarrollo de América Latina: estructuralismo y teoría de la dependencia. Lectura obligatoria para los bloques sobre clásicos y América Latina, especialmente para Prebisch, la CEPAL, Furtado y Cardoso-Faletto.</p>
+  </div>
+
+  <div class="fuente-item">
+    <span class="num">Fuente 04 · Texto complementario</span>
+    <h4>Notas sobre la historia del pensamiento económico (Capítulo 28)</h4>
+    <p class="autor-fuente">Francisco Mochón y Víctor Beker · Editorial McGraw Hill (1993)</p>
+    <p class="descrip">Visión panorámica desde los preclásicos hasta los desarrollos recientes (nueva macroeconomía clásica, expectativas racionales, economía del desequilibrio). Útil para situar a cada escuela en una línea histórica más amplia y para conocer la contribución de Manuel Belgrano al pensamiento económico argentino.</p>
+  </div>
+
+  <div class="fuente-item">
+    <span class="num">Fuente 05 · Caso aplicado</span>
+    <h4>Política Económica Argentina: Liberalismo Originario y Los Conservadores</h4>
+    <p class="autor-fuente">Ricardo Ferrucci · Antecedentes de filosofía económica del modelo liberal</p>
+    <p class="descrip">Tres páginas escaneadas (pp. 117, 120, 121) que analizan la aplicación del liberalismo en Argentina entre 1853 y 1943. Imprescindible para entender el caso argentino como ejemplo de aplicación periférica del pensamiento clásico, las consecuencias del modelo agroexportador y la respuesta conservadora-monetarista a la crisis del 30.</p>
+  </div>
+
+</section>
+
+<button class="scroll-top" id="scrollTop" aria-label="Volver arriba">↑</button>
+
+<div class="footer-doc">
+  <p>Cátedra B · Economía Política · FCJS · UNL · Equipo de Cátedra</p>
+</div>
+
+</div><!-- /doc-wrapper -->
+
+<script>
+// === MOBILE TOGGLE ===
+const sidebar = document.getElementById('sidebar');
+const mobileToggle = document.getElementById('mobileToggle');
+mobileToggle.addEventListener('click', () => {
+  sidebar.classList.toggle('open');
+});
+sidebar.querySelectorAll('nav a').forEach(a => {
+  a.addEventListener('click', () => {
+    if (window.innerWidth <= 1000) sidebar.classList.remove('open');
+  });
+});
+
+// === PROGRESS BAR ===
+const progressBar = document.getElementById('progressBar');
+function updateProgress() {
+  const h = document.documentElement;
+  const total = h.scrollHeight - h.clientHeight;
+  const pct = total > 0 ? (h.scrollTop / total) * 100 : 0;
+  progressBar.style.width = Math.min(100, pct) + '%';
+}
+window.addEventListener('scroll', updateProgress);
+
+// === SCROLL TO TOP ===
+const scrollTopBtn = document.getElementById('scrollTop');
+window.addEventListener('scroll', () => {
+  scrollTopBtn.classList.toggle('visible', window.scrollY > 400);
+});
+scrollTopBtn.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// === ACTIVE SECTION HIGHLIGHTING ===
+const navSections = document.querySelectorAll('section[id], header[id="top"]');
+const navLinks = sidebar.querySelectorAll('nav a');
+function updateActiveSection() {
+  const scrollPos = window.scrollY + 120;
+  let currentId = '';
+  navSections.forEach(sec => {
+    if (sec.offsetTop <= scrollPos) currentId = sec.id;
+  });
+  if (!currentId) currentId = 'top';
+  navLinks.forEach(link => {
+    link.classList.toggle('active', link.getAttribute('href') === '#' + currentId);
+  });
+}
+window.addEventListener('scroll', updateActiveSection);
+updateActiveSection();
+</script>
+
+<script>
+// ============ QUIZ ============
+document.querySelectorAll('.quiz-options').forEach(group => {
+  const quizName = group.dataset.quiz;
+  const feedbackBox = document.querySelector(`[data-feedback-for="${quizName}"]`);
+  group.querySelectorAll('.quiz-opt').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (group.classList.contains('answered')) return;
+      group.classList.add('answered');
+      const isCorrect = btn.dataset.correct === 'true';
+      btn.classList.add(isCorrect ? 'correcta' : 'incorrecta');
+      group.querySelectorAll('.quiz-opt').forEach(b => {
+        b.classList.add('disabled');
+        if (b !== btn && b.dataset.correct === 'true') b.classList.add('correcta');
+      });
+      feedbackBox.textContent = btn.dataset.feedback;
+      feedbackBox.classList.remove('ok', 'fail');
+      feedbackBox.classList.add(isCorrect ? 'ok' : 'fail');
+      feedbackBox.classList.add('show');
+    });
+  });
+});
+
+// ============ ACORDEÓN ============
+document.querySelectorAll('.acordeon-trigger').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const body = btn.nextElementSibling;
+    const isActive = btn.classList.contains('activo');
+    btn.classList.toggle('activo');
+    body.classList.toggle('activo');
+    btn.setAttribute('aria-expanded', !isActive);
+  });
+});
+
+// ============ EMPAREJA ============
+function setupEmpareja(containerId, statusId) {
+  const container = document.getElementById(containerId);
+  const status = document.getElementById(statusId);
+  if (!container) return;
+  let selected = null;
+  let matches = 0;
+  const total = container.querySelectorAll('.empareja-col:first-child .empareja-item').length;
+
+  container.querySelectorAll('.empareja-item').forEach(item => {
+    item.addEventListener('click', () => {
+      if (item.classList.contains('matched')) return;
+      if (!selected) {
+        selected = item;
+        item.classList.add('selected');
+        return;
+      }
+      if (selected === item) {
+        item.classList.remove('selected');
+        selected = null;
+        return;
+      }
+      const sameCol = selected.parentElement === item.parentElement;
+      if (sameCol) {
+        selected.classList.remove('selected');
+        selected = item;
+        item.classList.add('selected');
+        return;
+      }
+      if (selected.dataset.pair === item.dataset.pair) {
+        selected.classList.remove('selected');
+        selected.classList.add('matched');
+        item.classList.add('matched');
+        matches++;
+        status.textContent = `${matches} de ${total} emparejamientos correctos.`;
+        if (matches === total) {
+          status.textContent = `🎉 ¡Completaste los ${total} emparejamientos!`;
+          status.style.color = '#1e6d3e';
+          status.style.fontWeight = 'bold';
+        }
+      } else {
+        selected.classList.add('error');
+        item.classList.add('error');
+        const s = selected;
+        setTimeout(() => {
+          s.classList.remove('error', 'selected');
+          item.classList.remove('error');
+        }, 600);
+      }
+      selected = null;
+    });
+  });
+}
+setupEmpareja('empareja1', 'empareja1-status');
+
+// ============ REFLEXIÓN ============
+const reflexionesGuardadas = {};
+document.querySelectorAll('.reflexion-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const targetId = btn.dataset.target;
+    const textarea = document.getElementById(targetId);
+    const savedMsg = document.getElementById(targetId + '-saved');
+    if (textarea.value.trim().length < 10) {
+      savedMsg.textContent = '⚠ Tu respuesta es muy corta. Escribí al menos un par de oraciones.';
+      savedMsg.style.background = 'rgba(230,126,34,0.08)';
+      savedMsg.style.borderLeftColor = '#e67e22';
+      savedMsg.style.color = '#a85a17';
+      savedMsg.classList.add('show');
+      return;
+    }
+    reflexionesGuardadas[targetId] = textarea.value;
+    savedMsg.textContent = '✓ Tu respuesta quedó guardada en este navegador (durante esta sesión). Te recomendamos también copiarla a tus apuntes de clase.';
+    savedMsg.style.background = '';
+    savedMsg.style.borderLeftColor = '';
+    savedMsg.style.color = '';
+    savedMsg.classList.add('show');
+  });
+});
+</script>
+
+</body>
+</html>
