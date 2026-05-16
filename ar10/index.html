@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La revolución digital y la inteligencia artificial en la economía mundial · Abog. Nicolás Perot</title>
+<style>
+  /* ============ TOKENS ============ */
+  :root {
+    --color-primary: #8e44ad;
+    --color-primary-dark: #6c3483;
+    --color-anchor: #4a235a;
+    --color-deepest: #2a1133;
+    --color-soft: #d2b4de;
+    --color-lavender-bg: #f4ecf7;
+    --color-bg-tinted: #fdfbff;
+    --color-text-primary: #1a1a1a;
+    --color-text-body: #2c2c2c;
+    --color-text-secondary: #555555;
+    --color-text-muted: #777777;
+    --color-text-faint: #999999;
+    --color-border: #eaeaea;
+    --font-display: 'Georgia', 'Times New Roman', serif;
+    --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --max-width: 760px;
+    --sidebar-width: 280px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--color-text-body);
+    background: linear-gradient(180deg, #f8f7fc 0%, #f4f0f7 100%);
+    line-height: 1.8;
+    font-size: 17px;
+    padding: 40px 20px 80px;
+    padding-left: calc(var(--sidebar-width) + 40px);
+    min-height: 100vh;
+    transition: padding 0.3s ease;
+  }
+
+  /* ============ SIDEBAR ============ */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: var(--sidebar-width);
+    height: 100vh;
+    background: var(--color-deepest);
+    color: #fff;
+    padding: 38px 24px 30px;
+    overflow-y: auto;
+    z-index: 100;
+    box-shadow: 4px 0 30px rgba(42,17,51,0.15);
+    transition: transform 0.3s ease;
+  }
+
+  .sidebar-brand {
+    display: block;
+    font-size: 0.7em;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--color-soft);
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+
+  .sidebar-title {
+    font-family: var(--font-display);
+    font-size: 1.5em;
+    line-height: 1.2;
+    color: #fff;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+
+  .sidebar-subtitle {
+    display: block;
+    font-size: 0.78em;
+    color: var(--color-soft);
+    font-style: italic;
+    margin-bottom: 30px;
+    line-height: 1.4;
+  }
+
+  .sidebar-nav-title {
+    display: block;
+    font-size: 0.7em;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    color: var(--color-soft);
+    font-weight: 700;
+    margin-bottom: 14px;
+    padding: 0 10px;
+  }
+
+  .sidebar nav {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .sidebar nav a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 12px;
+    color: rgba(255,255,255,0.78);
+    text-decoration: none;
+    font-size: 0.9em;
+    border-radius: 6px;
+    border-left: 2px solid transparent;
+    transition: all 0.2s ease;
+    line-height: 1.35;
+  }
+
+  .sidebar nav a:hover {
+    background: rgba(255,255,255,0.06);
+    color: #fff;
+    border-left-color: var(--color-primary);
+  }
+
+  .sidebar nav a.active {
+    background: rgba(142,68,173,0.18);
+    color: #fff;
+    border-left-color: var(--color-primary);
+  }
+
+  .sidebar nav a .num {
+    font-family: var(--font-display);
+    font-size: 0.85em;
+    color: var(--color-soft);
+    font-weight: 700;
+    min-width: 20px;
+  }
+
+  .sidebar-foot {
+    margin-top: 30px;
+    padding: 20px 12px 0;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    font-size: 0.72em;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.6;
+    letter-spacing: 0.5px;
+  }
+
+  /* ============ PROGRESS BAR (ABAJO, ZÓCALO FIJO) ============ */
+  .progress-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(to right, var(--color-primary), var(--color-anchor));
+    z-index: 300;
+    width: 0%;
+    transition: width 0.1s ease;
+    box-shadow: 0 -2px 8px rgba(108,52,131,0.3);
+    pointer-events: none;
+  }
+
+  /* ============ BOTÓN SUBIR (ABAJO-IZQUIERDA, SIEMPRE VISIBLE) ============ */
+  .back-to-top {
+    position: fixed;
+    bottom: 22px;
+    right: 22px;
+    width: 50px;
+    height: 50px;
+    background: var(--color-primary);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    font-size: 1.4em;
+    cursor: pointer;
+    z-index: 310;
+    box-shadow: 0 6px 20px rgba(108,52,131,0.4);
+    transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    padding: 0;
+  }
+
+  .back-to-top:hover, .back-to-top:focus {
+    background: var(--color-primary-dark);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 28px rgba(108,52,131,0.55);
+    outline: none;
+  }
+
+  .back-to-top:active {
+    transform: translateY(-1px);
+  }
+
+  /* ============ TOGGLE MÓVIL ============ */
+  .mobile-toggle {
+    display: none;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 46px;
+    height: 46px;
+    background: var(--color-primary);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    font-size: 1.3em;
+    cursor: pointer;
+    z-index: 250;
+    box-shadow: 0 4px 14px rgba(108,52,131,0.35);
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* ============ ARTÍCULO ============ */
+  .article {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 70px 60px 80px;
+    border-radius: 16px;
+    box-shadow: 0 30px 80px rgba(74,35,90,0.10), 0 8px 24px rgba(74,35,90,0.05);
+    position: relative;
+  }
+
+  /* ============ HEADER ============ */
+  .article-header {
+    text-align: center;
+    margin-bottom: 60px;
+    padding-bottom: 50px;
+    border-bottom: 1px solid var(--color-border);
+    position: relative;
+  }
+
+  .article-header::after {
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(to right, var(--color-primary), var(--color-anchor));
+    border-radius: 2px;
+  }
+
+  .author-byline {
+    display: inline-block;
+    margin-bottom: 32px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--color-border);
+    text-align: center;
+  }
+
+  .author-byline .author-label {
+    display: block;
+    font-size: 0.68em;
+    text-transform: uppercase;
+    letter-spacing: 3.5px;
+    color: var(--color-text-faint);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .author-byline .author-name {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 1.15em;
+    color: var(--color-anchor);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+
+  .author-byline .author-contact {
+    display: block;
+    font-size: 0.78em;
+    color: var(--color-text-muted);
+    letter-spacing: 0.5px;
+  }
+
+  .author-byline .author-contact a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--color-text-faint);
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .author-byline .author-contact a:hover {
+    color: var(--color-primary);
+    border-bottom-color: var(--color-primary);
+  }
+
+  .article-header h1 {
+    font-family: var(--font-display);
+    font-size: 2.8em;
+    line-height: 1.15;
+    color: var(--color-deepest);
+    font-weight: 700;
+    margin-bottom: 25px;
+    letter-spacing: -0.5px;
+  }
+
+  .article-header h1 em {
+    font-style: italic;
+    color: var(--color-primary);
+    font-weight: 400;
+  }
+
+  .article-header .subtitle {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.25em;
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+    max-width: 580px;
+    margin: 0 auto;
+    font-weight: 400;
+  }
+
+  /* ============ EPÍGRAFE ============ */
+  .epigraph {
+    margin: 0 auto 55px;
+    padding: 30px 40px;
+    border-left: 3px solid var(--color-primary);
+    background: var(--color-lavender-bg);
+    border-radius: 0 12px 12px 0;
+    max-width: 95%;
+  }
+
+  .epigraph p {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: var(--color-anchor);
+  }
+
+  .epigraph cite {
+    display: block;
+    margin-top: 12px;
+    font-family: var(--font-body);
+    font-style: normal;
+    font-size: 0.82em;
+    color: var(--color-text-muted);
+    letter-spacing: 0.5px;
+  }
+
+  /* ============ SECCIONES ============ */
+  section {
+    margin-bottom: 55px;
+    scroll-margin-top: 30px;
+  }
+
+  section h2 {
+    font-family: var(--font-display);
+    font-size: 1.85em;
+    color: var(--color-deepest);
+    margin-bottom: 28px;
+    line-height: 1.25;
+    font-weight: 700;
+    padding-top: 10px;
+  }
+
+  .seccion-num {
+    display: block;
+    font-family: var(--font-body);
+    font-size: 0.55em;
+    color: var(--color-primary);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  section h3 {
+    font-family: var(--font-display);
+    font-size: 1.3em;
+    color: var(--color-anchor);
+    margin: 35px 0 18px;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  section p {
+    margin-bottom: 22px;
+    text-align: justify;
+    hyphens: auto;
+  }
+
+  section p strong {
+    color: var(--color-anchor);
+    font-weight: 700;
+  }
+
+  section p em {
+    font-style: italic;
+    color: var(--color-text-primary);
+  }
+
+  /* ============ CITAS DESTACADAS ============ */
+  .pull-quote {
+    margin: 40px -30px;
+    padding: 35px 45px;
+    background: linear-gradient(135deg, var(--color-deepest) 0%, var(--color-anchor) 100%);
+    color: #ffffff;
+    border-radius: 12px;
+    position: relative;
+    box-shadow: 0 15px 40px rgba(42,17,51,0.25);
+  }
+
+  .pull-quote::before {
+    content: """;
+    position: absolute;
+    top: -10px;
+    left: 25px;
+    font-family: var(--font-display);
+    font-size: 5em;
+    color: var(--color-soft);
+    opacity: 0.5;
+    line-height: 1;
+  }
+
+  .pull-quote p {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.2em;
+    line-height: 1.5;
+    margin-bottom: 18px;
+    text-align: left;
+    color: #ffffff;
+  }
+
+  .pull-quote .source {
+    display: block;
+    font-family: var(--font-body);
+    font-style: normal;
+    font-size: 0.78em;
+    color: var(--color-soft);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 600;
+  }
+
+  /* ============ BLOQUE DE DATOS ============ */
+  .data-block {
+    background: var(--color-lavender-bg);
+    padding: 35px 40px;
+    border-radius: 12px;
+    margin: 35px 0;
+    border: 1px solid rgba(142,68,173,0.15);
+  }
+
+  .data-block h4 {
+    font-family: var(--font-body);
+    font-size: 0.78em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--color-primary);
+    margin-bottom: 22px;
+    font-weight: 700;
+  }
+
+  .data-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+  }
+
+  .data-item {
+    border-left: 2px solid var(--color-primary);
+    padding-left: 18px;
+  }
+
+  .data-item .figure {
+    font-family: var(--font-display);
+    font-size: 2em;
+    color: var(--color-deepest);
+    font-weight: 700;
+    line-height: 1.1;
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .data-item .desc {
+    font-size: 0.88em;
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+  }
+
+  /* ============ DROP CAP ============ */
+  .drop-cap {
+    font-family: var(--font-display);
+    float: left;
+    font-size: 4.2em;
+    line-height: 0.85;
+    padding: 8px 12px 0 0;
+    color: var(--color-primary);
+    font-weight: 700;
+  }
+
+  /* ============ NOTAS LATERALES ============ */
+  .aside-note {
+    margin: 30px 0;
+    padding: 25px 30px;
+    background: #fafafa;
+    border-radius: 10px;
+    border-left: 3px solid var(--color-soft);
+  }
+
+  .aside-note .label {
+    font-size: 0.72em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--color-primary);
+    font-weight: 700;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .aside-note p {
+    font-size: 0.95em;
+    line-height: 1.65;
+    color: var(--color-text-secondary);
+    margin-bottom: 0;
+  }
+
+  /* ============ REFERENCIAS CON TOOLTIP ============ */
+  .ref {
+    position: relative;
+    display: inline-block;
+    color: var(--color-primary);
+    font-weight: 700;
+    font-size: 0.78em;
+    vertical-align: super;
+    cursor: pointer;
+    padding: 0 2px;
+    text-decoration: none;
+    border-radius: 3px;
+    transition: background 0.2s ease;
+  }
+
+  .ref:hover, .ref:focus, .ref.active {
+    background: var(--color-lavender-bg);
+    outline: none;
+  }
+
+  .ref::before {
+    content: "[";
+  }
+
+  .ref::after {
+    content: "]";
+  }
+
+  .ref-tooltip {
+    position: absolute;
+    bottom: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%) translateY(8px);
+    background: var(--color-deepest);
+    color: #fff;
+    padding: 14px 18px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.55;
+    width: 320px;
+    max-width: calc(100vw - 40px);
+    text-align: left;
+    box-shadow: 0 12px 32px rgba(42,17,51,0.35);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+    z-index: 50;
+    vertical-align: baseline;
+    font-style: normal;
+    text-transform: none;
+    letter-spacing: normal;
+  }
+
+  .ref:hover .ref-tooltip,
+  .ref:focus .ref-tooltip,
+  .ref.active .ref-tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+    pointer-events: auto;
+  }
+
+  .ref-tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 7px solid transparent;
+    border-top-color: var(--color-deepest);
+  }
+
+  .ref-tooltip .ref-title {
+    display: block;
+    font-weight: 700;
+    color: var(--color-soft);
+    margin-bottom: 5px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+  }
+
+  .ref-tooltip a {
+    display: inline-block;
+    margin-top: 8px;
+    color: var(--color-soft);
+    text-decoration: underline;
+    font-size: 12px;
+    word-break: break-all;
+  }
+
+  .ref-tooltip a:hover {
+    color: #fff;
+  }
+
+  /* ============ REFERENCIAS FINALES ============ */
+  .references {
+    margin-top: 70px;
+    padding-top: 40px;
+    border-top: 2px solid var(--color-border);
+  }
+
+  .references h2 {
+    font-size: 1.4em;
+    margin-bottom: 25px;
+  }
+
+  .references ol {
+    list-style: none;
+    counter-reset: ref-counter;
+  }
+
+  .references li {
+    counter-increment: ref-counter;
+    position: relative;
+    padding: 14px 0 14px 45px;
+    font-size: 0.88em;
+    line-height: 1.65;
+    color: var(--color-text-secondary);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .references li:last-child {
+    border-bottom: none;
+  }
+
+  .references li::before {
+    content: counter(ref-counter);
+    position: absolute;
+    left: 0;
+    top: 14px;
+    width: 30px;
+    height: 30px;
+    background: var(--color-lavender-bg);
+    color: var(--color-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.82em;
+  }
+
+  .references em {
+    color: var(--color-anchor);
+    font-style: italic;
+  }
+
+  .references a {
+    color: var(--color-primary);
+    text-decoration: none;
+    word-break: break-word;
+    border-bottom: 1px dotted var(--color-primary);
+  }
+
+  .references a:hover {
+    color: var(--color-anchor);
+    border-bottom-style: solid;
+  }
+
+  /* Flechita de retorno a la sección donde se citó la referencia */
+  .ref-backlink {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    margin-left: 8px;
+    border-radius: 50%;
+    background: var(--color-lavender-bg);
+    color: var(--color-primary);
+    text-decoration: none;
+    border-bottom: none !important;
+    font-size: 0.95em;
+    line-height: 1;
+    vertical-align: middle;
+    transition: all 0.2s ease;
+    font-weight: 700;
+  }
+
+  .ref-backlink:hover, .ref-backlink:focus {
+    background: var(--color-primary);
+    color: #fff !important;
+    transform: translateY(-2px);
+    border-bottom: none !important;
+    outline: none;
+    box-shadow: 0 4px 10px rgba(108,52,131,0.35);
+  }
+
+  .ref-backlink:hover {
+    border-bottom: none !important;
+  }
+
+  /* ============ CIERRE ============ */
+  .closing {
+    margin-top: 60px;
+    text-align: center;
+    padding: 40px 0 20px;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .closing-mark {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background: var(--color-primary);
+    border-radius: 50%;
+    margin: 0 5px;
+    vertical-align: middle;
+  }
+
+  .closing-signature {
+    margin-top: 28px;
+  }
+
+  .closing-signature .sig-label {
+    display: block;
+    font-size: 0.68em;
+    text-transform: uppercase;
+    letter-spacing: 3.5px;
+    color: var(--color-text-faint);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .closing-signature .sig-name {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 1.1em;
+    color: var(--color-anchor);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+
+  .closing-signature .sig-contact {
+    display: block;
+    font-size: 0.78em;
+    color: var(--color-text-muted);
+    letter-spacing: 0.5px;
+  }
+
+  .closing-signature .sig-contact a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--color-text-faint);
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .closing-signature .sig-contact a:hover {
+    color: var(--color-primary);
+    border-bottom-color: var(--color-primary);
+  }
+
+  .closing-signature .sig-year {
+    display: block;
+    margin-top: 14px;
+    font-size: 0.72em;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    color: var(--color-text-faint);
+    font-weight: 600;
+  }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 1024px) {
+    body {
+      padding: 20px 15px 60px;
+    }
+    .sidebar {
+      transform: translateX(-100%);
+      width: 290px;
+    }
+    .sidebar.open {
+      transform: translateX(0);
+    }
+    .mobile-toggle {
+      display: flex;
+    }
+    .back-to-top {
+      bottom: 18px;
+      right: 18px;
+      width: 46px;
+      height: 46px;
+    }
+  }
+
+  @media (max-width: 720px) {
+    body { font-size: 16px; padding: 16px 10px 60px; }
+    .article { padding: 40px 25px 50px; border-radius: 12px; }
+    .article-header h1 { font-size: 2em; }
+    .article-header .subtitle { font-size: 1.05em; }
+    section h2 { font-size: 1.5em; }
+    section h3 { font-size: 1.15em; }
+    .pull-quote { margin: 30px -10px; padding: 30px 25px; }
+    .pull-quote p { font-size: 1.05em; }
+    .data-grid { grid-template-columns: 1fr; gap: 20px; }
+    .data-block { padding: 25px 22px; }
+    .epigraph { padding: 22px 25px; }
+    .references li { padding-left: 38px; }
+    .ref-tooltip { width: 280px; font-size: 12.5px; }
+    .back-to-top {
+      bottom: 14px;
+      right: 14px;
+      width: 44px;
+      height: 44px;
+      font-size: 1.25em;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     SIDEBAR
+     ═══════════════════════════════════════════ -->
+<aside class="sidebar" id="sidebar">
+  <span class="sidebar-brand">Abog. Nicolás Perot</span>
+  <h2 class="sidebar-title">La revolución digital</h2>
+  <span class="sidebar-subtitle">Inteligencia artificial y economía mundial</span>
+
+  <span class="sidebar-nav-title">Recorrido</span>
+  <nav id="sidenav">
+    <a href="#top"><span class="num">★</span><span>Portada</span></a>
+    <a href="#sec-1"><span class="num">01</span><span>Una transformación en curso</span></a>
+    <a href="#sec-2"><span class="num">02</span><span>El desafío humano</span></a>
+    <a href="#sec-3"><span class="num">03</span><span>Nuevas relaciones sociales</span></a>
+    <a href="#sec-4"><span class="num">04</span><span>El caso del eCommerce argentino</span></a>
+    <a href="#sec-5"><span class="num">05</span><span>Trabajo, capital y valor</span></a>
+    <a href="#sec-6"><span class="num">06</span><span>Cierre</span></a>
+    <a href="#references"><span class="num">07</span><span>Referencias</span></a>
+  </nav>
+
+  <div class="sidebar-foot">
+    Texto académico · 2026<br>
+    © Abog. Nicolás Perot
+  </div>
+</aside>
+
+<button class="mobile-toggle" id="mobileToggle" aria-label="Abrir navegación">☰</button>
+<button class="back-to-top" id="backToTop" aria-label="Volver al inicio">↑</button>
+<div class="progress-bar" id="progressBar"></div>
+
+<article class="article" id="top">
+
+  <!-- ═══════════════════════════════════════════
+       HEADER
+       ═══════════════════════════════════════════ -->
+  <header class="article-header">
+    <div class="author-byline">
+      <span class="author-label">Por</span>
+      <span class="author-name">Abog. Nicolás Perot</span>
+      <span class="author-contact"><a href="mailto:nperot@fcjs.unl.edu.ar">nperot@fcjs.unl.edu.ar</a></span>
+    </div>
+    <h1>La revolución digital y la <em>inteligencia artificial</em> en la economía mundial</h1>
+    <p class="subtitle">Capitalismo, trabajo y nuevas relaciones sociales en una época que se transforma a sí misma mientras la pensamos.</p>
+  </header>
+
+  <!-- ═══════════════════════════════════════════
+       EPÍGRAFE
+       ═══════════════════════════════════════════ -->
+  <div class="epigraph">
+    <p>"Es como un tsunami que golpea el mercado de trabajo: cerca del 40% del empleo mundial está expuesto a la inteligencia artificial, y en las economías avanzadas esa cifra trepa al 60%."</p>
+    <cite>Kristalina Georgieva, Directora Gerente del Fondo Monetario Internacional · Davos, 2024</cite>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       SECCIÓN 1
+       ═══════════════════════════════════════════ -->
+  <section id="sec-1">
+    <h2><span class="seccion-num">Apertura</span>Una transformación que ya está ocurriendo</h2>
+
+    <p><span class="drop-cap">L</span>a historia del capitalismo es la historia de sus metamorfosis. Desde su consolidación en el siglo XVI, el sistema atravesó al menos cuatro grandes mutaciones: el capitalismo mercantil que articuló el comercio atlántico, el capitalismo industrial que reorganizó la producción en torno a la fábrica, el capitalismo fordista que ensambló producción en masa con consumo de masas, y el capitalismo financierizado que desplazó el centro de gravedad económico hacia los mercados de capital. Cada una de esas transformaciones reorganizó la producción, redefinió el trabajo y reescribió las relaciones sociales. Hoy, en tiempo real, asistimos a una mutación de magnitud comparable: la revolución digital y, dentro de ella, la irrupción acelerada de la inteligencia artificial.</p>
+
+    <p>Lo singular de esta etapa es la <strong>velocidad de difusión</strong>. Lo que en otras épocas requirió décadas para propagarse —la máquina de vapor, la electricidad, la cadena de montaje— ahora se expande en años, a veces en meses. El Fondo Monetario Internacional la describe como un cambio estructural con implicancias profundas para el empleo, la productividad y la forma en que se reparte el ingreso<a id="cite-1" href="#ref-1" class="ref" data-ref="1">1<span class="ref-tooltip"><span class="ref-title">Referencia 1</span>Fondo Monetario Internacional. <em>Artificial Intelligence</em> (página temática institucional). El FMI sostiene que la IA marca un cambio estructural con amplias implicancias para empleo, productividad y distribución del ingreso.<a href="https://www.imf.org/en/topics/artificial-intelligence" target="_blank" rel="noopener">imf.org/en/topics/artificial-intelligence</a></span></a>. La diferencia importa: no se trata de una innovación más dentro del sistema, sino de un fenómeno con potencia para reconfigurar al sistema mismo.</p>
+
+    <p>Esta reconfiguración tampoco ocurre en abstracto. Ocurre en los teléfonos celulares, en los algoritmos que recomiendan qué leer y qué comprar, en las plataformas donde se concreta una porción creciente del comercio cotidiano, en los puestos de trabajo que se redefinen mes a mes. Pensar la inteligencia artificial desde la economía política implica, por eso, examinar simultáneamente sus dimensiones técnicas, distributivas y políticas: qué cosa es exactamente la IA como factor productivo, quiénes la controlan, cómo modifica las relaciones entre capital y trabajo, y qué tipo de orden social tiende a producir.</p>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       SECCIÓN 2
+       ═══════════════════════════════════════════ -->
+  <section id="sec-2">
+    <h2><span class="seccion-num">Sección I</span>El desafío humano de la era algorítmica</h2>
+
+    <p>La pregunta que recorre el debate contemporáneo apunta a la naturaleza misma de la transformación. La inteligencia artificial ya está modificando la economía mundial; lo que se discute es <em>cómo</em>, <em>para quiénes</em> y <em>con qué consecuencias distributivas</em>. En enero de 2024, en vísperas del Foro Económico Mundial de Davos, Kristalina Georgieva publicó un texto que se volvió referencia obligada: <em>"La IA transformará la economía mundial. Asegurémonos de que beneficie a la humanidad"</em><a id="cite-2" href="#ref-2" class="ref" data-ref="2">2<span class="ref-tooltip"><span class="ref-title">Referencia 2</span>Georgieva, K. (2024). <em>AI Will Transform the Global Economy. Let's Make Sure It Benefits Humanity</em>. IMF Blog, 14 de enero. Documento programático de la Directora Gerente del FMI sobre el impacto de la IA en la economía global.<a href="https://www.imf.org/en/Blogs/Articles/2024/01/14/ai-will-transform-the-global-economy-lets-make-sure-it-benefits-humanity" target="_blank" rel="noopener">imf.org/en/Blogs/Articles/2024/01/14</a></span></a>. Allí condensaba un diagnóstico que la institución desarrollaría luego en sucesivos documentos técnicos.</p>
+
+    <p>El análisis es preciso: <strong>el 40% del empleo mundial está expuesto a la inteligencia artificial</strong>. En las economías avanzadas la cifra alcanza el 60%; en los mercados emergentes ronda el 40%; en los países de bajos ingresos, el 26%<a id="cite-3" href="#ref-3" class="ref" data-ref="3">3<span class="ref-tooltip"><span class="ref-title">Referencia 3</span>Cazzaniga, M., Jaumotte, F. y otros (2024). <em>Gen-AI: Artificial Intelligence and the Future of Work</em>. IMF Staff Discussion Note SDN/2024/001. Documento técnico de referencia con las simulaciones macroeconómicas del FMI sobre IA.<a href="https://www.imf.org/en/Publications/Staff-Discussion-Notes/Issues/2024/01/14/Gen-AI-Artificial-Intelligence-and-the-Future-of-Work-542379" target="_blank" rel="noopener">imf.org · Staff Discussion Notes 2024/001</a></span></a>. Esos porcentajes ocultan, sin embargo, una tensión que conviene desmenuzar. Aproximadamente la mitad de los puestos expuestos podría beneficiarse de la integración con IA, aumentando su productividad y, eventualmente, sus salarios. La otra mitad enfrenta una suerte distinta: la posibilidad de que tareas hoy realizadas por personas pasen a ejecutarse mediante sistemas automatizados, con la consecuente compresión de la demanda laboral.</p>
+
+    <div class="pull-quote">
+      <p>A diferencia de oleadas tecnológicas anteriores —que afectaron sobre todo tareas rutinarias— la inteligencia artificial puede impactar también empleos altamente calificados. Es una de las cosas que la diferencian.</p>
+      <span class="source">— Cazzaniga et al., IMF Staff Discussion Note, 2024</span>
+    </div>
+
+    <p>Aquí aparece el primer desafío humano: <strong>la frontera entre "trabajo automatizable" y "trabajo estable" se ha desplazado</strong>. Hasta hace pocos años, se asumía que las profesiones intelectuales —análisis jurídico, diseño, redacción, programación, consultoría— constituían refugios sólidos frente a la automatización. La generación actual de IA ha desdibujado esa frontera. Como advierten Cazzaniga y sus coautores, "la desigualdad de ingresos laborales puede aumentar si la complementariedad entre IA y trabajadores de altos ingresos es fuerte, mientras que los retornos al capital incrementarán la desigualdad de riqueza"<a href="#ref-3" class="ref" data-ref="3">3<span class="ref-tooltip"><span class="ref-title">Referencia 3</span>Cazzaniga, M., Jaumotte, F. y otros (2024). <em>Gen-AI: Artificial Intelligence and the Future of Work</em>. IMF Staff Discussion Note SDN/2024/001.<a href="https://www.imf.org/en/Publications/Staff-Discussion-Notes/Issues/2024/01/14/Gen-AI-Artificial-Intelligence-and-the-Future-of-Work-542379" target="_blank" rel="noopener">imf.org · Staff Discussion Notes 2024/001</a></span></a>.</p>
+
+    <p>El segundo desafío es <strong>generacional</strong>. La propia Directora del FMI lo advirtió con claridad en Davos 2026: la IA tiende a eliminar las funciones de nivel inicial, las puertas de entrada al mundo del trabajo. Los jóvenes que ingresan hoy al mercado laboral pueden encontrarse con un escenario donde los peldaños bajos de la escalera profesional se han evaporado<a id="cite-4" href="#ref-4" class="ref" data-ref="4">4<span class="ref-tooltip"><span class="ref-title">Referencia 4</span>Georgieva, K. (2026). Entrevista y panel en el Foro Económico Mundial. Documentado en <em>IMF: AI, skills and the global economy in 2026</em>, World Economic Forum, enero de 2026.<a href="https://www.weforum.org/podcasts/meet-the-leader/episodes/ai-skills-global-economy-imf-kristalina-georgieva/" target="_blank" rel="noopener">weforum.org · Meet The Leader</a></span></a>. El consejo que la institución dirige a los sistemas educativos merece retención: la enseñanza debería orientarse menos a transmitir un conocimiento particular y más a desarrollar la capacidad de aprender y adaptarse a un entorno cambiante.</p>
+
+    <p>Existe un tercer desafío, más sutil pero igualmente decisivo: el de la <strong>integridad de la esfera pública</strong>. Una IA desarrollada con guardarraíles débiles puede amplificar a escala industrial la circulación de contenidos falsos, deepfakes y manipulaciones discursivas. Para una democracia, esto constituye un problema constitutivo, no un detalle técnico.</p>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       SECCIÓN 3
+       ═══════════════════════════════════════════ -->
+  <section id="sec-3">
+    <h2><span class="seccion-num">Sección II</span>Las nuevas relaciones sociales en la generación digital</h2>
+
+    <p>La revolución digital transforma simultáneamente lo que producimos y la forma en que nos vinculamos. La generación que hoy transita la universidad creció en un ecosistema donde la sociabilidad pasa por plataformas, donde el trabajo grupal se coordina por chat, donde una porción sustantiva de la identidad se construye en redes. Más que un dato anecdótico de costumbres, se trata de un cambio antropológico con consecuencias económicas medibles.</p>
+
+    <p>Tres rasgos resultan particularmente relevantes para una mirada de economía política.</p>
+
+    <h3>Plataformización del vínculo</h3>
+    <p>Las relaciones cotidianas —laborales, comerciales, afectivas— se intermedian crecientemente por plataformas privadas que extraen, almacenan y monetizan información sobre cada interacción. Esto reedita, en clave digital, una pregunta clásica del pensamiento económico: <em>¿quién se apropia del valor producido socialmente?</em> En el capitalismo industrial, esa pregunta apuntaba a la relación entre empresarios y trabajadores asalariados. En el capitalismo de plataformas, apunta también a la relación entre los usuarios que generan datos al usar los servicios y las corporaciones que los procesan y comercializan.</p>
+
+    <h3>Trabajo fragmentado y economía de tareas</h3>
+    <p>El empleo asalariado estable, característico del fordismo del siglo XX, hoy convive con formas atomizadas de trabajo: repartidores de aplicaciones, conductores de plataformas, microempleos digitales coordinados internacionalmente. Estas modalidades resuelven necesidades de subsistencia para muchas personas; al mismo tiempo, se desarrollan con frecuencia al margen de los derechos sociales que la legislación laboral del siglo pasado había consolidado: aportes jubilatorios, vacaciones pagas, indemnización, sindicalización efectiva. El desafío para el derecho —tanto laboral como social— es de primera magnitud.</p>
+
+    <h3>Asimetrías informativas extremas</h3>
+    <p>Cuando una plataforma sabe sobre quien la usa más de lo que esa persona sabe sobre sí misma, los modelos clásicos del mercado operan en condiciones radicalmente distintas a las supuestas. La teoría neoclásica asume agentes informados que deciden en igualdad de condiciones. La realidad digital muestra agentes asimétricos que interactúan con sistemas capaces de predecir sus preferencias antes de que ellos las formulen. La pregunta sobre la soberanía del consumidor adquiere, en este contexto, una dimensión nueva.</p>
+
+    <div class="aside-note">
+      <span class="label">Para pensar</span>
+      <p>Cuando Adam Smith hablaba de la "mano invisible" del mercado en el siglo XVIII, suponía individuos autónomos persiguiendo su interés racional con información razonablemente simétrica. ¿Qué queda de ese supuesto cuando los algoritmos diseñan nuestras opciones antes de que las elijamos?</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       SECCIÓN 4
+       ═══════════════════════════════════════════ -->
+  <section id="sec-4">
+    <h2><span class="seccion-num">Sección III</span>El comercio electrónico: el caso argentino</h2>
+
+    <p>Si se busca una manifestación concreta de cómo se materializa la revolución digital en la economía cotidiana, conviene observar lo que ocurre en Argentina con el comercio electrónico. Los datos publicados por la Cámara Argentina de Comercio Electrónico (CACE) son contundentes y permiten dimensionar la magnitud del fenómeno.</p>
+
+    <p>Durante 2025, el comercio electrónico argentino facturó <strong>$34 billones de pesos</strong>, lo que representa un crecimiento del 55% interanual, por encima de la inflación del 31% del mismo período<a id="cite-5" href="#ref-5" class="ref" data-ref="5">5<span class="ref-tooltip"><span class="ref-title">Referencia 5</span>Cámara Argentina de Comercio Electrónico (CACE). <em>Estudio Anual de Comercio Electrónico 2025: el eCommerce como canal estructural del consumo argentino</em>, marzo de 2026.<a href="https://cace.org.ar/blogs/news/estudio-anual-de-cace-2025-el-ecommerce-como-canal-estructural-del-consumo-argentino" target="_blank" rel="noopener">cace.org.ar · Estudio Anual 2025</a></span></a>. El primer semestre del año había crecido un 79% en facturación, con 149,5 millones de órdenes de compra y 203,9 millones de unidades vendidas en seis meses<a id="cite-6" href="#ref-6" class="ref" data-ref="6">6<span class="ref-tooltip"><span class="ref-title">Referencia 6</span>CACE & Kantar. <em>Estudio MidTerm 2025 de Comercio Electrónico</em>. Reporte semestral con los datos del primer semestre de 2025.<a href="https://cace.org.ar/pages/estadisticas" target="_blank" rel="noopener">cace.org.ar/pages/estadisticas</a></span></a>. Un dato resume la transformación: <strong>el comercio electrónico ya representa el 25% de las ventas totales</strong> de las empresas relevadas, contra el 15% que representaba apenas dos años antes.</p>
+
+    <div class="data-block">
+      <h4>El eCommerce argentino en cifras · 2025</h4>
+      <div class="data-grid">
+        <div class="data-item">
+          <span class="figure">25,1 M</span>
+          <span class="desc">de personas compran online en Argentina (se incorporaron más de 1,3 millones en un año)</span>
+        </div>
+        <div class="data-item">
+          <span class="figure">+55 %</span>
+          <span class="desc">de crecimiento en facturación interanual, por encima de la inflación del 31%</span>
+        </div>
+        <div class="data-item">
+          <span class="figure">60 %</span>
+          <span class="desc">de los argentinos compra online al menos una vez por mes</span>
+        </div>
+        <div class="data-item">
+          <span class="figure">47 %</span>
+          <span class="desc">compró productos en el exterior en 2025 (era 37% en 2024)</span>
+        </div>
+      </div>
+    </div>
+
+    <p>Lo verdaderamente interesante, sin embargo, está más allá de los números absolutos: son las <strong>nuevas formas del intercambio económico</strong> que esos números revelan. Tres tendencias merecen atención.</p>
+
+    <h3>La democratización geográfica</h3>
+    <p>Del total de argentinos que compraron por primera vez online en 2025, <strong>el 61% proviene del interior del país</strong><a id="cite-7" href="#ref-7" class="ref" data-ref="7">7<span class="ref-tooltip"><span class="ref-title">Referencia 7</span>Cámara Argentina de Comercio Electrónico. <em>El eCommerce local crece 79% en un contexto de mayor competencia internacional</em>. Reporte semestral, agosto de 2025.<a href="https://cace.org.ar/blogs/news/el-ecommerce-alcanzo-los-35-3-billones-de-pesos-durante-2025-y-crecio-por-encima-de-la-inflacion" target="_blank" rel="noopener">cace.org.ar · El eCommerce alcanzó $35,3 billones</a></span></a>. La plataforma digital permite que un consumidor en Santa Fe, Tucumán o Comodoro Rivadavia acceda a una oferta antes restringida a los grandes centros urbanos. La distancia física pierde peso como factor económico. Conviene, eso sí, introducir un matiz: el mismo fenómeno facilita que el consumidor del interior compre en plataformas internacionales como Temu o Shein. La democratización del acceso opera simultáneamente como globalización de la competencia.</p>
+
+    <h3>La omnicanalidad y el consumidor informado</h3>
+    <p>El 85% de los compradores busca información online antes de concretar una compra, aun cuando finalmente la realice en una tienda física<a id="cite-8" href="#ref-8" class="ref" data-ref="8">8<span class="ref-tooltip"><span class="ref-title">Referencia 8</span>CACE. <em>Estudio Anual de Comercio Electrónico 2025</em>, datos sobre comportamiento omnicanal del consumidor argentino.<a href="https://cace.org.ar/blogs/news/estudio-anual-de-cace-2025-el-ecommerce-como-canal-estructural-del-consumo-argentino" target="_blank" rel="noopener">cace.org.ar · Estudio Anual 2025</a></span></a>. El consumidor argentino se volvió, en términos del propio informe, "más informado, comparador y selectivo". Esto reconfigura la relación clásica entre comercio y cliente: ya hay un consumidor que compara, evalúa reseñas, exige financiación en cuotas y discute el precio antes incluso de salir de su casa. La fidelidad de marca, en este escenario, se construye de otro modo.</p>
+
+    <h3>Las fintech reconfigurando el sistema de pagos</h3>
+    <p>Las tarjetas de crédito siguen siendo el método de pago dominante, con un 67% de participación, pero las <strong>billeteras electrónicas triplicaron su uso respecto a 2024</strong><a id="cite-9" href="#ref-9" class="ref" data-ref="9">9<span class="ref-tooltip"><span class="ref-title">Referencia 9</span>Federación Gremial del Comercio e Industria de Rosario, sobre datos CACE. <em>El eCommerce ya representa el 25% del total de ventas de las empresas</em>, noviembre de 2025.<a href="https://fecoi.org.ar/el-ecommerce-ya-representa-el-25-del-total-de-ventas-de-las-empresas/" target="_blank" rel="noopener">fecoi.org.ar · Reporte sobre eCommerce</a></span></a>. Mercado Pago, Ualá, MODO y otras fintech están construyendo, con relativa independencia del sistema financiero tradicional, una infraestructura paralela de pagos que para millones de argentinos ya constituye el principal canal de relación con el dinero.</p>
+
+    <p>Las tres tendencias confluyen en una transformación más profunda: <strong>el comercio dejó de ser un lugar y pasó a ser un servicio</strong>. Lo que durante décadas fue una tienda, una calle comercial, un shopping, hoy es una aplicación que opera 24 horas, 7 días a la semana. Las consecuencias laborales, tributarias y urbanas de ese desplazamiento todavía están siendo procesadas por la sociedad.</p>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       SECCIÓN 5
+       ═══════════════════════════════════════════ -->
+  <section id="sec-5">
+    <h2><span class="seccion-num">Sección IV</span>El desplazamiento del valor: del trabajo humano al capital tecnológico</h2>
+
+    <p>Llegamos al núcleo más sensible del análisis. Una de las categorías centrales del pensamiento económico, desde los clásicos en adelante, es la noción de <em>valor</em>. Smith, Ricardo y Marx —cada uno a su manera— sostuvieron que el valor económico se origina en el trabajo humano aplicado a la producción. Las teorías neoclásicas posteriores desplazaron el problema hacia la utilidad subjetiva y la determinación de precios por oferta y demanda. Sin embargo, la pregunta sobre <em>quién</em> produce el valor y <em>quién</em> se apropia de él nunca abandonó el debate.</p>
+
+    <p>La revolución digital trae esa pregunta de regreso al centro, formulada en términos nuevos.</p>
+
+    <p>Una investigación reciente publicada por el Fondo Monetario Internacional, firmada por Mauro Cazzaniga, Florence Jaumotte, Longji Li, Giovanni Melina, Augustus Panton, Carlo Pizzinelli, Emma Rockall y Marina Mendes Tavares —<em>Gen-AI: Artificial Intelligence and the Future of Work</em>, 2024— modela lo que cabe denominar el <strong>desplazamiento estructural del valor</strong>. Sus simulaciones, calibradas a una economía avanzada representativa, sugieren que la introducción acelerada de IA produce, en el nuevo estado estacionario, una reducción del 20% en el empleo del sector afectado, junto con un aumento del 15% en los salarios de quienes permanezcan en él<a href="#ref-3" class="ref" data-ref="3">3<span class="ref-tooltip"><span class="ref-title">Referencia 3</span>Cazzaniga, M., Jaumotte, F. y otros (2024). <em>Gen-AI: Artificial Intelligence and the Future of Work</em>. IMF Staff Discussion Note SDN/2024/001. Simulaciones de equilibrio general en Sección V y Anexo 4.<a href="https://www.imf.org/en/Publications/Staff-Discussion-Notes/Issues/2024/01/14/Gen-AI-Artificial-Intelligence-and-the-Future-of-Work-542379" target="_blank" rel="noopener">imf.org · Staff Discussion Notes 2024/001</a></span></a>.</p>
+
+    <p>El dato decisivo, sin embargo, está en otra cifra que ese mismo trabajo proyecta: <strong>una reducción de la participación del trabajo en el ingreso nacional de aproximadamente 5,5 puntos porcentuales</strong>, magnitud comparable a la transformación que vivió el Reino Unido entre 1980 y 2014 durante la primera ola de automatización digital<a id="cite-10" href="#ref-10" class="ref" data-ref="10">10<span class="ref-tooltip"><span class="ref-title">Referencia 10</span>Cazzaniga et al. (2024), op. cit. La estimación de 5,5 puntos porcentuales de reducción de la participación del trabajo se calibra al período 1980-2014 del Reino Unido. Anexo 4 de la Staff Discussion Note.<a href="https://www.imf.org/en/Publications/Staff-Discussion-Notes/Issues/2024/01/14/Gen-AI-Artificial-Intelligence-and-the-Future-of-Work-542379" target="_blank" rel="noopener">imf.org · SDN 2024/001 (Anexo 4)</a></span></a>. Traducido: por cada peso que se produce en la economía, el capital se queda con una porción cada vez mayor; el trabajo, con una porción cada vez menor.</p>
+
+    <div class="pull-quote">
+      <p>Los retornos al capital aumentarán la desigualdad de riqueza. Si la complementariedad entre IA y trabajadores de altos ingresos es fuerte, la desigualdad de ingresos laborales también crecerá.</p>
+      <span class="source">— Cazzaniga, Jaumotte y colaboradores, FMI, 2024</span>
+    </div>
+
+    <p>Se trata, en esencia, del fenómeno que Marx anticipó al hablar de la "composición orgánica del capital" en el Tomo I de <em>El Capital</em>: cuando aumenta la proporción de capital constante (máquinas, infraestructura) frente al capital variable (trabajo vivo), la dinámica distributiva del sistema se altera. La IA es una manifestación extrema de ese proceso: ya hay sistemas capaces de ejecutar tareas cognitivas enteras antes reservadas al trabajo profesional calificado, con costos marginales que tienden a cero una vez amortizada la infraestructura.</p>
+
+    <p>Otro estudio del FMI, esta vez sobre Europa, lo formula con precisión técnica. Los autores hablan de "reasignación laboral y cambios en la participación del capital comparables a los observados en olas anteriores de automatización" como el mecanismo principal por el cual la IA podría aumentar el crecimiento anual hasta en 0,8 puntos porcentuales<a id="cite-11" href="#ref-11" class="ref" data-ref="11">11<span class="ref-tooltip"><span class="ref-title">Referencia 11</span>Filippucci, F., Gal, P. y otros (2025). <em>AI and Productivity in Europe</em>. IMF Working Paper WP/2025/067, Fondo Monetario Internacional, abril de 2025.<a href="https://www.imf.org/en/Publications/WP/Issues/2025/04/04/AI-and-Productivity-in-Europe-565969" target="_blank" rel="noopener">imf.org · Working Paper 2025/067</a></span></a>. Esa frase contiene, encriptada, toda la cuestión: el crecimiento puede aumentar mientras la <em>participación del trabajo</em> en ese crecimiento disminuye. La economía produciría más; el reparto sería más desigual.</p>
+
+    <p>Para América Latina —y particularmente para Argentina— el dilema adquiere un matiz adicional, vinculado a la posición histórica de la región en la división internacional del trabajo que tematizaron Raúl Prebisch y los teóricos de la dependencia. <strong>La frontera tecnológica de la IA se produce fuera de la región</strong>: en un puñado de corporaciones radicadas en Estados Unidos y China. Los datos con los que esos sistemas se entrenan, en cambio, sí se generan localmente: cada búsqueda, cada compra, cada interacción produce información que viaja a centros de procesamiento ubicados en otros territorios, y que retorna en forma de servicios comercializados. La vieja relación centro-periferia se reedita en clave digital: <em>exportamos datos, importamos algoritmos.</em></p>
+
+    <div class="aside-note">
+      <span class="label">El Índice de Preparación para la IA del FMI</span>
+      <p>El Fondo desarrolló un Índice de Preparación para la IA que evalúa a 125 países en cuatro dimensiones: infraestructura digital, capital humano y políticas laborales, innovación e integración económica, y regulación y ética. Los países nórdicos —Finlandia, Suecia, Dinamarca— encabezan el ranking gracias a inversiones históricas en educación y formación. La pregunta para Argentina y la región queda planteada: ¿en qué punto de esa preparación nos encontramos hoy?</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       SECCIÓN 6 · CIERRE
+       ═══════════════════════════════════════════ -->
+  <section id="sec-6">
+    <h2><span class="seccion-num">Cierre</span>Una decisión política, más que un destino tecnológico</h2>
+
+    <p>Si algo enseña la historia económica reciente es que las transformaciones tecnológicas <em>no producen por sí solas</em> sus consecuencias distributivas. La Revolución Industrial podría haber concentrado todavía más la riqueza si no hubiera surgido un entramado de sindicatos, legislación laboral, sistemas educativos públicos y sufragio universal que canalizó parte de sus frutos hacia el conjunto de la sociedad. El fordismo del siglo XX podría haber adoptado formas más opresivas si los Estados de Bienestar, los convenios colectivos y los derechos sociales no hubieran mediado entre la productividad creciente y los salarios. La revolución digital y la inteligencia artificial colocan a las sociedades contemporáneas frente a una encrucijada análoga.</p>
+
+    <p>El FMI lo formula con una claridad poco habitual para una institución de su naturaleza: las elecciones de política económica determinarán si los trabajadores y las empresas están adecuadamente preparados para la revolución de la IA<a id="cite-12" href="#ref-12" class="ref" data-ref="12">12<span class="ref-tooltip"><span class="ref-title">Referencia 12</span>Georgieva, K. (2024), op. cit. Cita extraída del IMF Blog del 14 de enero de 2024.<a href="https://www.imf.org/en/Blogs/Articles/2024/01/14/ai-will-transform-the-global-economy-lets-make-sure-it-benefits-humanity" target="_blank" rel="noopener">imf.org/en/Blogs/Articles/2024/01/14</a></span></a>. La frase importa porque desactiva una falacia ampliamente difundida: la idea de que la tecnología "viene como viene" y la sociedad solamente puede adaptarse. Las cosas funcionan de otro modo. La tecnología es una variable; la <em>distribución de sus beneficios</em> es otra; las <em>políticas públicas</em> que median entre ambas son una tercera. Las tres son objeto de decisión humana.</p>
+
+    <p>De esa cadena dependen, hoy, dos preguntas que conviene formular con franqueza:</p>
+
+    <p>¿Será la inteligencia artificial una palanca para que el conjunto de la humanidad acceda a vidas mejores —más saludables, más educadas, liberadas de tareas embrutecedoras—, o se convertirá en el dispositivo que profundice la separación entre quienes diseñan los algoritmos y quienes los obedecen?</p>
+
+    <p>¿Será Argentina un país que produce conocimiento, regula su tecnología y disputa una porción del valor que sus datos generan, o se consolidará como mercado consumidor receptor pasivo de los productos de las plataformas internacionales?</p>
+
+    <p>Las respuestas no están en este texto. Están, más bien, en las decisiones que serán tomadas en los próximos años por gobiernos, empresas, organizaciones de la sociedad civil y ciudadanos comunes. El sistema económico de la próxima década está siendo escrito ahora mismo. Conviene escribirlo con la mayor lucidez posible.</p>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       REFERENCIAS
+       ═══════════════════════════════════════════ -->
+  <div class="references" id="references">
+    <h2><span class="seccion-num">Fuentes</span>Referencias bibliográficas</h2>
+    <ol>
+      <li id="ref-1">Fondo Monetario Internacional. <em>Artificial Intelligence</em> (página temática institucional). Disponible en: <a href="https://www.imf.org/en/topics/artificial-intelligence" target="_blank" rel="noopener">imf.org/en/topics/artificial-intelligence</a> <a href="#cite-1" class="ref-backlink" title="Volver al texto" aria-label="Volver al pasaje donde se cita esta referencia">↑</a></li>
+      <li id="ref-2">Georgieva, K. (2024). <em>AI Will Transform the Global Economy. Let's Make Sure It Benefits Humanity</em>. IMF Blog, 14 de enero de 2024. Disponible en: <a href="https://www.imf.org/en/Blogs/Articles/2024/01/14/ai-will-transform-the-global-economy-lets-make-sure-it-benefits-humanity" target="_blank" rel="noopener">imf.org/en/Blogs/Articles/2024/01/14</a> <a href="#cite-2" class="ref-backlink" title="Volver al texto" aria-label="Volver al pasaje donde se cita esta referencia">↑</a></li>
+      <li id="ref-3">Cazzaniga, M., Jaumotte, F., Li, L., Melina, G., Panton, A., Pizzinelli, C., Rockall, E. y Mendes Tavares, M. (2024). <em>Gen-AI: Artificial Intelligence and the Future of Work</em>. IMF Staff Discussion Note SDN/2024/001, Fondo Monetario Internacional, Washington DC. Disponible en: <a href="https://www.imf.org/en/Publications/Staff-Discussion-Notes/Issues/2024/01/14/Gen-AI-Artificial-Intelligence-and-the-Future-of-Work-542379" target="_blank" rel="noopener">imf.org · Staff Discussion Notes 2024/001</a> <a href="#cite-3" class="ref-backlink" title="Volver al texto" aria-label="Volver al pasaje donde se cita esta referencia">↑</a></li>
+      <li id="ref-4">Georgieva, K. (2026). Entrevista y panel en el Foro Económico Mundial de Davos. Documentado en: World Economic Forum, <em>IMF: AI, skills and the global economy in 2026</em>. Disponible en: <a href="https://www.weforum.org/podcasts/meet-the-leader/episodes/ai-skills-global-economy-imf-kristalina-georgieva/" target="_blank" rel="noopener">weforum.org · Meet The Leader</a> <a href="#cite-4" class="ref-backlink" title="Volver al texto" aria-label="Volver al pasaje donde se cita esta referencia">↑</a></li>
+      <li id="ref-5">Cámara Argentina de Comercio Electrónico (CACE). <em>Estudio Anual de Comercio Electrónico 2025: el eCommerce como canal estructural del consumo argentino</em>. Buenos Aires, marzo de 2026. Disponible en: <a href="https://cace.org.ar/blogs/news/estudio-anual-de-cace-2025-el-ecommerce-como-canal-estructural-del-consumo-argentino" target="_blank" rel="noopener">cace.org.ar · Estudio Anual 2025</a> <a href="#cite-5" class="ref-backlink" title="Volver al texto" aria-label="Volver al pasaje donde se cita esta referencia">↑</a></li>
+      <li id="ref-6">CACE & Kantar. <em>Estudio MidTerm 2025 de Comercio Electrónico</em>. Reporte semestral. Disponible en: <a href="https://cace.org.ar/pages/estadisticas" target="_blank" rel="noopener">cace.org.ar/pages/estadisticas</a> <a href="#cite-6" class="ref-backlink" title="Volver al texto" aria-label="Volver al pasaje donde se cita esta referencia">↑</a></li>
+      <li id="ref-7">CACE. <em>El eCommerce alcanzó los $35,3 billones de pesos durante 2025 y creció por encima de la inflación</em>. Cámara Argentina de Comercio Electrónico, febrero de 2026. Disponible en: <a href="https://cace.org.ar/blogs/news/el-ecommerce-alcanzo-los-35-3-billones-de-pesos-durante-2025-y-crecio-por-encima-de-la-inflacion" target="_blank" rel="noopener">cace.org.ar · El eCommerce alcanzó $35,3 billones</a> <a href="#cite-7" class="ref-backlink" title="Volver al texto" aria-label="Volver al pasaje donde se cita esta referencia">↑</a></li>
+      <li id="ref-8">CACE. <em>Estudio Anual de Comercio Electrónico 2025</em>, sección de comportamiento omnicanal. Disponible en: <a href="https://cace.org.ar/blogs/news/estudio-anual-de-cace-2025-el-ecommerce-como-canal-estructural-del-consumo-argentino" target="_blank" rel="noopener">cace.org.ar · Estudio Anual 2025</a> <a href="#cite-8" class="ref-backlink" title="Volver al texto" aria-label="Volver al pasaje donde se cita esta referencia">↑</a></li>
+      <li id="ref-9">Federación Gremial del Comercio e Industria de Rosario, sobre datos de la CACE. <em>El eCommerce ya representa el 25% del total de ventas de las empresas</em>, noviembre de 2025. Disponible en: <a href="https://fecoi.org.ar/el-ecommerce-ya-representa-el-25-del-total-de-ventas-de-las-empresas/" target="_blank" rel="noopener">fecoi.org.ar · Reporte eCommerce</a> <a href="#cite-9" class="ref-backlink" title="Volver al texto" aria-label="Volver al pasaje donde se cita esta referencia">↑</a></li>
+      <li id="ref-10">Cazzaniga et al. (2024), op. cit. La estimación de 5,5 puntos porcentuales de reducción en la participación del trabajo se calibra al período 1980-2014 del Reino Unido (Anexo 4). Disponible en: <a href="https://www.imf.org/en/Publications/Staff-Discussion-Notes/Issues/2024/01/14/Gen-AI-Artificial-Intelligence-and-the-Future-of-Work-542379" target="_blank" rel="noopener">imf.org · SDN 2024/001 (Anexo 4)</a> <a href="#cite-10" class="ref-backlink" title="Volver al texto" aria-label="Volver al pasaje donde se cita esta referencia">↑</a></li>
+      <li id="ref-11">Filippucci, F., Gal, P. y otros (2025). <em>AI and Productivity in Europe</em>. IMF Working Paper WP/2025/067, Fondo Monetario Internacional, abril de 2025. Disponible en: <a href="https://www.imf.org/en/Publications/WP/Issues/2025/04/04/AI-and-Productivity-in-Europe-565969" target="_blank" rel="noopener">imf.org · Working Paper 2025/067</a> <a href="#cite-11" class="ref-backlink" title="Volver al texto" aria-label="Volver al pasaje donde se cita esta referencia">↑</a></li>
+      <li id="ref-12">Georgieva, K. (2024), op. cit. Cita extraída del IMF Blog del 14 de enero de 2024. Disponible en: <a href="https://www.imf.org/en/Blogs/Articles/2024/01/14/ai-will-transform-the-global-economy-lets-make-sure-it-benefits-humanity" target="_blank" rel="noopener">imf.org/en/Blogs/Articles/2024/01/14</a> <a href="#cite-12" class="ref-backlink" title="Volver al texto" aria-label="Volver al pasaje donde se cita esta referencia">↑</a></li>
+    </ol>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       CIERRE
+       ═══════════════════════════════════════════ -->
+  <div class="closing">
+    <span class="closing-mark"></span><span class="closing-mark"></span><span class="closing-mark"></span>
+    <div class="closing-signature">
+      <span class="sig-label">Autor</span>
+      <span class="sig-name">Abog. Nicolás Perot</span>
+      <span class="sig-contact"><a href="mailto:nperot@fcjs.unl.edu.ar">nperot@fcjs.unl.edu.ar</a></span>
+      <span class="sig-year">2026</span>
+    </div>
+  </div>
+
+</article>
+
+<script>
+  // ============ BARRA DE PROGRESO ============
+  (function() {
+    const bar = document.getElementById('progressBar');
+    function updateProgress() {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      bar.style.width = progress + '%';
+    }
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    window.addEventListener('resize', updateProgress);
+    updateProgress();
+  })();
+
+  // ============ BOTÓN VOLVER ARRIBA ============
+  document.getElementById('backToTop').addEventListener('click', function() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // ============ MENÚ MÓVIL ============
+  (function() {
+    const sidebar = document.getElementById('sidebar');
+    const toggle = document.getElementById('mobileToggle');
+    toggle.addEventListener('click', function(e) {
+      e.stopPropagation();
+      sidebar.classList.toggle('open');
+    });
+    document.addEventListener('click', function(e) {
+      if (window.innerWidth <= 1024 && sidebar.classList.contains('open')) {
+        if (!sidebar.contains(e.target) && e.target !== toggle) {
+          sidebar.classList.remove('open');
+        }
+      }
+    });
+    document.querySelectorAll('.sidebar nav a').forEach(function(link) {
+      link.addEventListener('click', function() {
+        if (window.innerWidth <= 1024) sidebar.classList.remove('open');
+      });
+    });
+  })();
+
+  // ============ NAVEGACIÓN ACTIVA AL SCROLL ============
+  (function() {
+    const navLinks = document.querySelectorAll('.sidebar nav a');
+    const sections = Array.from(document.querySelectorAll('section[id], div#references, article#top'));
+    function updateActive() {
+      const scrollY = window.scrollY + 120;
+      let currentId = 'top';
+      sections.forEach(function(sec) {
+        if (sec.offsetTop <= scrollY) currentId = sec.id;
+      });
+      navLinks.forEach(function(link) {
+        link.classList.toggle('active', link.getAttribute('href') === '#' + currentId);
+      });
+    }
+    window.addEventListener('scroll', updateActive, { passive: true });
+    updateActive();
+  })();
+
+  // ============ REFERENCIAS · COMPORTAMIENTO TÁCTIL ============
+  // En PC: hover muestra el tooltip (CSS puro).
+  // En táctiles: el primer tap muestra el tooltip; el segundo tap (o tap en el link interno) navega.
+  (function() {
+    const refs = document.querySelectorAll('.ref');
+    const isTouch = window.matchMedia('(hover: none)').matches || 'ontouchstart' in window;
+
+    refs.forEach(function(ref) {
+      // Cierra otras refs cuando se abre una nueva (en táctil)
+      ref.addEventListener('click', function(e) {
+        if (isTouch) {
+          // Si el tap es sobre el link interno del tooltip, permitir que navegue
+          if (e.target.tagName === 'A' && e.target.closest('.ref-tooltip')) {
+            return; // dejar pasar
+          }
+          // Si la referencia ya estaba activa, navegar a la nota al pie
+          if (ref.classList.contains('active')) {
+            // permitir comportamiento normal del enlace
+            return;
+          }
+          // Si no estaba activa, sólo abrir tooltip (no navegar todavía)
+          e.preventDefault();
+          refs.forEach(function(r) { if (r !== ref) r.classList.remove('active'); });
+          ref.classList.add('active');
+        }
+      });
+    });
+
+    // Cerrar tooltips al tocar fuera
+    document.addEventListener('click', function(e) {
+      if (isTouch && !e.target.closest('.ref')) {
+        refs.forEach(function(r) { r.classList.remove('active'); });
+      }
+    });
+
+    // Permitir cerrar con la tecla Escape
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        refs.forEach(function(r) { r.classList.remove('active'); });
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>
