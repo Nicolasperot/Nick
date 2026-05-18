@@ -1,0 +1,3670 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#1A3A5C" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0A0F1A" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="format-detection" content="telephone=no">
+<title>El Archivo // Nick Perot</title>
+<meta name="description" content="Sistema operativo de archivo. Fuentes verificables sobre IA, derecho, educación y políticas públicas. Por Nick Perot.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,200;0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,400&family=Inter+Tight:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+<style>
+/* ═══════════════════════════════════════════════════════════════
+   SISTEMA OPERATIVO DEL ARCHIVO — NICK PEROT
+   Paleta dual: PAPER MODE / TERMINAL MODE
+   ═══════════════════════════════════════════════════════════════ */
+:root {
+  /* Paleta oficial Nick Perot */
+  --navy: #1A3A5C;
+  --blue: #2563A8;
+  --silver: #8FA8C0;
+  --mid-gray: #6B7E8F;
+  --dark-txt: #1E2D3D;
+  --line: #C5D5E8;
+  --accent: #EFF4FA;
+  --rust: #B5532A;
+  --rust-soft: #D88560;
+
+  /* PAPER MODE (default) */
+  --bg: #F5F1E8;
+  --bg-grid: rgba(26, 58, 92, 0.04);
+  --bg-deep: #EBE5D4;
+  --bg-card: #FBF8F0;
+  --bg-card-hover: #FFFFFF;
+  --fg: #0F1F33;
+  --fg-soft: #6B7E8F;
+  --fg-faint: #A5B5C5;
+  --border: #D5C9B0;
+  --border-strong: #8B7A55;
+  --accent-1: var(--navy);
+  --accent-2: var(--blue);
+  --accent-3: var(--rust);
+
+  --serif: 'Fraunces', Georgia, serif;
+  --sans: 'Inter Tight', -apple-system, sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  --ease: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-snap: cubic-bezier(0.83, 0, 0.17, 1);
+  --tick: 0.5s var(--ease);
+}
+
+[data-mode="terminal"] {
+  --bg: #0A0F1A;
+  --bg-grid: rgba(95, 175, 230, 0.05);
+  --bg-deep: #060A12;
+  --bg-card: #0F1825;
+  --bg-card-hover: #14202F;
+  --fg: #DCE7F0;
+  --fg-soft: #6B8FA8;
+  --fg-faint: #3D5366;
+  --border: #1F3349;
+  --border-strong: #2A4866;
+  --accent-1: #5FAFE6;
+  --accent-2: #8FCEF0;
+  --accent-3: #FF8855;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+*::selection { background: var(--accent-3); color: var(--bg); }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--fg);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  transition: background var(--tick), color var(--tick);
+  font-feature-settings: "ss01", "cv11", "cv02";
+}
+
+/* Grilla de fondo persistente — referencia de plano técnico */
+.bg-grid {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(var(--bg-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--bg-grid) 1px, transparent 1px);
+  background-size: 48px 48px;
+  background-position: center center;
+  opacity: 0.9;
+  transition: opacity var(--tick);
+}
+
+/* Ruido sutil */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.35;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.06 0 0 0 0 0.12 0 0 0 0 0.2 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+[data-mode="terminal"] body::before { mix-blend-mode: screen; opacity: 0.15; }
+
+a { color: inherit; text-decoration: none; }
+ul, ol { list-style: none; }
+button { font-family: inherit; cursor: pointer; background: none; border: none; color: inherit; }
+
+/* ═══════════════════════════════════════════════════════════════
+   HUD SUPERIOR — barra de sistema operativo
+   ═══════════════════════════════════════════════════════════════ */
+.hud-top {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 24px;
+  padding: 14px 24px;
+  padding-top: max(14px, env(safe-area-inset-top));
+  padding-left: max(24px, env(safe-area-inset-left));
+  padding-right: max(24px, env(safe-area-inset-right));
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid var(--border);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  transition: background var(--tick), border-color var(--tick);
+}
+
+.hud-left { display: flex; align-items: center; gap: 18px; }
+
+.hud-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 15px;
+  color: var(--accent-1);
+  letter-spacing: -0.01em;
+}
+
+.hud-brand-mark {
+  position: relative;
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--accent-1);
+  background: var(--bg);
+}
+
+.hud-brand-mark::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border: 1px solid var(--accent-3);
+  border-left-color: transparent;
+  border-bottom-color: transparent;
+  animation: spinSquare 8s linear infinite;
+}
+
+@keyframes spinSquare {
+  to { transform: rotate(360deg); }
+}
+
+.hud-brand-mark span {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0;
+  color: var(--accent-1);
+}
+
+.hud-brand-divider {
+  width: 1px;
+  height: 14px;
+  background: var(--border-strong);
+}
+
+.hud-system {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--fg-soft);
+  text-transform: uppercase;
+}
+
+.hud-system .dot {
+  width: 6px;
+  height: 6px;
+  background: var(--accent-3);
+  border-radius: 50%;
+  animation: blink 1.8s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.hud-center {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+}
+
+.hud-nav-btn {
+  font-family: var(--mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 6px 14px;
+  color: var(--fg-soft);
+  border: 1px solid transparent;
+  transition: all 0.2s var(--ease);
+  position: relative;
+}
+
+.hud-nav-btn:hover {
+  color: var(--accent-1);
+  border-color: var(--border);
+  background: var(--bg-card);
+}
+
+.hud-nav-btn.has-shortcut::after {
+  content: attr(data-key);
+  position: absolute;
+  bottom: -2px;
+  right: 2px;
+  font-size: 8px;
+  color: var(--fg-faint);
+  letter-spacing: 0;
+}
+
+.hud-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.hud-clock {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--fg-soft);
+  letter-spacing: 0.06em;
+  min-width: 80px;
+  text-align: right;
+}
+
+.hud-mode-toggle {
+  display: flex;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: 3px;
+  gap: 2px;
+}
+
+.hud-mode-toggle button {
+  font-family: var(--mono);
+  font-size: 10px;
+  padding: 4px 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fg-soft);
+  transition: all 0.2s var(--ease);
+}
+
+.hud-mode-toggle button.active {
+  background: var(--accent-1);
+  color: var(--bg);
+}
+
+.hud-cmd {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 14px 6px 12px;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--fg-soft);
+  letter-spacing: 0.05em;
+  transition: all 0.2s var(--ease);
+}
+
+.hud-cmd:hover { border-color: var(--accent-1); color: var(--accent-1); }
+
+.hud-cmd kbd {
+  font-family: var(--mono);
+  font-size: 10px;
+  padding: 2px 6px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--fg-soft);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   HERO — TIPOGRAFÍA CINÉTICA
+   ═══════════════════════════════════════════════════════════════ */
+.hero {
+  position: relative;
+  z-index: 5;
+  padding: 130px 40px 60px;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  grid-template-rows: 1fr auto;
+  gap: 60px;
+  max-width: 1480px;
+  margin: 0 auto;
+}
+
+.hero-left {
+  align-self: center;
+}
+
+.hero-meta-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--fg-soft);
+  text-transform: uppercase;
+  margin-bottom: 40px;
+  padding-bottom: 24px;
+  border-bottom: 1px dashed var(--border);
+}
+
+.hero-meta-strip span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hero-meta-strip strong {
+  color: var(--accent-1);
+  font-weight: 500;
+}
+
+.hero-meta-strip .blink {
+  width: 8px;
+  height: 8px;
+  background: var(--accent-3);
+  animation: blink 1.5s ease-in-out infinite;
+}
+
+.hero-title {
+  font-family: var(--serif);
+  font-weight: 200;
+  font-size: clamp(72px, 11vw, 180px);
+  line-height: 0.88;
+  letter-spacing: -0.05em;
+  color: var(--accent-1);
+  font-variation-settings: "opsz" 144;
+  margin-bottom: 40px;
+}
+
+.hero-title .line {
+  display: block;
+  overflow: hidden;
+}
+
+.hero-title .line span {
+  display: inline-block;
+  animation: titleRise 1s var(--ease-snap) backwards;
+}
+
+.hero-title .line:nth-child(1) span { animation-delay: 0.1s; }
+.hero-title .line:nth-child(2) span { animation-delay: 0.2s; }
+.hero-title .line:nth-child(3) span { animation-delay: 0.3s; }
+
+@keyframes titleRise {
+  from { transform: translateY(110%); }
+  to { transform: translateY(0); }
+}
+
+.hero-title em {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--accent-2);
+  position: relative;
+}
+
+.hero-title em::after {
+  content: '';
+  position: absolute;
+  left: -0.05em;
+  right: -0.05em;
+  bottom: 0.1em;
+  height: 0.04em;
+  background: var(--accent-3);
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: underlineIn 1s var(--ease-snap) 1.2s forwards;
+}
+
+@keyframes underlineIn {
+  to { transform: scaleX(1); }
+}
+
+.hero-title .pixel-dot {
+  display: inline-block;
+  width: 0.18em;
+  height: 0.18em;
+  background: var(--accent-3);
+  margin: 0 0.05em 0.18em;
+  vertical-align: middle;
+  animation: pixelPulse 2s ease-in-out infinite;
+}
+
+@keyframes pixelPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.4); }
+}
+
+.hero-lead {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(18px, 2vw, 22px);
+  line-height: 1.5;
+  color: var(--fg);
+  max-width: 580px;
+  font-variation-settings: "opsz" 36;
+  margin-bottom: 36px;
+  opacity: 0;
+  animation: fadeIn 1s var(--ease) 0.8s forwards;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+.hero-lead em {
+  font-style: italic;
+  color: var(--accent-2);
+}
+
+.hero-cta-row {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeIn 1s var(--ease) 1.1s forwards;
+}
+
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  padding: 14px 22px;
+  border: 1px solid var(--accent-1);
+  color: var(--accent-1);
+  transition: all 0.3s var(--ease);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--accent-1);
+  transform: translateX(-101%);
+  transition: transform 0.4s var(--ease-snap);
+  z-index: -1;
+}
+
+.hero-cta:hover { color: var(--bg); }
+.hero-cta:hover::before { transform: translateX(0); }
+
+.hero-cta.primary {
+  background: var(--accent-1);
+  color: var(--bg);
+}
+
+.hero-cta.primary::before { background: var(--accent-3); }
+.hero-cta.primary:hover { color: var(--bg); border-color: var(--accent-3); }
+
+.hero-cta svg { width: 14px; height: 14px; }
+
+/* HERO RIGHT — Panel de stats tipo HUD */
+.hero-right {
+  align-self: center;
+  position: relative;
+}
+
+.hero-panel {
+  position: relative;
+  border: 1px solid var(--border-strong);
+  background: var(--bg-card);
+  padding: 24px;
+  font-family: var(--mono);
+}
+
+.hero-panel::before {
+  content: '';
+  position: absolute;
+  top: -1px; left: -1px;
+  width: 18px;
+  height: 18px;
+  border-top: 2px solid var(--accent-3);
+  border-left: 2px solid var(--accent-3);
+}
+
+.hero-panel::after {
+  content: '';
+  position: absolute;
+  bottom: -1px; right: -1px;
+  width: 18px;
+  height: 18px;
+  border-bottom: 2px solid var(--accent-3);
+  border-right: 2px solid var(--accent-3);
+}
+
+.hero-panel-title {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--fg-soft);
+  margin-bottom: 18px;
+  padding-bottom: 12px;
+  border-bottom: 1px dashed var(--border);
+  display: flex;
+  justify-content: space-between;
+}
+
+.hero-panel-title span:last-child {
+  color: var(--accent-3);
+}
+
+.hero-stat-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 14px 0;
+  border-bottom: 1px dashed var(--border);
+}
+
+.hero-stat-row:last-child { border-bottom: none; padding-bottom: 0; }
+
+.hero-stat-label {
+  font-size: 11px;
+  color: var(--fg-soft);
+  letter-spacing: 0.08em;
+}
+
+.hero-stat-value {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 36px;
+  color: var(--accent-1);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.hero-stat-value em {
+  font-style: italic;
+  color: var(--accent-3);
+  font-size: 22px;
+  margin-left: 2px;
+}
+
+.hero-panel-bars {
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px dashed var(--border);
+}
+
+.bar-row {
+  display: grid;
+  grid-template-columns: 100px 1fr 36px;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+  font-size: 10px;
+  color: var(--fg-soft);
+  letter-spacing: 0.05em;
+}
+
+.bar-row:last-child { margin-bottom: 0; }
+
+.bar-track {
+  height: 4px;
+  background: var(--bg-deep);
+  position: relative;
+  overflow: hidden;
+}
+
+.bar-fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  background: var(--accent-1);
+  width: var(--w, 0%);
+  animation: barGrow 1.2s var(--ease-snap) 1.4s backwards;
+  transform-origin: left;
+}
+
+@keyframes barGrow {
+  from { transform: scaleX(0); }
+}
+
+.bar-fill.rust { background: var(--accent-3); }
+.bar-fill.blue { background: var(--accent-2); }
+
+.bar-num {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--accent-1);
+  text-align: right;
+  font-weight: 500;
+}
+
+/* HERO BOTTOM — marquee de fuentes */
+.hero-marquee {
+  grid-column: 1 / -1;
+  align-self: end;
+  overflow: hidden;
+  border-top: 1px dashed var(--border);
+  padding-top: 24px;
+  position: relative;
+  mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+}
+
+.hero-marquee-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--fg-soft);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hero-marquee-label::before {
+  content: '';
+  width: 14px;
+  height: 1px;
+  background: var(--accent-3);
+}
+
+.marquee-track {
+  display: flex;
+  gap: 40px;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--fg-soft);
+  white-space: nowrap;
+  animation: marquee 40s linear infinite;
+}
+
+.marquee-track span {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.marquee-track span::after {
+  content: '';
+  width: 4px;
+  height: 4px;
+  background: var(--accent-3);
+  border-radius: 50%;
+}
+
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CONTROL BAR — sticky, controles del archivo
+   ═══════════════════════════════════════════════════════════════ */
+.control-bar {
+  position: sticky;
+  top: 55px;
+  z-index: 50;
+  background: color-mix(in srgb, var(--bg) 95%, transparent);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-family: var(--mono);
+  font-size: 11px;
+  transition: all 0.3s var(--ease);
+}
+
+.control-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.control-label {
+  color: var(--fg-soft);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.control-chips {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.chip {
+  font-family: var(--mono);
+  font-size: 11px;
+  padding: 5px 12px;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  color: var(--fg-soft);
+  letter-spacing: 0.04em;
+  transition: all 0.2s var(--ease);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.chip:hover {
+  border-color: var(--accent-1);
+  color: var(--accent-1);
+}
+
+.chip.active {
+  background: var(--accent-1);
+  border-color: var(--accent-1);
+  color: var(--bg);
+}
+
+.chip .num {
+  font-size: 9px;
+  opacity: 0.65;
+}
+
+.control-divider {
+  width: 1px;
+  height: 18px;
+  background: var(--border);
+  margin: 0 6px;
+}
+
+.view-toggle {
+  display: flex;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+}
+
+.view-toggle button {
+  padding: 6px 10px;
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--fg-soft);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: all 0.2s var(--ease);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border-right: 1px solid var(--border);
+}
+
+.view-toggle button:last-child { border-right: none; }
+
+.view-toggle button.active {
+  background: var(--accent-1);
+  color: var(--bg);
+}
+
+.view-toggle svg { width: 12px; height: 12px; }
+
+.spacer { flex: 1; }
+
+.control-counter {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--fg-soft);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.control-counter strong {
+  color: var(--accent-3);
+  font-weight: 500;
+  font-size: 12px;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ZONA PRINCIPAL DE ARCHIVO
+   ═══════════════════════════════════════════════════════════════ */
+.archive-main {
+  position: relative;
+  z-index: 5;
+  padding: 60px 24px 120px;
+  max-width: 1480px;
+  margin: 0 auto;
+}
+
+.domain-block {
+  margin-bottom: 100px;
+  transition: opacity 0.5s var(--ease);
+}
+
+.domain-block.hidden { display: none; }
+
+.domain-header {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 32px;
+  align-items: end;
+  margin-bottom: 36px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.domain-number-wrap {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.domain-number {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(60px, 8vw, 110px);
+  line-height: 0.8;
+  color: var(--accent-3);
+  letter-spacing: -0.05em;
+  font-variation-settings: "opsz" 144;
+  text-shadow: 3px 3px 0 var(--bg-deep);
+}
+
+.domain-bracket {
+  font-family: var(--mono);
+  font-size: 60px;
+  font-weight: 200;
+  color: var(--border-strong);
+  line-height: 0.8;
+}
+
+.domain-titlewrap h2 {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(28px, 4vw, 48px);
+  line-height: 1;
+  color: var(--accent-1);
+  letter-spacing: -0.03em;
+  margin-bottom: 10px;
+  font-variation-settings: "opsz" 144;
+}
+
+.domain-titlewrap h2 em {
+  font-style: italic;
+  color: var(--accent-2);
+}
+
+.domain-titlewrap p {
+  font-size: 14px;
+  color: var(--fg-soft);
+  max-width: 580px;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+.domain-meta {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fg-soft);
+  text-align: right;
+  line-height: 1.7;
+}
+
+.domain-meta strong {
+  display: block;
+  color: var(--accent-1);
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  margin-top: 4px;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   VISTA: GRID — Cards expandibles con ficha técnica
+   ═══════════════════════════════════════════════════════════════ */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 16px;
+}
+
+.card {
+  position: relative;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 320px;
+  cursor: pointer;
+  transition: all 0.4s var(--ease);
+  overflow: hidden;
+}
+
+/* Esquinas técnicas */
+.card::before, .card::after {
+  content: '';
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border: 1px solid var(--accent-3);
+  transition: all 0.4s var(--ease);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.card::before { top: 6px; left: 6px; border-right: none; border-bottom: none; }
+.card::after { bottom: 6px; right: 6px; border-left: none; border-top: none; }
+
+.card:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--accent-1);
+  transform: translateY(-3px);
+  box-shadow: 0 20px 40px -20px rgba(0,0,0,0.2);
+}
+
+.card:hover::before, .card:hover::after { opacity: 1; }
+
+.card-top {
+  padding: 14px 18px;
+  border-bottom: 1px dashed var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  background: color-mix(in srgb, var(--accent-1) 4%, transparent);
+}
+
+.card-tag {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent-1);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 500;
+}
+
+.card-tag::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  background: var(--accent-1);
+}
+
+.card-tag.law { color: var(--accent-3); }
+.card-tag.law::before { background: var(--accent-3); }
+.card-tag.data { color: var(--accent-2); }
+.card-tag.data::before { background: var(--accent-2); }
+
+.card-id {
+  color: var(--fg-faint);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+}
+
+.card-body {
+  padding: 22px 22px 18px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-source {
+  font-family: var(--mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--fg-soft);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.card-source::before {
+  content: '›';
+  color: var(--accent-3);
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.card-title {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1.18;
+  color: var(--accent-1);
+  letter-spacing: -0.02em;
+  margin-bottom: 14px;
+  font-variation-settings: "opsz" 36;
+}
+
+.card-title em {
+  font-style: italic;
+  color: var(--accent-2);
+}
+
+.card-note {
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--fg);
+  margin-bottom: 18px;
+  flex: 1;
+}
+
+.card-note-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--accent-3);
+  display: block;
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+
+.card-keywords {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 14px;
+}
+
+.card-keyword {
+  font-family: var(--mono);
+  font-size: 9px;
+  text-transform: lowercase;
+  letter-spacing: 0.04em;
+  color: var(--fg-soft);
+  padding: 2px 7px;
+  background: var(--bg-deep);
+  border: 1px solid transparent;
+  transition: all 0.2s var(--ease);
+}
+
+.card-keyword::before { content: '#'; opacity: 0.5; }
+
+.card-keyword:hover {
+  border-color: var(--accent-2);
+  color: var(--accent-2);
+}
+
+.card-bottom {
+  padding: 12px 18px;
+  border-top: 1px dashed var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: color-mix(in srgb, var(--accent-3) 3%, transparent);
+}
+
+.card-meta {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fg-faint);
+  display: flex;
+  gap: 10px;
+}
+
+.card-meta span { display: flex; align-items: center; gap: 4px; }
+
+.card-cta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent-1);
+  transition: gap 0.3s var(--ease);
+}
+
+.card:hover .card-cta { gap: 10px; }
+
+.card-cta svg {
+  width: 11px; height: 11px;
+  transition: transform 0.3s var(--ease);
+}
+
+.card:hover .card-cta svg { transform: translate(2px, -2px); }
+
+/* Card destacada */
+.card.featured {
+  grid-column: span 2;
+  background: var(--accent-1);
+  color: var(--bg);
+  border-color: var(--accent-1);
+}
+
+.card.featured .card-top {
+  border-bottom-color: color-mix(in srgb, var(--bg) 25%, transparent);
+  background: color-mix(in srgb, var(--bg) 4%, transparent);
+}
+
+.card.featured .card-tag,
+.card.featured .card-tag::before {
+  color: var(--accent-3);
+  background: var(--accent-3);
+}
+
+.card.featured .card-tag::before { background: var(--accent-3); }
+.card.featured .card-id { color: color-mix(in srgb, var(--bg) 50%, transparent); }
+.card.featured .card-source { color: color-mix(in srgb, var(--bg) 60%, transparent); }
+.card.featured .card-title { color: var(--bg); font-size: 28px; }
+.card.featured .card-title em { color: color-mix(in srgb, var(--bg) 70%, transparent); }
+.card.featured .card-note { color: color-mix(in srgb, var(--bg) 80%, transparent); font-size: 14px; }
+.card.featured .card-note-label { color: var(--accent-3); }
+.card.featured .card-keyword { background: color-mix(in srgb, var(--bg) 8%, transparent); color: color-mix(in srgb, var(--bg) 75%, transparent); }
+.card.featured .card-bottom { background: color-mix(in srgb, var(--bg) 4%, transparent); border-top-color: color-mix(in srgb, var(--bg) 20%, transparent); }
+.card.featured .card-meta { color: color-mix(in srgb, var(--bg) 50%, transparent); }
+.card.featured .card-cta { color: var(--bg); }
+
+.card.featured::before, .card.featured::after { border-color: var(--accent-3); }
+
+/* ═══════════════════════════════════════════════════════════════
+   VISTA: LISTA — formato registro de archivo
+   ═══════════════════════════════════════════════════════════════ */
+.cards-list { display: none; }
+
+[data-view="list"] .cards-grid { display: none; }
+[data-view="list"] .cards-list { display: block; }
+
+.cards-list {
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+}
+
+.list-header {
+  display: grid;
+  grid-template-columns: 90px 130px 1fr 180px 90px 90px;
+  gap: 14px;
+  padding: 12px 18px;
+  background: var(--bg-deep);
+  border-bottom: 1px solid var(--border);
+  font-family: var(--mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--fg-soft);
+}
+
+.list-row {
+  display: grid;
+  grid-template-columns: 90px 130px 1fr 180px 90px 90px;
+  gap: 14px;
+  padding: 16px 18px;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  transition: all 0.2s var(--ease);
+  align-items: center;
+}
+
+.list-row:last-child { border-bottom: none; }
+
+.list-row:hover {
+  background: var(--bg-card-hover);
+  padding-left: 22px;
+}
+
+.list-row:hover .list-arrow { transform: translateX(4px); color: var(--accent-3); }
+
+.list-id {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--fg-faint);
+  letter-spacing: 0.06em;
+}
+
+.list-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-1);
+}
+
+.list-tag.law { color: var(--accent-3); }
+.list-tag.data { color: var(--accent-2); }
+
+.list-title {
+  font-family: var(--serif);
+  font-size: 17px;
+  color: var(--accent-1);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.list-title em { font-style: italic; color: var(--accent-2); }
+
+.list-source {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--fg-soft);
+  letter-spacing: 0.04em;
+}
+
+.list-lang {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--fg-faint);
+  letter-spacing: 0.08em;
+  text-align: center;
+}
+
+.list-arrow {
+  font-family: var(--mono);
+  font-size: 16px;
+  color: var(--fg-faint);
+  text-align: right;
+  transition: all 0.3s var(--ease);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   VISTA: MAPA — Red de conexiones
+   ═══════════════════════════════════════════════════════════════ */
+[data-view="map"] .cards-grid,
+[data-view="map"] .cards-list { display: none; }
+[data-view="map"] .cards-map { display: block; }
+
+.cards-map { display: none; }
+
+.map-container {
+  position: relative;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: 30px;
+  min-height: 520px;
+  overflow: hidden;
+}
+
+.map-svg {
+  width: 100%;
+  height: 480px;
+  display: block;
+}
+
+.map-legend {
+  position: absolute;
+  bottom: 18px;
+  left: 18px;
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--fg-soft);
+  display: flex;
+  gap: 18px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.map-legend span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.map-legend .dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   COMMAND PALETTE
+   ═══════════════════════════════════════════════════════════════ */
+.cmd-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: color-mix(in srgb, var(--bg-deep) 70%, transparent);
+  backdrop-filter: blur(8px);
+  display: none;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 14vh;
+}
+
+.cmd-overlay.open { display: flex; animation: fadeIn 0.2s var(--ease) forwards; opacity: 0; }
+
+.cmd-panel {
+  width: min(620px, 92vw);
+  background: var(--bg-card);
+  border: 1px solid var(--border-strong);
+  font-family: var(--mono);
+  position: relative;
+  animation: cmdSlide 0.3s var(--ease-snap);
+}
+
+.cmd-panel::before {
+  content: '';
+  position: absolute;
+  top: -1px; left: -1px;
+  width: 24px; height: 24px;
+  border-top: 2px solid var(--accent-3);
+  border-left: 2px solid var(--accent-3);
+}
+
+.cmd-panel::after {
+  content: '';
+  position: absolute;
+  bottom: -1px; right: -1px;
+  width: 24px; height: 24px;
+  border-bottom: 2px solid var(--accent-3);
+  border-right: 2px solid var(--accent-3);
+}
+
+@keyframes cmdSlide {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.cmd-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.cmd-prompt {
+  color: var(--accent-3);
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.cmd-input {
+  flex: 1;
+  background: none;
+  border: none;
+  outline: none;
+  font-family: var(--mono);
+  font-size: 15px;
+  color: var(--fg);
+  letter-spacing: 0.02em;
+}
+
+.cmd-input::placeholder { color: var(--fg-faint); }
+
+.cmd-close {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--fg-faint);
+  padding: 3px 8px;
+  border: 1px solid var(--border);
+}
+
+.cmd-list {
+  max-height: 380px;
+  overflow-y: auto;
+  padding: 6px 0;
+}
+
+.cmd-item {
+  display: grid;
+  grid-template-columns: 80px 1fr auto;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 20px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background 0.15s var(--ease);
+  color: var(--fg);
+}
+
+.cmd-item:hover, .cmd-item.selected {
+  background: color-mix(in srgb, var(--accent-1) 8%, transparent);
+}
+
+.cmd-item-id {
+  color: var(--fg-faint);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+}
+
+.cmd-item-title {
+  font-family: var(--serif);
+  font-size: 14px;
+  color: var(--accent-1);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.cmd-item-domain {
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-3);
+}
+
+.cmd-footer {
+  padding: 10px 20px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  font-size: 9px;
+  color: var(--fg-faint);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.cmd-footer kbd {
+  font-family: var(--mono);
+  font-size: 9px;
+  padding: 2px 5px;
+  border: 1px solid var(--border);
+  margin: 0 3px;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   MANIFIESTO — sección de cierre
+   ═══════════════════════════════════════════════════════════════ */
+.manifesto {
+  position: relative;
+  z-index: 5;
+  padding: 120px 24px;
+  background: var(--accent-1);
+  color: var(--bg);
+  overflow: hidden;
+}
+
+.manifesto::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.manifesto-inner {
+  position: relative;
+  max-width: 1480px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.8fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.manifesto-left h2 {
+  font-family: var(--serif);
+  font-weight: 200;
+  font-size: clamp(48px, 6vw, 80px);
+  line-height: 0.95;
+  color: var(--bg);
+  letter-spacing: -0.03em;
+  font-variation-settings: "opsz" 144;
+  margin-bottom: 24px;
+}
+
+.manifesto-left h2 em {
+  font-style: italic;
+  color: var(--rust-soft);
+}
+
+.manifesto-eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--rust-soft);
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.manifesto-eyebrow::before {
+  content: '';
+  width: 24px;
+  height: 1px;
+  background: var(--rust-soft);
+}
+
+.manifesto-quote {
+  margin-top: 32px;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 16px;
+  color: color-mix(in srgb, var(--bg) 70%, transparent);
+  line-height: 1.5;
+  padding-left: 18px;
+  border-left: 2px solid var(--rust-soft);
+}
+
+.manifesto-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px 48px;
+}
+
+.principle {
+  position: relative;
+  padding: 20px 0 20px 70px;
+  border-top: 1px solid color-mix(in srgb, var(--bg) 15%, transparent);
+}
+
+.principle-num {
+  position: absolute;
+  left: 0;
+  top: 20px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--rust-soft);
+  font-weight: 500;
+}
+
+.principle-num::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 36px;
+  width: 22px;
+  height: 1px;
+  background: var(--rust-soft);
+}
+
+.principle h3 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.2;
+  color: var(--bg);
+  margin-bottom: 10px;
+  letter-spacing: -0.01em;
+}
+
+.principle h3 em { font-style: italic; color: var(--rust-soft); }
+
+.principle p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: color-mix(in srgb, var(--bg) 75%, transparent);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════════════════════════════ */
+footer {
+  position: relative;
+  z-index: 5;
+  background: var(--bg-deep);
+  padding: 50px 24px 30px;
+  padding-bottom: max(30px, env(safe-area-inset-bottom));
+  padding-left: max(24px, env(safe-area-inset-left));
+  padding-right: max(24px, env(safe-area-inset-right));
+  border-top: 1px solid var(--border);
+  font-family: var(--mono);
+}
+
+.footer-inner {
+  max-width: 1480px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 48px;
+  align-items: end;
+}
+
+.footer-brand {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 19px;
+  color: var(--accent-1);
+  letter-spacing: -0.01em;
+}
+
+.footer-brand strong {
+  font-style: normal;
+  font-weight: 500;
+}
+
+.footer-links {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg-soft);
+  display: flex;
+  gap: 18px;
+}
+
+.footer-links a:hover { color: var(--accent-3); }
+
+.footer-meta {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--fg-faint);
+  text-align: right;
+  line-height: 1.8;
+}
+
+.footer-bottom {
+  max-width: 1480px;
+  margin: 30px auto 0;
+  padding-top: 18px;
+  border-top: 1px dashed var(--border);
+  display: flex;
+  justify-content: space-between;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fg-faint);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ANIMACIONES Y REVEAL
+   ═══════════════════════════════════════════════════════════════ */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+.stagger > * { opacity: 0; transform: translateY(20px); }
+.stagger.visible > * { animation: revealUp 0.7s var(--ease) forwards; }
+.stagger.visible > *:nth-child(1) { animation-delay: 0.04s; }
+.stagger.visible > *:nth-child(2) { animation-delay: 0.10s; }
+.stagger.visible > *:nth-child(3) { animation-delay: 0.16s; }
+.stagger.visible > *:nth-child(4) { animation-delay: 0.22s; }
+.stagger.visible > *:nth-child(5) { animation-delay: 0.28s; }
+.stagger.visible > *:nth-child(6) { animation-delay: 0.34s; }
+
+@keyframes revealUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   RESPONSIVE — Optimizado para todos los dispositivos
+   ═══════════════════════════════════════════════════════════════ */
+
+/* TABLET HORIZONTAL / DESKTOP CHICO — 1100px y abajo */
+@media (max-width: 1100px) {
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 48px;
+    padding: 130px 32px 60px;
+  }
+  .hero-right { margin-top: 0; }
+  .hero-panel { max-width: 520px; }
+  .manifesto-inner { grid-template-columns: 1fr; gap: 48px; }
+  .manifesto { padding: 100px 32px; }
+  .archive-main { padding: 60px 32px 100px; }
+  .hud-center { gap: 2px; }
+  .hud-nav-btn { padding: 6px 10px; font-size: 10px; }
+  .cards-grid { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+}
+
+/* TABLET — 900px */
+@media (max-width: 900px) {
+  .hud-top {
+    grid-template-columns: auto 1fr;
+    padding: 12px 20px;
+    gap: 12px;
+  }
+  .hud-center { display: none; }
+  .hud-clock { display: none; }
+  .hud-system { display: none; }
+  .hud-cmd kbd { display: none; }
+  .hero-title { font-size: clamp(56px, 9vw, 96px); }
+  .hero-meta-strip { gap: 14px 18px; }
+  .list-header,
+  .list-row {
+    grid-template-columns: 80px 110px 1fr 90px 40px;
+  }
+  .list-source { display: none; }
+  .list-header > div:nth-child(4) { display: none; }
+  .list-header > div:nth-child(5) { text-align: center; }
+}
+
+/* MOBILE GRANDE / TABLET PEQUEÑA — 720px */
+@media (max-width: 720px) {
+  /* HUD compacto */
+  .hud-top {
+    padding: 10px 14px;
+    gap: 8px;
+  }
+  .hud-brand { font-size: 13px; gap: 8px; }
+  .hud-brand-mark { width: 24px; height: 24px; }
+  .hud-brand-mark span { font-size: 9px; }
+  .hud-brand-divider { display: none; }
+  .hud-right { gap: 8px; }
+  .hud-cmd { padding: 6px 10px; font-size: 10px; }
+  .hud-cmd span { display: none; }
+  .hud-cmd::before { content: '⌘K'; font-weight: 500; }
+  .hud-mode-toggle { padding: 2px; }
+  .hud-mode-toggle button { padding: 4px 8px; font-size: 9px; }
+
+  /* HERO */
+  .hero {
+    padding: 90px 18px 50px;
+    gap: 36px;
+    min-height: auto;
+  }
+  .hero-meta-strip {
+    gap: 10px 16px;
+    margin-bottom: 28px;
+    padding-bottom: 18px;
+    font-size: 9px;
+  }
+  .hero-meta-strip span { gap: 6px; }
+  .hero-meta-strip .blink { width: 6px; height: 6px; }
+  .hero-title {
+    font-size: clamp(48px, 13vw, 88px);
+    margin-bottom: 26px;
+    letter-spacing: -0.04em;
+  }
+  .hero-lead {
+    font-size: 17px;
+    line-height: 1.45;
+    margin-bottom: 28px;
+  }
+  .hero-cta-row { gap: 10px; }
+  .hero-cta {
+    padding: 13px 18px;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    flex: 1;
+    min-width: 0;
+    justify-content: center;
+  }
+  .hero-cta span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .hero-cta svg { flex-shrink: 0; }
+
+  /* HERO PANEL */
+  .hero-panel { padding: 18px; max-width: 100%; }
+  .hero-panel-title { font-size: 9px; margin-bottom: 14px; padding-bottom: 10px; }
+  .hero-stat-row { padding: 10px 0; }
+  .hero-stat-label { font-size: 10px; }
+  .hero-stat-value { font-size: 28px; }
+  .hero-stat-value em { font-size: 18px; }
+  .hero-panel-bars { margin-top: 14px; padding-top: 14px; }
+  .bar-row { grid-template-columns: 90px 1fr 28px; gap: 8px; font-size: 9px; }
+  .bar-num { font-size: 10px; }
+
+  .hero-marquee { padding-top: 18px; }
+  .marquee-track { font-size: 11px; gap: 28px; animation-duration: 35s; }
+
+  /* CONTROL BAR — scroll horizontal accesible al tacto */
+  .control-bar {
+    padding: 12px 14px;
+    gap: 12px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .control-bar::-webkit-scrollbar { display: none; }
+  .control-section { flex-shrink: 0; }
+  .control-divider { flex-shrink: 0; }
+  .spacer { display: none; }
+  .control-counter { flex-shrink: 0; padding-left: 4px; }
+  .control-label { font-size: 9px; letter-spacing: 0.08em; }
+  .chip {
+    font-size: 10px;
+    padding: 7px 12px;
+    min-height: 32px;
+  }
+  .chip .num { font-size: 8px; }
+  .view-toggle button {
+    padding: 7px 10px;
+    min-height: 32px;
+    font-size: 9px;
+  }
+  .view-toggle button span { display: none; }
+  .view-toggle svg { width: 14px; height: 14px; }
+
+  /* ARCHIVO */
+  .archive-main { padding: 40px 14px 80px; }
+  .domain-block { margin-bottom: 64px; }
+
+  .domain-header {
+    grid-template-columns: auto 1fr;
+    gap: 16px 18px;
+    margin-bottom: 28px;
+    align-items: start;
+  }
+  .domain-number-wrap { grid-column: 1; }
+  .domain-titlewrap { grid-column: 2; }
+  .domain-meta { grid-column: 1 / -1; text-align: left; margin-top: 4px; }
+  .domain-bracket { display: none; }
+  .domain-number {
+    font-size: 64px;
+    text-shadow: 2px 2px 0 var(--bg-deep);
+  }
+  .domain-titlewrap h2 { font-size: 28px; margin-bottom: 8px; }
+  .domain-titlewrap p { font-size: 13px; }
+
+  /* CARDS — full width, touch targets */
+  .cards-grid { grid-template-columns: 1fr; gap: 14px; }
+  .card { min-height: auto; }
+  .card.featured { grid-column: span 1; }
+  .card-top { padding: 12px 16px; }
+  .card-tag { font-size: 9px; }
+  .card-id { font-size: 9px; }
+  .card-body { padding: 18px 18px 16px; }
+  .card-source { font-size: 9px; margin-bottom: 10px; }
+  .card-title { font-size: 19px; margin-bottom: 12px; line-height: 1.2; }
+  .card.featured .card-title { font-size: 22px; }
+  .card-note { font-size: 13px; margin-bottom: 14px; }
+  .card-note-label { font-size: 9px; }
+  .card-keywords { margin-bottom: 12px; }
+  .card-keyword { font-size: 9px; padding: 2px 6px; }
+  .card-bottom { padding: 11px 16px; }
+  .card-meta { font-size: 9px; gap: 8px; }
+  .card-cta { font-size: 10px; }
+
+  /* Desactivar efecto magnético 3D en touch — mejora performance y evita glitches */
+  .card:hover { transform: translateY(-2px) !important; }
+
+  /* LISTA mobile — cards verticales */
+  .list-header { display: none; }
+  .list-row {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 16px 18px;
+    position: relative;
+  }
+  .list-row:hover { padding-left: 18px; }
+  .list-id {
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    color: var(--accent-3);
+    font-weight: 500;
+  }
+  .list-tag { font-size: 9px; }
+  .list-title { font-size: 16px; margin: 2px 0; line-height: 1.25; }
+  .list-source { display: block; font-size: 10px; color: var(--fg-faint); }
+  .list-lang { display: none; }
+  .list-arrow {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  /* MAPA mobile — viewBox más cuadrado y labels chicos */
+  .map-container {
+    padding: 18px;
+    min-height: auto;
+  }
+  .map-svg { height: 540px; }
+  .map-legend {
+    position: static;
+    margin-top: 14px;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-size: 9px;
+  }
+
+  /* MANIFIESTO */
+  .manifesto { padding: 70px 18px; }
+  .manifesto-inner { gap: 36px; }
+  .manifesto-left h2 { font-size: clamp(36px, 9vw, 56px); }
+  .manifesto-quote { font-size: 15px; padding-left: 14px; }
+  .manifesto-grid { grid-template-columns: 1fr; gap: 24px; }
+  .principle { padding: 18px 0 18px 56px; }
+  .principle-num { font-size: 10px; }
+  .principle-num::after { left: 32px; width: 16px; }
+  .principle h3 { font-size: 18px; margin-bottom: 8px; }
+  .principle p { font-size: 13px; }
+
+  /* COMMAND PALETTE en mobile */
+  .cmd-overlay { padding-top: 8vh; align-items: flex-start; }
+  .cmd-panel { width: calc(100vw - 24px); }
+  .cmd-header { padding: 14px 16px; }
+  .cmd-input { font-size: 14px; }
+  .cmd-list { max-height: 60vh; }
+  .cmd-item {
+    grid-template-columns: 1fr;
+    gap: 4px;
+    padding: 12px 16px;
+    min-height: 56px;
+  }
+  .cmd-item-id { font-size: 9px; color: var(--accent-3); }
+  .cmd-item-title { font-size: 14px; }
+  .cmd-item-domain { font-size: 9px; margin-top: 2px; }
+  .cmd-footer { padding: 10px 16px; font-size: 8px; flex-wrap: wrap; gap: 6px; }
+
+  /* FOOTER */
+  footer { padding: 40px 16px 24px; }
+  .footer-inner { grid-template-columns: 1fr; gap: 18px; }
+  .footer-brand { font-size: 16px; }
+  .footer-links { flex-wrap: wrap; gap: 12px 16px; font-size: 9px; }
+  .footer-meta { text-align: left; font-size: 9px; }
+  .footer-bottom {
+    flex-direction: column;
+    gap: 6px;
+    align-items: flex-start;
+    margin-top: 22px;
+    font-size: 8px;
+  }
+}
+
+/* MOBILE PEQUEÑO — 420px */
+@media (max-width: 420px) {
+  .hud-brand span:not(.brand-section) { display: inline-block; max-width: 78px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .hero-title { font-size: clamp(40px, 14vw, 64px); line-height: 0.94; }
+  .hero-lead { font-size: 16px; }
+  .hero-cta-row { flex-direction: column; }
+  .hero-cta { width: 100%; }
+  .hero-meta-strip { font-size: 8px; letter-spacing: 0.08em; }
+  .hero-meta-strip strong { font-size: 9px; }
+  .domain-number { font-size: 52px; }
+  .domain-titlewrap h2 { font-size: 24px; }
+  .card-title { font-size: 18px; }
+  .card.featured .card-title { font-size: 20px; }
+  .manifesto-left h2 { font-size: 34px; }
+  .principle { padding-left: 42px; }
+  .principle-num::after { left: 24px; width: 12px; }
+  .map-svg { height: 480px; }
+}
+
+/* Reduce motion — accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .hero-title .line span { transform: none; }
+  .marquee-track { animation: none; }
+  .hud-brand-mark::after { animation: none; }
+  .hero-meta-strip .blink, .hud-system .dot { animation: none; opacity: 0.7; }
+}
+
+/* Dispositivos sin hover (touch) — hover hints permanentes */
+@media (hover: none) and (pointer: coarse) {
+  .card::before, .card::after { opacity: 0.5; }
+  .card:hover { transform: none; }
+  .card { transition: opacity 0.3s var(--ease); }
+  /* tap activa el shadow */
+  .card:active {
+    background: var(--bg-card-hover);
+    border-color: var(--accent-1);
+  }
+}
+</style>
+</head>
+
+<body data-mode="paper" data-view="grid">
+
+<div class="bg-grid"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     HUD SUPERIOR
+     ═══════════════════════════════════════════════════════════════ -->
+<header class="hud-top">
+  <div class="hud-left">
+    <div class="hud-brand">
+      <div class="hud-brand-mark"><span>NP</span></div>
+      <span>Nick Perot</span>
+    </div>
+    <div class="hud-brand-divider"></div>
+    <div class="hud-system">
+      <div class="dot"></div>
+      <span>EL ARCHIVO // VOL.01</span>
+    </div>
+  </div>
+
+  <div class="hud-center">
+    <button class="hud-nav-btn has-shortcut" data-jump="dominio-1" data-key="1">01 · Marcos</button>
+    <button class="hud-nav-btn has-shortcut" data-jump="dominio-2" data-key="2">02 · Observatorios</button>
+    <button class="hud-nav-btn has-shortcut" data-jump="dominio-3" data-key="3">03 · UNESCO</button>
+    <button class="hud-nav-btn has-shortcut" data-jump="dominio-4" data-key="4">04 · Comercio</button>
+    <button class="hud-nav-btn has-shortcut" data-jump="dominio-5" data-key="5">05 · Lecturas</button>
+  </div>
+
+  <div class="hud-right">
+    <button class="hud-cmd" id="open-cmd">
+      <span>⌘ buscar</span>
+      <kbd>⌘K</kbd>
+    </button>
+    <div class="hud-clock" id="clock">--:--:--</div>
+    <div class="hud-mode-toggle">
+      <button class="active" data-mode-btn="paper">PAPER</button>
+      <button data-mode-btn="terminal">TERMINAL</button>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     HERO
+     ═══════════════════════════════════════════════════════════════ -->
+<section class="hero">
+
+  <div class="hero-left">
+    <div class="hero-meta-strip">
+      <span><div class="blink"></div><strong>SYS</strong> archivo.nickperot.com</span>
+      <span><strong>BUILD</strong> 2026.05.17</span>
+      <span><strong>FUENTES</strong> 22 / 30</span>
+      <span><strong>IDIOMAS</strong> ES · EN · PT · FR</span>
+    </div>
+
+    <h1 class="hero-title">
+      <div class="line"><span>Fuentes</span></div>
+      <div class="line"><span><em>verificables</em>,<span class="pixel-dot"></span></span></div>
+      <div class="line"><span>no opiniones</span></div>
+      <div class="line"><span>prestadas.</span></div>
+    </h1>
+
+    <p class="hero-lead">
+      Un sistema operativo de archivo. <em>Marcos regulatorios, observatorios, documentos oficiales y datos abiertos</em> sobre inteligencia artificial, derecho y educación. Cada entrada lleva nota crítica firmada: por qué importa, qué leer primero, qué no esperar.
+    </p>
+
+    <div class="hero-cta-row">
+      <a href="#dominio-1" class="hero-cta primary">
+        <span>Entrar al archivo</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+      <button class="hero-cta" id="open-cmd-2">
+        <span>⌘ Búsqueda rápida</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <aside class="hero-right">
+    <div class="hero-panel">
+      <div class="hero-panel-title">
+        <span>// CATÁLOGO_EN_VIVO</span>
+        <span>● ACTIVO</span>
+      </div>
+
+      <div class="hero-stat-row">
+        <span class="hero-stat-label">DOMINIOS</span>
+        <span class="hero-stat-value" data-count="5">0</span>
+      </div>
+      <div class="hero-stat-row">
+        <span class="hero-stat-label">FUENTES_INDEX</span>
+        <span class="hero-stat-value" data-count="22">0</span>
+      </div>
+      <div class="hero-stat-row">
+        <span class="hero-stat-label">IDIOMAS</span>
+        <span class="hero-stat-value" data-count="4">0</span>
+      </div>
+
+      <div class="hero-panel-bars">
+        <div class="bar-row">
+          <span>// MARCOS</span>
+          <div class="bar-track"><div class="bar-fill" style="--w: 80%"></div></div>
+          <span class="bar-num">05</span>
+        </div>
+        <div class="bar-row">
+          <span>// OBSERVATORIOS</span>
+          <div class="bar-track"><div class="bar-fill rust" style="--w: 80%"></div></div>
+          <span class="bar-num">05</span>
+        </div>
+        <div class="bar-row">
+          <span>// UNESCO</span>
+          <div class="bar-track"><div class="bar-fill blue" style="--w: 65%"></div></div>
+          <span class="bar-num">04</span>
+        </div>
+        <div class="bar-row">
+          <span>// COMERCIO</span>
+          <div class="bar-track"><div class="bar-fill" style="--w: 65%"></div></div>
+          <span class="bar-num">04</span>
+        </div>
+        <div class="bar-row">
+          <span>// LECTURAS</span>
+          <div class="bar-track"><div class="bar-fill rust" style="--w: 65%"></div></div>
+          <span class="bar-num">04</span>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="hero-marquee">
+    <div class="hero-marquee-label">// FUENTES_INDEXADAS</div>
+    <div class="marquee-track">
+      <span>UNESCO</span><span>OCDE</span><span>UE · Reglamento 2024/1689</span><span>Stanford HAI</span><span>CEPAL</span><span>Casa Blanca</span><span>CACE</span><span>UNCTAD</span><span>CONICET</span><span>SciELO</span><span>arXiv</span><span>AI Now</span><span>AlgorithmWatch</span><span>ARCA</span><span>InfoLEG</span>
+      <span>UNESCO</span><span>OCDE</span><span>UE · Reglamento 2024/1689</span><span>Stanford HAI</span><span>CEPAL</span><span>Casa Blanca</span><span>CACE</span><span>UNCTAD</span><span>CONICET</span><span>SciELO</span><span>arXiv</span><span>AI Now</span><span>AlgorithmWatch</span><span>ARCA</span><span>InfoLEG</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     CONTROL BAR
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="control-bar">
+  <div class="control-section">
+    <span class="control-label">[FILTRO]</span>
+    <div class="control-chips">
+      <button class="chip active" data-filter="all">TODOS <span class="num">22</span></button>
+      <button class="chip" data-filter="marcos">MARCOS <span class="num">05</span></button>
+      <button class="chip" data-filter="observatorios">OBSERVATORIOS <span class="num">05</span></button>
+      <button class="chip" data-filter="unesco">UNESCO <span class="num">04</span></button>
+      <button class="chip" data-filter="comercio">COMERCIO <span class="num">04</span></button>
+      <button class="chip" data-filter="lecturas">LECTURAS <span class="num">04</span></button>
+    </div>
+  </div>
+
+  <div class="control-divider"></div>
+
+  <div class="control-section">
+    <span class="control-label">[VISTA]</span>
+    <div class="view-toggle">
+      <button class="active" data-view-btn="grid">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+        GRID
+      </button>
+      <button data-view-btn="list">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+        LISTA
+      </button>
+      <button data-view-btn="map">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><circle cx="4" cy="6" r="2"/><circle cx="20" cy="6" r="2"/><circle cx="4" cy="18" r="2"/><circle cx="20" cy="18" r="2"/><path d="M6 6h4M14 6h4M6 18h4M14 18h4M12 9V6M12 15v3"/></svg>
+        MAPA
+      </button>
+    </div>
+  </div>
+
+  <div class="spacer"></div>
+
+  <div class="control-counter">
+    [<strong id="count-visible">22</strong>/<span>22</span>] REGISTROS
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     ARCHIVO — DOMINIOS
+     ═══════════════════════════════════════════════════════════════ -->
+<main class="archive-main">
+
+  <!-- ████████████████████████████████████████████████
+       DOMINIO 1 — MARCOS REGULATORIOS
+       ████████████████████████████████████████████████ -->
+  <section class="domain-block" id="dominio-1" data-domain="marcos">
+    <div class="domain-header reveal">
+      <div class="domain-number-wrap">
+        <span class="domain-bracket">[</span>
+        <div class="domain-number">01</div>
+        <span class="domain-bracket">]</span>
+      </div>
+      <div class="domain-titlewrap">
+        <h2>Marcos <em>regulatorios</em></h2>
+        <p>Textos legales y propuestas normativas vigentes o en debate. La regulación de IA dejó de ser hipótesis y empezó a tener jurisdicción.</p>
+      </div>
+      <div class="domain-meta">
+        COBERTURA<br>
+        <strong>UE · USA · ARG · GLOBAL</strong>
+      </div>
+    </div>
+
+    <!-- VISTA GRID -->
+    <div class="cards-grid stagger reveal">
+
+      <a href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj" target="_blank" rel="noopener" class="card featured">
+        <div class="card-top">
+          <span class="card-tag">NORMA VIGENTE · UE</span>
+          <span class="card-id">AR-MR-001</span>
+        </div>
+        <div class="card-body">
+          <div class="card-source">Diario Oficial de la Unión Europea</div>
+          <h3 class="card-title">Reglamento (UE) <em>2024/1689</em> — Ley de Inteligencia Artificial</h3>
+          <div class="card-note">
+            <span class="card-note-label">› POR QUÉ IMPORTA</span>
+            Es el primer marco jurídico vinculante del mundo que clasifica sistemas de IA por nivel de riesgo. Entró en vigor en agosto de 2024 y su aplicación es escalonada hasta 2027. Define qué se prohíbe, qué se regula estrictamente y qué queda en obligaciones de transparencia.
+          </div>
+          <div class="card-keywords">
+            <span class="card-keyword">ai-act</span>
+            <span class="card-keyword">riesgo</span>
+            <span class="card-keyword">UE</span>
+            <span class="card-keyword">compliance</span>
+          </div>
+        </div>
+        <div class="card-bottom">
+          <div class="card-meta">
+            <span>23 IDIOMAS</span>
+            <span>VIGENTE</span>
+          </div>
+          <span class="card-cta">
+            ABRIR FUENTE
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <a href="https://www.whitehouse.gov/wp-content/uploads/2025/07/Americas-AI-Action-Plan.pdf" target="_blank" rel="noopener" class="card">
+        <div class="card-top">
+          <span class="card-tag law">PROPUESTA · USA</span>
+          <span class="card-id">AR-MR-002</span>
+        </div>
+        <div class="card-body">
+          <div class="card-source">Casa Blanca · Oficina Ejecutiva</div>
+          <h3 class="card-title">America's AI Action Plan</h3>
+          <div class="card-note">
+            <span class="card-note-label">› LECTURA CRÍTICA</span>
+            Propuesta de marco nacional de IA de la administración Trump (julio 2025). Es propuesta política, no ley. Pivot hacia desregulación y dominio competitivo frente a China. Lo cubrí en AR9.
+          </div>
+          <div class="card-keywords">
+            <span class="card-keyword">trump</span>
+            <span class="card-keyword">USA</span>
+            <span class="card-keyword">desregulación</span>
+          </div>
+        </div>
+        <div class="card-bottom">
+          <div class="card-meta">
+            <span>EN · PDF</span>
+            <span>2025</span>
+          </div>
+          <span class="card-cta">
+            ABRIR PDF
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <a href="https://www.unesco.org/es/articles/recomendacion-sobre-la-etica-de-la-inteligencia-artificial" target="_blank" rel="noopener" class="card">
+        <div class="card-top">
+          <span class="card-tag">RECOMENDACIÓN · GLOBAL</span>
+          <span class="card-id">AR-MR-003</span>
+        </div>
+        <div class="card-body">
+          <div class="card-source">UNESCO · 41ª Conferencia General</div>
+          <h3 class="card-title">Recomendación sobre la <em>ética</em> de la IA</h3>
+          <div class="card-note">
+            <span class="card-note-label">› POR QUÉ IMPORTA</span>
+            Aprobada por 193 Estados miembros en 2021. Sin fuerza vinculante pero es el piso ético de referencia para legislaciones nacionales. Incluye 11 áreas de política pública con métricas de implementación.
+          </div>
+          <div class="card-keywords">
+            <span class="card-keyword">ética</span>
+            <span class="card-keyword">unesco</span>
+            <span class="card-keyword">soft-law</span>
+          </div>
+        </div>
+        <div class="card-bottom">
+          <div class="card-meta">
+            <span>6 IDIOMAS</span>
+            <span>2021</span>
+          </div>
+          <span class="card-cta">
+            ABRIR FUENTE
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <a href="https://www.argentina.gob.ar/normativa/nacional/disposici%C3%B3n-2-2023-378755" target="_blank" rel="noopener" class="card">
+        <div class="card-top">
+          <span class="card-tag law">NORMA LOCAL · AR</span>
+          <span class="card-id">AR-MR-004</span>
+        </div>
+        <div class="card-body">
+          <div class="card-source">InfoLEG · Boletín Oficial</div>
+          <h3 class="card-title">Recomendaciones para una IA fiable — Argentina</h3>
+          <div class="card-note">
+            <span class="card-note-label">› CONTEXTO</span>
+            Disposición 2/2023 de la Subsecretaría de Tecnologías de la Información. Adopta principios de la Recomendación UNESCO. Marco soft-law: orienta sin obligar. Útil para entender qué espera el Estado argentino de los desarrollos de IA pública.
+          </div>
+          <div class="card-keywords">
+            <span class="card-keyword">argentina</span>
+            <span class="card-keyword">disp-2-2023</span>
+            <span class="card-keyword">soft-law</span>
+          </div>
+        </div>
+        <div class="card-bottom">
+          <div class="card-meta">
+            <span>ES</span>
+            <span>2023</span>
+          </div>
+          <span class="card-cta">
+            ABRIR FUENTE
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <a href="https://oecd.ai/en/ai-principles" target="_blank" rel="noopener" class="card">
+        <div class="card-top">
+          <span class="card-tag">PRINCIPIOS · OCDE</span>
+          <span class="card-id">AR-MR-005</span>
+        </div>
+        <div class="card-body">
+          <div class="card-source">OECD.AI Policy Observatory</div>
+          <h3 class="card-title">Principios de la <em>OCDE</em> sobre IA</h3>
+          <div class="card-note">
+            <span class="card-note-label">› POR QUÉ IMPORTA</span>
+            Primer estándar intergubernamental sobre IA (2019, actualizado 2024). Adoptado por más de 45 países, incluida Argentina. Cinco principios + cinco recomendaciones a gobiernos. Base conceptual de buena parte de la regulación posterior.
+          </div>
+          <div class="card-keywords">
+            <span class="card-keyword">ocde</span>
+            <span class="card-keyword">principios</span>
+            <span class="card-keyword">estándar</span>
+          </div>
+        </div>
+        <div class="card-bottom">
+          <div class="card-meta">
+            <span>ES · EN · FR</span>
+            <span>2019</span>
+          </div>
+          <span class="card-cta">
+            ABRIR FUENTE
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+          </span>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ████████████████████████████████████████████████
+       DOMINIO 2 — OBSERVATORIOS
+       ████████████████████████████████████████████████ -->
+  <section class="domain-block" id="dominio-2" data-domain="observatorios">
+    <div class="domain-header reveal">
+      <div class="domain-number-wrap">
+        <span class="domain-bracket">[</span>
+        <div class="domain-number">02</div>
+        <span class="domain-bracket">]</span>
+      </div>
+      <div class="domain-titlewrap">
+        <h2>Observatorios <em>y datos abiertos</em></h2>
+        <p>Plataformas que rastrean implementación de IA, políticas públicas y métricas regionales. Para no opinar sin datos.</p>
+      </div>
+      <div class="domain-meta">
+        COBERTURA<br>
+        <strong>LATAM · GLOBAL</strong>
+      </div>
+    </div>
+
+    <div class="cards-grid stagger reveal">
+
+      <a href="https://www.unesco.org/es/articles/observatorio-sobre-inteligencia-artificial-en-la-educacion-para-america-latina-y-el-caribe" target="_blank" rel="noopener" class="card featured">
+        <div class="card-top">
+          <span class="card-tag">OBSERVATORIO · LATAM</span>
+          <span class="card-id">AR-OB-001</span>
+        </div>
+        <div class="card-body">
+          <div class="card-source">UNESCO IESALC</div>
+          <h3 class="card-title">Observatorio sobre IA en educación <em>para América Latina y el Caribe</em></h3>
+          <div class="card-note">
+            <span class="card-note-label">› PRIMERA LECTURA REGIONAL</span>
+            Único observatorio público y regional dedicado específicamente al cruce IA-educación en América Latina. Sistematiza políticas, casos institucionales y marcos de referencia. Punto de partida obligatorio si trabajás en políticas educativas de IA en la región.
+          </div>
+          <div class="card-keywords">
+            <span class="card-keyword">unesco</span>
+            <span class="card-keyword">latam</span>
+            <span class="card-keyword">educación</span>
+            <span class="card-keyword">políticas</span>
+          </div>
+        </div>
+        <div class="card-bottom">
+          <div class="card-meta">
+            <span>ES · EN · PT</span>
+            <span>ACTIVO</span>
+          </div>
+          <span class="card-cta">
+            ABRIR OBSERVATORIO
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <a href="https://oecd.ai/" target="_blank" rel="noopener" class="card">
+        <div class="card-top">
+          <span class="card-tag data">POLICY DATA · GLOBAL</span>
+          <span class="card-id">AR-OB-002</span>
+        </div>
+        <div class="card-body">
+          <div class="card-source">OECD.AI</div>
+          <h3 class="card-title">OECD.AI Policy Observatory</h3>
+          <div class="card-note">
+            <span class="card-note-label">› PARA QUÉ SIRVE</span>
+            Base de datos viva de políticas de IA en más de 70 países: dashboards, indicadores de fuerza laboral, métricas de cómputo, tendencias en investigación. La fuente para comparar regulación entre jurisdicciones sin caer en lugares comunes.
+          </div>
+          <div class="card-keywords">
+            <span class="card-keyword">ocde</span>
+            <span class="card-keyword">dashboards</span>
+            <span class="card-keyword">datos-abiertos</span>
+          </div>
+        </div>
+        <div class="card-bottom">
+          <div class="card-meta">
+            <span>EN</span>
+            <span>ACTIVO</span>
+          </div>
+          <span class="card-cta">
+            EXPLORAR
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <a href="https://aiindex.stanford.edu/" target="_blank" rel="noopener" class="card">
+        <div class="card-top">
+          <span class="card-tag data">REPORTE ANUAL · ACADÉMICO</span>
+          <span class="card-id">AR-OB-003</span>
+        </div>
+        <div class="card-body">
+          <div class="card-source">Stanford HAI</div>
+          <h3 class="card-title">AI Index Report</h3>
+          <div class="card-note">
+            <span class="card-note-label">› LECTURA RECOMENDADA</span>
+            Reporte anual de Stanford HAI con métricas exhaustivas sobre estado técnico, económico, regulatorio y social de la IA. Si solo leés un informe global por año, leé este. Tiene rigor metodológico y datos comparables entre ediciones.
+          </div>
+          <div class="card-keywords">
+            <span class="card-keyword">stanford</span>
+            <span class="card-keyword">métricas</span>
+            <span class="card-keyword">anual</span>
+          </div>
+        </div>
+        <div class="card-bottom">
+          <div class="card-meta">
+            <span>EN</span>
+            <span>ANUAL</span>
+          </div>
+          <span class="card-cta">
+            VER ÚLTIMA EDICIÓN
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <a href="https://www.cepal.org/es/temas/inteligencia-artificial" target="_blank" rel="noopener" class="card">
+        <div class="card-top">
+          <span class="card-tag">INVESTIGACIÓN · LATAM</span>
+          <span class="card-id">AR-OB-004</span>
+        </div>
+        <div class="card-body">
+          <div class="card-source">CEPAL · ONU</div>
+          <h3 class="card-title">CEPAL · Inteligencia artificial</h3>
+          <div class="card-note">
+            <span class="card-note-label">› MIRADA REGIONAL</span>
+            La Comisión Económica para América Latina y el Caribe publica estudios sobre adopción de IA, brechas digitales y políticas industriales en la región. Útil para contextualizar discusiones globales con datos locales sólidos.
+          </div>
+          <div class="card-keywords">
+            <span class="card-keyword">cepal</span>
+            <span class="card-keyword">latam</span>
+            <span class="card-keyword">economía</span>
+          </div>
+        </div>
+        <div class="card-bottom">
+          <div class="card-meta">
+            <span>ES · EN · PT</span>
+            <span>ACTIVO</span>
+          </div>
+          <span class="card-cta">
+            VER PUBLICACIONES
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <a href="https://algorithmwatch.org/en/" target="_blank" rel="noopener" class="card">
+        <div class="card-top">
+          <span class="card-tag data">ONG · AUDITORÍA CIVIL</span>
+          <span class="card-id">AR-OB-005</span>
+        </div>
+        <div class="card-body">
+          <div class="card-source">AlgorithmWatch</div>
+          <h3 class="card-title">AlgorithmWatch</h3>
+          <div class="card-note">
+            <span class="card-note-label">› CONTRAPESO ÚTIL</span>
+            ONG de Berlín que audita decisiones algorítmicas con impacto en derechos. Investigaciones independientes sobre Meta, Google, sistemas de bienestar y reconocimiento facial. Para no quedarse solo con la voz de gobiernos y plataformas.
+          </div>
+          <div class="card-keywords">
+            <span class="card-keyword">auditoría</span>
+            <span class="card-keyword">algoritmos</span>
+            <span class="card-keyword">derechos</span>
+          </div>
+        </div>
+        <div class="card-bottom">
+          <div class="card-meta">
+            <span>EN · DE</span>
+            <span>ACTIVO</span>
+          </div>
+          <span class="card-cta">
+            VER INVESTIGACIONES
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+          </span>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ████████████████████████████████████████████████
+       DOMINIO 3 — UNESCO
+       ████████████████████████████████████████████████ -->
+  <section class="domain-block" id="dominio-3" data-domain="unesco">
+    <div class="domain-header reveal">
+      <div class="domain-number-wrap">
+        <span class="domain-bracket">[</span>
+        <div class="domain-number">03</div>
+        <span class="domain-bracket">]</span>
+      </div>
+      <div class="domain-titlewrap">
+        <h2>Documentos <em>UNESCO</em></h2>
+        <p>Guías y publicaciones técnicas del repositorio UNESDOC. Aplicables a contextos educativos, regulatorios y de formación docente.</p>
+      </div>
+      <div class="domain-meta">
+        REPOSITORIO<br>
+        <strong>UNESDOC OFICIAL</strong>
+      </div>
+    </div>
+
+    <div class="cards-grid stagger reveal">
+
+      <a href="https://unesdoc.unesco.org/ark:/48223/pf0000381137_spa" target="_blank" rel="noopener" class="card featured">
+        <div class="card-top">
+          <span class="card-tag">GUÍA TÉCNICA · UNESCO</span>
+          <span class="card-id">AR-UN-001</span>
+        </div>
+        <div class="card-body">
+          <div class="card-source">UNESDOC · ark:/48223/pf0000381137</div>
+          <h3 class="card-title">Guía para el uso de IA generativa <em>en educación e investigación</em></h3>
+          <div class="card-note">
+            <span class="card-note-label">› LECTURA PRIORITARIA PARA DOCENTES</span>
+            La guía concreta —no declarativa— de UNESCO para integrar IA generativa en escuelas y universidades. Incluye edad mínima recomendada (13 años), protocolos institucionales, ocho pasos para la adopción y consideraciones éticas accionables. Si das clase, esta lectura no se evita.
+          </div>
+          <div class="card-keywords">
+            <span class="card-keyword">ia-generativa</span>
+            <span class="card-keyword">educación</span>
+            <span class="card-keyword">protocolo</span>
+            <span class="card-keyword">guía</span>
+          </div>
+        </div>
+        <div class="card-bottom">
+          <div class="card-meta">
+            <span>ES</span>
+            <span>PDF</span>
+          </div>
+          <span class="card-cta">
+            DESCARGAR PDF
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <a href="https://unesdoc.unesco.org/ark:/48223/pf0000389227.locale=en" target="_blank" rel="noopener" class="card">
+        <div class="card-top">
+          <span class="card-tag">MARCO DE COMPETENCIAS</span>
+          <span class="card-id">AR-UN-002</span>
+        </div>
+        <div class="card-body">
+          <div class="card-source">UNESDOC · ark:/48223/pf0000389227</div>
+          <h3 class="card-title">AI Competency Framework for Teachers</h3>
+          <div class="card-note">
+            <span class="card-note-label">› POR QUÉ IMPORTA</span>
+            Marco UNESCO de competencias docentes en IA. Define cinco dimensiones —desde la mentalidad ética hasta el diseño pedagógico— y tres niveles de progresión. Insumo directo para diseñar formación docente que no sea capacitación en herramientas, sino formación con criterio.
+          </div>
+          <div class="card-keywords">
+            <span class="card-keyword">docentes</span>
+            <span class="card-keyword">competencias</span>
+            <span class="card-keyword">formación</span>
+          </div>
+        </div>
+        <div class="card-bottom">
+          <div class="card-meta">
+            <span>EN</span>
+            <span>PDF</span>
+          </div>
+          <span class="card-cta">
+            DESCARGAR PDF
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <a href="https://unesdoc.unesco.org/ark:/48223/pf0000391105" target="_blank" rel="noopener" class="card">
+        <div class="card-top">
+          <span class="card-tag">MARCO DE COMPETENCIAS</span>
+          <span class="card-id">AR-UN-003</span>
+        </div>
+        <div class="card-body">
+          <div class="card-source">UNESDOC · ark:/48223/pf0000391105</div>
+          <h3 class="card-title">AI Competency Framework for Students</h3>
+          <div class="card-note">
+            <span class="card-note-label">› COMPLEMENTO DEL ANTERIOR</span>
+            Marco paralelo dirigido a estudiantes. Define qué deberían saber y poder hacer respecto a IA al terminar la escolarización obligatoria. Útil para discutir alfabetización digital con un piso común y no con opiniones sueltas.
+          </div>
+          <div class="card-keywords">
+            <span class="card-keyword">estudiantes</span>
+            <span class="card-keyword">competencias</span>
+            <span class="card-keyword">alfabetización</span>
+          </div>
+        </div>
+        <div class="card-bottom">
+          <div class="card-meta">
+            <span>EN</span>
+            <span>PDF</span>
+          </div>
+          <span class="card-cta">
+            DESCARGAR PDF
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <a href="https://unesdoc.unesco.org/ark:/48223/pf0000385723" target="_blank" rel="noopener" class="card">
+        <div class="card-top">
+          <span class="card-tag">INFORME GEM 2023</span>
+          <span class="card-id">AR-UN-004</span>
+        </div>
+        <div class="card-body">
+          <div class="card-source">UNESDOC · ark:/48223/pf0000385723</div>
+          <h3 class="card-title">Informe GEM — Tecnología en la educación</h3>
+          <div class="card-note">
+            <span class="card-note-label">› LECTURA CRÍTICA</span>
+            El informe mundial Global Education Monitoring 2023 plantea preguntas incómodas: ¿la tecnología educativa funcionó? ¿para quién? ¿con qué evidencia? Contrapeso necesario al entusiasmo automático sobre dispositivos y plataformas.
+          </div>
+          <div class="card-keywords">
+            <span class="card-keyword">gem-2023</span>
+            <span class="card-keyword">edtech</span>
+            <span class="card-keyword">crítica</span>
+          </div>
+        </div>
+        <div class="card-bottom">
+          <div class="card-meta">
+            <span>ES · EN · FR</span>
+            <span>2023</span>
+          </div>
+          <span class="card-cta">
+            ACCEDER AL INFORME
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+          </span>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ████████████████████████████████████████████████
+       DOMINIO 4 — COMERCIO DIGITAL
+       ████████████████████████████████████████████████ -->
+  <section class="domain-block" id="dominio-4" data-domain="comercio">
+    <div class="domain-header reveal">
+      <div class="domain-number-wrap">
+        <span class="domain-bracket">[</span>
+        <div class="domain-number">04</div>
+        <span class="domain-bracket">]</span>
+      </div>
+      <div class="domain-titlewrap">
+        <h2>Comercio <em>digital</em> y plataformas</h2>
+        <p>Marcos normativos, cámaras y observatorios sobre comercio electrónico, transformación digital de PyMEs y mercados de plataformas en Argentina y la región.</p>
+      </div>
+      <div class="domain-meta">
+        FOCO<br>
+        <strong>ARGENTINA · LATAM</strong>
+      </div>
+    </div>
+
+    <div class="cards-grid stagger reveal">
+
+      <a href="https://www.cace.org.ar/" target="_blank" rel="noopener" class="card">
+        <div class="card-top">
+          <span class="card-tag data">CÁMARA SECTORIAL · AR</span>
+          <span class="card-id">AR-CD-001</span>
+        </div>
+        <div class="card-body">
+          <div class="card-source">Cámara Argentina de Comercio Electrónico</div>
+          <h3 class="card-title">CACE — <em>Comercio electrónico</em> Argentina</h3>
+          <div class="card-note">
+            <span class="card-note-label">› MEDICIÓN DEL MERCADO LOCAL</span>
+            Cámara que mide el comercio electrónico en Argentina. Publica el Estudio Anual de Comercio Electrónico —referencia de facto para discutir tamaño de mercado, hábitos de consumo digital y evolución sectorial. Datos primarios, no estimaciones de terceros.
+          </div>
+          <div class="card-keywords">
+            <span class="card-keyword">ecommerce</span>
+            <span class="card-keyword">argentina</span>
+            <span class="card-keyword">mercado</span>
+          </div>
+        </div>
+        <div class="card-bottom">
+          <div class="card-meta">
+            <span>ES</span>
+            <span>ACTIVO</span>
+          </div>
+          <span class="card-cta">
+            VISITAR CACE
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <a href="https://www.argentina.gob.ar/justicia/derechofacil/leysimple/defensa-del-consumidor" target="_blank" rel="noopener" class="card">
+        <div class="card-top">
+          <span class="card-tag law">MARCO LEGAL · AR</span>
+          <span class="card-id">AR-CD-002</span>
+        </div>
+        <div class="card-body">
+          <div class="card-source">Ministerio de Justicia · Argentina</div>
+          <h3 class="card-title">Defensa del Consumidor — Ley 24.240</h3>
+          <div class="card-note">
+            <span class="card-note-label">› APLICACIÓN AL ECOMMERCE</span>
+            Texto legal base para operaciones de consumo en plataformas digitales en Argentina. Versión accesible publicada por el Ministerio de Justicia. Útil para discutir derechos del consumidor digital, cláusulas abusivas y obligaciones de información en venta online.
+          </div>
+          <div class="card-keywords">
+            <span class="card-keyword">ley-24240</span>
+            <span class="card-keyword">consumidor</span>
+            <span class="card-keyword">ecommerce</span>
+          </div>
+        </div>
+        <div class="card-bottom">
+          <div class="card-meta">
+            <span>ES</span>
+            <span>VIGENTE</span>
+          </div>
+          <span class="card-cta">
+            VER LEY SIMPLE
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <a href="https://unctad.org/topic/ecommerce-and-digital-economy" target="_blank" rel="noopener" class="card featured">
+        <div class="card-top">
+          <span class="card-tag">ORGANISMO ONU</span>
+          <span class="card-id">AR-CD-003</span>
+        </div>
+        <div class="card-body">
+          <div class="card-source">UNCTAD · ONU</div>
+          <h3 class="card-title">UNCTAD — <em>Economía digital</em> y ecommerce</h3>
+          <div class="card-note">
+            <span class="card-note-label">› MIRADA GLOBAL</span>
+            La Conferencia de las Naciones Unidas sobre Comercio y Desarrollo publica el Digital Economy Report y el B2C E-commerce Index. Para discutir economía digital con datos de Estados, no de consultoras. Cobertura especial sobre brecha digital Norte-Sur.
+          </div>
+          <div class="card-keywords">
+            <span class="card-keyword">unctad</span>
+            <span class="card-keyword">economía-digital</span>
+            <span class="card-keyword">brecha</span>
+            <span class="card-keyword">b2c-index</span>
+          </div>
+        </div>
+        <div class="card-bottom">
+          <div class="card-meta">
+            <span>ES · EN · FR</span>
+            <span>ACTIVO</span>
+          </div>
+          <span class="card-cta">
+            EXPLORAR UNCTAD
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <a href="https://www.afip.gob.ar/facturacion-electronica/" target="_blank" rel="noopener" class="card">
+        <div class="card-top">
+          <span class="card-tag law">MARCO FISCAL · AR</span>
+          <span class="card-id">AR-CD-004</span>
+        </div>
+        <div class="card-body">
+          <div class="card-source">ARCA (ex AFIP)</div>
+          <h3 class="card-title">Facturación electrónica — Argentina</h3>
+          <div class="card-note">
+            <span class="card-note-label">› PARA PYMES DIGITALES</span>
+            Portal oficial del organismo recaudador con normativa de facturación electrónica obligatoria. Punto de entrada para cualquier discusión de comercio digital formal en Argentina. Documenta regímenes, monotributo y obligaciones para venta online.
+          </div>
+          <div class="card-keywords">
+            <span class="card-keyword">arca</span>
+            <span class="card-keyword">facturación</span>
+            <span class="card-keyword">pymes</span>
+          </div>
+        </div>
+        <div class="card-bottom">
+          <div class="card-meta">
+            <span>ES</span>
+            <span>VIGENTE</span>
+          </div>
+          <span class="card-cta">
+            VER PORTAL
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+          </span>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ████████████████████████████████████████████████
+       DOMINIO 5 — LECTURAS CRÍTICAS
+       ████████████████████████████████████████████████ -->
+  <section class="domain-block" id="dominio-5" data-domain="lecturas">
+    <div class="domain-header reveal">
+      <div class="domain-number-wrap">
+        <span class="domain-bracket">[</span>
+        <div class="domain-number">05</div>
+        <span class="domain-bracket">]</span>
+      </div>
+      <div class="domain-titlewrap">
+        <h2>Lecturas <em>críticas</em></h2>
+        <p>Repositorios académicos, papers fundacionales y ensayos de divulgación rigurosa. Para no leer solo informes corporativos.</p>
+      </div>
+      <div class="domain-meta">
+        TIPO<br>
+        <strong>ACADÉMICO · ENSAYO</strong>
+      </div>
+    </div>
+
+    <div class="cards-grid stagger reveal">
+
+      <a href="https://arxiv.org/list/cs.AI/recent" target="_blank" rel="noopener" class="card">
+        <div class="card-top">
+          <span class="card-tag data">PREPRINTS · cs.AI</span>
+          <span class="card-id">AR-LC-001</span>
+        </div>
+        <div class="card-body">
+          <div class="card-source">arXiv · Cornell University</div>
+          <h3 class="card-title">arXiv — <em>Inteligencia artificial</em></h3>
+          <div class="card-note">
+            <span class="card-note-label">› CÓMO USARLO</span>
+            Repositorio abierto donde aparecen primero los papers que después se citan en prensa general. No todo lo publicado tiene revisión por pares —es preprint—, pero leer directamente la fuente evita el teléfono descompuesto. Buscar por área cs.AI o cs.CL.
+          </div>
+          <div class="card-keywords">
+            <span class="card-keyword">arxiv</span>
+            <span class="card-keyword">preprints</span>
+            <span class="card-keyword">cs-ai</span>
+          </div>
+        </div>
+        <div class="card-bottom">
+          <div class="card-meta">
+            <span>EN</span>
+            <span>DIARIO</span>
+          </div>
+          <span class="card-cta">
+            EXPLORAR ARXIV
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <a href="https://scielo.org/" target="_blank" rel="noopener" class="card featured">
+        <div class="card-top">
+          <span class="card-tag">REPOSITORIO · LATAM</span>
+          <span class="card-id">AR-LC-002</span>
+        </div>
+        <div class="card-body">
+          <div class="card-source">SciELO · Scientific Electronic Library Online</div>
+          <h3 class="card-title">SciELO — Producción científica <em>iberoamericana</em></h3>
+          <div class="card-note">
+            <span class="card-note-label">› POR QUÉ ENTRA AL ARCHIVO</span>
+            La biblioteca científica más relevante de la región para acceso abierto. Indexa revistas en español y portugués de toda Iberoamérica. Si querés citar investigación regional sobre IA, derecho o educación —en lugar de traducir siempre desde el inglés—, es la primera puerta. Indispensable para descentrar la bibliografía.
+          </div>
+          <div class="card-keywords">
+            <span class="card-keyword">scielo</span>
+            <span class="card-keyword">acceso-abierto</span>
+            <span class="card-keyword">iberoamérica</span>
+            <span class="card-keyword">revistas</span>
+          </div>
+        </div>
+        <div class="card-bottom">
+          <div class="card-meta">
+            <span>ES · PT · EN</span>
+            <span>ACTIVO</span>
+          </div>
+          <span class="card-cta">
+            ENTRAR A SCIELO
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <a href="https://ainowinstitute.org/" target="_blank" rel="noopener" class="card">
+        <div class="card-top">
+          <span class="card-tag data">INSTITUTO · INVESTIGACIÓN</span>
+          <span class="card-id">AR-LC-003</span>
+        </div>
+        <div class="card-body">
+          <div class="card-source">AI Now Institute</div>
+          <h3 class="card-title">AI Now Institute</h3>
+          <div class="card-note">
+            <span class="card-note-label">› MIRADA CRÍTICA DESDE EE.UU.</span>
+            Instituto de investigación interdisciplinaria sobre implicaciones sociales de la IA. Informes anuales con foco en concentración de poder, trabajo de plataformas y captura regulatoria. Útil para no leer solo a quienes celebran la tecnología.
+          </div>
+          <div class="card-keywords">
+            <span class="card-keyword">ai-now</span>
+            <span class="card-keyword">crítica</span>
+            <span class="card-keyword">poder</span>
+          </div>
+        </div>
+        <div class="card-bottom">
+          <div class="card-meta">
+            <span>EN</span>
+            <span>ACTIVO</span>
+          </div>
+          <span class="card-cta">
+            VER REPORTES
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <a href="https://ri.conicet.gov.ar/" target="_blank" rel="noopener" class="card">
+        <div class="card-top">
+          <span class="card-tag">REPOSITORIO · CONICET</span>
+          <span class="card-id">AR-LC-004</span>
+        </div>
+        <div class="card-body">
+          <div class="card-source">Repositorio Institucional CONICET</div>
+          <h3 class="card-title">Repositorio CONICET Digital</h3>
+          <div class="card-note">
+            <span class="card-note-label">› INVESTIGACIÓN ARGENTINA</span>
+            Acceso abierto a la producción científica del sistema CONICET. Filtrable por área. Útil para encontrar trabajo argentino sobre derecho informático, ética algorítmica, educación digital y sociología de la tecnología sin depender de bases pagas.
+          </div>
+          <div class="card-keywords">
+            <span class="card-keyword">conicet</span>
+            <span class="card-keyword">argentina</span>
+            <span class="card-keyword">acceso-abierto</span>
+          </div>
+        </div>
+        <div class="card-bottom">
+          <div class="card-meta">
+            <span>ES</span>
+            <span>ACTIVO</span>
+          </div>
+          <span class="card-cta">
+            BUSCAR REPOSITORIO
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+          </span>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       VISTA: LISTA (oculta por defecto, se activa con view toggle)
+       ═══════════════════════════════════════════════════════════════ -->
+  <div class="cards-list reveal" id="full-list">
+    <div class="list-header">
+      <div>ID</div>
+      <div>TIPO</div>
+      <div>TÍTULO</div>
+      <div>FUENTE</div>
+      <div>IDIOMA</div>
+      <div></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       VISTA: MAPA (oculta por defecto)
+       ═══════════════════════════════════════════════════════════════ -->
+  <div class="cards-map reveal">
+    <div class="map-container">
+      <svg class="map-svg" viewBox="0 0 1400 480" preserveAspectRatio="xMidYMid meet"></svg>
+      <div class="map-legend">
+        <span><span class="dot" style="background:var(--accent-1)"></span>Marco</span>
+        <span><span class="dot" style="background:var(--accent-3)"></span>Observatorio</span>
+        <span><span class="dot" style="background:var(--accent-2)"></span>Documento</span>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     MANIFIESTO
+     ═══════════════════════════════════════════════════════════════ -->
+<section class="manifesto">
+  <div class="manifesto-inner">
+    <div class="manifesto-left">
+      <div class="manifesto-eyebrow">// PROTOCOLO EDITORIAL</div>
+      <h2>Cómo se elige <em>lo que entra</em>.</h2>
+      <div class="manifesto-quote">
+        Sin humo. Si una fuente no puede citarse con precisión —autor, fecha, editor— no entra al archivo. Si entra, lleva contexto.
+      </div>
+    </div>
+    <div class="manifesto-grid">
+      <div class="principle">
+        <span class="principle-num">[01]</span>
+        <h3>Fuente <em>identificable</em></h3>
+        <p>Autor, organismo emisor y fecha verificables. Si no se puede citar con precisión, no entra. Sin excepciones para "lo dicen los expertos".</p>
+      </div>
+      <div class="principle">
+        <span class="principle-num">[02]</span>
+        <h3>Acceso <em>estable</em></h3>
+        <p>Solo recursos con URL estable, preferentemente de acceso público. Si un documento está detrás de paywall, viene marcado y solo entra si no hay alternativa equivalente abierta.</p>
+      </div>
+      <div class="principle">
+        <span class="principle-num">[03]</span>
+        <h3>Relevancia <em>regional</em></h3>
+        <p>Aunque el archivo cubre fuentes globales, hay un sesgo deliberado por incluir lo que sirve para discutir desde América Latina: documentos en español, casos argentinos, mediciones regionales.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     FOOTER
+     ═══════════════════════════════════════════════════════════════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <strong>El Archivo</strong> — un proyecto editorial de <em>Nick Perot</em>
+    </div>
+    <div class="footer-links">
+      <a href="https://nickperot.com">nickperot.com</a>
+      <a href="https://nickperot.substack.com">Substack</a>
+      <a href="https://linkedin.com/in/nickperot">LinkedIn</a>
+      <a href="https://youtube.com/@formulalegal">YouTube</a>
+    </div>
+    <div class="footer-meta">
+      VOL.01 · COMPILACIÓN EN CURSO<br>
+      ACTUALIZACIÓN: 2026.05.17
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>// archivo.nickperot.com</span>
+    <span>// contacto@nickperot.com</span>
+    <span>// © 2026 NICK PEROT — DERECHO, TECNOLOGÍA Y GESTIÓN</span>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     COMMAND PALETTE
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="cmd-overlay" id="cmd-overlay">
+  <div class="cmd-panel">
+    <div class="cmd-header">
+      <span class="cmd-prompt">›</span>
+      <input class="cmd-input" id="cmd-input" placeholder="Buscar fuente, organismo, palabra clave..." autocomplete="off">
+      <span class="cmd-close">ESC</span>
+    </div>
+    <div class="cmd-list" id="cmd-list"></div>
+    <div class="cmd-footer">
+      <span><kbd>↑↓</kbd> NAVEGAR · <kbd>↵</kbd> ABRIR</span>
+      <span>22 REGISTROS INDEXADOS</span>
+    </div>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════
+// CATÁLOGO DE FUENTES (espejo del DOM, para command palette + map)
+// ═══════════════════════════════════════════════════════════════
+const ARCHIVE = [
+  {id:"AR-MR-001",dom:"marcos",t:"Reglamento (UE) 2024/1689 — Ley de IA",s:"Diario Oficial UE",u:"https://eur-lex.europa.eu/eli/reg/2024/1689/oj",k:["ai-act","UE","riesgo"]},
+  {id:"AR-MR-002",dom:"marcos",t:"America's AI Action Plan",s:"Casa Blanca",u:"https://www.whitehouse.gov/wp-content/uploads/2025/07/Americas-AI-Action-Plan.pdf",k:["trump","USA"]},
+  {id:"AR-MR-003",dom:"marcos",t:"Recomendación UNESCO sobre la ética de la IA",s:"UNESCO",u:"https://www.unesco.org/es/articles/recomendacion-sobre-la-etica-de-la-inteligencia-artificial",k:["unesco","ética"]},
+  {id:"AR-MR-004",dom:"marcos",t:"Disposición 2/2023 — IA fiable Argentina",s:"InfoLEG",u:"https://www.argentina.gob.ar/normativa/nacional/disposici%C3%B3n-2-2023-378755",k:["argentina","soft-law"]},
+  {id:"AR-MR-005",dom:"marcos",t:"Principios de la OCDE sobre IA",s:"OECD.AI",u:"https://oecd.ai/en/ai-principles",k:["ocde","principios"]},
+  {id:"AR-OB-001",dom:"observatorios",t:"Observatorio IA en educación LATAM",s:"UNESCO IESALC",u:"https://www.unesco.org/es/articles/observatorio-sobre-inteligencia-artificial-en-la-educacion-para-america-latina-y-el-caribe",k:["latam","educación"]},
+  {id:"AR-OB-002",dom:"observatorios",t:"OECD.AI Policy Observatory",s:"OECD.AI",u:"https://oecd.ai/",k:["ocde","dashboards"]},
+  {id:"AR-OB-003",dom:"observatorios",t:"AI Index Report",s:"Stanford HAI",u:"https://aiindex.stanford.edu/",k:["stanford","métricas"]},
+  {id:"AR-OB-004",dom:"observatorios",t:"CEPAL · Inteligencia artificial",s:"CEPAL ONU",u:"https://www.cepal.org/es/temas/inteligencia-artificial",k:["cepal","latam"]},
+  {id:"AR-OB-005",dom:"observatorios",t:"AlgorithmWatch",s:"AlgorithmWatch",u:"https://algorithmwatch.org/en/",k:["auditoría","algoritmos"]},
+  {id:"AR-UN-001",dom:"unesco",t:"Guía UNESCO IA generativa en educación",s:"UNESDOC 381137",u:"https://unesdoc.unesco.org/ark:/48223/pf0000381137_spa",k:["ia-generativa","guía"]},
+  {id:"AR-UN-002",dom:"unesco",t:"AI Competency Framework for Teachers",s:"UNESDOC 389227",u:"https://unesdoc.unesco.org/ark:/48223/pf0000389227.locale=en",k:["docentes","competencias"]},
+  {id:"AR-UN-003",dom:"unesco",t:"AI Competency Framework for Students",s:"UNESDOC 391105",u:"https://unesdoc.unesco.org/ark:/48223/pf0000391105",k:["estudiantes","competencias"]},
+  {id:"AR-UN-004",dom:"unesco",t:"Informe GEM — Tecnología en educación",s:"UNESDOC 385723",u:"https://unesdoc.unesco.org/ark:/48223/pf0000385723",k:["gem-2023","edtech"]},
+  {id:"AR-CD-001",dom:"comercio",t:"CACE — Comercio electrónico Argentina",s:"CACE",u:"https://www.cace.org.ar/",k:["ecommerce","argentina"]},
+  {id:"AR-CD-002",dom:"comercio",t:"Defensa del Consumidor — Ley 24.240",s:"Min. Justicia AR",u:"https://www.argentina.gob.ar/justicia/derechofacil/leysimple/defensa-del-consumidor",k:["ley-24240","consumidor"]},
+  {id:"AR-CD-003",dom:"comercio",t:"UNCTAD — Economía digital",s:"UNCTAD ONU",u:"https://unctad.org/topic/ecommerce-and-digital-economy",k:["unctad","economía-digital"]},
+  {id:"AR-CD-004",dom:"comercio",t:"Facturación electrónica Argentina",s:"ARCA",u:"https://www.afip.gob.ar/facturacion-electronica/",k:["arca","facturación"]},
+  {id:"AR-LC-001",dom:"lecturas",t:"arXiv — Inteligencia artificial",s:"arXiv Cornell",u:"https://arxiv.org/list/cs.AI/recent",k:["arxiv","preprints"]},
+  {id:"AR-LC-002",dom:"lecturas",t:"SciELO — Producción iberoamericana",s:"SciELO",u:"https://scielo.org/",k:["scielo","acceso-abierto"]},
+  {id:"AR-LC-003",dom:"lecturas",t:"AI Now Institute",s:"AI Now",u:"https://ainowinstitute.org/",k:["ai-now","crítica"]},
+  {id:"AR-LC-004",dom:"lecturas",t:"Repositorio CONICET Digital",s:"CONICET",u:"https://ri.conicet.gov.ar/",k:["conicet","argentina"]}
+];
+
+const DOMAIN_NAMES = {
+  marcos: "Marcos regulatorios",
+  observatorios: "Observatorios y datos",
+  unesco: "Documentos UNESCO",
+  comercio: "Comercio digital",
+  lecturas: "Lecturas críticas"
+};
+
+// ═══════════════════════════════════════════════════════════════
+// CLOCK — en HUD
+// ═══════════════════════════════════════════════════════════════
+function updateClock() {
+  const d = new Date();
+  const h = String(d.getHours()).padStart(2, '0');
+  const m = String(d.getMinutes()).padStart(2, '0');
+  const s = String(d.getSeconds()).padStart(2, '0');
+  document.getElementById('clock').textContent = `${h}:${m}:${s}`;
+}
+setInterval(updateClock, 1000);
+updateClock();
+
+// ═══════════════════════════════════════════════════════════════
+// MODE TOGGLE — paper / terminal
+// ═══════════════════════════════════════════════════════════════
+document.querySelectorAll('[data-mode-btn]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const mode = btn.dataset.modeBtn;
+    document.body.dataset.mode = mode;
+    document.querySelectorAll('[data-mode-btn]').forEach(b => b.classList.toggle('active', b === btn));
+    // Re-render mapa con nuevos colores
+    if (document.body.dataset.view === 'map') drawMap();
+  });
+});
+
+// ═══════════════════════════════════════════════════════════════
+// VIEW TOGGLE — grid / list / map
+// ═══════════════════════════════════════════════════════════════
+document.querySelectorAll('[data-view-btn]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const view = btn.dataset.viewBtn;
+    document.body.dataset.view = view;
+    document.querySelectorAll('[data-view-btn]').forEach(b => b.classList.toggle('active', b === btn));
+
+    // Adaptar visibilidad de bloques de dominio
+    document.querySelectorAll('.domain-block').forEach(blk => {
+      if (view === 'grid') blk.style.display = '';
+      else blk.style.display = 'none';
+    });
+    document.getElementById('full-list').style.display = (view === 'list') ? 'block' : 'none';
+    document.querySelector('.cards-map').style.display = (view === 'map') ? 'block' : 'none';
+
+    if (view === 'list') buildList();
+    if (view === 'map') drawMap();
+
+    // Reset filtros visualmente
+    document.querySelectorAll('.chip').forEach(c => c.classList.toggle('active', c.dataset.filter === 'all'));
+    document.getElementById('count-visible').textContent = ARCHIVE.length;
+  });
+});
+
+// ═══════════════════════════════════════════════════════════════
+// CONSTRUIR LISTA
+// ═══════════════════════════════════════════════════════════════
+function buildList(filter='all') {
+  const cont = document.getElementById('full-list');
+  const header = cont.querySelector('.list-header');
+  cont.innerHTML = '';
+  cont.appendChild(header);
+
+  const items = filter === 'all' ? ARCHIVE : ARCHIVE.filter(x => x.dom === filter);
+
+  items.forEach(it => {
+    const row = document.createElement('a');
+    row.className = 'list-row';
+    row.href = it.u;
+    row.target = '_blank';
+    row.rel = 'noopener';
+    const tagClass = it.id.includes('MR') ? '' : it.id.includes('OB') ? 'data' : it.id.includes('CD') ? 'law' : '';
+    row.innerHTML = `
+      <div class="list-id">${it.id}</div>
+      <div class="list-tag ${tagClass}">${DOMAIN_NAMES[it.dom].split(' ')[0].toUpperCase()}</div>
+      <div class="list-title">${it.t}</div>
+      <div class="list-source">${it.s}</div>
+      <div class="list-lang">ES/EN</div>
+      <div class="list-arrow">→</div>
+    `;
+    cont.appendChild(row);
+  });
+}
+
+// ═══════════════════════════════════════════════════════════════
+// CONSTRUIR MAPA — red de nodos con SVG (adaptativo)
+// ═══════════════════════════════════════════════════════════════
+function drawMap(filter='all') {
+  const svg = document.querySelector('.map-svg');
+  const cs = getComputedStyle(document.body);
+  const C1 = cs.getPropertyValue('--accent-1').trim();
+  const C2 = cs.getPropertyValue('--accent-2').trim();
+  const C3 = cs.getPropertyValue('--accent-3').trim();
+  const BG = cs.getPropertyValue('--bg').trim();
+  const FG_SOFT = cs.getPropertyValue('--fg-soft').trim();
+  const LINE = cs.getPropertyValue('--border').trim();
+
+  // Detectar mobile y elegir layout
+  const isMobile = window.innerWidth < 720;
+  svg.innerHTML = '';
+
+  let centers, viewBox, nodeRadius, ringRadius, fontMain, fontLabel, fontTitle;
+
+  if (isMobile) {
+    // Layout vertical apilado — 1 columna
+    svg.setAttribute('viewBox', '0 0 380 1100');
+    centers = {
+      marcos:        {x: 190, y: 110,  label: '01 · MARCOS',        color: C1},
+      observatorios: {x: 190, y: 320,  label: '02 · OBSERVATORIOS', color: C3},
+      unesco:        {x: 190, y: 530,  label: '03 · UNESCO',        color: C2},
+      comercio:      {x: 190, y: 740,  label: '04 · COMERCIO',      color: C1},
+      lecturas:      {x: 190, y: 950,  label: '05 · LECTURAS',      color: C3}
+    };
+    nodeRadius = 4;
+    ringRadius = 9;
+    fontMain = 10;
+    fontLabel = 9;
+    fontTitle = 10;
+    svg.style.height = '1100px';
+  } else {
+    // Layout desktop horizontal — matriz
+    svg.setAttribute('viewBox', '0 0 1400 480');
+    centers = {
+      marcos:        {x: 280,  y: 120, label: '01 · MARCOS',        color: C1},
+      observatorios: {x: 1120, y: 120, label: '02 · OBSERVATORIOS', color: C3},
+      unesco:        {x: 700,  y: 240, label: '03 · UNESCO',        color: C2},
+      comercio:      {x: 280,  y: 360, label: '04 · COMERCIO',      color: C1},
+      lecturas:      {x: 1120, y: 360, label: '05 · LECTURAS',      color: C3}
+    };
+    nodeRadius = 5;
+    ringRadius = 10;
+    fontMain = 11;
+    fontLabel = 10;
+    fontTitle = 11;
+    svg.style.height = '';
+  }
+
+  const items = filter === 'all' ? ARCHIVE : ARCHIVE.filter(x => x.dom === filter);
+  const grouped = {};
+  items.forEach(it => {
+    if (!grouped[it.dom]) grouped[it.dom] = [];
+    grouped[it.dom].push(it);
+  });
+
+  // Dibujar líneas primero
+  Object.keys(grouped).forEach(dom => {
+    const center = centers[dom];
+    grouped[dom].forEach((it, i) => {
+      let x, y;
+      if (isMobile) {
+        // En mobile: nodos en arco horizontal arriba/abajo del centro
+        const total = grouped[dom].length;
+        const spread = 150; // ancho del arco
+        const step = total > 1 ? spread / (total - 1) : 0;
+        x = center.x - spread/2 + (step * i);
+        // Alternar arriba/abajo
+        y = center.y + (i % 2 === 0 ? -50 : 50);
+      } else {
+        const angle = (i / grouped[dom].length) * Math.PI * 2 + (dom.length * 0.3);
+        const r = 80 + (i % 2) * 20;
+        x = center.x + Math.cos(angle) * r;
+        y = center.y + Math.sin(angle) * r;
+      }
+      it._x = x; it._y = y;
+
+      const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      line.setAttribute('x1', center.x);
+      line.setAttribute('y1', center.y);
+      line.setAttribute('x2', x);
+      line.setAttribute('y2', y);
+      line.setAttribute('stroke', LINE);
+      line.setAttribute('stroke-width', '1');
+      line.setAttribute('stroke-dasharray', '2 4');
+      svg.appendChild(line);
+    });
+  });
+
+  // Conexiones temáticas entre centros (solo en desktop, en mobile sería confuso)
+  if (!isMobile) {
+    const centerPairs = [
+      ['marcos','observatorios'],
+      ['marcos','unesco'],
+      ['unesco','observatorios'],
+      ['unesco','lecturas'],
+      ['comercio','marcos'],
+      ['comercio','observatorios']
+    ];
+    centerPairs.forEach(([a,b]) => {
+      if (!grouped[a] || !grouped[b]) return;
+      const ca = centers[a], cb = centers[b];
+      const ln = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      ln.setAttribute('x1', ca.x);
+      ln.setAttribute('y1', ca.y);
+      ln.setAttribute('x2', cb.x);
+      ln.setAttribute('y2', cb.y);
+      ln.setAttribute('stroke', LINE);
+      ln.setAttribute('stroke-width', '0.8');
+      svg.appendChild(ln);
+    });
+  } else {
+    // En mobile: línea vertical conectando todos los centros
+    const domainKeys = Object.keys(grouped);
+    for (let i = 0; i < domainKeys.length - 1; i++) {
+      const a = centers[domainKeys[i]];
+      const b = centers[domainKeys[i+1]];
+      if (!a || !b) continue;
+      const ln = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      ln.setAttribute('x1', a.x);
+      ln.setAttribute('y1', a.y);
+      ln.setAttribute('x2', b.x);
+      ln.setAttribute('y2', b.y);
+      ln.setAttribute('stroke', LINE);
+      ln.setAttribute('stroke-width', '0.8');
+      ln.setAttribute('stroke-dasharray', '1 3');
+      svg.appendChild(ln);
+    }
+  }
+
+  // Centros
+  Object.keys(grouped).forEach(dom => {
+    const c = centers[dom];
+    const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+
+    const ring = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    ring.setAttribute('cx', c.x);
+    ring.setAttribute('cy', c.y);
+    ring.setAttribute('r', isMobile ? '18' : '22');
+    ring.setAttribute('fill', 'none');
+    ring.setAttribute('stroke', c.color);
+    ring.setAttribute('stroke-width', '1');
+    ring.setAttribute('opacity', '0.4');
+    g.appendChild(ring);
+
+    const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    dot.setAttribute('cx', c.x);
+    dot.setAttribute('cy', c.y);
+    dot.setAttribute('r', isMobile ? '11' : '14');
+    dot.setAttribute('fill', c.color);
+    g.appendChild(dot);
+
+    const txt = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    txt.setAttribute('x', c.x);
+    txt.setAttribute('y', c.y - (isMobile ? 28 : 36));
+    txt.setAttribute('text-anchor', 'middle');
+    txt.setAttribute('fill', c.color);
+    txt.setAttribute('font-family', 'JetBrains Mono, monospace');
+    txt.setAttribute('font-size', fontMain);
+    txt.setAttribute('font-weight', '700');
+    txt.setAttribute('letter-spacing', '0.1em');
+    txt.textContent = c.label;
+    g.appendChild(txt);
+
+    svg.appendChild(g);
+  });
+
+  // Nodos de fuentes
+  Object.keys(grouped).forEach(dom => {
+    grouped[dom].forEach(it => {
+      const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+      g.style.cursor = 'pointer';
+
+      const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      dot.setAttribute('cx', it._x);
+      dot.setAttribute('cy', it._y);
+      dot.setAttribute('r', nodeRadius);
+      dot.setAttribute('fill', centers[dom].color);
+      dot.setAttribute('opacity', '0.9');
+      g.appendChild(dot);
+
+      const ring = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      ring.setAttribute('cx', it._x);
+      ring.setAttribute('cy', it._y);
+      ring.setAttribute('r', ringRadius);
+      ring.setAttribute('fill', 'none');
+      ring.setAttribute('stroke', centers[dom].color);
+      ring.setAttribute('stroke-width', '1');
+      ring.setAttribute('opacity', '0');
+      ring.style.transition = 'opacity 0.3s, r 0.3s';
+      g.appendChild(ring);
+
+      const lbl = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      const offX = it._x > centers[dom].x ? 12 : -12;
+      const anchor = it._x > centers[dom].x ? 'start' : 'end';
+      // En mobile: si está cerca del eje vertical, centrar texto debajo
+      if (isMobile && Math.abs(it._x - centers[dom].x) < 30) {
+        lbl.setAttribute('x', it._x);
+        lbl.setAttribute('y', it._y + (it._y > centers[dom].y ? 20 : -10));
+        lbl.setAttribute('text-anchor', 'middle');
+      } else {
+        lbl.setAttribute('x', it._x + offX);
+        lbl.setAttribute('y', it._y + 3);
+        lbl.setAttribute('text-anchor', anchor);
+      }
+      lbl.setAttribute('fill', FG_SOFT);
+      lbl.setAttribute('font-family', 'JetBrains Mono, monospace');
+      lbl.setAttribute('font-size', fontLabel);
+      lbl.textContent = it.id;
+      g.appendChild(lbl);
+
+      const ttl = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      if (isMobile && Math.abs(it._x - centers[dom].x) < 30) {
+        ttl.setAttribute('x', it._x);
+        ttl.setAttribute('y', it._y + (it._y > centers[dom].y ? 33 : -23));
+        ttl.setAttribute('text-anchor', 'middle');
+      } else {
+        ttl.setAttribute('x', it._x + offX);
+        ttl.setAttribute('y', it._y + (isMobile ? 14 : 16));
+        ttl.setAttribute('text-anchor', anchor);
+      }
+      ttl.setAttribute('fill', C1);
+      ttl.setAttribute('font-family', 'Inter Tight, sans-serif');
+      ttl.setAttribute('font-size', fontTitle);
+      ttl.setAttribute('font-weight', '500');
+      let title = it.t;
+      const maxLen = isMobile ? 24 : 32;
+      if (title.length > maxLen) title = title.slice(0, maxLen - 2) + '…';
+      ttl.textContent = title;
+      g.appendChild(ttl);
+
+      g.addEventListener('mouseenter', () => {
+        ring.setAttribute('opacity', '0.6');
+        ring.setAttribute('r', ringRadius + 4);
+        dot.setAttribute('r', nodeRadius + 2);
+      });
+      g.addEventListener('mouseleave', () => {
+        ring.setAttribute('opacity', '0');
+        ring.setAttribute('r', ringRadius);
+        dot.setAttribute('r', nodeRadius);
+      });
+      g.addEventListener('click', () => window.open(it.u, '_blank', 'noopener'));
+      // Touch: usar tap
+      g.addEventListener('touchstart', () => {
+        ring.setAttribute('opacity', '0.6');
+        ring.setAttribute('r', ringRadius + 4);
+      }, {passive: true});
+
+      svg.appendChild(g);
+    });
+  });
+}
+
+// Redibujar mapa al cambiar tamaño de ventana
+let mapRedrawTimer;
+window.addEventListener('resize', () => {
+  if (document.body.dataset.view !== 'map') return;
+  clearTimeout(mapRedrawTimer);
+  mapRedrawTimer = setTimeout(() => {
+    // Detectar el filtro actual
+    const activeChip = document.querySelector('.chip.active');
+    drawMap(activeChip ? activeChip.dataset.filter : 'all');
+  }, 200);
+});
+
+// ═══════════════════════════════════════════════════════════════
+// FILTROS POR DOMINIO
+// ═══════════════════════════════════════════════════════════════
+const chips = document.querySelectorAll('.chip');
+chips.forEach(chip => {
+  chip.addEventListener('click', () => {
+    const filter = chip.dataset.filter;
+    chips.forEach(c => c.classList.toggle('active', c === chip));
+
+    // GRID
+    document.querySelectorAll('.domain-block').forEach(blk => {
+      if (document.body.dataset.view !== 'grid') return;
+      blk.classList.toggle('hidden', !(filter === 'all' || blk.dataset.domain === filter));
+    });
+
+    // LISTA
+    if (document.body.dataset.view === 'list') buildList(filter);
+
+    // MAPA
+    if (document.body.dataset.view === 'map') drawMap(filter);
+
+    // Contador
+    const count = filter === 'all' ? ARCHIVE.length : ARCHIVE.filter(x => x.dom === filter).length;
+    document.getElementById('count-visible').textContent = String(count).padStart(2, '0');
+
+    // Scroll suave si filtra a un dominio (solo en grid)
+    if (filter !== 'all' && document.body.dataset.view === 'grid') {
+      const tgt = document.getElementById('dominio-' + Array.from(document.querySelectorAll('.domain-block')).findIndex(b => b.dataset.domain === filter) + 1);
+      const blk = document.querySelector(`.domain-block[data-domain="${filter}"]`);
+      if (blk) setTimeout(() => window.scrollTo({top: blk.offsetTop - 160, behavior: 'smooth'}), 60);
+    }
+  });
+});
+
+// ═══════════════════════════════════════════════════════════════
+// NAVEGACIÓN HUD
+// ═══════════════════════════════════════════════════════════════
+document.querySelectorAll('[data-jump]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    // Reset a vista grid si está en otra
+    if (document.body.dataset.view !== 'grid') {
+      document.querySelector('[data-view-btn="grid"]').click();
+    }
+    // Reset filtro a "all"
+    document.querySelector('.chip[data-filter="all"]').click();
+    setTimeout(() => {
+      const tgt = document.getElementById(btn.dataset.jump);
+      if (tgt) window.scrollTo({top: tgt.offsetTop - 150, behavior: 'smooth'});
+    }, 100);
+  });
+});
+
+// ═══════════════════════════════════════════════════════════════
+// COMMAND PALETTE
+// ═══════════════════════════════════════════════════════════════
+const cmdOverlay = document.getElementById('cmd-overlay');
+const cmdInput = document.getElementById('cmd-input');
+const cmdList = document.getElementById('cmd-list');
+let cmdSelected = 0;
+let cmdFiltered = [];
+
+function openCmd() {
+  cmdOverlay.classList.add('open');
+  cmdInput.value = '';
+  renderCmd('');
+  setTimeout(() => cmdInput.focus(), 60);
+}
+
+function closeCmd() {
+  cmdOverlay.classList.remove('open');
+}
+
+function renderCmd(query) {
+  const q = query.toLowerCase().trim();
+  cmdFiltered = ARCHIVE.filter(it => {
+    if (!q) return true;
+    const blob = (it.t + ' ' + it.s + ' ' + it.id + ' ' + it.k.join(' ')).toLowerCase();
+    return blob.includes(q);
+  }).slice(0, 12);
+  cmdSelected = 0;
+  cmdList.innerHTML = '';
+  if (cmdFiltered.length === 0) {
+    cmdList.innerHTML = `<div style="padding:24px 20px;color:var(--fg-faint);font-size:12px;letter-spacing:0.08em;text-align:center;">› SIN RESULTADOS</div>`;
+    return;
+  }
+  cmdFiltered.forEach((it, i) => {
+    const el = document.createElement('div');
+    el.className = 'cmd-item' + (i === 0 ? ' selected' : '');
+    el.innerHTML = `
+      <span class="cmd-item-id">${it.id}</span>
+      <span class="cmd-item-title">${it.t}</span>
+      <span class="cmd-item-domain">${DOMAIN_NAMES[it.dom]}</span>
+    `;
+    el.addEventListener('click', () => window.open(it.u, '_blank', 'noopener'));
+    el.addEventListener('mouseenter', () => {
+      cmdSelected = i;
+      cmdList.querySelectorAll('.cmd-item').forEach((c, ci) => c.classList.toggle('selected', ci === i));
+    });
+    cmdList.appendChild(el);
+  });
+}
+
+document.getElementById('open-cmd').addEventListener('click', openCmd);
+document.getElementById('open-cmd-2').addEventListener('click', openCmd);
+cmdInput.addEventListener('input', e => renderCmd(e.target.value));
+
+document.addEventListener('keydown', e => {
+  // ⌘K / Ctrl+K
+  if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+    e.preventDefault();
+    if (cmdOverlay.classList.contains('open')) closeCmd();
+    else openCmd();
+    return;
+  }
+  // ESC
+  if (e.key === 'Escape' && cmdOverlay.classList.contains('open')) {
+    closeCmd();
+    return;
+  }
+  // Solo en command palette abierto
+  if (!cmdOverlay.classList.contains('open')) {
+    // Atajos numéricos 1-5 saltan a dominios
+    if (['1','2','3','4','5'].includes(e.key) && !e.target.matches('input, textarea')) {
+      const btn = document.querySelector(`[data-key="${e.key}"]`);
+      if (btn) btn.click();
+    }
+    return;
+  }
+  // Navegación dentro de cmd
+  if (e.key === 'ArrowDown') {
+    e.preventDefault();
+    cmdSelected = Math.min(cmdSelected + 1, cmdFiltered.length - 1);
+    cmdList.querySelectorAll('.cmd-item').forEach((c, i) => c.classList.toggle('selected', i === cmdSelected));
+    cmdList.children[cmdSelected]?.scrollIntoView({block: 'nearest'});
+  }
+  if (e.key === 'ArrowUp') {
+    e.preventDefault();
+    cmdSelected = Math.max(cmdSelected - 1, 0);
+    cmdList.querySelectorAll('.cmd-item').forEach((c, i) => c.classList.toggle('selected', i === cmdSelected));
+    cmdList.children[cmdSelected]?.scrollIntoView({block: 'nearest'});
+  }
+  if (e.key === 'Enter' && cmdFiltered[cmdSelected]) {
+    window.open(cmdFiltered[cmdSelected].u, '_blank', 'noopener');
+    closeCmd();
+  }
+});
+
+cmdOverlay.addEventListener('click', e => {
+  if (e.target === cmdOverlay) closeCmd();
+});
+
+// ═══════════════════════════════════════════════════════════════
+// COUNT-UP de stats del hero
+// ═══════════════════════════════════════════════════════════════
+function countUp(el) {
+  const target = parseInt(el.dataset.count, 10);
+  const dur = 1400;
+  const start = performance.now();
+  function step(now) {
+    const p = Math.min((now - start) / dur, 1);
+    const eased = 1 - Math.pow(1 - p, 3);
+    el.textContent = Math.floor(target * eased);
+    if (p < 1) requestAnimationFrame(step);
+    else el.textContent = target;
+  }
+  setTimeout(() => requestAnimationFrame(step), 600);
+}
+document.querySelectorAll('[data-count]').forEach(countUp);
+
+// ═══════════════════════════════════════════════════════════════
+// REVEAL on scroll
+// ═══════════════════════════════════════════════════════════════
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(en => {
+    if (en.isIntersecting) {
+      en.target.classList.add('visible');
+      observer.unobserve(en.target);
+    }
+  });
+}, {threshold: 0.1, rootMargin: '0px 0px -80px 0px'});
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ═══════════════════════════════════════════════════════════════
+// EFECTO MAGNÉTICO LEVE en cards (solo en dispositivos con hover real)
+// ═══════════════════════════════════════════════════════════════
+const supportsHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+if (supportsHover) {
+  document.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      const x = e.clientX - r.left, y = e.clientY - r.top;
+      const cx = r.width / 2, cy = r.height / 2;
+      const rotX = ((y - cy) / cy) * -1.2;
+      const rotY = ((x - cx) / cx) * 1.2;
+      card.style.transform = `translateY(-3px) perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+    });
+  });
+}
+
+// Build inicial de lista por si el usuario ya viene en vista lista
+buildList();
+</script>
+
+</body>
+</html>
