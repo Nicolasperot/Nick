@@ -316,6 +316,25 @@ button { font-family: inherit; cursor: pointer; background: none; border: none; 
   color: var(--fg-soft);
 }
 
+/* Barra de progreso de scroll en el HUD */
+.hud-progress {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: transparent;
+  pointer-events: none;
+}
+
+.hud-progress > div {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-1), var(--accent-3));
+  width: 0%;
+  transition: width 0.1s linear;
+  box-shadow: 0 0 8px color-mix(in srgb, var(--accent-3) 60%, transparent);
+}
+
 /* ═══════════════════════════════════════════════════════════════
    HERO — TIPOGRAFÍA CINÉTICA
    ═══════════════════════════════════════════════════════════════ */
@@ -592,6 +611,54 @@ button { font-family: inherit; cursor: pointer; background: none; border: none; 
   margin-top: 18px;
   padding-top: 18px;
   border-top: 1px dashed var(--border);
+}
+
+/* Mini scanner visual del catálogo */
+.hero-scanner {
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px dashed var(--border);
+}
+
+.scanner-label {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fg-soft);
+  margin-bottom: 10px;
+}
+
+.scanner-coords {
+  color: var(--accent-3);
+  font-feature-settings: "tnum";
+}
+
+.scanner-svg {
+  width: 100%;
+  height: 60px;
+  display: block;
+  background: var(--bg-deep);
+  border: 1px solid var(--border);
+}
+
+.scanner-dots circle {
+  transition: opacity 0.3s var(--ease);
+}
+
+.scanner-line {
+  animation: scannerSweep 4s linear infinite;
+}
+
+@keyframes scannerSweep {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(300px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scanner-line { animation: none; opacity: 0; }
 }
 
 .bar-row {
@@ -1000,6 +1067,55 @@ button { font-family: inherit; cursor: pointer; background: none; border: none; 
   color: var(--fg-faint);
   font-size: 10px;
   letter-spacing: 0.08em;
+  position: relative;
+  padding-right: 0;
+  transition: padding-right 0.3s var(--ease);
+}
+
+.card-id::after {
+  content: '';
+  position: absolute;
+  right: -2px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 9px;
+  background-image: repeating-linear-gradient(
+    90deg,
+    var(--accent-3) 0,
+    var(--accent-3) 1px,
+    transparent 1px,
+    transparent 2px,
+    var(--accent-3) 2px,
+    var(--accent-3) 4px,
+    transparent 4px,
+    transparent 6px
+  );
+  opacity: 0;
+  transition: width 0.4s var(--ease), opacity 0.3s var(--ease) 0.1s;
+}
+
+.card:hover .card-id {
+  padding-right: 28px;
+}
+
+.card:hover .card-id::after {
+  width: 22px;
+  opacity: 0.8;
+}
+
+.card.featured .card-id::after {
+  background-image: repeating-linear-gradient(
+    90deg,
+    var(--accent-3) 0,
+    var(--accent-3) 1px,
+    transparent 1px,
+    transparent 2px,
+    var(--accent-3) 2px,
+    var(--accent-3) 4px,
+    transparent 4px,
+    transparent 6px
+  );
 }
 
 .card-body {
@@ -1007,6 +1123,7 @@ button { font-family: inherit; cursor: pointer; background: none; border: none; 
   flex: 1;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .card-source {
@@ -1138,6 +1255,32 @@ button { font-family: inherit; cursor: pointer; background: none; border: none; 
   background: var(--accent-1);
   color: var(--bg);
   border-color: var(--accent-1);
+  position: relative;
+}
+
+/* Marca de cita decorativa — solo visible en featured */
+.card.featured .card-body::before {
+  content: '';
+  position: absolute;
+  top: 64px;
+  right: 24px;
+  width: 64px;
+  height: 64px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Ctext x='40' y='68' text-anchor='middle' font-family='Fraunces, serif' font-size='90' font-style='italic' font-weight='300' fill='%23EFF4FA' opacity='0.08'%3E%E2%80%9D%3C/text%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  transition: transform 0.6s var(--ease), opacity 0.6s var(--ease);
+}
+
+.card.featured:hover .card-body::before {
+  transform: translateY(-4px) rotate(-3deg);
+  opacity: 1.2;
+}
+
+/* Banda diagonal sutil tipo "destacado" */
+.card.featured::after {
+  border-color: var(--accent-3);
 }
 
 .card.featured .card-top {
@@ -1312,6 +1455,46 @@ button { font-family: inherit; cursor: pointer; background: none; border: none; 
 }
 
 /* ═══════════════════════════════════════════════════════════════
+   ESTADO VACÍO
+   ═══════════════════════════════════════════════════════════════ */
+.empty-card {
+  border: 1px dashed var(--border-strong);
+  background: var(--bg-card);
+  padding: 60px 32px;
+  text-align: center;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.empty-icon {
+  font-family: var(--mono);
+  font-size: 32px;
+  color: var(--accent-3);
+  letter-spacing: 0.2em;
+  margin-bottom: 18px;
+}
+
+.empty-card h3 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 22px;
+  color: var(--accent-1);
+  margin-bottom: 10px;
+  letter-spacing: -0.02em;
+}
+
+.empty-card p {
+  font-size: 13px;
+  color: var(--fg-soft);
+  line-height: 1.55;
+}
+
+.empty-card a {
+  color: var(--accent-3);
+  border-bottom: 1px solid currentColor;
+}
+
+/* ═══════════════════════════════════════════════════════════════
    COMMAND PALETTE
    ═══════════════════════════════════════════════════════════════ */
 .cmd-overlay {
@@ -1436,6 +1619,19 @@ button { font-family: inherit; cursor: pointer; background: none; border: none; 
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--accent-3);
+}
+
+.cmd-item mark {
+  background: color-mix(in srgb, var(--accent-3) 25%, transparent);
+  color: var(--accent-3);
+  padding: 0 2px;
+  border-radius: 1px;
+  font-weight: 600;
+}
+
+[data-mode="terminal"] .cmd-item mark {
+  background: color-mix(in srgb, var(--accent-3) 30%, transparent);
+  color: #FFB088;
 }
 
 .cmd-footer {
@@ -2028,6 +2224,7 @@ footer {
       <button data-mode-btn="terminal">TERMINAL</button>
     </div>
   </div>
+  <div class="hud-progress"><div id="scroll-progress"></div></div>
 </header>
 
 <!-- ═══════════════════════════════════════════════════════════════
@@ -2112,6 +2309,27 @@ footer {
           <div class="bar-track"><div class="bar-fill rust" style="--w: 65%"></div></div>
           <span class="bar-num">04</span>
         </div>
+      </div>
+
+      <!-- MINI SCANNER VISUAL -->
+      <div class="hero-scanner">
+        <div class="scanner-label">
+          <span>// SCANNER</span>
+          <span class="scanner-coords" id="scanner-coords">22.05.26 · 04:42</span>
+        </div>
+        <svg class="scanner-svg" viewBox="0 0 280 60" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="scanGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="var(--accent-3)" stop-opacity="0"/>
+              <stop offset="50%" stop-color="var(--accent-3)" stop-opacity="0.4"/>
+              <stop offset="100%" stop-color="var(--accent-3)" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <!-- Grid de puntos representando las 22 fuentes -->
+          <g class="scanner-dots"></g>
+          <!-- Línea de escaneo -->
+          <rect class="scanner-line" x="-20" y="0" width="40" height="60" fill="url(#scanGrad)"/>
+        </svg>
       </div>
     </div>
   </aside>
@@ -2287,7 +2505,7 @@ footer {
         </div>
       </a>
 
-      <a href="https://www.argentina.gob.ar/normativa/nacional/disposici%C3%B3n-2-2023-378755" target="_blank" rel="noopener" class="card">
+      <a href="https://servicios.infoleg.gob.ar/infolegInternet/verNorma.do?id=384656" target="_blank" rel="noopener" class="card">
         <div class="card-top">
           <span class="card-tag law">NORMA LOCAL · AR</span>
           <span class="card-id">AR-MR-004</span>
@@ -2992,6 +3210,17 @@ footer {
     </div>
   </div>
 
+  <!-- ═══════════════════════════════════════════════════════════════
+       ESTADO VACÍO (defensivo, para crecimiento futuro)
+       ═══════════════════════════════════════════════════════════════ -->
+  <div id="empty-state" style="display:none;">
+    <div class="empty-card">
+      <div class="empty-icon">[ ]</div>
+      <h3>Sin registros en este dominio.</h3>
+      <p>El archivo está en compilación activa. Si esperabas algo acá, escribime a <a href="mailto:contacto@nickperot.com">contacto@nickperot.com</a>.</p>
+    </div>
+  </div>
+
 </main>
 
 <!-- ═══════════════════════════════════════════════════════════════
@@ -3003,7 +3232,7 @@ footer {
       <div class="manifesto-eyebrow">// PROTOCOLO EDITORIAL</div>
       <h2>Cómo se elige <em>lo que entra</em>.</h2>
       <div class="manifesto-quote">
-        Sin humo. Si una fuente no puede citarse con precisión —autor, fecha, editor— no entra al archivo. Si entra, lleva contexto.
+        Si una fuente no puede citarse con precisión —autor, fecha, editor— no entra al archivo. Si entra, lleva contexto.
       </div>
     </div>
     <div class="manifesto-grid">
@@ -3078,7 +3307,7 @@ const ARCHIVE = [
   {id:"AR-MR-001",dom:"marcos",t:"Reglamento (UE) 2024/1689 — Ley de IA",s:"Diario Oficial UE",u:"https://eur-lex.europa.eu/eli/reg/2024/1689/oj",k:["ai-act","UE","riesgo"]},
   {id:"AR-MR-002",dom:"marcos",t:"America's AI Action Plan",s:"Casa Blanca",u:"https://www.whitehouse.gov/wp-content/uploads/2025/07/Americas-AI-Action-Plan.pdf",k:["trump","USA"]},
   {id:"AR-MR-003",dom:"marcos",t:"Recomendación UNESCO sobre la ética de la IA",s:"UNESCO",u:"https://www.unesco.org/es/articles/recomendacion-sobre-la-etica-de-la-inteligencia-artificial",k:["unesco","ética"]},
-  {id:"AR-MR-004",dom:"marcos",t:"Disposición 2/2023 — IA fiable Argentina",s:"InfoLEG",u:"https://www.argentina.gob.ar/normativa/nacional/disposici%C3%B3n-2-2023-378755",k:["argentina","soft-law"]},
+  {id:"AR-MR-004",dom:"marcos",t:"Disposición 2/2023 — IA fiable Argentina",s:"InfoLEG",u:"https://servicios.infoleg.gob.ar/infolegInternet/verNorma.do?id=384656",k:["argentina","soft-law"]},
   {id:"AR-MR-005",dom:"marcos",t:"Principios de la OCDE sobre IA",s:"OECD.AI",u:"https://oecd.ai/en/ai-principles",k:["ocde","principios"]},
   {id:"AR-OB-001",dom:"observatorios",t:"Observatorio IA en educación LATAM",s:"UNESCO IESALC",u:"https://www.unesco.org/es/articles/observatorio-sobre-inteligencia-artificial-en-la-educacion-para-america-latina-y-el-caribe",k:["latam","educación"]},
   {id:"AR-OB-002",dom:"observatorios",t:"OECD.AI Policy Observatory",s:"OECD.AI",u:"https://oecd.ai/",k:["ocde","dashboards"]},
@@ -3108,8 +3337,50 @@ const DOMAIN_NAMES = {
 };
 
 // ═══════════════════════════════════════════════════════════════
-// CLOCK — en HUD
+// SCANNER del hero — puntos representando las 22 fuentes
 // ═══════════════════════════════════════════════════════════════
+(function buildScanner() {
+  const g = document.querySelector('.scanner-dots');
+  if (!g) return;
+  const cols = 11, rows = 2;
+  const cell = 22;
+  const offX = 18, offY = 16;
+  const colorMap = {
+    marcos: 'var(--accent-1)',
+    observatorios: 'var(--accent-3)',
+    unesco: 'var(--accent-2)',
+    comercio: 'var(--accent-1)',
+    lecturas: 'var(--accent-3)'
+  };
+  // Repartir los 22 archivos en 2 filas de 11
+  ARCHIVE.forEach((it, i) => {
+    const col = i % cols;
+    const row = Math.floor(i / cols);
+    const c = document.createElementNS('http://www.w3.org/2000/svg','circle');
+    c.setAttribute('cx', offX + col * cell);
+    c.setAttribute('cy', offY + row * cell);
+    c.setAttribute('r', 2.5);
+    c.setAttribute('fill', colorMap[it.dom] || 'var(--accent-1)');
+    c.setAttribute('opacity', '0.65');
+    c.style.transition = 'opacity 0.3s';
+    g.appendChild(c);
+  });
+})();
+
+// Actualizar coords del scanner cada segundo
+function updateScannerCoords() {
+  const el = document.getElementById('scanner-coords');
+  if (!el) return;
+  const d = new Date();
+  const dd = String(d.getDate()).padStart(2,'0');
+  const mm = String(d.getMonth()+1).padStart(2,'0');
+  const yy = String(d.getFullYear()).slice(-2);
+  const hh = String(d.getHours()).padStart(2,'0');
+  const min = String(d.getMinutes()).padStart(2,'0');
+  el.textContent = `${dd}.${mm}.${yy} · ${hh}:${min}`;
+}
+setInterval(updateScannerCoords, 30000);
+updateScannerCoords();
 function updateClock() {
   const d = new Date();
   const h = String(d.getHours()).padStart(2, '0');
@@ -3121,17 +3392,29 @@ setInterval(updateClock, 1000);
 updateClock();
 
 // ═══════════════════════════════════════════════════════════════
-// MODE TOGGLE — paper / terminal
+// MODE TOGGLE — paper / terminal (con persistencia)
 // ═══════════════════════════════════════════════════════════════
+const savedMode = localStorage.getItem('np-archivo-mode');
+if (savedMode === 'terminal' || savedMode === 'paper') {
+  document.body.dataset.mode = savedMode;
+  document.querySelectorAll('[data-mode-btn]').forEach(b => b.classList.toggle('active', b.dataset.modeBtn === savedMode));
+}
+
 document.querySelectorAll('[data-mode-btn]').forEach(btn => {
   btn.addEventListener('click', () => {
     const mode = btn.dataset.modeBtn;
     document.body.dataset.mode = mode;
     document.querySelectorAll('[data-mode-btn]').forEach(b => b.classList.toggle('active', b === btn));
+    try { localStorage.setItem('np-archivo-mode', mode); } catch(e){}
     // Re-render mapa con nuevos colores
-    if (document.body.dataset.view === 'map') drawMap();
+    if (document.body.dataset.view === 'map') drawMap(getCurrentFilter());
   });
 });
+
+function getCurrentFilter() {
+  const c = document.querySelector('.chip.active');
+  return c ? c.dataset.filter : 'all';
+}
 
 // ═══════════════════════════════════════════════════════════════
 // VIEW TOGGLE — grid / list / map
@@ -3468,9 +3751,12 @@ chips.forEach(chip => {
     chips.forEach(c => c.classList.toggle('active', c === chip));
 
     // GRID
+    let visibleCount = 0;
     document.querySelectorAll('.domain-block').forEach(blk => {
       if (document.body.dataset.view !== 'grid') return;
-      blk.classList.toggle('hidden', !(filter === 'all' || blk.dataset.domain === filter));
+      const isVisible = filter === 'all' || blk.dataset.domain === filter;
+      blk.classList.toggle('hidden', !isVisible);
+      if (isVisible) visibleCount += blk.querySelectorAll('.card').length;
     });
 
     // LISTA
@@ -3483,9 +3769,15 @@ chips.forEach(chip => {
     const count = filter === 'all' ? ARCHIVE.length : ARCHIVE.filter(x => x.dom === filter).length;
     document.getElementById('count-visible').textContent = String(count).padStart(2, '0');
 
+    // Estado vacío en grid
+    const emptyState = document.getElementById('empty-state');
+    if (emptyState) {
+      const showEmpty = (document.body.dataset.view === 'grid' && count === 0);
+      emptyState.style.display = showEmpty ? 'block' : 'none';
+    }
+
     // Scroll suave si filtra a un dominio (solo en grid)
     if (filter !== 'all' && document.body.dataset.view === 'grid') {
-      const tgt = document.getElementById('dominio-' + Array.from(document.querySelectorAll('.domain-block')).findIndex(b => b.dataset.domain === filter) + 1);
       const blk = document.querySelector(`.domain-block[data-domain="${filter}"]`);
       if (blk) setTimeout(() => window.scrollTo({top: blk.offsetTop - 160, behavior: 'smooth'}), 60);
     }
@@ -3534,21 +3826,21 @@ function renderCmd(query) {
   const q = query.toLowerCase().trim();
   cmdFiltered = ARCHIVE.filter(it => {
     if (!q) return true;
-    const blob = (it.t + ' ' + it.s + ' ' + it.id + ' ' + it.k.join(' ')).toLowerCase();
+    const blob = (it.t + ' ' + it.s + ' ' + it.id + ' ' + it.k.join(' ') + ' ' + DOMAIN_NAMES[it.dom]).toLowerCase();
     return blob.includes(q);
   }).slice(0, 12);
   cmdSelected = 0;
   cmdList.innerHTML = '';
   if (cmdFiltered.length === 0) {
-    cmdList.innerHTML = `<div style="padding:24px 20px;color:var(--fg-faint);font-size:12px;letter-spacing:0.08em;text-align:center;">› SIN RESULTADOS</div>`;
+    cmdList.innerHTML = `<div style="padding:32px 20px;color:var(--fg-faint);font-size:12px;letter-spacing:0.08em;text-align:center;font-family:var(--mono);">› NO_RESULTS_FOUND<br><span style="font-size:10px;opacity:0.6;display:block;margin-top:8px;">Intentá con otra palabra clave</span></div>`;
     return;
   }
   cmdFiltered.forEach((it, i) => {
     const el = document.createElement('div');
     el.className = 'cmd-item' + (i === 0 ? ' selected' : '');
     el.innerHTML = `
-      <span class="cmd-item-id">${it.id}</span>
-      <span class="cmd-item-title">${it.t}</span>
+      <span class="cmd-item-id">${highlightMatch(it.id, q)}</span>
+      <span class="cmd-item-title">${highlightMatch(it.t, q)}</span>
       <span class="cmd-item-domain">${DOMAIN_NAMES[it.dom]}</span>
     `;
     el.addEventListener('click', () => window.open(it.u, '_blank', 'noopener'));
@@ -3558,6 +3850,18 @@ function renderCmd(query) {
     });
     cmdList.appendChild(el);
   });
+}
+
+// Highlight de coincidencias en command palette
+function highlightMatch(text, query) {
+  if (!query) return escapeHtml(text);
+  const safe = escapeHtml(text);
+  const re = new RegExp('(' + query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+  return safe.replace(re, '<mark>$1</mark>');
+}
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 }
 
 document.getElementById('open-cmd').addEventListener('click', openCmd);
@@ -3664,6 +3968,52 @@ if (supportsHover) {
 
 // Build inicial de lista por si el usuario ya viene en vista lista
 buildList();
+
+// ═══════════════════════════════════════════════════════════════
+// DEEP-LINKING — Soporte de URL hash (#marcos, #unesco, etc)
+// Permite compartir links directos a un dominio del archivo
+// ═══════════════════════════════════════════════════════════════
+const VALID_HASHES = ['marcos','observatorios','unesco','comercio','lecturas'];
+
+function applyHashFilter() {
+  const hash = window.location.hash.replace('#','').toLowerCase();
+  if (VALID_HASHES.includes(hash)) {
+    const chip = document.querySelector(`.chip[data-filter="${hash}"]`);
+    if (chip) chip.click();
+  }
+}
+
+// Al cargar la página
+window.addEventListener('load', () => {
+  applyHashFilter();
+});
+
+// Si el usuario cambia el hash manualmente (botón atrás/adelante)
+window.addEventListener('hashchange', applyHashFilter);
+
+// Cuando el usuario filtra, actualizar la URL sin recargar
+chips.forEach(chip => {
+  chip.addEventListener('click', () => {
+    const filter = chip.dataset.filter;
+    const newHash = filter === 'all' ? '' : '#' + filter;
+    if (window.location.hash !== newHash) {
+      try { history.replaceState(null, '', newHash || window.location.pathname); } catch(e){}
+    }
+  });
+});
+
+// ═══════════════════════════════════════════════════════════════
+// SCROLL PROGRESS BAR (en el HUD)
+// ═══════════════════════════════════════════════════════════════
+const progressBar = document.getElementById('scroll-progress');
+function updateScrollProgress() {
+  const scrolled = window.scrollY;
+  const total = document.documentElement.scrollHeight - window.innerHeight;
+  const pct = total > 0 ? Math.min((scrolled / total) * 100, 100) : 0;
+  if (progressBar) progressBar.style.width = pct + '%';
+}
+window.addEventListener('scroll', updateScrollProgress, {passive: true});
+updateScrollProgress();
 </script>
 
 </body>
