@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unidad 4 · El Presupuesto Público · Cátedra B</title>
+<style>
+  :root {
+    --color-primary: #8e44ad;
+    --color-primary-dark: #6c3483;
+    --color-anchor: #4a235a;
+    --color-deepest: #2a1133;
+    --color-soft: #d2b4de;
+    --color-bg-tinted: #fdfbff;
+    --color-bg-gradient-end: #f4f0f7;
+    --color-text-primary: #1a1a1a;
+    --color-text-body: #444444;
+    --color-text-secondary: #555555;
+    --color-text-muted: #666666;
+    --color-text-faint: #888888;
+    --color-border: #eaeaea;
+    --color-border-card: #e0e0e0;
+    --color-ok: #27ae60;
+    --color-warn: #e67e22;
+    --color-bad: #c0392b;
+    --font-display: 'Georgia', 'Times New Roman', serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --sidebar-width: 280px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font-body); color: var(--color-text-body); background: #f8f7fc; line-height: 1.7; }
+  .doc-wrapper { margin-left: var(--sidebar-width); padding: 30px 40px 60px; min-height: 100vh; }
+  .doc-wrapper > * { max-width: 900px; margin-left: auto; margin-right: auto; }
+  section[id], header[id] { scroll-margin-top: 20px; }
+
+  .progress-bar { position: fixed; bottom: 0; left: 0; height: 3px; width: 0%; background: linear-gradient(to right, var(--color-primary), var(--color-anchor)); z-index: 200; transition: width 0.1s; }
+
+  /* ============ SIDEBAR ============ */
+  .sidebar { width: var(--sidebar-width); position: fixed; top: 0; left: 0; height: 100vh; overflow-y: auto; background: var(--color-deepest); color: #fff; padding: 35px 22px; z-index: 100; }
+  .sidebar-brand { display: block; font-size: 0.65em; text-transform: uppercase; letter-spacing: 3px; color: var(--color-soft); margin-bottom: 6px; }
+  .sidebar-title { font-family: var(--font-display); font-size: 1.35em; font-weight: normal; margin-bottom: 6px; color: #fff; line-height: 1.2; }
+  .sidebar-subtitle { font-size: 0.75em; color: rgba(255,255,255,0.5); margin-bottom: 28px; display: block; }
+  .sidebar-nav-title { font-size: 0.65em; text-transform: uppercase; letter-spacing: 2px; color: var(--color-soft); font-weight: 700; margin: 18px 0 10px; padding: 0 12px; }
+  .sidebar nav a { display: flex; align-items: baseline; gap: 10px; padding: 8px 12px; color: rgba(255,255,255,0.72); text-decoration: none; font-size: 0.85em; border-radius: 4px; transition: all 0.18s; margin-bottom: 1px; line-height: 1.4; }
+  .sidebar nav a .num { font-size: 0.75em; color: rgba(210,180,222,0.7); font-variant-numeric: tabular-nums; min-width: 20px; }
+  .sidebar nav a:hover { background: rgba(255,255,255,0.08); color: #fff; }
+  .sidebar nav a.active { background: rgba(142,68,173,0.28); color: #fff; border-left: 2px solid var(--color-primary); }
+  .sidebar-foot { margin-top: 30px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 0.7em; color: rgba(255,255,255,0.4); line-height: 1.5; }
+
+  .scroll-top { position: fixed; bottom: 30px; right: 30px; width: 48px; height: 48px; background: var(--color-primary); color: #fff; border: none; border-radius: 50%; cursor: pointer; box-shadow: 0 6px 18px rgba(108,52,131,0.35); display: flex; align-items: center; justify-content: center; font-size: 1.3em; opacity: 0; visibility: hidden; transform: translateY(10px); transition: all 0.25s; z-index: 90; }
+  .scroll-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+  .scroll-top:hover { background: var(--color-primary-dark); transform: translateY(-2px); }
+  .mobile-toggle { display: none; position: fixed; top: 15px; left: 15px; z-index: 110; background: var(--color-deepest); color: #fff; border: none; border-radius: 8px; width: 44px; height: 44px; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.15); font-size: 1.2em; }
+  @media (max-width: 1000px) {
+    .sidebar { transform: translateX(-100%); transition: transform 0.3s; }
+    .sidebar.open { transform: translateX(0); }
+    .doc-wrapper { margin-left: 0; padding: 70px 20px 60px; }
+    .mobile-toggle { display: block; }
+  }
+  @media print { .sidebar, .scroll-top, .mobile-toggle, .progress-bar { display: none; } .doc-wrapper { margin-left: 0; padding: 20px; } }
+
+  /* ============ HERO ============ */
+  .hero { padding: 60px 0 50px; border-bottom: 1px solid var(--color-border); margin-bottom: 40px; }
+  .hero-tag { font-size: 0.75em; text-transform: uppercase; letter-spacing: 5px; color: var(--color-primary-dark); font-weight: 700; margin-bottom: 30px; display: block; }
+  .hero h1 { font-family: var(--font-display); font-weight: normal; font-size: clamp(2.4em, 5vw, 3.8em); line-height: 1.05; letter-spacing: -1.5px; color: var(--color-text-primary); margin-bottom: 25px; }
+  .hero h1 em { font-style: italic; color: var(--color-primary); }
+  .hero-lead { font-size: 1.1em; color: var(--color-text-secondary); line-height: 1.65; max-width: 720px; font-weight: 300; margin-bottom: 35px; }
+  .hero-meta { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; padding: 24px 0; border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); margin-bottom: 30px; }
+  .hero-meta-item .lbl { display: block; font-size: 0.65em; text-transform: uppercase; letter-spacing: 2px; color: var(--color-text-faint); font-weight: 700; margin-bottom: 6px; }
+  .hero-meta-item .val { font-size: 0.92em; color: var(--color-text-primary); font-weight: 500; }
+  @media (max-width: 700px) { .hero-meta { grid-template-columns: repeat(2, 1fr); gap: 18px; } }
+
+  /* ============ SECCIONES ============ */
+  .seccion { background: #fff; border-radius: 12px; border: 1px solid var(--color-border); border-top: 4px solid var(--color-primary); padding: 38px; margin-bottom: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.04); scroll-margin-top: 20px; }
+  .seccion-header { margin-bottom: 26px; padding-bottom: 18px; border-bottom: 1px solid var(--color-border); position: relative; }
+  .seccion .num { display: inline-block; font-size: 0.7em; text-transform: uppercase; letter-spacing: 3px; color: var(--color-primary-dark); font-weight: bold; background-color: rgba(108,52,131,0.05); padding: 4px 12px; border-radius: 20px; margin-bottom: 12px; }
+  .seccion h2 { font-family: var(--font-display); font-size: 2em; color: var(--color-deepest); font-weight: normal; line-height: 1.15; letter-spacing: -0.5px; }
+  .seccion h2 .acento { color: var(--color-primary); }
+  .seccion h3 { font-family: var(--font-display); font-size: 1.3em; color: var(--color-anchor); font-weight: normal; margin: 26px 0 12px; }
+  .seccion p { margin-bottom: 14px; font-size: 1em; }
+  .seccion strong { color: var(--color-anchor); }
+  .seccion-header .big-num { position: absolute; top: -22px; right: 0; font-family: var(--font-display); font-size: 5em; font-weight: 900; color: rgba(142, 68, 173, 0.06); line-height: 1; pointer-events: none; user-select: none; z-index: 0; letter-spacing: -3px; }
+  .seccion-header > * { position: relative; z-index: 1; }
+  @media (max-width: 700px) { .seccion-header .big-num { font-size: 3.5em; top: -10px; } }
+
+  /* ============ TLDR ============ */
+  .tldr { display: flex; align-items: flex-start; gap: 16px; background: var(--color-bg-tinted); border: 1px solid var(--color-border); border-left: 3px solid var(--color-primary); padding: 18px 22px; border-radius: 0 10px 10px 0; margin: 18px 0 24px; }
+  .tldr-mark { flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%; background: var(--color-primary); color: #fff; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-style: italic; font-weight: 700; font-size: 1.05em; margin-top: 1px; }
+  .tldr-body { flex: 1; }
+  .tldr-body .tldr-label { display: block; font-size: 0.7em; text-transform: uppercase; letter-spacing: 2px; color: var(--color-primary-dark); font-weight: 700; margin-bottom: 5px; }
+  .tldr-body p { margin: 0 !important; font-size: 0.97em; color: var(--color-deepest); line-height: 1.55; }
+  .tldr-body p strong { color: var(--color-anchor); }
+
+  /* ============ CALLOUT-CLAVE (BUG FIX: tag separado del strong inline) ============ */
+  .callout-clave { background-color: rgba(108,52,131,0.03); border: 1px solid rgba(108,52,131,0.12); border-radius: 12px; padding: 18px 22px; margin: 18px 0; display: flex; gap: 14px; align-items: flex-start; }
+  .callout-clave .arrow { color: var(--color-primary-dark); font-size: 1.4em; line-height: 1.2; flex-shrink: 0; }
+  .callout-clave .cc-body { flex: 1; }
+  .callout-clave .cc-tag { display: block; font-size: 0.78em; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 6px; color: var(--color-anchor); font-weight: 700; }
+  .callout-clave .cc-body p { margin: 0; }
+  .callout-clave .cc-body p strong { color: var(--color-anchor); font-weight: 700; }
+
+  /* ============ PULL-QUOTE (cita destacada estilo libro) ============ */
+  .pullquote { position: relative; margin: 28px 0 30px; padding: 26px 28px 22px 60px; border-left: 4px solid var(--color-primary); background: linear-gradient(to right, rgba(142,68,173,0.04), transparent 80%); border-radius: 0 12px 12px 0; }
+  .pullquote::before { content: '\201C'; position: absolute; top: -18px; left: 14px; font-family: var(--font-display); font-size: 5.5em; color: var(--color-soft); line-height: 1; font-weight: 700; pointer-events: none; opacity: 0.7; }
+  .pullquote blockquote { font-family: var(--font-display); font-size: 1.12em; line-height: 1.55; color: var(--color-deepest); font-style: italic; margin: 0 0 10px 0; }
+  .pullquote cite { display: block; font-family: var(--font-body); font-style: normal; font-size: 0.78em; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 2px; font-weight: 600; }
+  @media (max-width: 600px) { .pullquote { padding-left: 50px; } .pullquote::before { font-size: 4em; top: -10px; } }
+
+  /* ============ TRES PILARES (las 3 claves del concepto, mejor que h3 + p) ============ */
+  .pilares { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 26px 0; }
+  .pilar { background: #fff; border: 1px solid var(--color-border); border-top: 3px solid var(--color-primary); border-radius: 10px; padding: 20px 18px; position: relative; transition: transform 0.2s, box-shadow 0.2s; }
+  .pilar:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(108,52,131,0.10); }
+  .pilar-num { position: absolute; top: -14px; left: 16px; width: 30px; height: 30px; background: var(--color-primary); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 700; font-size: 0.95em; box-shadow: 0 3px 8px rgba(108,52,131,0.3); }
+  .pilar h4 { font-family: var(--font-display); font-size: 1.05em; color: var(--color-deepest); margin: 6px 0 8px; font-weight: normal; line-height: 1.25; }
+  .pilar p { font-size: 0.88em !important; color: var(--color-text-secondary); line-height: 1.55; margin: 0 !important; }
+  .pilar p strong { color: var(--color-anchor); }
+  @media (max-width: 760px) { .pilares { grid-template-columns: 1fr; gap: 18px; } }
+
+  /* ============ RESULTADO FISCAL — visualización con tres opciones (superávit/equilibrio/déficit) ============ */
+  .resultado-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 24px 0; }
+  .resultado-card { background: #fff; border-radius: 12px; padding: 22px 18px; text-align: center; position: relative; overflow: hidden; border: 1px solid var(--color-border); }
+  .resultado-card.super { border-top: 4px solid var(--color-ok); }
+  .resultado-card.equi { border-top: 4px solid var(--color-warn); }
+  .resultado-card.defi { border-top: 4px solid var(--color-bad); }
+  .resultado-card .signo { font-family: var(--font-display); font-size: 2.8em; font-weight: 700; line-height: 1; margin-bottom: 4px; }
+  .resultado-card.super .signo { color: var(--color-ok); }
+  .resultado-card.equi .signo { color: var(--color-warn); }
+  .resultado-card.defi .signo { color: var(--color-bad); }
+  .resultado-card h4 { font-family: var(--font-display); font-size: 1.05em; color: var(--color-deepest); font-weight: normal; margin: 6px 0 8px; }
+  .resultado-card .formula { display: inline-block; font-family: var(--font-body); font-size: 0.78em; font-weight: 600; color: var(--color-text-muted); background: rgba(0,0,0,0.04); padding: 3px 9px; border-radius: 10px; margin-bottom: 8px; letter-spacing: 0.5px; }
+  .resultado-card p { font-size: 0.83em !important; color: var(--color-text-secondary); line-height: 1.5; margin: 0 !important; }
+  @media (max-width: 600px) { .resultado-grid { grid-template-columns: 1fr; } }
+
+  /* ============ CICLO PRESUPUESTARIO — diagrama circular conceptual ============ */
+  .ciclo-visual { margin: 26px 0; padding: 24px 18px; background: linear-gradient(135deg, var(--color-bg-tinted), #fff); border: 1px solid var(--color-border); border-radius: 14px; }
+  .ciclo-svg-wrap { display: flex; justify-content: center; }
+  .ciclo-svg-wrap svg { max-width: 100%; height: auto; }
+  .ciclo-leyenda { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 22px; padding-top: 20px; border-top: 1px dashed rgba(142,68,173,0.18); }
+  .ciclo-paso { text-align: left; padding: 0 4px; }
+  .ciclo-paso .num-redondo { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; background: var(--color-primary); color: #fff; font-family: var(--font-display); font-weight: 700; font-size: 0.85em; margin-bottom: 8px; }
+  .ciclo-paso h5 { font-family: var(--font-display); font-size: 0.98em; color: var(--color-deepest); margin-bottom: 4px; font-weight: normal; }
+  .ciclo-paso .resp-min { display: block; font-size: 0.7em; color: var(--color-primary-dark); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+  .ciclo-paso p { font-size: 0.82em !important; color: var(--color-text-secondary); line-height: 1.45; margin: 0 !important; }
+  @media (max-width: 760px) { .ciclo-leyenda { grid-template-columns: repeat(2, 1fr); gap: 14px; } }
+  @media (max-width: 460px) { .ciclo-leyenda { grid-template-columns: 1fr; } }
+
+  /* ============ ETAPAS DETALLADAS — cards con icono ============ */
+  .etapa-detalle { display: grid; grid-template-columns: 60px 1fr; gap: 16px; margin: 20px 0; padding: 20px; background: var(--color-bg-tinted); border: 1px solid var(--color-border); border-radius: 12px; align-items: start; }
+  .etapa-icono { width: 50px; height: 50px; border-radius: 12px; background: linear-gradient(135deg, var(--color-primary), var(--color-anchor)); display: flex; align-items: center; justify-content: center; color: #fff; font-family: var(--font-display); font-weight: 700; font-size: 1.3em; box-shadow: 0 4px 12px rgba(108,52,131,0.25); }
+  .etapa-body h4 { font-family: var(--font-display); font-size: 1.15em; color: var(--color-deepest); font-weight: normal; margin: 0 0 4px; }
+  .etapa-body .articulo { display: inline-block; font-size: 0.7em; background: rgba(142,68,173,0.08); color: var(--color-primary-dark); padding: 2px 9px; border-radius: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; }
+  .etapa-body p { font-size: 0.93em !important; color: var(--color-text-secondary); line-height: 1.6; margin: 0 !important; }
+  .etapa-body p strong { color: var(--color-anchor); }
+  .etapa-body p + p { margin-top: 8px !important; }
+  @media (max-width: 600px) { .etapa-detalle { grid-template-columns: 1fr; gap: 10px; } .etapa-icono { width: 44px; height: 44px; font-size: 1.1em; } }
+
+  /* ============ FLUJO PARLAMENTARIO — diagrama horizontal con flechas ============ */
+  .flujo-parl { margin: 26px 0; padding: 26px 20px; background: linear-gradient(180deg, var(--color-bg-tinted), #fff); border: 1px solid var(--color-border); border-radius: 14px; }
+  .flujo-parl svg { width: 100%; height: auto; display: block; }
+
+  /* ============ DOS COLUMNAS COMPARATIVAS (ley aprobada vs reconducción) ============ */
+  .comparativa { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 24px 0; }
+  .comp-card { background: #fff; border: 1px solid var(--color-border); border-radius: 12px; padding: 20px 22px; position: relative; }
+  .comp-card.escenario-bueno { border-top: 4px solid var(--color-ok); }
+  .comp-card.escenario-malo { border-top: 4px solid var(--color-warn); }
+  .comp-card .escenario-tag { display: inline-block; font-size: 0.7em; text-transform: uppercase; letter-spacing: 1.5px; padding: 3px 10px; border-radius: 10px; font-weight: 700; margin-bottom: 10px; }
+  .comp-card.escenario-bueno .escenario-tag { background: rgba(39,174,96,0.1); color: #1e6d3e; }
+  .comp-card.escenario-malo .escenario-tag { background: rgba(230,126,34,0.12); color: #a85a17; }
+  .comp-card h4 { font-family: var(--font-display); font-size: 1.1em; color: var(--color-deepest); margin-bottom: 12px; font-weight: normal; line-height: 1.3; }
+  .comp-card ul { list-style: none; padding: 0; }
+  .comp-card li { padding: 8px 0 8px 24px; position: relative; font-size: 0.9em; color: var(--color-text-secondary); line-height: 1.5; border-bottom: 1px dashed rgba(0,0,0,0.06); }
+  .comp-card li:last-child { border-bottom: none; }
+  .comp-card.escenario-bueno li::before { content: '✓'; position: absolute; left: 4px; top: 8px; color: var(--color-ok); font-weight: 700; }
+  .comp-card.escenario-malo li::before { content: '!'; position: absolute; left: 4px; top: 7px; color: var(--color-warn); font-weight: 700; width: 16px; height: 16px; border: 1.5px solid var(--color-warn); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.7em; }
+  @media (max-width: 700px) { .comparativa { grid-template-columns: 1fr; } }
+
+  /* ============ ACORDEÓN ============ */
+  .acordeon-item { background: #fff; border: 1px solid var(--color-border); border-radius: 8px; margin-bottom: 8px; overflow: hidden; }
+  .acordeon-trigger { width: 100%; background: #fff; border: none; padding: 15px 18px; text-align: left; cursor: pointer; font-size: 0.97em; font-family: inherit; color: var(--color-anchor); font-weight: 600; display: flex; justify-content: space-between; align-items: center; transition: background 0.2s; gap: 12px; }
+  .acordeon-trigger:hover { background-color: rgba(142,68,173,0.03); }
+  .acordeon-trigger .icon { color: var(--color-primary); font-size: 1.3em; transition: transform 0.3s; flex-shrink: 0; }
+  .acordeon-trigger.activo .icon { transform: rotate(45deg); }
+  .acordeon-body { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; font-size: 0.94em; color: var(--color-text-secondary); }
+  .acordeon-body.activo { max-height: 800px; }
+  .acordeon-body-inner { padding: 4px 20px 18px; line-height: 1.7; }
+  .acordeon-body-inner p { margin-bottom: 10px; }
+
+  /* ============ ACTIVIDADES ============ */
+  .actividad { background: linear-gradient(135deg, #fdfbff 0%, #f4f0f7 100%); border-radius: 14px; border: 2px dashed var(--color-primary); padding: 28px; margin: 30px 0; position: relative; }
+  .actividad-tag { position: absolute; top: -12px; left: 22px; background-color: var(--color-primary); color: #fff; font-size: 0.7em; text-transform: uppercase; letter-spacing: 2px; padding: 5px 14px; border-radius: 20px; font-weight: bold; }
+  .actividad h4 { font-family: var(--font-display); font-size: 1.2em; color: var(--color-deepest); font-weight: normal; margin: 5px 0 10px; }
+  .actividad .pregunta { font-style: italic; color: var(--color-anchor); margin-bottom: 16px; font-size: 1em; }
+  .quiz-options { display: flex; flex-direction: column; gap: 9px; margin-bottom: 12px; }
+  .quiz-opt { background: #fff; border: 1px solid var(--color-border-card); border-radius: 8px; padding: 12px 16px; cursor: pointer; font-size: 0.94em; color: var(--color-text-body); text-align: left; transition: all 0.2s; font-family: inherit; }
+  .quiz-opt:hover { border-color: var(--color-primary); background-color: rgba(142,68,173,0.03); }
+  .quiz-opt.correcta { border-color: var(--color-ok); background-color: rgba(39,174,96,0.08); color: #1e6d3e; }
+  .quiz-opt.incorrecta { border-color: var(--color-bad); background-color: rgba(192,57,43,0.06); color: #8b2c20; }
+  .quiz-opt.disabled { cursor: default; opacity: 0.7; }
+  .quiz-feedback { display: none; padding: 13px 16px; border-radius: 8px; font-size: 0.91em; line-height: 1.6; margin-top: 8px; }
+  .quiz-feedback.ok { background-color: rgba(39,174,96,0.08); color: #1e6d3e; border-left: 3px solid var(--color-ok); }
+  .quiz-feedback.fail { background-color: rgba(192,57,43,0.06); color: #8b2c20; border-left: 3px solid var(--color-bad); }
+  .quiz-feedback.show { display: block; }
+
+  /* ============ RECURSOS INTERACTIVOS — cards con flecha y hover ============ */
+  .recursos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; margin: 20px 0 8px; }
+  .recurso-card { background: #fff; border: 1px solid var(--color-border); border-left: 4px solid var(--color-primary); border-radius: 0 10px 10px 0; padding: 18px 20px; text-decoration: none; color: inherit; display: block; transition: all 0.25s; position: relative; overflow: hidden; }
+  .recurso-card::after { content: '↗'; position: absolute; top: 16px; right: 18px; font-size: 1.3em; color: var(--color-primary); opacity: 0.5; transition: all 0.25s; }
+  .recurso-card:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(108,52,131,0.15); border-left-color: var(--color-anchor); }
+  .recurso-card:hover::after { opacity: 1; transform: translate(2px, -2px); }
+  .recurso-card .tag { display: inline-block; font-size: 0.65em; text-transform: uppercase; letter-spacing: 2px; color: var(--color-primary-dark); font-weight: 700; background: rgba(142,68,173,0.06); padding: 3px 9px; border-radius: 10px; margin-bottom: 8px; }
+  .recurso-card h4 { font-family: var(--font-display); font-size: 1.05em; color: var(--color-deepest); margin-bottom: 6px; font-weight: normal; line-height: 1.3; padding-right: 24px; }
+  .recurso-card p { font-size: 0.86em; color: var(--color-text-secondary); line-height: 1.5; margin-bottom: 8px !important; }
+  .recurso-card .link { font-size: 0.78em; color: var(--color-primary); font-weight: 600; }
+
+  /* ============ DATO 2026 — card oscura con datos del caso real ============ */
+  .dato-2026 { background: linear-gradient(135deg, var(--color-deepest), var(--color-anchor)); color: #fff; border-radius: 14px; padding: 28px 32px; margin: 24px 0; position: relative; overflow: hidden; }
+  .dato-2026::before { content: '2026'; position: absolute; right: -10px; bottom: -30px; font-family: var(--font-display); font-size: 8em; font-weight: 700; color: rgba(255,255,255,0.04); line-height: 1; letter-spacing: -4px; pointer-events: none; }
+  .dato-2026 .label { display: block; font-size: 0.7em; text-transform: uppercase; letter-spacing: 3px; color: var(--color-soft); font-weight: 700; margin-bottom: 8px; position: relative; }
+  .dato-2026 h4 { font-family: var(--font-display); font-size: 1.3em; color: #fff; margin-bottom: 12px; font-weight: normal; position: relative; }
+  .dato-2026 p { color: rgba(255,255,255,0.85); margin-bottom: 10px !important; font-size: 0.93em; line-height: 1.6; position: relative; }
+  .dato-2026 p strong { color: #fff; }
+  .dato-2026 a { color: var(--color-soft); font-weight: 600; text-decoration: none; border-bottom: 1px solid transparent; transition: all 0.2s; }
+  .dato-2026 a:hover { color: #fff; border-bottom-color: #fff; }
+  .dato-2026 .ley-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.08); padding: 6px 14px; border-radius: 20px; font-size: 0.8em; font-weight: 600; color: var(--color-soft); margin: 6px 0 14px; }
+  .dato-2026 .ley-badge .dot { width: 7px; height: 7px; background: var(--color-ok); border-radius: 50%; box-shadow: 0 0 8px var(--color-ok); }
+
+  /* ============ FUENTES ============ */
+  .fuentes { background: linear-gradient(135deg, #2a1133 0%, #4a235a 100%); border-radius: 16px; padding: 35px 38px; margin-top: 35px; color: #fff; }
+  .fuentes h2 { font-family: var(--font-display); font-size: 1.6em; font-weight: normal; margin-bottom: 8px; color: #fff; }
+  .fuentes .label { font-size: 0.7em; text-transform: uppercase; letter-spacing: 3px; color: var(--color-soft); font-weight: bold; display: block; margin-bottom: 5px; }
+  .fuentes p.intro { color: rgba(255,255,255,0.8); margin-bottom: 22px; font-size: 0.93em; }
+  .fuente-item { background-color: rgba(255,255,255,0.05); border-left: 3px solid var(--color-soft); padding: 16px 20px; border-radius: 0 8px 8px 0; margin-bottom: 12px; }
+  .fuente-item .num { display: inline-block; font-size: 0.65em; text-transform: uppercase; letter-spacing: 2px; color: var(--color-soft); font-weight: bold; margin-bottom: 6px; }
+  .fuente-item h4 { font-family: var(--font-display); font-size: 1.05em; color: #fff; font-weight: normal; margin-bottom: 4px; }
+  .fuente-item .autor-fuente { font-size: 0.83em; color: var(--color-soft); margin-bottom: 8px; }
+  .fuente-item p.descrip { font-size: 0.85em; color: rgba(255,255,255,0.75); line-height: 1.55; margin: 0; }
+
+  .footer-doc { text-align: center; margin-top: 35px; padding-top: 22px; border-top: 1px solid rgba(142,68,173,0.15); }
+  .footer-doc p { font-size: 0.72em; color: var(--color-text-faint); text-transform: uppercase; letter-spacing: 2px; font-weight: 600; }
+
+  @media (max-width: 700px) {
+    .seccion { padding: 24px 18px; }
+    .seccion h2 { font-size: 1.55em; }
+    .actividad { padding: 24px 18px; }
+    .fuentes { padding: 28px 22px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<aside class="sidebar" id="sidebar">
+  <span class="sidebar-brand">Cátedra B</span>
+  <h2 class="sidebar-title">Unidad 4</h2>
+  <span class="sidebar-subtitle">El Presupuesto Público</span>
+
+  <span class="sidebar-nav-title">Recorrido</span>
+  <nav>
+    <a href="#top"><span class="num">★</span><span>Portada</span></a>
+    <a href="#sec-1"><span class="num">01</span><span>Concepto</span></a>
+    <a href="#sec-2"><span class="num">02</span><span>Etapas del ciclo</span></a>
+    <a href="#sec-3"><span class="num">03</span><span>Trámite parlamentario</span></a>
+    <a href="#sec-4"><span class="num">04</span><span>Si no se aprueba</span></a>
+    <a href="#sec-5"><span class="num">05</span><span>Explorar el Presupuesto</span></a>
+    <a href="#sec-fuentes"><span class="num">06</span><span>Fuentes</span></a>
+  </nav>
+
+  <div class="sidebar-foot">
+    Economía Política · FCJS · UNL<br>
+    Ciclo 2026
+  </div>
+</aside>
+
+<button class="mobile-toggle" id="mobileToggle" aria-label="Abrir navegación">☰</button>
+
+<div class="doc-wrapper">
+
+<header class="hero" id="top">
+  <span class="hero-tag">Unidad 4 · Tema</span>
+  <h1>El <em>Presupuesto</em> Público</h1>
+  <p class="hero-lead">Concepto, etapas y trámite parlamentario. Una guía breve para entender qué es el presupuesto, cómo se forma como ley, qué pasa si el Congreso no lo aprueba, y cómo explorar el Presupuesto Nacional 2026 con las herramientas oficiales del Estado.</p>
+
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="lbl">Materia</span>
+      <span class="val">Economía Política</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="lbl">Carreras</span>
+      <span class="val">Abogacía · Trabajo Social</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="lbl">Nivel</span>
+      <span class="val">Primer año</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="lbl">Norma central</span>
+      <span class="val">Ley 24.156</span>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════════════════════════════════════
+     SECCIÓN 1 · CONCEPTO
+     ═══════════════════════════════════════════ -->
+<section class="seccion" id="sec-1">
+  <header class="seccion-header">
+    <span class="big-num">01</span>
+    <span class="num">Sección 01 · Concepto</span>
+    <h2>¿Qué es el <span class="acento">Presupuesto Público</span>?</h2>
+  </header>
+
+  <div class="tldr">
+    <div class="tldr-mark">i</div>
+    <div class="tldr-body">
+      <span class="tldr-label">En una frase</span>
+      <p>Es <strong>una ley anual</strong> que proyecta la actividad financiera del Estado: estima los recursos que se esperan recaudar y <strong>autoriza</strong> al Poder Ejecutivo a gastar hasta un tope. Sin esa ley (o sin una prórroga), el gobierno no tiene permiso formal para usar los fondos públicos.</p>
+    </div>
+  </div>
+
+  <div class="pullquote">
+    <blockquote>Un documento que contiene la proyección de la actividad financiera del Estado en un período determinado. Es aprobado por ley e implica un compromiso por parte del Estado hacia la comunidad. Es decir, es la autorización que el Congreso otorga al Poder Ejecutivo para obtener recursos y utilizarlos para financiar sus actividades.</blockquote>
+    <cite>— Pérez Enrri · Cap. 12</cite>
+  </div>
+
+  <p>De esta definición conviene retener tres cosas:</p>
+
+  <!-- TRES PILARES -->
+  <div class="pilares">
+    <div class="pilar">
+      <div class="pilar-num">1</div>
+      <h4>Dos lados que se tratan distinto</h4>
+      <p>Los <strong>recursos</strong> se <em>estiman</em> (previsión). Los <strong>gastos</strong> se <em>autorizan</em> (techo legal). Recaudar de más no requiere ley; gastar de más, sí.</p>
+    </div>
+    <div class="pilar">
+      <div class="pilar-num">2</div>
+      <h4>Se aprueba por ley, no por decreto</h4>
+      <p>El Ejecutivo necesita autorización del Legislativo. Es la <strong>garantía republicana</strong> del control entre poderes. Por eso se lo llama "Ley de Leyes".</p>
+    </div>
+    <div class="pilar">
+      <div class="pilar-num">3</div>
+      <h4>Política pública escrita en pesos</h4>
+      <p>Cada partida es una decisión política. Si quieren saber qué piensa hacer un gobierno, <strong>miren su presupuesto</strong>, no sus discursos.</p>
+    </div>
+  </div>
+
+  <h3>El resultado fiscal</h3>
+  <p>Al comparar los recursos estimados con los gastos autorizados, surge el <strong>resultado fiscal</strong>. La diferencia entre lo que entra y lo que sale puede dar tres situaciones distintas:</p>
+
+  <!-- VISUALIZACIÓN DE TRES RESULTADOS -->
+  <div class="resultado-grid">
+    <div class="resultado-card super">
+      <div class="signo">+</div>
+      <h4>Superávit</h4>
+      <span class="formula">Ingresos &gt; Gastos</span>
+      <p>Sobra dinero. Puede destinarse a pagar deuda, ahorrar o reducir impuestos.</p>
+    </div>
+    <div class="resultado-card equi">
+      <div class="signo">=</div>
+      <h4>Equilibrio</h4>
+      <span class="formula">Ingresos = Gastos</span>
+      <p>Las cuentas cierran exacto. En la práctica es muy poco frecuente.</p>
+    </div>
+    <div class="resultado-card defi">
+      <div class="signo">−</div>
+      <h4>Déficit</h4>
+      <span class="formula">Gastos &gt; Ingresos</span>
+      <p>Falta dinero. Hay que financiar la diferencia con deuda, emisión o uso del crédito.</p>
+    </div>
+  </div>
+
+  <div class="actividad">
+    <span class="actividad-tag">📝 Comprobación rápida</span>
+    <h4>¿Por qué se aprueba por ley?</h4>
+    <p class="pregunta">¿Cuál es la mejor explicación de por qué el presupuesto requiere una ley del Congreso?</p>
+
+    <div class="quiz-options" data-quiz="q1">
+      <button class="quiz-opt" data-correct="false" data-feedback="No es la razón principal. Se hace público igual, pero su carácter de ley responde a una cuestión institucional, no comunicacional.">Porque así la sociedad puede enterarse de cómo se reparten los fondos.</button>
+      <button class="quiz-opt" data-correct="true" data-feedback="Correcto. El presupuesto es la autorización que el Congreso le otorga al Ejecutivo para recaudar y gastar fondos públicos. Sin esa ley, el Poder Ejecutivo no tiene permiso formal para usar los recursos del Estado. Es un mecanismo central de control entre poderes.">Porque el Ejecutivo necesita autorización del Congreso para usar fondos públicos.</button>
+      <button class="quiz-opt" data-correct="false" data-feedback="Las cifras son complejas, pero esa no es la razón institucional. El presupuesto se aprueba por ley para que el Congreso autorice al Ejecutivo.">Porque las cifras son tan complejas que necesitan ser debatidas por especialistas.</button>
+    </div>
+    <div class="quiz-feedback" data-feedback-for="q1"></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SECCIÓN 2 · ETAPAS DEL CICLO
+     ═══════════════════════════════════════════ -->
+<section class="seccion" id="sec-2">
+  <header class="seccion-header">
+    <span class="big-num">02</span>
+    <span class="num">Sección 02 · Ciclo</span>
+    <h2>Las <span class="acento">cuatro etapas</span> del ciclo</h2>
+  </header>
+
+  <div class="tldr">
+    <div class="tldr-mark">i</div>
+    <div class="tldr-body">
+      <span class="tldr-label">En una frase</span>
+      <p>El presupuesto recorre cuatro etapas con plazos y responsables fijados por la <strong>Ley 24.156 de Administración Financiera</strong>: lo <em>formula</em> el Ejecutivo, lo <em>aprueba</em> el Congreso, lo <em>ejecuta</em> el Ejecutivo durante el año, y luego <em>controla</em> la SIGEN (interno) y la AGN (externo).</p>
+    </div>
+  </div>
+
+  <!-- DIAGRAMA CIRCULAR DEL CICLO -->
+  <div class="ciclo-visual">
+    <div class="ciclo-svg-wrap">
+      <svg viewBox="0 0 540 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ciclo presupuestario: formulación, aprobación, ejecución y control en rueda continua">
+        <defs>
+          <linearGradient id="gradEtapa" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#8e44ad"/>
+            <stop offset="100%" stop-color="#6c3483"/>
+          </linearGradient>
+          <marker id="flecha" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#8e44ad"/>
+          </marker>
+        </defs>
+
+        <!-- Línea curva del ciclo (rueda) -->
+        <path d="M 90 140 Q 90 65 270 65 Q 450 65 450 140 Q 450 215 270 215 Q 90 215 90 140"
+              fill="none" stroke="#d2b4de" stroke-width="2" stroke-dasharray="4 5" opacity="0.7"/>
+
+        <!-- Flechas direccionales (cuatro pequeñas marcando rotación) -->
+        <path d="M 175 63 L 195 63" stroke="#8e44ad" stroke-width="2" marker-end="url(#flecha)" fill="none"/>
+        <path d="M 345 63 L 365 63" stroke="#8e44ad" stroke-width="2" marker-end="url(#flecha)" fill="none"/>
+        <path d="M 365 217 L 345 217" stroke="#8e44ad" stroke-width="2" marker-end="url(#flecha)" fill="none"/>
+        <path d="M 195 217 L 175 217" stroke="#8e44ad" stroke-width="2" marker-end="url(#flecha)" fill="none"/>
+
+        <!-- Nodo 01 — Formulación -->
+        <circle cx="90" cy="140" r="42" fill="url(#gradEtapa)"/>
+        <text x="90" y="131" text-anchor="middle" fill="#fff" font-family="Georgia, serif" font-size="22" font-weight="700">01</text>
+        <text x="90" y="153" text-anchor="middle" fill="#fff" font-family="Inter, sans-serif" font-size="11" font-weight="600">Formulación</text>
+        <text x="90" y="200" text-anchor="middle" fill="#6c3483" font-family="Inter, sans-serif" font-size="10" font-weight="700" letter-spacing="0.5">PEN</text>
+
+        <!-- Nodo 02 — Aprobación -->
+        <circle cx="270" cy="65" r="42" fill="url(#gradEtapa)"/>
+        <text x="270" y="56" text-anchor="middle" fill="#fff" font-family="Georgia, serif" font-size="22" font-weight="700">02</text>
+        <text x="270" y="78" text-anchor="middle" fill="#fff" font-family="Inter, sans-serif" font-size="11" font-weight="600">Aprobación</text>
+        <text x="270" y="18" text-anchor="middle" fill="#6c3483" font-family="Inter, sans-serif" font-size="10" font-weight="700" letter-spacing="0.5">CONGRESO</text>
+
+        <!-- Nodo 03 — Ejecución -->
+        <circle cx="450" cy="140" r="42" fill="url(#gradEtapa)"/>
+        <text x="450" y="131" text-anchor="middle" fill="#fff" font-family="Georgia, serif" font-size="22" font-weight="700">03</text>
+        <text x="450" y="153" text-anchor="middle" fill="#fff" font-family="Inter, sans-serif" font-size="11" font-weight="600">Ejecución</text>
+        <text x="450" y="200" text-anchor="middle" fill="#6c3483" font-family="Inter, sans-serif" font-size="10" font-weight="700" letter-spacing="0.5">PEN</text>
+
+        <!-- Nodo 04 — Control -->
+        <circle cx="270" cy="215" r="42" fill="url(#gradEtapa)"/>
+        <text x="270" y="206" text-anchor="middle" fill="#fff" font-family="Georgia, serif" font-size="22" font-weight="700">04</text>
+        <text x="270" y="228" text-anchor="middle" fill="#fff" font-family="Inter, sans-serif" font-size="11" font-weight="600">Control</text>
+        <text x="270" y="268" text-anchor="middle" fill="#6c3483" font-family="Inter, sans-serif" font-size="10" font-weight="700" letter-spacing="0.5">SIGEN · AGN</text>
+
+        <!-- Centro -->
+        <text x="270" y="140" text-anchor="middle" fill="#4a235a" font-family="Georgia, serif" font-size="14" font-style="italic" opacity="0.55">ciclo</text>
+        <text x="270" y="158" text-anchor="middle" fill="#4a235a" font-family="Georgia, serif" font-size="14" font-style="italic" opacity="0.55">anual</text>
+      </svg>
+    </div>
+
+    <div class="ciclo-leyenda">
+      <div class="ciclo-paso">
+        <span class="num-redondo">1</span>
+        <h5>Formulación</h5>
+        <span class="resp-min">PEN · hasta 15-sep</span>
+        <p>El Ejecutivo elabora el proyecto a través de la ONP.</p>
+      </div>
+      <div class="ciclo-paso">
+        <span class="num-redondo">2</span>
+        <h5>Aprobación</h5>
+        <span class="resp-min">Congreso</span>
+        <p>Diputados y Senado debaten y votan. Sin sanción, no hay ley.</p>
+      </div>
+      <div class="ciclo-paso">
+        <span class="num-redondo">3</span>
+        <h5>Ejecución</h5>
+        <span class="resp-min">PEN · todo el año</span>
+        <p>Los ministerios gastan según lo autorizado (1° ene – 31 dic).</p>
+      </div>
+      <div class="ciclo-paso">
+        <span class="num-redondo">4</span>
+        <h5>Control</h5>
+        <span class="resp-min">SIGEN · AGN</span>
+        <p>Auditoría interna y externa. Cuenta de Inversión al Congreso.</p>
+      </div>
+    </div>
+  </div>
+
+  <p>Las etapas <strong>se superponen en el tiempo</strong>. Mientras se ejecuta el presupuesto del año actual, ya se está formulando el del año siguiente, y se controla el del año anterior. El ciclo presupuestario es una rueda permanente.</p>
+
+  <!-- ETAPAS DETALLADAS (cards con icono) -->
+  <div class="etapa-detalle">
+    <div class="etapa-icono">①</div>
+    <div class="etapa-body">
+      <h4>Formulación</h4>
+      <span class="articulo">Art. 26 — Ley 24.156</span>
+      <p>El proyecto lo elabora el <strong>Poder Ejecutivo Nacional</strong>, a través de la Oficina Nacional de Presupuesto (ONP), dentro del Ministerio de Economía. La ley fija una fecha tope: el proyecto debe <strong>ingresar a la Cámara de Diputados antes del 15 de septiembre</strong> del año anterior al que regirá.</p>
+      <p>Esa precisión existe para darle al Congreso unos tres meses de debate antes del 1° de enero.</p>
+    </div>
+  </div>
+
+  <div class="etapa-detalle">
+    <div class="etapa-icono">③</div>
+    <div class="etapa-body">
+      <h4>Ejecución y el concepto de "devengado"</h4>
+      <span class="articulo">Art. 31 — Ley 24.156</span>
+      <p>Cuando el presupuesto se ejecuta, la Ley 24.156 distingue tres momentos del gasto: <strong>compromiso</strong> (se asume la obligación), <strong>devengado</strong> (se recibe el bien o servicio y nace la obligación de pago) y <strong>pagado</strong> (sale efectivamente el dinero).</p>
+      <p>El Art. 31 establece que un crédito se considera <em>ejecutado al devengarse</em>, no cuando se paga. Por eso, en los informes presupuestarios, los datos importantes son "base devengado".</p>
+    </div>
+  </div>
+
+  <div class="etapa-detalle">
+    <div class="etapa-icono">④</div>
+    <div class="etapa-body">
+      <h4>Control: SIGEN y AGN</h4>
+      <span class="articulo">Arts. 96 y 116 — Ley 24.156</span>
+      <p>La <strong>Sindicatura General de la Nación (SIGEN)</strong> es el control <em>interno</em> del Poder Ejecutivo: depende de Presidencia y audita procesos en tiempo real (Art. 96). La <strong>Auditoría General de la Nación (AGN)</strong> es el control <em>externo</em>: depende del Congreso, hace auditorías independientes (Art. 116, complementado por el Art. 85 de la Constitución).</p>
+      <p>Al cerrar el ejercicio, el Ejecutivo debe presentar al Congreso la <strong>Cuenta de Inversión</strong> (Art. 95), que compara lo presupuestado con lo efectivamente ejecutado.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SECCIÓN 3 · TRÁMITE PARLAMENTARIO
+     ═══════════════════════════════════════════ -->
+<section class="seccion" id="sec-3">
+  <header class="seccion-header">
+    <span class="big-num">03</span>
+    <span class="num">Sección 03 · Trámite</span>
+    <h2>El <span class="acento">trámite parlamentario</span></h2>
+  </header>
+
+  <div class="tldr">
+    <div class="tldr-mark">i</div>
+    <div class="tldr-body">
+      <span class="tldr-label">En una frase</span>
+      <p>El proyecto entra <strong>obligatoriamente por la Cámara de Diputados</strong> (Art. 26 de la Ley 24.156), pasa por comisión y recinto, va al Senado, y si ambas cámaras lo aprueban, se promulga como ley. El Congreso puede modificar el proyecto, pero con una restricción: todo aumento de gasto debe tener financiamiento.</p>
+    </div>
+  </div>
+
+  <p>Una vez que el Poder Ejecutivo presenta el proyecto, comienza el trámite legislativo. La Ley 24.156 establece que el proyecto debe presentarse <strong>en la Cámara de Diputados</strong>, que funciona como <em>cámara de origen</em>. El recorrido del proyecto hasta convertirse en ley es el siguiente:</p>
+
+  <!-- DIAGRAMA HORIZONTAL DEL TRÁMITE PARLAMENTARIO -->
+  <div class="flujo-parl">
+    <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Recorrido del proyecto: Ejecutivo, Diputados (comisión y recinto), Senado, Promulgación">
+      <defs>
+        <linearGradient id="gradStep" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#8e44ad"/>
+          <stop offset="100%" stop-color="#6c3483"/>
+        </linearGradient>
+        <linearGradient id="gradLey" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#4a235a"/>
+          <stop offset="100%" stop-color="#2a1133"/>
+        </linearGradient>
+        <marker id="flechaH" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="#8e44ad"/>
+        </marker>
+      </defs>
+
+      <!-- Conectores con flechas -->
+      <line x1="138" y1="95" x2="178" y2="95" stroke="#8e44ad" stroke-width="2.5" marker-end="url(#flechaH)"/>
+      <line x1="308" y1="95" x2="348" y2="95" stroke="#8e44ad" stroke-width="2.5" marker-end="url(#flechaH)"/>
+      <line x1="478" y1="95" x2="518" y2="95" stroke="#8e44ad" stroke-width="2.5" marker-end="url(#flechaH)"/>
+      <line x1="648" y1="95" x2="688" y2="95" stroke="#8e44ad" stroke-width="2.5" marker-end="url(#flechaH)"/>
+
+      <!-- Paso 1: Ejecutivo -->
+      <rect x="20" y="55" width="118" height="80" rx="10" fill="#fdfbff" stroke="#8e44ad" stroke-width="2"/>
+      <text x="79" y="48" text-anchor="middle" fill="#6c3483" font-family="Inter, sans-serif" font-size="9" font-weight="700" letter-spacing="1.5">PASO 1</text>
+      <text x="79" y="83" text-anchor="middle" fill="#2a1133" font-family="Georgia, serif" font-size="13" font-weight="700">PEN</text>
+      <text x="79" y="100" text-anchor="middle" fill="#444" font-family="Inter, sans-serif" font-size="9.5">Presenta el</text>
+      <text x="79" y="113" text-anchor="middle" fill="#444" font-family="Inter, sans-serif" font-size="9.5">proyecto</text>
+      <text x="79" y="155" text-anchor="middle" fill="#6c3483" font-family="Inter, sans-serif" font-size="9" font-style="italic">hasta 15-sep</text>
+
+      <!-- Paso 2: Diputados -->
+      <rect x="190" y="55" width="118" height="80" rx="10" fill="#fdfbff" stroke="#8e44ad" stroke-width="2"/>
+      <text x="249" y="48" text-anchor="middle" fill="#6c3483" font-family="Inter, sans-serif" font-size="9" font-weight="700" letter-spacing="1.5">PASO 2</text>
+      <text x="249" y="83" text-anchor="middle" fill="#2a1133" font-family="Georgia, serif" font-size="13" font-weight="700">Diputados</text>
+      <text x="249" y="100" text-anchor="middle" fill="#444" font-family="Inter, sans-serif" font-size="9.5">Comisión y</text>
+      <text x="249" y="113" text-anchor="middle" fill="#444" font-family="Inter, sans-serif" font-size="9.5">recinto</text>
+      <text x="249" y="155" text-anchor="middle" fill="#6c3483" font-family="Inter, sans-serif" font-size="9" font-style="italic">cámara de origen</text>
+
+      <!-- Paso 3: Senado -->
+      <rect x="360" y="55" width="118" height="80" rx="10" fill="#fdfbff" stroke="#8e44ad" stroke-width="2"/>
+      <text x="419" y="48" text-anchor="middle" fill="#6c3483" font-family="Inter, sans-serif" font-size="9" font-weight="700" letter-spacing="1.5">PASO 3</text>
+      <text x="419" y="83" text-anchor="middle" fill="#2a1133" font-family="Georgia, serif" font-size="13" font-weight="700">Senado</text>
+      <text x="419" y="100" text-anchor="middle" fill="#444" font-family="Inter, sans-serif" font-size="9.5">Revisa,</text>
+      <text x="419" y="113" text-anchor="middle" fill="#444" font-family="Inter, sans-serif" font-size="9.5">aprueba o modifica</text>
+      <text x="419" y="155" text-anchor="middle" fill="#6c3483" font-family="Inter, sans-serif" font-size="9" font-style="italic">cámara revisora</text>
+
+      <!-- Paso 4: PEN promulga -->
+      <rect x="530" y="55" width="118" height="80" rx="10" fill="#fdfbff" stroke="#8e44ad" stroke-width="2"/>
+      <text x="589" y="48" text-anchor="middle" fill="#6c3483" font-family="Inter, sans-serif" font-size="9" font-weight="700" letter-spacing="1.5">PASO 4</text>
+      <text x="589" y="83" text-anchor="middle" fill="#2a1133" font-family="Georgia, serif" font-size="13" font-weight="700">PEN</text>
+      <text x="589" y="100" text-anchor="middle" fill="#444" font-family="Inter, sans-serif" font-size="9.5">Promulga</text>
+      <text x="589" y="113" text-anchor="middle" fill="#444" font-family="Inter, sans-serif" font-size="9.5">(o veta)</text>
+      <text x="589" y="155" text-anchor="middle" fill="#6c3483" font-family="Inter, sans-serif" font-size="9" font-style="italic">o veta total/parcial</text>
+
+      <!-- Paso 5: Ley -->
+      <rect x="700" y="55" width="90" height="80" rx="10" fill="url(#gradLey)"/>
+      <text x="745" y="78" text-anchor="middle" fill="#d2b4de" font-family="Inter, sans-serif" font-size="9" font-weight="700" letter-spacing="1.5">LEY</text>
+      <text x="745" y="100" text-anchor="middle" fill="#fff" font-family="Georgia, serif" font-size="13" font-weight="700">vigente</text>
+      <text x="745" y="116" text-anchor="middle" fill="#fff" font-family="Inter, sans-serif" font-size="9.5">desde 1° ene</text>
+      <text x="745" y="155" text-anchor="middle" fill="#6c3483" font-family="Inter, sans-serif" font-size="9" font-style="italic">Boletín Oficial</text>
+
+      <!-- Bucle "vuelve a Diputados" si Senado modifica -->
+      <path d="M 419 50 Q 419 18 320 18 Q 249 18 249 48" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="3 3" fill="none" marker-end="url(#flechaH)" opacity="0.55"/>
+      <text x="335" y="14" text-anchor="middle" fill="#c0392b" font-family="Inter, sans-serif" font-size="9" font-style="italic" opacity="0.75">si modifica, vuelve a Diputados</text>
+    </svg>
+  </div>
+
+  <p>En Diputados, el proyecto primero pasa por la <strong>Comisión de Presupuesto y Hacienda</strong>, donde se estudia el articulado, se reciben funcionarios del Ejecutivo y se elaboran dictámenes. Luego se debate y vota en el recinto. Si Diputados lo aprueba, pasa al Senado, que puede aprobarlo tal cual, modificarlo (en cuyo caso vuelve a Diputados) o rechazarlo. Si ambas cámaras lo sancionan, vuelve al Ejecutivo, que puede promulgarlo o vetarlo total o parcialmente. Una vez publicado en el Boletín Oficial, entra en vigor el 1° de enero del año siguiente.</p>
+
+  <h3>La regla del Art. 28: aumentos con financiamiento</h3>
+
+  <div class="callout-clave">
+    <span class="arrow">→</span>
+    <div class="cc-body">
+      <span class="cc-tag">Art. 28 — Texto</span>
+      <p>"Todo incremento del total del presupuesto de gastos previstos en el proyecto presentado por el Poder Ejecutivo Nacional, deberá contar con el financiamiento respectivo."</p>
+    </div>
+  </div>
+
+  <p>Esto significa que si un legislador propone aumentar una partida, debe indicar de dónde sale ese dinero: o se recorta otra partida, o se eleva un recurso, o se autoriza endeudamiento. <strong>No se admiten incrementos sin contrapartida.</strong> Es una regla pensada para evitar que las modificaciones del Congreso generen déficit no planificado.</p>
+
+  <div class="dato-2026">
+    <span class="label">Caso real · Presupuesto 2026</span>
+    <h4>Cómo se concretó el ciclo este año</h4>
+    <span class="ley-badge"><span class="dot"></span>Ley 27.798 vigente</span>
+    <p>El Poder Ejecutivo presentó el proyecto de Presupuesto 2026 al Congreso dentro del plazo del Art. 26. El Congreso lo sancionó como <strong>Ley N° 27.798</strong>, promulgada por <strong>Decreto 932/2025</strong>. Según el informe de la Oficina de Presupuesto del Congreso (OPC), el proyecto previó un superávit financiero para la Administración Pública Nacional, con proyecciones de inflación en torno al 10% anual y un crecimiento del PBI de 5%.</p>
+    <p><a href="https://www.argentina.gob.ar/economia/sechacienda/ley-de-presupuesto-2026" target="_blank" rel="noopener">Ver Ley 27.798 y normativa complementaria →</a></p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SECCIÓN 4 · QUÉ PASA SI NO SE APRUEBA
+     ═══════════════════════════════════════════ -->
+<section class="seccion" id="sec-4">
+  <header class="seccion-header">
+    <span class="big-num">04</span>
+    <span class="num">Sección 04 · Pregunta central</span>
+    <h2>¿Qué pasa si <span class="acento">no se aprueba</span>?</h2>
+  </header>
+
+  <div class="tldr">
+    <div class="tldr-mark">i</div>
+    <div class="tldr-body">
+      <span class="tldr-label">En una frase</span>
+      <p>Si al inicio del ejercicio no hay nueva ley aprobada, opera la <strong>reconducción presupuestaria</strong> del Art. 27: rige el presupuesto del año anterior, con ajustes que debe introducir el Ejecutivo. El Estado nunca se queda sin presupuesto, pero la prórroga debilita el control del Congreso sobre las prioridades del gasto.</p>
+    </div>
+  </div>
+
+  <p>Es una situación que ocurrió varias veces en la Argentina reciente: el Congreso no logra consenso, o el debate se traba, y llega el 1° de enero sin nueva ley. ¿Qué hace el Estado entonces? No puede simplemente "cerrar". Por eso la propia Ley 24.156 previó un mecanismo automático de contingencia.</p>
+
+  <h3>El Art. 27: reconducción presupuestaria</h3>
+
+  <div class="callout-clave">
+    <span class="arrow">→</span>
+    <div class="cc-body">
+      <span class="cc-tag">Art. 27 — Texto</span>
+      <p>"Si al inicio del ejercicio financiero no se encontrare aprobado el presupuesto general, regirá el que estuvo en vigencia el año anterior, con los siguientes ajustes que deberá introducir el Poder Ejecutivo Nacional..."</p>
+    </div>
+  </div>
+
+  <p>El artículo lista los ajustes que el Ejecutivo debe hacer al presupuesto reconducido. En los gastos: <strong>eliminar los créditos cuyo fin ya se cumplió</strong> (no tiene sentido mantener una partida de una obra que ya terminó). En los recursos: <strong>suprimir los ingresos por créditos públicos ya autorizados que terminaron, excluir excedentes del año anterior y estimar los nuevos recursos del ejercicio</strong>. Además, su reglamentación indica que la Secretaría de Hacienda establece los procedimientos necesarios para atender los gastos imprescindibles de la Nación.</p>
+
+  <h3>Ley aprobada vs. reconducción: dos escenarios diferentes</h3>
+
+  <!-- COMPARATIVA VISUAL: dos columnas (escenario bueno vs malo) -->
+  <div class="comparativa">
+    <div class="comp-card escenario-bueno">
+      <span class="escenario-tag">✓ Escenario ideal</span>
+      <h4>Ley nueva aprobada en tiempo</h4>
+      <ul>
+        <li>El Congreso discute y vota las prioridades del año</li>
+        <li>Las partidas reflejan supuestos macro actualizados</li>
+        <li>Pueden iniciarse nuevos programas e inversiones</li>
+        <li>El debate público sobre el destino del gasto se actualiza</li>
+      </ul>
+    </div>
+    <div class="comp-card escenario-malo">
+      <span class="escenario-tag">Reconducción (Art. 27)</span>
+      <h4>Sin ley nueva al 1° de enero</h4>
+      <ul>
+        <li>Rige el presupuesto del año anterior, con ajustes técnicos</li>
+        <li>Los supuestos macro quedan desactualizados</li>
+        <li>Es difícil iniciar nuevas inversiones o programas</li>
+        <li>El Ejecutivo gana margen de decisión sin debate parlamentario</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>¿Por qué la reconducción no es lo mismo que tener ley nueva?</h3>
+
+  <div class="acordeon">
+    <div class="acordeon-item">
+      <button class="acordeon-trigger" aria-expanded="false">
+        <span>Limita la posibilidad de iniciar nuevas inversiones</span>
+        <span class="icon">+</span>
+      </button>
+      <div class="acordeon-body"><div class="acordeon-body-inner">
+        <p>El presupuesto reconducido refleja prioridades del año anterior. Es difícil iniciar nuevas obras o programas sin una ley actualizada que las contemple, porque las partidas no están previstas. La gestión se vuelve más "administrativa" y menos "estratégica".</p>
+      </div></div>
+    </div>
+    <div class="acordeon-item">
+      <button class="acordeon-trigger" aria-expanded="false">
+        <span>Concentra decisiones en el Ejecutivo</span>
+        <span class="icon">+</span>
+      </button>
+      <div class="acordeon-body"><div class="acordeon-body-inner">
+        <p>Sin nueva ley, las reasignaciones de partidas durante el año las decide el Ejecutivo (Jefatura de Gabinete, dentro de los márgenes que permite la normativa). El Congreso pierde la oportunidad anual de discutir y votar las prioridades del gasto público.</p>
+      </div></div>
+    </div>
+    <div class="acordeon-item">
+      <button class="acordeon-trigger" aria-expanded="false">
+        <span>Los supuestos macroeconómicos quedan desactualizados</span>
+        <span class="icon">+</span>
+      </button>
+      <div class="acordeon-body"><div class="acordeon-body-inner">
+        <p>El presupuesto del año anterior se construyó con proyecciones (inflación, dólar, recaudación) que ya no son las actuales. En contextos de alta inflación, eso significa que las partidas reconducidas pierden poder de compra real rápidamente.</p>
+      </div></div>
+    </div>
+    <div class="acordeon-item">
+      <button class="acordeon-trigger" aria-expanded="false">
+        <span>Debilita el control democrático del gasto</span>
+        <span class="icon">+</span>
+      </button>
+      <div class="acordeon-body"><div class="acordeon-body-inner">
+        <p>El presupuesto es, en una democracia, el principal momento en que el Congreso discute hacia dónde van los recursos públicos. Cuando se prolonga la reconducción año tras año, ese debate se pierde y el control republicano sobre la administración financiera se vuelve más débil.</p>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="actividad">
+    <span class="actividad-tag">📝 Comprobación rápida</span>
+    <h4>La reconducción presupuestaria</h4>
+    <p class="pregunta">Si al 1° de enero no hay Ley de Presupuesto aprobada, ¿qué ocurre?</p>
+
+    <div class="quiz-options" data-quiz="q2">
+      <button class="quiz-opt" data-correct="false" data-feedback="No. La Ley 24.156 previó justamente un mecanismo para evitar la parálisis: el Art. 27 establece la reconducción automática.">El Estado se queda sin presupuesto y debe paralizar sus actividades.</button>
+      <button class="quiz-opt" data-correct="false" data-feedback="No. El Ejecutivo no dicta el presupuesto por decreto: lo que se aplica automáticamente es el presupuesto del año anterior, con ajustes técnicos.">El Poder Ejecutivo puede dictar el presupuesto por decreto.</button>
+      <button class="quiz-opt" data-correct="true" data-feedback="Correcto. El Art. 27 de la Ley 24.156 dispone que rija el presupuesto del año anterior, y el Ejecutivo debe introducir ajustes técnicos (eliminar créditos cumplidos, estimar nuevos recursos, etc.). Es la llamada reconducción o prórroga.">Rige automáticamente el presupuesto del año anterior, con ajustes obligatorios (Art. 27).</button>
+    </div>
+    <div class="quiz-feedback" data-feedback-for="q2"></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SECCIÓN 5 · EXPLORAR EL PRESUPUESTO REAL
+     ═══════════════════════════════════════════ -->
+<section class="seccion" id="sec-5">
+  <header class="seccion-header">
+    <span class="big-num">05</span>
+    <span class="num">Sección 05 · Práctica</span>
+    <h2>Explorar el <span class="acento">presupuesto real</span></h2>
+  </header>
+
+  <p>El presupuesto no es un objeto abstracto: es un texto público, accesible, que cualquier persona puede consultar. El Estado argentino tiene tres herramientas oficiales para hacerlo, cada una con un propósito distinto. Les proponemos que entren a explorar.</p>
+
+  <div class="recursos-grid">
+    <a class="recurso-card" href="https://www.argentina.gob.ar/economia/sechacienda/ley-de-presupuesto-2026" target="_blank" rel="noopener">
+      <span class="tag">Norma oficial</span>
+      <h4>Ley 27.798 — Presupuesto 2026</h4>
+      <p>Texto completo de la ley vigente con su decreto de promulgación (932/2025) y documentación complementaria. Es el documento normativo que están autorizados a usar este año el Ejecutivo y los ministerios.</p>
+      <span class="link">Ir al sitio de Hacienda</span>
+    </a>
+    <a class="recurso-card" href="https://www.economia.gob.ar/onp/presupuestos/2026" target="_blank" rel="noopener">
+      <span class="tag">ONP · Documentos</span>
+      <h4>Mensaje, Proyecto y Planillas Anexas</h4>
+      <p>Oficina Nacional de Presupuesto. Acá están el mensaje de remisión, el proyecto original, todas las planillas por finalidad, jurisdicción y carácter económico, y el presupuesto consolidado del Sector Público Nacional.</p>
+      <span class="link">Ir al sitio de la ONP</span>
+    </a>
+    <a class="recurso-card" href="https://www.presupuestoabierto.gob.ar/sici/" target="_blank" rel="noopener">
+      <span class="tag">Datos abiertos</span>
+      <h4>Presupuesto Abierto</h4>
+      <p>Portal interactivo del Ministerio de Economía. Permite explorar gastos por jurisdicción, programa, finalidad y función. Tiene visualizaciones, datos descargables y una API. Pensado especialmente para que cualquier ciudadano pueda consultar el presupuesto.</p>
+      <span class="link">Explorar el portal</span>
+    </a>
+  </div>
+
+  <h3>Actividad sugerida</h3>
+
+  <div class="actividad">
+    <span class="actividad-tag">🎯 Para hacer en casa</span>
+    <h4>Recorrido por el presupuesto vigente</h4>
+    <p class="pregunta">Elegí una de las herramientas anteriores y respondé estas preguntas. Después podemos discutirlas en clase.</p>
+
+    <div class="acordeon">
+      <div class="acordeon-item">
+        <button class="acordeon-trigger" aria-expanded="false">
+          <span>1. ¿Cuál es el monto total de gastos autorizado para 2026?</span>
+          <span class="icon">+</span>
+        </button>
+        <div class="acordeon-body"><div class="acordeon-body-inner">
+          <p>Buscá en la Ley 27.798, en el Art. 1° (gastos corrientes y de capital) y en la planilla anexa. Es el "techo" de gasto que el Congreso le autorizó al Ejecutivo para todo el ejercicio.</p>
+        </div></div>
+      </div>
+      <div class="acordeon-item">
+        <button class="acordeon-trigger" aria-expanded="false">
+          <span>2. ¿Cuáles son las tres finalidades con mayor gasto?</span>
+          <span class="icon">+</span>
+        </button>
+        <div class="acordeon-body"><div class="acordeon-body-inner">
+          <p>La "finalidad" es la clasificación que agrupa los gastos por destino: Administración Gubernamental, Servicios de Defensa y Seguridad, Servicios Sociales, Servicios Económicos, Deuda Pública. En Presupuesto Abierto pueden ver una visualización clara. ¿Cuál se lleva la mayor proporción? ¿Coincide con lo que esperaban?</p>
+        </div></div>
+      </div>
+      <div class="acordeon-item">
+        <button class="acordeon-trigger" aria-expanded="false">
+          <span>3. ¿El proyecto previó superávit o déficit?</span>
+          <span class="icon">+</span>
+        </button>
+        <div class="acordeon-body"><div class="acordeon-body-inner">
+          <p>Comparen recursos totales y gastos totales. Si los recursos superan a los gastos, hay superávit; si es al revés, déficit. Para 2026 el Ejecutivo proyectó un resultado superavitario. ¿Qué implica esto en términos de la discusión que vimos en clase sobre déficit fiscal?</p>
+        </div></div>
+      </div>
+      <div class="acordeon-item">
+        <button class="acordeon-trigger" aria-expanded="false">
+          <span>4. Elegí un programa social y observá su evolución</span>
+          <span class="icon">+</span>
+        </button>
+        <div class="acordeon-body"><div class="acordeon-body-inner">
+          <p>En Presupuesto Abierto pueden buscar programas concretos (Asignación Universal por Hijo, becas universitarias, hospitales nacionales, programas de vivienda). Vean cuánto se le asignó este año y cómo viene en relación con años anteriores. Para los futuros trabajadores y trabajadoras sociales, este ejercicio es central: muchas políticas sociales con las que van a trabajar tienen ahí su partida.</p>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout-clave">
+    <span class="arrow">→</span>
+    <div class="cc-body">
+      <span class="cc-tag">Lo que se llevan de esta unidad</span>
+      <p>El presupuesto es un instrumento técnico, pero detrás de cada cifra hay una decisión política sobre qué Estado se construye. Saber cómo se forma, qué dice el texto vigente y dónde consultarlo es una herramienta concreta: tanto para futuros <strong>abogados y abogadas</strong> (que van a trabajar con la Ley 24.156 en derecho público, financiero y administrativo) como para futuros <strong>trabajadores y trabajadoras sociales</strong> (que van a depender, en sus programas y en sus salarios, de partidas que se discuten cada año).</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     FUENTES
+     ═══════════════════════════════════════════ -->
+<section class="fuentes" id="sec-fuentes">
+  <span class="label">Bibliografía y fuentes</span>
+  <h2>Materiales para profundizar</h2>
+  <p class="intro">Dos textos de base y tres herramientas oficiales del Estado argentino para explorar el presupuesto vigente.</p>
+
+  <div class="fuente-item">
+    <span class="num">Fuente 01 · Bibliografía obligatoria</span>
+    <h4>Economía, en el pensamiento, la realidad y la acción — Cap. 12</h4>
+    <div class="autor-fuente">Pérez Enrri, Daniel · Ediciones Macchi, Buenos Aires, 2000</div>
+    <p class="descrip">Marco conceptual general sobre el sector público: definición de presupuesto, gasto público, ingresos corrientes y de capital, déficit fiscal, deuda pública. Es la base teórica de esta unidad.</p>
+  </div>
+
+  <div class="fuente-item">
+    <span class="num">Fuente 02 · Presentación de cátedra</span>
+    <h4>El Presupuesto Público — La Ley de Leyes</h4>
+    <div class="autor-fuente">Prof. Nicolás Perot · Cátedra B · FCJS UNL</div>
+    <p class="descrip">Articula los conceptos generales con el funcionamiento concreto de la Ley 24.156 en el dispositivo argentino: ciclo, plazos, trámite parlamentario, reconducción, devengado, control SIGEN–AGN.</p>
+  </div>
+
+  <div class="fuente-item">
+    <span class="num">Norma de referencia</span>
+    <h4>Ley 24.156 — Administración Financiera del Sector Público Nacional</h4>
+    <div class="autor-fuente">Honorable Congreso de la Nación · 1992</div>
+    <p class="descrip">Artículos centrales: Art. 26 (formulación y plazo del 15-sep), Art. 27 (reconducción), Art. 28 (financiamiento de incrementos), Art. 31 (devengado), Art. 95 (Cuenta de Inversión), Arts. 96 y 116 (SIGEN y AGN).</p>
+  </div>
+
+  <div class="fuente-item">
+    <span class="num">Herramientas oficiales</span>
+    <h4>Sitios para consultar el Presupuesto 2026</h4>
+    <div class="autor-fuente">Ministerio de Economía · ONP · Presupuesto Abierto</div>
+    <p class="descrip">Ley 27.798 (sitio de Hacienda), Mensaje y planillas (ONP), portal interactivo Presupuesto Abierto. Los tres permiten consultar, descargar y analizar el presupuesto vigente. Enlaces directos en la Sección 5.</p>
+  </div>
+</section>
+
+<footer class="footer-doc">
+  <p>Cátedra B · Economía Política · FCJS · UNL — Ciclo 2026</p>
+</footer>
+
+</div>
+
+<button class="scroll-top" id="scrollTop" aria-label="Volver arriba" title="Volver arriba">↑</button>
+
+<script>
+const sidebar = document.getElementById('sidebar');
+const mobileToggle = document.getElementById('mobileToggle');
+mobileToggle.addEventListener('click', () => sidebar.classList.toggle('open'));
+sidebar.querySelectorAll('nav a').forEach(a => a.addEventListener('click', () => { if (window.innerWidth <= 1000) sidebar.classList.remove('open'); }));
+
+const progressBar = document.getElementById('progressBar');
+window.addEventListener('scroll', () => {
+  const h = document.documentElement;
+  const total = h.scrollHeight - h.clientHeight;
+  const pct = total > 0 ? (h.scrollTop / total) * 100 : 0;
+  progressBar.style.width = Math.min(100, pct) + '%';
+});
+
+const scrollTopBtn = document.getElementById('scrollTop');
+window.addEventListener('scroll', () => scrollTopBtn.classList.toggle('visible', window.scrollY > 400));
+scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+const navSections = document.querySelectorAll('section[id], header[id]');
+const navLinks = sidebar.querySelectorAll('nav a');
+function updateActiveSection() {
+  const scrollPos = window.scrollY + 120;
+  let currentId = '';
+  navSections.forEach(sec => { if (sec.offsetTop <= scrollPos) currentId = sec.id; });
+  if (!currentId) currentId = 'top';
+  navLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === '#' + currentId));
+}
+window.addEventListener('scroll', updateActiveSection);
+updateActiveSection();
+
+document.querySelectorAll('.quiz-options').forEach(group => {
+  const quizName = group.dataset.quiz;
+  const feedbackBox = document.querySelector(`[data-feedback-for="${quizName}"]`);
+  group.querySelectorAll('.quiz-opt').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (group.classList.contains('answered')) return;
+      group.classList.add('answered');
+      const isCorrect = btn.dataset.correct === 'true';
+      btn.classList.add(isCorrect ? 'correcta' : 'incorrecta');
+      group.querySelectorAll('.quiz-opt').forEach(b => {
+        b.classList.add('disabled');
+        if (b !== btn && b.dataset.correct === 'true') b.classList.add('correcta');
+      });
+      feedbackBox.textContent = btn.dataset.feedback;
+      feedbackBox.classList.remove('ok', 'fail');
+      feedbackBox.classList.add(isCorrect ? 'ok' : 'fail');
+      feedbackBox.classList.add('show');
+    });
+  });
+});
+
+document.querySelectorAll('.acordeon-trigger').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const body = btn.nextElementSibling;
+    const isActive = btn.classList.contains('activo');
+    btn.classList.toggle('activo');
+    body.classList.toggle('activo');
+    btn.setAttribute('aria-expanded', !isActive);
+  });
+});
+</script>
+
+</body>
+</html>
