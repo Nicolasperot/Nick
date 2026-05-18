@@ -613,52 +613,180 @@ button { font-family: inherit; cursor: pointer; background: none; border: none; 
   border-top: 1px dashed var(--border);
 }
 
-/* Mini scanner visual del catálogo */
-.hero-scanner {
-  margin-top: 18px;
-  padding-top: 18px;
-  border-top: 1px dashed var(--border);
+/* ═══════════════════════════════════════════════════════════════
+   GLOBO TERRÁQUEO — escáner IA en vivo
+   ═══════════════════════════════════════════════════════════════ */
+.hero-panel-status {
+  position: relative;
+  padding-left: 4px;
 }
 
-.scanner-label {
+.hero-panel-status::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-3);
+  margin-right: 6px;
+  animation: blink 1.8s ease-in-out infinite;
+  vertical-align: middle;
+}
+
+.globe-wrap {
+  position: relative;
+  margin: 12px -8px 0;
+  padding: 0;
+}
+
+.globe-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+
+/* Anillos orbitales rotando */
+.globe-orbit {
+  transform-origin: 160px 160px;
+}
+
+.globe-orbit-1 {
+  animation: orbitSpin 14s linear infinite;
+}
+.globe-orbit-2 {
+  animation: orbitSpin 22s linear infinite reverse;
+}
+.globe-orbit-3 {
+  animation: orbitSpin 18s linear infinite;
+}
+
+@keyframes orbitSpin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* Latitudes/longitudes rotando dentro del globo */
+.globe-rotate {
+  transform-origin: 160px 160px;
+  animation: globeSpin 36s linear infinite;
+}
+
+@keyframes globeSpin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* Haz de escaneo barriendo horizontalmente el globo */
+.globe-beam {
+  animation: globeBeam 5s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@keyframes globeBeam {
+  0%   { transform: translateX(0); opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { transform: translateX(190px); opacity: 0; }
+}
+
+/* Pulso central del globo */
+.globe-pulse {
+  animation: globePulse 2s ease-out infinite;
+  transform-origin: 160px 160px;
+}
+
+@keyframes globePulse {
+  0%   { r: 3; opacity: 1; }
+  100% { r: 28; opacity: 0; }
+}
+
+/* Puntos de fuentes dentro del globo: parpadeo aleatorio */
+.globe-points circle {
+  animation: pointBlink 3s ease-in-out infinite;
+}
+
+@keyframes pointBlink {
+  0%, 100% { opacity: 0.85; }
+  50%      { opacity: 0.3; }
+}
+
+/* HUD inferior con coords y uptime */
+.globe-hud {
   display: flex;
   justify-content: space-between;
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--fg-soft);
-  margin-bottom: 10px;
-}
-
-.scanner-coords {
-  color: var(--accent-3);
-  font-feature-settings: "tnum";
-}
-
-.scanner-svg {
-  width: 100%;
-  height: 60px;
-  display: block;
+  align-items: center;
+  margin-top: 8px;
+  padding: 10px 14px;
   background: var(--bg-deep);
   border: 1px solid var(--border);
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
-.scanner-dots circle {
-  transition: opacity 0.3s var(--ease);
+.globe-hud-left, .globe-hud-right {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
 }
 
-.scanner-line {
-  animation: scannerSweep 4s linear infinite;
+.globe-hud-right { align-items: flex-end; }
+
+.globe-hud-label {
+  color: var(--fg-faint);
+  font-size: 8px;
 }
 
-@keyframes scannerSweep {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(300px); }
+.globe-hud-value {
+  color: var(--accent-3);
+  font-weight: 500;
+  font-feature-settings: "tnum";
+  letter-spacing: 0.08em;
+}
+
+/* Tres stats abajo del globo */
+.globe-stats {
+  margin-top: 14px;
+  padding-top: 16px;
+  border-top: 1px dashed var(--border);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.globe-stats > div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.globe-stats .hero-stat-value {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 36px;
+  color: var(--accent-1);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.globe-stats .hero-stat-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg-soft);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .scanner-line { animation: none; opacity: 0; }
+  .globe-orbit-1, .globe-orbit-2, .globe-orbit-3,
+  .globe-rotate, .globe-beam, .globe-pulse,
+  .globe-points circle {
+    animation: none !important;
+  }
+  .globe-beam { opacity: 0; }
 }
 
 .bar-row {
@@ -1654,6 +1782,212 @@ button { font-family: inherit; cursor: pointer; background: none; border: none; 
 }
 
 /* ═══════════════════════════════════════════════════════════════
+   TELEMETRÍA — distribución del archivo
+   ═══════════════════════════════════════════════════════════════ */
+.telemetry {
+  position: relative;
+  z-index: 5;
+  padding: 100px 24px;
+  background: var(--bg-deep);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.telemetry::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent-3), transparent);
+  opacity: 0.4;
+}
+
+.telemetry-inner {
+  max-width: 1480px;
+  margin: 0 auto;
+}
+
+.telemetry-header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 40px;
+  align-items: end;
+  margin-bottom: 56px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.telemetry-eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent-3);
+  margin-bottom: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.telemetry-eyebrow::before {
+  content: '';
+  width: 24px;
+  height: 1px;
+  background: var(--accent-3);
+}
+
+.telemetry-title {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(36px, 5vw, 64px);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--accent-1);
+  font-variation-settings: "opsz" 144;
+}
+
+.telemetry-title em {
+  font-style: italic;
+  color: var(--accent-2);
+}
+
+.telemetry-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-family: var(--mono);
+  text-align: right;
+}
+
+.telemetry-meta-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-end;
+  gap: 12px;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg-soft);
+}
+
+.telemetry-meta-row strong {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 28px;
+  color: var(--accent-3);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  font-variation-settings: "opsz" 36;
+}
+
+.telemetry-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.telemetry-bar {
+  display: block;
+  padding: 18px 22px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  transition: all 0.4s var(--ease);
+  position: relative;
+  overflow: hidden;
+}
+
+.telemetry-bar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--accent-3) 4%, transparent), transparent 30%);
+  opacity: 0;
+  transition: opacity 0.4s var(--ease);
+  pointer-events: none;
+}
+
+.telemetry-bar:hover {
+  border-color: var(--accent-1);
+  transform: translateX(4px);
+  background: var(--bg-card-hover);
+}
+
+.telemetry-bar:hover::before { opacity: 1; }
+
+.telemetry-bar-head {
+  display: grid;
+  grid-template-columns: 50px 1fr auto;
+  gap: 16px;
+  align-items: baseline;
+  margin-bottom: 12px;
+}
+
+.telemetry-bar-num {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--accent-3);
+  letter-spacing: 0.1em;
+}
+
+.telemetry-bar-name {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 22px;
+  color: var(--accent-1);
+  letter-spacing: -0.02em;
+  font-variation-settings: "opsz" 36;
+}
+
+.telemetry-bar-count {
+  font-family: var(--mono);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--accent-1);
+  letter-spacing: 0.06em;
+}
+
+.telemetry-bar-track {
+  height: 6px;
+  background: var(--bg-deep);
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.telemetry-bar-fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: var(--w, 0%);
+  background: var(--c, var(--accent-1));
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: telemetryFill 1.2s var(--ease-snap) both;
+}
+
+.telemetry-bar:nth-child(1) .telemetry-bar-fill { animation-delay: 0.05s; }
+.telemetry-bar:nth-child(2) .telemetry-bar-fill { animation-delay: 0.15s; }
+.telemetry-bar:nth-child(3) .telemetry-bar-fill { animation-delay: 0.25s; }
+.telemetry-bar:nth-child(4) .telemetry-bar-fill { animation-delay: 0.35s; }
+.telemetry-bar:nth-child(5) .telemetry-bar-fill { animation-delay: 0.45s; }
+
+@keyframes telemetryFill {
+  to { transform: scaleX(1); }
+}
+
+.telemetry-bar-meta {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg-faint);
+}
+
+/* ═══════════════════════════════════════════════════════════════
    MANIFIESTO — sección de cierre
    ═══════════════════════════════════════════════════════════════ */
 .manifesto {
@@ -1970,13 +2304,13 @@ footer {
   /* HERO PANEL */
   .hero-panel { padding: 18px; max-width: 100%; }
   .hero-panel-title { font-size: 9px; margin-bottom: 14px; padding-bottom: 10px; }
-  .hero-stat-row { padding: 10px 0; }
-  .hero-stat-label { font-size: 10px; }
-  .hero-stat-value { font-size: 28px; }
-  .hero-stat-value em { font-size: 18px; }
-  .hero-panel-bars { margin-top: 14px; padding-top: 14px; }
-  .bar-row { grid-template-columns: 90px 1fr 28px; gap: 8px; font-size: 9px; }
-  .bar-num { font-size: 10px; }
+  .globe-svg { max-width: 280px; margin: 0 auto; }
+  .globe-wrap { margin: 8px 0 0; }
+  .globe-hud { font-size: 8px; padding: 8px 12px; }
+  .globe-hud-label { font-size: 7px; }
+  .globe-stats { gap: 10px; }
+  .globe-stats .hero-stat-value { font-size: 28px; }
+  .globe-stats .hero-stat-label { font-size: 8px; letter-spacing: 0.1em; }
 
   .hero-marquee { padding-top: 18px; }
   .marquee-track { font-size: 11px; gap: 28px; animation-duration: 35s; }
@@ -2105,6 +2439,25 @@ footer {
   .principle-num::after { left: 32px; width: 16px; }
   .principle h3 { font-size: 18px; margin-bottom: 8px; }
   .principle p { font-size: 13px; }
+
+  /* TELEMETRÍA mobile */
+  .telemetry { padding: 70px 18px; }
+  .telemetry-header {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-bottom: 40px;
+  }
+  .telemetry-meta { align-items: flex-start; }
+  .telemetry-meta-row { justify-content: flex-start; }
+  .telemetry-meta-row strong { font-size: 22px; }
+  .telemetry-title { font-size: clamp(28px, 7vw, 42px); }
+  .telemetry-bars { gap: 12px; }
+  .telemetry-bar { padding: 14px 16px; }
+  .telemetry-bar-head { grid-template-columns: 32px 1fr auto; gap: 10px; margin-bottom: 10px; }
+  .telemetry-bar-num { font-size: 10px; }
+  .telemetry-bar-name { font-size: 16px; }
+  .telemetry-bar-count { font-size: 12px; }
+  .telemetry-bar-meta { font-size: 9px; }
 
   /* COMMAND PALETTE en mobile */
   .cmd-overlay { padding-top: 8vh; align-items: flex-start; }
@@ -2267,69 +2620,112 @@ footer {
     <div class="hero-panel">
       <div class="hero-panel-title">
         <span>// CATÁLOGO_EN_VIVO</span>
-        <span>● ACTIVO</span>
+        <span class="hero-panel-status">● TRANSMITIENDO</span>
       </div>
 
-      <div class="hero-stat-row">
-        <span class="hero-stat-label">DOMINIOS</span>
-        <span class="hero-stat-value" data-count="5">0</span>
-      </div>
-      <div class="hero-stat-row">
-        <span class="hero-stat-label">FUENTES_INDEX</span>
-        <span class="hero-stat-value" data-count="22">0</span>
-      </div>
-      <div class="hero-stat-row">
-        <span class="hero-stat-label">IDIOMAS</span>
-        <span class="hero-stat-value" data-count="4">0</span>
-      </div>
-
-      <div class="hero-panel-bars">
-        <div class="bar-row">
-          <span>// MARCOS</span>
-          <div class="bar-track"><div class="bar-fill" style="--w: 80%"></div></div>
-          <span class="bar-num">05</span>
-        </div>
-        <div class="bar-row">
-          <span>// OBSERVATORIOS</span>
-          <div class="bar-track"><div class="bar-fill rust" style="--w: 80%"></div></div>
-          <span class="bar-num">05</span>
-        </div>
-        <div class="bar-row">
-          <span>// UNESCO</span>
-          <div class="bar-track"><div class="bar-fill blue" style="--w: 65%"></div></div>
-          <span class="bar-num">04</span>
-        </div>
-        <div class="bar-row">
-          <span>// COMERCIO</span>
-          <div class="bar-track"><div class="bar-fill" style="--w: 65%"></div></div>
-          <span class="bar-num">04</span>
-        </div>
-        <div class="bar-row">
-          <span>// LECTURAS</span>
-          <div class="bar-track"><div class="bar-fill rust" style="--w: 65%"></div></div>
-          <span class="bar-num">04</span>
-        </div>
-      </div>
-
-      <!-- MINI SCANNER VISUAL -->
-      <div class="hero-scanner">
-        <div class="scanner-label">
-          <span>// SCANNER</span>
-          <span class="scanner-coords" id="scanner-coords">22.05.26 · 04:42</span>
-        </div>
-        <svg class="scanner-svg" viewBox="0 0 280 60" xmlns="http://www.w3.org/2000/svg">
+      <!-- GLOBO TERRAQUEO — escaneo IA en vivo -->
+      <div class="globe-wrap">
+        <svg class="globe-svg" viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <defs>
-            <linearGradient id="scanGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <!-- Glow para el globo -->
+            <radialGradient id="globeGlow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="var(--accent-1)" stop-opacity="0.15"/>
+              <stop offset="70%" stop-color="var(--accent-1)" stop-opacity="0.05"/>
+              <stop offset="100%" stop-color="var(--accent-1)" stop-opacity="0"/>
+            </radialGradient>
+            <!-- Gradiente del haz de escaneo -->
+            <linearGradient id="scanBeam" x1="0%" y1="0%" x2="0%" y2="100%">
               <stop offset="0%" stop-color="var(--accent-3)" stop-opacity="0"/>
-              <stop offset="50%" stop-color="var(--accent-3)" stop-opacity="0.4"/>
+              <stop offset="50%" stop-color="var(--accent-3)" stop-opacity="0.55"/>
               <stop offset="100%" stop-color="var(--accent-3)" stop-opacity="0"/>
             </linearGradient>
+            <!-- Clip al área del globo -->
+            <clipPath id="globeClip">
+              <circle cx="160" cy="160" r="92"/>
+            </clipPath>
           </defs>
-          <!-- Grid de puntos representando las 22 fuentes -->
-          <g class="scanner-dots"></g>
-          <!-- Línea de escaneo -->
-          <rect class="scanner-line" x="-20" y="0" width="40" height="60" fill="url(#scanGrad)"/>
+
+          <!-- Glow exterior -->
+          <circle cx="160" cy="160" r="140" fill="url(#globeGlow)"/>
+
+          <!-- Anillos orbitales rotando en sentidos opuestos -->
+          <g class="globe-orbit globe-orbit-1">
+            <ellipse cx="160" cy="160" rx="118" ry="118" fill="none" stroke="var(--accent-1)" stroke-width="0.6" stroke-opacity="0.25" stroke-dasharray="2 6"/>
+            <circle cx="278" cy="160" r="2.5" fill="var(--accent-3)"/>
+          </g>
+          <g class="globe-orbit globe-orbit-2">
+            <ellipse cx="160" cy="160" rx="132" ry="48" fill="none" stroke="var(--accent-2)" stroke-width="0.5" stroke-opacity="0.4"/>
+            <circle cx="292" cy="160" r="2" fill="var(--accent-2)"/>
+          </g>
+          <g class="globe-orbit globe-orbit-3">
+            <ellipse cx="160" cy="160" rx="48" ry="132" fill="none" stroke="var(--accent-1)" stroke-width="0.5" stroke-opacity="0.35"/>
+            <circle cx="160" cy="28" r="1.8" fill="var(--accent-1)"/>
+          </g>
+
+          <!-- Esfera base del globo -->
+          <circle cx="160" cy="160" r="92" fill="var(--bg-deep)" stroke="var(--accent-1)" stroke-width="1" stroke-opacity="0.5"/>
+
+          <!-- Hemisferio rotatorio: latitud/longitud + puntos -->
+          <g clip-path="url(#globeClip)">
+            <g class="globe-rotate">
+              <!-- Líneas de longitud (meridianos) -->
+              <ellipse cx="160" cy="160" rx="30" ry="92" fill="none" stroke="var(--accent-1)" stroke-width="0.6" stroke-opacity="0.45"/>
+              <ellipse cx="160" cy="160" rx="60" ry="92" fill="none" stroke="var(--accent-1)" stroke-width="0.6" stroke-opacity="0.45"/>
+              <ellipse cx="160" cy="160" rx="90" ry="92" fill="none" stroke="var(--accent-1)" stroke-width="0.6" stroke-opacity="0.3"/>
+              <line x1="160" y1="68" x2="160" y2="252" stroke="var(--accent-1)" stroke-width="0.7" stroke-opacity="0.5"/>
+              <!-- Líneas de latitud (paralelos) -->
+              <ellipse cx="160" cy="160" rx="92" ry="22" fill="none" stroke="var(--accent-1)" stroke-width="0.5" stroke-opacity="0.35"/>
+              <ellipse cx="160" cy="160" rx="92" ry="50" fill="none" stroke="var(--accent-1)" stroke-width="0.5" stroke-opacity="0.35"/>
+              <ellipse cx="160" cy="160" rx="92" ry="75" fill="none" stroke="var(--accent-1)" stroke-width="0.5" stroke-opacity="0.3"/>
+              <line x1="68" y1="160" x2="252" y2="160" stroke="var(--accent-1)" stroke-width="0.5" stroke-opacity="0.35"/>
+
+              <!-- Puntos de fuentes distribuidas por el globo -->
+              <g class="globe-points"></g>
+            </g>
+          </g>
+
+          <!-- Haz de escaneo vertical que cruza el globo -->
+          <rect class="globe-beam" x="60" y="40" width="14" height="240" fill="url(#scanBeam)" clip-path="url(#globeClip)"/>
+
+          <!-- Indicadores cardinales tenues -->
+          <g class="globe-cardinals" font-family="JetBrains Mono, monospace" font-size="8" fill="var(--fg-faint)" text-anchor="middle" letter-spacing="0.15em">
+            <text x="160" y="22">N</text>
+            <text x="160" y="306">S</text>
+            <text x="14" y="164">W</text>
+            <text x="306" y="164">E</text>
+          </g>
+
+          <!-- Pulso central (corazón del escáner) -->
+          <circle class="globe-pulse" cx="160" cy="160" r="3" fill="var(--accent-3)"/>
         </svg>
+
+        <!-- Etiqueta inferior tipo HUD -->
+        <div class="globe-hud">
+          <div class="globe-hud-left">
+            <span class="globe-hud-label">LAT/LON</span>
+            <span class="globe-hud-value" id="globe-coords">-31.63° / -60.71°</span>
+          </div>
+          <div class="globe-hud-right">
+            <span class="globe-hud-label">UPTIME</span>
+            <span class="globe-hud-value" id="globe-uptime">00:00:00</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tres stats clave abajo del globo -->
+      <div class="globe-stats">
+        <div>
+          <span class="hero-stat-value" data-count="5">0</span>
+          <span class="hero-stat-label">DOMINIOS</span>
+        </div>
+        <div>
+          <span class="hero-stat-value" data-count="22">0</span>
+          <span class="hero-stat-label">FUENTES</span>
+        </div>
+        <div>
+          <span class="hero-stat-value" data-count="4">0</span>
+          <span class="hero-stat-label">IDIOMAS</span>
+        </div>
       </div>
     </div>
   </aside>
@@ -3224,6 +3620,92 @@ footer {
 </main>
 
 <!-- ═══════════════════════════════════════════════════════════════
+     TELEMETRÍA — distribución del archivo por dominio
+     ═══════════════════════════════════════════════════════════════ -->
+<section class="telemetry">
+  <div class="telemetry-inner">
+    <div class="telemetry-header">
+      <div>
+        <div class="telemetry-eyebrow">// TELEMETRÍA DEL ARCHIVO</div>
+        <h2 class="telemetry-title">Distribución <em>por dominio</em></h2>
+      </div>
+      <div class="telemetry-meta">
+        <div class="telemetry-meta-row">
+          <span>TOTAL_REGISTROS</span>
+          <strong>22</strong>
+        </div>
+        <div class="telemetry-meta-row">
+          <span>DOMINIOS_ACTIVOS</span>
+          <strong>05</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="telemetry-bars">
+      <a href="#marcos" class="telemetry-bar" data-bar="marcos">
+        <div class="telemetry-bar-head">
+          <span class="telemetry-bar-num">01</span>
+          <span class="telemetry-bar-name">Marcos regulatorios</span>
+          <span class="telemetry-bar-count">05</span>
+        </div>
+        <div class="telemetry-bar-track">
+          <div class="telemetry-bar-fill" style="--w: 100%; --c: var(--accent-1);"></div>
+        </div>
+        <div class="telemetry-bar-meta">UE · USA · ARG · GLOBAL</div>
+      </a>
+
+      <a href="#observatorios" class="telemetry-bar" data-bar="observatorios">
+        <div class="telemetry-bar-head">
+          <span class="telemetry-bar-num">02</span>
+          <span class="telemetry-bar-name">Observatorios y datos</span>
+          <span class="telemetry-bar-count">05</span>
+        </div>
+        <div class="telemetry-bar-track">
+          <div class="telemetry-bar-fill" style="--w: 100%; --c: var(--accent-3);"></div>
+        </div>
+        <div class="telemetry-bar-meta">LATAM · GLOBAL</div>
+      </a>
+
+      <a href="#unesco" class="telemetry-bar" data-bar="unesco">
+        <div class="telemetry-bar-head">
+          <span class="telemetry-bar-num">03</span>
+          <span class="telemetry-bar-name">Documentos UNESCO</span>
+          <span class="telemetry-bar-count">04</span>
+        </div>
+        <div class="telemetry-bar-track">
+          <div class="telemetry-bar-fill" style="--w: 80%; --c: var(--accent-2);"></div>
+        </div>
+        <div class="telemetry-bar-meta">REPOSITORIO UNESDOC</div>
+      </a>
+
+      <a href="#comercio" class="telemetry-bar" data-bar="comercio">
+        <div class="telemetry-bar-head">
+          <span class="telemetry-bar-num">04</span>
+          <span class="telemetry-bar-name">Comercio digital</span>
+          <span class="telemetry-bar-count">04</span>
+        </div>
+        <div class="telemetry-bar-track">
+          <div class="telemetry-bar-fill" style="--w: 80%; --c: var(--accent-1);"></div>
+        </div>
+        <div class="telemetry-bar-meta">ARGENTINA · LATAM</div>
+      </a>
+
+      <a href="#lecturas" class="telemetry-bar" data-bar="lecturas">
+        <div class="telemetry-bar-head">
+          <span class="telemetry-bar-num">05</span>
+          <span class="telemetry-bar-name">Lecturas críticas</span>
+          <span class="telemetry-bar-count">04</span>
+        </div>
+        <div class="telemetry-bar-track">
+          <div class="telemetry-bar-fill" style="--w: 80%; --c: var(--accent-3);"></div>
+        </div>
+        <div class="telemetry-bar-meta">ACADÉMICO · ENSAYO</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
      MANIFIESTO
      ═══════════════════════════════════════════════════════════════ -->
 <section class="manifesto">
@@ -3337,14 +3819,12 @@ const DOMAIN_NAMES = {
 };
 
 // ═══════════════════════════════════════════════════════════════
-// SCANNER del hero — puntos representando las 22 fuentes
+// GLOBO TERRÁQUEO — puntos de fuentes + telemetría en vivo
 // ═══════════════════════════════════════════════════════════════
-(function buildScanner() {
-  const g = document.querySelector('.scanner-dots');
+(function buildGlobePoints() {
+  const g = document.querySelector('.globe-points');
   if (!g) return;
-  const cols = 11, rows = 2;
-  const cell = 22;
-  const offX = 18, offY = 16;
+  const cx = 160, cy = 160, r = 80;
   const colorMap = {
     marcos: 'var(--accent-1)',
     observatorios: 'var(--accent-3)',
@@ -3352,35 +3832,64 @@ const DOMAIN_NAMES = {
     comercio: 'var(--accent-1)',
     lecturas: 'var(--accent-3)'
   };
-  // Repartir los 22 archivos en 2 filas de 11
+  // Distribuir 22 puntos sobre la "superficie visible" del globo de forma reproducible
   ARCHIVE.forEach((it, i) => {
-    const col = i % cols;
-    const row = Math.floor(i / cols);
+    // Coordenadas tipo lat/lon pseudo-aleatorias pero determinísticas
+    const seed = (i * 137.508) % 360;
+    const lon = (seed - 180) * (Math.PI / 180);    // longitud
+    const lat = (((i * 53.7) % 140) - 70) * (Math.PI / 180); // latitud entre -70 y 70
+
+    // Proyección esférica simple a 2D
+    const x = cx + r * Math.cos(lat) * Math.sin(lon);
+    const y = cy - r * Math.sin(lat);
+    const visible = Math.cos(lat) * Math.cos(lon); // > 0 = hemisferio visible
+
+    if (visible < 0) return; // los del otro lado no se dibujan (los oculta el clip de todos modos)
+
     const c = document.createElementNS('http://www.w3.org/2000/svg','circle');
-    c.setAttribute('cx', offX + col * cell);
-    c.setAttribute('cy', offY + row * cell);
-    c.setAttribute('r', 2.5);
+    c.setAttribute('cx', x.toFixed(1));
+    c.setAttribute('cy', y.toFixed(1));
+    c.setAttribute('r', 1.8 + visible * 1.4);
     c.setAttribute('fill', colorMap[it.dom] || 'var(--accent-1)');
-    c.setAttribute('opacity', '0.65');
-    c.style.transition = 'opacity 0.3s';
+    c.setAttribute('opacity', (0.4 + visible * 0.5).toFixed(2));
+    c.style.animationDelay = (i * 0.18) + 's';
     g.appendChild(c);
   });
 })();
 
-// Actualizar coords del scanner cada segundo
-function updateScannerCoords() {
-  const el = document.getElementById('scanner-coords');
+// Uptime — tiempo desde que se cargó la página
+const UPTIME_START = Date.now();
+function updateGlobeUptime() {
+  const el = document.getElementById('globe-uptime');
   if (!el) return;
-  const d = new Date();
-  const dd = String(d.getDate()).padStart(2,'0');
-  const mm = String(d.getMonth()+1).padStart(2,'0');
-  const yy = String(d.getFullYear()).slice(-2);
-  const hh = String(d.getHours()).padStart(2,'0');
-  const min = String(d.getMinutes()).padStart(2,'0');
-  el.textContent = `${dd}.${mm}.${yy} · ${hh}:${min}`;
+  const sec = Math.floor((Date.now() - UPTIME_START) / 1000);
+  const h = String(Math.floor(sec / 3600)).padStart(2, '0');
+  const m = String(Math.floor((sec % 3600) / 60)).padStart(2, '0');
+  const s = String(sec % 60).padStart(2, '0');
+  el.textContent = `${h}:${m}:${s}`;
 }
-setInterval(updateScannerCoords, 30000);
-updateScannerCoords();
+setInterval(updateGlobeUptime, 1000);
+updateGlobeUptime();
+
+// Lat/Lon cambiando lentamente — sugiere que el escáner está barriendo el globo
+let globeLat = -31.63;
+let globeLon = -60.71;
+function updateGlobeCoords() {
+  const el = document.getElementById('globe-coords');
+  if (!el) return;
+  // Pequeña deriva para que parezca un sweep continuo
+  globeLat += (Math.random() - 0.5) * 1.2;
+  globeLon += (Math.random() - 0.3) * 1.8;
+  if (globeLat > 75) globeLat = -75;
+  if (globeLat < -75) globeLat = 75;
+  if (globeLon > 180) globeLon = -180;
+  if (globeLon < -180) globeLon = 180;
+  const latStr = (globeLat >= 0 ? '+' : '') + globeLat.toFixed(2);
+  const lonStr = (globeLon >= 0 ? '+' : '') + globeLon.toFixed(2);
+  el.textContent = `${latStr}° / ${lonStr}°`;
+}
+setInterval(updateGlobeCoords, 1800);
+updateGlobeCoords();
 function updateClock() {
   const d = new Date();
   const h = String(d.getHours()).padStart(2, '0');
@@ -3751,12 +4260,10 @@ chips.forEach(chip => {
     chips.forEach(c => c.classList.toggle('active', c === chip));
 
     // GRID
-    let visibleCount = 0;
     document.querySelectorAll('.domain-block').forEach(blk => {
       if (document.body.dataset.view !== 'grid') return;
       const isVisible = filter === 'all' || blk.dataset.domain === filter;
       blk.classList.toggle('hidden', !isVisible);
-      if (isVisible) visibleCount += blk.querySelectorAll('.card').length;
     });
 
     // LISTA
@@ -3776,10 +4283,32 @@ chips.forEach(chip => {
       emptyState.style.display = showEmpty ? 'block' : 'none';
     }
 
-    // Scroll suave si filtra a un dominio (solo en grid)
+    // SCROLL INTELIGENTE
+    // Regla: solo hacemos scroll si el usuario filtra a un dominio específico EN VISTA GRID
+    // y SOLAMENTE si está navegando dentro del archivo (no en el hero).
+    // Nunca scrollamos al apretar "Todos" — eso te deja donde estás.
     if (filter !== 'all' && document.body.dataset.view === 'grid') {
       const blk = document.querySelector(`.domain-block[data-domain="${filter}"]`);
-      if (blk) setTimeout(() => window.scrollTo({top: blk.offsetTop - 160, behavior: 'smooth'}), 60);
+      const controlBar = document.querySelector('.control-bar');
+      if (!blk || !controlBar) return;
+
+      // Detectar si la control-bar ya está sticky (usuario navegando el archivo)
+      const ctrlRect = controlBar.getBoundingClientRect();
+      const ctrlIsSticky = ctrlRect.top <= 80; // umbral con margen para HUD
+
+      if (!ctrlIsSticky) return; // todavía en hero — no scroll innecesario
+
+      // Calcular offset: dejar el dominio justo debajo del HUD + control-bar
+      const hudH = document.querySelector('.hud-top').offsetHeight;
+      const ctrlH = controlBar.offsetHeight;
+      const targetY = blk.offsetTop - hudH - ctrlH - 16;
+
+      // Si ya estás cerca del target, no hace falta scrollear
+      if (Math.abs(window.scrollY - targetY) < 60) return;
+
+      setTimeout(() => {
+        window.scrollTo({ top: targetY, behavior: 'smooth' });
+      }, 60);
     }
   });
 });
@@ -3999,6 +4528,29 @@ chips.forEach(chip => {
     if (window.location.hash !== newHash) {
       try { history.replaceState(null, '', newHash || window.location.pathname); } catch(e){}
     }
+  });
+});
+
+// Interceptar clicks de las barras de telemetría para scroll controlado al archivo
+document.querySelectorAll('.telemetry-bar').forEach(bar => {
+  bar.addEventListener('click', (e) => {
+    e.preventDefault();
+    const target = bar.dataset.bar;
+    if (!VALID_HASHES.includes(target)) return;
+    // Setear hash sin disparar el salto nativo
+    try { history.replaceState(null, '', '#' + target); } catch(e){}
+    // Activar el filtro
+    const chip = document.querySelector(`.chip[data-filter="${target}"]`);
+    if (!chip) return;
+    chip.click();
+    // Scroll explícito al dominio
+    setTimeout(() => {
+      const blk = document.querySelector(`.domain-block[data-domain="${target}"]`);
+      if (!blk) return;
+      const hudH = document.querySelector('.hud-top').offsetHeight;
+      const ctrlH = document.querySelector('.control-bar').offsetHeight;
+      window.scrollTo({ top: blk.offsetTop - hudH - ctrlH - 16, behavior: 'smooth' });
+    }, 80);
   });
 });
 
