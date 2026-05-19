@@ -526,6 +526,7 @@
             display: flex;
             align-items: center;
             padding-top: 80px;
+            padding-bottom: 80px;
         }
 
         .hero-content {
@@ -854,6 +855,60 @@
         #servicios .cards-grid .card:nth-child(6) .card-icon i { color: #14b8a6; }
         #servicios .cards-grid .card:nth-child(6)::before { background: #14b8a6; }
 
+        /* ═══════════════════════════════════════════════
+           SERVICIOS CARDS — BACKGROUND DESIGN UPGRADE
+           ═══════════════════════════════════════════════ */
+        #servicios .cards-grid .card {
+            background: linear-gradient(165deg, var(--bg-alt) 0%, var(--bg-alt) 55%, var(--bg) 100%);
+            isolation: isolate;
+        }
+
+        /* Decorative grid pattern in the background — very subtle */
+        #servicios .cards-grid .card {
+            background-image:
+                linear-gradient(165deg, var(--bg-alt) 0%, var(--bg-alt) 55%, var(--bg) 100%),
+                radial-gradient(circle at 1px 1px, var(--border-hover) 1px, transparent 0);
+            background-size: auto, 22px 22px;
+            background-position: 0 0, 12px 12px;
+            background-blend-mode: normal, multiply;
+        }
+
+        /* Colored corner glow that activates on hover — uses per-card --card-tint */
+        #servicios .cards-grid .card::after {
+            content: '';
+            position: absolute;
+            top: -1px;
+            right: -1px;
+            width: 220px;
+            height: 220px;
+            background: radial-gradient(circle at top right, var(--card-tint, var(--accent-glow)), transparent 65%);
+            opacity: 0;
+            transition: opacity 0.5s var(--ease);
+            pointer-events: none;
+            z-index: -1;
+            border-radius: inherit;
+        }
+
+        #servicios .cards-grid .card:hover::after {
+            opacity: 1;
+        }
+
+        #servicios .cards-grid .card:nth-child(1) { --card-tint: rgba(37, 99, 235, 0.18); }
+        #servicios .cards-grid .card:nth-child(2) { --card-tint: rgba(249, 115, 22, 0.18); }
+        #servicios .cards-grid .card:nth-child(3) { --card-tint: rgba(34, 197, 94, 0.18); }
+        #servicios .cards-grid .card:nth-child(4) { --card-tint: rgba(139, 92, 246, 0.18); }
+        #servicios .cards-grid .card:nth-child(5) { --card-tint: rgba(236, 72, 153, 0.18); }
+        #servicios .cards-grid .card:nth-child(6) { --card-tint: rgba(20, 184, 166, 0.18); }
+
+        @media (prefers-color-scheme: dark) {
+            #servicios .cards-grid .card {
+                background-image:
+                    linear-gradient(165deg, var(--bg-alt) 0%, var(--bg-alt) 55%, #0f0f0f 100%),
+                    radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.04) 1px, transparent 0);
+                background-blend-mode: normal, normal;
+            }
+        }
+
         .card h3 {
             font-size: 1.05rem;
             margin-bottom: 10px;
@@ -916,26 +971,6 @@
             padding: 100px 0 120px;
             position: relative;
             overflow: hidden;
-        }
-
-        #experiencias::before {
-            content: '';
-            position: absolute;
-            top: -1px;
-            left: 0;
-            width: 100%;
-            height: 80px;
-            background: linear-gradient(to bottom, var(--bg), var(--bg-exp));
-        }
-
-        #experiencias::after {
-            content: '';
-            position: absolute;
-            bottom: -1px;
-            left: 0;
-            width: 100%;
-            height: 80px;
-            background: linear-gradient(to top, var(--bg-alt), var(--bg-exp));
         }
 
         .exp-intro {
@@ -2534,8 +2569,12 @@
             position: absolute;
             inset: 0;
             background-image:
+                linear-gradient(90deg, transparent, rgba(96, 165, 250, 0.6), transparent),
                 radial-gradient(circle at 20% 30%, rgba(37, 99, 235, 0.25) 0%, transparent 50%),
                 radial-gradient(circle at 80% 70%, rgba(249, 115, 22, 0.18) 0%, transparent 55%);
+            background-size: 100% 3px, auto, auto;
+            background-position: top, center, center;
+            background-repeat: no-repeat, no-repeat, no-repeat;
             pointer-events: none;
         }
 
@@ -2677,7 +2716,30 @@
             overflow: hidden;
         }
 
-        .archive-section::before {
+        /* ═══════════════════════════════════════════════
+           UNIFIED SECTION DIVIDERS
+           — thin accent gradient line at the top of every
+             section, so all transitions feel like one page
+           ═══════════════════════════════════════════════ */
+        #servicios,
+        #experiencias,
+        #inteligencia-artificial,
+        #educacion,
+        .archive-section,
+        #contacto,
+        #articulos,
+        .social-cta-section {
+            position: relative;
+        }
+
+        #servicios::before,
+        #experiencias::before,
+        #inteligencia-artificial::before,
+        #educacion::before,
+        .archive-section::before,
+        #contacto::before,
+        #articulos::before,
+        .social-cta-section::before {
             content: '';
             position: absolute;
             top: 0;
@@ -2685,7 +2747,9 @@
             width: 100%;
             height: 3px;
             background: linear-gradient(90deg, transparent, var(--accent), transparent);
-            opacity: 0.4;
+            opacity: 0.5;
+            pointer-events: none;
+            z-index: 3;
         }
 
         .archive-grid {
@@ -2896,6 +2960,13 @@
             color: var(--text);
         }
 
+        .contact-channel-sub {
+            font-size: 0.78rem;
+            font-weight: 400;
+            color: var(--text-3);
+            margin-top: 2px;
+        }
+
         /* ═══════════════════════════════════════════════
            SERVICIOS — CONVERSION CTA BLOCK
            ═══════════════════════════════════════════════ */
@@ -3043,8 +3114,8 @@
     <!-- Side Section Navigator (desktop) -->
     <nav class="side-nav" id="sideNav" aria-label="Section navigation">
         <button class="side-nav-dot" data-target="hero" data-label="Bio" aria-label="Bio"></button>
-        <button class="side-nav-dot" data-target="experiencias" data-label="Sobre Nick" aria-label="Sobre Nick"></button>
         <button class="side-nav-dot" data-target="servicios" data-label="Servicios" aria-label="Servicios"></button>
+        <button class="side-nav-dot" data-target="experiencias" data-label="Sobre Nick" aria-label="Sobre Nick"></button>
         <button class="side-nav-dot" data-target="inteligencia-artificial" data-label="IA" aria-label="Inteligencia Artificial"></button>
         <button class="side-nav-dot" data-target="educacion" data-label="Educación" aria-label="Educación"></button>
         <button class="side-nav-dot" data-target="comunidad" data-label="Comunidad" aria-label="Comunidad ConsciencIA"></button>
@@ -3183,13 +3254,111 @@
     </section>
 
     <!-- ═══════════════════════════════════════════════
+     SERVICIOS
+     ═══════════════════════════════════════════════ -->
+    <section id="servicios" class="section-padding">
+        <div class="container fade-in">
+            <div class="section-header">
+                <div class="section-eyebrow">
+                    <i data-lucide="briefcase"></i>
+                    <span data-lang="es">Qué ofrecemos</span>
+                    <span data-lang="en">What we offer</span>
+                </div>
+                <h2>
+                    <span data-lang="es"><span class="highlight">Servicios</span> profesionales</span>
+                    <span data-lang="en"><span class="highlight">Professional</span> services</span>
+                </h2>
+                <p class="section-lead">
+                    <span data-lang="es">Trabajamos junto a una red de profesionales y empresas de excelencia y experiencia para acompañar a personas y organizaciones en su transformación digital responsable.</span>
+                    <span data-lang="en">We work alongside a network of professionals and organizations of excellence and experience to support people and businesses on their responsible digital transformation.</span>
+                </p>
+            </div>
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-icon"><i data-lucide="landmark"></i></div>
+                    <h3><span data-lang="es">Gobierno Digital y Gestión</span><span data-lang="en">Digital Government &
+                            Management</span></h3>
+                    <p><span data-lang="es">Modernización de procesos estatales y consultoría legal estratégica para el
+                            sector público.</span><span data-lang="en">Modernization of government processes and
+                            strategic legal consulting for the public sector.</span></p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i data-lucide="bot"></i></div>
+                    <h3><span data-lang="es">Implementación de IA</span><span data-lang="en">AI Implementation</span>
+                    </h3>
+                    <p><span data-lang="es">Estrategias para integrar herramientas de IA generativa en el flujo de
+                            trabajo profesional y legal.</span><span data-lang="en">Strategies to integrate generative
+                            AI tools into professional and legal workflows.</span></p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i data-lucide="graduation-cap"></i></div>
+                    <h3><span data-lang="es">Innovación Educativa</span><span data-lang="en">Educational
+                            Innovation</span></h3>
+                    <p><span data-lang="es">Diseño de programas académicos que integran tecnología, nuevos métodos y
+                            pensamiento crítico.</span><span data-lang="en">Design of academic programs integrating
+                            technology, new methods, and critical thinking.</span></p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i data-lucide="users-2"></i></div>
+                    <h3><span data-lang="es">Gestión de Talento</span><span data-lang="en">Talent Management</span></h3>
+                    <p><span data-lang="es">Optimización de equipos humanos integrando nuevas tecnologías,
+                            metodologías ágiles y procesos digitales.</span><span data-lang="en">Optimizing teams with
+                            new technologies, agile methodologies, and digital processes.</span></p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i data-lucide="scale"></i></div>
+                    <h3><span data-lang="es">Consultoría Jurídica</span><span data-lang="en">Legal Consulting</span>
+                    </h3>
+                    <p><span data-lang="es">Asesoramiento legal integral con visión estratégica, enfocado en la
+                            prevención de riesgos y soluciones eficientes.</span><span data-lang="en">Comprehensive
+                            legal advice with strategic vision, focused on risk prevention and efficient
+                            solutions.</span></p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i data-lucide="bar-chart-3"></i></div>
+                    <h3><span data-lang="es">Análisis de Datos</span><span data-lang="en">Data Analysis</span></h3>
+                    <p><span data-lang="es">Lectura de performance y toma de decisiones basada en datos, con enfoque en
+                            contextos de alta competitividad.</span><span data-lang="en">Performance analysis and
+                            data-driven decision making in highly competitive contexts.</span></p>
+                </div>
+            </div>
+
+            <!-- Conversion CTA -->
+            <div class="services-cta">
+                <div class="services-cta-text">
+                    <h3>
+                        <span data-lang="es">¿Tu organización está lista para dar el próximo paso?</span>
+                        <span data-lang="en">Is your organization ready for the next step?</span>
+                    </h3>
+                    <p>
+                        <span data-lang="es">Conversemos sobre cómo aplicar estos servicios a tu equipo, tu institución o tu proyecto. Sin compromiso, primer encuentro gratuito.</span>
+                        <span data-lang="en">Let's talk about how to apply these services to your team, institution or project. No strings attached — first meeting on the house.</span>
+                    </p>
+                </div>
+                <div class="services-cta-actions">
+                    <a href="#contacto" class="btn btn-primary">
+                        <i data-lucide="calendar"></i>
+                        <span data-lang="es">Agendar una conversación</span>
+                        <span data-lang="en">Schedule a conversation</span>
+                    </a>
+                    <a href="mailto:contacto@nickperot.com" class="btn btn-outline">
+                        <i data-lucide="mail"></i>
+                        <span data-lang="es">Escribir un email</span>
+                        <span data-lang="en">Send an email</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════
      EXPERIENCIAS — CV STORYTELLING
      ═══════════════════════════════════════════════ -->
     <section id="experiencias">
-        <div class="container">
+        <div class="container fade-in">
 
             <!-- Intro -->
-            <div class="exp-intro fade-in">
+            <div class="exp-intro">
                 <div class="exp-intro-label">
                     <i data-lucide="user-circle-2"></i>
                     <span data-lang="es">Sobre Nick</span>
@@ -4449,106 +4618,6 @@
 
     </section>
 
-
-
-    <!-- ═══════════════════════════════════════════════
-     SERVICIOS
-     ═══════════════════════════════════════════════ -->
-    <section id="servicios" class="section-padding">
-        <div class="container fade-in">
-            <div class="section-header">
-                <div class="section-eyebrow">
-                    <i data-lucide="briefcase"></i>
-                    <span data-lang="es">Qué ofrecemos</span>
-                    <span data-lang="en">What we offer</span>
-                </div>
-                <h2>
-                    <span data-lang="es"><span class="highlight">Servicios</span> profesionales</span>
-                    <span data-lang="en"><span class="highlight">Professional</span> services</span>
-                </h2>
-                <p class="section-lead">
-                    <span data-lang="es">Trabajamos con profesionales y empresas de excelencia y experiencia para acompañar a personas y organizaciones en su transformación digital responsable.</span>
-                    <span data-lang="en">We work with professionals and organizations of excellence and experience to support people and businesses on their responsible digital transformation.</span>
-                </p>
-            </div>
-            <div class="cards-grid">
-                <div class="card">
-                    <div class="card-icon"><i data-lucide="landmark"></i></div>
-                    <h3><span data-lang="es">Gobierno Digital y Gestión</span><span data-lang="en">Digital Government &
-                            Management</span></h3>
-                    <p><span data-lang="es">Modernización de procesos estatales y consultoría legal estratégica para el
-                            sector público.</span><span data-lang="en">Modernization of government processes and
-                            strategic legal consulting for the public sector.</span></p>
-                </div>
-                <div class="card">
-                    <div class="card-icon"><i data-lucide="bot"></i></div>
-                    <h3><span data-lang="es">Implementación de IA</span><span data-lang="en">AI Implementation</span>
-                    </h3>
-                    <p><span data-lang="es">Estrategias para integrar herramientas de IA generativa en el flujo de
-                            trabajo profesional y legal.</span><span data-lang="en">Strategies to integrate generative
-                            AI tools into professional and legal workflows.</span></p>
-                </div>
-                <div class="card">
-                    <div class="card-icon"><i data-lucide="graduation-cap"></i></div>
-                    <h3><span data-lang="es">Innovación Educativa</span><span data-lang="en">Educational
-                            Innovation</span></h3>
-                    <p><span data-lang="es">Diseño de programas académicos que integran tecnología, nuevos métodos y
-                            pensamiento crítico.</span><span data-lang="en">Design of academic programs integrating
-                            technology, new methods, and critical thinking.</span></p>
-                </div>
-                <div class="card">
-                    <div class="card-icon"><i data-lucide="users-2"></i></div>
-                    <h3><span data-lang="es">Gestión de Talento</span><span data-lang="en">Talent Management</span></h3>
-                    <p><span data-lang="es">Optimización de equipos humanos integrando nuevas tecnologías,
-                            metodologías ágiles y procesos digitales.</span><span data-lang="en">Optimizing teams with
-                            new technologies, agile methodologies, and digital processes.</span></p>
-                </div>
-                <div class="card">
-                    <div class="card-icon"><i data-lucide="scale"></i></div>
-                    <h3><span data-lang="es">Consultoría Jurídica</span><span data-lang="en">Legal Consulting</span>
-                    </h3>
-                    <p><span data-lang="es">Asesoramiento legal integral con visión estratégica, enfocado en la
-                            prevención de riesgos y soluciones eficientes.</span><span data-lang="en">Comprehensive
-                            legal advice with strategic vision, focused on risk prevention and efficient
-                            solutions.</span></p>
-                </div>
-                <div class="card">
-                    <div class="card-icon"><i data-lucide="bar-chart-3"></i></div>
-                    <h3><span data-lang="es">Análisis de Datos</span><span data-lang="en">Data Analysis</span></h3>
-                    <p><span data-lang="es">Lectura de performance y toma de decisiones basada en datos, con enfoque en
-                            contextos de alta competitividad.</span><span data-lang="en">Performance analysis and
-                            data-driven decision making in highly competitive contexts.</span></p>
-                </div>
-            </div>
-
-            <!-- Conversion CTA -->
-            <div class="services-cta">
-                <div class="services-cta-text">
-                    <h3>
-                        <span data-lang="es">¿Tu organización está lista para dar el próximo paso?</span>
-                        <span data-lang="en">Is your organization ready for the next step?</span>
-                    </h3>
-                    <p>
-                        <span data-lang="es">Conversemos sobre cómo aplicar estos servicios a tu equipo, tu institución o tu proyecto. Sin compromiso, primer encuentro gratuito.</span>
-                        <span data-lang="en">Let's talk about how to apply these services to your team, institution or project. No strings attached — first meeting on the house.</span>
-                    </p>
-                </div>
-                <div class="services-cta-actions">
-                    <a href="#contacto" class="btn btn-primary">
-                        <i data-lucide="calendar"></i>
-                        <span data-lang="es">Agendar una conversación</span>
-                        <span data-lang="en">Schedule a conversation</span>
-                    </a>
-                    <a href="mailto:contacto@nickperot.com" class="btn btn-outline">
-                        <i data-lucide="mail"></i>
-                        <span data-lang="es">Escribir un email</span>
-                        <span data-lang="en">Send an email</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- ═══════════════════════════════════════════════
      INTELIGENCIA ARTIFICIAL — ARTÍCULOS
      ═══════════════════════════════════════════════ -->
@@ -4728,8 +4797,8 @@
     <!-- ═══════════════════════════════════════════════
      COMUNIDAD CONSCIENCIA DIGITAL — SPOTLIGHT
      ═══════════════════════════════════════════════ -->
-    <section class="community-spotlight fade-in" id="comunidad" aria-labelledby="comunidad-heading">
-        <div class="container">
+    <section class="community-spotlight" id="comunidad" aria-labelledby="comunidad-heading">
+        <div class="container fade-in">
             <div class="community-eyebrow">
                 <i data-lucide="sparkles"></i>
                 <span data-lang="es">Comunidad · Nuevo</span>
@@ -4772,8 +4841,8 @@
     <!-- ═══════════════════════════════════════════════
      EL ARCHIVO — RESOURCES LIBRARY
      ═══════════════════════════════════════════════ -->
-    <section class="archive-section fade-in" id="archivo" aria-labelledby="archivo-heading">
-        <div class="container">
+    <section class="archive-section" id="archivo" aria-labelledby="archivo-heading">
+        <div class="container fade-in">
             <div class="archive-grid">
                 <div class="archive-text">
                     <div class="archive-eyebrow">
@@ -4895,6 +4964,10 @@
                                     <span data-lang="en">Location</span>
                                 </span>
                                 <span class="contact-channel-value">Santa Fe, Argentina</span>
+                                <span class="contact-channel-sub">
+                                    <span data-lang="es">Trabajamos de manera presencial y virtual</span>
+                                    <span data-lang="en">We work in-person and virtually</span>
+                                </span>
                             </div>
                         </div>
                         <div class="contact-channel">
@@ -5174,8 +5247,8 @@
     <!-- ═══════════════════════════════════════════════
      SOCIAL MEDIA CTA
      ═══════════════════════════════════════════════ -->
-    <section class="social-cta-section fade-in">
-        <div class="container">
+    <section class="social-cta-section">
+        <div class="container fade-in">
             <div class="social-cta-inner">
                 <div class="section-eyebrow pink">
                     <i data-lucide="share-2"></i>
