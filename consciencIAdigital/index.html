@@ -485,31 +485,217 @@
   footer.site-foot .name { color: var(--ink); font-weight: 600; }
   footer.site-foot .site { color: var(--gold); }
 
-  /* Responsive */
+  /* ============== Responsive — Mobile (≤640px) ============== */
   @media (max-width: 640px) {
-    .hero { padding: 72px 22px 40px; }
-    .hero h1 { font-size: 62px; }
-    .hero h1 .digital { font-size: 0.36em; }
-    article { padding: 30px 22px 40px; }
-    article p { font-size: 18px; }
-    article > p:first-of-type::first-letter {
-      font-size: 68px;
-      padding: 8px 12px 0 0;
+    /* Hero */
+    .hero { padding: 64px 24px 40px; }
+    .hero .eyebrow {
+      font-size: 10px;
+      letter-spacing: 0.36em;
+      margin-bottom: 30px;
+      gap: 12px;
     }
-    .stanza p { font-size: 19px; }
-    .breath { font-size: 23px; }
-    .transition .line { font-size: 21px; }
-    .coda .seal { font-size: 28px; }
+    .hero .eyebrow::before,
+    .hero .eyebrow::after { width: 22px; }
+    .hero h1 { font-size: 60px; line-height: 0.98; }
+    .hero h1 .digital {
+      font-size: 0.34em;
+      margin-top: 14px;
+      letter-spacing: 0.16em;
+    }
+    .hero .lede {
+      font-size: 19px;
+      line-height: 1.5;
+      margin-top: 30px;
+    }
+    .hero .signoff {
+      margin-top: 44px;
+      font-size: 10px;
+      letter-spacing: 0.26em;
+    }
+    .hero .signoff .dot { margin: 0 10px; }
+
+    /* Article body — la lectura principal */
+    article { padding: 36px 24px 48px; }
+    article p {
+      font-size: 19px;
+      line-height: 1.7;
+      margin-bottom: 22px;
+    }
+    article > p:first-of-type::first-letter {
+      font-size: 72px;
+      padding: 8px 14px 0 0;
+      line-height: 0.85;
+    }
+
+    /* Separadores */
+    .break {
+      margin: 44px 0 36px;
+      font-size: 20px;
+      letter-spacing: 0.5em;
+    }
+
+    /* Estrofa */
+    .stanza {
+      margin: 28px 0 32px;
+      padding-left: 22px;
+    }
+    .stanza p {
+      font-size: 21px;
+      line-height: 1.5;
+      margin-bottom: 8px;
+    }
+
+    /* Breath quote */
+    .breath {
+      font-size: 24px;
+      line-height: 1.4;
+      margin: 44px auto;
+    }
+    .breath::before,
+    .breath::after { width: 36px; }
+    .breath::before { margin-bottom: 22px; }
+    .breath::after { margin-top: 22px; }
+
+    /* Transition */
+    .transition { margin-top: 48px; }
+    .transition .line {
+      font-size: 22px;
+      line-height: 1.4;
+    }
+
+    /* Founder + What-is */
     .founder { margin-top: 56px; padding-top: 36px; }
+    .what-is { margin-top: 42px; }
+    .founder-label,
+    .pillars-label,
+    .join-label {
+      font-size: 10px;
+      letter-spacing: 0.28em;
+      margin-bottom: 18px;
+      gap: 10px;
+    }
+    .founder-text {
+      font-size: 19px;
+      line-height: 1.65;
+    }
+
+    /* Pilares */
+    .pillars { margin-top: 44px; }
+    .pillar-list { margin-top: 8px; }
+    .pillar {
+      flex-direction: column;
+      gap: 4px;
+      align-items: flex-start;
+      padding: 20px 0;
+    }
+    .pillar-num { font-size: 30px; min-width: 0; }
+    .pillar-body h3 {
+      font-size: 24px;
+      margin-bottom: 4px;
+    }
+    .pillar-body p {
+      font-size: 18px;
+      line-height: 1.55;
+    }
+
+    /* CTA / Join */
+    .join {
+      margin-top: 52px;
+      padding: 32px 22px;
+    }
+    .join-label {
+      font-size: 10px;
+      letter-spacing: 0.28em;
+    }
+    .join-text {
+      font-size: 19px;
+      line-height: 1.55;
+      margin-bottom: 26px;
+    }
+    .cta {
+      padding: 16px 28px;
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      gap: 12px;
+    }
+    .cta-arrow { font-size: 18px; }
+    .join-handle {
+      font-size: 10px;
+      letter-spacing: 0.26em;
+      margin-top: 16px;
+    }
+
+    /* Coda */
+    .coda { margin-top: 48px; }
+    .coda .welcome {
+      font-size: 10px;
+      letter-spacing: 0.28em;
+    }
+    .coda .seal {
+      font-size: 32px;
+      margin-top: 18px;
+    }
+
+    /* Footer */
+    footer.site-foot {
+      margin-top: 56px;
+      padding: 22px 24px 56px;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+    }
+  }
+
+  /* ============== Responsive — Phone chico (≤420px) ============== */
+  @media (max-width: 420px) {
+    .hero { padding: 56px 20px 36px; }
+    .hero h1 { font-size: 54px; }
+    .hero h1 .digital {
+      font-size: 0.30em;
+      letter-spacing: 0.14em;
+    }
+    .hero .lede { font-size: 18px; }
+    .hero .signoff { letter-spacing: 0.22em; }
+
+    article { padding: 28px 20px 42px; }
+    article p {
+      font-size: 18px;
+      line-height: 1.65;
+      margin-bottom: 20px;
+    }
+    article > p:first-of-type::first-letter {
+      font-size: 62px;
+      padding: 6px 12px 0 0;
+    }
+
+    .stanza { padding-left: 18px; }
+    .stanza p { font-size: 20px; }
+
+    .breath { font-size: 22px; }
+
+    .transition .line { font-size: 20px; }
+
     .founder-text { font-size: 18px; }
-    .pillars { margin-top: 48px; }
-    .pillar { flex-direction: column; gap: 4px; align-items: flex-start; padding: 18px 0; }
-    .pillar-num { font-size: 28px; min-width: 0; }
     .pillar-body h3 { font-size: 22px; }
     .pillar-body p { font-size: 17px; }
-    .join { margin-top: 56px; padding: 34px 22px; }
+
+    .join { padding: 28px 18px; }
     .join-text { font-size: 18px; }
-    .cta { padding: 14px 22px; font-size: 12px; letter-spacing: 0.18em; }
+    .cta {
+      padding: 15px 24px;
+      font-size: 12px;
+      letter-spacing: 0.16em;
+    }
+    .cta-arrow { font-size: 16px; }
+
+    .coda .seal { font-size: 28px; }
+    .coda .seal .digital {
+      font-size: 0.36em;
+      letter-spacing: 0.16em;
+    }
   }
 
   /* Entrada suave */
