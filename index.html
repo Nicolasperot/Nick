@@ -37,12 +37,23 @@
     <meta property="og:url" content="https://nickperot.com/">
     <meta property="og:site_name" content="Nick Perot">
     <meta property="og:locale" content="es_AR">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:image" content="https://nickperot.com/assets/images/profile_3.jpg">
+    <meta property="og:image:alt" content="Nick Perot — Abogado y Consultor en Derecho, Tecnología y Gestión">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="1500">
 
     <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary">
+    <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Nick Perot | Derecho, Tecnología y Gestión">
     <meta name="twitter:description"
         content="Abogado, docente en UNL y consultor en derecho, tecnología, gestión e IA.">
+    <meta name="twitter:image" content="https://nickperot.com/assets/images/profile_3.jpg">
+    <meta name="twitter:image:alt" content="Nick Perot — Abogado y Consultor en Derecho, Tecnología y Gestión">
+
+    <!-- Theme -->
+    <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0f0f0f" media="(prefers-color-scheme: dark)">
 
     <!-- Security -->
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
@@ -232,22 +243,31 @@
         header {
             position: fixed;
             top: 0;
+            left: 0;
             width: 100%;
             z-index: 1000;
             background: transparent;
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            border-bottom: 1px solid transparent;
-            transition: all 0.4s var(--ease);
+            border: 1px solid transparent;
+            border-radius: 0;
+            transition:
+                top 0.4s var(--ease),
+                left 0.4s var(--ease),
+                transform 0.4s var(--ease),
+                width 0.4s var(--ease),
+                max-width 0.4s var(--ease),
+                border-radius 0.4s var(--ease),
+                border-color 0.4s var(--ease),
+                background 0.4s var(--ease),
+                box-shadow 0.4s var(--ease);
+            will-change: top, width, border-radius;
         }
 
-        header.scrolled {
-            border-bottom: 1px solid var(--border);
-        }
-
-        /* Light mode header bg */
+        /* Default scrolled state (mobile + tablet) — refined glass strip */
         header.scrolled {
             background: rgba(250, 250, 250, 0.92);
+            border-bottom-color: var(--border);
         }
 
         @media (prefers-color-scheme: dark) {
@@ -256,11 +276,46 @@
             }
         }
 
+        /* Floating-pill state — desktop only (where nav is visible) */
+        @media (min-width: 1201px) {
+            header.scrolled {
+                top: 14px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: calc(100% - 40px);
+                max-width: 1160px;
+                border-radius: 100px;
+                border-bottom-color: transparent;
+                border-color: rgba(0, 0, 0, 0.08);
+                background: rgba(255, 255, 255, 0.78);
+                backdrop-filter: blur(22px) saturate(180%);
+                -webkit-backdrop-filter: blur(22px) saturate(180%);
+                box-shadow:
+                    0 4px 16px rgba(0, 0, 0, 0.04),
+                    0 14px 36px rgba(0, 0, 0, 0.07);
+            }
+
+            header.scrolled .nav-container {
+                height: 60px;
+            }
+        }
+
+        @media (min-width: 1201px) and (prefers-color-scheme: dark) {
+            header.scrolled {
+                background: rgba(20, 20, 20, 0.72);
+                border-color: rgba(255, 255, 255, 0.08);
+                box-shadow:
+                    0 4px 16px rgba(0, 0, 0, 0.4),
+                    0 14px 36px rgba(0, 0, 0, 0.5);
+            }
+        }
+
         .nav-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
             height: 68px;
+            transition: height 0.4s var(--ease);
         }
 
         .logo {
@@ -269,7 +324,15 @@
             letter-spacing: -0.5px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
+            margin-right: 36px;
+            white-space: nowrap;
+            flex-shrink: 0;
+            transition: letter-spacing 0.3s var(--ease);
+        }
+
+        .logo:hover {
+            letter-spacing: 0.5px;
         }
 
         .logo-dot {
@@ -281,7 +344,11 @@
 
         nav ul {
             display: flex;
-            gap: 28px;
+            gap: 18px;
+        }
+
+        nav a {
+            white-space: nowrap;
         }
 
         nav a {
@@ -289,18 +356,25 @@
             color: var(--text-2);
             font-weight: 500;
             position: relative;
-            padding: 4px 0;
+            padding: 6px 2px;
         }
 
+        /* Dot-to-pill indicator below each nav item */
         nav a::after {
             content: '';
             position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 0;
-            height: 2px;
+            bottom: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 4px;
+            border-radius: 999px;
             background: var(--accent);
-            transition: width 0.3s var(--ease);
+            opacity: 0;
+            transition:
+                width 0.35s cubic-bezier(0.5, -0.1, 0.5, 1.4),
+                opacity 0.25s var(--ease),
+                background 0.25s var(--ease);
         }
 
         nav a:hover {
@@ -308,7 +382,13 @@
         }
 
         nav a:hover::after {
-            width: 100%;
+            opacity: 1;
+            width: 22px;
+        }
+
+        /* Comunidad item keeps its warm accent under-pill too */
+        nav a.nav-community::after {
+            background: var(--accent-warm);
         }
 
         .header-right {
@@ -336,9 +416,11 @@
             background: var(--bg-subtle);
         }
 
-        .social-nav i {
+        .social-nav i,
+        .social-nav svg {
             width: 16px;
             height: 16px;
+            stroke-width: 2;
         }
 
         .lang-toggle {
@@ -463,7 +545,44 @@
         }
 
         h1 .accent-text {
+            background: linear-gradient(135deg, var(--accent) 0%, #8b5cf6 60%, #ec4899 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+
+        /* Hero eyebrow chip */
+        .hero-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            background: var(--accent-glow);
+            border: 1px solid rgba(37, 99, 235, 0.18);
+            border-radius: 999px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
             color: var(--accent);
+            margin-bottom: 22px;
+        }
+
+        .hero-eyebrow i,
+        .hero-eyebrow svg {
+            width: 14px;
+            height: 14px;
+            stroke-width: 2;
+        }
+
+        .hero-eyebrow .live-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--accent-green);
+            box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.6);
+            animation: live-pulse 2.4s var(--ease) infinite;
         }
 
         .subtitle {
@@ -562,20 +681,82 @@
 
         /* ═══════════════════════════════════════════════
            SECTIONS COMMON
-           ════════════════════  ══════════════════════════ */
+           ═══════════════════════════════════════════════ */
         .section-header {
-            margin-bottom: 48px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid var(--border);
+            margin-bottom: 56px;
             display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 14px;
         }
 
         .section-header h2 {
             font-family: var(--serif);
-            font-size: clamp(1.8rem, 3vw, 2.4rem);
+            font-size: clamp(2rem, 3.4vw, 2.8rem);
+            line-height: 1.1;
             letter-spacing: -1px;
+        }
+
+        .section-header h2 .highlight {
+            background: linear-gradient(135deg, var(--accent) 0%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .section-lead {
+            font-size: 1rem;
+            color: var(--text-2);
+            max-width: 620px;
+            line-height: 1.7;
+            margin: 0 auto;
+        }
+
+        /* Unified eyebrow chip — used across all section headers */
+        .section-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            background: var(--accent-glow);
+            border: 1px solid rgba(37, 99, 235, 0.18);
+            border-radius: 999px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--accent);
+            white-space: nowrap;
+        }
+
+        .section-eyebrow i,
+        .section-eyebrow svg {
+            width: 14px;
+            height: 14px;
+            stroke-width: 2;
+        }
+
+        /* Eyebrow color variants */
+        .section-eyebrow.warm {
+            background: rgba(249, 115, 22, 0.10);
+            border-color: rgba(249, 115, 22, 0.22);
+            color: var(--accent-warm);
+        }
+        .section-eyebrow.green {
+            background: rgba(34, 197, 94, 0.10);
+            border-color: rgba(34, 197, 94, 0.22);
+            color: var(--accent-green);
+        }
+        .section-eyebrow.violet {
+            background: rgba(139, 92, 246, 0.10);
+            border-color: rgba(139, 92, 246, 0.22);
+            color: #8b5cf6;
+        }
+        .section-eyebrow.pink {
+            background: rgba(236, 72, 153, 0.10);
+            border-color: rgba(236, 72, 153, 0.22);
+            color: #ec4899;
         }
 
         /* Cards */
@@ -625,6 +806,53 @@
             stroke-width: 1.5;
             color: var(--accent);
         }
+
+        /* Unified tinted icon container — modernizes Servicios cards
+           to match the visual language of IA/Educación articles */
+        .card-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            background: var(--accent-glow);
+            transition: all 0.4s var(--ease);
+        }
+
+        .card-icon i {
+            width: 22px;
+            height: 22px;
+            color: var(--accent);
+            stroke-width: 1.8;
+            margin: 0;
+        }
+
+        .card:hover .card-icon {
+            transform: scale(1.08) rotate(-3deg);
+        }
+
+        /* Cycle accent tones across the 6 service cards for visual rhythm */
+        #servicios .cards-grid .card:nth-child(2) .card-icon { background: rgba(249, 115, 22, 0.12); }
+        #servicios .cards-grid .card:nth-child(2) .card-icon i { color: var(--accent-warm); }
+        #servicios .cards-grid .card:nth-child(2)::before { background: var(--accent-warm); }
+
+        #servicios .cards-grid .card:nth-child(3) .card-icon { background: rgba(34, 197, 94, 0.12); }
+        #servicios .cards-grid .card:nth-child(3) .card-icon i { color: var(--accent-green); }
+        #servicios .cards-grid .card:nth-child(3)::before { background: var(--accent-green); }
+
+        #servicios .cards-grid .card:nth-child(4) .card-icon { background: rgba(139, 92, 246, 0.12); }
+        #servicios .cards-grid .card:nth-child(4) .card-icon i { color: #8b5cf6; }
+        #servicios .cards-grid .card:nth-child(4)::before { background: #8b5cf6; }
+
+        #servicios .cards-grid .card:nth-child(5) .card-icon { background: rgba(236, 72, 153, 0.12); }
+        #servicios .cards-grid .card:nth-child(5) .card-icon i { color: #ec4899; }
+        #servicios .cards-grid .card:nth-child(5)::before { background: #ec4899; }
+
+        #servicios .cards-grid .card:nth-child(6) .card-icon { background: rgba(20, 184, 166, 0.12); }
+        #servicios .cards-grid .card:nth-child(6) .card-icon i { color: #14b8a6; }
+        #servicios .cards-grid .card:nth-child(6)::before { background: #14b8a6; }
 
         .card h3 {
             font-size: 1.05rem;
@@ -717,12 +945,28 @@
         }
 
         .exp-intro-label {
-            font-size: 12px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 999px;
+            font-size: 11px;
             font-weight: 700;
-            letter-spacing: 3px;
+            letter-spacing: 1.8px;
             text-transform: uppercase;
+            color: #fff;
+            margin-bottom: 20px;
+            backdrop-filter: blur(8px);
+        }
+
+        .exp-intro-label i,
+        .exp-intro-label svg {
+            width: 13px;
+            height: 13px;
             color: var(--accent);
-            margin-bottom: 16px;
+            stroke-width: 2;
         }
 
         .exp-intro h2 {
@@ -1316,6 +1560,17 @@
         /* ═══════════════════════════════════════════════
            RESPONSIVE
            ═══════════════════════════════════════════════ */
+        /* Collapse nav to hamburger early — 9 items don't fit on tight desktops */
+        @media (max-width: 1200px) {
+            nav {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+        }
+
         @media (max-width: 768px) {
             .hero-content {
                 grid-template-columns: 1fr;
@@ -1328,14 +1583,6 @@
                 margin: 0 auto;
                 aspect-ratio: 3/4;
                 border-radius: 20px;
-            }
-
-            nav {
-                display: none;
-            }
-
-            .menu-toggle {
-                display: flex;
             }
 
             .pilares {
@@ -1381,9 +1628,8 @@
             }
 
             .section-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 16px;
+                margin-bottom: 40px;
+                gap: 12px;
             }
         }
 
@@ -1995,6 +2241,787 @@
                 padding-top: 20px;
             }
         }
+
+        /* ═══════════════════════════════════════════════
+           ACCESSIBILITY — SKIP LINK + FOCUS-VISIBLE
+           ═══════════════════════════════════════════════ */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 12px;
+            z-index: 10001;
+            padding: 10px 18px;
+            background: var(--accent);
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.85rem;
+            border-radius: 8px;
+            transition: top 0.25s var(--ease);
+        }
+
+        .skip-link:focus {
+            top: 12px;
+            outline: 2px solid #fff;
+            outline-offset: 2px;
+        }
+
+        :focus {
+            outline: none;
+        }
+
+        :focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 3px;
+            border-radius: 4px;
+        }
+
+        .btn:focus-visible,
+        .lang-btn:focus-visible {
+            outline-offset: 4px;
+        }
+
+        /* ═══════════════════════════════════════════════
+           LIVE STATUS — LOGO DOT PULSE
+           ═══════════════════════════════════════════════ */
+        .logo-dot {
+            position: relative;
+            background: var(--accent-green);
+            box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.6);
+            animation: live-pulse 2.4s var(--ease) infinite;
+        }
+
+        @keyframes live-pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.55);
+            }
+            70% {
+                box-shadow: 0 0 0 8px rgba(34, 197, 94, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+            }
+        }
+
+        /* ═══════════════════════════════════════════════
+           CONSCIENCIA DIGITAL CTA — NEW BADGE + SPARKLE
+           ═══════════════════════════════════════════════ */
+        .btn-community {
+            position: relative;
+            border: 1px solid var(--border);
+            background: linear-gradient(135deg, transparent 0%, var(--accent-glow) 100%);
+            color: var(--text);
+            overflow: visible;
+        }
+
+        .btn-community:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.15);
+        }
+
+        .btn-community i {
+            color: var(--accent);
+            animation: sparkle-twinkle 3.2s ease-in-out infinite;
+        }
+
+        /* Primary variant — used in hero as main CTA */
+        .btn-primary-community {
+            position: relative;
+            overflow: visible;
+            background: linear-gradient(135deg, var(--accent) 0%, #1d4ed8 100%);
+            box-shadow: 0 6px 18px rgba(37, 99, 235, 0.28);
+        }
+
+        .btn-primary-community:hover {
+            background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 26px rgba(37, 99, 235, 0.42);
+        }
+
+        .btn-primary-community i {
+            color: #fff;
+            animation: sparkle-twinkle 3.2s ease-in-out infinite;
+        }
+
+        .btn-primary-community::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background: radial-gradient(circle at top left, rgba(255,255,255,0.25), transparent 60%);
+            pointer-events: none;
+        }
+
+        @keyframes sparkle-twinkle {
+            0%, 100% {
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+            }
+            25% {
+                transform: scale(1.15) rotate(8deg);
+                opacity: 0.85;
+            }
+            50% {
+                transform: scale(0.95) rotate(-4deg);
+                opacity: 1;
+            }
+            75% {
+                transform: scale(1.1) rotate(4deg);
+                opacity: 0.9;
+            }
+        }
+
+        .new-pill {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--accent-warm);
+            color: #fff;
+            font-size: 0.62rem;
+            font-weight: 800;
+            letter-spacing: 0.8px;
+            padding: 3px 7px;
+            border-radius: 10px;
+            line-height: 1;
+            text-transform: uppercase;
+            box-shadow: 0 2px 6px rgba(249, 115, 22, 0.35);
+            animation: new-bounce 2.8s var(--ease) infinite;
+        }
+
+        @keyframes new-bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-3px); }
+        }
+
+        /* ═══════════════════════════════════════════════
+           SIDE SECTION NAVIGATOR (desktop only)
+           ═══════════════════════════════════════════════ */
+        .side-nav {
+            position: fixed;
+            left: 24px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s var(--ease);
+        }
+
+        .side-nav.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .side-nav-dot {
+            position: relative;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            border: 1.5px solid var(--text-3);
+            background: transparent;
+            cursor: pointer;
+            padding: 0;
+            transition: all 0.3s var(--ease);
+        }
+
+        .side-nav-dot:hover {
+            border-color: var(--accent);
+            transform: scale(1.3);
+        }
+
+        .side-nav-dot.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            transform: scale(1.25);
+        }
+
+        .side-nav-dot::after {
+            content: attr(data-label);
+            position: absolute;
+            left: 22px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--bg-alt);
+            color: var(--text);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border);
+            transition: opacity 0.2s var(--ease), transform 0.2s var(--ease);
+        }
+
+        .side-nav-dot:hover::after {
+            opacity: 1;
+            transform: translateY(-50%) translateX(2px);
+        }
+
+        @media (max-width: 1280px) {
+            .side-nav { display: none; }
+        }
+
+        /* ═══════════════════════════════════════════════
+           NAV — COMUNIDAD HIGHLIGHT
+           ═══════════════════════════════════════════════ */
+        nav a.nav-community {
+            color: var(--accent);
+            font-weight: 600;
+            position: relative;
+        }
+
+        nav a.nav-community::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent-warm);
+            margin-right: 6px;
+            vertical-align: middle;
+            animation: live-pulse-warm 2.4s var(--ease) infinite;
+        }
+
+        @keyframes live-pulse-warm {
+            0% {
+                box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.55);
+            }
+            70% {
+                box-shadow: 0 0 0 8px rgba(249, 115, 22, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(249, 115, 22, 0);
+            }
+        }
+
+        .mobile-menu a.nav-community {
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .mobile-menu a.nav-community::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent-warm);
+            flex-shrink: 0;
+            animation: live-pulse-warm 2.4s var(--ease) infinite;
+        }
+
+        /* ═══════════════════════════════════════════════
+           COMUNIDAD SPOTLIGHT SECTION
+           ═══════════════════════════════════════════════ */
+        .community-spotlight {
+            position: relative;
+            padding: 96px 0;
+            background: linear-gradient(135deg, #0a0a0a 0%, #111827 60%, #1e3a8a 130%);
+            color: #f0f0f0;
+            overflow: hidden;
+        }
+
+        .community-spotlight::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                radial-gradient(circle at 20% 30%, rgba(37, 99, 235, 0.25) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(249, 115, 22, 0.18) 0%, transparent 55%);
+            pointer-events: none;
+        }
+
+        .community-spotlight::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                radial-gradient(circle 1px at 12% 18%, rgba(255,255,255,0.5) 1px, transparent 1px),
+                radial-gradient(circle 1px at 73% 42%, rgba(255,255,255,0.4) 1px, transparent 1px),
+                radial-gradient(circle 1px at 88% 81%, rgba(255,255,255,0.5) 1px, transparent 1px),
+                radial-gradient(circle 1px at 27% 73%, rgba(255,255,255,0.35) 1px, transparent 1px),
+                radial-gradient(circle 1px at 55% 8%, rgba(255,255,255,0.5) 1px, transparent 1px),
+                radial-gradient(circle 1px at 38% 55%, rgba(255,255,255,0.3) 1px, transparent 1px);
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        .community-spotlight .container {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .community-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 999px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #fff;
+            margin-bottom: 24px;
+            backdrop-filter: blur(8px);
+        }
+
+        .community-eyebrow i {
+            width: 14px;
+            height: 14px;
+            color: #fbbf24;
+            animation: sparkle-twinkle 3.2s ease-in-out infinite;
+        }
+
+        .community-spotlight h2 {
+            font-family: var(--serif);
+            font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+            line-height: 1.1;
+            letter-spacing: -1.5px;
+            font-weight: 700;
+            margin-bottom: 18px;
+            color: #fff;
+        }
+
+        .community-spotlight h2 span.highlight {
+            background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .community-spotlight p.lead {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: rgba(240, 240, 240, 0.78);
+            max-width: 620px;
+            margin: 0 auto 28px;
+        }
+
+        .community-perks {
+            display: flex;
+            gap: 28px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 36px 0;
+        }
+
+        .community-perk {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.92rem;
+            color: rgba(240, 240, 240, 0.85);
+            font-weight: 500;
+        }
+
+        .community-perk i {
+            width: 18px;
+            height: 18px;
+            color: #60a5fa;
+            stroke-width: 2;
+        }
+
+        .community-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 32px;
+            background: linear-gradient(135deg, #fff 0%, #e0e7ff 100%);
+            color: #1e3a8a;
+            font-weight: 700;
+            font-size: 0.98rem;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: all 0.3s var(--ease);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            position: relative;
+        }
+
+        .community-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+            background: #fff;
+        }
+
+        .community-cta i {
+            width: 18px;
+            height: 18px;
+            animation: sparkle-twinkle 3.2s ease-in-out infinite;
+        }
+
+        @media (max-width: 600px) {
+            .community-spotlight { padding: 72px 0; }
+            .community-perks { gap: 16px; flex-direction: column; align-items: center; }
+            .community-cta { padding: 14px 24px; font-size: 0.92rem; }
+        }
+
+        /* ═══════════════════════════════════════════════
+           ARCHIVO — RESOURCES SECTION
+           ═══════════════════════════════════════════════ */
+        .archive-section {
+            padding: 90px 0;
+            background: var(--bg-alt);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .archive-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            opacity: 0.4;
+        }
+
+        .archive-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 56px;
+            align-items: center;
+        }
+
+        .archive-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 16px;
+        }
+
+        .archive-eyebrow i {
+            width: 14px;
+            height: 14px;
+            stroke-width: 2;
+        }
+
+        .archive-section h2 {
+            font-family: var(--serif);
+            font-size: clamp(1.9rem, 3.4vw, 2.6rem);
+            line-height: 1.15;
+            letter-spacing: -1px;
+            margin-bottom: 18px;
+        }
+
+        .archive-section p.archive-lead {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--text-2);
+            margin-bottom: 26px;
+        }
+
+        .archive-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 13px 26px;
+            background: var(--text);
+            color: var(--bg);
+            font-weight: 600;
+            font-size: 0.9rem;
+            border-radius: 8px;
+            transition: all 0.3s var(--ease);
+        }
+
+        .archive-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.18);
+        }
+
+        .archive-cta i {
+            width: 16px;
+            height: 16px;
+        }
+
+        .archive-categories {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .archive-cat {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 18px;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            transition: all 0.3s var(--ease);
+        }
+
+        .archive-cat:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .archive-cat-icon {
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--accent-glow);
+        }
+
+        .archive-cat-icon i {
+            width: 16px;
+            height: 16px;
+            color: var(--accent);
+            stroke-width: 2;
+        }
+
+        .archive-cat-text {
+            font-size: 0.84rem;
+            font-weight: 600;
+            line-height: 1.35;
+            color: var(--text);
+        }
+
+        .archive-cat-text small {
+            display: block;
+            font-size: 0.74rem;
+            font-weight: 400;
+            color: var(--text-3);
+            margin-top: 2px;
+        }
+
+        /* Each category gets a distinct accent tone */
+        .archive-cat:nth-child(2) .archive-cat-icon { background: rgba(249, 115, 22, 0.12); }
+        .archive-cat:nth-child(2) .archive-cat-icon i { color: var(--accent-warm); }
+        .archive-cat:nth-child(3) .archive-cat-icon { background: rgba(34, 197, 94, 0.12); }
+        .archive-cat:nth-child(3) .archive-cat-icon i { color: var(--accent-green); }
+        .archive-cat:nth-child(4) .archive-cat-icon { background: rgba(139, 92, 246, 0.12); }
+        .archive-cat:nth-child(4) .archive-cat-icon i { color: #8b5cf6; }
+        .archive-cat:nth-child(5) .archive-cat-icon { background: rgba(20, 184, 166, 0.12); }
+        .archive-cat:nth-child(5) .archive-cat-icon i { color: #14b8a6; }
+
+        @media (max-width: 880px) {
+            .archive-grid { grid-template-columns: 1fr; gap: 36px; }
+        }
+
+        @media (max-width: 480px) {
+            .archive-categories { grid-template-columns: 1fr; }
+            .archive-section { padding: 64px 0; }
+        }
+
+        /* ═══════════════════════════════════════════════
+           CONTACT — CHANNELS LIST
+           ═══════════════════════════════════════════════ */
+        .contact-channels {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .contact-channel {
+            display: flex;
+            gap: 14px;
+            align-items: center;
+            padding: 16px 18px;
+            background: var(--bg-alt);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            transition: all 0.3s var(--ease);
+            color: inherit;
+        }
+
+        a.contact-channel:hover {
+            border-color: var(--accent);
+            transform: translateX(4px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .contact-channel-icon {
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: var(--accent-glow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-channel-icon i {
+            width: 18px;
+            height: 18px;
+            color: var(--accent);
+            stroke-width: 2;
+        }
+
+        .contact-channel:nth-child(2) .contact-channel-icon { background: rgba(249, 115, 22, 0.12); }
+        .contact-channel:nth-child(2) .contact-channel-icon i { color: var(--accent-warm); }
+        .contact-channel:nth-child(3) .contact-channel-icon { background: rgba(34, 197, 94, 0.12); }
+        .contact-channel:nth-child(3) .contact-channel-icon i { color: var(--accent-green); }
+
+        .contact-channel-text {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .contact-channel-label {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+            color: var(--text-3);
+        }
+
+        .contact-channel-value {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        /* ═══════════════════════════════════════════════
+           SERVICIOS — CONVERSION CTA BLOCK
+           ═══════════════════════════════════════════════ */
+        .services-cta {
+            margin-top: 48px;
+            padding: 40px 44px;
+            background: linear-gradient(135deg, var(--bg-alt) 0%, var(--accent-glow) 100%);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            display: flex;
+            gap: 32px;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .services-cta::before {
+            content: '';
+            position: absolute;
+            right: -40px;
+            top: -40px;
+            width: 180px;
+            height: 180px;
+            background: radial-gradient(circle, var(--accent-glow), transparent 70%);
+            pointer-events: none;
+        }
+
+        .services-cta-text {
+            position: relative;
+            z-index: 1;
+            max-width: 540px;
+        }
+
+        .services-cta-text h3 {
+            font-family: var(--serif);
+            font-size: clamp(1.4rem, 2.4vw, 1.8rem);
+            line-height: 1.2;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+        }
+
+        .services-cta-text p {
+            font-size: 0.95rem;
+            color: var(--text-2);
+            line-height: 1.6;
+        }
+
+        .services-cta-actions {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 720px) {
+            .services-cta {
+                padding: 32px 28px;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+            }
+        }
+
+        /* ═══════════════════════════════════════════════
+           HERO TEXT REVEAL (initial load)
+           ═══════════════════════════════════════════════ */
+        .hero-eyebrow,
+        .hero-text > div[data-lang],
+        .hero-text .pilares,
+        .hero-text .btn-row {
+            opacity: 0;
+            transform: translateY(16px);
+            animation: reveal-up 0.9s var(--ease) forwards;
+        }
+
+        .hero-eyebrow { animation-delay: 0s; }
+        .hero-text > div[data-lang] { animation-delay: 0.15s; }
+        .hero-text .pilares { animation-delay: 0.4s; }
+        .hero-text .btn-row { animation-delay: 0.6s; }
+
+        .hero-img-container {
+            opacity: 0;
+            transform: scale(0.96);
+            animation: reveal-scale 1s var(--ease) 0.2s forwards;
+        }
+
+        @keyframes reveal-up {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes reveal-scale {
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* ═══════════════════════════════════════════════
+           REDUCED MOTION — respect user preference
+           ═══════════════════════════════════════════════ */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.001ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.001ms !important;
+                scroll-behavior: auto !important;
+            }
+
+            .hero-eyebrow,
+            .hero-text > div[data-lang],
+            .hero-text .pilares,
+            .hero-text .btn-row,
+            .hero-img-container {
+                opacity: 1;
+                transform: none;
+            }
+
+            .logo-dot,
+            nav a.nav-community::before,
+            .mobile-menu a.nav-community::before {
+                animation: none;
+                box-shadow: none;
+            }
+        }
     </style>
 </head>
 
@@ -2004,8 +3031,27 @@
             style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
+    <!-- Skip to content (accessibility) -->
+    <a href="#hero" class="skip-link">
+        <span data-lang="es">Saltar al contenido</span>
+        <span data-lang="en">Skip to content</span>
+    </a>
+
     <!-- Scroll Progress -->
     <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Side Section Navigator (desktop) -->
+    <nav class="side-nav" id="sideNav" aria-label="Section navigation">
+        <button class="side-nav-dot" data-target="hero" data-label="Bio" aria-label="Bio"></button>
+        <button class="side-nav-dot" data-target="experiencias" data-label="Sobre Nick" aria-label="Sobre Nick"></button>
+        <button class="side-nav-dot" data-target="servicios" data-label="Servicios" aria-label="Servicios"></button>
+        <button class="side-nav-dot" data-target="inteligencia-artificial" data-label="IA" aria-label="Inteligencia Artificial"></button>
+        <button class="side-nav-dot" data-target="educacion" data-label="Educación" aria-label="Educación"></button>
+        <button class="side-nav-dot" data-target="comunidad" data-label="Comunidad" aria-label="Comunidad ConsciencIA"></button>
+        <button class="side-nav-dot" data-target="archivo" data-label="El Archivo" aria-label="El Archivo"></button>
+        <button class="side-nav-dot" data-target="contacto" data-label="Contacto" aria-label="Contacto"></button>
+        <button class="side-nav-dot" data-target="articulos" data-label="Artículos" aria-label="Artículos"></button>
+    </nav>
 
     <!-- ═══════════════════════════════════════════════
      HEADER
@@ -2016,18 +3062,22 @@
             <nav>
                 <ul>
                     <li><a href="#hero">Bio</a></li>
-                    <li><a href="#experiencias"><span data-lang="es">Experiencias</span><span
-                                data-lang="en">Experience</span></a></li>
-                    <li><a href="#articulos"><span data-lang="es">Artículos</span><span
-                                data-lang="en">Articles</span></a></li>
+                    <li><a href="#experiencias"><span data-lang="es">Sobre Nick</span><span
+                                data-lang="en">About Nick</span></a></li>
                     <li><a href="#servicios"><span data-lang="es">Servicios</span><span
                                 data-lang="en">Services</span></a></li>
                     <li><a href="#inteligencia-artificial"><span data-lang="es">IA</span><span
                                 data-lang="en">AI</span></a></li>
                     <li><a href="#educacion"><span data-lang="es">Educación</span><span
                                 data-lang="en">Education</span></a></li>
+                    <li><a href="#comunidad" class="nav-community"><span data-lang="es">Comunidad</span><span
+                                data-lang="en">Community</span></a></li>
+                    <li><a href="#archivo"><span data-lang="es">Archivo</span><span
+                                data-lang="en">Archive</span></a></li>
                     <li><a href="#contacto"><span data-lang="es">Contacto</span><span data-lang="en">Contact</span></a>
                     </li>
+                    <li><a href="#articulos"><span data-lang="es">Artículos</span><span
+                                data-lang="en">Articles</span></a></li>
                 </ul>
             </nav>
             <div class="header-right">
@@ -2036,7 +3086,7 @@
                         aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
                     <a href="https://x.com/nickperot" target="_blank" rel="noopener noreferrer" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="width:16px;height:16px;"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
                     <a href="https://instagram.com/nickperot" target="_blank" rel="noopener noreferrer"
-                        aria-label="Instagram"><i data-lucide="instagram"></i></a>
+                        aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" style="width:16px;height:16px;"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle></svg></a>
                 </div>
                 <div class="lang-toggle">
                     <button class="lang-btn active" id="btn-es" onclick="setLang('es')">ES</button>
@@ -2052,18 +3102,22 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
         <a href="#hero" onclick="closeMenu()">Bio</a>
-        <a href="#experiencias" onclick="closeMenu()"><span data-lang="es">Experiencias</span><span
-                data-lang="en">Experience</span></a>
-        <a href="#articulos" onclick="closeMenu()"><span data-lang="es">Artículos</span><span
-                data-lang="en">Articles</span></a>
+        <a href="#experiencias" onclick="closeMenu()"><span data-lang="es">Sobre Nick</span><span
+                data-lang="en">About Nick</span></a>
         <a href="#servicios" onclick="closeMenu()"><span data-lang="es">Servicios</span><span
                 data-lang="en">Services</span></a>
         <a href="#inteligencia-artificial" onclick="closeMenu()"><span data-lang="es">Inteligencia Artificial</span><span
                 data-lang="en">Artificial Intelligence</span></a>
         <a href="#educacion" onclick="closeMenu()"><span data-lang="es">Educación</span><span
                 data-lang="en">Education</span></a>
+        <a href="#comunidad" onclick="closeMenu()" class="nav-community"><span data-lang="es">Comunidad</span><span
+                data-lang="en">Community</span></a>
+        <a href="#archivo" onclick="closeMenu()"><span data-lang="es">El Archivo</span><span
+                data-lang="en">The Archive</span></a>
         <a href="#contacto" onclick="closeMenu()"><span data-lang="es">Contacto</span><span
                 data-lang="en">Contact</span></a>
+        <a href="#articulos" onclick="closeMenu()"><span data-lang="es">Artículos</span><span
+                data-lang="en">Articles</span></a>
     </div>
 
     <!-- ═══════════════════════════════════════════════
@@ -2072,6 +3126,11 @@
     <section id="hero">
         <div class="container hero-content fade-in">
             <div class="hero-text">
+                <div class="hero-eyebrow">
+                    <span class="live-dot" aria-hidden="true"></span>
+                    <span data-lang="es">Disponible para nuevos proyectos</span>
+                    <span data-lang="en">Available for new projects</span>
+                </div>
                 <div data-lang="es">
                     <h1>Derecho, <span class="accent-text">Tecnología <br>y Gestión</span></h1>
                     <p class="subtitle">Estamos transitando la revolución digital. Acompaño a personas y organizaciones
@@ -2098,13 +3157,18 @@
                 </ul>
 
                 <div class="btn-row">
-                    <a href="#contacto" class="btn btn-primary" id="join-btn">
-                        <span data-lang="es">Me sumo a la Transformación Digital</span><span data-lang="en">Join the
-                            Digital Transformation</span>
+                    <a href="https://nickperot.com/consciencIAdigital" target="_blank" rel="noopener noreferrer"
+                        class="btn btn-primary btn-primary-community">
+                        <span class="new-pill" aria-hidden="true">
+                            <span data-lang="es">Nuevo</span><span data-lang="en">New</span>
+                        </span>
+                        <i data-lucide="sparkles"></i>
+                        <span data-lang="es">Sumate a la Comunidad de ConsciencIA Digital</span>
+                        <span data-lang="en">Join the ConsciencIA Digital Community</span>
                     </a>
-                    <a href="https://youtube.com/@formulalegal" target="_blank" rel="noopener noreferrer"
-                        class="btn btn-outline">
-                        <i data-lucide="youtube"></i> Fórmula Legal
+                    <a href="#contacto" class="btn btn-outline">
+                        <i data-lucide="mail"></i>
+                        <span data-lang="es">Contacto</span><span data-lang="en">Contact</span>
                     </a>
                 </div>
             </div>
@@ -2127,8 +3191,9 @@
             <!-- Intro -->
             <div class="exp-intro fade-in">
                 <div class="exp-intro-label">
-                    <span data-lang="es">Mi Trayectoria</span>
-                    <span data-lang="en">My Journey</span>
+                    <i data-lucide="user-circle-2"></i>
+                    <span data-lang="es">Sobre Nick</span>
+                    <span data-lang="en">About Nick</span>
                 </div>
                 <div data-lang="es">
                     <h2>Nick Perot</h2>
@@ -2141,7 +3206,7 @@
                         story.</p>
                 </div>
                 <button class="btn-expand" id="btnExpand" onclick="toggleExperience()">
-                    <span data-lang="es">Ver trayectoria completa</span><span data-lang="en">View full journey</span>
+                    <span data-lang="es">Conocer más sobre Nick</span><span data-lang="en">Learn more about Nick</span>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <polyline points="6 9 12 15 18 9"></polyline>
@@ -2189,8 +3254,7 @@
                                     stroke-linejoin="round">
                                     <polyline points="6 9 12 15 18 9"></polyline>
                                 </svg>
-                                <span data-lang="es">Ocultar trayectoria</span><span data-lang="en">Collapse
-                                    journey</span>
+                                <span data-lang="es">Ocultar</span><span data-lang="en">Collapse</span>
                             </button>
                         </div>
                     </aside>
@@ -3393,19 +4457,31 @@
     <section id="servicios" class="section-padding">
         <div class="container fade-in">
             <div class="section-header">
-                <h2><span data-lang="es">Servicios</span><span data-lang="en">Services</span></h2>
+                <div class="section-eyebrow">
+                    <i data-lucide="briefcase"></i>
+                    <span data-lang="es">Qué ofrecemos</span>
+                    <span data-lang="en">What we offer</span>
+                </div>
+                <h2>
+                    <span data-lang="es"><span class="highlight">Servicios</span> profesionales</span>
+                    <span data-lang="en"><span class="highlight">Professional</span> services</span>
+                </h2>
+                <p class="section-lead">
+                    <span data-lang="es">Trabajamos con profesionales y empresas de excelencia y experiencia para acompañar a personas y organizaciones en su transformación digital responsable.</span>
+                    <span data-lang="en">We work with professionals and organizations of excellence and experience to support people and businesses on their responsible digital transformation.</span>
+                </p>
             </div>
             <div class="cards-grid">
                 <div class="card">
-                    <i data-lucide="landmark"></i>
+                    <div class="card-icon"><i data-lucide="landmark"></i></div>
                     <h3><span data-lang="es">Gobierno Digital y Gestión</span><span data-lang="en">Digital Government &
                             Management</span></h3>
-                    <p><span data-lang="es">Modernización de procesos estatales y consultoría legal estratégica para la
-                            administración pública.</span><span data-lang="en">Modernization of government processes and
-                            strategic legal consulting for public administration.</span></p>
+                    <p><span data-lang="es">Modernización de procesos estatales y consultoría legal estratégica para el
+                            sector público.</span><span data-lang="en">Modernization of government processes and
+                            strategic legal consulting for the public sector.</span></p>
                 </div>
                 <div class="card">
-                    <i data-lucide="bot"></i>
+                    <div class="card-icon"><i data-lucide="bot"></i></div>
                     <h3><span data-lang="es">Implementación de IA</span><span data-lang="en">AI Implementation</span>
                     </h3>
                     <p><span data-lang="es">Estrategias para integrar herramientas de IA generativa en el flujo de
@@ -3413,7 +4489,7 @@
                             AI tools into professional and legal workflows.</span></p>
                 </div>
                 <div class="card">
-                    <i data-lucide="graduation-cap"></i>
+                    <div class="card-icon"><i data-lucide="graduation-cap"></i></div>
                     <h3><span data-lang="es">Innovación Educativa</span><span data-lang="en">Educational
                             Innovation</span></h3>
                     <p><span data-lang="es">Diseño de programas académicos que integran tecnología, nuevos métodos y
@@ -3421,14 +4497,14 @@
                             technology, new methods, and critical thinking.</span></p>
                 </div>
                 <div class="card">
-                    <i data-lucide="users-2"></i>
+                    <div class="card-icon"><i data-lucide="users-2"></i></div>
                     <h3><span data-lang="es">Gestión de Talento</span><span data-lang="en">Talent Management</span></h3>
                     <p><span data-lang="es">Optimización de equipos humanos integrando nuevas tecnologías,
                             metodologías ágiles y procesos digitales.</span><span data-lang="en">Optimizing teams with
                             new technologies, agile methodologies, and digital processes.</span></p>
                 </div>
                 <div class="card">
-                    <i data-lucide="scale"></i>
+                    <div class="card-icon"><i data-lucide="scale"></i></div>
                     <h3><span data-lang="es">Consultoría Jurídica</span><span data-lang="en">Legal Consulting</span>
                     </h3>
                     <p><span data-lang="es">Asesoramiento legal integral con visión estratégica, enfocado en la
@@ -3437,11 +4513,37 @@
                             solutions.</span></p>
                 </div>
                 <div class="card">
-                    <i data-lucide="bar-chart-3"></i>
+                    <div class="card-icon"><i data-lucide="bar-chart-3"></i></div>
                     <h3><span data-lang="es">Análisis de Datos</span><span data-lang="en">Data Analysis</span></h3>
                     <p><span data-lang="es">Lectura de performance y toma de decisiones basada en datos, con enfoque en
                             contextos de alta competitividad.</span><span data-lang="en">Performance analysis and
                             data-driven decision making in highly competitive contexts.</span></p>
+                </div>
+            </div>
+
+            <!-- Conversion CTA -->
+            <div class="services-cta">
+                <div class="services-cta-text">
+                    <h3>
+                        <span data-lang="es">¿Tu organización está lista para dar el próximo paso?</span>
+                        <span data-lang="en">Is your organization ready for the next step?</span>
+                    </h3>
+                    <p>
+                        <span data-lang="es">Conversemos sobre cómo aplicar estos servicios a tu equipo, tu institución o tu proyecto. Sin compromiso, primer encuentro gratuito.</span>
+                        <span data-lang="en">Let's talk about how to apply these services to your team, institution or project. No strings attached — first meeting on the house.</span>
+                    </p>
+                </div>
+                <div class="services-cta-actions">
+                    <a href="#contacto" class="btn btn-primary">
+                        <i data-lucide="calendar"></i>
+                        <span data-lang="es">Agendar una conversación</span>
+                        <span data-lang="en">Schedule a conversation</span>
+                    </a>
+                    <a href="mailto:contacto@nickperot.com" class="btn btn-outline">
+                        <i data-lucide="mail"></i>
+                        <span data-lang="es">Escribir un email</span>
+                        <span data-lang="en">Send an email</span>
+                    </a>
                 </div>
             </div>
         </div>
@@ -3453,8 +4555,16 @@
     <section id="inteligencia-artificial" class="section-padding" style="background: var(--bg-alt);">
         <div class="container fade-in">
             <div class="section-header">
-                <h2><span data-lang="es">Inteligencia Artificial</span><span data-lang="en">Artificial Intelligence</span></h2>
-                <p style="color: var(--text-2); font-size: 0.95rem; max-width: 600px; margin: 12px auto 0; text-align: center;">
+                <div class="section-eyebrow violet">
+                    <i data-lucide="cpu"></i>
+                    <span data-lang="es">Análisis &middot; IA</span>
+                    <span data-lang="en">Analysis &middot; AI</span>
+                </div>
+                <h2>
+                    <span data-lang="es"><span class="highlight">Inteligencia</span> Artificial</span>
+                    <span data-lang="en"><span class="highlight">Artificial</span> Intelligence</span>
+                </h2>
+                <p class="section-lead">
                     <span data-lang="es">Documentos de análisis sobre ética, uso responsable, datos y el futuro de la inteligencia artificial.</span>
                     <span data-lang="en">Analysis documents on ethics, responsible use, data, and the future of artificial intelligence.</span>
                 </p>
@@ -3554,8 +4664,16 @@
     <section id="educacion" class="section-padding">
         <div class="container fade-in">
             <div class="section-header">
-                <h2><span data-lang="es">Educación</span><span data-lang="en">Education</span></h2>
-                <p style="color: var(--text-2); font-size: 0.95rem; max-width: 600px; margin: 12px auto 0; text-align: center;">
+                <div class="section-eyebrow green">
+                    <i data-lucide="book-open"></i>
+                    <span data-lang="es">Reflexiones &middot; Educación</span>
+                    <span data-lang="en">Reflections &middot; Education</span>
+                </div>
+                <h2>
+                    <span data-lang="es"><span class="highlight">Educación</span> y futuro</span>
+                    <span data-lang="en"><span class="highlight">Education</span> and future</span>
+                </h2>
+                <p class="section-lead">
                     <span data-lang="es">Artículos de reflexión sobre educación, tecnología e inteligencia artificial.</span>
                     <span data-lang="en">Reflective articles on education, technology, and artificial intelligence.</span>
                 </p>
@@ -3608,26 +4726,191 @@
     </section>
 
     <!-- ═══════════════════════════════════════════════
+     COMUNIDAD CONSCIENCIA DIGITAL — SPOTLIGHT
+     ═══════════════════════════════════════════════ -->
+    <section class="community-spotlight fade-in" id="comunidad" aria-labelledby="comunidad-heading">
+        <div class="container">
+            <div class="community-eyebrow">
+                <i data-lucide="sparkles"></i>
+                <span data-lang="es">Comunidad · Nuevo</span>
+                <span data-lang="en">Community · New</span>
+            </div>
+            <h2 id="comunidad-heading">
+                <span data-lang="es">Sumate a <span class="highlight">ConsciencIA Digital</span></span>
+                <span data-lang="en">Join <span class="highlight">ConsciencIA Digital</span></span>
+            </h2>
+            <p class="lead">
+                <span data-lang="es">Un espacio para profesionales y organizaciones que quieren incorporar inteligencia artificial con criterio, responsabilidad y consciencia. Aprendé, conectá y avanzá con quienes ya están en el camino.</span>
+                <span data-lang="en">A space for professionals and organizations adopting AI with judgement, responsibility and awareness. Learn, connect and advance with those who are already on the path.</span>
+            </p>
+            <div class="community-perks">
+                <div class="community-perk">
+                    <i data-lucide="brain-circuit"></i>
+                    <span data-lang="es">Contenido aplicado</span>
+                    <span data-lang="en">Applied content</span>
+                </div>
+                <div class="community-perk">
+                    <i data-lucide="users"></i>
+                    <span data-lang="es">Red de profesionales</span>
+                    <span data-lang="en">Professional network</span>
+                </div>
+                <div class="community-perk">
+                    <i data-lucide="compass"></i>
+                    <span data-lang="es">Adopción consciente</span>
+                    <span data-lang="en">Conscious adoption</span>
+                </div>
+            </div>
+            <a href="https://nickperot.com/consciencIAdigital" target="_blank" rel="noopener noreferrer" class="community-cta">
+                <i data-lucide="sparkles"></i>
+                <span data-lang="es">Quiero sumarme a la comunidad</span>
+                <span data-lang="en">I want to join the community</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════
+     EL ARCHIVO — RESOURCES LIBRARY
+     ═══════════════════════════════════════════════ -->
+    <section class="archive-section fade-in" id="archivo" aria-labelledby="archivo-heading">
+        <div class="container">
+            <div class="archive-grid">
+                <div class="archive-text">
+                    <div class="archive-eyebrow">
+                        <i data-lucide="library"></i>
+                        <span data-lang="es">Recursos · Biblioteca curada</span>
+                        <span data-lang="en">Resources · Curated library</span>
+                    </div>
+                    <h2 id="archivo-heading">
+                        <span data-lang="es">El Archivo</span>
+                        <span data-lang="en">The Archive</span>
+                    </h2>
+                    <p class="archive-lead">
+                        <span data-lang="es">Una biblioteca curada de marcos regulatorios, observatorios, documentos UNESCO, comercio digital y lecturas críticas sobre IA, derecho y educación. Con foco en fuentes en español y casos latinoamericanos — citas verificables y contexto crítico sobre por qué cada recurso importa.</span>
+                        <span data-lang="en">A curated library of regulatory frameworks, observatories, UNESCO documents, digital commerce and critical readings on AI, law and education. Focused on Spanish-language sources and Latin American case studies — verifiable citations with critical context on why each resource matters.</span>
+                    </p>
+                    <a href="https://nickperot.com/archivo" target="_blank" rel="noopener noreferrer" class="archive-cta">
+                        <i data-lucide="book-open"></i>
+                        <span data-lang="es">Explorar El Archivo</span>
+                        <span data-lang="en">Explore The Archive</span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </a>
+                </div>
+                <div class="archive-categories" role="list">
+                    <div class="archive-cat" role="listitem">
+                        <div class="archive-cat-icon"><i data-lucide="scale"></i></div>
+                        <div class="archive-cat-text">
+                            <span data-lang="es">Marcos regulatorios</span>
+                            <span data-lang="en">Regulatory frameworks</span>
+                            <small>
+                                <span data-lang="es">UE · USA · Argentina · global</span>
+                                <span data-lang="en">EU · USA · Argentina · global</span>
+                            </small>
+                        </div>
+                    </div>
+                    <div class="archive-cat" role="listitem">
+                        <div class="archive-cat-icon"><i data-lucide="activity"></i></div>
+                        <div class="archive-cat-text">
+                            <span data-lang="es">Observatorios y open data</span>
+                            <span data-lang="en">Observatories &amp; open data</span>
+                            <small>
+                                <span data-lang="es">Métricas y monitoreo regional</span>
+                                <span data-lang="en">Regional metrics &amp; monitoring</span>
+                            </small>
+                        </div>
+                    </div>
+                    <div class="archive-cat" role="listitem">
+                        <div class="archive-cat-icon"><i data-lucide="graduation-cap"></i></div>
+                        <div class="archive-cat-text">
+                            <span data-lang="es">Documentos UNESCO</span>
+                            <span data-lang="en">UNESCO documents</span>
+                            <small>
+                                <span data-lang="es">IA en educación · competencias docentes</span>
+                                <span data-lang="en">AI in education · teacher competencies</span>
+                            </small>
+                        </div>
+                    </div>
+                    <div class="archive-cat" role="listitem">
+                        <div class="archive-cat-icon"><i data-lucide="shopping-bag"></i></div>
+                        <div class="archive-cat-text">
+                            <span data-lang="es">Comercio digital</span>
+                            <span data-lang="en">Digital commerce</span>
+                            <small>
+                                <span data-lang="es">Plataformas y transformación · LATAM</span>
+                                <span data-lang="en">Platforms &amp; transformation · LATAM</span>
+                            </small>
+                        </div>
+                    </div>
+                    <div class="archive-cat" role="listitem">
+                        <div class="archive-cat-icon"><i data-lucide="book-marked"></i></div>
+                        <div class="archive-cat-text">
+                            <span data-lang="es">Lecturas críticas</span>
+                            <span data-lang="en">Critical readings</span>
+                            <small>
+                                <span data-lang="es">Preprints · repositorios científicos</span>
+                                <span data-lang="en">Preprints · scientific repositories</span>
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════
      CONTACTO
      ═══════════════════════════════════════════════ -->
     <section id="contacto" class="section-padding">
         <div class="container fade-in">
+            <div class="section-header">
+                <div class="section-eyebrow warm">
+                    <i data-lucide="message-circle"></i>
+                    <span data-lang="es">Conversemos</span>
+                    <span data-lang="en">Let's talk</span>
+                </div>
+                <h2>
+                    <span data-lang="es"><span class="highlight">Hablemos</span></span>
+                    <span data-lang="en"><span class="highlight">Let's talk</span></span>
+                </h2>
+                <p class="section-lead">
+                    <span data-lang="es">¿Consulta profesional, capacitación, asesoramiento o colaboración? Escribime y te respondo a la brevedad.</span>
+                    <span data-lang="en">Professional consultation, training, advisory, collaboration? Drop me a line and I'll get back to you soon.</span>
+                </p>
+            </div>
             <div class="contact-grid">
                 <div class="contact-info">
-                    <div data-lang="es">
-                        <h2>Sumate a la transformación digital</h2>
-                        <p style="margin: 20px 0; color: var(--text-2); line-height: 1.7;">La revolución digital llegó
-                            para quedarse. La tecnología está al servicio. Accedé a las mejores herramientas para
-                            potenciar tu día a día con tecnología e IA aplicada.</p>
+                    <div class="contact-channels">
+                        <a href="mailto:contacto@nickperot.com" class="contact-channel">
+                            <div class="contact-channel-icon"><i data-lucide="mail"></i></div>
+                            <div class="contact-channel-text">
+                                <span class="contact-channel-label">Email</span>
+                                <span class="contact-channel-value">contacto@nickperot.com</span>
+                            </div>
+                        </a>
+                        <div class="contact-channel">
+                            <div class="contact-channel-icon"><i data-lucide="map-pin"></i></div>
+                            <div class="contact-channel-text">
+                                <span class="contact-channel-label">
+                                    <span data-lang="es">Ubicación</span>
+                                    <span data-lang="en">Location</span>
+                                </span>
+                                <span class="contact-channel-value">Santa Fe, Argentina</span>
+                            </div>
+                        </div>
+                        <div class="contact-channel">
+                            <div class="contact-channel-icon"><i data-lucide="clock"></i></div>
+                            <div class="contact-channel-text">
+                                <span class="contact-channel-label">
+                                    <span data-lang="es">Tiempo de respuesta</span>
+                                    <span data-lang="en">Response time</span>
+                                </span>
+                                <span class="contact-channel-value">
+                                    <span data-lang="es">24-48 hs hábiles</span>
+                                    <span data-lang="en">24-48 business hours</span>
+                                </span>
+                            </div>
+                        </div>
                     </div>
-                    <div data-lang="en">
-                        <h2>Join the Digital Transformation</h2>
-                        <p style="margin: 20px 0; color: var(--text-2); line-height: 1.7;">The digital revolution is
-                            here to stay. Technology is at your service. Access the best tools to enhance your daily
-                            life
-                            with technology and applied AI.</p>
-                    </div>
-                    <p><strong>Email:</strong> contacto@nickperot.com</p>
                 </div>
                 <form id="contact-form">
                     <div class="form-row">
@@ -3649,12 +4932,12 @@
                         <select id="reason"
                             data-options-es="Consulta profesional,Consultoría estratégica,Ámbito Académico y Docencia,Instituciones Educativas,Capacitación para organizaciones,Me sumo a la Transformación Digital,Otras consultas"
                             data-options-en="Professional Consultation,Strategic Consulting,Academic & Teaching,Educational Institutions,Training for Organizations,Join the Digital Transformation,Other inquiries">
-                            <option>Consulta profesional</option>
+                            <option selected>Consulta profesional</option>
                             <option>Consultoría estratégica</option>
                             <option>Ámbito Académico y Docencia</option>
                             <option>Instituciones Educativas</option>
                             <option>Capacitación para organizaciones</option>
-                            <option value="Me sumo a la Transformación Digital" selected>Me sumo a la Transformación Digital
+                            <option value="Me sumo a la Transformación Digital">Me sumo a la Transformación Digital
                             </option>
                             <option>Otras consultas</option>
                         </select>
@@ -3726,15 +5009,24 @@
     </div>
 
     <!-- ═══════════════════════════════════════════════
-     FOOTER
-     ═══════════════════════════════════════════════ -->
-    <!-- ═══════════════════════════════════════════════
      ARTÍCULOS
      ═══════════════════════════════════════════════ -->
     <section id="articulos" class="section-padding" style="background: var(--bg-alt);">
         <div class="container fade-in">
             <div class="section-header">
-                <h2><span data-lang="es">Artículos recientes</span><span data-lang="en">Recent articles</span></h2>
+                <div class="section-eyebrow warm">
+                    <i data-lucide="rss"></i>
+                    <span data-lang="es">Newsletter &middot; Substack</span>
+                    <span data-lang="en">Newsletter &middot; Substack</span>
+                </div>
+                <h2>
+                    <span data-lang="es"><span class="highlight">Artículos</span> recientes</span>
+                    <span data-lang="en"><span class="highlight">Recent</span> articles</span>
+                </h2>
+                <p class="section-lead">
+                    <span data-lang="es">Suscribite y recibí en tu casilla las publicaciones sobre derecho, tecnología, educación e IA.</span>
+                    <span data-lang="en">Subscribe and get my writing on law, technology, education and AI delivered to your inbox.</span>
+                </p>
             </div>
 
             <!-- Substack Unified Card -->
@@ -3869,13 +5161,13 @@
 
     <!-- Sticky CTA Button -->
     <div class="sticky-cta" id="stickyCta">
-        <a href="#contacto" id="sticky-join-btn">
+        <a href="https://nickperot.com/consciencIAdigital" target="_blank" rel="noopener noreferrer" id="sticky-join-btn">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
+                <path d="M12 3l1.9 5.8H20l-4.9 3.5 1.9 5.8L12 14.6 7 18.1l1.9-5.8L4 8.8h6.1L12 3z"></path>
             </svg>
-            <span class="sticky-cta-text" data-lang="es">Sumate a la transformación</span>
-            <span class="sticky-cta-text" data-lang="en">Join the transformation</span>
+            <span class="sticky-cta-text" data-lang="es">Comunidad ConsciencIA</span>
+            <span class="sticky-cta-text" data-lang="en">ConsciencIA Community</span>
         </a>
     </div>
 
@@ -3885,7 +5177,15 @@
     <section class="social-cta-section fade-in">
         <div class="container">
             <div class="social-cta-inner">
-                <h2><span data-lang="es">Conectemos</span><span data-lang="en">Let's connect</span></h2>
+                <div class="section-eyebrow pink">
+                    <i data-lucide="share-2"></i>
+                    <span data-lang="es">Redes &middot; Social</span>
+                    <span data-lang="en">Social &middot; Networks</span>
+                </div>
+                <h2>
+                    <span data-lang="es"><span class="highlight">Conectemos</span></span>
+                    <span data-lang="en">Let's <span class="highlight">connect</span></span>
+                </h2>
                 <p><span data-lang="es">Seguime en redes para más contenido sobre derecho, tecnología, gestión e inteligencia artificial.</span><span data-lang="en">Follow me on social media for more content on law, technology, management and artificial intelligence.</span></p>
                 <div class="social-cta-grid">
                     <a href="https://linkedin.com/in/nickperot" target="_blank" rel="noopener noreferrer" class="social-cta-card">
@@ -3947,7 +5247,8 @@
                 <span data-lang="en">By using this site you accept our <a href="/terminos-condiciones/" style="color: var(--text-3); text-decoration: underline;">Terms & Conditions</a> and our <a href="/politica-privacidad/" style="color: var(--text-3); text-decoration: underline;">Privacy Policy</a>.</span>
             </p>
             <p style="margin-top: 16px; font-size: 0.78rem; color: var(--accent); line-height: 1.6; font-style: italic;">
-                La IA Generativa puede ser nuestra mejor aliada, y también comete errores. Usala con responsabilidad, compromiso y consciencia.
+                <span data-lang="es">La IA Generativa puede ser nuestra mejor aliada, y también comete errores. Usala con responsabilidad, compromiso y consciencia.</span>
+                <span data-lang="en">Generative AI can be our greatest ally — and it also makes mistakes. Use it with responsibility, commitment and awareness.</span>
             </p>
         </div>
     </footer>
@@ -3959,7 +5260,7 @@
         // Initialize icons
         lucide.createIcons();
 
-        // ─── Language Toggle ───
+        // ─── Language Toggle (persisted in localStorage, auto-detected on first visit) ───
         function setLang(lang) {
             document.body.classList.toggle('lang-en', lang === 'en');
             document.getElementById('btn-es').classList.toggle('active', lang === 'es');
@@ -3971,7 +5272,23 @@
                 const opts = (lang === 'en' ? sel.dataset.optionsEn : sel.dataset.optionsEs).split(',');
                 Array.from(sel.options).forEach((opt, i) => { if (opts[i]) opt.textContent = opts[i]; });
             });
+
+            try { localStorage.setItem('np-lang', lang); } catch (e) { /* storage blocked */ }
         }
+
+        // Initialise language: stored preference > browser language > default ES
+        (function initLang() {
+            let lang = 'es';
+            try {
+                const stored = localStorage.getItem('np-lang');
+                if (stored === 'es' || stored === 'en') {
+                    lang = stored;
+                } else if (navigator.language && navigator.language.toLowerCase().startsWith('en')) {
+                    lang = 'en';
+                }
+            } catch (e) { /* storage blocked */ }
+            if (lang === 'en') setLang('en');
+        })();
 
         // ─── Mobile Menu ───
         const menuToggle = document.getElementById('menuToggle');
@@ -4185,25 +5502,8 @@
             }
         });
 
-        // ─── Handle 'Join' / CTA Button Action ───
-        function prefillContactForm() {
-            setTimeout(() => {
-                const reasonSelect = document.getElementById('reason');
-                const messageBox = document.getElementById('message');
-
-                // Select the option
-                reasonSelect.value = "Me sumo a la Transformación Digital";
-
-                // Fill the message
-                const msgEs = "Me sumo a la Transformación Digital!";
-                const msgEn = "Join the Digital Transformation!";
-                const currentLang = document.documentElement.lang;
-                messageBox.value = currentLang === 'en' ? msgEn : msgEs;
-            }, 100);
-        }
-
-        document.getElementById('join-btn').addEventListener('click', prefillContactForm);
-        document.getElementById('sticky-join-btn').addEventListener('click', prefillContactForm);
+        // (Prefill removed — primary CTA now points to the community page;
+        //  the contact form is used for plain inquiries, no auto-fill needed.)
 
         // ─── Header Scroll + Scroll-to-top + Sticky CTA ───
         const scrollTopBtn = document.getElementById('scrollTopBtn');
@@ -4258,15 +5558,15 @@
                 setTimeout(() => {
                     content.classList.remove('expanded');
                     btn.classList.remove('active');
-                    btn.querySelector('span[data-lang="es"]').textContent = "Ver trayectoria completa";
-                    btn.querySelector('span[data-lang="en"]').textContent = "View full journey";
+                    btn.querySelector('span[data-lang="es"]').textContent = "Conocer más sobre Nick";
+                    btn.querySelector('span[data-lang="en"]').textContent = "Learn more about Nick";
                 }, 500);
             } else {
                 // Expanding
                 content.classList.add('expanded');
                 btn.classList.add('active');
-                btn.querySelector('span[data-lang="es"]').textContent = "Ocultar trayectoria";
-                btn.querySelector('span[data-lang="en"]').textContent = "Collapse journey";
+                btn.querySelector('span[data-lang="es"]').textContent = "Ocultar";
+                btn.querySelector('span[data-lang="en"]').textContent = "Collapse";
             }
         }
 
@@ -4353,6 +5653,61 @@
         }
 
         window.addEventListener('scroll', updateActiveChapter, { passive: true });
+
+        // ─── Side Section Navigator ───
+        const sideNav = document.getElementById('sideNav');
+        const sideNavDots = document.querySelectorAll('.side-nav-dot');
+        const sectionIds = Array.from(sideNavDots).map(d => d.getAttribute('data-target'));
+
+        sideNavDots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                const target = document.getElementById(dot.getAttribute('data-target'));
+                if (target) {
+                    const offset = target.getBoundingClientRect().top + window.scrollY - 80;
+                    window.scrollTo({ top: offset, behavior: 'smooth' });
+                }
+            });
+        });
+
+        function updateSideNav() {
+            // Show only after scrolling past the hero
+            const heroBottom = document.getElementById('hero').getBoundingClientRect().bottom;
+            sideNav.classList.toggle('visible', heroBottom < 120);
+
+            // Pick the section with the most visible area in the viewport right now.
+            // This handles every case — including sections at the bottom of the page
+            // that can't scroll far enough to cross a threshold.
+            const viewportH = window.innerHeight;
+            let active = sectionIds[0];
+            let bestVisible = -1;
+
+            for (const id of sectionIds) {
+                const el = document.getElementById(id);
+                if (!el) continue;
+                const rect = el.getBoundingClientRect();
+                const visibleTop = Math.max(rect.top, 0);
+                const visibleBottom = Math.min(rect.bottom, viewportH);
+                const visibleHeight = Math.max(0, visibleBottom - visibleTop);
+                if (visibleHeight > bestVisible) {
+                    bestVisible = visibleHeight;
+                    active = id;
+                }
+            }
+
+            sideNavDots.forEach(d => {
+                d.classList.toggle('active', d.getAttribute('data-target') === active);
+            });
+        }
+
+        window.addEventListener('scroll', updateSideNav, { passive: true });
+        updateSideNav();
+
+        // ─── Developer Easter Egg ───
+        console.log(
+            '%c¡Hola, dev! 👋%c\n\nSi llegaste hasta acá, te invito a sumarte a la comunidad:\nhttps://nickperot.com/consciencIAdigital\n\n— Nick',
+            'font-size:16px;font-weight:800;color:#2563eb;',
+            'font-size:12px;color:#888;line-height:1.6;'
+        );
     </script>
 </body>
 
