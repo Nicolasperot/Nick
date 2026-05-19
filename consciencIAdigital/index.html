@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>ConsciencIA Digital — Una invitación</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper:      #F6F0E4;
+    --paper-deep: #EDE5D3;
+    --ink:        #1C1815;
+    --ink-soft:   #443C33;
+    --ink-mute:   #8A7F70;
+    --gold:       #9A7B3F;
+    --gold-soft:  #C7A971;
+    --hair:       #D9CDB6;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'EB Garamond', Garamond, 'Times New Roman', serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background:
+      radial-gradient(1400px 700px at 50% -240px, rgba(154,123,63,0.13), transparent 60%),
+      radial-gradient(1100px 900px at 100% 100%, rgba(154,123,63,0.06), transparent 60%),
+      var(--paper);
+    min-height: 100vh;
+  }
+
+  /* ============== Hero ============== */
+  .hero {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 120px 32px 70px;
+    text-align: center;
+    position: relative;
+  }
+
+  .eyebrow {
+    font-family: 'Inter', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.42em;
+    font-size: 11px;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 44px;
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .eyebrow::before,
+  .eyebrow::after {
+    content: "";
+    display: inline-block;
+    width: 28px;
+    height: 1px;
+    background: var(--gold-soft);
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: clamp(54px, 11vw, 140px);
+    line-height: 0.96;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    margin: 0 0 18px;
+  }
+
+  .hero h1 .ia {
+    font-style: italic;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: -0.04em;
+  }
+
+  .hero h1 .digital {
+    display: block;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 0.42em;
+    color: var(--ink-soft);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-top: 18px;
+  }
+
+  .hero .lede {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: clamp(18px, 2.2vw, 23px);
+    line-height: 1.5;
+    color: var(--ink-soft);
+    max-width: 520px;
+    margin: 40px auto 0;
+  }
+
+  .hero .signoff {
+    margin-top: 60px;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+
+  .hero .signoff .name { color: var(--ink); font-weight: 600; }
+  .hero .signoff .dot { margin: 0 14px; color: var(--gold-soft); }
+
+  /* ============== Cuerpo ============== */
+  article {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 40px 28px 60px;
+  }
+
+  article p {
+    font-family: 'EB Garamond', serif;
+    font-size: 20px;
+    line-height: 1.65;
+    color: var(--ink);
+    margin: 0 0 24px;
+  }
+
+  /* Drop cap solo en el primer párrafo */
+  article > p:first-of-type::first-letter {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-style: italic;
+    font-size: 92px;
+    line-height: 0.82;
+    float: left;
+    padding: 10px 16px 0 0;
+    color: var(--gold);
+  }
+
+  /* Separador ornamental entre movimientos */
+  .break {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 56px 0 48px;
+    color: var(--gold-soft);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    letter-spacing: 0.6em;
+    user-select: none;
+  }
+
+  .break span { transform: translateX(0.3em); }
+
+  /* Estrofa "Despiertos para..." */
+  .stanza {
+    margin: 32px 0 36px;
+    padding-left: 28px;
+    border-left: 1px solid var(--gold-soft);
+  }
+
+  .stanza p {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 22px;
+    line-height: 1.55;
+    color: var(--ink);
+    margin: 0 0 10px;
+  }
+
+  /* Cita-respiro */
+  .breath {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 1.35;
+    color: var(--ink);
+    text-align: center;
+    margin: 56px auto;
+    max-width: 580px;
+  }
+
+  .breath::before,
+  .breath::after {
+    content: "";
+    display: block;
+    width: 44px;
+    height: 1px;
+    background: var(--gold);
+    margin: 0 auto;
+  }
+
+  .breath::before { margin-bottom: 30px; }
+  .breath::after  { margin-top: 30px; }
+
+  /* Coda final */
+  .coda {
+    margin-top: 64px;
+    text-align: center;
+  }
+
+  .coda .line {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 24px;
+    line-height: 1.4;
+    color: var(--ink);
+    margin: 0 0 10px;
+  }
+
+  .coda .welcome {
+    margin-top: 44px;
+    font-family: 'Inter', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.36em;
+    font-size: 11px;
+    color: var(--gold);
+    font-weight: 500;
+  }
+
+  .coda .seal {
+    margin-top: 24px;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: 38px;
+    color: var(--ink);
+    letter-spacing: -0.015em;
+  }
+
+  .coda .seal .ia {
+    font-style: italic;
+    font-weight: 600;
+    color: var(--gold);
+  }
+
+  .coda .seal .digital {
+    font-style: italic;
+    font-weight: 400;
+    font-size: 0.42em;
+    color: var(--ink-soft);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    display: block;
+    margin-top: 8px;
+  }
+
+  /* ============== Transición ============== */
+  .transition {
+    margin-top: 56px;
+    text-align: center;
+  }
+
+  .transition .line {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 24px;
+    line-height: 1.4;
+    color: var(--ink);
+    margin: 0 0 10px;
+  }
+
+  /* ============== Founder ============== */
+  .founder {
+    margin-top: 80px;
+    padding-top: 44px;
+    border-top: 1px solid var(--hair);
+  }
+
+  .founder-label,
+  .pillars-label,
+  .join-label {
+    font-family: 'Inter', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.32em;
+    font-size: 11px;
+    color: var(--gold);
+    font-weight: 500;
+    margin: 0 0 22px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .founder-label::after,
+  .pillars-label::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--gold-soft);
+    opacity: 0.55;
+  }
+
+  .founder-text {
+    font-family: 'EB Garamond', serif;
+    font-size: 19px;
+    line-height: 1.65;
+    color: var(--ink);
+    margin: 0;
+  }
+
+  .founder-text strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  .founder-text em {
+    font-style: italic;
+    color: var(--gold);
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+  }
+
+  /* ============== Pilares ============== */
+  .pillars {
+    margin-top: 64px;
+  }
+
+  .pillar-list {
+    margin-top: 14px;
+  }
+
+  .pillar {
+    display: flex;
+    gap: 28px;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--hair);
+    align-items: baseline;
+  }
+
+  .pillar:last-child {
+    border-bottom: none;
+  }
+
+  .pillar-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 32px;
+    color: var(--gold);
+    min-width: 44px;
+    line-height: 1;
+  }
+
+  .pillar-body h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-style: italic;
+    font-size: 26px;
+    color: var(--ink);
+    margin: 0 0 6px;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+
+  .pillar-body p {
+    font-family: 'EB Garamond', serif;
+    font-size: 18px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  /* ============== CTA / Join ============== */
+  .join {
+    margin-top: 72px;
+    padding: 44px 36px;
+    background: rgba(199, 169, 113, 0.10);
+    border: 1px solid var(--hair);
+    text-align: center;
+  }
+
+  .join-label {
+    justify-content: center;
+    margin-bottom: 18px;
+  }
+
+  .join-label::before,
+  .join-label::after {
+    content: "";
+    width: 28px;
+    height: 1px;
+    background: var(--gold-soft);
+  }
+
+  .join-text {
+    font-family: 'EB Garamond', serif;
+    font-size: 19px;
+    line-height: 1.55;
+    color: var(--ink);
+    margin: 0 auto 30px;
+    max-width: 460px;
+  }
+
+  .join-text em {
+    font-style: italic;
+    color: var(--gold);
+    font-weight: 500;
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  .cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 34px;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 1px solid var(--ink);
+  }
+
+  .cta:hover {
+    background: var(--gold);
+    border-color: var(--gold);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(154, 123, 63, 0.22);
+  }
+
+  .cta-arrow {
+    transition: transform 0.3s ease;
+    font-family: 'EB Garamond', serif;
+    font-size: 18px;
+    letter-spacing: 0;
+  }
+
+  .cta:hover .cta-arrow {
+    transform: translateX(4px);
+  }
+
+  .join-handle {
+    margin-top: 20px;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-bottom: 0;
+  }
+
+  /* Override: el nuevo cierre arranca sin margen superior */
+  .coda .welcome {
+    margin-top: 0;
+  }
+
+  /* Pie */
+  footer.site-foot {
+    border-top: 1px solid var(--hair);
+    max-width: 640px;
+    margin: 80px auto 0;
+    padding: 26px 28px 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+
+  footer.site-foot .name { color: var(--ink); font-weight: 600; }
+  footer.site-foot .site { color: var(--gold); }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .hero { padding: 72px 22px 40px; }
+    .hero h1 { font-size: 62px; }
+    .hero h1 .digital { font-size: 0.36em; }
+    article { padding: 30px 22px 40px; }
+    article p { font-size: 18px; }
+    article > p:first-of-type::first-letter {
+      font-size: 68px;
+      padding: 8px 12px 0 0;
+    }
+    .stanza p { font-size: 19px; }
+    .breath { font-size: 23px; }
+    .transition .line { font-size: 21px; }
+    .coda .seal { font-size: 28px; }
+    .founder { margin-top: 56px; padding-top: 36px; }
+    .founder-text { font-size: 18px; }
+    .pillars { margin-top: 48px; }
+    .pillar { flex-direction: column; gap: 4px; align-items: flex-start; padding: 18px 0; }
+    .pillar-num { font-size: 28px; min-width: 0; }
+    .pillar-body h3 { font-size: 22px; }
+    .pillar-body p { font-size: 17px; }
+    .join { margin-top: 56px; padding: 34px 22px; }
+    .join-text { font-size: 18px; }
+    .cta { padding: 14px 22px; font-size: 12px; letter-spacing: 0.18em; }
+  }
+
+  /* Entrada suave */
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero, article, footer.site-foot {
+    animation: rise 1s ease-out both;
+  }
+  article          { animation-delay: 0.2s; }
+  footer.site-foot { animation-delay: 0.4s; }
+
+  ::selection { background: rgba(154, 123, 63, 0.22); }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="eyebrow">Una invitación</div>
+  <h1>
+    Conscienc<span class="ia">IA</span>
+    <span class="digital">Digital</span>
+  </h1>
+  <p class="lede">Sobre lo que significa estar despiertos en la época más extraordinaria que nos tocó vivir.</p>
+  <div class="signoff">
+    <span class="name">Nick Perot</span>
+    <span class="dot">·</span>
+    <span>nickperot.com</span>
+  </div>
+</header>
+
+<article>
+
+  <p>Hay una sensación que muchos compartimos sin decirla en voz alta. La sensación de estar viviendo algo enorme sin terminar de entenderlo. De ver cómo el mundo cambia más rápido de lo que podemos pensar. De sospechar que, en medio de tanta abundancia, se nos puede estar escapando algo importante.</p>
+
+  <p>Esa sensación es el origen de todo lo que sigue.</p>
+
+  <div class="break"><span>⁂</span></div>
+
+  <p>Nunca antes tuvimos tanto. Nunca antes corrimos tanto riesgo de perdernos a nosotros mismos en medio de tanto.</p>
+
+  <p>Nuestra época nos pide algo que ninguna otra pidió. Aprender a convivir con una inteligencia que no es humana, sin dejar de ser nosotros. Manejar herramientas que nos exceden, sin que terminen manejándonos. Habitar una velocidad que no nos pertenece, sin perder la pausa donde nacen las ideas y los encuentros.</p>
+
+  <p>No hay manual para esto. Lo estamos escribiendo entre todos.</p>
+
+  <div class="break"><span>⁂</span></div>
+
+  <p>La pregunta más importante de nuestra época no es qué puede hacer la tecnología. Es qué clase de personas queremos ser dentro de ella.</p>
+
+  <p>La inteligencia artificial es el invento más extraordinario que va a atravesar nuestras vidas. Merece la mirada que se le debe a lo extraordinario. No miedo. No idolatría. Consciencia.</p>
+
+  <div class="breath">Toda herramienta amplifica lo que ya somos. Por eso, la primera tarea es siempre interior.</div>
+
+  <p>Ser conscientes digitales no es desconfiar del mundo digital ni entregarse a él. Es algo más simple y más exigente: estar despiertos.</p>
+
+  <div class="stanza">
+    <p>Despiertos para elegir qué dejamos entrar.</p>
+    <p>Despiertos para recordar lo que importa.</p>
+    <p>Despiertos para no confundir lo urgente con lo esencial.</p>
+    <p>Despiertos para que cada herramienta vuelva al lugar que le corresponde: al servicio de la vida.</p>
+  </div>
+
+  <div class="break"><span>⁂</span></div>
+
+  <p>Y es, también, algo más concreto. Es detenernos cada tanto a preguntarnos si estamos usando la tecnología del mejor modo posible. Si las herramientas que tenemos delante están realmente a nuestro servicio, o si, sin darnos cuenta, somos nosotros los que terminamos al servicio de ellas. Si lo que automatizamos nos devuelve tiempo o nos llena el día con más tareas. Si lo que adoptamos resuelve algo real o solo nos da la ilusión de estar al día.</p>
+
+  <p>Esa pregunta hay que hacérsela seguido. La diferencia entre usar bien la tecnología y dejarse usar por ella no se ve de un día para el otro. Se ve en los meses, en los años, en la suma de pequeñas decisiones que casi nadie nota.</p>
+
+  <div class="break"><span>⁂</span></div>
+
+  <p>Ser conscientes digitales es, también, decidir seguir estudiando. En todo momento, y de las formas más diversas. Leyendo, probando, equivocándose. Conversando con quien sabe más. Escuchando a quien viene de un lugar distinto. Aprendiendo de los propios alumnos, de los propios hijos, de los propios errores.</p>
+
+  <p>La curiosidad sostenida es el único antídoto real contra la obsolescencia. No la del software: la nuestra. Lo que entendimos el año pasado ya no alcanza, y eso no es una mala noticia. Es la prueba de que esta es la época de quienes deciden no quedarse quietos.</p>
+
+  <div class="break"><span>⁂</span></div>
+
+  <p>Y es animarnos a dar los debates que esta época nos pone delante, aunque incomoden. Sobre el lugar de la inteligencia artificial en la educación, en el trabajo, en el derecho. Sobre qué datos entregamos y a quién. Sobre qué tareas tiene sentido automatizar y cuáles vale la pena seguir haciendo nosotros. Sobre cómo cuidamos a los más chicos, a los mayores, a quienes recién empiezan.</p>
+
+  <p>Esos debates importan, y se dan mejor sin perder el foco. Sin caer en la nostalgia ni en el fanatismo. Con preguntas concretas. Con experiencia propia. Con la honestidad de decir "esto todavía no lo sé" cuando hace falta.</p>
+
+  <div class="break"><span>⁂</span></div>
+
+  <p>No estamos en contra de nada. Estamos a favor de algo. A favor de una manera más humana de habitar esta época. A favor del aprendizaje sin soberbia, del que sabe que mañana entenderá un poco mejor lo que hoy todavía se le escapa. A favor de la honestidad antes que del entusiasmo fácil. A favor, siempre, de las personas antes que de las herramientas.</p>
+
+  <p>Porque la tecnología, al final, no nos hace humanos. Tampoco nos vuelve inhumanos. Nos devuelve, amplificado, lo que ya llevábamos adentro.</p>
+
+  <p>Y saberlo —vivirlo, recordarlo cada día— es la tarea que esta comunidad se propone compartir.</p>
+
+  <div class="transition">
+    <p class="line">Esto recién empieza.</p>
+    <p class="line">Si algo de esto te resonó, ya sos parte.</p>
+  </div>
+
+  <section class="founder">
+    <p class="founder-label">Quién está detrás</p>
+    <p class="founder-text">Soy <strong>Nick Perot</strong>. Abogado y docente. Llevo años trabajando en la intersección entre el derecho, la educación y la transformación digital, acompañando a personas y organizaciones que tienen que tomar decisiones tecnológicas sin perder de vista lo más importante: las personas. <em>ConsciencIA Digital</em> nace de una convicción simple. Esta época es demasiado grande para atravesarla en solitario.</p>
+  </section>
+
+  <section class="pillars">
+    <p class="pillars-label">Qué vas a encontrar acá</p>
+    <div class="pillar-list">
+      <div class="pillar">
+        <div class="pillar-num">01</div>
+        <div class="pillar-body">
+          <h3>Reflexión</h3>
+          <p>Ideas para preguntarnos si estamos usando la tecnología del mejor modo posible. A nuestro servicio, y al de los demás.</p>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">02</div>
+        <div class="pillar-body">
+          <h3>Aprendizaje</h3>
+          <p>Lecturas, recursos y experiencias para seguir estudiando en todo momento, y de las formas más diversas.</p>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">03</div>
+        <div class="pillar-body">
+          <h3>Debate</h3>
+          <p>Conversaciones honestas sobre los temas que esta época nos pone enfrente, sin perder el foco.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="join">
+    <p class="join-label">Sumate</p>
+    <p class="join-text">Nos encontramos en Instagram. Ahí compartimos las reflexiones, los aprendizajes y los debates, día a día. Si llegaste hasta acá, ya sos uno de los <em>Conscientes Digitales</em>.</p>
+    <a class="cta" href="https://www.instagram.com/channel/AbatuJYnH4w6q7ad/" target="_blank" rel="noopener">
+      Unirme al canal
+      <span class="cta-arrow">→</span>
+    </a>
+    <p class="join-handle">Canal directo a la comunidad en Instagram</p>
+  </section>
+
+  <div class="coda">
+    <div class="welcome">Bienvenido a</div>
+    <div class="seal">
+      Conscienc<span class="ia">IA</span>
+      <span class="digital">Digital</span>
+    </div>
+  </div>
+
+</article>
+
+<footer class="site-foot">
+  <span><span class="name">Nick Perot</span></span>
+  <span class="site">nickperot.com</span>
+  <span>Mayo 2026</span>
+</footer>
+
+</body>
+</html>
