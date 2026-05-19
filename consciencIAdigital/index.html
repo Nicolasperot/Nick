@@ -474,6 +474,72 @@
     margin-top: 0;
   }
 
+  /* ============== Floating CTA (landing page) ============== */
+  .floating-cta {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 15px 28px;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid var(--ink);
+    border-radius: 999px;
+    box-shadow:
+      0 14px 36px rgba(28, 24, 21, 0.22),
+      0 4px 14px rgba(28, 24, 21, 0.14);
+    z-index: 50;
+    transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    animation: floatIn 0.7s ease-out 1.2s both;
+  }
+
+  .floating-cta .arrow {
+    font-family: 'EB Garamond', serif;
+    font-size: 17px;
+    letter-spacing: 0;
+    transition: transform 0.3s ease;
+  }
+
+  .floating-cta:hover {
+    background: var(--gold);
+    border-color: var(--gold);
+    transform: translateY(-2px);
+    box-shadow:
+      0 18px 42px rgba(154, 123, 63, 0.32),
+      0 6px 18px rgba(154, 123, 63, 0.20);
+  }
+
+  .floating-cta:hover .arrow {
+    transform: translateX(3px);
+  }
+
+  @keyframes floatIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 640px) {
+    .floating-cta {
+      bottom: 18px;
+      right: 18px;
+      padding: 12px 22px;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      gap: 10px;
+    }
+    .floating-cta .arrow {
+      font-size: 15px;
+    }
+  }
+
   /* Pie */
   footer.site-foot {
     border-top: 1px solid var(--hair);
@@ -856,7 +922,7 @@
     <p class="join-label">Sumate</p>
     <p class="join-text">Nos encontramos en Instagram. Ahí compartimos las reflexiones, los aprendizajes y los debates, día a día. Si llegaste hasta acá, ya sos parte de <em>ConsciencIA Digital</em>.</p>
     <a class="cta" href="https://www.instagram.com/channel/AbatuJYnH4w6q7ad/" target="_blank" rel="noopener">
-      Unirme al canal
+      Unirme a la comunidad
       <span class="cta-arrow">→</span>
     </a>
     <p class="join-handle">Canal directo a la comunidad en Instagram</p>
@@ -877,6 +943,11 @@
   <a class="site" href="https://nickperot.com" target="_blank" rel="noopener">nickperot.com</a>
   <span>Mayo 2026</span>
 </footer>
+
+<a class="floating-cta" href="https://www.instagram.com/channel/AbatuJYnH4w6q7ad/" target="_blank" rel="noopener" aria-label="Sumate a la comunidad ConsciencIA Digital">
+  <span>Sumate a la comunidad</span>
+  <span class="arrow" aria-hidden="true">→</span>
+</a>
 
 </body>
 </html>
