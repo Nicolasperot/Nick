@@ -121,6 +121,16 @@
   .hero .signoff .name { color: var(--ink); font-weight: 600; }
   .hero .signoff .dot { margin: 0 14px; color: var(--gold-soft); }
 
+  .hero .signoff a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .hero .signoff a:hover {
+    color: var(--gold);
+  }
+
   /* ============== Cuerpo ============== */
   article {
     max-width: 640px;
@@ -483,7 +493,15 @@
   }
 
   footer.site-foot .name { color: var(--ink); font-weight: 600; }
-  footer.site-foot .site { color: var(--gold); }
+  footer.site-foot .site {
+    color: var(--gold);
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+  }
+
+  footer.site-foot .site:hover {
+    opacity: 0.72;
+  }
 
   /* ============== Responsive — Mobile (≤640px) ============== */
   @media (max-width: 640px) {
@@ -724,7 +742,7 @@
   <div class="signoff">
     <span class="name">Nick Perot</span>
     <span class="dot">·</span>
-    <span>nickperot.com</span>
+    <a href="https://nickperot.com" target="_blank" rel="noopener">nickperot.com</a>
   </div>
 </header>
 
@@ -856,7 +874,7 @@
 
 <footer class="site-foot">
   <span><span class="name">Nick Perot</span></span>
-  <span class="site">nickperot.com</span>
+  <a class="site" href="https://nickperot.com" target="_blank" rel="noopener">nickperot.com</a>
   <span>Mayo 2026</span>
 </footer>
 
