@@ -543,6 +543,7 @@
             margin-bottom: 20px;
             letter-spacing: -2px;
             font-weight: 700;
+            text-wrap: balance;
         }
 
         h1 .accent-text {
@@ -550,7 +551,9 @@
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            display: inline-block;
+            display: inline;
+            -webkit-box-decoration-break: clone;
+            box-decoration-break: clone;
         }
 
         /* Hero eyebrow chip */
@@ -1674,7 +1677,8 @@
             }
 
             h1 {
-                font-size: 2.2rem;
+                font-size: 1.95rem;
+                letter-spacing: -1px;
             }
 
             .chapter-tabs {
@@ -1717,6 +1721,15 @@
 
             .exp-intro p {
                 line-height: 1.65;
+            }
+        }
+
+        /* Ultra-narrow devices (iPhone SE 1st gen, etc.) need an even smaller h1
+           to fit "Derecho, Tecnología" on a single line. */
+        @media (max-width: 360px) {
+            h1 {
+                font-size: 1.7rem;
+                letter-spacing: -0.5px;
             }
         }
 
@@ -3203,12 +3216,12 @@
                     <span data-lang="en">Available for new projects</span>
                 </div>
                 <div data-lang="es">
-                    <h1>Derecho, <span class="accent-text">Tecnología <br>y Gestión</span></h1>
+                    <h1>Derecho, <span class="accent-text">Tecnología y Gestión</span></h1>
                     <p class="subtitle">Estamos transitando la revolución digital. Acompaño a personas y organizaciones
                         en su transformación digital responsable.</p>
                 </div>
                 <div data-lang="en">
-                    <h1>Law, <span class="accent-text">Technology <br>and Management</span></h1>
+                    <h1>Law, <span class="accent-text">Technology and Management</span></h1>
                     <p class="subtitle">We are going through the digital revolution. I support individuals and
                         organizations in their responsible digital transformation.</p>
                 </div>
