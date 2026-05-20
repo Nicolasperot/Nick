@@ -824,7 +824,32 @@
   }
   .flow-step p { margin: 0; font-size: 0.85em; color: var(--color-text-secondary); }
   @media (max-width: 768px) {
-    .flow-step::after { content: '↓'; right: 50%; top: auto; bottom: -22px; transform: translateX(50%); }
+    .flow {
+      display: flex; flex-direction: column;
+      gap: 32px; margin: 30px 0;
+      align-items: stretch;
+    }
+    .flow-step {
+      margin: 0;
+      padding: 18px 20px;
+    }
+    .flow-step::after {
+      content: '↓';
+      position: absolute;
+      left: 50%; right: auto;
+      bottom: -26px; top: auto;
+      transform: translateX(-50%);
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--color-primary), var(--color-anchor));
+      color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1em; line-height: 1;
+      box-shadow: 0 6px 14px rgba(74,35,90,0.35),
+                  inset 0 1px 0 rgba(255,255,255,0.25);
+      border: 2px solid #fff;
+    }
+    .flow-step:last-child::after { display: none; }
   }
 
   /* ════════ COMPARATIVA (políticas) ════════ */
@@ -1794,6 +1819,9 @@
     border-radius: 18px; overflow: hidden;
     box-shadow: 0 18px 44px rgba(74,35,90,0.1);
   }
+  /* En desktop: filas y headers son transparentes a la grilla */
+  .base-mirror .bm-headers,
+  .base-mirror .bm-row { display: contents; }
   .bm-head {
     padding: 20px 22px; text-align: center;
     font-weight: 800; letter-spacing: 2.5px;
@@ -1900,33 +1928,95 @@
   }
 
   @media (max-width: 760px) {
+    /* Contenedor pasa a ser apilable de tarjetas */
     .base-mirror {
-      grid-template-columns: 1fr;
-      border-radius: 14px;
+      display: flex; flex-direction: column;
+      gap: 16px; padding: 6px;
+      background: transparent;
+      border: none; box-shadow: none;
+      border-radius: 0;
     }
-    .bm-head { padding: 14px 16px; font-size: 0.7em; letter-spacing: 1.5px; }
-    .bm-head.center { display: none; }
-    .bm-cell {
-      padding: 16px 18px;
-      border-left: 4px solid transparent;
+    .bm-headers { display: none; }
+
+    /* Cada fila se vuelve una tarjeta autosuficiente */
+    .base-mirror .bm-row {
+      display: flex; flex-direction: column;
+      background: #fff;
+      border-radius: 14px; overflow: hidden;
+      border: 1px solid var(--color-border-subtle);
+      box-shadow: 0 8px 22px rgba(74,35,90,0.08);
     }
-    .bm-cell.up { text-align: left; border-left-color: #27ae60; }
-    .bm-cell.up::before { display: none; }
-    .bm-cell.up .bm-op { flex-direction: row; }
-    .bm-cell.down { text-align: left; border-left-color: #e67e22; }
-    .bm-cell.down::after { display: none; }
-    .bm-cell.center {
+
+    /* Reordenar: centro arriba, aumenta segundo, disminuye al final */
+    .base-mirror .bm-row .bm-cell.center { order: 1; }
+    .base-mirror .bm-row .bm-cell.up     { order: 2; }
+    .base-mirror .bm-row .bm-cell.down   { order: 3; }
+
+    /* CENTRO como cabecera de la tarjeta */
+    .base-mirror .bm-row .bm-cell.center {
       background: linear-gradient(135deg, var(--color-deepest), var(--color-anchor));
       color: #fff;
       padding: 14px 18px;
       border: none;
       flex-direction: row;
-      gap: 12px;
+      align-items: center;
+      gap: 14px;
       justify-content: flex-start;
+      text-align: left;
     }
-    .bm-cell.center .bm-pivot-num { font-size: 1.4em; margin: 0; }
-    .bm-cell.center .bm-pivot-title { color: var(--color-soft); }
-    .bm-cell.center .bm-pivot-icon { display: none; }
+    .base-mirror .bm-row .bm-cell.center .bm-pivot-icon {
+      display: flex; align-items: center; justify-content: center;
+      width: 36px; height: 36px;
+      background: rgba(255,255,255,0.15); border-radius: 10px;
+      font-size: 1.1em; color: #ffd673;
+      margin: 0; flex-shrink: 0;
+      border: 1px solid rgba(255,255,255,0.18);
+    }
+    .base-mirror .bm-row .bm-cell.center .bm-pivot-num {
+      font-size: 1.1em; margin: 0;
+      color: #ffd673;
+      background: none; -webkit-background-clip: unset;
+      -webkit-text-fill-color: unset;
+    }
+    .base-mirror .bm-row .bm-cell.center .bm-pivot-title {
+      color: #fff; font-size: 0.78em;
+      text-align: left; line-height: 1.25;
+    }
+    .base-mirror .bm-row .bm-cell.center .bm-pivot-title br { display: none; }
+
+    /* AUMENTA y DISMINUYE: bandas claras con borde lateral coloreado */
+    .base-mirror .bm-row .bm-cell.up,
+    .base-mirror .bm-row .bm-cell.down {
+      padding: 14px 16px 14px 18px;
+      text-align: left;
+      background: #fff;
+      border-top: 1px solid var(--color-border);
+      border-left: 4px solid transparent;
+    }
+    .base-mirror .bm-row .bm-cell.up { border-left-color: #27ae60; background: rgba(39,174,96,0.04); }
+    .base-mirror .bm-row .bm-cell.down { border-left-color: #e67e22; background: rgba(230,126,34,0.04); }
+    .base-mirror .bm-row .bm-cell.up::before,
+    .base-mirror .bm-row .bm-cell.down::after { display: none; }
+
+    /* Mini-etiqueta "Aumenta" / "Disminuye" antes del nombre de la operación */
+    .base-mirror .bm-row .bm-cell.up::before,
+    .base-mirror .bm-row .bm-cell.down::before {
+      content: 'AUMENTA'; display: inline-block;
+      position: static; width: auto; height: auto;
+      font-size: 0.6em; letter-spacing: 2px; font-weight: 800;
+      padding: 3px 9px; border-radius: 50px;
+      margin-bottom: 8px;
+      background: none; opacity: 1;
+    }
+    .base-mirror .bm-row .bm-cell.up::before {
+      background: rgba(39,174,96,0.12); color: #1e8449;
+    }
+    .base-mirror .bm-row .bm-cell.down::before {
+      content: 'DISMINUYE';
+      background: rgba(230,126,34,0.12); color: #b8651a;
+    }
+    .base-mirror .bm-row .bm-cell .bm-op { flex-direction: row; align-items: center; }
+    .base-mirror .bm-row .bm-cell .effect { font-size: 0.85em; margin-top: 4px; }
   }
 
   /* ════════ MAPA DE UNIDAD - RUTA CÓSMICA ════════ */
@@ -4354,100 +4444,110 @@
 
   <div class="base-mirror">
     <!-- Cabeceras de columna -->
-    <div class="bm-head up"><span class="arrow-symbol">↑</span> AUMENTA LA BASE</div>
-    <div class="bm-head center">Tipo de operación</div>
-    <div class="bm-head down">DISMINUYE LA BASE <span class="arrow-symbol">↓</span></div>
+    <div class="bm-headers">
+      <div class="bm-head up"><span class="arrow-symbol">↑</span> AUMENTA LA BASE</div>
+      <div class="bm-head center">Tipo de operación</div>
+      <div class="bm-head down">DISMINUYE LA BASE <span class="arrow-symbol">↓</span></div>
+    </div>
 
-    <!-- Fila 1: Divisas -->
-    <div class="bm-cell up">
-      <div class="bm-op">
-        <span class="badge">↑</span>
-        <span class="action">Compra de divisas u oro</span>
+    <!-- Fila 1: Sector externo -->
+    <div class="bm-row">
+      <div class="bm-cell up">
+        <div class="bm-op">
+          <span class="badge">↑</span>
+          <span class="action">Compra de divisas u oro</span>
+        </div>
+        <p class="effect">El BCRA paga con pesos recién impresos. Bajo tipo de cambio fijo,
+        <strong>ingresa un dólar → se emite un peso</strong>.</p>
       </div>
-      <p class="effect">El BCRA paga con pesos recién impresos. Bajo tipo de cambio fijo,
-      <strong>ingresa un dólar → se emite un peso</strong>.</p>
-    </div>
-    <div class="bm-cell center">
-      <div class="bm-pivot-icon">$</div>
-      <div class="bm-pivot-num">01</div>
-      <div class="bm-pivot-title">Sector<br>externo</div>
-    </div>
-    <div class="bm-cell down">
-      <div class="bm-op">
-        <span class="badge">↓</span>
-        <span class="action">Venta de divisas u oro</span>
+      <div class="bm-cell center">
+        <div class="bm-pivot-icon">$</div>
+        <div class="bm-pivot-num">01</div>
+        <div class="bm-pivot-title">Sector<br>externo</div>
       </div>
-      <p class="effect">El BCRA recibe pesos y los retira de circulación.
-      <strong>Sale un dólar de las reservas → vuelve un peso al BCRA</strong> y desaparece.</p>
+      <div class="bm-cell down">
+        <div class="bm-op">
+          <span class="badge">↓</span>
+          <span class="action">Venta de divisas u oro</span>
+        </div>
+        <p class="effect">El BCRA recibe pesos y los retira de circulación.
+        <strong>Sale un dólar de las reservas → vuelve un peso al BCRA</strong> y desaparece.</p>
+      </div>
     </div>
 
     <!-- Fila 2: Sector privado -->
-    <div class="bm-cell up">
-      <div class="bm-op">
-        <span class="badge">↑</span>
-        <span class="action">Más redescuentos a bancos</span>
+    <div class="bm-row">
+      <div class="bm-cell up">
+        <div class="bm-op">
+          <span class="badge">↑</span>
+          <span class="action">Más redescuentos a bancos</span>
+        </div>
+        <p class="effect">El BCRA otorga préstamos a bancos comerciales contra garantías. Esos pesos
+        ingresan al sistema financiero.</p>
       </div>
-      <p class="effect">El BCRA otorga préstamos a bancos comerciales contra garantías. Esos pesos
-      ingresan al sistema financiero.</p>
-    </div>
-    <div class="bm-cell center">
-      <div class="bm-pivot-icon">🏦</div>
-      <div class="bm-pivot-num">02</div>
-      <div class="bm-pivot-title">Sector<br>privado</div>
-    </div>
-    <div class="bm-cell down">
-      <div class="bm-op">
-        <span class="badge">↓</span>
-        <span class="action">Cancelación de redescuentos</span>
+      <div class="bm-cell center">
+        <div class="bm-pivot-icon">🏦</div>
+        <div class="bm-pivot-num">02</div>
+        <div class="bm-pivot-title">Sector<br>privado</div>
       </div>
-      <p class="effect">Los bancos devuelven préstamos al BCRA. Esos pesos vuelven a la autoridad
-      monetaria y dejan de circular.</p>
+      <div class="bm-cell down">
+        <div class="bm-op">
+          <span class="badge">↓</span>
+          <span class="action">Cancelación de redescuentos</span>
+        </div>
+        <p class="effect">Los bancos devuelven préstamos al BCRA. Esos pesos vuelven a la autoridad
+        monetaria y dejan de circular.</p>
+      </div>
     </div>
 
     <!-- Fila 3: Sector público -->
-    <div class="bm-cell up">
-      <div class="bm-op">
-        <span class="badge">↑</span>
-        <span class="action">Más créditos al sector público</span>
+    <div class="bm-row">
+      <div class="bm-cell up">
+        <div class="bm-op">
+          <span class="badge">↑</span>
+          <span class="action">Más créditos al sector público</span>
+        </div>
+        <p class="effect">Adelantos o préstamos a la Tesorería. Cuando financia déficit fiscal, se
+        llama <strong>monetización del déficit</strong>.</p>
       </div>
-      <p class="effect">Adelantos o préstamos a la Tesorería. Cuando financia déficit fiscal, se
-      llama <strong>monetización del déficit</strong>.</p>
-    </div>
-    <div class="bm-cell center">
-      <div class="bm-pivot-icon">⚖</div>
-      <div class="bm-pivot-num">03</div>
-      <div class="bm-pivot-title">Sector<br>público</div>
-    </div>
-    <div class="bm-cell down">
-      <div class="bm-op">
-        <span class="badge">↓</span>
-        <span class="action">Cancelación de créditos al Estado</span>
+      <div class="bm-cell center">
+        <div class="bm-pivot-icon">⚖</div>
+        <div class="bm-pivot-num">03</div>
+        <div class="bm-pivot-title">Sector<br>público</div>
       </div>
-      <p class="effect">El Estado devuelve adelantos al BCRA. Esos pesos retornan a la autoridad
-      monetaria y se extinguen como dinero en circulación.</p>
+      <div class="bm-cell down">
+        <div class="bm-op">
+          <span class="badge">↓</span>
+          <span class="action">Cancelación de créditos al Estado</span>
+        </div>
+        <p class="effect">El Estado devuelve adelantos al BCRA. Esos pesos retornan a la autoridad
+        monetaria y se extinguen como dinero en circulación.</p>
+      </div>
     </div>
 
     <!-- Fila 4: Mercado abierto -->
-    <div class="bm-cell up">
-      <div class="bm-op">
-        <span class="badge">↑</span>
-        <span class="action">Compra de títulos públicos</span>
+    <div class="bm-row">
+      <div class="bm-cell up">
+        <div class="bm-op">
+          <span class="badge">↑</span>
+          <span class="action">Compra de títulos públicos</span>
+        </div>
+        <p class="effect">El BCRA compra bonos en el mercado y entrega pesos. <strong>Inyecta
+        liquidez</strong> a la economía.</p>
       </div>
-      <p class="effect">El BCRA compra bonos en el mercado y entrega pesos. <strong>Inyecta
-      liquidez</strong> a la economía.</p>
-    </div>
-    <div class="bm-cell center">
-      <div class="bm-pivot-icon">⇄</div>
-      <div class="bm-pivot-num">04</div>
-      <div class="bm-pivot-title">Mercado<br>abierto</div>
-    </div>
-    <div class="bm-cell down">
-      <div class="bm-op">
-        <span class="badge">↓</span>
-        <span class="action">Venta de títulos públicos</span>
+      <div class="bm-cell center">
+        <div class="bm-pivot-icon">⇄</div>
+        <div class="bm-pivot-num">04</div>
+        <div class="bm-pivot-title">Mercado<br>abierto</div>
       </div>
-      <p class="effect">El BCRA vende bonos al mercado y recibe pesos. <strong>Drena liquidez</strong>
-      de la economía.</p>
+      <div class="bm-cell down">
+        <div class="bm-op">
+          <span class="badge">↓</span>
+          <span class="action">Venta de títulos públicos</span>
+        </div>
+        <p class="effect">El BCRA vende bonos al mercado y recibe pesos. <strong>Drena liquidez</strong>
+        de la economía.</p>
+      </div>
     </div>
   </div>
 
