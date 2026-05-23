@@ -359,7 +359,7 @@
 
   /* ════════ HERO ════════ */
   .hero {
-    position: relative; padding: 80px 50px 70px;
+    position: relative; padding: 80px 50px 230px;
     background: linear-gradient(135deg, #2a1133 0%, #4a235a 60%, #6c3483 100%);
     color: #fff; overflow: hidden;
   }
@@ -427,7 +427,7 @@
   }
   .cathedra-notice p { margin: 0; color: var(--color-text-secondary); font-size: 0.95em; }
 
-  /* ════════ MATERIAL COMPLEMENTARIO (banner) ════════ */
+  /* ════════ COMPANION BANNER · SUPLEMENTO ACADÉMICO ════════ */
   @keyframes cb-pulse-dot {
     0%, 100% { transform: scale(1); opacity: 1; box-shadow: 0 0 0 0 rgba(210,180,222,0.6); }
     50% { transform: scale(1.15); opacity: 0.9; box-shadow: 0 0 0 6px rgba(210,180,222,0); }
@@ -445,207 +445,161 @@
     position: relative;
     background:
       radial-gradient(ellipse at top right, rgba(210,180,222,0.18) 0%, transparent 55%),
-      radial-gradient(ellipse at 20% 80%, rgba(142,68,173,0.22) 0%, transparent 50%),
-      linear-gradient(135deg, #2a1133 0%, #4a235a 55%, #6c3483 100%);
+      linear-gradient(160deg, #2a1133 0%, #4a235a 50%, #6c3483 100%);
     color: #fff;
-    border-radius: 20px;
-    padding: 30px 32px;
+    border-radius: 14px;
     margin: 28px 0 0;
+    padding: 28px 32px;
     overflow: hidden;
     box-shadow:
-      0 22px 50px rgba(42,17,51,0.32),
-      0 2px 8px rgba(74,35,90,0.18),
-      inset 0 1px 0 rgba(255,255,255,0.08);
-    border: 1px solid rgba(210,180,222,0.22);
+      0 18px 40px rgba(42,17,51,0.32),
+      inset 0 1px 0 rgba(255,255,255,0.06);
+    border: 1px solid rgba(210,180,222,0.18);
   }
 
   /* Patrón de puntos sutil */
   .companion-banner::before {
     content: ''; position: absolute; inset: 0;
-    background-image:
-      radial-gradient(circle, rgba(210,180,222,0.07) 1px, transparent 1.5px);
+    background-image: radial-gradient(circle, rgba(210,180,222,0.06) 1px, transparent 1.5px);
     background-size: 22px 22px;
-    background-position: 0 0;
     pointer-events: none;
     mask-image: linear-gradient(135deg, rgba(0,0,0,0.85), transparent 70%);
     -webkit-mask-image: linear-gradient(135deg, rgba(0,0,0,0.85), transparent 70%);
   }
 
-  /* "§" gigante decorativo de fondo */
-  .companion-banner::after {
-    content: '§';
-    position: absolute; bottom: -80px; right: -20px;
-    font-family: var(--font-display);
-    font-size: 20em; font-weight: 900;
-    color: rgba(210,180,222,0.06);
-    line-height: 1; pointer-events: none;
-    transform: rotate(-6deg);
-  }
-
   .companion-banner > * { position: relative; z-index: 1; }
 
-  /* Header del banner */
-  .cb-header {
-    display: flex; align-items: flex-start; gap: 22px;
-  }
-
-  /* Stack de papeles como ícono */
-  .cb-icon {
-    position: relative;
-    flex-shrink: 0;
-    width: 64px; height: 76px;
-    margin-top: 4px;
-  }
-  .cb-icon .paper {
-    position: absolute; left: 0; top: 0;
-    width: 100%; height: 100%;
-    background: linear-gradient(160deg, #fff 0%, #f4f0f7 100%);
-    border-radius: 6px;
-  }
-  .cb-icon .paper.p1 {
-    transform: rotate(-7deg) translate(-4px, 3px);
-    background: linear-gradient(160deg, #d2b4de, #b481c7);
-    opacity: 0.55;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.25);
-  }
-  .cb-icon .paper.p2 {
-    background: linear-gradient(160deg, #ede1f5, #d2b4de);
-    box-shadow: 0 4px 14px rgba(0,0,0,0.3);
-    animation: cb-float 5s ease-in-out infinite;
-  }
-  .cb-icon .paper.p3 {
-    display: flex; align-items: center; justify-content: center;
-    font-family: var(--font-display);
-    font-size: 2.2em; font-weight: 900;
-    color: var(--color-anchor);
-    box-shadow:
-      0 8px 24px rgba(0,0,0,0.4),
-      inset 0 1px 0 rgba(255,255,255,0.8);
-    transform: rotate(-1deg) translate(1px, -2px);
-  }
-  .cb-icon .paper.p3::after {
-    content: '';
-    position: absolute; left: 12%; right: 12%;
-    bottom: 22%;
-    height: 2px;
-    background: var(--color-primary);
-    opacity: 0.4;
-    border-radius: 2px;
-    box-shadow:
-      0 -6px 0 rgba(108,52,131,0.25),
-      0 -12px 0 rgba(108,52,131,0.18);
-  }
-
-  .cb-content { flex: 1; min-width: 240px; }
-
-  /* Tag con dot pulsante */
-  .cb-tag {
+  /* ════ Estación pill · pequeño ════ */
+  .cb-est-pill {
     display: inline-flex; align-items: center; gap: 8px;
-    font-size: 0.64em; text-transform: uppercase; letter-spacing: 2.5px;
-    color: var(--color-soft); font-weight: 700;
-    padding: 5px 14px 5px 11px;
-    background: rgba(210,180,222,0.12);
+    font-size: 0.58em;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    color: var(--color-soft);
+    background: rgba(210,180,222,0.1);
     border: 1px solid rgba(210,180,222,0.28);
-    border-radius: 50px; margin-bottom: 12px;
+    padding: 4px 13px;
+    border-radius: 50px;
+    font-weight: 700;
+    margin-bottom: 18px;
   }
-  .cb-tag .tag-dot {
-    width: 7px; height: 7px;
-    border-radius: 50%; background: var(--color-soft);
-    animation: cb-pulse-dot 2s infinite;
-    flex-shrink: 0;
+  .cb-est-pill .est-num {
+    font-family: var(--font-display);
+    font-size: 1.05em;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0.5px;
+    line-height: 1;
+  }
+  .cb-est-pill .est-sep {
+    width: 1px; height: 10px;
+    background: rgba(210,180,222,0.4);
   }
 
+  /* ════ Título · contenido justo, sin abrumar ════ */
   .companion-banner h4 {
     font-family: var(--font-display);
-    font-weight: normal;
-    font-size: 1.55em;
+    font-weight: 600;
+    font-size: 1.8em;
     color: #fff;
-    margin: 0 0 10px;
-    line-height: 1.2;
-    letter-spacing: -0.3px;
+    margin: 0;
+    line-height: 1.15;
+    letter-spacing: -0.4px;
   }
   .companion-banner h4 em {
     color: var(--color-soft);
     font-style: italic;
+    font-weight: 600;
   }
 
-  .companion-banner p {
-    color: rgba(255,255,255,0.84);
-    font-size: 0.95em;
-    margin: 0;
+  .cb-doc-sub {
+    font-size: 0.9em;
+    color: rgba(255,255,255,0.65);
+    font-style: italic;
+    line-height: 1.45;
+    margin: 8px 0 16px;
+    max-width: 560px;
+  }
+
+  .cb-doc-desc {
+    font-size: 0.9em;
+    color: rgba(255,255,255,0.78);
     line-height: 1.6;
-    max-width: 600px;
+    margin: 0 0 18px;
+    max-width: 560px;
   }
-  .companion-banner p strong { color: #fff; }
+  .cb-doc-desc strong { color: #fff; }
 
-  /* Chips de temas que cubre la guía */
-  .cb-chips {
-    display: flex; flex-wrap: wrap; gap: 8px;
-    margin: 18px 0 0;
+  /* ════ Capítulos · línea horizontal sutil (sin caja) ════ */
+  .cb-chapters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 22px;
+    padding: 14px 0;
+    border-top: 1px solid rgba(210,180,222,0.13);
+    border-bottom: 1px solid rgba(210,180,222,0.13);
+    margin-bottom: 18px;
   }
-  .cb-chip {
-    display: inline-flex; align-items: center; gap: 6px;
-    font-size: 0.78em;
-    color: rgba(255,255,255,0.9);
-    padding: 6px 12px;
-    background: rgba(255,255,255,0.07);
-    border: 1px solid rgba(255,255,255,0.13);
-    border-radius: 50px;
-    transition: background 0.2s, border-color 0.2s, transform 0.2s;
+  .cb-chap {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 7px;
+    font-size: 0.82em;
+    color: rgba(255,255,255,0.7);
+    letter-spacing: 0.1px;
   }
-  .cb-chip:hover {
-    background: rgba(255,255,255,0.13);
-    border-color: rgba(210,180,222,0.45);
-    transform: translateY(-1px);
-  }
-  .cb-chip::before {
-    content: '◆';
+  .cb-chap .ch-num {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 700;
     color: var(--color-soft);
-    font-size: 0.65em;
-    opacity: 0.85;
+    font-size: 0.96em;
+    letter-spacing: 0;
   }
 
-  /* Footer con meta + CTA */
-  .cb-footer {
-    display: flex; align-items: center; justify-content: space-between;
-    gap: 18px; flex-wrap: wrap;
-    margin-top: 22px;
-    padding-top: 20px;
-    border-top: 1px dashed rgba(210,180,222,0.22);
+  /* ════ Footer simple (sin barra oscura) ════ */
+  .cb-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    flex-wrap: wrap;
   }
-
-  .cb-meta {
-    display: inline-flex; align-items: center; gap: 10px;
-    font-size: 0.78em;
-    color: rgba(255,255,255,0.62);
+  .cb-foot-meta {
+    font-size: 0.76em;
+    color: rgba(255,255,255,0.5);
+    font-style: italic;
     letter-spacing: 0.3px;
+    display: inline-flex; align-items: center; gap: 9px;
+    flex-wrap: wrap;
   }
-  .cb-meta .meta-sep {
-    width: 4px; height: 4px;
+  .cb-foot-meta strong {
+    color: rgba(255,255,255,0.82);
+    font-weight: 700;
+    font-style: normal;
+  }
+  .cb-foot-meta .sep {
+    width: 3px; height: 3px;
     border-radius: 50%;
     background: var(--color-soft);
-    opacity: 0.65;
-  }
-  .cb-meta .meta-url {
-    font-family: 'JetBrains Mono', 'Consolas', monospace;
-    font-size: 0.95em;
-    color: rgba(210,180,222,0.85);
-    letter-spacing: 0.2px;
+    opacity: 0.5;
+    font-style: normal;
   }
 
+  /* ════ CTA ════ */
   .cb-cta {
-    display: inline-flex; align-items: center; gap: 11px;
+    display: inline-flex; align-items: center; gap: 10px;
     background: #fff;
     color: var(--color-deepest);
-    padding: 12px 14px 12px 22px;
+    padding: 11px 14px 11px 22px;
     border-radius: 50px;
     font-weight: 700;
     text-decoration: none;
-    font-size: 0.9em;
+    font-size: 0.88em;
     letter-spacing: 0.3px;
     transition: transform 0.25s, box-shadow 0.25s;
     box-shadow:
-      0 8px 22px rgba(0,0,0,0.28),
+      0 8px 22px rgba(0,0,0,0.32),
       inset 0 1px 0 rgba(255,255,255,0.6);
     position: relative;
     overflow: hidden;
@@ -661,15 +615,15 @@
   .cb-cta:hover {
     transform: translateY(-3px);
     box-shadow:
-      0 14px 30px rgba(0,0,0,0.36),
+      0 14px 30px rgba(0,0,0,0.4),
       inset 0 1px 0 rgba(255,255,255,0.6);
   }
   .cb-cta:hover::before { animation: cb-shine 0.9s ease-out; }
   .cb-cta .arrow {
     display: inline-flex; align-items: center; justify-content: center;
-    width: 26px; height: 26px; border-radius: 50%;
+    width: 24px; height: 24px; border-radius: 50%;
     background: linear-gradient(135deg, var(--color-primary), var(--color-anchor));
-    color: #fff; font-size: 0.95em; font-weight: 700;
+    color: #fff; font-size: 0.9em; font-weight: 700;
     transition: transform 0.3s cubic-bezier(.5,1.6,.5,1);
     box-shadow: 0 3px 8px rgba(74,35,90,0.4);
   }
@@ -677,15 +631,16 @@
 
   /* Responsive */
   @media (max-width: 720px) {
-    .companion-banner { padding: 26px 22px; border-radius: 16px; }
-    .cb-header { gap: 16px; }
-    .cb-icon { width: 50px; height: 60px; }
-    .cb-icon .paper.p3 { font-size: 1.6em; }
-    .companion-banner h4 { font-size: 1.25em; }
-    .companion-banner::after { font-size: 13em; bottom: -55px; }
-    .cb-footer { flex-direction: column; align-items: stretch; gap: 14px; }
+    .companion-banner { padding: 24px 22px; border-radius: 12px; }
+    .companion-banner h4 { font-size: 1.45em; max-width: 100%; }
+    .cb-chapters { gap: 10px 16px; padding: 12px 0; }
+    .cb-chap { font-size: 0.78em; }
+    .cb-foot { flex-direction: column; align-items: stretch; gap: 12px; }
+    .cb-foot-meta { justify-content: center; }
     .cb-cta { justify-content: center; }
-    .cb-meta { justify-content: center; flex-wrap: wrap; }
+  }
+  @media (max-width: 480px) {
+    .companion-banner h4 { font-size: 1.3em; }
   }
 
   /* ════════ SECCIONES ════════ */
@@ -801,35 +756,184 @@
   .journey-intro .jsub { color: var(--color-text-secondary); font-size: 0.95em; max-width: 700px; }
 
   .journey-track {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 14px; position: relative; z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    position: relative; z-index: 1;
   }
   .station {
-    background: #fff; border-radius: 12px; padding: 18px;
-    text-align: center; text-decoration: none;
+    position: relative;
+    background: #fff;
+    border-radius: 14px;
+    padding: 22px 20px 20px;
+    text-decoration: none;
     border: 1px solid var(--color-border-subtle);
-    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
-    position: relative; display: flex; flex-direction: column;
-    align-items: center; min-height: 130px; justify-content: center;
+    transition: transform 0.35s cubic-bezier(.2,.8,.2,1), box-shadow 0.35s, border-color 0.35s;
+    display: flex; flex-direction: column;
+    align-items: flex-start; text-align: left;
+    min-height: 188px;
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+  }
+  .station::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-anchor));
+    transition: height 0.3s;
+  }
+  .station::after {
+    content: attr(data-num);
+    position: absolute;
+    bottom: -28px; right: -10px;
+    font-family: var(--font-display);
+    font-size: 7em; font-weight: 900;
+    color: rgba(108,52,131,0.05);
+    line-height: 1; pointer-events: none;
+    transition: color 0.4s, transform 0.4s;
   }
   .station:hover {
-    transform: translateY(-4px); border-color: var(--color-primary);
-    box-shadow: 0 12px 28px rgba(74,35,90,0.15);
+    transform: translateY(-6px);
+    border-color: rgba(142,68,173,0.45);
+    box-shadow: 0 20px 42px rgba(74,35,90,0.18);
+  }
+  .station:hover::after {
+    color: rgba(108,52,131,0.12);
+    transform: scale(1.05) rotate(-3deg);
+  }
+  .station:hover::before { height: 6px; }
+
+  .station-head {
+    display: flex; align-items: center; justify-content: space-between;
+    width: 100%; margin-bottom: 14px;
+    position: relative; z-index: 1;
   }
   .station .orb {
-    width: 46px; height: 46px; border-radius: 50%;
+    width: 48px; height: 48px;
+    border-radius: 12px;
     background: linear-gradient(135deg, var(--color-primary), var(--color-anchor));
-    color: #fff; font-family: var(--font-display); font-weight: 700;
-    font-size: 1.05em; display: flex; align-items: center; justify-content: center;
-    margin-bottom: 10px; box-shadow: 0 4px 12px rgba(74,35,90,0.3);
+    color: #fff;
+    font-family: var(--font-display); font-weight: 700;
+    font-size: 1.12em;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 6px 16px rgba(74,35,90,0.32),
+                inset 0 1px 0 rgba(255,255,255,0.18);
+    position: relative;
+    flex-shrink: 0;
+    transition: transform 0.35s cubic-bezier(.2,.85,.4,1.6);
   }
-  .station .label {
-    color: var(--color-text-primary); font-weight: 700;
-    font-size: 0.92em; margin-bottom: 4px;
+  .station:hover .orb { transform: rotate(-4deg) scale(1.05); }
+  .station .orb-icon {
+    position: absolute;
+    top: -8px; right: -8px;
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.78em; line-height: 1;
+    color: var(--color-anchor);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+    border: 1.5px solid var(--color-border-subtle);
+    font-weight: 700;
   }
   .station .time-chip {
-    display: inline-block; font-size: 0.72em; color: var(--color-primary-dark);
-    background: rgba(142,68,173,0.08); padding: 2px 8px; border-radius: 10px;
+    font-size: 0.7em;
+    color: var(--color-primary-dark);
+    background: rgba(142,68,173,0.08);
+    padding: 4px 10px; border-radius: 50px;
+    font-weight: 600; letter-spacing: 0.4px;
+    display: inline-flex; align-items: center; gap: 5px;
+  }
+  .station .time-chip::before {
+    content: '◷'; font-size: 0.95em;
+  }
+  .station .label {
+    font-family: var(--font-display);
+    color: var(--color-deepest);
+    font-weight: 600;
+    font-size: 1.1em;
+    line-height: 1.25;
+    margin-bottom: 6px;
+    position: relative; z-index: 1;
+  }
+  .station .desc {
+    font-size: 0.83em;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+    margin: 0;
+    position: relative; z-index: 1;
+  }
+
+  /* Color variants — gradiente progresivo */
+  .station[data-tone="1"] .orb { background: linear-gradient(135deg, #b481c7, #8e44ad); }
+  .station[data-tone="1"]::before { background: linear-gradient(90deg, #b481c7, #8e44ad); }
+  .station[data-tone="2"] .orb { background: linear-gradient(135deg, #9d5fb9, #7d3c98); }
+  .station[data-tone="2"]::before { background: linear-gradient(90deg, #9d5fb9, #7d3c98); }
+  .station[data-tone="3"] .orb { background: linear-gradient(135deg, #8e44ad, #6c3483); }
+  .station[data-tone="3"]::before { background: linear-gradient(90deg, #8e44ad, #6c3483); }
+  .station[data-tone="4"] .orb { background: linear-gradient(135deg, #7d3c98, #5b2d72); }
+  .station[data-tone="4"]::before { background: linear-gradient(90deg, #7d3c98, #5b2d72); }
+  .station[data-tone="5"] .orb { background: linear-gradient(135deg, #5b2d72, #2a1133); }
+  .station[data-tone="5"]::before { background: linear-gradient(90deg, #5b2d72, #2a1133); }
+
+  /* Estación externa (Presupuesto Público) */
+  .station.is-external {
+    background:
+      radial-gradient(ellipse at top right, rgba(210,180,222,0.22) 0%, transparent 55%),
+      linear-gradient(160deg, #fdfbff 0%, #f4f0f7 100%);
+    border: 1.5px dashed rgba(142,68,173,0.45);
+  }
+  .station.is-external::before {
+    height: 4px;
+    background:
+      repeating-linear-gradient(90deg,
+        var(--color-primary) 0 8px,
+        var(--color-anchor) 8px 16px);
+  }
+  .station.is-external:hover::before { height: 6px; }
+  .station.is-external .orb {
+    background: linear-gradient(135deg, var(--color-soft) 0%, var(--color-primary) 100%);
+    border: 2px solid rgba(255,255,255,0.5);
+    box-shadow: 0 6px 18px rgba(142,68,173,0.4),
+                inset 0 1px 0 rgba(255,255,255,0.4);
+  }
+  .station.is-external .ext-badge {
+    position: absolute;
+    top: 14px; right: 14px;
+    font-size: 0.62em;
+    color: var(--color-primary-dark);
+    background: rgba(255,255,255,0.85);
+    border: 1px solid rgba(108,52,131,0.3);
+    padding: 4px 10px 4px 8px;
+    border-radius: 50px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    z-index: 3;
+    display: inline-flex; align-items: center; gap: 5px;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+  }
+  .station.is-external .ext-badge::before {
+    content: '↗'; font-size: 1.15em;
+    color: var(--color-primary);
+  }
+  .station.is-external .station-head { padding-top: 14px; }
+  .station.is-external::after {
+    color: rgba(108,52,131,0.04);
+  }
+  .station.is-external:hover {
+    border-color: rgba(142,68,173,0.7);
+    box-shadow: 0 22px 46px rgba(108,52,131,0.22);
+  }
+
+  @media (max-width: 980px) {
+    .journey-track { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 600px) {
+    .journey-track { grid-template-columns: 1fr; gap: 12px; }
+    .station { min-height: auto; padding: 18px 16px 16px; }
+    .station::after { font-size: 5.5em; bottom: -22px; right: -8px; }
   }
 
   /* ════════ GRIDS DE TARJETAS ════════ */
@@ -1189,28 +1293,222 @@
   }
   .quiz-final p { color: rgba(255,255,255,0.85); margin-bottom: 20px; }
 
-  /* ════════ BIBLIOGRAFÍA ════════ */
-  .biblio-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 16px; margin: 25px 0;
+  /* ════════ RÚBRICA DE EVALUACIÓN ════════ */
+  .rubrica {
+    margin: 30px 0;
+    background:
+      radial-gradient(ellipse at top right, rgba(255,215,115,0.10) 0%, transparent 55%),
+      linear-gradient(160deg, #fff 0%, #fdfbff 100%);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: 18px;
+    padding: 0;
+    box-shadow: 0 10px 30px rgba(108,52,131,0.06);
+    overflow: hidden;
+    position: relative;
   }
-  .biblio-card {
-    background: #fff; padding: 20px 22px; border-radius: 12px;
-    border: 1px solid var(--color-border-subtle); box-shadow: var(--shadow-soft);
-    border-left: 4px solid var(--color-primary);
+  .rubrica::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #ffd673 0%, var(--color-primary) 50%, var(--color-anchor) 100%);
   }
-  .biblio-card .src-tag {
-    display: inline-block; font-size: 0.65em; text-transform: uppercase;
-    letter-spacing: 2px; color: var(--color-primary-dark); font-weight: 700;
-    background: rgba(108,52,131,0.06); padding: 3px 9px; border-radius: 10px;
-    margin-bottom: 10px;
+  .rubrica-header {
+    padding: 36px 38px 26px;
+    position: relative;
   }
-  .biblio-card h4 {
-    font-family: var(--font-display); font-size: 1.1em;
-    color: var(--color-text-primary); font-weight: normal; margin: 0 0 6px;
+  .rubrica-header::after {
+    content: '';
+    position: absolute;
+    top: 24px; right: 24px;
+    width: 64px; height: 64px;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23b87513' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' opacity='0.25'><path d='M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z'/><polyline points='14 2 14 8 20 8'/><line x1='9' y1='15' x2='15' y2='15'/><line x1='9' y1='11' x2='15' y2='11'/></svg>");
+    background-size: contain;
+    background-repeat: no-repeat;
+    pointer-events: none;
   }
-  .biblio-card p { margin: 0 0 6px; font-size: 0.88em; color: var(--color-text-secondary); }
-  .biblio-card .ed { font-size: 0.78em; color: var(--color-text-muted); font-style: italic; }
+  .rubrica-tag {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-size: 0.66em;
+    text-transform: uppercase; letter-spacing: 2.5px;
+    color: #8a560f; font-weight: 700;
+    padding: 5px 13px 5px 11px;
+    background: rgba(255,215,115,0.18);
+    border: 1px solid rgba(184,117,19,0.28);
+    border-radius: 50px;
+    margin-bottom: 14px;
+  }
+  .rubrica-tag::before {
+    content: ''; width: 7px; height: 7px;
+    border-radius: 50%;
+    background: #b87513;
+    box-shadow: 0 0 6px rgba(184,117,19,0.55);
+  }
+  .rubrica-header h3 {
+    font-family: var(--font-display);
+    font-size: 1.7em;
+    color: var(--color-deepest);
+    font-weight: normal;
+    margin: 0 0 10px;
+    line-height: 1.2; padding: 0; border: none;
+  }
+  .rubrica-header h3 em { color: #b87513; font-style: italic; }
+  .rubrica-header p {
+    font-size: 1em;
+    color: var(--color-text-secondary);
+    margin: 0;
+    max-width: 600px;
+    line-height: 1.6;
+  }
+  .rubrica-principio {
+    margin: 0 38px 26px;
+    padding: 16px 20px;
+    background: linear-gradient(135deg, rgba(255,215,115,0.10), rgba(184,117,19,0.02));
+    border-left: 4px solid #b87513;
+    border-radius: 0 10px 10px 0;
+  }
+  .rubrica-principio-tag {
+    display: block;
+    font-size: 0.65em;
+    text-transform: uppercase; letter-spacing: 2px;
+    color: #8a560f; font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .rubrica-principio-texto {
+    font-family: var(--font-display);
+    font-size: 1.15em;
+    color: var(--color-deepest);
+    line-height: 1.35;
+  }
+  .rubrica-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    padding: 0 38px 36px;
+  }
+  .rubrica-card {
+    background: #fff;
+    border: 1px solid var(--color-border-subtle);
+    border-radius: 14px;
+    padding: 24px 24px 22px;
+    position: relative;
+    transition: transform 0.22s, box-shadow 0.22s;
+    overflow: hidden;
+  }
+  .rubrica-card:nth-child(1) { border-top: 4px solid var(--color-primary); }
+  .rubrica-card:nth-child(2) { border-top: 4px solid var(--color-anchor); }
+  .rubrica-card:nth-child(3) { border-top: 4px solid var(--color-deepest); }
+  .rubrica-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 30px rgba(108,52,131,0.12);
+  }
+  .rubrica-card::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; right: -40px;
+    width: 130px; height: 130px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(142,68,173,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .rubrica-card-head {
+    display: flex; align-items: center; gap: 14px;
+    margin-bottom: 16px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+  .rubrica-card-num {
+    flex-shrink: 0;
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-anchor));
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display);
+    font-size: 1.05em; font-weight: 700;
+    box-shadow: 0 6px 14px rgba(108,52,131,0.28);
+  }
+  .rubrica-card:nth-child(2) .rubrica-card-num {
+    background: linear-gradient(135deg, var(--color-anchor), var(--color-deepest));
+  }
+  .rubrica-card:nth-child(3) .rubrica-card-num {
+    background: linear-gradient(135deg, var(--color-deepest), #0f0414);
+  }
+  .rubrica-card-meta { flex: 1; min-width: 0; }
+  .rubrica-card-eyebrow {
+    display: block;
+    font-size: 0.62em;
+    text-transform: uppercase; letter-spacing: 2.5px;
+    color: var(--color-primary-dark);
+    font-weight: 700; margin-bottom: 2px;
+  }
+  .rubrica-card-titulo {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 1.08em;
+    color: var(--color-deepest);
+    line-height: 1.3;
+  }
+  .rubrica-criterio {
+    margin-bottom: 14px;
+    padding-bottom: 14px;
+    border-bottom: 1px dashed rgba(108,52,131,0.18);
+  }
+  .rubrica-criterio:last-child {
+    margin-bottom: 0; padding-bottom: 0; border-bottom: none;
+  }
+  .rubrica-criterio-label {
+    display: inline-block;
+    font-size: 0.6em;
+    text-transform: uppercase; letter-spacing: 2px;
+    color: var(--color-primary-dark);
+    font-weight: 700;
+    padding: 3px 10px;
+    background: rgba(142,68,173,0.08);
+    border-radius: 12px;
+    margin-bottom: 8px;
+  }
+  .rubrica-criterio-texto {
+    font-size: 0.93em;
+    color: var(--color-deepest);
+    line-height: 1.55;
+    margin: 0;
+  }
+  .rubrica-criterio-texto strong { color: var(--color-anchor); }
+  .rubrica-subitems {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 10px 0 0 !important;
+    display: flex; flex-direction: column;
+    gap: 6px;
+    font-size: 0.9em;
+  }
+  .rubrica-subitems li {
+    display: flex; align-items: flex-start; gap: 9px;
+    padding: 5px 10px !important;
+    margin: 0 !important;
+    background: var(--color-bg-tinted);
+    border-radius: 8px;
+    line-height: 1.45;
+    color: var(--color-deepest);
+  }
+  .rubrica-subitems li::before {
+    content: ''; flex-shrink: 0;
+    margin-top: 7px;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--color-primary);
+  }
+  @media (max-width: 1000px) {
+    .rubrica-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 700px) {
+    .rubrica-header { padding: 28px 22px 20px; }
+    .rubrica-header::after { display: none; }
+    .rubrica-header h3 { font-size: 1.35em; }
+    .rubrica-principio { margin: 0 22px 20px; padding: 14px 16px; }
+    .rubrica-grid { grid-template-columns: 1fr; padding: 0 22px 26px; gap: 12px; }
+    .rubrica-card { padding: 20px 20px 18px; }
+  }
 
   /* ════════ OBJETIVOS DE APRENDIZAJE ════════ */
   .learn-goals {
@@ -1414,6 +1712,1889 @@
   }
   footer .links a:hover { color: #fff; border-bottom-style: solid; }
 
+  /* ════════ DÉFICIT · 3 vías comparativas ════════ */
+  .deficit-frame {
+    background:
+      radial-gradient(ellipse at center top, rgba(210,180,222,0.15) 0%, transparent 55%),
+      linear-gradient(160deg, #fdfbff 0%, #f4f0f7 100%);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: 18px;
+    padding: 30px 26px 26px;
+    margin: 30px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .deficit-frame::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #d4a017 0%, #2980b9 50%, #c0392b 100%);
+  }
+  .deficit-header { text-align: center; margin-bottom: 28px; }
+  .deficit-header .tag {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-size: 0.62em;
+    text-transform: uppercase; letter-spacing: 2.5px;
+    color: var(--color-anchor); font-weight: 700;
+    padding: 4px 13px 4px 10px;
+    background: rgba(74,35,90,0.1);
+    border: 1px solid rgba(74,35,90,0.2);
+    border-radius: 50px;
+    margin-bottom: 10px;
+  }
+  .deficit-header .tag::before {
+    content: '⚖'; font-size: 1em;
+  }
+  .deficit-header h4 {
+    font-family: var(--font-display);
+    font-size: 1.4em;
+    color: var(--color-deepest);
+    margin: 0 0 6px;
+    font-weight: 600;
+    line-height: 1.25;
+  }
+  .deficit-header > p {
+    font-size: 0.93em;
+    color: var(--color-text-secondary);
+    max-width: 580px;
+    margin: 0 auto;
+    line-height: 1.55;
+  }
+  .deficit-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    position: relative;
+  }
+  .deficit-card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 24px 22px 20px;
+    border: 1px solid var(--color-border-subtle);
+    box-shadow: 0 6px 18px rgba(74,35,90,0.06);
+    position: relative;
+    display: flex; flex-direction: column;
+    transition: transform 0.3s, box-shadow 0.3s;
+    overflow: hidden;
+  }
+  .deficit-card::before {
+    content: ''; position: absolute;
+    top: 0; left: 0; right: 0; height: 5px;
+  }
+  .deficit-card::after {
+    content: attr(data-roman);
+    position: absolute;
+    bottom: -16px; right: 4px;
+    font-family: var(--font-display);
+    font-size: 4em; font-weight: 900;
+    font-style: italic;
+    color: rgba(108,52,131,0.06);
+    line-height: 1; pointer-events: none;
+  }
+  .deficit-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 18px 36px rgba(74,35,90,0.14);
+  }
+  .deficit-card-head {
+    display: flex; align-items: center; gap: 14px;
+    margin-bottom: 14px;
+    position: relative; z-index: 1;
+  }
+  .deficit-num {
+    flex-shrink: 0;
+    width: 46px; height: 46px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-anchor));
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display);
+    font-size: 1.4em; font-weight: 700;
+    box-shadow: 0 4px 12px rgba(74,35,90,0.3),
+                inset 0 1px 0 rgba(255,255,255,0.18);
+  }
+  .deficit-card-meta { flex: 1; }
+  .deficit-card-tipo {
+    display: block;
+    font-size: 0.62em;
+    text-transform: uppercase; letter-spacing: 2px;
+    color: var(--color-text-muted);
+    font-weight: 700;
+    margin-bottom: 2px;
+  }
+  .deficit-card h5 {
+    font-family: var(--font-display);
+    font-size: 1.18em;
+    color: var(--color-deepest);
+    margin: 0;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+  .deficit-card-desc {
+    font-size: 0.9em;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    margin: 0 0 14px;
+    flex-grow: 1;
+    position: relative; z-index: 1;
+  }
+  .deficit-card-desc strong { color: var(--color-text-primary); }
+  .deficit-card-desc em { font-style: italic; color: var(--color-anchor); }
+  .deficit-cost {
+    padding: 12px 14px;
+    border-radius: 0 10px 10px 0;
+    border-left: 3px solid;
+    font-size: 0.86em;
+    line-height: 1.5;
+    position: relative; z-index: 1;
+  }
+  .deficit-cost-label {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 0.65em;
+    text-transform: uppercase; letter-spacing: 2px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .deficit-cost-label::before {
+    content: '⚠'; font-size: 1em;
+  }
+  .deficit-cost p {
+    margin: 0;
+    color: var(--color-text-secondary);
+    font-size: 0.95em;
+    line-height: 1.5;
+  }
+  .deficit-cost p strong { color: var(--color-text-primary); }
+
+  .deficit-card[data-risk="limited"]::before {
+    background: linear-gradient(90deg, #d4a017, #b87714);
+  }
+  .deficit-card[data-risk="limited"] .deficit-num {
+    background: linear-gradient(135deg, #d4a017, #b87714);
+  }
+  .deficit-card[data-risk="limited"] .deficit-cost {
+    border-left-color: #d4a017;
+    background: rgba(212,160,23,0.07);
+  }
+  .deficit-card[data-risk="limited"] .deficit-cost-label { color: #9c7714; }
+
+  .deficit-card[data-risk="high"]::before {
+    background: linear-gradient(90deg, #c0392b, #922b21);
+  }
+  .deficit-card[data-risk="high"] .deficit-num {
+    background: linear-gradient(135deg, #c0392b, #922b21);
+  }
+  .deficit-card[data-risk="high"] .deficit-cost {
+    border-left-color: #c0392b;
+    background: rgba(192,57,43,0.07);
+  }
+  .deficit-card[data-risk="high"] .deficit-cost-label { color: #8e2a1f; }
+
+  .deficit-card[data-risk="medium"]::before {
+    background: linear-gradient(90deg, #2980b9, #1f5d8c);
+  }
+  .deficit-card[data-risk="medium"] .deficit-num {
+    background: linear-gradient(135deg, #2980b9, #1f5d8c);
+  }
+  .deficit-card[data-risk="medium"] .deficit-cost {
+    border-left-color: #2980b9;
+    background: rgba(41,128,185,0.07);
+  }
+  .deficit-card[data-risk="medium"] .deficit-cost-label { color: #1f5d8c; }
+
+  @media (max-width: 880px) {
+    .deficit-grid { grid-template-columns: 1fr; gap: 12px; }
+    .deficit-frame { padding: 24px 18px 20px; }
+    .deficit-header h4 { font-size: 1.2em; }
+  }
+
+  /* ════════ BIBLIOGRAFÍA · estilo académico premium ════════ */
+  .biblio-frame { margin: 30px 0; }
+  .biblio-section-header {
+    display: flex; align-items: baseline; gap: 16px;
+    margin: 28px 0 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--color-border-subtle);
+  }
+  .biblio-section-header .roman {
+    font-family: var(--font-display);
+    font-size: 1.5em;
+    color: var(--color-anchor);
+    font-style: italic;
+    font-weight: 700;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+  .biblio-section-header h4 {
+    font-family: var(--font-display);
+    font-size: 1.18em;
+    color: var(--color-deepest);
+    margin: 0;
+    font-weight: 600;
+    line-height: 1.2;
+    flex: 1;
+  }
+  .biblio-section-header .count {
+    font-size: 0.7em;
+    color: var(--color-text-muted);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    background: var(--color-border-subtle);
+    padding: 3px 10px;
+    border-radius: 50px;
+    font-weight: 700;
+  }
+  .biblio-list {
+    display: flex; flex-direction: column;
+    gap: 12px;
+  }
+  .biblio-entry {
+    position: relative;
+    background: #fff;
+    border-radius: 14px;
+    padding: 20px 24px 20px 22px;
+    border: 1px solid var(--color-border-subtle);
+    box-shadow: var(--shadow-soft);
+    display: grid;
+    grid-template-columns: 56px 1fr auto;
+    gap: 22px;
+    align-items: start;
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+  }
+  .biblio-entry:hover {
+    transform: translateX(4px);
+    box-shadow: 0 14px 32px rgba(74,35,90,0.12);
+    border-color: rgba(142,68,173,0.3);
+  }
+
+  /* "Lomo de libro" */
+  .biblio-spine {
+    background: linear-gradient(170deg, var(--color-primary) 0%, var(--color-anchor) 100%);
+    border-radius: 6px;
+    width: 44px; height: 66px;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.85em;
+    text-align: center;
+    line-height: 1.1;
+    padding: 4px;
+    box-shadow:
+      0 8px 18px rgba(74,35,90,0.35),
+      inset 0 1px 0 rgba(255,255,255,0.2),
+      inset -1px 0 0 rgba(0,0,0,0.18);
+    position: relative;
+    align-self: center;
+  }
+  .biblio-spine::before {
+    content: '';
+    position: absolute; top: 8px; bottom: 8px; left: 4px;
+    width: 1px;
+    background: rgba(255,255,255,0.22);
+  }
+  .biblio-spine::after {
+    content: '';
+    position: absolute; top: 10px; bottom: 10px; right: 4px;
+    width: 1px;
+    background: rgba(0,0,0,0.18);
+  }
+  .biblio-entry[data-spine="mb"] .biblio-spine { background: linear-gradient(170deg, #8e44ad, #4a235a); }
+  .biblio-entry[data-spine="pe"] .biblio-spine { background: linear-gradient(170deg, #6c3483, #2a1133); }
+  .biblio-entry[data-spine="cs"] .biblio-spine { background: linear-gradient(170deg, #5b2d72, #2a1133); }
+  .biblio-entry[data-spine="cl"] .biblio-spine { background: linear-gradient(170deg, #74acdf, #1f5d8c); }
+  .biblio-entry[data-spine="catedra"] .biblio-spine { background: linear-gradient(170deg, #1e8449, #145a32); }
+  .biblio-entry[data-spine="ext"] .biblio-spine {
+    background: linear-gradient(170deg, var(--color-soft), var(--color-primary));
+    border: 1.5px dashed rgba(255,255,255,0.4);
+  }
+
+  .biblio-content { padding-top: 2px; }
+  .biblio-author {
+    font-family: var(--font-display);
+    font-size: 1.08em;
+    color: var(--color-deepest);
+    font-weight: 600;
+    margin: 0 0 4px;
+    letter-spacing: -0.15px;
+    line-height: 1.25;
+  }
+  .biblio-obra {
+    font-size: 0.93em;
+    color: var(--color-text-secondary);
+    font-style: italic;
+    margin: 0 0 8px;
+    line-height: 1.4;
+  }
+  .biblio-context {
+    font-size: 0.85em;
+    color: var(--color-text-muted);
+    margin: 0 0 10px;
+    line-height: 1.5;
+  }
+  .biblio-context strong { color: var(--color-anchor); font-weight: 600; }
+  .biblio-chips {
+    display: flex; flex-wrap: wrap; gap: 5px;
+  }
+  .biblio-chip {
+    display: inline-flex; align-items: center;
+    font-size: 0.68em;
+    padding: 3px 9px;
+    border-radius: 50px;
+    background: rgba(108,52,131,0.07);
+    color: var(--color-primary-dark);
+    font-weight: 600;
+    letter-spacing: 0.3px;
+  }
+  .biblio-aside {
+    text-align: right;
+    align-self: start;
+    display: flex; flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+    padding-top: 2px;
+  }
+  .biblio-badge {
+    display: inline-block;
+    font-size: 0.58em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 50px;
+    white-space: nowrap;
+  }
+  .biblio-badge.is-obligatoria {
+    background: linear-gradient(135deg, var(--color-anchor), var(--color-deepest));
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(74,35,90,0.3);
+  }
+  .biblio-badge.is-complementaria {
+    background: rgba(116,172,223,0.15);
+    color: #1f5d8c;
+    border: 1px solid rgba(116,172,223,0.4);
+  }
+  .biblio-badge.is-catedra {
+    background: rgba(39,174,96,0.1);
+    color: #1e6b3c;
+    border: 1px solid rgba(39,174,96,0.3);
+  }
+  .biblio-badge.is-external {
+    background: rgba(108,52,131,0.08);
+    color: var(--color-primary-dark);
+    border: 1px dashed rgba(108,52,131,0.4);
+  }
+  .biblio-cite {
+    font-size: 0.72em;
+    color: var(--color-text-muted);
+    font-style: italic;
+    letter-spacing: 0.2px;
+  }
+  .biblio-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 0.78em;
+    color: var(--color-primary-dark);
+    text-decoration: none;
+    font-weight: 700;
+    padding: 5px 11px;
+    border-radius: 50px;
+    background: rgba(108,52,131,0.08);
+    border: 1px solid rgba(108,52,131,0.2);
+    transition: background 0.2s, border-color 0.2s, transform 0.2s;
+  }
+  .biblio-link:hover {
+    background: rgba(108,52,131,0.12);
+    border-color: rgba(108,52,131,0.4);
+    transform: translateY(-1px);
+  }
+  .biblio-link::after {
+    content: '↗';
+    font-size: 1em;
+  }
+
+  @media (max-width: 720px) {
+    .biblio-entry {
+      grid-template-columns: 44px 1fr;
+      gap: 16px;
+      padding: 18px 18px;
+    }
+    .biblio-spine { width: 36px; height: 54px; font-size: 0.72em; }
+    .biblio-aside {
+      grid-column: 1 / -1;
+      text-align: left;
+      align-items: flex-start;
+      padding-top: 10px;
+      margin-top: 6px;
+      border-top: 1px dashed var(--color-border-subtle);
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .biblio-section-header { gap: 12px; }
+    .biblio-section-header .roman { font-size: 1.25em; }
+    .biblio-section-header h4 { font-size: 1.05em; }
+  }
+
+  /* ════════ FUENTES DE FINANCIAMIENTO · diagrama radial ════════ */
+  .fuentes-frame {
+    background:
+      radial-gradient(ellipse at center, rgba(210,180,222,0.18) 0%, transparent 60%),
+      linear-gradient(160deg, #fdfbff 0%, #f4f0f7 100%);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: 18px;
+    padding: 30px 26px 26px;
+    margin: 30px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .fuentes-frame::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+      #2ecc71 0%, var(--color-soft) 25%, var(--color-primary) 60%, var(--color-anchor) 100%);
+  }
+  .fuentes-center {
+    text-align: center;
+    margin-bottom: 26px;
+  }
+  .fuentes-orb {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 72px; height: 72px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-anchor));
+    color: #fff;
+    font-family: var(--font-display);
+    font-size: 1.8em; font-weight: 700;
+    margin-bottom: 14px;
+    box-shadow: 0 10px 28px rgba(74,35,90,0.4),
+                inset 0 1px 0 rgba(255,255,255,0.15);
+    position: relative;
+  }
+  .fuentes-orb::before {
+    content: '';
+    position: absolute; inset: -8px;
+    border-radius: 50%;
+    border: 1px dashed rgba(142,68,173,0.35);
+    animation: fuentes-rotate 18s linear infinite;
+  }
+  @keyframes fuentes-rotate { to { transform: rotate(360deg); } }
+  .fuentes-tag {
+    display: inline-block;
+    font-size: 0.62em;
+    text-transform: uppercase; letter-spacing: 2.5px;
+    color: var(--color-primary-dark); font-weight: 700;
+    padding: 4px 12px;
+    background: rgba(108,52,131,0.1);
+    border-radius: 50px;
+    margin-bottom: 8px;
+  }
+  .fuentes-center h4 {
+    font-family: var(--font-display);
+    font-size: 1.5em;
+    color: var(--color-deepest);
+    margin: 0 0 6px;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+  .fuentes-center p {
+    font-size: 0.92em;
+    color: var(--color-text-secondary);
+    max-width: 540px;
+    margin: 0 auto;
+    line-height: 1.55;
+  }
+  .fuentes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    position: relative;
+  }
+  .fuente-item {
+    position: relative;
+    background: #fff;
+    border-radius: 14px;
+    padding: 22px 20px 18px;
+    border: 1px solid var(--color-border-subtle);
+    box-shadow: 0 6px 16px rgba(74,35,90,0.05);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.35s cubic-bezier(.2,.8,.2,1), box-shadow 0.35s;
+    overflow: hidden;
+  }
+  .fuente-item::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 50px; height: 50px;
+    border-radius: 0 0 50px 0;
+    opacity: 0.18;
+    transition: opacity 0.3s, transform 0.4s;
+  }
+  .fuente-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 18px 36px rgba(74,35,90,0.16);
+  }
+  .fuente-item:hover::before {
+    opacity: 0.35;
+    transform: scale(1.15);
+  }
+  .fuente-head {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 12px;
+    position: relative; z-index: 1;
+  }
+  .fuente-icon {
+    flex-shrink: 0;
+    width: 40px; height: 40px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-anchor));
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3em; font-weight: 700;
+    box-shadow: 0 4px 12px rgba(74,35,90,0.3),
+                inset 0 1px 0 rgba(255,255,255,0.18);
+  }
+  .fuente-meta {
+    flex: 1;
+    display: flex; flex-direction: column;
+  }
+  .fuente-num {
+    font-size: 0.62em;
+    text-transform: uppercase; letter-spacing: 2px;
+    color: var(--color-text-muted);
+    font-weight: 700;
+  }
+  .fuente-name {
+    font-family: var(--font-display);
+    font-size: 1.05em;
+    color: var(--color-deepest);
+    font-weight: 600;
+    line-height: 1.25;
+  }
+  .fuente-desc {
+    font-size: 0.88em;
+    color: var(--color-text-secondary);
+    line-height: 1.55;
+    margin: 0 0 12px;
+    flex-grow: 1;
+  }
+  .fuente-tags {
+    display: flex; flex-wrap: wrap; gap: 6px;
+    margin-top: auto;
+  }
+  .fuente-tag {
+    display: inline-flex; align-items: center;
+    font-size: 0.7em;
+    padding: 3px 9px;
+    border-radius: 50px;
+    background: rgba(108,52,131,0.07);
+    color: var(--color-primary-dark);
+    font-weight: 600;
+    letter-spacing: 0.3px;
+  }
+  .fuente-tag.is-risk {
+    background: rgba(230,126,34,0.1);
+    color: #a04f00;
+  }
+  .fuente-tag.is-stable {
+    background: rgba(39,174,96,0.1);
+    color: #1e6b3c;
+  }
+  .fuente-tag.is-warning {
+    background: rgba(192,57,43,0.1);
+    color: #8e2a1f;
+  }
+
+  /* Variantes por importancia/tipo */
+  .fuente-item[data-kind="tributos"] {
+    border-top: 4px solid var(--color-primary);
+  }
+  .fuente-item[data-kind="tributos"]::before {
+    background: var(--color-primary);
+  }
+  .fuente-item[data-kind="tributos"] .fuente-icon {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-anchor));
+  }
+  .fuente-item[data-kind="tributos"]::after {
+    content: '★ Principal';
+    position: absolute;
+    top: 12px; right: 12px;
+    font-size: 0.6em;
+    color: var(--color-primary-dark);
+    background: rgba(108,52,131,0.1);
+    border: 1px solid rgba(108,52,131,0.25);
+    padding: 3px 8px;
+    border-radius: 50px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    z-index: 2;
+  }
+  .fuente-item[data-kind="venta-bs"] {
+    border-top: 4px solid #16a085;
+  }
+  .fuente-item[data-kind="venta-bs"]::before { background: #16a085; }
+  .fuente-item[data-kind="venta-bs"] .fuente-icon {
+    background: linear-gradient(135deg, #16a085, #0e6655);
+  }
+  .fuente-item[data-kind="venta-patr"] {
+    border-top: 4px solid #d4a017;
+  }
+  .fuente-item[data-kind="venta-patr"]::before { background: #d4a017; }
+  .fuente-item[data-kind="venta-patr"] .fuente-icon {
+    background: linear-gradient(135deg, #d4a017, #9c7714);
+  }
+  .fuente-item[data-kind="credito"] {
+    border-top: 4px solid #2980b9;
+  }
+  .fuente-item[data-kind="credito"]::before { background: #2980b9; }
+  .fuente-item[data-kind="credito"] .fuente-icon {
+    background: linear-gradient(135deg, #2980b9, #1f5d8c);
+  }
+  .fuente-item[data-kind="emision"] {
+    border-top: 4px solid #c0392b;
+  }
+  .fuente-item[data-kind="emision"]::before { background: #c0392b; }
+  .fuente-item[data-kind="emision"] .fuente-icon {
+    background: linear-gradient(135deg, #c0392b, #922b21);
+  }
+
+  @media (max-width: 600px) {
+    .fuentes-frame { padding: 24px 18px 20px; }
+    .fuentes-center h4 { font-size: 1.25em; }
+    .fuentes-orb { width: 60px; height: 60px; font-size: 1.5em; }
+    .fuentes-grid { grid-template-columns: 1fr; gap: 12px; }
+    .fuente-item { padding: 18px 16px; }
+  }
+
+  /* ════════ TRES VISIONES DEL ESTADO · cards comparativas ════════ */
+  .vision-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin: 25px 0;
+  }
+  .vision-card {
+    position: relative;
+    background: #fff;
+    border-radius: 14px;
+    border: 1px solid var(--color-border-subtle);
+    padding: 28px 24px 24px;
+    box-shadow: var(--shadow-soft);
+    display: flex; flex-direction: column;
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+    overflow: hidden;
+  }
+  .vision-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 4px;
+    transition: height 0.3s;
+  }
+  .vision-card::after {
+    content: attr(data-numeral);
+    position: absolute;
+    top: 18px; right: 22px;
+    font-family: var(--font-display);
+    font-size: 1.5em;
+    font-style: italic;
+    font-weight: 700;
+    color: rgba(108,52,131,0.16);
+    line-height: 1;
+    pointer-events: none;
+  }
+  .vision-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 18px 36px rgba(74,35,90,0.14);
+  }
+  .vision-card:hover::before { height: 6px; }
+  .vision-card.is-clasica::before { background: linear-gradient(90deg, #c0392b, #922b21); }
+  .vision-card.is-keynes::before { background: linear-gradient(90deg, var(--color-primary), var(--color-anchor)); }
+  .vision-card.is-estruct::before { background: linear-gradient(90deg, #27ae60, #1e8449); }
+  .vision-card.is-clasica { border-top: none; }
+  .vision-card.is-clasica:hover { border-color: rgba(192,57,43,0.4); }
+  .vision-card.is-keynes:hover { border-color: rgba(142,68,173,0.4); }
+  .vision-card.is-estruct:hover { border-color: rgba(39,174,96,0.4); }
+
+  .vision-eyebrow {
+    display: inline-block;
+    font-size: 0.62em;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 50px;
+    margin-bottom: 12px;
+  }
+  .vision-card.is-clasica .vision-eyebrow {
+    background: rgba(192,57,43,0.08); color: #922b21;
+    border: 1px solid rgba(192,57,43,0.18);
+  }
+  .vision-card.is-keynes .vision-eyebrow {
+    background: rgba(108,52,131,0.08); color: var(--color-primary-dark);
+    border: 1px solid rgba(108,52,131,0.18);
+  }
+  .vision-card.is-estruct .vision-eyebrow {
+    background: rgba(39,174,96,0.08); color: #1e6b3c;
+    border: 1px solid rgba(39,174,96,0.18);
+  }
+  .vision-card h4 {
+    font-family: var(--font-display);
+    font-size: 1.25em;
+    color: var(--color-deepest);
+    margin: 0 0 6px;
+    font-weight: 600;
+    line-height: 1.25;
+    padding-right: 50px;
+  }
+  .vision-subtitle {
+    font-size: 0.85em;
+    color: var(--color-text-muted);
+    font-style: italic;
+    margin: 0 0 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px dashed var(--color-border-subtle);
+  }
+  .vision-thinker {
+    font-size: 0.78em;
+    color: var(--color-anchor);
+    font-weight: 600;
+    margin: 0 0 12px;
+    padding-left: 22px;
+    position: relative;
+    line-height: 1.4;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .vision-thinker::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0.6em;
+    width: 16px; height: 1.5px;
+    background: var(--color-primary);
+    border-radius: 2px;
+  }
+  .vision-thinker .thinker-date {
+    color: var(--color-text-muted);
+    font-weight: 400;
+  }
+  .vision-card p {
+    font-size: 0.92em;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    margin: 0 0 14px;
+  }
+  .vision-key {
+    margin-top: auto;
+    padding: 12px 14px;
+    background: rgba(108,52,131,0.05);
+    border-left: 3px solid var(--color-soft);
+    border-radius: 0 8px 8px 0;
+    font-size: 0.85em;
+    color: var(--color-text-secondary);
+    font-style: italic;
+    line-height: 1.5;
+  }
+  .vision-key strong { color: var(--color-anchor); font-style: normal; }
+  .vision-card.is-clasica .vision-key { border-left-color: #c0392b; background: rgba(192,57,43,0.04); }
+  .vision-card.is-clasica .vision-key strong { color: #922b21; }
+  .vision-card.is-keynes .vision-key { border-left-color: var(--color-primary); }
+  .vision-card.is-estruct .vision-key { border-left-color: #27ae60; background: rgba(39,174,96,0.04); }
+  .vision-card.is-estruct .vision-key strong { color: #1e6b3c; }
+
+  @media (max-width: 880px) {
+    .vision-grid { grid-template-columns: 1fr; gap: 14px; }
+  }
+
+  /* ════════ CIBOTTI Y SIERRA · framework académico ════════ */
+  .cibotti-frame {
+    background: linear-gradient(160deg, #fdfbff 0%, #f4f0f7 100%);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: 18px;
+    padding: 28px 26px 22px;
+    margin: 30px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .cibotti-frame::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+      var(--color-soft) 0%,
+      var(--color-primary) 33%,
+      var(--color-anchor) 66%,
+      var(--color-deepest) 100%);
+  }
+  .cibotti-header {
+    display: flex; align-items: flex-start; gap: 18px;
+    margin-bottom: 26px;
+    padding-bottom: 22px;
+    border-bottom: 1px dashed rgba(108,52,131,0.18);
+  }
+  .cibotti-header-icon {
+    flex-shrink: 0;
+    width: 56px; height: 56px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, var(--color-anchor), var(--color-deepest));
+    color: var(--color-soft);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display);
+    font-size: 1.65em;
+    font-weight: 700;
+    box-shadow: 0 8px 20px rgba(42,17,51,0.3),
+                inset 0 1px 0 rgba(255,255,255,0.12);
+  }
+  .cibotti-header-text {
+    flex: 1;
+  }
+  .cibotti-header-tag {
+    display: inline-block;
+    font-size: 0.62em;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    color: var(--color-primary-dark);
+    font-weight: 700;
+    padding: 3px 10px;
+    background: rgba(108,52,131,0.08);
+    border-radius: 12px;
+    margin-bottom: 8px;
+  }
+  .cibotti-header h4 {
+    font-family: var(--font-display);
+    font-size: 1.35em;
+    color: var(--color-deepest);
+    margin: 0 0 4px;
+    font-weight: 600;
+    line-height: 1.25;
+  }
+  .cibotti-header p {
+    font-size: 0.9em;
+    color: var(--color-text-secondary);
+    margin: 0;
+    line-height: 1.55;
+  }
+  .cibotti-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .cibotti-card {
+    position: relative;
+    background: #fff;
+    border-radius: 14px;
+    border: 1px solid var(--color-border-subtle);
+    box-shadow: 0 6px 18px rgba(74,35,90,0.06);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: grid;
+    grid-template-columns: 120px 1fr;
+  }
+  .cibotti-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 18px 36px rgba(74,35,90,0.14);
+  }
+  .cibotti-side {
+    background: linear-gradient(170deg, var(--color-anchor) 0%, var(--color-deepest) 100%);
+    color: #fff;
+    padding: 24px 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cibotti-side::before {
+    content: attr(data-roman);
+    position: absolute;
+    bottom: -20px;
+    right: -8px;
+    font-family: var(--font-display);
+    font-size: 5.5em;
+    font-weight: 900;
+    color: rgba(210,180,222,0.08);
+    line-height: 1;
+    pointer-events: none;
+    font-style: italic;
+  }
+  .cibotti-num {
+    font-family: var(--font-display);
+    font-size: 2.6em;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1;
+    margin-bottom: 4px;
+    position: relative; z-index: 1;
+  }
+  .cibotti-roman {
+    font-family: var(--font-display);
+    font-size: 0.92em;
+    font-style: italic;
+    color: var(--color-soft);
+    letter-spacing: 2px;
+    margin-bottom: 14px;
+    position: relative; z-index: 1;
+  }
+  .cibotti-glyph {
+    font-size: 1.6em;
+    color: rgba(210,180,222,0.6);
+    line-height: 1;
+    position: relative; z-index: 1;
+  }
+  .cibotti-body {
+    padding: 24px 26px 22px;
+  }
+  .cibotti-tipo {
+    display: inline-block;
+    font-size: 0.6em;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    color: var(--color-primary-dark);
+    font-weight: 700;
+    padding: 3px 11px;
+    background: rgba(108,52,131,0.08);
+    border-radius: 50px;
+    margin-bottom: 8px;
+  }
+  .cibotti-body h5 {
+    font-family: var(--font-display);
+    font-size: 1.35em;
+    color: var(--color-deepest);
+    margin: 0 0 12px;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.2px;
+  }
+  .cibotti-thesis {
+    font-size: 0.95em;
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+    margin: 0 0 14px;
+  }
+  .cibotti-thesis strong { color: var(--color-text-primary); }
+  .cibotti-thesis em { font-style: italic; color: var(--color-anchor); }
+  .cibotti-subdiv {
+    background: rgba(108,52,131,0.04);
+    border-left: 3px solid var(--color-soft);
+    padding: 12px 16px 12px 18px;
+    border-radius: 0 8px 8px 0;
+    margin: 12px 0;
+    font-size: 0.9em;
+    color: var(--color-text-secondary);
+    line-height: 1.55;
+  }
+  .cibotti-subdiv strong { color: var(--color-anchor); }
+  .cibotti-examples {
+    margin-top: 14px;
+    padding: 14px 18px;
+    background: linear-gradient(135deg, rgba(108,52,131,0.04), rgba(74,35,90,0.06));
+    border: 1px solid rgba(108,52,131,0.1);
+    border-radius: 10px;
+  }
+  .cibotti-examples-label {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-size: 0.65em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--color-primary-dark);
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .cibotti-examples-label::before {
+    content: '◆'; font-size: 0.85em; color: var(--color-primary);
+  }
+  .cibotti-examples ul {
+    margin: 0; padding: 0; list-style: none;
+    font-size: 0.88em;
+    color: var(--color-text-secondary);
+    line-height: 1.55;
+  }
+  .cibotti-examples li {
+    padding-left: 16px;
+    margin-bottom: 4px;
+    position: relative;
+  }
+  .cibotti-examples li::before {
+    content: '–';
+    position: absolute; left: 2px;
+    color: var(--color-primary);
+    font-weight: 700;
+  }
+  .cibotti-examples li:last-child { margin-bottom: 0; }
+  .cibotti-source {
+    margin-top: 14px;
+    padding-top: 10px;
+    border-top: 1px dashed var(--color-border-subtle);
+    font-size: 0.72em;
+    color: var(--color-text-muted);
+    font-style: italic;
+    letter-spacing: 0.2px;
+  }
+  .cibotti-source strong { color: var(--color-anchor); font-style: normal; }
+
+  @media (max-width: 720px) {
+    .cibotti-frame { padding: 22px 18px 18px; }
+    .cibotti-header { flex-direction: row; gap: 14px; align-items: center; padding-bottom: 18px; margin-bottom: 18px; }
+    .cibotti-header-icon { width: 48px; height: 48px; font-size: 1.4em; }
+    .cibotti-card { grid-template-columns: 1fr; }
+    .cibotti-side {
+      padding: 14px 18px;
+      flex-direction: row; gap: 14px;
+      justify-content: flex-start;
+      align-items: center;
+    }
+    .cibotti-side::before { font-size: 4em; bottom: -12px; right: -4px; }
+    .cibotti-num { font-size: 1.8em; margin: 0; }
+    .cibotti-roman { font-size: 0.85em; margin: 0; }
+    .cibotti-glyph { font-size: 1.3em; margin-left: auto; }
+    .cibotti-body { padding: 20px 20px 18px; }
+    .cibotti-body h5 { font-size: 1.18em; }
+  }
+
+  /* ════════ GLOSARIO · tooltip global (escapa overflow de tarjetas) ════════ */
+  .gloss {
+    position: relative;
+    border-bottom: 1.5px dotted var(--color-primary);
+    color: var(--color-anchor);
+    cursor: help;
+    font-weight: 600;
+    outline: none;
+    transition: color 0.2s;
+  }
+  .gloss:hover, .gloss:focus { color: var(--color-primary); }
+
+  /* Tooltip único en body — escapa cualquier overflow:hidden de tarjetas */
+  .gloss-tooltip {
+    position: fixed;
+    top: 0; left: 0;
+    max-width: 280px;
+    width: max-content;
+    padding: 12px 16px;
+    background: linear-gradient(160deg, var(--color-deepest), #1a0822);
+    color: #fff;
+    font-size: 0.82em;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 1.5;
+    border-radius: 10px;
+    border: 1px solid rgba(210,180,222,0.25);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+    opacity: 0; visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.22s ease, visibility 0.22s ease, transform 0.22s ease;
+    z-index: 1000;
+    transform: translateY(6px);
+    letter-spacing: 0;
+    text-transform: none;
+    text-align: left;
+  }
+  .gloss-tooltip.is-visible {
+    opacity: 1; visibility: visible;
+    transform: translateY(0);
+  }
+  .gloss-tooltip::after {
+    content: '';
+    position: absolute;
+    left: var(--arrow-x, 50%);
+    transform: translateX(-50%);
+    width: 0; height: 0;
+    border: 7px solid transparent;
+  }
+  /* Flecha hacia abajo (tooltip arriba del término) */
+  .gloss-tooltip[data-pos="top"]::after {
+    bottom: -13px;
+    border-top-color: var(--color-deepest);
+  }
+  /* Flecha hacia arriba (tooltip debajo del término) */
+  .gloss-tooltip[data-pos="bottom"]::after {
+    top: -13px;
+    border-bottom-color: var(--color-deepest);
+  }
+  body.fx-off .gloss-tooltip { transition: none !important; }
+
+  /* ════════ CITA-FUENTE · pullquote académica ════════ */
+  .cita-fuente {
+    position: relative;
+    margin: 30px 0;
+    padding: 28px 32px 24px 60px;
+    background: linear-gradient(160deg, #fcfbff 0%, #f4f0f7 100%);
+    border-left: 4px solid var(--color-anchor);
+    border-radius: 0 14px 14px 0;
+    box-shadow: var(--shadow-soft);
+  }
+  .cita-fuente::before {
+    content: '"';
+    position: absolute;
+    left: 16px; top: -8px;
+    font-family: var(--font-display);
+    font-size: 4.5em; font-weight: 900;
+    color: rgba(74,35,90,0.16);
+    line-height: 1; pointer-events: none;
+  }
+  .cita-fuente blockquote {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.18em;
+    color: var(--color-text-primary);
+    line-height: 1.55;
+    margin: 0 0 16px;
+    border: none; padding: 0; background: none;
+  }
+  .cita-fuente blockquote strong, .cita-fuente blockquote em { color: var(--color-anchor); }
+  .cita-fuente cite {
+    display: flex; align-items: center; gap: 10px;
+    font-style: normal;
+    font-size: 0.84em;
+    color: var(--color-text-muted);
+    letter-spacing: 0.3px;
+    font-weight: 600;
+  }
+  .cita-fuente cite::before {
+    content: '';
+    display: inline-block;
+    width: 24px; height: 1px;
+    background: var(--color-primary);
+  }
+  .cita-fuente cite strong { color: var(--color-anchor); font-weight: 700; }
+  .cita-fuente cite .obra { font-style: italic; color: var(--color-text-secondary); font-weight: 400; }
+
+  /* ════════ IDEA-FUERZA · "Para retener" ════════ */
+  .idea-fuerza {
+    position: relative;
+    background:
+      radial-gradient(ellipse at top right, rgba(210,180,222,0.18) 0%, transparent 55%),
+      linear-gradient(160deg, #f4f0f7 0%, #ede1f5 100%);
+    border: 1px solid var(--color-border-subtle);
+    border-left: 5px solid var(--color-primary);
+    border-radius: 14px;
+    padding: 26px 30px 24px;
+    margin: 35px 0 0;
+    box-shadow: 0 12px 30px rgba(74,35,90,0.08);
+    overflow: hidden;
+  }
+  .idea-fuerza::before {
+    content: '◆';
+    position: absolute;
+    top: 18px; right: 22px;
+    font-size: 1.8em;
+    color: rgba(108,52,131,0.18);
+    line-height: 1;
+  }
+  .idea-fuerza .if-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 0.65em; text-transform: uppercase; letter-spacing: 2.5px;
+    color: var(--color-primary-dark); font-weight: 700;
+    padding: 4px 13px 4px 10px;
+    background: rgba(108,52,131,0.1);
+    border: 1px solid rgba(108,52,131,0.2);
+    border-radius: 50px;
+    margin-bottom: 12px;
+  }
+  .idea-fuerza .if-tag::before {
+    content: ''; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--color-primary);
+    box-shadow: 0 0 6px var(--color-primary);
+  }
+  .idea-fuerza h4 {
+    font-family: var(--font-display);
+    font-size: 1.25em;
+    color: var(--color-deepest);
+    margin: 0 0 16px;
+    font-weight: normal;
+    line-height: 1.3;
+  }
+  .idea-fuerza h4 em { color: var(--color-primary); font-style: italic; }
+  .idea-fuerza ul {
+    margin: 0; padding-left: 0; list-style: none;
+  }
+  .idea-fuerza ul li {
+    position: relative;
+    padding-left: 28px;
+    margin-bottom: 11px;
+    color: var(--color-text-secondary);
+    font-size: 0.96em;
+    line-height: 1.55;
+  }
+  .idea-fuerza ul li::before {
+    content: '✓';
+    position: absolute;
+    left: 0; top: 1px;
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-anchor));
+    color: #fff;
+    font-size: 0.72em; font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 2px 6px rgba(108,52,131,0.3);
+  }
+  .idea-fuerza ul li strong { color: var(--color-text-primary); }
+  .idea-fuerza ul li:last-child { margin-bottom: 0; }
+
+  /* ════════ CONTEXTO ARGENTINA · anclaje territorial ════════ */
+  .contexto-arg {
+    position: relative;
+    background: linear-gradient(160deg, #ffffff 0%, #f7faff 100%);
+    border: 1px solid var(--color-border-subtle);
+    border-top: 4px solid #74acdf;
+    border-radius: 12px;
+    padding: 22px 26px;
+    margin: 25px 0;
+    box-shadow: var(--shadow-soft);
+  }
+  .contexto-arg::before {
+    content: '';
+    position: absolute;
+    top: 22px; right: 22px;
+    width: 30px; height: 20px;
+    background: linear-gradient(
+      to bottom,
+      #74acdf 0%, #74acdf 33%,
+      #fff 33%, #fff 66%,
+      #74acdf 66%, #74acdf 100%
+    );
+    border-radius: 2px;
+    border: 1px solid rgba(0,0,0,0.08);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    opacity: 0.85;
+  }
+  .contexto-arg .ca-tag {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-size: 0.65em; text-transform: uppercase; letter-spacing: 2px;
+    color: #1f5d8c; font-weight: 700;
+    padding: 4px 12px 4px 10px;
+    background: rgba(116,172,223,0.13);
+    border: 1px solid rgba(116,172,223,0.3);
+    border-radius: 50px;
+    margin-bottom: 10px;
+  }
+  .contexto-arg .ca-tag::before {
+    content: '◉';
+    color: #74acdf;
+    font-size: 0.85em;
+  }
+  .contexto-arg h4 {
+    font-family: var(--font-display);
+    font-size: 1.18em;
+    color: var(--color-deepest);
+    margin: 0 0 8px;
+    font-weight: normal;
+    line-height: 1.3;
+    padding-right: 50px;
+  }
+  .contexto-arg p {
+    font-size: 0.95em;
+    margin: 0 0 8px;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+  }
+  .contexto-arg p:last-child { margin-bottom: 0; }
+  .contexto-arg strong { color: var(--color-text-primary); }
+  .contexto-arg em { color: #1f5d8c; font-style: italic; font-weight: 600; }
+
+  /* ════════ LÍNEA DE TIEMPO · evolución teorías del Estado ════════ */
+  .historia-track {
+    position: relative;
+    margin: 35px 0;
+    padding: 8px 0 4px;
+  }
+  .historia-track::before {
+    content: '';
+    position: absolute;
+    top: 64px;
+    left: calc(10% + 9px); right: calc(10% + 9px);
+    height: 3px;
+    background: linear-gradient(90deg,
+      var(--color-soft) 0%,
+      var(--color-primary) 50%,
+      var(--color-anchor) 100%);
+    border-radius: 2px;
+    box-shadow: 0 0 12px rgba(142,68,173,0.25);
+  }
+  .historia-puntos {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    position: relative;
+  }
+  .historia-punto {
+    text-align: center;
+    position: relative;
+    padding: 0 6px;
+  }
+  .historia-punto .hp-year {
+    font-size: 0.66em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--color-primary-dark);
+    font-weight: 800;
+    margin-bottom: 16px;
+    display: block;
+    background: rgba(108,52,131,0.08);
+    padding: 4px 8px;
+    border-radius: 8px;
+    width: max-content;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .historia-punto .hp-dot {
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    border: 3px solid #fff;
+    box-shadow: 0 0 0 3px var(--color-primary), 0 0 14px rgba(142,68,173,0.4);
+    margin: 0 auto 18px;
+    position: relative;
+    z-index: 1;
+  }
+  .historia-punto:nth-child(1) .hp-dot { background: var(--color-soft); box-shadow: 0 0 0 3px var(--color-soft), 0 0 14px rgba(210,180,222,0.5); }
+  .historia-punto:nth-child(2) .hp-dot { background: var(--color-primary); box-shadow: 0 0 0 3px var(--color-primary), 0 0 14px rgba(142,68,173,0.4); }
+  .historia-punto:nth-child(3) .hp-dot { background: var(--color-primary-dark); box-shadow: 0 0 0 3px var(--color-primary-dark), 0 0 14px rgba(108,52,131,0.5); }
+  .historia-punto:nth-child(4) .hp-dot { background: var(--color-anchor); box-shadow: 0 0 0 3px var(--color-anchor), 0 0 14px rgba(74,35,90,0.5); }
+  .historia-punto:nth-child(5) .hp-dot { background: var(--color-deepest); box-shadow: 0 0 0 3px var(--color-deepest), 0 0 14px rgba(42,17,51,0.6); }
+  .historia-punto h5 {
+    font-family: var(--font-display);
+    font-size: 0.98em;
+    color: var(--color-deepest);
+    margin: 0 0 6px;
+    font-weight: 600;
+    line-height: 1.25;
+  }
+  .historia-punto p {
+    font-size: 0.78em;
+    color: var(--color-text-muted);
+    margin: 0;
+    line-height: 1.45;
+  }
+  @media (max-width: 800px) {
+    .historia-track { padding: 0; }
+    .historia-track::before { display: none; }
+    .historia-puntos { grid-template-columns: 1fr; gap: 16px; }
+    .historia-punto {
+      display: grid; grid-template-columns: 84px 1fr;
+      gap: 16px; text-align: left; align-items: start;
+      padding: 14px 16px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid var(--color-border-subtle);
+    }
+    .historia-punto .hp-year { margin: 0; align-self: start; }
+    .historia-punto .hp-dot { display: none; }
+  }
+
+  /* ════════ DEFINITION mejorada: firma de autor ════════ */
+  .definition .def-author {
+    display: flex; align-items: center; gap: 10px;
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--color-border-subtle);
+    font-size: 0.78em;
+    color: var(--color-text-muted);
+  }
+  .definition .def-author::before {
+    content: '';
+    width: 22px; height: 1px;
+    background: var(--color-primary);
+  }
+  .definition .def-author strong { color: var(--color-anchor); }
+  .definition .def-author em { font-style: italic; }
+
+  /* ════════ CASA ROSADA · skyline decorativo en hero ════════ */
+  .hero-skyline {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 180px;
+    pointer-events: none;
+    z-index: 0;
+    overflow: visible;
+  }
+  .hero-skyline svg {
+    width: 100%; height: 100%;
+    display: block;
+  }
+  .hero-skyline .cr-window {
+    animation: cr-window-blink 6s ease-in-out infinite;
+    transform-origin: center;
+  }
+  .hero-skyline .cr-window:nth-child(odd) { animation-delay: 2s; }
+  .hero-skyline .cr-window:nth-child(3n) { animation-delay: 4s; }
+  @keyframes cr-window-blink {
+    0%, 88%, 100% { fill-opacity: 0.45; }
+    92%, 96% { fill-opacity: 0.85; }
+  }
+  .hero-skyline .cr-flag {
+    transform-origin: 400px -10px;
+    animation: cr-flag-wave 4s ease-in-out infinite;
+  }
+  @keyframes cr-flag-wave {
+    0%, 100% { transform: skewX(0deg) scaleX(1); }
+    50% { transform: skewX(-4deg) scaleX(0.96); }
+  }
+  .hero-skyline-label {
+    position: absolute;
+    left: 50%; bottom: 12px;
+    transform: translateX(-50%);
+    font-size: 0.6em;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: rgba(210,180,222,0.55);
+    font-weight: 700;
+    z-index: 1;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+  @media (max-width: 600px) {
+    .hero-skyline { height: 130px; }
+    .hero-skyline-label { font-size: 0.55em; letter-spacing: 2.5px; bottom: 8px; }
+  }
+
+  /* ════════ FX-TOGGLE · botón apagar efectos ════════ */
+  .fx-toggle {
+    display: flex; align-items: center; gap: 10px;
+    width: 100%;
+    margin: 0 -4px 18px;
+    padding: 10px 14px;
+    background: linear-gradient(160deg, rgba(255,255,255,0.04), rgba(210,180,222,0.05));
+    border: 1px solid rgba(210,180,222,0.18);
+    border-radius: 12px;
+    cursor: pointer;
+    color: rgba(255,255,255,0.78);
+    font-family: inherit;
+    font-size: 0.75em;
+    text-align: left;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+  }
+  .fx-toggle:hover {
+    background: rgba(210,180,222,0.10);
+    border-color: rgba(210,180,222,0.32);
+    color: #fff;
+  }
+  .fx-toggle:focus-visible {
+    outline: 2px solid var(--color-soft);
+    outline-offset: 2px;
+  }
+  .fx-icon {
+    flex-shrink: 0;
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--color-soft), var(--color-primary));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.85em; color: #fff;
+    box-shadow: 0 0 10px rgba(210,180,222,0.4);
+    transition: background 0.3s, box-shadow 0.3s;
+  }
+  .fx-toggle.fx-off .fx-icon {
+    background: rgba(255,255,255,0.08);
+    color: rgba(255,255,255,0.45);
+    box-shadow: none;
+  }
+  .fx-text { flex: 1; line-height: 1.3; }
+  .fx-label {
+    display: block; font-size: 1em; color: inherit;
+    letter-spacing: 0.3px;
+  }
+  .fx-state {
+    display: block;
+    font-size: 0.78em;
+    text-transform: uppercase; letter-spacing: 1.5px;
+    margin-top: 2px;
+    color: #2ecc71; font-weight: 700;
+  }
+  .fx-toggle.fx-off .fx-state { color: rgba(255,255,255,0.4); }
+  .fx-switch {
+    flex-shrink: 0;
+    width: 32px; height: 18px;
+    border-radius: 50px;
+    background: rgba(46,204,113,0.65);
+    position: relative;
+    transition: background 0.25s;
+  }
+  .fx-switch::after {
+    content: '';
+    position: absolute; top: 2px; left: 2px;
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: #fff;
+    transition: transform 0.25s cubic-bezier(.2,.85,.4,1.6);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.18);
+  }
+  .fx-toggle.fx-off .fx-switch { background: rgba(255,255,255,0.16); }
+  .fx-toggle.fx-off .fx-switch::after { transform: translateX(14px); }
+
+  /* MODO SIN EFECTOS: desactiva animaciones/transiciones */
+  body.fx-off *,
+  body.fx-off *::before,
+  body.fx-off *::after {
+    animation-duration: 0.001s !important;
+    animation-delay: 0s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001s !important;
+    transition-delay: 0s !important;
+  }
+  body.fx-off .reveal { opacity: 1 !important; transform: none !important; }
+  body.fx-off .progress-bar-bottom .progress-fill { animation: none !important; }
+  body.fx-off .hero::before,
+  body.fx-off .hero::after,
+  body.fx-off .hero-skyline .cr-window,
+  body.fx-off .hero-skyline .cr-flag,
+  body.fx-off .learn-goals::before,
+  body.fx-off .doc-footer-brand-dot,
+  body.fx-off .doc-footer-brand-dot::after,
+  body.fx-off .sidebar nav a.section-title.section-complete::before,
+  body.fx-off .lg-tag::before { animation: none !important; }
+  body.fx-off .achievement { display: none !important; }
+
+  .sidebar-foot {
+    margin-top: 30px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    font-size: 0.7em;
+    color: rgba(255,255,255,0.4);
+    line-height: 1.5;
+  }
+
+  /* ════════ PRE-FOOTER NAV · siguiente unidad + aula virtual ════════ */
+  .pre-footer-nav {
+    margin: 80px 0 0;
+    padding: 0;
+    background: linear-gradient(160deg, #2f1538 0%, #1f0d26 100%);
+    color: rgba(255,255,255,0.85);
+    position: relative;
+    overflow: hidden;
+  }
+  .pre-footer-nav::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 4px;
+    background: linear-gradient(90deg, var(--color-soft) 0%, var(--color-primary) 40%, var(--color-anchor) 80%, var(--color-deepest) 100%);
+  }
+  .pre-footer-nav::after {
+    content: '';
+    position: absolute; top: -120px; left: -80px;
+    width: 360px; height: 360px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(210,180,222,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .pre-footer-nav-inner {
+    max-width: 820px; margin: 0 auto;
+    padding: 48px 60px;
+    position: relative; z-index: 1;
+  }
+  .pre-footer-head { text-align: center; margin-bottom: 32px; }
+  .pre-footer-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 0.66em; text-transform: uppercase; letter-spacing: 3px;
+    color: var(--color-soft); font-weight: 700;
+    padding: 5px 14px;
+    background: rgba(210,180,222,0.10);
+    border: 1px solid rgba(210,180,222,0.22);
+    border-radius: 50px;
+    margin-bottom: 14px;
+  }
+  .pre-footer-eyebrow::before {
+    content: ''; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--color-soft); box-shadow: 0 0 8px var(--color-soft);
+  }
+  .pre-footer-title {
+    font-family: var(--font-display);
+    font-size: 1.45em; color: #fff;
+    line-height: 1.3; margin: 0; font-weight: normal;
+  }
+  .pre-footer-title em { font-style: italic; color: var(--color-soft); }
+
+  /* Cuando hay solo CTA + siguiente (sin anterior), centrado en 2 cols */
+  .pre-footer-nav-row {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: stretch;
+    gap: 18px;
+    justify-content: center;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  .pn-next, .pn-cta {
+    display: inline-flex; align-items: center; gap: 14px;
+    text-decoration: none; font-weight: 600;
+    transition: transform 0.25s, box-shadow 0.25s, background 0.25s, border-color 0.25s;
+    min-height: 64px; line-height: 1.3;
+    position: relative; overflow: hidden;
+  }
+  .pn-next {
+    color: rgba(255,255,255,0.88);
+    font-size: 0.95em;
+    padding: 18px 22px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(210,180,222,0.20);
+    border-radius: 14px;
+    justify-content: flex-end;
+  }
+  .pn-next::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(210,180,222,0.10), transparent 60%);
+    opacity: 0; transition: opacity 0.3s;
+    pointer-events: none;
+  }
+  .pn-next:hover, .pn-next:focus-visible {
+    border-color: rgba(210,180,222,0.5);
+    background: rgba(255,255,255,0.06);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px rgba(0,0,0,0.4),
+                inset 0 1px 0 rgba(255,255,255,0.08);
+  }
+  .pn-next:hover::before { opacity: 1; }
+  .pn-next:hover .pn-arrow { transform: translateX(5px); }
+  .pn-arrow {
+    flex-shrink: 0;
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-anchor));
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1em; font-weight: 700;
+    box-shadow: 0 6px 16px rgba(108,52,131,0.45),
+                0 0 0 3px rgba(42,17,51,1),
+                0 0 0 4px rgba(210,180,222,0.18);
+    transition: transform 0.25s;
+  }
+  .pn-label { display: flex; flex-direction: column; gap: 3px; line-height: 1.2; text-align: right; }
+  .pn-label-eyebrow {
+    font-size: 0.65em; text-transform: uppercase; letter-spacing: 2.5px;
+    color: var(--color-soft); font-weight: 700;
+  }
+  .pn-label-text {
+    font-family: var(--font-display);
+    font-size: 1.08em; color: #fff; font-weight: 600;
+  }
+  /* CTA aula virtual */
+  .pn-cta {
+    padding: 18px 28px;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-anchor) 70%, #5b2d72 100%);
+    color: #fff;
+    border-radius: 50px;
+    font-size: 0.95em;
+    box-shadow: 0 14px 36px rgba(142,68,173,0.45),
+                0 0 0 1px rgba(255,255,255,0.10) inset,
+                0 0 0 4px rgba(210,180,222,0.10);
+    white-space: nowrap;
+  }
+  .pn-cta::after {
+    content: ''; position: absolute; inset: 0;
+    border-radius: 50px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.16), transparent 60%);
+    opacity: 0; transition: opacity 0.3s;
+    pointer-events: none;
+  }
+  .pn-cta:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 44px rgba(142,68,173,0.55),
+                0 0 0 1px rgba(255,255,255,0.18) inset,
+                0 0 0 5px rgba(210,180,222,0.18);
+  }
+  .pn-cta:hover::after { opacity: 1; }
+  .pn-cta-icon {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.32);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; font-size: 1.05em; color: #fff;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.25);
+  }
+  .pn-cta-text { display: flex; flex-direction: column; gap: 3px; line-height: 1.2; }
+  .pn-cta-eyebrow {
+    font-size: 0.64em; text-transform: uppercase; letter-spacing: 2.5px;
+    color: rgba(255,255,255,0.78); font-weight: 700;
+  }
+  .pn-cta-label {
+    font-family: var(--font-display);
+    font-size: 1.1em; color: #fff; font-weight: 600;
+  }
+  .pre-footer-nav + .doc-footer { margin-top: 0; }
+  .pre-footer-nav + .doc-footer::before { display: none; }
+  @media (max-width: 800px) {
+    .pre-footer-nav-inner { padding: 38px 22px; }
+    .pre-footer-title { font-size: 1.2em; }
+    .pre-footer-nav-row {
+      grid-template-columns: 1fr;
+      gap: 12px;
+      max-width: 100%;
+    }
+    .pn-cta { order: -1; justify-content: center; padding: 16px 26px; min-height: 60px; }
+    .pn-next { padding: 14px 18px; min-height: 64px; }
+  }
+
+  /* ════════ DOC-FOOTER · footer institucional ════════ */
+  .doc-footer {
+    margin-top: 60px;
+    padding: 0;
+    background: linear-gradient(160deg, var(--color-deepest) 0%, #1a0822 100%);
+    color: rgba(255,255,255,0.85);
+    position: relative;
+    overflow: hidden;
+  }
+  .doc-footer::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 4px;
+    background: linear-gradient(90deg, var(--color-soft) 0%, var(--color-primary) 40%, var(--color-anchor) 80%, var(--color-deepest) 100%);
+  }
+  .doc-footer::after {
+    content: '';
+    position: absolute; bottom: -100px; right: -50px;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(210,180,222,0.10) 0%, transparent 70%);
+    pointer-events: none;
+    max-width: 80vw; max-height: 80vw;
+  }
+  .doc-footer-inner {
+    max-width: 820px; margin: 0 auto;
+    padding: 50px 60px 40px;
+    position: relative; z-index: 1;
+  }
+  .doc-footer-top {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 36px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .doc-footer-brand-line {
+    display: flex; align-items: center; gap: 14px;
+    margin-bottom: 14px;
+  }
+  .doc-footer-brand-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: #2ecc71;
+    box-shadow: 0 0 12px rgba(46,204,113,0.85);
+    position: relative;
+    animation: presence-pulse 1.8s ease-in-out infinite;
+  }
+  .doc-footer-brand-dot::after {
+    content: '';
+    position: absolute; top: 50%; left: 50%;
+    width: 10px; height: 10px;
+    margin: -5px 0 0 -5px;
+    border-radius: 50%;
+    background: rgba(46,204,113,0.55);
+    animation: presence-ring 1.8s ease-out infinite;
+    pointer-events: none;
+  }
+  @keyframes presence-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 14px rgba(46,204,113,0.9); }
+    50%      { opacity: 0.85; transform: scale(1.08); box-shadow: 0 0 18px rgba(46,204,113,1); }
+  }
+  @keyframes presence-ring {
+    0%   { transform: scale(1); opacity: 0.55; }
+    80%  { transform: scale(2.6); opacity: 0; }
+    100% { transform: scale(2.6); opacity: 0; }
+  }
+  .doc-footer-brand-text {
+    font-size: 0.7em; text-transform: uppercase; letter-spacing: 3px;
+    color: var(--color-soft); font-weight: 700;
+  }
+  .doc-footer-title {
+    font-family: var(--font-display);
+    font-size: 1.4em; color: #fff;
+    font-weight: normal; line-height: 1.25;
+    margin: 0 0 8px;
+  }
+  .doc-footer-title em { color: var(--color-soft); font-style: italic; }
+  .doc-footer-sub {
+    font-size: 0.88em;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.55; margin: 0;
+  }
+  .doc-footer-aviso {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(210,180,222,0.18);
+    border-left: 3px solid var(--color-soft);
+    border-radius: 10px;
+    padding: 16px 18px;
+  }
+  .doc-footer-aviso-tag {
+    display: inline-block;
+    font-size: 0.62em; text-transform: uppercase; letter-spacing: 2px;
+    color: var(--color-soft); font-weight: 700;
+    padding: 3px 10px;
+    background: rgba(210,180,222,0.12);
+    border-radius: 12px;
+    margin-bottom: 10px;
+  }
+  .doc-footer-aviso p {
+    font-size: 0.85em;
+    color: rgba(255,255,255,0.78);
+    line-height: 1.6; margin: 0;
+  }
+  .doc-footer-aviso strong { color: #fff; }
+  .doc-footer-aviso .footer-role {
+    font-style: italic;
+    color: var(--color-soft);
+    font-weight: 400;
+  }
+  .doc-footer-credits {
+    display: flex; flex-wrap: wrap;
+    align-items: center; justify-content: space-between;
+    gap: 14px; padding-top: 4px;
+  }
+  .doc-footer-credits-left {
+    font-size: 0.78em;
+    color: rgba(255,255,255,0.6);
+    letter-spacing: 0.5px;
+  }
+  .doc-footer-credits-left strong {
+    color: rgba(255,255,255,0.85);
+    font-weight: 600;
+  }
+  .doc-footer-date {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 0.72em;
+    color: var(--color-soft);
+    background: rgba(210,180,222,0.08);
+    border: 1px solid rgba(210,180,222,0.2);
+    padding: 4px 12px; border-radius: 50px;
+    text-transform: uppercase; letter-spacing: 2px;
+    font-weight: 700;
+  }
+  .doc-footer-version {
+    display: inline-block;
+    margin-left: 8px;
+    padding: 1px 6px;
+    font-size: 0.68em; font-weight: 600;
+    letter-spacing: 0.6px;
+    color: rgba(255,255,255,0.35);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 4px;
+    vertical-align: 1px;
+    cursor: default;
+  }
+  .doc-footer-date::before {
+    content: ''; width: 6px; height: 6px;
+    border-radius: 50%; background: var(--color-soft);
+  }
+  @media (max-width: 800px) {
+    .doc-footer-inner { padding: 38px 32px 30px; }
+    .doc-footer-top { grid-template-columns: 1fr; gap: 22px; padding-bottom: 24px; margin-bottom: 24px; }
+    .doc-footer-title { font-size: 1.2em; }
+    .doc-footer-sub { font-size: 0.86em; }
+    .doc-footer-aviso { padding: 14px 16px; }
+    .doc-footer-aviso p { font-size: 0.84em; }
+    .doc-footer-credits {
+      flex-direction: column; align-items: flex-start; gap: 14px;
+    }
+  }
+  @media (max-width: 480px) {
+    .doc-footer-inner { padding: 32px 20px 24px; }
+    .doc-footer-title { font-size: 1.08em; }
+    .doc-footer-aviso p { font-size: 0.8em; }
+    .doc-footer-credits-left { font-size: 0.72em; }
+  }
+
   /* ════════ TABLA SCROLLABLE ════════ */
   .table-scroll {
     overflow-x: auto;
@@ -1442,7 +3623,7 @@
     .mobile-nav-backdrop.show { display: block; }
     .main { margin-left: 0; max-width: 100%; }
     .container { padding: 30px 22px; }
-    .hero { padding: 70px 24px 50px; }
+    .hero { padding: 70px 24px 210px; }
     .hero h1 { font-size: 2.6em; }
     .progress-bar-bottom { left: 0; }
     .progress-percent { left: auto; right: 16px; bottom: 80px; }
@@ -1453,7 +3634,7 @@
   /* ════════ MOBILE — pantallas chicas ════════ */
   @media (max-width: 600px) {
     /* Hero */
-    .hero { padding: 64px 20px 42px; }
+    .hero { padding: 64px 20px 165px; }
     .hero h1 { font-size: 2em; letter-spacing: -1px; margin-bottom: 18px; }
     .hero p.lead { font-size: 0.98em; }
     .hero::before { font-size: 14em; top: -30px; right: -10px; }
@@ -1484,7 +3665,6 @@
     .comp-card { padding: 22px 20px; }
 
     .resultado-grid { grid-template-columns: 1fr; gap: 14px; }
-    .biblio-grid { grid-template-columns: 1fr; }
     .tree-branches { grid-template-columns: 1fr; }
     .tree { padding: 22px 18px; }
     .flow { grid-template-columns: 1fr 1fr; gap: 12px; }
@@ -1506,18 +3686,11 @@
     .quiz-final h4 { font-size: 1.3em; }
     .quiz-final .score { font-size: 2.4em; }
 
-    /* Companion banner */
-    .companion-banner { padding: 22px 18px; border-radius: 14px; }
-    .companion-banner::after { font-size: 12em; bottom: -55px; right: -15px; }
-    .cb-header { gap: 14px; }
-    .cb-icon { width: 46px; height: 56px; }
-    .cb-icon .paper.p3 { font-size: 1.5em; }
-    .companion-banner h4 { font-size: 1.18em; }
-    .companion-banner p { font-size: 0.9em; }
-    .cb-chips { gap: 6px; }
-    .cb-chip { font-size: 0.74em; padding: 4px 9px; }
-    .cb-meta { flex-wrap: wrap; justify-content: center; text-align: center; }
-    .cb-meta .meta-url { font-size: 0.85em; }
+    /* Companion banner · override fino para 600px */
+    .companion-banner { padding: 22px 20px; }
+    .companion-banner h4 { font-size: 1.4em; }
+    .cb-doc-sub, .cb-doc-desc { font-size: 0.88em; }
+    .cb-chap { font-size: 0.76em; }
 
     /* Closing y footer */
     .closing { padding: 28px 22px; border-radius: 14px; }
@@ -1555,7 +3728,7 @@
   /* ════════ MOBILE — muy chico ════════ */
   @media (max-width: 380px) {
     .container { padding: 20px 12px; }
-    .hero { padding: 60px 16px 36px; }
+    .hero { padding: 60px 16px 150px; }
     .hero h1 { font-size: 1.75em; }
     .hero p.lead { font-size: 0.94em; }
     section h2 { font-size: 1.55em; }
@@ -1575,14 +3748,18 @@
   /* ════════ TOUCH DEVICES — sin hover ════════ */
   @media (hover: none) and (pointer: coarse) {
     .card:hover,
-    .biblio-card:hover,
+    .biblio-entry:hover,
     .station:hover,
     .lg-item:hover,
+    .vision-card:hover,
+    .cibotti-card:hover,
+    .fuente-item:hover,
+    .deficit-card:hover,
+    .rubrica-card:hover,
     .companion-banner .cb-cta:hover,
     .quiz-option:hover {
       transform: none;
     }
-    .cb-chip:hover { transform: none; }
   }
 
   /* ════════ REDUCED MOTION ════════ */
@@ -1616,11 +3793,21 @@
   <span class="subtitle">Economía Política · FCJS UNL</span>
   <span class="unit-badge">Unidad 4</span>
 
+  <!-- Toggle de efectos visuales -->
+  <button class="fx-toggle" id="fxToggle" type="button" aria-pressed="true" aria-label="Activar o desactivar efectos visuales">
+    <span class="fx-icon" aria-hidden="true">✦</span>
+    <span class="fx-text">
+      <span class="fx-label">Efectos visuales</span>
+      <span class="fx-state" id="fxState">Activados</span>
+    </span>
+    <span class="fx-switch" aria-hidden="true"></span>
+  </button>
+
   <!-- Panel de progreso -->
   <div class="sidebar-progress" aria-label="Progreso de lectura">
     <div class="sp-header">
       <span class="sp-label">Tu progreso</span>
-      <span class="sp-count" id="spCount"><strong id="spDone">0</strong> / <span id="spTotal">21</span></span>
+      <span class="sp-count" id="spCount"><strong id="spDone">0</strong> / <span id="spTotal">22</span></span>
     </div>
     <div class="sp-bar"><div class="sp-fill" id="spFill"></div></div>
     <div class="sp-footer">
@@ -1662,9 +3849,15 @@
     <a href="#cierre" class="section-title">Cierre</a>
     <a href="#quiz">Quiz de autoevaluación</a>
     <a href="#objetivos">Objetivos de aprendizaje</a>
+    <a href="#rubrica">Rúbrica de evaluación</a>
     <a href="#cierre-reflexivo">¿Qué te llevás?</a>
     <a href="#bibliografia">Bibliografía</a>
   </nav>
+
+  <div class="sidebar-foot">
+    Economía Política · FCJS · UNL<br>
+    Equipo de Cátedra · Ciclo 2026
+  </div>
 </aside>
 
 <!-- ════════ MAIN ════════ -->
@@ -1672,6 +3865,119 @@
 
 <!-- HERO -->
 <header class="hero">
+  <!-- Casa Rosada · skyline decorativo (vincula visualmente con la sede del PEN argentino) -->
+  <div class="hero-skyline" aria-hidden="true">
+    <svg viewBox="0 0 800 180" preserveAspectRatio="xMidYEnd meet" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="cr-grad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="rgba(255,255,255,0.16)"/>
+          <stop offset="100%" stop-color="rgba(210,180,222,0.04)"/>
+        </linearGradient>
+        <linearGradient id="cr-grad-strong" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="rgba(255,255,255,0.22)"/>
+          <stop offset="100%" stop-color="rgba(210,180,222,0.08)"/>
+        </linearGradient>
+      </defs>
+
+      <!-- Ala lateral izquierda -->
+      <rect x="40" y="100" width="180" height="80" fill="url(#cr-grad)"/>
+      <!-- Ala lateral derecha -->
+      <rect x="580" y="100" width="180" height="80" fill="url(#cr-grad)"/>
+
+      <!-- Cuerpo central (planta) -->
+      <rect x="220" y="80" width="360" height="100" fill="url(#cr-grad-strong)"/>
+
+      <!-- Cornisa central -->
+      <rect x="218" y="78" width="364" height="3" fill="rgba(255,255,255,0.22)"/>
+
+      <!-- Torre superior -->
+      <rect x="340" y="50" width="120" height="30" fill="url(#cr-grad-strong)"/>
+
+      <!-- Tambor del domo -->
+      <rect x="370" y="32" width="60" height="20" fill="rgba(255,255,255,0.18)"/>
+
+      <!-- Domo característico -->
+      <path d="M 368 36 Q 400 -2 432 36 L 432 36 Z" fill="rgba(255,255,255,0.22)"/>
+
+      <!-- Linterna del domo -->
+      <rect x="396" y="-5" width="8" height="12" fill="rgba(255,255,255,0.28)"/>
+
+      <!-- Mástil -->
+      <line x1="400" y1="-5" x2="400" y2="-22" stroke="rgba(210,180,222,0.45)" stroke-width="1.5"/>
+
+      <!-- Bandera argentina (estilizada en violeta para coherencia visual) -->
+      <g class="cr-flag">
+        <path d="M 401 -22 L 418 -19 L 418 -10 L 401 -13 Z" fill="rgba(135,206,235,0.5)"/>
+      </g>
+
+      <!-- Ventanas inferiores arqueadas (cuerpo central) -->
+      <g class="cr-windows-lower">
+        <rect class="cr-window" x="240" y="130" width="8" height="40" rx="4" fill="rgba(42,17,51,0.55)"/>
+        <rect class="cr-window" x="270" y="130" width="8" height="40" rx="4" fill="rgba(42,17,51,0.55)"/>
+        <rect class="cr-window" x="300" y="130" width="8" height="40" rx="4" fill="rgba(42,17,51,0.55)"/>
+        <rect class="cr-window" x="330" y="130" width="8" height="40" rx="4" fill="rgba(42,17,51,0.55)"/>
+        <rect class="cr-window" x="362" y="130" width="8" height="40" rx="4" fill="rgba(42,17,51,0.55)"/>
+        <rect class="cr-window" x="394" y="130" width="8" height="40" rx="4" fill="rgba(42,17,51,0.55)"/>
+        <rect class="cr-window" x="426" y="130" width="8" height="40" rx="4" fill="rgba(42,17,51,0.55)"/>
+        <rect class="cr-window" x="458" y="130" width="8" height="40" rx="4" fill="rgba(42,17,51,0.55)"/>
+        <rect class="cr-window" x="490" y="130" width="8" height="40" rx="4" fill="rgba(42,17,51,0.55)"/>
+        <rect class="cr-window" x="520" y="130" width="8" height="40" rx="4" fill="rgba(42,17,51,0.55)"/>
+        <rect class="cr-window" x="552" y="130" width="8" height="40" rx="4" fill="rgba(42,17,51,0.55)"/>
+      </g>
+
+      <!-- Ventanas superiores (cuerpo central) -->
+      <g class="cr-windows-upper">
+        <rect class="cr-window" x="240" y="92" width="7" height="22" fill="rgba(42,17,51,0.5)"/>
+        <rect class="cr-window" x="270" y="92" width="7" height="22" fill="rgba(42,17,51,0.5)"/>
+        <rect class="cr-window" x="300" y="92" width="7" height="22" fill="rgba(42,17,51,0.5)"/>
+        <rect class="cr-window" x="330" y="92" width="7" height="22" fill="rgba(42,17,51,0.5)"/>
+        <rect class="cr-window" x="362" y="92" width="7" height="22" fill="rgba(42,17,51,0.5)"/>
+        <rect class="cr-window" x="394" y="92" width="7" height="22" fill="rgba(42,17,51,0.5)"/>
+        <rect class="cr-window" x="426" y="92" width="7" height="22" fill="rgba(42,17,51,0.5)"/>
+        <rect class="cr-window" x="458" y="92" width="7" height="22" fill="rgba(42,17,51,0.5)"/>
+        <rect class="cr-window" x="490" y="92" width="7" height="22" fill="rgba(42,17,51,0.5)"/>
+        <rect class="cr-window" x="520" y="92" width="7" height="22" fill="rgba(42,17,51,0.5)"/>
+        <rect class="cr-window" x="552" y="92" width="7" height="22" fill="rgba(42,17,51,0.5)"/>
+      </g>
+
+      <!-- Ventanas de la torre -->
+      <g class="cr-tower-windows">
+        <rect class="cr-window" x="355" y="58" width="6" height="16" fill="rgba(42,17,51,0.5)"/>
+        <rect class="cr-window" x="375" y="58" width="6" height="16" fill="rgba(42,17,51,0.5)"/>
+        <rect class="cr-window" x="397" y="58" width="6" height="16" fill="rgba(42,17,51,0.5)"/>
+        <rect class="cr-window" x="419" y="58" width="6" height="16" fill="rgba(42,17,51,0.5)"/>
+        <rect class="cr-window" x="439" y="58" width="6" height="16" fill="rgba(42,17,51,0.5)"/>
+      </g>
+
+      <!-- Balcón histórico -->
+      <rect x="380" y="118" width="40" height="3" fill="rgba(255,255,255,0.45)"/>
+      <rect x="380" y="121" width="2" height="14" fill="rgba(255,255,255,0.35)"/>
+      <rect x="418" y="121" width="2" height="14" fill="rgba(255,255,255,0.35)"/>
+
+      <!-- Ventanas alas laterales -->
+      <g class="cr-side-windows">
+        <rect class="cr-window" x="55" y="120" width="6" height="22" fill="rgba(42,17,51,0.45)"/>
+        <rect class="cr-window" x="80" y="120" width="6" height="22" fill="rgba(42,17,51,0.45)"/>
+        <rect class="cr-window" x="105" y="120" width="6" height="22" fill="rgba(42,17,51,0.45)"/>
+        <rect class="cr-window" x="130" y="120" width="6" height="22" fill="rgba(42,17,51,0.45)"/>
+        <rect class="cr-window" x="155" y="120" width="6" height="22" fill="rgba(42,17,51,0.45)"/>
+        <rect class="cr-window" x="180" y="120" width="6" height="22" fill="rgba(42,17,51,0.45)"/>
+        <rect class="cr-window" x="205" y="120" width="6" height="22" fill="rgba(42,17,51,0.45)"/>
+        <rect class="cr-window" x="595" y="120" width="6" height="22" fill="rgba(42,17,51,0.45)"/>
+        <rect class="cr-window" x="620" y="120" width="6" height="22" fill="rgba(42,17,51,0.45)"/>
+        <rect class="cr-window" x="645" y="120" width="6" height="22" fill="rgba(42,17,51,0.45)"/>
+        <rect class="cr-window" x="670" y="120" width="6" height="22" fill="rgba(42,17,51,0.45)"/>
+        <rect class="cr-window" x="695" y="120" width="6" height="22" fill="rgba(42,17,51,0.45)"/>
+        <rect class="cr-window" x="720" y="120" width="6" height="22" fill="rgba(42,17,51,0.45)"/>
+        <rect class="cr-window" x="745" y="120" width="6" height="22" fill="rgba(42,17,51,0.45)"/>
+      </g>
+
+      <!-- Línea de base / suelo -->
+      <line x1="0" y1="180" x2="800" y2="180" stroke="rgba(210,180,222,0.25)" stroke-width="1"/>
+    </svg>
+  </div>
+  <span class="hero-skyline-label">Casa Rosada · Sede del Poder Ejecutivo Nacional</span>
+
   <div class="hero-inner">
     <span class="hero-label">Unidad 4 · Economía Política</span>
     <h1>Sector <span class="accent">Público</span></h1>
@@ -1716,43 +4022,33 @@
   </p>
 </div>
 
-<!-- ════════ MATERIAL COMPLEMENTARIO ════════ -->
-<aside class="companion-banner" aria-label="Material complementario sobre Presupuesto Público">
-  <div class="cb-header">
-    <div class="cb-icon" aria-hidden="true">
-      <div class="paper p1"></div>
-      <div class="paper p2"></div>
-      <div class="paper p3">§</div>
-    </div>
-    <div class="cb-content">
-      <span class="cb-tag"><span class="tag-dot"></span>Material complementario · Unidad 4</span>
-      <h4>El Presupuesto Público se desarrolla en una <em>guía propia</em></h4>
-      <p>
-        Este tema (concepto, ciclo, etapas, trámite parlamentario y caso real del
-        presupuesto vigente) tiene su propia <strong>guía interactiva</strong>, en el
-        mismo formato que esta unidad. Es contenido <strong>evaluable</strong> de la
-        Unidad 4 — recorrela como complemento de este documento.
-      </p>
-      <div class="cb-chips">
-        <span class="cb-chip">Concepto y pilares</span>
-        <span class="cb-chip">4 etapas del ciclo</span>
-        <span class="cb-chip">Trámite parlamentario</span>
-        <span class="cb-chip">Ley 24.156</span>
-        <span class="cb-chip">Art. 27 · reconducción</span>
-        <span class="cb-chip">Caso real 2026</span>
-      </div>
-    </div>
+<!-- ════════ DOCUMENTO VINCULADO · Banner minimalista ════════ -->
+<aside class="companion-banner" aria-label="Documento vinculado sobre Presupuesto Público">
+  <span class="cb-est-pill">
+    <span class="est-num">06</span>
+    <span class="est-sep"></span>
+    Estación externa · Unidad 4
+  </span>
+  <h4>Presupuesto Público</h4>
+  <p class="cb-doc-sub">Documento vinculado a la Unidad 4 · contenido evaluable</p>
+  <p class="cb-doc-desc">
+    Sigue el mismo formato interactivo que esta guía. Profundiza el ciclo
+    presupuestario argentino en cuatro capítulos.
+  </p>
+  <div class="cb-chapters" aria-label="Contenidos del documento">
+    <span class="cb-chap"><span class="ch-num">I</span>Concepto y pilares</span>
+    <span class="cb-chap"><span class="ch-num">II</span>Las 4 etapas del ciclo</span>
+    <span class="cb-chap"><span class="ch-num">III</span>Trámite parlamentario</span>
+    <span class="cb-chap"><span class="ch-num">IV</span>Reconducción · Art. 27</span>
   </div>
-  <div class="cb-footer">
-    <div class="cb-meta">
-      <span>📖 Lectura interactiva</span>
-      <span class="meta-sep"></span>
-      <span>~ 15–20 min</span>
-      <span class="meta-sep"></span>
-      <span class="meta-url">nickperot.com/presupuestopublico</span>
-    </div>
+  <div class="cb-foot">
+    <span class="cb-foot-meta">
+      <span>~ 20 min</span>
+      <span class="sep"></span>
+      <strong>contenido evaluable</strong>
+    </span>
     <a class="cb-cta" href="https://nickperot.com/presupuestopublico" target="_blank" rel="noopener">
-      Abrir la guía <span class="arrow">→</span>
+      Abrir documento <span class="arrow">→</span>
     </a>
   </div>
 </aside>
@@ -1771,11 +4067,19 @@
   <p class="lead-paragraph">
     ¿Por qué un sistema basado en el mercado necesita un Estado que cobre impuestos,
     construya hospitales y regule la actividad económica? Si los mercados fueran
-    perfectos, no haría falta. Pero <strong>no lo son</strong>. La <em>"mano invisible"</em>
-    de Adam Smith, dice Pérez Enrri, <em>"a veces falla y no conduce al bienestar de la
-    comunidad"</em>.<span class="source-cite">PE, cap. 12</span> Cuando eso pasa, aparece
-    un actor económico distinto: el Estado.
+    perfectos, no haría falta. Pero <strong>no lo son</strong>. Cuando los mecanismos
+    del mercado fallan, aparece un actor económico distinto: el Estado.
   </p>
+
+  <div class="cita-fuente">
+    <blockquote>
+      La <em>"mano invisible"</em> de <strong>Adam Smith</strong> a veces falla y no
+      conduce al bienestar de la comunidad. El mecanismo de los precios no da las
+      señales autorreguladoras del sistema y hace falta la intervención de un agente
+      económico productor de bienes y servicios diferentes: <strong>el Estado</strong>.
+    </blockquote>
+    <cite><strong>Daniel Pérez Enrri</strong> · <span class="obra">Economía, en el pensamiento, la realidad y la acción</span> · cap. 12</cite>
+  </div>
 
   <div class="callout">
     <strong>Idea-clave:</strong> en las economías modernas — <em>economías mixtas</em> —
@@ -1795,40 +4099,90 @@
   <div class="journey-map">
     <div class="journey-intro">
       <span class="jtag">Tu trayecto</span>
-      <h4>Cinco estaciones del <em>Sector Público</em></h4>
+      <h4>Seis estaciones del <em>Sector Público</em></h4>
       <p class="jsub">
         Empezamos con el porqué de la intervención del Estado y terminamos con la
-        política fiscal. En el medio: ingresos, gastos e impuestos. <strong>El
-        Presupuesto Público</strong> se trabaja en una guía aparte (ver banner arriba).
+        política fiscal. En el medio: ingresos, gastos e impuestos. La sexta estación —
+        <strong>Presupuesto Público</strong> — se desarrolla en una guía propia, también
+        evaluable.
       </p>
     </div>
 
     <div class="journey-track">
-      <a href="#estado-mercado" class="station">
-        <div class="orb">01</div>
+
+      <a href="#estado-mercado" class="station" data-tone="1" data-num="01">
+        <div class="station-head">
+          <div class="orb">
+            01
+            <span class="orb-icon" aria-hidden="true">⇄</span>
+          </div>
+          <span class="time-chip">9 min</span>
+        </div>
         <span class="label">Estado y mercado</span>
-        <span class="time-chip">~ 9 min</span>
+        <p class="desc">Fallas del mercado, funciones del Estado y acciones de Cibotti y Sierra.</p>
       </a>
-      <a href="#ingresos" class="station">
-        <div class="orb">02</div>
-        <span class="label">Ingresos</span>
-        <span class="time-chip">~ 6 min</span>
+
+      <a href="#ingresos" class="station" data-tone="2" data-num="02">
+        <div class="station-head">
+          <div class="orb">
+            02
+            <span class="orb-icon" aria-hidden="true">↓</span>
+          </div>
+          <span class="time-chip">6 min</span>
+        </div>
+        <span class="label">Ingresos públicos</span>
+        <p class="desc">De dónde saca dinero el Estado: clasificación jurídica y económica.</p>
       </a>
-      <a href="#gastos" class="station">
-        <div class="orb">03</div>
-        <span class="label">Gastos</span>
-        <span class="time-chip">~ 6 min</span>
+
+      <a href="#gastos" class="station" data-tone="3" data-num="03">
+        <div class="station-head">
+          <div class="orb">
+            03
+            <span class="orb-icon" aria-hidden="true">↑</span>
+          </div>
+          <span class="time-chip">6 min</span>
+        </div>
+        <span class="label">Gastos públicos</span>
+        <p class="desc">Clasificación clásica y moderna, más los 5 clasificadores del presupuesto.</p>
       </a>
-      <a href="#impuestos" class="station">
-        <div class="orb">04</div>
+
+      <a href="#impuestos" class="station" data-tone="4" data-num="04">
+        <div class="station-head">
+          <div class="orb">
+            04
+            <span class="orb-icon" aria-hidden="true">§</span>
+          </div>
+          <span class="time-chip">6 min</span>
+        </div>
         <span class="label">Impuestos</span>
-        <span class="time-chip">~ 6 min</span>
+        <p class="desc">Directos vs indirectos, progresivos vs regresivos. Presión tributaria.</p>
       </a>
-      <a href="#politica-fiscal" class="station">
-        <div class="orb">05</div>
+
+      <a href="#politica-fiscal" class="station" data-tone="5" data-num="05">
+        <div class="station-head">
+          <div class="orb">
+            05
+            <span class="orb-icon" aria-hidden="true">⚖</span>
+          </div>
+          <span class="time-chip">8 min</span>
+        </div>
         <span class="label">Política Fiscal</span>
-        <span class="time-chip">~ 8 min</span>
+        <p class="desc">Expansiva vs restrictiva, estabilizadores automáticos, déficit.</p>
       </a>
+
+      <a href="https://nickperot.com/presupuestopublico" target="_blank" rel="noopener" class="station is-external" data-num="06">
+        <span class="ext-badge">Guía aparte</span>
+        <div class="station-head">
+          <div class="orb">
+            06
+            <span class="orb-icon" aria-hidden="true">◫</span>
+          </div>
+          <span class="time-chip">15 min</span>
+        </div>
+        <span class="label">Presupuesto Público</span>
+        <p class="desc">Concepto, ciclo, etapas, trámite parlamentario y Art. 27. Material vinculado.</p>
+      </a>
+
     </div>
   </div>
 
@@ -1869,60 +4223,124 @@
   <h3 id="por-que-interviene">Tres miradas sobre el papel del Estado</h3>
   <p>
     La discusión teórica sobre <em>cuánto</em> debe intervenir el Estado tiene básicamente
-    tres tradiciones. Pasá por cada una para ver su lógica.
+    tres tradiciones — y se entiende mejor en su <strong>contexto histórico</strong>.
+    La línea de tiempo de abajo muestra el zigzag entre intervención y mercado a lo
+    largo de los últimos dos siglos:
   </p>
 
-  <div class="tabs" id="enfoquesTabs">
-    <div class="tab-list">
-      <button class="tab-btn active" data-tab="t-clasica">Clásico-liberal</button>
-      <button class="tab-btn" data-tab="t-keynes">Keynesiano</button>
-      <button class="tab-btn" data-tab="t-estruct">Estructuralista</button>
-    </div>
-    <div class="tab-panel active" id="t-clasica">
-      <h4>Estado subsidiario · "gendarme"</h4>
-      <p>
-        Para los clásicos (siglo XIX hasta 1930) y luego los monetaristas (desde la
-        década del '60), el mercado tiende espontáneamente al pleno empleo. El Estado
-        debe limitarse a lo mínimo: justicia, defensa, orden interno y, a lo sumo,
-        corregir <em>fallas de mercado</em>. El gasto público debe ser limitado y el
-        presupuesto, equilibrado anualmente.
-      </p>
-      <div class="callout tip">
-        <strong>Frase clave:</strong> "La economía tiene mecanismos autocorrectores que
-        eliminan los desajustes y hacen innecesaria la intervención estabilizadora
-        estatal".<span class="source-cite">MB, cap. 13</span>
+  <div class="historia-track" aria-label="Línea de tiempo de las teorías del Estado">
+    <div class="historia-puntos">
+      <div class="historia-punto">
+        <span class="hp-year">S. XIX</span>
+        <div class="hp-dot" aria-hidden="true"></div>
+        <h5>Clásico-liberal</h5>
+        <p>Estado <em>gendarme</em>. Mercado autorregulado.</p>
+      </div>
+      <div class="historia-punto">
+        <span class="hp-year">1929</span>
+        <div class="hp-dot" aria-hidden="true"></div>
+        <h5>Gran Depresión</h5>
+        <p>Quiebre del relato clásico. Desempleo masivo.</p>
+      </div>
+      <div class="historia-punto">
+        <span class="hp-year">1936 →</span>
+        <div class="hp-dot" aria-hidden="true"></div>
+        <h5>Keynes</h5>
+        <p>Estado <em>anticíclico</em>. Política fiscal activa.</p>
+      </div>
+      <div class="historia-punto">
+        <span class="hp-year">1950–'70</span>
+        <div class="hp-dot" aria-hidden="true"></div>
+        <h5>Estructuralismo</h5>
+        <p>América Latina · CEPAL. Estado promotor.</p>
+      </div>
+      <div class="historia-punto">
+        <span class="hp-year">1970 →</span>
+        <div class="hp-dot" aria-hidden="true"></div>
+        <h5>Neoliberalismo</h5>
+        <p>Retorno al mercado. Monetaristas (Friedman).</p>
       </div>
     </div>
-    <div class="tab-panel" id="t-keynes">
-      <h4>Estado anticíclico · benefactor</h4>
+  </div>
+
+  <p>Cada tradición sigue viva. Mirá las tres en paralelo:</p>
+
+  <div class="vision-grid">
+
+    <article class="vision-card is-clasica" data-numeral="I">
+      <span class="vision-eyebrow">Enfoque · S. XIX – 1930</span>
+      <h4>Clásico-liberal</h4>
+      <p class="vision-subtitle">Estado subsidiario · "gendarme"</p>
+      <p class="vision-thinker">Smith · Ricardo <span class="thinker-date">· Friedman ('60)</span></p>
       <p>
-        John Maynard Keynes (1883–1946), tras la crisis del '29, argumenta que la economía
-        <strong>no</strong> tiende automáticamente al pleno empleo. Hay "deficiencias en la
-        demanda efectiva" que el sector privado no puede corregir por sí solo. El Estado
-        debe intervenir manipulando <strong>gastos e impuestos</strong> (política fiscal)
-        para suavizar los ciclos.
+        El mercado tiende espontáneamente al pleno empleo. El Estado debe limitarse
+        a lo mínimo: justicia, defensa, orden interno y, a lo sumo, corregir
+        <em>fallas de mercado</em>. Los
+        <span class="gloss" tabindex="0" data-gloss="Escuela liderada por Milton Friedman (Universidad de Chicago), continuadora de las ideas clásicas. Cree en el libre juego del mercado y limita la intervención estatal al control de la cantidad de dinero.">monetaristas</span>
+        retoman esta línea desde los '60.
       </p>
-      <div class="callout tip">
-        <strong>Implicancia:</strong> el presupuesto debe equilibrarse <em>cíclicamente</em>,
-        no año a año. En recesión se puede incurrir en déficit temporales para reactivar
-        la economía.<span class="source-cite">MB, cap. 13</span>
+      <p>El gasto público debe ser <strong>limitado</strong> y el presupuesto, equilibrado <em>anualmente</em>.</p>
+      <div class="vision-key">
+        <strong>Frase clave:</strong> "La economía tiene mecanismos autocorrectores que hacen innecesaria la intervención estabilizadora estatal".<span class="source-cite">MB, cap. 13</span>
       </div>
-    </div>
-    <div class="tab-panel" id="t-estruct">
-      <h4>Estado promotor del desarrollo</h4>
+    </article>
+
+    <article class="vision-card is-keynes" data-numeral="II">
+      <span class="vision-eyebrow">Enfoque · 1936 → 1970</span>
+      <h4>Keynesiano</h4>
+      <p class="vision-subtitle">Estado anticíclico · benefactor</p>
+      <p class="vision-thinker">J. M. Keynes <span class="thinker-date">· 1883–1946</span></p>
       <p>
-        En América Latina, influenciado por Raúl Prebisch y la CEPAL, surge el enfoque
-        estructuralista (postkeynesiano). El Estado no solo estabiliza: también
-        <strong>promueve el desarrollo</strong> en regiones rezagadas, invierte en
-        infraestructura, regula el comercio exterior y planifica. Es el período de
-        "sustitución de importaciones".
+        Tras la crisis del '29, Keynes muestra que la economía <strong>no</strong> tiende
+        automáticamente al pleno empleo. Hay deficiencias en la
+        <span class="gloss" tabindex="0" data-gloss="Para Keynes: el conjunto del gasto efectivamente realizado en consumo e inversión. Cuando es insuficiente para absorber la producción, la economía se contrae y aparece desempleo.">demanda efectiva</span>
+        que el sector privado no puede corregir por sí solo.
       </p>
-      <div class="callout tip">
-        <strong>Ejemplo argentino:</strong> en la década del '30, frente a la crisis, se
-        crearon el Banco Central, las Juntas Reguladoras y el control de cambios —
-        síntomas de un Estado que dejó de ser "gendarme".<span class="source-cite">PE, cap. 12</span>
+      <p>
+        El Estado debe intervenir manipulando <strong>gastos e impuestos</strong>
+        (política fiscal) para suavizar los ciclos.
+      </p>
+      <div class="vision-key">
+        <strong>Implicancia:</strong> el presupuesto se equilibra <em>cíclicamente</em>, no año a año. En recesión, déficit temporales para reactivar.<span class="source-cite">MB, cap. 13</span>
       </div>
-    </div>
+    </article>
+
+    <article class="vision-card is-estruct" data-numeral="III">
+      <span class="vision-eyebrow">Enfoque · 1950 → 1970</span>
+      <h4>Estructuralista</h4>
+      <p class="vision-subtitle">Estado promotor del desarrollo</p>
+      <p class="vision-thinker">Prebisch · CEPAL <span class="thinker-date">· postkeynesiano</span></p>
+      <p>
+        En América Latina surge esta variante: el Estado no solo estabiliza —
+        también <strong>promueve el desarrollo</strong> en regiones rezagadas, invierte en
+        infraestructura, regula el comercio exterior y <em>planifica</em>.
+      </p>
+      <p>
+        Es el período de <strong>sustitución de importaciones</strong> y de fuerte
+        peso del Estado en empresas públicas.
+      </p>
+      <div class="vision-key">
+        <strong>Frase clave:</strong> "el Estado, motor del desarrollo". El sector público <em>conforma</em> la estructura productiva, no solo la regula.<span class="source-cite">PE, cap. 12 · C&amp;S, cap. 1</span>
+      </div>
+    </article>
+
+  </div>
+
+  <div class="contexto-arg">
+    <span class="ca-tag">Contexto Argentina</span>
+    <h4>La crisis del '30 y el quiebre del Estado-gendarme</h4>
+    <p>
+      Frente a la Gran Depresión, Argentina rompió con la tradición liberal del siglo XIX.
+      Se crearon el <strong>Banco Central (1935)</strong>, las <strong>Juntas
+      Reguladoras</strong> de granos y carnes, y el <strong>control de cambios</strong>.
+      Eran síntomas claros de un Estado que dejaba de ser "gendarme" para volverse
+      <em>interventor</em>: aparece como agente económico que coordina, regula y produce.
+    </p>
+    <p>
+      Esa tendencia se profundizó en la posguerra con el modelo de <strong>sustitución
+      de importaciones</strong> — empresas públicas, industrialización dirigida, créditos
+      blandos a sectores estratégicos.<span class="source-cite">PE, cap. 12</span>
+    </p>
   </div>
 
   <h3 id="fallas">Las 4 fallas del mercado</h3>
@@ -1954,7 +4372,9 @@
       <h4>Bienes públicos</h4>
       <p>Son bienes con dos rasgos: <strong>no rivalidad</strong> (que A los use no reduce
       lo disponible para B) y <strong>no exclusión</strong> (no se puede impedir que los
-      use quien no pague). Aparece el problema del <em>free-rider</em> o "usuario gratuito".</p>
+      use quien no pague). Aparece el problema del
+      <span class="gloss" tabindex="0" data-gloss="Persona que consume un bien o servicio sin pagar por él, porque no se la puede excluir del consumo. Es el problema típico de los bienes públicos: si nadie paga porque puede 'colgarse', el mercado no provee el bien.">free-rider</span>
+      o "usuario gratuito".</p>
       <div class="example">
         <strong>Ejemplo:</strong> defensa nacional, alumbrado público, fuegos artificiales
         en la plaza. Nadie querría pagarlos en el mercado porque podría disfrutarlos sin
@@ -2055,147 +4475,283 @@
     grande en la producción e inversión.<span class="source-cite">C&amp;S, cap. 1</span>
   </p>
 
-  <div class="accordion" id="cibottiAcc">
-    <div class="acc-item open">
-      <button class="acc-trigger">
-        <span><strong>1 · Acciones de Regulación</strong> — el Estado fija las reglas del juego</span>
-        <span class="icon">+</span>
-      </button>
-      <div class="acc-content">
+  <div class="cibotti-frame">
+    <div class="cibotti-header">
+      <div class="cibotti-header-icon" aria-hidden="true">§</div>
+      <div class="cibotti-header-text">
+        <span class="cibotti-header-tag">Marco analítico · ILPES-CEPAL</span>
+        <h4>Las cuatro acciones del Estado</h4>
         <p>
-          Son acciones <strong>típicamente normativas</strong>: el Estado dicta leyes,
-          decretos, ordenanzas y reglamentaciones para inducir a los agentes económicos
-          (privados y públicos) hacia determinados comportamientos. No requieren que el
-          Estado movilice grandes recursos físicos: requieren un <em>aparato administrativo</em>
-          que formule las normas y vigile su cumplimiento.
+          Cibotti y Sierra (ILPES-CEPAL) ofrecen una clasificación particularmente útil
+          para América Latina: cuatro acciones <em>interrelacionadas</em>, no
+          alternativas entre sí.
         </p>
-        <p><strong>Ejemplos concretos:</strong></p>
-        <ul>
-          <li>Códigos que reglamentan la edificación urbana o la instalación de industrias.</li>
-          <li>Régimen de explotación de recursos naturales.</li>
-          <li>Normas sobre el funcionamiento del sistema bancario y del mercado de valores.</li>
-          <li>Fijación de tipos de cambio, autorizaciones para importar y exportar.</li>
-          <li>Establecimiento de tasas de encaje bancario.</li>
-          <li>Leyes antimonopólicas, control de precios.</li>
-        </ul>
       </div>
     </div>
 
-    <div class="acc-item">
-      <button class="acc-trigger">
-        <span><strong>2 · Acciones de Producción de bienes y servicios</strong></span>
-        <span class="icon">+</span>
-      </button>
-      <div class="acc-content">
-        <p>
-          Aquí el Estado actúa como una <em>unidad productora</em>. Cibotti y Sierra
-          distinguen dos subtipos:
-        </p>
-        <p><strong>a) Inherentes a la naturaleza del Estado:</strong> servicios que
-        ninguna concepción, ni la más liberal, discute que deba prestar el Estado.
-        Justicia, policía, defensa nacional, representación exterior, aduana, correo,
-        registros de personas y propiedades, administración general.</p>
-        <p><strong>b) Alternativas o paralelas al sector privado:</strong> bienes y
-        servicios que podrían ser producidos por privados pero que el Estado decide
-        producir, por razones de eficiencia, equidad o estrategia. Educación, salud,
-        agua potable y alcantarillado, transporte, producción de acero o petróleo en
-        algunos países, fabricación de ciertos artículos de consumo y bienes de capital.</p>
-        <div class="callout tip">
-          <strong>Una diferencia clave</strong> con las empresas privadas: el Estado-productor
-          no toma decisiones <em>en función de la maximización de la tasa de ganancias</em>.
-          También gravitan consideraciones de política económica.<span class="source-cite">C&amp;S, cap. 1</span>
+    <div class="cibotti-grid">
+
+      <article class="cibotti-card">
+        <div class="cibotti-side" data-roman="I">
+          <div class="cibotti-num">1</div>
+          <div class="cibotti-roman">I</div>
+          <div class="cibotti-glyph" aria-hidden="true">§</div>
         </div>
-      </div>
-    </div>
+        <div class="cibotti-body">
+          <span class="cibotti-tipo">Acciones normativas</span>
+          <h5>Regulación</h5>
+          <p class="cibotti-thesis">
+            El Estado fija las <strong>reglas del juego</strong>. Dicta leyes, decretos,
+            ordenanzas y reglamentaciones para inducir a los agentes (privados y
+            públicos) hacia determinados comportamientos. No requiere movilizar grandes
+            recursos físicos: requiere <em>aparato administrativo</em> que formule las
+            normas y vigile su cumplimiento.
+          </p>
+          <div class="cibotti-examples">
+            <span class="cibotti-examples-label">Ejemplos concretos</span>
+            <ul>
+              <li>Códigos de edificación urbana e instalación de industrias.</li>
+              <li>Régimen de explotación de recursos naturales.</li>
+              <li>Normas del sistema bancario y mercado de valores.</li>
+              <li>Fijación de tipos de cambio, autorizaciones para importar/exportar.</li>
+              <li>Establecimiento de tasas de encaje bancario.</li>
+              <li>Leyes antimonopólicas, control de precios.</li>
+            </ul>
+          </div>
+          <div class="cibotti-source">
+            <strong>Fuente:</strong> Cibotti &amp; Sierra · cap. 1 · El Sector Público en la Planificación del Desarrollo
+          </div>
+        </div>
+      </article>
 
-    <div class="acc-item">
-      <button class="acc-trigger">
-        <span><strong>3 · Acciones de Acumulación</strong> — formar capital</span>
-        <span class="icon">+</span>
-      </button>
-      <div class="acc-content">
-        <p>
-          Son las inversiones que contribuyen a la <em>formación del acervo de
-          instalaciones y equipo</em> que la economía necesita. Cibotti y Sierra distinguen
-          dos subtipos:
-        </p>
-        <p><strong>a) Instalación de capital para realizar acciones de producción.</strong>
-        Es decir: ampliación del stock de bienes de capital del propio Estado-productor.
-        Ejemplo: ampliar la capacidad de una empresa pública, construir un nuevo hospital.</p>
-        <p><strong>b) Instalación de capital que constituye economías externas.</strong>
-        Capital instalado para que <em>otros</em> (privados y públicos) lo utilicen.
-        Ejemplos: caminos, calles urbanas, parques, instalaciones portuarias,
-        infraestructura energética. Su mantenimiento queda a cargo del Estado, pero el
-        gasto operativo de utilizar ese capital corre por cuenta de quienes lo usan.</p>
-      </div>
-    </div>
+      <article class="cibotti-card">
+        <div class="cibotti-side" data-roman="II">
+          <div class="cibotti-num">2</div>
+          <div class="cibotti-roman">II</div>
+          <div class="cibotti-glyph" aria-hidden="true">◆</div>
+        </div>
+        <div class="cibotti-body">
+          <span class="cibotti-tipo">El Estado-productor</span>
+          <h5>Producción de bienes y servicios</h5>
+          <p class="cibotti-thesis">
+            El Estado actúa como <em>unidad productora</em>. Combina factores, genera
+            valor agregado y entrega bienes o servicios. Cibotti y Sierra distinguen
+            dos subtipos:
+          </p>
+          <div class="cibotti-subdiv">
+            <strong>a · Inherentes al Estado.</strong> Servicios que ninguna concepción
+            — ni la más liberal — discute: justicia, policía, defensa nacional,
+            representación exterior, aduana, correo, registros de personas y propiedades.
+          </div>
+          <div class="cibotti-subdiv">
+            <strong>b · Alternativas o paralelas al sector privado.</strong>
+            Educación, salud, agua potable y alcantarillado, transporte, producción de
+            acero o petróleo, fabricación de bienes de consumo y de capital en algunos
+            países.
+          </div>
+          <div class="cibotti-examples">
+            <span class="cibotti-examples-label">Diferencia esencial</span>
+            <ul>
+              <li>El Estado-productor <strong>no</strong> decide en función de la maximización de ganancias.</li>
+              <li>Gravitan también consideraciones de política económica y bienestar.</li>
+            </ul>
+          </div>
+          <div class="cibotti-source">
+            <strong>Fuente:</strong> Cibotti &amp; Sierra · cap. 1
+          </div>
+        </div>
+      </article>
 
-    <div class="acc-item">
-      <button class="acc-trigger">
-        <span><strong>4 · Acciones en el campo del Financiamiento</strong></span>
-        <span class="icon">+</span>
-      </button>
-      <div class="acc-content">
-        <p>
-          Para producir y acumular, el Estado necesita movilizar recursos monetarios:
-          son las acciones de financiamiento. Cibotti y Sierra señalan dos subtipos:
-        </p>
-        <p><strong>i)</strong> Acciones que proporcionan al Estado recursos para cumplir
-        sus funciones de producción y acumulación (cobrar impuestos, vender bienes y
-        servicios, tomar crédito).</p>
-        <p><strong>ii)</strong> Acciones dirigidas a <em>transferir ingresos</em> dentro
-        del sector privado (jubilaciones, subsidios, asignaciones familiares).</p>
-        <p>
-          Cibotti y Sierra mencionan explícitamente <strong>tres mecanismos</strong> a
-          través de los cuales el Estado obtiene esos recursos: el sistema impositivo,
-          el sistema de precios y tarifas de bienes y servicios públicos que se venden,
-          y el crédito o deuda pública.<span class="source-cite">C&amp;S, cap. 1</span>
-        </p>
-      </div>
+      <article class="cibotti-card">
+        <div class="cibotti-side" data-roman="III">
+          <div class="cibotti-num">3</div>
+          <div class="cibotti-roman">III</div>
+          <div class="cibotti-glyph" aria-hidden="true">▣</div>
+        </div>
+        <div class="cibotti-body">
+          <span class="cibotti-tipo">Formación de capital</span>
+          <h5>Acumulación</h5>
+          <p class="cibotti-thesis">
+            Inversiones que contribuyen a la <em>formación del acervo de instalaciones
+            y equipo</em> que la economía necesita. También se distinguen dos subtipos
+            según para quién se acumula:
+          </p>
+          <div class="cibotti-subdiv">
+            <strong>a · Capital para producción propia.</strong> Ampliación del stock
+            de bienes de capital del Estado-productor. Ej: ampliar una empresa pública,
+            construir un nuevo hospital.
+          </div>
+          <div class="cibotti-subdiv">
+            <strong>b · Capital que constituye <em>economías externas</em>.</strong>
+            Capital instalado para que <em>otros</em> lo utilicen — caminos, calles
+            urbanas, parques, instalaciones portuarias, infraestructura energética.
+            El mantenimiento queda al Estado; el uso lo hace el resto.
+          </div>
+          <div class="cibotti-source">
+            <strong>Fuente:</strong> Cibotti &amp; Sierra · cap. 1
+          </div>
+        </div>
+      </article>
+
+      <article class="cibotti-card">
+        <div class="cibotti-side" data-roman="IV">
+          <div class="cibotti-num">4</div>
+          <div class="cibotti-roman">IV</div>
+          <div class="cibotti-glyph" aria-hidden="true">¤</div>
+        </div>
+        <div class="cibotti-body">
+          <span class="cibotti-tipo">Movilización de recursos</span>
+          <h5>Financiamiento</h5>
+          <p class="cibotti-thesis">
+            Para producir y acumular, el Estado necesita <strong>movilizar recursos
+            monetarios</strong>. Las acciones de financiamiento se dividen en dos
+            propósitos:
+          </p>
+          <div class="cibotti-subdiv">
+            <strong>i · Proveer recursos al propio Estado</strong> para sus funciones
+            de producción y acumulación (cobrar impuestos, vender bienes y servicios,
+            tomar crédito).
+          </div>
+          <div class="cibotti-subdiv">
+            <strong>ii · Transferir ingresos dentro del sector privado</strong>
+            (jubilaciones, subsidios, asignaciones familiares).
+          </div>
+          <div class="cibotti-examples">
+            <span class="cibotti-examples-label">Tres mecanismos</span>
+            <ul>
+              <li>Sistema impositivo (impuestos, tasas, contribuciones).</li>
+              <li>Precios y tarifas de bienes y servicios públicos.</li>
+              <li>Crédito o deuda pública (interna y externa).</li>
+            </ul>
+          </div>
+          <div class="cibotti-source">
+            <strong>Fuente:</strong> Cibotti &amp; Sierra · cap. 1
+          </div>
+        </div>
+      </article>
+
     </div>
   </div>
 
   <h3 id="financiamiento">Fuentes de financiamiento del Estado</h3>
   <p>
-    Combinando lo de Cibotti y Sierra con la clase de cátedra, el Estado obtiene fondos
-    principalmente por cinco vías. Mirá cómo se reparten:
+    Combinando Cibotti y Sierra con la clase de cátedra, el Estado obtiene fondos
+    principalmente por <strong>cinco vías</strong>. No todas pesan lo mismo, no todas
+    tienen el mismo costo. La de abajo es una guía rápida con su nivel de riesgo:
   </p>
 
-  <div class="card-grid">
-    <div class="card">
-      <span class="num">$</span>
-      <span class="label">Fuente</span>
-      <h4>Venta de bienes y servicios</h4>
-      <p>Ingresos por la actividad de las empresas del Estado: pasajes ferroviarios,
-      tarifas de servicios públicos cuando son estatales, ventas de YPF, etc.</p>
+  <div class="fuentes-frame">
+
+    <div class="fuentes-center">
+      <div class="fuentes-orb" aria-hidden="true">$</div>
+      <span class="fuentes-tag">5 vías de financiamiento</span>
+      <h4>De dónde sale el dinero del Estado</h4>
+      <p>
+        Cada vía tiene una <em>lógica</em> distinta y un <em>costo</em> distinto.
+        Las dos primeras son las "tradicionales" del Estado-productor. Las tres siguientes
+        aparecen cuando la primera ya no alcanza.
+      </p>
     </div>
-    <div class="card">
-      <span class="num">$</span>
-      <span class="label">Fuente</span>
-      <h4>Venta patrimonial</h4>
-      <p>Privatizaciones: el Estado vende empresas o activos. Es una fuente
-      <em>no recurrente</em> — se obtiene una sola vez por activo.</p>
-    </div>
-    <div class="card">
-      <span class="num">$</span>
-      <span class="label">Fuente principal</span>
-      <h4>Tributos</h4>
-      <p>Impuestos, tasas y contribuciones. Es la <strong>fuente más importante</strong>
-      de financiamiento del Estado moderno y, además, instrumento de política fiscal.</p>
-    </div>
-    <div class="card">
-      <span class="num">$</span>
-      <span class="label">Fuente</span>
-      <h4>Crédito (deuda pública)</h4>
-      <p>Préstamos del exterior (organismos como FMI o Banco Mundial) o del interior
-      (títulos públicos colocados a ahorristas y empresas locales).</p>
-    </div>
-    <div class="card">
-      <span class="num">$</span>
-      <span class="label">Fuente</span>
-      <h4>Emisión de moneda</h4>
-      <p>El Banco Central emite dinero para financiar al Tesoro. Es la fuente más
-      peligrosa: si se abusa, genera inflación — el llamado <em>"impuesto inflacionario"</em>.</p>
+
+    <div class="fuentes-grid">
+
+      <article class="fuente-item" data-kind="tributos">
+        <div class="fuente-head">
+          <div class="fuente-icon" aria-hidden="true">§</div>
+          <div class="fuente-meta">
+            <span class="fuente-num">Vía 01</span>
+            <span class="fuente-name">Tributos</span>
+          </div>
+        </div>
+        <p class="fuente-desc">
+          <strong>Impuestos, tasas y contribuciones.</strong> Es la <em>fuente más
+          importante</em> del Estado moderno y, a la vez, su principal
+          <strong>instrumento de política fiscal</strong>. Tiene fundamento legal
+          (creados por ley) y obligatorio.
+        </p>
+        <div class="fuente-tags">
+          <span class="fuente-tag is-stable">Recurrente</span>
+          <span class="fuente-tag">Coercitivo</span>
+          <span class="fuente-tag">Política fiscal</span>
+        </div>
+      </article>
+
+      <article class="fuente-item" data-kind="venta-bs">
+        <div class="fuente-head">
+          <div class="fuente-icon" aria-hidden="true">⇄</div>
+          <div class="fuente-meta">
+            <span class="fuente-num">Vía 02</span>
+            <span class="fuente-name">Venta de bienes y servicios</span>
+          </div>
+        </div>
+        <p class="fuente-desc">
+          Ingresos por la actividad de las <strong>empresas del Estado</strong>:
+          pasajes ferroviarios, tarifas de servicios públicos estatales, ventas
+          de hidrocarburos por empresas como YPF, energía eléctrica.
+        </p>
+        <div class="fuente-tags">
+          <span class="fuente-tag is-stable">Recurrente</span>
+          <span class="fuente-tag">Originario</span>
+        </div>
+      </article>
+
+      <article class="fuente-item" data-kind="venta-patr">
+        <div class="fuente-head">
+          <div class="fuente-icon" aria-hidden="true">▦</div>
+          <div class="fuente-meta">
+            <span class="fuente-num">Vía 03</span>
+            <span class="fuente-name">Venta patrimonial</span>
+          </div>
+        </div>
+        <p class="fuente-desc">
+          <strong>Privatizaciones</strong>: el Estado vende empresas o activos. Es
+          una fuente <em>no recurrente</em> — se obtiene una sola vez por activo.
+          Cobró peso en Argentina a partir de 1992.
+        </p>
+        <div class="fuente-tags">
+          <span class="fuente-tag is-warning">No recurrente</span>
+          <span class="fuente-tag">Reduce patrimonio</span>
+        </div>
+      </article>
+
+      <article class="fuente-item" data-kind="credito">
+        <div class="fuente-head">
+          <div class="fuente-icon" aria-hidden="true">↻</div>
+          <div class="fuente-meta">
+            <span class="fuente-num">Vía 04</span>
+            <span class="fuente-name">Crédito · Deuda pública</span>
+          </div>
+        </div>
+        <p class="fuente-desc">
+          Préstamos del <strong>exterior</strong> (FMI, Banco Mundial, BID, bancos)
+          o del <strong>interior</strong> (títulos públicos colocados a ahorristas
+          y empresas). Hay que devolver capital + intereses en el futuro.
+        </p>
+        <div class="fuente-tags">
+          <span class="fuente-tag is-risk">Aumenta deuda</span>
+          <span class="fuente-tag">Crowding out</span>
+        </div>
+      </article>
+
+      <article class="fuente-item" data-kind="emision">
+        <div class="fuente-head">
+          <div class="fuente-icon" aria-hidden="true">⚠</div>
+          <div class="fuente-meta">
+            <span class="fuente-num">Vía 05</span>
+            <span class="fuente-name">Emisión de moneda</span>
+          </div>
+        </div>
+        <p class="fuente-desc">
+          El Banco Central emite dinero para financiar al Tesoro. Es la vía más
+          <strong>riesgosa</strong>: si se abusa, genera inflación — el llamado
+          <span class="gloss" tabindex="0" data-gloss="Pérdida del valor del dinero que sufren todos los tenedores de moneda nacional cuando el Estado financia su déficit emitiendo. Funciona como un impuesto invisible sobre quienes tienen pesos.">impuesto inflacionario</span>.
+        </p>
+        <div class="fuente-tags">
+          <span class="fuente-tag is-warning">Inflación</span>
+          <span class="fuente-tag is-warning">Pérdida de valor</span>
+        </div>
+      </article>
+
     </div>
   </div>
 
@@ -2205,6 +4761,21 @@
     insuficientes, y en una <em>recesión</em> no conviene subirlos porque la agravarían.
     Por eso aparecen las otras dos opciones (crédito y emisión), cada una con sus propios
     riesgos.<span class="source-cite">MB, cap. 13</span>
+  </div>
+
+  <div class="idea-fuerza">
+    <span class="if-tag">Para retener · Bloque 1</span>
+    <h4>Tres ideas-fuerza del bloque <em>Estado y mercado</em></h4>
+    <ul>
+      <li><strong>El Estado interviene porque el mercado falla.</strong> Cuatro fallas
+        son la justificación clásica: monopolio natural, bienes públicos, externalidades
+        y recursos de propiedad común.</li>
+      <li><strong>Funciones</strong> (Mochón–Beker): fiscal · reguladora · proveedora ·
+        redistributiva · estabilizadora. Son <em>complementarias</em>, no alternativas.</li>
+      <li><strong>Acciones</strong> (Cibotti y Sierra): regulación · producción ·
+        acumulación · financiamiento. Útil para pensar el Estado-productor
+        latinoamericano.</li>
+    </ul>
   </div>
 </section>
 
@@ -2348,6 +4919,21 @@
       </div>
     </div>
   </div>
+
+  <div class="idea-fuerza">
+    <span class="if-tag">Para retener · Bloque 2</span>
+    <h4>Dos clasificaciones complementarias</h4>
+    <ul>
+      <li><strong>Jurídica:</strong> originarios (sin coerción · venta de bienes y
+        servicios, tarifas) vs derivados (con coerción · impuestos, aportes
+        previsionales).</li>
+      <li><strong>Económica:</strong> corrientes (sin endeudarse · ingresos tributarios)
+        vs no corrientes o de capital (deuda y venta de activos · "se usan una sola vez").</li>
+      <li><strong>Los tributos</strong> son la fuente más importante. Se dividen en
+        impuestos, tasas (con contrapartida directa) y contribuciones especiales (por
+        una obra puntual).</li>
+    </ul>
+  </div>
 </section>
 
 <div class="separator"><div class="line"></div><div class="dot"></div><div class="line right"></div></div>
@@ -2464,45 +5050,54 @@
       Es un dato útil para discutir las prioridades del Estado.<span class="source-cite">PE, cap. 12</span></p>
     </div>
   </div>
+
+  <div class="idea-fuerza">
+    <span class="if-tag">Para retener · Bloque 3</span>
+    <h4>Cómo se ordena el gasto público</h4>
+    <ul>
+      <li><strong>Visión clásica:</strong> ordinarios (rutina) vs extraordinarios
+        (excepcionales, como una guerra). Los primeros se financiaban con tributos;
+        los segundos con préstamos.</li>
+      <li><strong>Visión moderna:</strong> corrientes (funcionamiento) · de capital
+        (inversión productiva) · de transferencia (jubilaciones, subsidios — función
+        redistributiva).</li>
+      <li><strong>El mismo gasto</strong> puede mirarse desde 5 clasificadores:
+        finalidad, institucional, económica, por objeto y fuente de financiamiento.
+        Cada uno responde a una pregunta distinta.</li>
+    </ul>
+  </div>
 </section>
 
 <div class="separator"><div class="line"></div><div class="dot"></div><div class="line right"></div></div>
 
 <!-- ════════ PUENTE: PRESUPUESTO PÚBLICO (guía externa) ════════ -->
 <section id="presupuesto-puente" style="padding: 30px 0;">
-  <aside class="companion-banner" aria-label="Material complementario sobre Presupuesto Público">
-    <div class="cb-header">
-      <div class="cb-icon" aria-hidden="true">
-        <div class="paper p1"></div>
-        <div class="paper p2"></div>
-        <div class="paper p3">§</div>
-      </div>
-      <div class="cb-content">
-        <span class="cb-tag"><span class="tag-dot"></span>Antes de avanzar a Impuestos</span>
-        <h4>Pasá por la guía de <em>Presupuesto Público</em></h4>
-        <p>
-          Ya viste <strong>Ingresos</strong> y <strong>Gastos</strong>. Antes de seguir
-          con Impuestos y Política Fiscal, conviene pasar por el bloque de Presupuesto —
-          que integra ambos lados en una <strong>ley anual</strong>. Está desarrollado
-          íntegramente en su guía propia, con el mismo formato interactivo que esta
-          unidad.
-        </p>
-        <div class="cb-chips">
-          <span class="cb-chip">Formulación · Aprobación · Ejecución · Control</span>
-          <span class="cb-chip">Resultado fiscal</span>
-          <span class="cb-chip">Art. 27 · reconducción</span>
-          <span class="cb-chip">Ley 24.156</span>
-        </div>
-      </div>
+  <aside class="companion-banner" aria-label="Documento vinculado sobre Presupuesto Público">
+    <span class="cb-est-pill">
+      <span class="est-num">06</span>
+      <span class="est-sep"></span>
+      Antes de la siguiente estación
+    </span>
+    <h4>Hacé una <em>pausa</em>: visitá Presupuesto</h4>
+    <p class="cb-doc-sub">Ya viste Ingresos y Gastos · el Presupuesto los integra en una ley anual</p>
+    <p class="cb-doc-desc">
+      Recorré la guía vinculada antes de seguir con Impuestos y Política Fiscal —
+      es <strong>contenido evaluable</strong>.
+    </p>
+    <div class="cb-chapters" aria-label="Contenidos del documento">
+      <span class="cb-chap"><span class="ch-num">I</span>Concepto y pilares</span>
+      <span class="cb-chap"><span class="ch-num">II</span>Las 4 etapas del ciclo</span>
+      <span class="cb-chap"><span class="ch-num">III</span>Trámite parlamentario</span>
+      <span class="cb-chap"><span class="ch-num">IV</span>Reconducción · Art. 27</span>
     </div>
-    <div class="cb-footer">
-      <div class="cb-meta">
-        <span>🔗 Contenido evaluable de la Unidad 4</span>
-        <span class="meta-sep"></span>
-        <span class="meta-url">nickperot.com/presupuestopublico</span>
-      </div>
+    <div class="cb-foot">
+      <span class="cb-foot-meta">
+        <span>~ 20 min</span>
+        <span class="sep"></span>
+        <strong>contenido evaluable</strong>
+      </span>
       <a class="cb-cta" href="https://nickperot.com/presupuestopublico" target="_blank" rel="noopener">
-        Ir al bloque <span class="arrow">→</span>
+        Abrir documento <span class="arrow">→</span>
       </a>
     </div>
   </aside>
@@ -2526,11 +5121,14 @@
     <h4>Impuestos</h4>
     <p>
       Son los <strong>ingresos públicos creados por ley y de cumplimiento obligatorio</strong>
-      por parte de los sujetos contemplados en la misma.<span class="source-cite">MB, cap. 13</span>
-      Pérez Enrri agrega: son <em>"aportes que el Estado exige a los ciudadanos con carácter
-      obligatorio, sin contrapartida directa en bienes y servicios. El monto es fijado por
-      el Estado a cada persona en relación con su capacidad contributiva"</em>.<span class="source-cite">PE, cap. 12</span>
+      por parte de los sujetos contemplados en la misma. Son <em>aportes</em> que el
+      Estado exige a los ciudadanos sin <strong>contrapartida directa</strong> en bienes
+      y servicios. El monto se fija a cada persona en relación con su
+      <span class="gloss" tabindex="0" data-gloss="Principio según el cual cada persona debe contribuir al sostenimiento del Estado en proporción a sus posibilidades económicas. A mayor ingreso o patrimonio, mayor aporte. Es el fundamento de los impuestos progresivos.">capacidad contributiva</span>.
     </p>
+    <div class="def-author">
+      Según <strong>Mochón &amp; Beker</strong>, <em>cap. 13</em> &middot; <strong>Pérez Enrri</strong>, <em>cap. 12</em>
+    </div>
   </div>
 
   <p>
@@ -2669,6 +5267,41 @@
   <p style="font-size: 0.85em; color: var(--color-text-muted); margin-top: -8px;">
     Fuente: Ficha de cátedra. (*) Estimado.
   </p>
+
+  <div class="contexto-arg">
+    <span class="ca-tag">Contexto Argentina</span>
+    <h4>IVA vs Ganancias: por qué la mezcla tributaria es regresiva</h4>
+    <p>
+      En Argentina, la recaudación se apoya fuertemente en el <strong>IVA</strong>
+      (impuesto indirecto y regresivo, 21% general) y mucho menos en
+      <strong>Ganancias para personas físicas</strong> (directo y progresivo). Eso hace
+      que la presión tributaria <em>recaiga más</em> sobre quienes consumen una mayor
+      proporción de su ingreso — los hogares de ingresos bajos y medios.
+    </p>
+    <p>
+      Una estructura tributaria es <strong>redistributiva</strong> cuando los impuestos
+      progresivos pesan más que los regresivos. Cuando es al revés, el sistema tributario
+      <em>reproduce</em> o profundiza la desigualdad. Por eso el debate sobre "qué
+      impuestos cobra el Estado" es siempre político, no solo técnico.
+    </p>
+  </div>
+
+  <div class="idea-fuerza">
+    <span class="if-tag">Para retener · Bloque 4</span>
+    <h4>Cómo leer cualquier impuesto en <em>dos ejes</em></h4>
+    <ul>
+      <li><strong>Eje 1 — ¿Se traslada?</strong> Directo = no trasladable, lo absorbe el
+        designado por la ley (Ganancias, Bienes Personales). Indirecto = trasladable al
+        precio, lo termina pagando el consumidor (IVA, Internos).</li>
+      <li><strong>Eje 2 — ¿A quién pesa más?</strong> Progresivo = mayor sacrificio a
+        los de mayor capacidad contributiva (Ganancias con escalas). Regresivo = mayor
+        sacrificio a los de menor capacidad (IVA, por su uniformidad sobre el consumo).</li>
+      <li><strong>Las dos clasificaciones se combinan:</strong> un impuesto es, por
+        ejemplo, <em>indirecto y regresivo</em> (IVA) o <em>directo y progresivo</em>
+        (Ganancias personas físicas). La estructura tributaria es <em>la combinación</em>
+        de todos ellos.</li>
+    </ul>
+  </div>
 </section>
 
 <div class="separator"><div class="line"></div><div class="dot"></div><div class="line right"></div></div>
@@ -2691,17 +5324,29 @@
     que se ve en la Unidad 6.
   </p>
 
+  <div class="cita-fuente">
+    <blockquote>
+      Las decisiones del gobierno referentes al <strong>gasto público</strong> y a los
+      <strong>impuestos</strong> constituyen la <em>política fiscal</em>.
+    </blockquote>
+    <cite><strong>Francisco Mochón &amp; Víctor Beker</strong> · <span class="obra">Economía: principios y aplicaciones</span> · cap. 13</cite>
+  </div>
+
   <h3 id="pf-def">¿Qué es la política fiscal?</h3>
 
   <div class="definition">
     <span class="tag">Definición</span>
     <h4>Política Fiscal</h4>
     <p>
-      <strong>Las decisiones del gobierno referentes al gasto público y a los
-      impuestos constituyen la política fiscal.</strong><span class="source-cite">MB, cap. 13</span>
-      Comprende: los programas de compra de bienes y servicios, los gastos de
-      transferencia, y la cantidad y tipo de impuestos.
+      Comprende los programas del gobierno respecto a la <strong>compra de bienes y
+      servicios</strong>, los <strong>gastos de transferencia</strong> y la cantidad y
+      tipo de <strong>impuestos</strong>. Es una herramienta de
+      <span class="gloss" tabindex="0" data-gloss="Política que busca suavizar las fluctuaciones del ciclo económico: en recesión se expande para impulsar la demanda; en sobreexpansión se contrae para enfriar la economía y controlar la inflación.">política anticíclica</span>:
+      sirve para influir sobre el nivel de actividad, el empleo y los precios.
     </p>
+    <div class="def-author">
+      Según <strong>Mochón &amp; Beker</strong>, <em>cap. 13</em>
+    </div>
   </div>
 
   <p>
@@ -2713,8 +5358,9 @@
 
   <h3>Los instrumentos</h3>
   <p>
-    Mochón y Beker distinguen <strong>cuatro instrumentos discrecionales</strong> de
-    política fiscal — "discrecional" significa que requieren <em>decisión explícita</em>
+    Mochón y Beker distinguen <strong>cuatro instrumentos
+    <span class="gloss" tabindex="0" data-gloss="Política fiscal que requiere decisión explícita del gobierno (aprobar una obra, cambiar una alícuota). Se opone a los 'estabilizadores automáticos', que actúan solos sin que el gobierno tenga que decidir nada.">discrecionales</span></strong>
+    de política fiscal — "discrecional" significa que requieren <em>decisión explícita</em>
     del gobierno.<span class="source-cite">MB, cap. 13</span>
   </p>
 
@@ -2762,7 +5408,8 @@
       </ul>
       <p style="margin-top: 12px;"><strong>¿Por qué? ¿Con qué objetivo?</strong></p>
       <ul>
-        <li>Aumentar la <strong>demanda agregada</strong>.</li>
+        <li>Aumentar la
+          <span class="gloss" tabindex="0" data-gloss="Suma del gasto total en una economía: consumo (C) + inversión (I) + gasto público (G) + exportaciones netas (X − M). Es la 'palanca' que la política fiscal puede mover.">demanda agregada</span>.</li>
         <li><strong>Reducir el desempleo.</strong></li>
         <li>Reactivar la actividad económica.</li>
       </ul>
@@ -2891,47 +5538,79 @@
     uno con sus consecuencias.<span class="source-cite">MB, cap. 13</span>
   </p>
 
-  <div class="accordion" id="defAcc">
-    <div class="acc-item open">
-      <button class="acc-trigger">
-        <span><strong>1 · Impuestos</strong> — la vía "natural"</span>
-        <span class="icon">+</span>
-      </button>
-      <div class="acc-content">
-        <p>Parece la forma natural, pero tiene una <strong>limitación seria</strong>:
-        cuando hay déficit, los impuestos son insuficientes por definición. Además, si
-        estamos en recesión, <em>aumentar impuestos la agravaría</em>. La política fiscal
-        expansiva justamente busca lo contrario.</p>
-      </div>
+  <div class="deficit-frame">
+    <div class="deficit-header">
+      <span class="tag">Tres vías · cada una con su costo</span>
+      <h4>¿Cómo se financia el <em style="color: var(--color-primary); font-style: italic;">déficit</em>?</h4>
+      <p>
+        Cuando una política fiscal expansiva genera déficit, ese hueco tiene que cubrirse
+        de algún modo. Hay <strong>tres caminos posibles</strong> — ninguno gratuito.
+      </p>
     </div>
-    <div class="acc-item">
-      <button class="acc-trigger">
-        <span><strong>2 · Creación de dinero</strong> — emisión monetaria</span>
-        <span class="icon">+</span>
-      </button>
-      <div class="acc-content">
-        <p>El Banco Central emite dinero para financiar al Tesoro. Es rápido pero
-        peligroso: implica una <em>política monetaria expansiva</em> que puede generar
-        <strong>tensiones inflacionarias y pérdida de valor del dinero</strong>. Es el
-        famoso "impuesto inflacionario" que se desarrolla en la Unidad 6.</p>
-      </div>
-    </div>
-    <div class="acc-item">
-      <button class="acc-trigger">
-        <span><strong>3 · Emisión de deuda pública</strong> — bonos y obligaciones</span>
-        <span class="icon">+</span>
-      </button>
-      <div class="acc-content">
-        <p>El Estado vende títulos de renta fija (bonos, obligaciones). El problema:
-        compite con el sector privado por el ahorro disponible y eso tiende a
-        <strong>elevar las tasas de interés</strong>, reduciendo la inversión privada.
-        Este fenómeno se conoce como <em>efecto desplazamiento</em> o <em>"crowding out"</em>.</p>
-        <div class="callout warning" style="margin-top: 12px;">
-          <strong>Efecto desplazamiento:</strong> proposición según la cual el gasto
-          público, los déficit presupuestarios o la deuda del Estado <em>reducen la
-          cantidad de inversión de las empresas</em>.<span class="source-cite">MB, cap. 13</span>
+
+    <div class="deficit-grid">
+
+      <article class="deficit-card" data-risk="limited" data-roman="I">
+        <div class="deficit-card-head">
+          <div class="deficit-num">1</div>
+          <div class="deficit-card-meta">
+            <span class="deficit-card-tipo">Vía clásica</span>
+            <h5>Impuestos</h5>
+          </div>
         </div>
-      </div>
+        <p class="deficit-card-desc">
+          Parece la forma "natural" de financiar el gasto. <strong>Pero tiene una
+          limitación seria</strong>: cuando hay déficit los impuestos son, por
+          definición, insuficientes. Y en recesión, <em>aumentarlos</em> agravaría la
+          caída del consumo — al revés de lo que busca una política expansiva.
+        </p>
+        <div class="deficit-cost">
+          <span class="deficit-cost-label">Límite</span>
+          <p><strong>Insuficientes</strong> si hay déficit · <strong>contraproducentes</strong> en recesión.</p>
+        </div>
+      </article>
+
+      <article class="deficit-card" data-risk="high" data-roman="II">
+        <div class="deficit-card-head">
+          <div class="deficit-num">2</div>
+          <div class="deficit-card-meta">
+            <span class="deficit-card-tipo">Vía monetaria</span>
+            <h5>Creación de dinero</h5>
+          </div>
+        </div>
+        <p class="deficit-card-desc">
+          El Banco Central emite dinero para financiar al Tesoro. Rápido — pero implica
+          <strong>política monetaria expansiva</strong> que trae tensiones inflacionarias
+          y pérdida de valor del dinero. Es el famoso
+          <span class="gloss" tabindex="0" data-gloss="Pérdida del valor del dinero que sufren todos los tenedores de moneda nacional cuando el Estado financia su déficit emitiendo. Funciona como un impuesto invisible sobre quienes tienen pesos.">impuesto inflacionario</span>
+          (se desarrolla en la Unidad 6).
+        </p>
+        <div class="deficit-cost">
+          <span class="deficit-cost-label">Costo</span>
+          <p><strong>Inflación.</strong> Pérdida de valor del dinero. Castiga al que ahorra en pesos.</p>
+        </div>
+      </article>
+
+      <article class="deficit-card" data-risk="medium" data-roman="III">
+        <div class="deficit-card-head">
+          <div class="deficit-num">3</div>
+          <div class="deficit-card-meta">
+            <span class="deficit-card-tipo">Vía financiera</span>
+            <h5>Emisión de deuda pública</h5>
+          </div>
+        </div>
+        <p class="deficit-card-desc">
+          El Estado vende títulos de renta fija (bonos, obligaciones). El problema: compite
+          con el sector privado por el ahorro disponible y <strong>eleva las tasas de
+          interés</strong>, reduciendo la inversión privada. Es el llamado
+          <em>efecto desplazamiento</em> o "crowding out".<span class="source-cite">MB, cap. 13</span>
+        </p>
+        <div class="deficit-cost">
+          <span class="deficit-cost-label">Costo</span>
+          <p><strong>Crowding out:</strong> desplaza inversión privada. Tasas de interés más altas.</p>
+        </div>
+      </article>
+
     </div>
   </div>
 
@@ -2944,6 +5623,23 @@
       inversión privada. <strong>No hay vía "limpia"</strong>. Por eso la discusión sobre
       el déficit fiscal es siempre una discusión política, no solo técnica.</p>
     </div>
+  </div>
+
+  <div class="idea-fuerza">
+    <span class="if-tag">Para retener · Bloque 5</span>
+    <h4>El núcleo de la <em>política fiscal</em></h4>
+    <ul>
+      <li><strong>Definición</strong> (Mochón–Beker): decisiones del gobierno sobre
+        <em>gasto público</em> e <em>impuestos</em>.</li>
+      <li><strong>Expansiva en recesión:</strong> ↑ gasto y/o ↓ impuestos para estimular
+        la demanda agregada → tiende a generar déficit.</li>
+      <li><strong>Restrictiva en sobreexpansión:</strong> ↓ gasto y/o ↑ impuestos para
+        frenar la inflación → tiende a generar superávit.</li>
+      <li><strong>Estabilizadores automáticos:</strong> los impuestos proporcionales y
+        el seguro de desempleo suavizan el ciclo <em>sin</em> decisión explícita.</li>
+      <li><strong>Financiar el déficit</strong>: impuestos (insuficientes en recesión),
+        emisión (inflación) o deuda (efecto desplazamiento). Cada vía con su costo.</li>
+    </ul>
   </div>
 </section>
 
@@ -3185,6 +5881,142 @@
   </div>
 </section>
 
+<!-- ════════ RÚBRICA DE EVALUACIÓN ════════ -->
+<section id="rubrica" style="padding-top: 30px;">
+  <div class="section-header">
+    <div class="section-label">
+      <div class="line"></div>
+      <span class="text">Marco evaluativo</span>
+      <div class="grow"></div>
+    </div>
+    <h2>Rúbrica de <span class="colored">evaluación</span></h2>
+  </div>
+
+  <p class="lead-paragraph">
+    Si querés saber con qué criterios se evalúa el aprendizaje de esta unidad, mirá la
+    siguiente rúbrica. No es una checklist exhaustiva: marca <strong>qué se espera que
+    puedas hacer</strong> después de recorrer los contenidos.
+  </p>
+
+  <div class="rubrica">
+
+    <div class="rubrica-header">
+      <span class="rubrica-tag">Criterio general</span>
+      <h3>Definiciones con <em>precisión</em>, análisis con <em>profundidad</em></h3>
+      <p>
+        La evaluación valora la capacidad de definir con precisión los conceptos
+        centrales y, sobre esa base, desplegar <strong>tres competencias</strong>
+        vinculadas a los objetivos de aprendizaje de la Unidad 4: el papel del Estado,
+        sus funciones y la política fiscal.
+      </p>
+    </div>
+
+    <div class="rubrica-principio">
+      <span class="rubrica-principio-tag">Principio rector</span>
+      <span class="rubrica-principio-texto">
+        Toda respuesta parte de <strong>definiciones conceptuales correctas y precisas</strong>,
+        y articula <strong>fuentes</strong> de la bibliografía obligatoria.
+      </span>
+    </div>
+
+    <div class="rubrica-grid">
+
+      <!-- Competencia 1 -->
+      <div class="rubrica-card">
+        <div class="rubrica-card-head">
+          <div class="rubrica-card-num">01</div>
+          <div class="rubrica-card-meta">
+            <span class="rubrica-card-eyebrow">Competencia 01</span>
+            <span class="rubrica-card-titulo">Papel del Sector Público</span>
+          </div>
+        </div>
+
+        <div class="rubrica-criterio">
+          <span class="rubrica-criterio-label">Capacidad esperada</span>
+          <p class="rubrica-criterio-texto">
+            <strong>Examinar la evolución histórica</strong> de la intervención estatal
+            (clásico-liberal · keynesiano · estructuralista) y reconocer la
+            <strong>relación entre sector público y privado</strong> en el sistema
+            económico (producción, inversión y regulación).
+          </p>
+        </div>
+
+        <div class="rubrica-criterio">
+          <span class="rubrica-criterio-label">Vinculá con</span>
+          <ul class="rubrica-subitems">
+            <li>Las <strong>cuatro fallas del mercado</strong></li>
+            <li>Las <strong>cuatro acciones</strong> de Cibotti y Sierra</li>
+            <li>El contexto histórico (1929 · CEPAL · neoliberalismo)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Competencia 2 -->
+      <div class="rubrica-card">
+        <div class="rubrica-card-head">
+          <div class="rubrica-card-num">02</div>
+          <div class="rubrica-card-meta">
+            <span class="rubrica-card-eyebrow">Competencia 02</span>
+            <span class="rubrica-card-titulo">Funciones del Estado</span>
+          </div>
+        </div>
+
+        <div class="rubrica-criterio">
+          <span class="rubrica-criterio-label">Capacidad esperada</span>
+          <p class="rubrica-criterio-texto">
+            <strong>Explicar concepciones teóricas</strong> sobre la participación
+            estatal y <strong>diferenciar las funciones</strong> del sector público en
+            sus dimensiones: fiscal, reguladora, redistributiva, proveedora y
+            estabilizadora.
+          </p>
+        </div>
+
+        <div class="rubrica-criterio">
+          <span class="rubrica-criterio-label">De cada función</span>
+          <ul class="rubrica-subitems">
+            <li>Su <strong>definición conceptual</strong></li>
+            <li>Su <strong>instrumento típico</strong></li>
+            <li>Un <strong>ejemplo concreto</strong> (Argentina cuando aplique)</li>
+            <li>La <strong>fuente</strong> teórica (Mochón-Beker · Pérez Enrri · Cibotti)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Competencia 3 -->
+      <div class="rubrica-card">
+        <div class="rubrica-card-head">
+          <div class="rubrica-card-num">03</div>
+          <div class="rubrica-card-meta">
+            <span class="rubrica-card-eyebrow">Competencia 03</span>
+            <span class="rubrica-card-titulo">Política Fiscal</span>
+          </div>
+        </div>
+
+        <div class="rubrica-criterio">
+          <span class="rubrica-criterio-label">Capacidad esperada</span>
+          <p class="rubrica-criterio-texto">
+            <strong>Analizar el uso del gasto público, impuestos y presupuesto</strong>
+            para alcanzar objetivos macroeconómicos, distinguiendo
+            <strong>déficit, superávit y equilibrio</strong> presupuestario.
+          </p>
+        </div>
+
+        <div class="rubrica-criterio">
+          <span class="rubrica-criterio-label">Identificar y desarrollar</span>
+          <ul class="rubrica-subitems">
+            <li><strong>Cuándo</strong> se aplica expansiva vs restrictiva</li>
+            <li>Sus <strong>instrumentos</strong> (gasto · impuestos · transferencias)</li>
+            <li>El <strong>diagnóstico</strong> que justifica cada política</li>
+            <li>Las <strong>tres vías</strong> de financiar el déficit (y sus costos)</li>
+            <li>Sectores <strong>beneficiados / perjudicados</strong></li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- ════════ CIERRE REFLEXIVO ════════ -->
 <section id="cierre-reflexivo" style="padding-top: 30px;">
   <div class="section-header">
@@ -3245,102 +6077,187 @@
     materiales</strong>. Léelos directamente, no te quedes solo con esta guía.
   </p>
 
-  <div class="biblio-grid">
-    <div class="biblio-card">
-      <span class="src-tag">MB · Cap. 13</span>
-      <h4>La intervención del Estado en la Economía: la política fiscal</h4>
-      <p>Mochón, F. y Beker, V. <em>Economía: principios y aplicaciones</em>. Funciones
-      del sector público, política fiscal expansiva/restrictiva, estabilizadores
-      automáticos, financiación del déficit.</p>
-      <p class="ed">McGraw-Hill</p>
+  <div class="biblio-frame">
+
+    <!-- ═══ Sección 1: Obligatoria ═══ -->
+    <div class="biblio-section-header">
+      <span class="roman">I.</span>
+      <h4>Bibliografía obligatoria</h4>
+      <span class="count">3 textos</span>
     </div>
 
-    <div class="biblio-card">
-      <span class="src-tag">PE · Cap. 12</span>
-      <h4>Evolución de las ideas sobre la participación del sector público</h4>
-      <p>Pérez Enrri, D. <em>Economía, en el pensamiento, la realidad y la acción</em>.
-      Las tres concepciones del Estado (clásica, keynesiana, estructuralista), las cuatro
-      fallas del mercado, ingresos y gastos, presupuesto, déficit y deuda.</p>
-      <p class="ed">Ediciones Macchi · Buenos Aires, 2000</p>
+    <div class="biblio-list">
+
+      <article class="biblio-entry" data-spine="mb">
+        <div class="biblio-spine" aria-hidden="true">MB<br>13</div>
+        <div class="biblio-content">
+          <h5 class="biblio-author">Mochón, Francisco &middot; Beker, Víctor</h5>
+          <p class="biblio-obra">Economía: principios y aplicaciones &middot; <strong>Cap. 13</strong> — La intervención del Estado en la Economía: la política fiscal</p>
+          <p class="biblio-context">
+            Funciones del sector público &middot; política fiscal expansiva/restrictiva &middot;
+            estabilizadores automáticos &middot; financiación del déficit.
+          </p>
+          <div class="biblio-chips">
+            <span class="biblio-chip">Funciones del Estado</span>
+            <span class="biblio-chip">Política fiscal</span>
+            <span class="biblio-chip">Déficit</span>
+          </div>
+        </div>
+        <div class="biblio-aside">
+          <span class="biblio-badge is-obligatoria">Obligatoria</span>
+          <span class="biblio-cite">McGraw-Hill</span>
+        </div>
+      </article>
+
+      <article class="biblio-entry" data-spine="pe">
+        <div class="biblio-spine" aria-hidden="true">PE<br>12</div>
+        <div class="biblio-content">
+          <h5 class="biblio-author">Pérez Enrri, Daniel</h5>
+          <p class="biblio-obra">Economía, en el pensamiento, la realidad y la acción &middot; <strong>Cap. 12</strong> — Evolución de las ideas sobre la participación del sector público</p>
+          <p class="biblio-context">
+            Las tres concepciones del Estado (clásica, keynesiana, estructuralista) &middot;
+            las cuatro fallas del mercado &middot; ingresos y gastos &middot; presupuesto, déficit y deuda.
+          </p>
+          <div class="biblio-chips">
+            <span class="biblio-chip">Fallas del mercado</span>
+            <span class="biblio-chip">Concepciones del Estado</span>
+            <span class="biblio-chip">Ingresos · Gastos</span>
+          </div>
+        </div>
+        <div class="biblio-aside">
+          <span class="biblio-badge is-obligatoria">Obligatoria</span>
+          <span class="biblio-cite">Ediciones Macchi &middot; Buenos Aires, 2000</span>
+        </div>
+      </article>
+
+      <article class="biblio-entry" data-spine="cs">
+        <div class="biblio-spine" aria-hidden="true">C&amp;S<br>I</div>
+        <div class="biblio-content">
+          <h5 class="biblio-author">Cibotti, Ricardo &middot; Sierra, Enrique</h5>
+          <p class="biblio-obra">El Sector Público en la planificación del desarrollo &middot; <strong>ILPES-CEPAL</strong></p>
+          <p class="biblio-context">
+            Las <strong>cuatro acciones del Estado</strong>: regulación, producción,
+            acumulación y financiamiento. Referencia clásica del Estado-productor
+            latinoamericano.
+          </p>
+          <div class="biblio-chips">
+            <span class="biblio-chip">Acciones del Estado</span>
+            <span class="biblio-chip">CEPAL</span>
+            <span class="biblio-chip">Ficha</span>
+          </div>
+        </div>
+        <div class="biblio-aside">
+          <span class="biblio-badge is-obligatoria">Obligatoria</span>
+          <span class="biblio-cite">Siglo XXI Editores</span>
+        </div>
+      </article>
+
     </div>
 
-    <div class="biblio-card">
-      <span class="src-tag">Ficha</span>
-      <h4>El Sector Público en la planificación del desarrollo</h4>
-      <p>Cibotti, R. y Sierra, E. (ILPES-CEPAL). Las <strong>cuatro acciones del
-      Estado</strong>: regulación, producción, acumulación y financiamiento. Es la
-      referencia clásica para pensar el Estado-productor latinoamericano.</p>
-      <p class="ed">Siglo XXI Editores</p>
+    <!-- ═══ Sección 2: Materiales de cátedra y complementarios ═══ -->
+    <div class="biblio-section-header">
+      <span class="roman">II.</span>
+      <h4>Materiales de cátedra y complementarios</h4>
+      <span class="count">3 recursos</span>
     </div>
 
-    <div class="biblio-card">
-      <span class="src-tag">Cátedra</span>
-      <h4>El Sector Público — Castro y Lessa</h4>
-      <p>Texto complementario sobre el rol del Estado en la economía, retomado por la
-      cátedra como lectura de apoyo.</p>
-      <p class="ed">Material de cátedra</p>
+    <div class="biblio-list">
+
+      <article class="biblio-entry" data-spine="cl">
+        <div class="biblio-spine" aria-hidden="true">CL</div>
+        <div class="biblio-content">
+          <h5 class="biblio-author">Castro &middot; Lessa</h5>
+          <p class="biblio-obra">El Sector Público &middot; Texto complementario sobre el rol del Estado en la economía</p>
+          <p class="biblio-context">
+            Lectura de apoyo retomada por la cátedra para ampliar la mirada teórica
+            sobre el sector público.
+          </p>
+          <div class="biblio-chips">
+            <span class="biblio-chip">Teoría</span>
+            <span class="biblio-chip">Ampliación</span>
+          </div>
+        </div>
+        <div class="biblio-aside">
+          <span class="biblio-badge is-complementaria">Complementaria</span>
+          <span class="biblio-cite">Material de cátedra</span>
+        </div>
+      </article>
+
+      <article class="biblio-entry" data-spine="catedra">
+        <div class="biblio-spine" aria-hidden="true">U4<br>★</div>
+        <div class="biblio-content">
+          <h5 class="biblio-author">Tealdo, Julio C. <span style="font-weight: 400; color: var(--color-text-muted); font-size: 0.88em;">(Prof. Titular)</span></h5>
+          <p class="biblio-obra">Unidad 4 — El Sector Público &middot; Presentación de cátedra</p>
+          <p class="biblio-context">
+            Resume y articula las fuentes obligatorias. Incluye datos de
+            <strong>presión tributaria</strong> en Argentina (2004–2017) y el
+            <strong>esquema ahorro-inversión-financiamiento</strong>.
+          </p>
+          <div class="biblio-chips">
+            <span class="biblio-chip">Síntesis</span>
+            <span class="biblio-chip">Datos AR</span>
+            <span class="biblio-chip">Esquemas</span>
+          </div>
+        </div>
+        <div class="biblio-aside">
+          <span class="biblio-badge is-catedra">Cátedra</span>
+          <span class="biblio-cite">Cátedra B &middot; FCJS UNL</span>
+        </div>
+      </article>
+
+      <article class="biblio-entry" data-spine="ext">
+        <div class="biblio-spine" aria-hidden="true">§<br>PP</div>
+        <div class="biblio-content">
+          <h5 class="biblio-author">Guía de lectura &middot; Presupuesto Público</h5>
+          <p class="biblio-obra">Material interactivo en el mismo formato que esta guía &middot; <strong>vinculado a la Unidad 4</strong></p>
+          <p class="biblio-context">
+            Profundiza la sexta estación de la unidad: concepto, las cuatro etapas,
+            trámite parlamentario (<strong>Ley 24.156</strong>), Art. 27 (reconducción),
+            Art. 28 y caso real del presupuesto vigente.
+          </p>
+          <div class="biblio-chips">
+            <span class="biblio-chip">Ciclo · Etapas</span>
+            <span class="biblio-chip">Ley 24.156</span>
+            <span class="biblio-chip">Trámite parlamentario</span>
+          </div>
+        </div>
+        <div class="biblio-aside">
+          <span class="biblio-badge is-external">Externo</span>
+          <a href="https://nickperot.com/presupuestopublico" target="_blank" rel="noopener" class="biblio-link">Abrir guía</a>
+        </div>
+      </article>
+
     </div>
 
-    <div class="biblio-card">
-      <span class="src-tag">Clase</span>
-      <h4>Unidad 4 — Sector Público</h4>
-      <p>Prof. Julio C. Tealdo. Presentación de cátedra. Resume y articula las fuentes
-      anteriores. Incluye datos de presión tributaria en Argentina y el esquema
-      ahorro-inversión-financiamiento.</p>
-      <p class="ed">Cátedra B · FCJS UNL</p>
-    </div>
-
-    <div class="biblio-card">
-      <span class="src-tag">Complementario · interactivo</span>
-      <h4>Guía de lectura sobre Presupuesto Público</h4>
-      <p>Material complementario en el mismo formato que esta guía, dedicado
-      exclusivamente al presupuesto: concepto, las cuatro etapas, trámite parlamentario
-      detallado (Ley 24.156) y la reconducción del Art. 27. Lectura recomendada para
-      la sección 4 de esta unidad.</p>
-      <p class="ed">
-        <a href="https://nickperot.com/presupuestopublico" target="_blank" rel="noopener"
-           style="color: var(--color-primary-dark); font-style: normal; font-weight: 700; text-decoration: none; border-bottom: 1px dotted var(--color-primary-dark);">
-          nickperot.com/presupuestopublico →
-        </a>
-      </p>
-    </div>
   </div>
 
-  <!-- ════════ BANNER FINAL: MATERIAL COMPLEMENTARIO ════════ -->
-  <aside class="companion-banner" style="margin-top: 30px;" aria-label="Material complementario sobre Presupuesto Público">
-    <div class="cb-header">
-      <div class="cb-icon" aria-hidden="true">
-        <div class="paper p1"></div>
-        <div class="paper p2"></div>
-        <div class="paper p3">§</div>
-      </div>
-      <div class="cb-content">
-        <span class="cb-tag"><span class="tag-dot"></span>Para completar la Unidad 4</span>
-        <h4>El segundo pilar: <em>Presupuesto Público</em></h4>
-        <p>
-          Si llegaste hasta acá, completaste cinco bloques. Falta uno — y es central:
-          la <strong>guía de Presupuesto Público</strong>. Mismo formato, misma cátedra,
-          mismo nivel de detalle. Lectura recomendada para llegar al examen con la
-          unidad completa.
-        </p>
-        <div class="cb-chips">
-          <span class="cb-chip">Ciclo presupuestario</span>
-          <span class="cb-chip">Trámite parlamentario</span>
-          <span class="cb-chip">Reconducción · Art. 27</span>
-          <span class="cb-chip">Caso real 2026</span>
-        </div>
-      </div>
+  <!-- ════════ BANNER FINAL · minimalista ════════ -->
+  <aside class="companion-banner" style="margin-top: 30px;" aria-label="Documento vinculado sobre Presupuesto Público">
+    <span class="cb-est-pill">
+      <span class="est-num">06</span>
+      <span class="est-sep"></span>
+      Para completar la Unidad 4
+    </span>
+    <h4>El <em>segundo pilar</em> de la Unidad 4</h4>
+    <p class="cb-doc-sub">Completaste cinco bloques · falta este para cerrar la unidad</p>
+    <p class="cb-doc-desc">
+      Recorré el documento de <strong>Presupuesto Público</strong> para llegar a la
+      evaluación con la unidad completa.
+    </p>
+    <div class="cb-chapters" aria-label="Contenidos del documento">
+      <span class="cb-chap"><span class="ch-num">I</span>Concepto y pilares</span>
+      <span class="cb-chap"><span class="ch-num">II</span>Las 4 etapas del ciclo</span>
+      <span class="cb-chap"><span class="ch-num">III</span>Trámite parlamentario</span>
+      <span class="cb-chap"><span class="ch-num">IV</span>Reconducción · Art. 27</span>
     </div>
-    <div class="cb-footer">
-      <div class="cb-meta">
-        <span>📖 Lectura interactiva</span>
-        <span class="meta-sep"></span>
-        <span>~ 15–20 min</span>
-        <span class="meta-sep"></span>
-        <span class="meta-url">nickperot.com/presupuestopublico</span>
-      </div>
+    <div class="cb-foot">
+      <span class="cb-foot-meta">
+        <span>~ 20 min</span>
+        <span class="sep"></span>
+        <strong>contenido evaluable</strong>
+      </span>
       <a class="cb-cta" href="https://nickperot.com/presupuestopublico" target="_blank" rel="noopener">
-        Abrir la guía <span class="arrow">→</span>
+        Abrir documento <span class="arrow">→</span>
       </a>
     </div>
   </aside>
@@ -3348,13 +6265,81 @@
 
 </div><!-- /.container -->
 
-<footer>
-  <p><strong>Cátedra B — Economía Política</strong> · Facultad de Ciencias Jurídicas y Sociales · UNL</p>
-  <p style="margin-top: 8px; font-size: 0.85em;">Unidad 4: Sector Público · Documento académico de apoyo</p>
-  <div class="links">
-    <a href="#intro">Inicio</a>
-    <a href="#mapa">Mapa</a>
-    <a href="#bibliografia">Bibliografía</a>
+<!-- ════════════════════════════════════════════
+     PRE-FOOTER NAV · siguiente unidad + aula virtual
+     ════════════════════════════════════════════ -->
+<nav class="pre-footer-nav" aria-label="Navegación entre unidades y aula virtual">
+  <div class="pre-footer-nav-inner">
+
+    <div class="pre-footer-head">
+      <span class="pre-footer-eyebrow">Continuá tu recorrido</span>
+      <h3 class="pre-footer-title">Seguí explorando la materia · <em>Economía Política</em></h3>
+    </div>
+
+    <div class="pre-footer-nav-row">
+
+      <a href="https://servicios.unl.edu.ar/aulavirtual/fcjs/" class="pn-cta" target="_blank" rel="noopener">
+        <span class="pn-cta-icon" aria-hidden="true">⌂</span>
+        <span class="pn-cta-text">
+          <span class="pn-cta-eyebrow">Volver al</span>
+          <span class="pn-cta-label">Aula virtual</span>
+        </span>
+      </a>
+
+      <a href="https://nickperot.com/unidad5" class="pn-next" rel="noopener">
+        <span class="pn-label">
+          <span class="pn-label-eyebrow">Siguiente</span>
+          <span class="pn-label-text">Unidad 5 · Sector Externo</span>
+        </span>
+        <span class="pn-arrow" aria-hidden="true">→</span>
+      </a>
+
+    </div>
+
+  </div>
+</nav>
+
+<!-- ════════════════════════════════════════════
+     DOC-FOOTER · footer institucional
+     ════════════════════════════════════════════ -->
+<footer class="doc-footer">
+  <div class="doc-footer-inner">
+
+    <div class="doc-footer-top">
+      <div>
+        <div class="doc-footer-brand-line">
+          <span class="doc-footer-brand-dot" aria-hidden="true"></span>
+          <span class="doc-footer-brand-text">Cátedra B · Economía Política</span>
+        </div>
+        <h4 class="doc-footer-title">Unidad 4 · El <em>Sector Público</em></h4>
+        <p class="doc-footer-sub">
+          Facultad de Ciencias Jurídicas y Sociales · Universidad Nacional del Litoral
+          <br>Carreras: Abogacía · Lic. en Trabajo Social
+        </p>
+      </div>
+
+      <div class="doc-footer-aviso">
+        <span class="doc-footer-aviso-tag">En verificación</span>
+        <p>
+          Este documento se encuentra en <strong>etapa de revisión</strong>.
+          Se agradece el feedback. Tus comentarios son bienvenidos a través de la
+          <strong>mensajería interna del aula virtual</strong>,
+          especialmente al <strong>Prof. Nicolás Perot</strong>
+          <span class="footer-role">(Responsable de coordinación pedagógica y digital)</span>
+          y/o al <strong>Prof. Julio Tealdo</strong>
+          <span class="footer-role">(Titular de cátedra)</span>.
+        </p>
+      </div>
+    </div>
+
+    <div class="doc-footer-credits">
+      <div class="doc-footer-credits-left">
+        Documento de estudio · <strong>Equipo de Cátedra</strong> · Ciclo Lectivo 2026
+        <span class="doc-footer-version" title="Versión interna">v2</span>
+      </div>
+      <span class="doc-footer-date">Mayo de 2026</span>
+    </div>
+
   </div>
 </footer>
 
@@ -3367,10 +6352,121 @@
 <div class="progress-percent" id="progressPercent">0%</div>
 <button class="scroll-top" id="scrollTop" aria-label="Volver arriba"></button>
 <div class="achievement" id="achievement"><div class="star">★</div><span id="achText">¡Lograste un objetivo!</span></div>
+<div class="gloss-tooltip" id="glossTooltip" role="tooltip" aria-hidden="true"></div>
 
 <script>
 (function(){
   'use strict';
+
+  // ════════ TOGGLE DE EFECTOS VISUALES (primero) ════════
+  (function() {
+    const FX_KEY = 'u4_fx_enabled';
+    const toggle = document.getElementById('fxToggle');
+    const stateLabel = document.getElementById('fxState');
+    if (!toggle) return;
+
+    let enabled = true;
+    try {
+      const stored = localStorage.getItem(FX_KEY);
+      if (stored === '0') enabled = false;
+    } catch (e) {}
+
+    function applyState() {
+      document.body.classList.toggle('fx-off', !enabled);
+      toggle.classList.toggle('fx-off', !enabled);
+      toggle.setAttribute('aria-pressed', enabled ? 'true' : 'false');
+      if (stateLabel) stateLabel.textContent = enabled ? 'Activados' : 'Apagados';
+      window.__u4FxEnabled = enabled;
+    }
+    applyState();
+
+    toggle.addEventListener('click', () => {
+      enabled = !enabled;
+      try { localStorage.setItem(FX_KEY, enabled ? '1' : '0'); } catch (e) {}
+      applyState();
+    });
+  })();
+
+  // ════════ GLOSARIO · tooltip global ════════
+  (function() {
+    const tip = document.getElementById('glossTooltip');
+    if (!tip) return;
+    const glosses = document.querySelectorAll('.gloss[data-gloss]');
+    if (!glosses.length) return;
+    let currentEl = null;
+    const MARGIN = 10;
+
+    function position(el) {
+      const rect = el.getBoundingClientRect();
+      // Medimos el tooltip
+      const tipRect = tip.getBoundingClientRect();
+      const tipW = tipRect.width;
+      const tipH = tipRect.height;
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+
+      // Posición horizontal centrada sobre el término
+      let x = rect.left + rect.width / 2 - tipW / 2;
+      x = Math.max(8, Math.min(x, vw - tipW - 8));
+
+      // Por defecto arriba; si no entra, abajo
+      let y = rect.top - tipH - MARGIN;
+      let pos = 'top';
+      if (y < 8) {
+        y = rect.bottom + MARGIN;
+        pos = 'bottom';
+      }
+      // Si tampoco entra abajo (raro), forzamos arriba con clamp
+      if (y + tipH > vh - 8) y = Math.max(8, vh - tipH - 8);
+
+      tip.style.left = x + 'px';
+      tip.style.top = y + 'px';
+      tip.dataset.pos = pos;
+
+      // Posición de la flecha apuntando al término
+      const arrowX = rect.left + rect.width / 2 - x;
+      tip.style.setProperty('--arrow-x', arrowX + 'px');
+    }
+
+    function show(el) {
+      const text = el.getAttribute('data-gloss');
+      if (!text) return;
+      tip.textContent = text;
+      currentEl = el;
+      // Render off-screen primero para medir
+      tip.style.left = '-9999px'; tip.style.top = '-9999px';
+      tip.classList.add('is-visible');
+      tip.setAttribute('aria-hidden', 'false');
+      // Posicionamos en el siguiente frame
+      requestAnimationFrame(() => position(el));
+    }
+    function hide() {
+      tip.classList.remove('is-visible');
+      tip.setAttribute('aria-hidden', 'true');
+      currentEl = null;
+    }
+
+    glosses.forEach(el => {
+      el.addEventListener('mouseenter', () => show(el));
+      el.addEventListener('mouseleave', hide);
+      el.addEventListener('focus', () => show(el));
+      el.addEventListener('blur', hide);
+      el.addEventListener('touchstart', (e) => {
+        if (currentEl === el) { hide(); return; }
+        show(el);
+      }, { passive: true });
+    });
+
+    window.addEventListener('scroll', () => {
+      if (currentEl) position(currentEl);
+    }, { passive: true });
+    window.addEventListener('resize', () => {
+      if (currentEl) position(currentEl);
+    });
+    document.addEventListener('click', (e) => {
+      if (currentEl && !currentEl.contains(e.target)) hide();
+    });
+  })();
 
   // ════════ ACHIEVEMENT TOAST ════════
   const achEl = document.getElementById('achievement');
@@ -3378,6 +6474,7 @@
   let achTimer;
   function showAchievement(msg) {
     if (!achEl || !achText) return;
+    if (window.__u4FxEnabled === false) return; // si el usuario apagó efectos
     clearTimeout(achTimer);
     achText.textContent = msg;
     achEl.classList.add('show');
@@ -3421,7 +6518,9 @@
   document.querySelectorAll(
     'section h2, section h3, .lead-paragraph, .card, .definition, .callout, .callout-arrow, ' +
     '.accordion, .tabs, .timeline, .formula-box, .comparativa, .flow, .tree, ' +
-    'table.data, .resultado-grid, .biblio-grid, .closing, .quiz'
+    'table.data, .resultado-grid, .biblio-frame, .closing, .quiz, ' +
+    '.vision-grid, .cibotti-frame, .fuentes-frame, .deficit-frame, .rubrica, ' +
+    '.companion-banner, .historia-track, .idea-fuerza, .contexto-arg, .cita-fuente'
   ).forEach(el => {
     el.classList.add('reveal');
     revealObs.observe(el);
