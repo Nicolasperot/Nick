@@ -1379,52 +1379,53 @@
     color: var(--color-deepest);
     line-height: 1.35;
   }
+  /* ═══════════════════════════════════════════════
+     RÚBRICA · diseño definitivo
+     · stack vertical de cards full-width
+     · subitems en cajitas suaves con wrap natural
+     · cero tricks ni nowrap — funciona en todas las pantallas
+     ═══════════════════════════════════════════════ */
   .rubrica-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-    padding: 0 38px 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding: 0 36px 34px;
   }
   .rubrica-card {
     background: #fff;
     border: 1px solid var(--color-border-subtle);
     border-radius: 14px;
-    padding: 24px 24px 22px;
+    padding: 26px 30px 24px;
     position: relative;
     transition: transform 0.22s, box-shadow 0.22s;
-    overflow: hidden;
+    border-top: 4px solid var(--color-primary);
   }
-  .rubrica-card:nth-child(1) { border-top: 4px solid var(--color-primary); }
-  .rubrica-card:nth-child(2) { border-top: 4px solid var(--color-anchor); }
-  .rubrica-card:nth-child(3) { border-top: 4px solid var(--color-deepest); }
+  .rubrica-card:nth-child(2) { border-top-color: var(--color-anchor); }
+  .rubrica-card:nth-child(3) { border-top-color: var(--color-deepest); }
   .rubrica-card:hover {
     transform: translateY(-3px);
     box-shadow: 0 14px 30px rgba(108,52,131,0.12);
   }
-  .rubrica-card::after {
-    content: '';
-    position: absolute;
-    bottom: -40px; right: -40px;
-    width: 130px; height: 130px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(142,68,173,0.06) 0%, transparent 70%);
-    pointer-events: none;
-  }
+
+  /* HEAD · número + competencia */
   .rubrica-card-head {
-    display: flex; align-items: center; gap: 14px;
-    margin-bottom: 16px;
-    padding-bottom: 14px;
-    border-bottom: 1px solid rgba(0,0,0,0.06);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 22px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid rgba(108,52,131,0.1);
   }
   .rubrica-card-num {
     flex-shrink: 0;
-    width: 42px; height: 42px;
+    width: 46px; height: 46px;
     border-radius: 50%;
     background: linear-gradient(135deg, var(--color-primary), var(--color-anchor));
     color: #fff;
     display: flex; align-items: center; justify-content: center;
     font-family: var(--font-display);
-    font-size: 1.05em; font-weight: 700;
+    font-size: 1.1em;
+    font-weight: 700;
     box-shadow: 0 6px 14px rgba(108,52,131,0.28);
   }
   .rubrica-card:nth-child(2) .rubrica-card-num {
@@ -1433,81 +1434,130 @@
   .rubrica-card:nth-child(3) .rubrica-card-num {
     background: linear-gradient(135deg, var(--color-deepest), #0f0414);
   }
-  .rubrica-card-meta { flex: 1; min-width: 0; }
+  .rubrica-card-meta {
+    flex: 1;
+    min-width: 0;
+  }
   .rubrica-card-eyebrow {
     display: block;
     font-size: 0.62em;
-    text-transform: uppercase; letter-spacing: 2.5px;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
     color: var(--color-primary-dark);
-    font-weight: 700; margin-bottom: 2px;
+    font-weight: 700;
+    margin-bottom: 3px;
   }
   .rubrica-card-titulo {
     display: block;
     font-family: var(--font-display);
-    font-size: 1.08em;
+    font-size: 1.22em;
     color: var(--color-deepest);
-    line-height: 1.3;
+    line-height: 1.25;
+    font-weight: 600;
+  }
+
+  /* CRITERIOS · cada uno en panel-lila suave */
+  .rubrica-card-criterios {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
   }
   .rubrica-criterio {
-    margin-bottom: 14px;
-    padding-bottom: 14px;
-    border-bottom: 1px dashed rgba(108,52,131,0.18);
-  }
-  .rubrica-criterio:last-child {
-    margin-bottom: 0; padding-bottom: 0; border-bottom: none;
+    padding: 16px 18px;
+    margin: 0;
+    background: linear-gradient(160deg, rgba(142,68,173,0.04), rgba(74,35,90,0.02));
+    border-left: 3px solid var(--color-soft);
+    border-radius: 0 10px 10px 0;
   }
   .rubrica-criterio-label {
     display: inline-block;
     font-size: 0.6em;
-    text-transform: uppercase; letter-spacing: 2px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
     color: var(--color-primary-dark);
     font-weight: 700;
-    padding: 3px 10px;
-    background: rgba(142,68,173,0.08);
-    border-radius: 12px;
-    margin-bottom: 8px;
+    padding: 4px 11px;
+    background: #fff;
+    border: 1px solid rgba(108,52,131,0.18);
+    border-radius: 50px;
+    margin-bottom: 10px;
   }
   .rubrica-criterio-texto {
-    font-size: 0.93em;
+    font-size: 0.95em;
     color: var(--color-deepest);
-    line-height: 1.55;
+    line-height: 1.6;
     margin: 0;
   }
   .rubrica-criterio-texto strong { color: var(--color-anchor); }
+
+  /* SUBITEMS · lista fluida, no tabular · bullet textual con baseline natural */
   .rubrica-subitems {
     list-style: none !important;
     padding: 0 !important;
     margin: 10px 0 0 !important;
-    display: flex; flex-direction: column;
-    gap: 6px;
-    font-size: 0.9em;
+    display: block !important;
+    font-size: 0.94em;
+    line-height: 1.6;
   }
   .rubrica-subitems li {
-    display: flex; align-items: flex-start; gap: 9px;
-    padding: 5px 10px !important;
+    display: block;
+    padding: 0 0 0 18px !important;
     margin: 0 !important;
-    background: var(--color-bg-tinted);
-    border-radius: 8px;
-    line-height: 1.45;
+    background: transparent;
+    border: none;
     color: var(--color-deepest);
+    position: relative;
+    text-indent: 0;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
+  .rubrica-subitems li + li { margin-top: 2px !important; }
   .rubrica-subitems li::before {
-    content: ''; flex-shrink: 0;
-    margin-top: 7px;
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--color-primary);
+    content: '•';
+    position: absolute;
+    left: 4px;
+    top: 0;
+    color: var(--color-primary);
+    font-weight: 700;
+    font-size: 1.1em;
+    line-height: 1.6;
+    width: auto;
+    height: auto;
+    background: none;
+    border-radius: 0;
+    margin: 0;
+    box-shadow: none;
   }
-  @media (max-width: 1000px) {
-    .rubrica-grid { grid-template-columns: 1fr 1fr; }
-  }
+  .rubrica-subitems li strong { color: var(--color-text-primary); }
+
+  /* ═══ RESPONSIVE ═══ */
   @media (max-width: 700px) {
     .rubrica-header { padding: 28px 22px 20px; }
     .rubrica-header::after { display: none; }
     .rubrica-header h3 { font-size: 1.35em; }
     .rubrica-principio { margin: 0 22px 20px; padding: 14px 16px; }
-    .rubrica-grid { grid-template-columns: 1fr; padding: 0 22px 26px; gap: 12px; }
-    .rubrica-card { padding: 20px 20px 18px; }
+    .rubrica-grid { padding: 0 22px 26px; gap: 14px; }
+    .rubrica-card { padding: 24px 22px 20px; }
+    .rubrica-card-titulo { font-size: 1.1em; }
+    .rubrica-criterio { padding: 14px 16px; }
+    .rubrica-criterio-texto { font-size: 0.92em; }
+    .rubrica-subitems { font-size: 0.9em; }
+  }
+  @media (max-width: 480px) {
+    .rubrica-grid { padding: 0 16px 22px; gap: 12px; }
+    .rubrica-principio { margin: 0 16px 18px; padding: 12px 14px; }
+    .rubrica-card { padding: 22px 18px 18px; }
+    .rubrica-card-head { gap: 13px; padding-bottom: 14px; margin-bottom: 16px; }
+    .rubrica-card-num { width: 40px; height: 40px; font-size: 1em; }
+    .rubrica-card-titulo { font-size: 1.02em; }
+    .rubrica-card-eyebrow { font-size: 0.58em; letter-spacing: 2px; }
+    .rubrica-card-criterios { gap: 12px; }
+    .rubrica-criterio { padding: 13px 14px; }
+    .rubrica-criterio-label { font-size: 0.58em; padding: 3px 9px; }
+    .rubrica-criterio-texto { font-size: 0.9em; line-height: 1.55; }
+    .rubrica-subitems { font-size: 0.9em; line-height: 1.55; }
+    .rubrica-subitems li { padding-left: 16px !important; }
+    .rubrica-subitems li::before { left: 3px; font-size: 1em; }
   }
 
   /* ════════ OBJETIVOS DE APRENDIZAJE ════════ */
@@ -3068,20 +3118,100 @@
     line-height: 1.45;
   }
   @media (max-width: 800px) {
-    .historia-track { padding: 0; }
-    .historia-track::before { display: none; }
-    .historia-puntos { grid-template-columns: 1fr; gap: 16px; }
-    .historia-punto {
-      display: grid; grid-template-columns: 84px 1fr;
-      gap: 16px; text-align: left; align-items: start;
-      padding: 14px 16px;
-      background: #fff;
-      border-radius: 10px;
-      box-shadow: var(--shadow-soft);
-      border: 1px solid var(--color-border-subtle);
+    /* TIMELINE MOBILE · vertical real con línea + dots a la izquierda */
+    .historia-track {
+      padding: 8px 0 8px 32px;
+      position: relative;
     }
-    .historia-punto .hp-year { margin: 0; align-self: start; }
-    .historia-punto .hp-dot { display: none; }
+    .historia-track::before {
+      display: block;
+      position: absolute;
+      top: 14px; bottom: 14px;
+      left: 9px;
+      width: 2px;
+      right: auto; height: auto;
+      background: linear-gradient(180deg,
+        var(--color-soft) 0%,
+        var(--color-primary) 50%,
+        var(--color-anchor) 100%);
+      border-radius: 1px;
+      box-shadow: 0 0 10px rgba(142,68,173,0.18);
+    }
+    .historia-puntos {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      grid-template-columns: none;
+    }
+    .historia-punto {
+      text-align: left;
+      background: #fff;
+      border: 1px solid var(--color-border-subtle);
+      border-radius: 12px;
+      box-shadow: var(--shadow-soft);
+      padding: 14px 18px 14px 20px;
+      position: relative;
+      display: block;
+    }
+    /* Dot · sobre la línea, a la izquierda del card */
+    .historia-punto .hp-dot {
+      display: block;
+      position: absolute;
+      left: -29px;
+      top: 18px;
+      margin: 0;
+      width: 16px;
+      height: 16px;
+      border: 3px solid #fdfbff;
+    }
+    .historia-punto:nth-child(1) .hp-dot {
+      background: var(--color-soft);
+      box-shadow: 0 0 0 2px var(--color-soft), 0 0 10px rgba(210,180,222,0.45);
+    }
+    .historia-punto:nth-child(2) .hp-dot {
+      background: var(--color-primary);
+      box-shadow: 0 0 0 2px var(--color-primary), 0 0 10px rgba(142,68,173,0.4);
+    }
+    .historia-punto:nth-child(3) .hp-dot {
+      background: var(--color-primary-dark);
+      box-shadow: 0 0 0 2px var(--color-primary-dark), 0 0 10px rgba(108,52,131,0.5);
+    }
+    .historia-punto:nth-child(4) .hp-dot {
+      background: var(--color-anchor);
+      box-shadow: 0 0 0 2px var(--color-anchor), 0 0 10px rgba(74,35,90,0.5);
+    }
+    .historia-punto:nth-child(5) .hp-dot {
+      background: var(--color-deepest);
+      box-shadow: 0 0 0 2px var(--color-deepest), 0 0 10px rgba(42,17,51,0.55);
+    }
+    /* Header del punto: year + title inline */
+    .historia-punto .hp-year {
+      display: inline-block;
+      width: auto;
+      margin: 0 0 8px;
+      padding: 3px 9px;
+      font-size: 0.6em;
+      letter-spacing: 1.8px;
+      vertical-align: middle;
+    }
+    .historia-punto h5 {
+      display: block;
+      font-size: 1em;
+      margin: 0 0 4px;
+      line-height: 1.2;
+    }
+    .historia-punto p {
+      font-size: 0.84em;
+      margin: 0;
+      line-height: 1.5;
+      color: var(--color-text-secondary);
+    }
+  }
+  @media (max-width: 380px) {
+    .historia-track { padding-left: 28px; }
+    .historia-track::before { left: 7px; }
+    .historia-punto .hp-dot { left: -25px; width: 14px; height: 14px; top: 16px; }
+    .historia-punto { padding: 12px 14px 12px 16px; }
   }
 
   /* ════════ DEFINITION mejorada: firma de autor ════════ */
@@ -5931,23 +6061,25 @@
           </div>
         </div>
 
-        <div class="rubrica-criterio">
-          <span class="rubrica-criterio-label">Capacidad esperada</span>
-          <p class="rubrica-criterio-texto">
-            <strong>Examinar la evolución histórica</strong> de la intervención estatal
-            (clásico-liberal · keynesiano · estructuralista) y reconocer la
-            <strong>relación entre sector público y privado</strong> en el sistema
-            económico (producción, inversión y regulación).
-          </p>
-        </div>
+        <div class="rubrica-card-criterios">
+          <div class="rubrica-criterio">
+            <span class="rubrica-criterio-label">Capacidad esperada</span>
+            <p class="rubrica-criterio-texto">
+              <strong>Examinar la evolución histórica</strong> de la intervención estatal
+              (clásico-liberal · keynesiano · estructuralista) y reconocer la
+              <strong>relación entre sector público y privado</strong> en el sistema
+              económico (producción, inversión y regulación).
+            </p>
+          </div>
 
-        <div class="rubrica-criterio">
-          <span class="rubrica-criterio-label">Vinculá con</span>
-          <ul class="rubrica-subitems">
-            <li>Las <strong>cuatro fallas del mercado</strong></li>
-            <li>Las <strong>cuatro acciones</strong> de Cibotti y Sierra</li>
-            <li>El contexto histórico (1929 · CEPAL · neoliberalismo)</li>
-          </ul>
+          <div class="rubrica-criterio">
+            <span class="rubrica-criterio-label">Vinculá con</span>
+            <ul class="rubrica-subitems">
+              <li>Las <strong>cuatro fallas del mercado</strong></li>
+              <li>Las <strong>cuatro acciones</strong> de Cibotti y Sierra</li>
+              <li>El contexto histórico (1929 · CEPAL · neoliberalismo)</li>
+            </ul>
+          </div>
         </div>
       </div>
 
@@ -5961,24 +6093,26 @@
           </div>
         </div>
 
-        <div class="rubrica-criterio">
-          <span class="rubrica-criterio-label">Capacidad esperada</span>
-          <p class="rubrica-criterio-texto">
-            <strong>Explicar concepciones teóricas</strong> sobre la participación
-            estatal y <strong>diferenciar las funciones</strong> del sector público en
-            sus dimensiones: fiscal, reguladora, redistributiva, proveedora y
-            estabilizadora.
-          </p>
-        </div>
+        <div class="rubrica-card-criterios">
+          <div class="rubrica-criterio">
+            <span class="rubrica-criterio-label">Capacidad esperada</span>
+            <p class="rubrica-criterio-texto">
+              <strong>Explicar concepciones teóricas</strong> sobre la participación
+              estatal y <strong>diferenciar las funciones</strong> del sector público en
+              sus dimensiones: fiscal, reguladora, redistributiva, proveedora y
+              estabilizadora.
+            </p>
+          </div>
 
-        <div class="rubrica-criterio">
-          <span class="rubrica-criterio-label">De cada función</span>
-          <ul class="rubrica-subitems">
-            <li>Su <strong>definición conceptual</strong></li>
-            <li>Su <strong>instrumento típico</strong></li>
-            <li>Un <strong>ejemplo concreto</strong> (Argentina cuando aplique)</li>
-            <li>La <strong>fuente</strong> teórica (Mochón-Beker · Pérez Enrri · Cibotti)</li>
-          </ul>
+          <div class="rubrica-criterio">
+            <span class="rubrica-criterio-label">De cada función</span>
+            <ul class="rubrica-subitems">
+              <li>Su <strong>definición conceptual</strong></li>
+              <li>Su <strong>instrumento típico</strong></li>
+              <li>Un <strong>ejemplo concreto</strong> (Argentina cuando aplique)</li>
+              <li>La <strong>fuente</strong> teórica (Mochón-Beker · Pérez Enrri · Cibotti)</li>
+            </ul>
+          </div>
         </div>
       </div>
 
@@ -5992,24 +6126,26 @@
           </div>
         </div>
 
-        <div class="rubrica-criterio">
-          <span class="rubrica-criterio-label">Capacidad esperada</span>
-          <p class="rubrica-criterio-texto">
-            <strong>Analizar el uso del gasto público, impuestos y presupuesto</strong>
-            para alcanzar objetivos macroeconómicos, distinguiendo
-            <strong>déficit, superávit y equilibrio</strong> presupuestario.
-          </p>
-        </div>
+        <div class="rubrica-card-criterios">
+          <div class="rubrica-criterio">
+            <span class="rubrica-criterio-label">Capacidad esperada</span>
+            <p class="rubrica-criterio-texto">
+              <strong>Analizar el uso del gasto público, impuestos y presupuesto</strong>
+              para alcanzar objetivos macroeconómicos, distinguiendo
+              <strong>déficit, superávit y equilibrio</strong> presupuestario.
+            </p>
+          </div>
 
-        <div class="rubrica-criterio">
-          <span class="rubrica-criterio-label">Identificar y desarrollar</span>
-          <ul class="rubrica-subitems">
-            <li><strong>Cuándo</strong> se aplica expansiva vs restrictiva</li>
-            <li>Sus <strong>instrumentos</strong> (gasto · impuestos · transferencias)</li>
-            <li>El <strong>diagnóstico</strong> que justifica cada política</li>
-            <li>Las <strong>tres vías</strong> de financiar el déficit (y sus costos)</li>
-            <li>Sectores <strong>beneficiados / perjudicados</strong></li>
-          </ul>
+          <div class="rubrica-criterio">
+            <span class="rubrica-criterio-label">Identificar y desarrollar</span>
+            <ul class="rubrica-subitems">
+              <li><strong>Cuándo</strong> se aplica expansiva vs restrictiva</li>
+              <li>Sus <strong>instrumentos</strong> (gasto · impuestos · transferencias)</li>
+              <li>El <strong>diagnóstico</strong> que justifica cada política</li>
+              <li>Las <strong>tres vías</strong> de financiar el déficit (y sus costos)</li>
+              <li>Sectores <strong>beneficiados / perjudicados</strong></li>
+            </ul>
+          </div>
         </div>
       </div>
 
