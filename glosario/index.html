@@ -1,0 +1,2459 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glosario de tecnología e inteligencia artificial · Nick Perot</title>
+<meta name="description" content="Glosario de términos esenciales de tecnología e inteligencia artificial, con fuentes verificables (UNESCO, OCDE, NIST, AI Act, GDPR). Por Nick Perot.">
+<meta name="author" content="Nick Perot">
+<meta name="keywords" content="glosario, inteligencia artificial, tecnología, IA, derecho, UNESCO, AI Act, NIST, GDPR, Nick Perot">
+<meta name="theme-color" content="#1A3A5C">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Glosario de tecnología e inteligencia artificial · Nick Perot">
+<meta property="og:description" content="Mapa de los términos esenciales sobre IA, datos y regulación, con fuentes verificables.">
+<meta property="og:locale" content="es_AR">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Glosario de tecnología e inteligencia artificial">
+<meta name="twitter:description" content="Mapa de los términos esenciales sobre IA, datos y regulación, con fuentes verificables.">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%231A3A5C'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='Georgia' font-weight='700' font-size='18' fill='white'%3EN%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+
+<style>
+/* ═══════════════════════════════════════════════
+   VARIABLES — SISTEMA DE DISEÑO NICK PEROT V2
+   ═══════════════════════════════════════════════ */
+:root {
+    --navy: #1A3A5C;
+    --navy-deep: #0F2438;
+    --blue: #2563A8;
+    --blue-bright: #3B82D9;
+    --silver: #8FA8C0;
+    --mid-gray: #6B7E8F;
+    --dark-txt: #1E2D3D;
+    --line: #C5D5E8;
+    --accent: #EFF4FA;
+    --white: #FFFFFF;
+    --bg: #fafbfc;
+
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --serif: 'EB Garamond', 'Playfair Display', Georgia, serif;
+    --display: 'Playfair Display', Georgia, serif;
+    --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+    --container: 1140px;
+    --radius: 4px;
+    --radius-lg: 8px;
+    --ease: cubic-bezier(0.25, 0.8, 0.25, 1);
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--dark-txt);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+::selection { background: var(--blue); color: var(--white); }
+
+/* ACCESIBILIDAD: skip-link y motion preferences */
+.skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    background: var(--navy);
+    color: var(--white);
+    padding: 10px 16px;
+    border-radius: var(--radius);
+    z-index: 1000;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+}
+.skip-link:focus { left: 16px; top: 16px; }
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+    }
+    .word-ticker, .hero-grid, .hero-deco, .brand-mark::after { display: none !important; }
+    .reveal { opacity: 1 !important; transform: none !important; }
+}
+
+/* HEADER — flotante, redondeado, semi-transparente */
+.site-header {
+    position: sticky;
+    top: 12px;
+    z-index: 100;
+    margin: 12px clamp(12px, 2vw, 24px) 0;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(197, 213, 232, 0.45);
+    border-radius: 18px;
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    box-shadow:
+        0 10px 36px rgba(26, 58, 92, 0.07),
+        0 2px 8px rgba(26, 58, 92, 0.04),
+        inset 0 1px 0 rgba(255, 255, 255, 0.55);
+    transition: background 0.25s var(--ease), box-shadow 0.25s var(--ease);
+}
+body.header-has-controls .site-header {
+    background: rgba(255, 255, 255, 0.82);
+    box-shadow:
+        0 14px 40px rgba(26, 58, 92, 0.09),
+        0 2px 8px rgba(26, 58, 92, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+.header-inner {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+.brand { margin-right: auto; }
+body.header-has-controls .brand-sub { display: none; }
+@media (max-width: 768px) {
+    body.header-has-controls .header-meta { display: none; }
+}
+
+/* Slot que recibe los controles cuando se hace scroll past */
+.header-controls {
+    display: none;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 1;
+    min-width: 0;
+}
+body.header-has-controls .header-controls { display: flex; }
+
+/* Overrides cuando los controles están en el header */
+.header-controls .search-trigger {
+    flex: 0 1 auto;
+    min-width: 0;
+    max-width: 300px;
+    align-self: auto;
+}
+.header-controls .search-wrap { flex: 1 1 200px; min-width: 160px; max-width: 420px; }
+.header-controls .filter-dropdown { align-self: auto; }
+.header-controls .filter-menu { right: 0; }
+.brand {
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--navy);
+    letter-spacing: -0.01em;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.brand-mark {
+    width: 28px; height: 28px;
+    background: var(--navy);
+    color: var(--white);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 14px;
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+}
+.brand-mark::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 0%, rgba(255,255,255,0.35) 50%, transparent 100%);
+    transform: translateY(-110%);
+    animation: scanline 5s ease-in-out infinite;
+    pointer-events: none;
+}
+@keyframes scanline {
+    0%, 55% { transform: translateY(-110%); }
+    75%, 100% { transform: translateY(110%); }
+}
+.brand-sub {
+    color: var(--mid-gray);
+    font-weight: 400;
+    font-size: 13px;
+    display: none;
+}
+@media (min-width: 720px) { .brand-sub { display: inline; } }
+.header-meta {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--silver);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+/* HERO */
+.hero {
+    background: var(--white);
+    border-bottom: 1px solid var(--line);
+    padding: 80px 32px 60px;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+}
+.hero-inner { max-width: var(--container); margin: 0 auto; position: relative; z-index: 3; }
+
+/* Fondo tecnológico del hero */
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    overflow: hidden;
+}
+.hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(37, 99, 168, 0.10) 1px, transparent 1.5px);
+    background-size: 26px 26px;
+    background-position: 0 0;
+    mask-image: radial-gradient(ellipse at 60% 50%, black 0%, rgba(0,0,0,0.6) 40%, transparent 80%);
+    -webkit-mask-image: radial-gradient(ellipse at 60% 50%, black 0%, rgba(0,0,0,0.6) 40%, transparent 80%);
+    animation: grid-drift 40s linear infinite;
+}
+@keyframes grid-drift {
+    from { background-position: 0 0; }
+    to   { background-position: 26px 26px; }
+}
+
+/* Palabras flotantes */
+.word-ticker {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    z-index: 2;
+}
+.word-ticker .row {
+    position: absolute;
+    white-space: nowrap;
+    font-family: var(--display);
+    font-style: italic;
+    font-size: clamp(40px, 6.5vw, 84px);
+    font-weight: 700;
+    color: var(--navy);
+    opacity: 0.055;
+    line-height: 1;
+    user-select: none;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+.word-ticker .row:nth-child(1) { top: 8%;  animation: drift-l 90s linear infinite; }
+.word-ticker .row:nth-child(2) { top: 50%; animation: drift-r 120s linear infinite; }
+.word-ticker .row:nth-child(3) { top: 82%; animation: drift-l 105s linear infinite; }
+@keyframes drift-l {
+    from { transform: translate3d(0, 0, 0); }
+    to   { transform: translate3d(-50%, 0, 0); }
+}
+@keyframes drift-r {
+    from { transform: translate3d(-50%, 0, 0); }
+    to   { transform: translate3d(0, 0, 0); }
+}
+
+/* Circuito decorativo */
+.hero-deco {
+    position: absolute;
+    bottom: -60px;
+    right: -40px;
+    width: 380px;
+    height: 380px;
+    color: var(--blue);
+    opacity: 0.10;
+    pointer-events: none;
+    z-index: 2;
+}
+.hero-deco circle { animation: pulse-node 3.5s ease-in-out infinite; }
+.hero-deco circle:nth-child(2) { animation-delay: 0.7s; }
+.hero-deco circle:nth-child(3) { animation-delay: 1.4s; }
+.hero-deco circle:nth-child(4) { animation-delay: 2.1s; }
+@keyframes pulse-node {
+    0%, 100% { r: 4; opacity: 1; }
+    50%      { r: 7; opacity: 0.45; }
+}
+
+.hero-label {
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--silver);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.hero-label::before {
+    content: "";
+    display: block;
+    width: 32px;
+    height: 2px;
+    background: var(--blue);
+}
+.hero-label .dot {
+    display: inline-block;
+    width: 6px; height: 6px;
+    background: var(--blue);
+    border-radius: 50%;
+    margin-left: 6px;
+    animation: blink 1.6s ease-in-out infinite;
+}
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0.2; }
+}
+.hero-title {
+    font-family: var(--display);
+    font-size: clamp(40px, 5.5vw, 64px);
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 24px;
+    max-width: 900px;
+}
+.hero-title em {
+    font-style: italic;
+    color: var(--blue);
+    font-weight: 400;
+}
+.hero-sub {
+    font-family: var(--serif);
+    font-size: clamp(18px, 2vw, 22px);
+    color: var(--mid-gray);
+    font-style: italic;
+    max-width: 720px;
+    margin-bottom: 40px;
+    line-height: 1.5;
+}
+.hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    padding-top: 28px;
+    border-top: 1px solid var(--line);
+    font-size: 13px;
+    color: var(--mid-gray);
+}
+.hero-meta strong { color: var(--navy); font-weight: 600; }
+.hero-author {
+    color: var(--navy);
+    font-weight: 500;
+    text-decoration: none;
+    border-bottom: 1px solid var(--line);
+    transition: border-color 0.2s var(--ease), color 0.2s var(--ease);
+}
+.hero-author:hover,
+.hero-author:focus-visible {
+    color: var(--blue);
+    border-bottom-color: var(--blue);
+    outline: none;
+}
+.hero-meta .counter {
+    display: inline-block;
+    min-width: 2.2ch;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+/* CONTROLES */
+.controls {
+    background: var(--white);
+    border-bottom: 1px solid var(--line);
+    padding: 24px 32px;
+}
+body.header-has-controls .controls { display: none; }
+.controls-inner {
+    max-width: var(--container);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.search-input {
+    width: 100%;
+    padding: 16px 56px 16px 52px;
+    font-family: var(--sans);
+    font-size: 16px;
+    border: 1px solid var(--line);
+    background: var(--accent);
+    color: var(--dark-txt);
+    border-radius: var(--radius);
+    transition: all 0.2s var(--ease);
+}
+.search-input::placeholder { color: var(--silver); }
+.search-input:focus {
+    outline: none;
+    border-color: var(--blue);
+    background: var(--white);
+    box-shadow: 0 0 0 3px rgba(37, 99, 168, 0.1);
+}
+.search-icon {
+    position: absolute;
+    left: 18px; top: 50%;
+    transform: translateY(-50%);
+    color: var(--silver);
+    pointer-events: none;
+}
+.search-shortcut {
+    position: absolute;
+    right: 16px; top: 50%;
+    transform: translateY(-50%);
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--silver);
+    font-weight: 600;
+    border: 1px solid var(--line);
+    padding: 3px 8px;
+    border-radius: 4px;
+    background: var(--white);
+    pointer-events: none;
+    display: none;
+}
+@media (min-width: 720px) { .search-shortcut { display: inline-block; } }
+
+/* Trigger / close de búsqueda — colapsada por defecto en todos los viewports */
+.search-wrap { display: none; position: relative; }
+.search-trigger {
+    display: inline-flex;
+    align-self: flex-end;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    height: 40px;
+    padding: 0 14px 0 16px;
+    background: var(--white);
+    color: var(--mid-gray);
+    border: 1px solid var(--line);
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.2s var(--ease);
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 500;
+    min-width: 240px;
+    flex: 1 1 240px;
+    max-width: 360px;
+}
+.search-trigger svg { flex-shrink: 0; }
+.search-trigger-label {
+    color: var(--silver);
+    flex: 1;
+    text-align: left;
+}
+.search-trigger-kbd {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--silver);
+    font-weight: 600;
+    border: 1px solid var(--line);
+    padding: 2px 7px;
+    border-radius: 4px;
+    background: var(--accent);
+    line-height: 1.2;
+}
+.search-trigger:hover,
+.search-trigger:focus-visible {
+    border-color: var(--blue);
+    color: var(--navy);
+    outline: none;
+}
+.search-trigger:hover .search-trigger-label,
+.search-trigger:focus-visible .search-trigger-label { color: var(--mid-gray); }
+.search-trigger.has-query {
+    border-color: var(--blue);
+    color: var(--blue);
+    background: var(--accent);
+}
+.search-trigger.has-query .search-trigger-label {
+    color: var(--blue);
+    font-style: italic;
+}
+.search-close { display: none; }
+
+/* Búsqueda expandida (todos los viewports) */
+body.search-open .search-wrap { display: block; position: relative; }
+body.search-open .search-trigger { display: none; }
+body.search-open .search-input { padding-right: 52px; }
+body.search-open .search-shortcut { display: none; }
+body.search-open .search-close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 10px; top: 50%;
+    transform: translateY(-50%);
+    width: 32px; height: 32px;
+    background: none;
+    border: none;
+    color: var(--mid-gray);
+    cursor: pointer;
+    padding: 0;
+    border-radius: 4px;
+    transition: all 0.15s var(--ease);
+}
+body.search-open .search-close:hover,
+body.search-open .search-close:focus-visible {
+    color: var(--navy);
+    background: var(--accent);
+    outline: none;
+}
+
+/* Layout de fila para search + filtro */
+.controls-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+}
+.controls-row .search-wrap { flex: 1 1 240px; min-width: 0; position: relative; }
+
+/* FILTRO DROPDOWN — reemplaza las antiguas filter-chips */
+.filter-dropdown {
+    position: relative;
+    flex-shrink: 0;
+}
+.filter-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    height: 40px;
+    padding: 0 10px 0 14px;
+    background: var(--white);
+    color: var(--mid-gray);
+    border: 1px solid var(--line);
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.2s var(--ease);
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+.filter-trigger svg { flex-shrink: 0; }
+.filter-trigger-prefix { color: var(--silver); }
+.filter-trigger-value {
+    color: var(--navy);
+    font-weight: 600;
+}
+.filter-trigger-chevron {
+    transition: transform 0.2s var(--ease);
+    color: var(--silver);
+    margin-left: 2px;
+}
+.filter-dropdown.open .filter-trigger-chevron { transform: rotate(180deg); }
+.filter-trigger:hover,
+.filter-trigger:focus-visible,
+.filter-dropdown.open .filter-trigger {
+    border-color: var(--blue);
+    color: var(--navy);
+    outline: none;
+}
+.filter-dropdown.has-active .filter-trigger {
+    border-color: var(--blue);
+    background: var(--accent);
+}
+
+.filter-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    min-width: 280px;
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 12px 32px rgba(26, 58, 92, 0.12);
+    z-index: 95;
+    padding: 6px;
+}
+.filter-dropdown.open .filter-menu {
+    display: block;
+    animation: filter-menu-in 0.18s var(--ease-out);
+}
+@keyframes filter-menu-in {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.filter-option {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    background: none;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--dark-txt);
+    text-align: left;
+    transition: background 0.15s var(--ease);
+}
+.filter-option:hover,
+.filter-option:focus-visible {
+    background: var(--accent);
+    outline: none;
+}
+.filter-option.active {
+    background: var(--accent);
+    color: var(--navy);
+    font-weight: 600;
+}
+.filter-option svg {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+    color: var(--mid-gray);
+}
+.filter-option.active svg { color: var(--blue); }
+.filter-option-label { flex: 1; }
+.filter-option-count {
+    color: var(--silver);
+    font-size: 12px;
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+}
+.results-bar {
+    font-size: 12px;
+    color: var(--mid-gray);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 4px;
+}
+.results-bar strong { color: var(--navy); font-weight: 600; }
+.clear-btn {
+    background: none;
+    border: none;
+    color: var(--blue);
+    font-size: 12px;
+    font-family: var(--sans);
+    font-weight: 600;
+    cursor: pointer;
+    display: none;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+.clear-btn.show { display: inline-block; }
+
+/* ALFABETO */
+.alphabet {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 32px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    justify-content: center;
+    border-bottom: 1px solid var(--line);
+}
+.alpha-btn {
+    width: 34px; height: 34px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--mid-gray);
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.15s var(--ease);
+    text-decoration: none;
+}
+.alpha-btn:hover { background: var(--accent); color: var(--navy); }
+.alpha-btn.has-terms {
+    color: var(--navy);
+    border-color: var(--line);
+}
+.alpha-btn.disabled {
+    color: var(--line);
+    pointer-events: none;
+}
+.alpha-btn.is-current {
+    background: var(--navy);
+    color: var(--white);
+    border-color: var(--navy);
+}
+.alpha-btn:focus-visible {
+    outline: 2px solid var(--blue);
+    outline-offset: 2px;
+}
+
+/* GLOSARIO */
+.glossary {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 48px 32px 96px;
+}
+.letter-group {
+    margin-bottom: 56px;
+    scroll-margin-top: 120px;
+}
+.letter-heading {
+    font-family: var(--display);
+    font-size: 72px;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid var(--blue);
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+}
+.letter-heading .letter-count {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--silver);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+.term-card {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: 28px 32px;
+    margin-bottom: 16px;
+    transition: all 0.25s var(--ease);
+    position: relative;
+    scroll-margin-top: 120px;
+}
+.term-card:hover {
+    border-color: var(--blue);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(26, 58, 92, 0.06);
+}
+.term-card.featured {
+    border-left: 4px solid var(--blue);
+}
+.term-card:target {
+    border-color: var(--blue);
+    box-shadow: 0 0 0 3px rgba(37, 99, 168, 0.12), 0 8px 24px rgba(26, 58, 92, 0.08);
+    animation: target-flash 1.6s var(--ease-out);
+}
+@keyframes target-flash {
+    0%   { background: rgba(37, 99, 168, 0.06); }
+    100% { background: var(--white); }
+}
+
+/* Scroll reveal — opacity-only para evitar sub-pixel jitter sobre texto */
+.reveal {
+    opacity: 0;
+    transition: opacity 0.55s var(--ease-out);
+}
+.reveal.in-view {
+    opacity: 1;
+}
+
+/* Permalink en el nombre del término */
+.term-permalink {
+    margin-left: 8px;
+    color: var(--silver);
+    background: none;
+    border: none;
+    padding: 4px;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.2s var(--ease), color 0.2s var(--ease);
+    display: inline-flex;
+    align-items: center;
+    vertical-align: middle;
+    border-radius: 4px;
+}
+.term-permalink:hover { color: var(--blue); background: var(--accent); }
+.term-card:hover .term-permalink,
+.term-permalink:focus-visible { opacity: 1; }
+.term-permalink.copied { color: var(--blue); opacity: 1; }
+
+.term-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+}
+.term-name {
+    font-family: var(--sans);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--navy);
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+}
+.term-acronym {
+    font-family: var(--sans);
+    font-weight: 500;
+    color: var(--blue);
+    font-size: 18px;
+    margin-left: 4px;
+}
+.term-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+.tag {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 4px 10px;
+    border-radius: 50px;
+    background: var(--accent);
+    color: var(--blue);
+    border: 1px solid var(--line);
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+.tag svg { width: 11px; height: 11px; flex-shrink: 0; }
+.tag.ia { background: rgba(37, 99, 168, 0.08); color: var(--blue); border-color: rgba(37, 99, 168, 0.2); }
+.tag.tech { background: rgba(26, 58, 92, 0.08); color: var(--navy); border-color: rgba(26, 58, 92, 0.2); }
+.tag.legal { background: rgba(107, 126, 143, 0.1); color: var(--mid-gray); border-color: rgba(107, 126, 143, 0.25); }
+.tag.datos { background: rgba(143, 168, 192, 0.15); color: #5a7a96; border-color: rgba(143, 168, 192, 0.35); }
+
+.term-def {
+    font-family: var(--serif);
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--dark-txt);
+    margin-bottom: 14px;
+}
+.term-def .quote {
+    display: block;
+    margin: 10px 0;
+    padding-left: 16px;
+    border-left: 3px solid var(--blue);
+    font-style: italic;
+    color: var(--navy);
+}
+.term-source {
+    font-family: var(--sans);
+    font-size: 12px;
+    color: var(--silver);
+    font-style: italic;
+    line-height: 1.5;
+    padding-top: 12px;
+    border-top: 1px dashed var(--line);
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+}
+.term-source::before {
+    content: "Fuente:";
+    font-style: normal;
+    font-weight: 600;
+    color: var(--mid-gray);
+    text-transform: uppercase;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    flex-shrink: 0;
+    padding-top: 1px;
+}
+
+/* ESTADO VACÍO */
+.empty-state {
+    text-align: center;
+    padding: 80px 32px;
+    display: none;
+}
+.empty-state.show { display: block; }
+.empty-state h2 {
+    font-family: var(--display);
+    font-size: 28px;
+    color: var(--navy);
+    margin-bottom: 12px;
+}
+.empty-state p {
+    color: var(--mid-gray);
+    font-family: var(--serif);
+    font-size: 17px;
+    font-style: italic;
+}
+
+/* SECCIÓN DE FUENTES */
+.sources-section {
+    background: var(--white);
+    border-top: 1px solid var(--line);
+    padding: 72px 32px;
+}
+.sources-inner {
+    max-width: var(--container);
+    margin: 0 auto;
+}
+.sources-label {
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--silver);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.sources-label::before {
+    content: "";
+    display: block;
+    width: 32px;
+    height: 2px;
+    background: var(--blue);
+}
+.sources-title {
+    font-family: var(--display);
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 16px;
+}
+.sources-intro {
+    font-family: var(--serif);
+    font-size: 17px;
+    color: var(--mid-gray);
+    font-style: italic;
+    margin-bottom: 40px;
+    max-width: 700px;
+}
+.sources-list {
+    list-style: none;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+}
+.source-item {
+    padding: 20px 24px;
+    background: var(--accent);
+    border-radius: var(--radius);
+    border-left: 3px solid var(--blue);
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
+}
+.source-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(26, 58, 92, 0.08);
+}
+.source-logo {
+    flex-shrink: 0;
+    width: 48px; height: 48px;
+    border-radius: 6px;
+    background: var(--white);
+    border: 1px solid var(--line);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--navy);
+    overflow: hidden;
+}
+.source-logo svg { width: 100%; height: 100%; padding: 6px; }
+.source-body { flex: 1; min-width: 0; }
+.source-org {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--blue);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 6px;
+}
+.source-text {
+    font-family: var(--serif);
+    font-size: 15px;
+    color: var(--dark-txt);
+    line-height: 1.5;
+}
+.source-text strong { color: var(--navy); font-weight: 600; }
+
+/* FOOTER */
+.site-footer {
+    background: var(--navy);
+    color: var(--silver);
+    padding: 48px 32px;
+    border-top: 4px solid var(--blue);
+}
+.footer-inner {
+    max-width: var(--container);
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    align-items: center;
+    justify-content: space-between;
+}
+.footer-brand { color: var(--white); font-weight: 700; font-size: 15px; }
+.footer-contact { color: var(--silver); font-size: 13px; }
+.footer-page {
+    font-family: var(--mono);
+    color: var(--silver);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+}
+.footer-contact a {
+    color: var(--line);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+}
+.footer-contact a:hover { border-bottom-color: var(--line); }
+
+/* BACK TO TOP */
+.back-to-top {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    width: 48px; height: 48px;
+    background: var(--navy);
+    color: var(--white);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s var(--ease);
+    box-shadow: 0 8px 24px rgba(26, 58, 92, 0.25);
+    z-index: 99;
+}
+.back-to-top.show { opacity: 1; pointer-events: auto; }
+.back-to-top:hover { background: var(--blue); transform: translateY(-2px); }
+
+/* RESPONSIVE */
+@media (max-width: 640px) {
+    .hero { padding: 48px 20px 40px; }
+    .controls { padding: 14px 20px; top: 64px; }
+    .controls-inner { gap: 12px; }
+    .alphabet { padding: 20px; }
+    .alpha-btn { width: 30px; height: 30px; font-size: 12px; }
+    .glossary { padding: 32px 20px 64px; }
+    .term-card { padding: 22px 20px; }
+    .letter-heading { font-size: 48px; }
+    .term-name { font-size: 19px; }
+    .term-def { font-size: 16px; }
+    .header-inner { padding: 14px 20px; }
+    .letter-group { scroll-margin-top: 110px; }
+    .sources-section { padding: 56px 20px; }
+    .sources-title { font-size: 28px; }
+
+    /* Trigger compacto en móvil: círculo solo con lupita */
+    .search-trigger {
+        width: 40px;
+        min-width: 0;
+        max-width: none;
+        flex: 0 0 auto;
+        padding: 0;
+        border-radius: 50%;
+        justify-content: center;
+        gap: 0;
+    }
+    .search-trigger-label,
+    .search-trigger-kbd { display: none; }
+
+    /* Filter trigger sin prefijo en móvil para que entre en la fila */
+    .filter-trigger-prefix { display: none; }
+    .filter-trigger { padding: 0 8px 0 12px; gap: 6px; }
+    .filter-menu {
+        min-width: min(280px, calc(100vw - 48px));
+        max-width: calc(100vw - 48px);
+    }
+}
+
+@media print {
+    .controls, .alphabet, .back-to-top, .site-header { display: none; }
+    .term-card { break-inside: avoid; box-shadow: none; }
+    .letter-group { break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+
+<a href="#glossary" class="skip-link">Saltar al glosario</a>
+
+<!-- HEADER -->
+<header class="site-header">
+    <div class="header-inner">
+        <a href="#" class="brand" aria-label="Nick Perot, inicio">
+            <span class="brand-mark" aria-hidden="true">N</span>
+            <span>Nick Perot</span>
+            <span class="brand-sub">· Derecho, Tecnología y Gestión</span>
+        </a>
+        <div class="header-controls" id="headerControls" aria-hidden="false"></div>
+        <div class="header-meta">Glosario · v3.0</div>
+    </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-bg" aria-hidden="true">
+        <div class="hero-grid"></div>
+        <div class="word-ticker">
+            <div class="row">Algoritmo · Modelo · Token · Embedding · Prompt · Inferencia · Red neuronal · Transformer · &nbsp;&nbsp; Algoritmo · Modelo · Token · Embedding · Prompt · Inferencia · Red neuronal · Transformer · &nbsp;&nbsp;</div>
+            <div class="row">Datos · Privacidad · Sesgo · Trazabilidad · Ética · Gobernanza · Consentimiento · &nbsp;&nbsp; Datos · Privacidad · Sesgo · Trazabilidad · Ética · Gobernanza · Consentimiento · &nbsp;&nbsp;</div>
+            <div class="row">AI Act · NIST · UNESCO · OCDE · GDPR · RAG · MCP · LLM · GPU · Deepfake · &nbsp;&nbsp; AI Act · NIST · UNESCO · OCDE · GDPR · RAG · MCP · LLM · GPU · Deepfake · &nbsp;&nbsp;</div>
+        </div>
+        <svg class="hero-deco" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="0.6" aria-hidden="true">
+            <path d="M20 40 L80 40 L80 80 L140 80 L140 120 L180 120" />
+            <path d="M20 100 L60 100 L60 140 L120 140 L120 160 L180 160" />
+            <path d="M40 20 L40 70 L100 70 L100 110 L160 110" />
+            <path d="M180 30 L130 30 L130 60 L90 60" />
+            <circle cx="80" cy="40" r="4" fill="currentColor" />
+            <circle cx="140" cy="80" r="4" fill="currentColor" />
+            <circle cx="60" cy="100" r="4" fill="currentColor" />
+            <circle cx="100" cy="70" r="4" fill="currentColor" />
+            <circle cx="120" cy="140" r="3" fill="currentColor" opacity="0.6" />
+            <circle cx="130" cy="30" r="3" fill="currentColor" opacity="0.6" />
+        </svg>
+    </div>
+    <div class="hero-inner">
+        <div class="hero-label">Documento de referencia<span class="dot" aria-hidden="true"></span></div>
+        <h1 class="hero-title">
+            Glosario de tecnología <em>e inteligencia artificial</em>
+        </h1>
+        <p class="hero-sub">
+            Un mapa de los términos que aparecen una y otra vez en las conversaciones
+            sobre IA, datos, derecho y gestión. Definiciones precisas, con fuentes verificables.
+        </p>
+        <div class="hero-meta">
+            <span><strong class="counter" id="termCountHero" data-target="0">—</strong> términos</span>
+            <span><strong>4</strong> categorías</span>
+            <span><strong>Última revisión:</strong> Mayo 2026</span>
+            <span><strong>Autor:</strong> <a href="https://nickperot.com" class="hero-author" target="_blank" rel="noopener">Nick Perot</a></span>
+        </div>
+    </div>
+</section>
+
+<!-- CONTROLES -->
+<section class="controls" aria-label="Búsqueda y filtros">
+    <div class="controls-inner">
+        <div class="controls-row">
+            <button type="button" class="search-trigger" id="searchTrigger" aria-label="Abrir búsqueda" aria-expanded="false" aria-controls="searchInput">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.3-4.3"></path>
+                </svg>
+                <span class="search-trigger-label">Buscar un término…</span>
+                <span class="search-trigger-kbd" aria-hidden="true">/</span>
+            </button>
+            <div class="search-wrap" id="searchWrap">
+                <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.3-4.3"></path>
+                </svg>
+                <input type="text" id="searchInput" class="search-input" placeholder="Buscar un término, sigla o definición…" aria-label="Buscar en el glosario">
+                <span class="search-shortcut" aria-hidden="true">/</span>
+                <button type="button" class="search-close" id="searchClose" aria-label="Cerrar búsqueda">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M18 6 6 18M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="filter-dropdown" id="filterDropdown">
+                <button type="button" class="filter-trigger" id="filterTrigger" aria-haspopup="listbox" aria-expanded="false" aria-controls="filterMenu">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M3 5h18M6 12h12M10 19h4"/>
+                    </svg>
+                    <span class="filter-trigger-prefix">Categoría:</span>
+                    <span class="filter-trigger-value" id="filterValue">Todos</span>
+                    <svg class="filter-trigger-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="m6 9 6 6 6-6"/>
+                    </svg>
+                </button>
+                <div class="filter-menu" id="filterMenu" role="listbox" aria-label="Filtrar por categoría">
+                    <button type="button" role="option" class="filter-option active" data-filter="all" aria-selected="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+                        <span class="filter-option-label">Todos</span>
+                        <span class="filter-option-count" id="count-all"></span>
+                    </button>
+                    <button type="button" role="option" class="filter-option" data-filter="ia" aria-selected="false">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="12" cy="12" r="2.5"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/><path d="M7.4 7.2 10 11M16.6 7.2 14 11M7.4 16.8 10 13M16.6 16.8 14 13"/></svg>
+                        <span class="filter-option-label">Inteligencia artificial</span>
+                        <span class="filter-option-count" id="count-ia"></span>
+                    </button>
+                    <button type="button" role="option" class="filter-option" data-filter="tech" aria-selected="false">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="1"/><rect x="9" y="9" width="6" height="6"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></svg>
+                        <span class="filter-option-label">Tecnología</span>
+                        <span class="filter-option-count" id="count-tech"></span>
+                    </button>
+                    <button type="button" role="option" class="filter-option" data-filter="datos" aria-selected="false">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg>
+                        <span class="filter-option-label">Datos y privacidad</span>
+                        <span class="filter-option-count" id="count-datos"></span>
+                    </button>
+                    <button type="button" role="option" class="filter-option" data-filter="legal" aria-selected="false">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18M5 7h14M7 7l-3 7a4 4 0 0 0 6 0Z M17 7l-3 7a4 4 0 0 0 6 0Z M8 21h8"/></svg>
+                        <span class="filter-option-label">Marco regulatorio</span>
+                        <span class="filter-option-count" id="count-legal"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="results-bar">
+            <span id="resultsCount" aria-live="polite" aria-atomic="true"></span>
+            <button type="button" class="clear-btn" id="clearBtn" aria-label="Limpiar filtros y búsqueda">Limpiar filtros</button>
+        </div>
+    </div>
+</section>
+
+<!-- ALFABETO -->
+<nav class="alphabet" id="alphabet" aria-label="Índice alfabético"></nav>
+
+<!-- GLOSARIO -->
+<main class="glossary" id="glossary" tabindex="-1">
+    <div class="empty-state" id="emptyState">
+        <h2>Sin resultados</h2>
+        <p>No encontramos términos que coincidan con tu búsqueda. Probá con otra palabra o cambiá el filtro.</p>
+    </div>
+</main>
+
+<!-- FUENTES CONSOLIDADAS -->
+<section class="sources-section">
+    <div class="sources-inner">
+        <div class="sources-label">Fuentes consultadas</div>
+        <h2 class="sources-title">Referencias institucionales</h2>
+        <p class="sources-intro">
+            Las definiciones de este glosario se construyen sobre marcos publicados por organismos internacionales,
+            agencias técnicas y reguladores. Cada entrada cita la fuente específica; abajo, el listado consolidado.
+        </p>
+        <ul class="sources-list">
+            <li class="source-item">
+                <div class="source-logo" aria-hidden="true">
+                    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <circle cx="24" cy="24" r="18" />
+                        <ellipse cx="24" cy="24" rx="9" ry="18" />
+                        <line x1="6" y1="24" x2="42" y2="24" />
+                        <line x1="9" y1="14" x2="39" y2="14" />
+                        <line x1="9" y1="34" x2="39" y2="34" />
+                    </svg>
+                </div>
+                <div class="source-body">
+                    <div class="source-org">UNESCO</div>
+                    <div class="source-text"><strong>Recomendación sobre la ética de la inteligencia artificial.</strong> París, 23 de noviembre de 2021. Adoptada por unanimidad por los 193 Estados Miembros.</div>
+                </div>
+            </li>
+            <li class="source-item">
+                <div class="source-logo" aria-hidden="true">
+                    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <circle cx="24" cy="24" r="14" />
+                        <circle cx="24" cy="24" r="7" />
+                        <line x1="24" y1="4" x2="24" y2="14" />
+                        <line x1="24" y1="34" x2="24" y2="44" />
+                        <line x1="4" y1="24" x2="14" y2="24" />
+                        <line x1="34" y1="24" x2="44" y2="24" />
+                    </svg>
+                </div>
+                <div class="source-body">
+                    <div class="source-org">OCDE</div>
+                    <div class="source-text"><strong>Explanatory memorandum on the updated OECD definition of an AI System.</strong> OECD Artificial Intelligence Papers N.º 8, marzo de 2024.</div>
+                </div>
+            </li>
+            <li class="source-item">
+                <div class="source-logo" aria-hidden="true">
+                    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square">
+                        <path d="M10 38 L10 10 L20 10 L20 28 L30 10 L38 10 L38 38 L30 38 L30 20 L20 38 Z" fill="currentColor" stroke="none" />
+                    </svg>
+                </div>
+                <div class="source-body">
+                    <div class="source-org">NIST · EE.UU.</div>
+                    <div class="source-text"><strong>AI Risk Management Framework 1.0 (AI 100-1).</strong> Enero de 2023.<br><strong>Generative AI Profile (AI 600-1).</strong> Julio de 2024.</div>
+                </div>
+            </li>
+            <li class="source-item">
+                <div class="source-logo" aria-hidden="true">
+                    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <circle cx="24" cy="24" r="18" />
+                        <g fill="currentColor">
+                            <circle cx="24" cy="9"  r="1.6" />
+                            <circle cx="34.6" cy="13.4" r="1.6" />
+                            <circle cx="39" cy="24" r="1.6" />
+                            <circle cx="34.6" cy="34.6" r="1.6" />
+                            <circle cx="24" cy="39" r="1.6" />
+                            <circle cx="13.4" cy="34.6" r="1.6" />
+                            <circle cx="9" cy="24" r="1.6" />
+                            <circle cx="13.4" cy="13.4" r="1.6" />
+                            <circle cx="24" cy="14" r="1.6" />
+                            <circle cx="34" cy="24" r="1.6" />
+                            <circle cx="24" cy="34" r="1.6" />
+                            <circle cx="14" cy="24" r="1.6" />
+                        </g>
+                    </svg>
+                </div>
+                <div class="source-body">
+                    <div class="source-org">Unión Europea</div>
+                    <div class="source-text"><strong>Reglamento (UE) 2024/1689 — AI Act.</strong> Diario Oficial de la UE, 13 de junio de 2024.<br><strong>Reglamento (UE) 2016/679 — GDPR.</strong> Diario Oficial de la UE.</div>
+                </div>
+            </li>
+            <li class="source-item">
+                <div class="source-logo" aria-hidden="true">
+                    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <circle cx="24" cy="24" r="7" fill="currentColor" />
+                        <g stroke-linecap="round">
+                            <line x1="24" y1="6"  x2="24" y2="12" />
+                            <line x1="24" y1="36" x2="24" y2="42" />
+                            <line x1="6"  y1="24" x2="12" y2="24" />
+                            <line x1="36" y1="24" x2="42" y2="24" />
+                            <line x1="11.3" y1="11.3" x2="15.5" y2="15.5" />
+                            <line x1="32.5" y1="32.5" x2="36.7" y2="36.7" />
+                            <line x1="11.3" y1="36.7" x2="15.5" y2="32.5" />
+                            <line x1="32.5" y1="15.5" x2="36.7" y2="11.3" />
+                        </g>
+                    </svg>
+                </div>
+                <div class="source-body">
+                    <div class="source-org">Argentina</div>
+                    <div class="source-text"><strong>Ley 25.326 de Protección de los Datos Personales.</strong> Boletín Oficial, 2 de noviembre de 2000.<br>Constitución Nacional, artículo 43, párrafo tercero (Habeas Data).</div>
+                </div>
+            </li>
+            <li class="source-item">
+                <div class="source-logo" aria-hidden="true">
+                    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M6 20 L6 38 L18 38 L18 28 L30 28 L30 38 L42 38 L42 20 L24 8 Z" fill="currentColor" stroke="none" />
+                        <rect x="22" y="32" width="4" height="6" fill="var(--white)" />
+                    </svg>
+                </div>
+                <div class="source-body">
+                    <div class="source-org">Stanford HAI</div>
+                    <div class="source-text">King, J. et al. (2025). <strong>User Privacy and Large Language Models: An Analysis of Frontier Developers' Privacy Policies.</strong> Stanford Institute for Human-Centered AI.</div>
+                </div>
+            </li>
+            <li class="source-item">
+                <div class="source-logo" aria-hidden="true">
+                    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <rect x="8" y="12" width="32" height="26" rx="2" />
+                        <line x1="8" y1="20" x2="40" y2="20" />
+                        <line x1="14" y1="16" x2="18" y2="16" stroke-width="1" />
+                        <text x="24" y="33" text-anchor="middle" font-family="Georgia, serif" font-size="11" font-weight="700" fill="currentColor" stroke="none">UNAM</text>
+                    </svg>
+                </div>
+                <div class="source-body">
+                    <div class="source-org">UNAM · DGTIC</div>
+                    <div class="source-text">Castañeda de León, L.M. et al. (2025). <strong>Uso y desarrollo ético de la Inteligencia Artificial en la Universidad: docencia e investigación.</strong> ISBN 978-607-587-954-3.</div>
+                </div>
+            </li>
+            <li class="source-item">
+                <div class="source-logo" aria-hidden="true">
+                    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M8 38 L8 22 L24 10 L40 22 L40 38 Z" />
+                        <rect x="14" y="26" width="4" height="12" fill="currentColor" stroke="none" />
+                        <rect x="22" y="26" width="4" height="12" fill="currentColor" stroke="none" />
+                        <rect x="30" y="26" width="4" height="12" fill="currentColor" stroke="none" />
+                        <line x1="6" y1="40" x2="42" y2="40" stroke-width="2" />
+                    </svg>
+                </div>
+                <div class="source-body">
+                    <div class="source-org">Council of Economic Advisers</div>
+                    <div class="source-text"><strong>Artificial Intelligence and the Great Divergence.</strong> The White House, enero de 2026.</div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+    <div class="footer-inner">
+        <div class="footer-brand">Nick Perot · Derecho, Tecnología y Gestión</div>
+        <div class="footer-contact">
+            <a href="https://nickperot.com">www.nickperot.com</a> · 
+            <a href="mailto:contacto@nickperot.com">contacto@nickperot.com</a>
+        </div>
+        <div class="footer-page">Glosario v3.0 · 2026</div>
+    </div>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="Volver al inicio">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="m18 15-6-6-6 6"></path>
+    </svg>
+</button>
+
+<script>
+/* ═══════════════════════════════════════════════
+   DATOS DEL GLOSARIO — v2 auditado
+   ═══════════════════════════════════════════════ */
+const TERMS = [
+    // A
+    {
+        term: "Agente de IA",
+        category: "ia",
+        def: "Sistema de IA que percibe su entorno, toma decisiones y ejecuta acciones para alcanzar un objetivo, con niveles variables de autonomía. A diferencia de un chatbot tradicional, un agente puede planificar, encadenar herramientas y operar sobre sistemas externos.",
+        source: "Elaboración propia a partir de OCDE, Explanatory memorandum on the updated OECD definition of an AI System, 2024."
+    },
+    {
+        term: "AI Act",
+        acronym: "Reglamento (UE) 2024/1689",
+        category: "legal",
+        def: "Primer marco regulatorio integral del mundo para sistemas de inteligencia artificial. Clasifica los sistemas por niveles de riesgo —inaceptable, alto, limitado, mínimo— y establece obligaciones diferenciadas. En vigencia parcial desde febrero de 2025; aplicación plena en agosto de 2026.",
+        source: "Reglamento (UE) 2024/1689, Diario Oficial de la UE, 13 de junio de 2024."
+    },
+    {
+        term: "Alfabetización en IA",
+        category: "ia",
+        def: "Conjunto de competencias que permiten a una persona usar, interpretar y cuestionar sistemas de inteligencia artificial con criterio. El AI Act la define como obligación exigible para proveedores e implementadores desde el 2 de febrero de 2025.",
+        source: "Reglamento (UE) 2024/1689 — AI Act, artículo 4."
+    },
+    {
+        term: "Algoritmo",
+        category: "tech",
+        def: "Secuencia finita y ordenada de instrucciones que una computadora ejecuta para resolver un problema o tomar una decisión. En IA, los algoritmos procesan datos para producir predicciones, clasificaciones o contenidos.",
+        source: "OCDE, Explanatory memorandum on the updated OECD definition of an AI System, 2024."
+    },
+    {
+        term: "Alineación",
+        acronym: "AI Alignment",
+        category: "ia",
+        def: "Problema técnico y ético de garantizar que los sistemas de IA persigan los objetivos que sus diseñadores y la sociedad realmente quieren, y no derivaciones literales, manipuladas o no deseadas de esos objetivos. Es uno de los campos centrales de la investigación contemporánea en seguridad de IA.",
+        source: "Russell, S. (2019). Human Compatible: Artificial Intelligence and the Problem of Control. Viking; 80,000 Hours, Preventing an AI-related catastrophe, 2025."
+    },
+    {
+        term: "Alucinación",
+        category: "ia",
+        def: "Fenómeno por el cual un modelo de lenguaje genera información plausible pero falsa, inventada o no verificable. Es una limitación estructural de los LLM: el modelo predice la palabra siguiente más probable, no la respuesta más verdadera.",
+        source: "NIST AI 600-1, Generative AI Profile, julio de 2024."
+    },
+    {
+        term: "Anonimización",
+        category: "datos",
+        def: "Proceso por el cual se eliminan o transforman los datos personales de modo que ya no puedan vincularse a una persona identificable. Reduce el riesgo de exposición al usar herramientas de IA en la nube, aunque no lo elimina por completo.",
+        source: "Reglamento (UE) 2016/679 — GDPR, considerando 26."
+    },
+    {
+        term: "API",
+        acronym: "Application Programming Interface",
+        category: "tech",
+        def: "Interfaz que permite que dos aplicaciones se comuniquen entre sí. En el contexto de IA, el acceso por API permite usar modelos de lenguaje desde sistemas propios, con políticas de retención de datos generalmente más estrictas que en los planes de consumo.",
+        source: "King et al., User Privacy and Large Language Models, Stanford HAI, 2025."
+    },
+    {
+        term: "Aprendizaje automático",
+        acronym: "Machine Learning",
+        category: "ia",
+        def: "Rama de la inteligencia artificial en la que un sistema aprende patrones a partir de datos sin ser programado explícitamente para cada caso. Es la base técnica detrás del reconocimiento de imágenes, los traductores automáticos y los modelos de lenguaje.",
+        source: "NIST AI 100-1, AI Risk Management Framework 1.0, 2023."
+    },
+    {
+        term: "Aprendizaje por refuerzo con retroalimentación humana",
+        acronym: "RLHF · Reinforcement Learning from Human Feedback",
+        category: "ia",
+        def: "Técnica para alinear modelos de lenguaje con preferencias humanas. Después del entrenamiento inicial, evaluadores humanos puntúan las respuestas del modelo, y esas puntuaciones se usan para refinar su comportamiento. Es la técnica detrás de la mayoría de los chatbots modernos.",
+        source: "Ouyang et al., Training language models to follow instructions with human feedback, NeurIPS 2022."
+    },
+    {
+        term: "Aprendizaje profundo",
+        acronym: "Deep Learning",
+        category: "ia",
+        def: "Tipo de aprendizaje automático que utiliza redes neuronales con múltiples capas para detectar representaciones cada vez más abstractas de los datos. Es la técnica detrás de la mayoría de los avances recientes en IA generativa.",
+        source: "OCDE, Recommendation of the Council on Artificial Intelligence, OECD/LEGAL/0449, 2019/2024."
+    },
+    {
+        term: "Ataque adversarial",
+        category: "tech",
+        def: "Manipulación deliberada de los datos de entrada de un sistema de IA para inducirlo a producir resultados incorrectos. Incluye ejemplos adversariales en visión por computadora —imágenes modificadas imperceptiblemente que el modelo clasifica mal— y manipulaciones específicas contra modelos de lenguaje.",
+        source: "NIST AI 100-2 E2023, Adversarial Machine Learning: A Taxonomy and Terminology of Attacks and Mitigations, 2024."
+    },
+    {
+        term: "Autenticación multifactor",
+        acronym: "MFA · Multi-Factor Authentication",
+        category: "tech",
+        def: "Mecanismo de seguridad que requiere al menos dos factores independientes para verificar la identidad de un usuario: algo que sabe (contraseña), algo que tiene (dispositivo) o algo que es (biometría). Es una de las medidas más efectivas contra accesos no autorizados.",
+        source: "NIST SP 800-63B, Digital Identity Guidelines, 2017."
+    },
+    // B
+    {
+        term: "Big data",
+        category: "tech",
+        def: "Conjuntos de datos tan grandes, variados o cambiantes que exceden las capacidades de las herramientas tradicionales de procesamiento. Su análisis suele requerir técnicas de IA o procesamiento distribuido.",
+        source: "NIST Big Data Interoperability Framework, NIST SP 1500."
+    },
+    {
+        term: "Blockchain",
+        acronym: "Cadena de bloques",
+        category: "tech",
+        def: "Tecnología de registro distribuido en la que la información se almacena en bloques enlazados criptográficamente. Cada bloque depende del anterior, lo que hace muy difícil modificar datos sin alterar toda la cadena.",
+        source: "ISO/TC 307, Blockchain and distributed ledger technologies."
+    },
+    // C
+    {
+        term: "Chatbot",
+        category: "ia",
+        def: "Sistema diseñado para mantener una conversación con un usuario mediante texto o voz. Los chatbots modernos basados en modelos de lenguaje grande pueden sostener diálogos complejos, aunque sin comprensión real del contenido.",
+        source: "Fang et al., How AI and human behaviors shape psychosocial effects of chatbot use, arXiv:2503.17473, 2025."
+    },
+    {
+        term: "Ciberseguridad",
+        category: "tech",
+        def: "Conjunto de prácticas, tecnologías, procesos y controles destinados a proteger sistemas, redes, dispositivos y datos frente a accesos no autorizados, ataques, daños o usos indebidos. El marco del NIST la organiza en seis funciones: Gobernar, Identificar, Proteger, Detectar, Responder y Recuperar. En el contexto de IA, la ciberseguridad incluye amenazas específicas: prompt injection, envenenamiento de datos de entrenamiento, extracción de modelos y ataques adversariales.",
+        source: "NIST Cybersecurity Framework 2.0, febrero de 2024; OWASP Top 10 for LLM Applications, 2024."
+    },
+    {
+        term: "Ciencia de datos",
+        acronym: "Data Science",
+        category: "tech",
+        def: "Disciplina que combina estadística, programación y conocimiento de dominio para extraer información útil de grandes volúmenes de datos. Es una de las bases operativas sobre las que se desarrollan los modelos de IA.",
+        source: "Elaboración propia."
+    },
+    {
+        term: "Cifrado",
+        acronym: "Encryption",
+        category: "tech",
+        def: "Proceso de transformar información legible en un código que solo puede descifrarse con una clave específica. Es el mecanismo técnico fundamental para proteger datos en tránsito —al viajar por internet— y en reposo —al almacenarse en discos o servidores—.",
+        source: "NIST SP 800-175B, Guideline for Using Cryptographic Standards in the Federal Government, 2020."
+    },
+    {
+        term: "Computación cuántica",
+        category: "tech",
+        def: "Paradigma de computación que utiliza propiedades de la mecánica cuántica —superposición, entrelazamiento— para resolver ciertos problemas exponencialmente más rápido que las computadoras clásicas. Su desarrollo plantea una amenaza futura a los sistemas de cifrado actuales, lo que motiva el desarrollo de criptografía post-cuántica.",
+        source: "NIST, Post-Quantum Cryptography Standardization, FIPS 203/204/205, agosto de 2024."
+    },
+    {
+        term: "Computación en la nube",
+        acronym: "Cloud computing",
+        category: "tech",
+        def: "Modelo de provisión bajo demanda de recursos informáticos compartidos —almacenamiento, procesamiento, software— a través de internet, con mínimo esfuerzo de gestión por parte del usuario. La mayoría de los motores de IA generativa operan bajo este modelo.",
+        source: "NIST SP 800-145, The NIST Definition of Cloud Computing, 2011."
+    },
+    {
+        term: "Consentimiento informado",
+        category: "datos",
+        def: "Manifestación libre, específica e inequívoca de la voluntad del titular de los datos para que se procesen con un fin determinado. En el GDPR es uno de los seis fundamentos legales para el tratamiento de datos personales.",
+        source: "Reglamento (UE) 2016/679 — GDPR, artículos 6 y 7."
+    },
+    {
+        term: "Cuarto Chino",
+        acronym: "Chinese Room",
+        category: "ia",
+        def: "Experimento mental propuesto por el filósofo John Searle en 1980 para cuestionar que un sistema que manipula símbolos según reglas pueda decirse que comprende, aun si sus respuestas son indistinguibles de las humanas. El argumento sigue siendo central en el debate sobre conciencia, comprensión y los límites de la IA simbólica.",
+        source: "Searle, J.R. (1980). Minds, brains, and programs. Behavioral and Brain Sciences, 3(3), 417-457."
+    },
+    // D
+    {
+        term: "Datos personales",
+        category: "datos",
+        def: "Toda información sobre una persona física identificada o identificable. Incluye nombre, identificadores, datos biométricos, ubicación, datos de salud y cualquier elemento que permita reconocer a alguien directa o indirectamente.",
+        source: "Reglamento (UE) 2016/679 — GDPR, artículo 4; Ley 25.326 (Argentina), artículo 2."
+    },
+    {
+        term: "Datos sensibles",
+        category: "datos",
+        def: "Categorías especiales de datos personales que requieren protección reforzada: origen étnico, opiniones políticas, religión, datos genéticos, biométricos, de salud, vida u orientación sexual. Su procesamiento está restringido salvo excepciones taxativas.",
+        source: "Reglamento (UE) 2016/679 — GDPR, artículo 9; Ley 25.326 (Argentina), artículo 7."
+    },
+    {
+        term: "Decisiones automatizadas",
+        category: "legal",
+        def: "Decisiones tomadas por sistemas que procesan datos sin intervención humana significativa. El GDPR otorga a las personas el derecho a no ser objeto de decisiones basadas únicamente en tratamiento automatizado —incluida la elaboración de perfiles— cuando produzcan efectos jurídicos o las afecten significativamente.",
+        source: "Reglamento (UE) 2016/679 — GDPR, artículo 22."
+    },
+    {
+        term: "Deepfake",
+        category: "ia",
+        def: "Contenido sintético —imagen, audio o video— generado por IA que reproduce con realismo la apariencia o la voz de una persona real. El AI Act lo clasifica como sistema de riesgo limitado, con obligación de informar al usuario que el contenido fue generado artificialmente.",
+        source: "Reglamento (UE) 2024/1689 — AI Act, artículo 50."
+    },
+    // E
+    {
+        term: "Edge computing",
+        acronym: "Computación en el borde",
+        category: "tech",
+        def: "Modelo de procesamiento que ejecuta cómputo cerca del lugar donde se generan los datos —dispositivos, sensores, redes locales— en lugar de enviarlos a la nube. Reduce latencia y mejora privacidad al evitar la transmisión de información sensible.",
+        source: "NIST, Considerations for Managing Internet of Things Cybersecurity, 2019."
+    },
+    {
+        term: "Embedding",
+        acronym: "Representación vectorial",
+        category: "ia",
+        def: "Representación numérica de palabras, frases, imágenes u otros datos como vectores en un espacio multidimensional, de modo que elementos semánticamente similares queden cerca entre sí. Es la base técnica de los buscadores semánticos, los sistemas RAG y la comparación de significados en IA.",
+        source: "Mikolov et al., Efficient Estimation of Word Representations in Vector Space, 2013."
+    },
+    {
+        term: "Entrenamiento de modelos",
+        category: "ia",
+        def: "Proceso por el cual un modelo de IA ajusta sus parámetros internos a partir de un conjunto masivo de datos. La calidad, el sesgo y la diversidad de esos datos condicionan el comportamiento del modelo resultante.",
+        source: "King et al., Stanford HAI, 2025."
+    },
+    {
+        term: "Envenenamiento de datos",
+        acronym: "Data poisoning",
+        category: "tech",
+        def: "Ataque en el que un actor malicioso introduce datos manipulados en el conjunto de entrenamiento de un modelo de IA para inducir comportamientos no deseados después del despliegue. Es una de las amenazas específicas listadas por OWASP para aplicaciones basadas en LLM.",
+        source: "OWASP Top 10 for Large Language Model Applications, 2024."
+    },
+    {
+        term: "Explicabilidad",
+        category: "ia",
+        def: "Capacidad de un sistema de IA de hacer comprensibles para una persona los motivos de sus decisiones o resultados. Es uno de los atributos clave de la IA confiable según el NIST.",
+        source: "NIST AI 100-1, AI Risk Management Framework 1.0, 2023."
+    },
+    // F
+    {
+        term: "Fine-tuning",
+        acronym: "Ajuste fino",
+        category: "ia",
+        def: "Proceso de ajustar un modelo previamente entrenado para que rinda mejor en una tarea o dominio específico, utilizando un conjunto de datos más pequeño y especializado.",
+        source: "Elaboración propia."
+    },
+    // G
+    {
+        term: "GDPR",
+        acronym: "Reglamento General de Protección de Datos",
+        category: "legal",
+        def: "Norma europea de protección de datos en vigencia desde 2018. Establece principios de transparencia, minimización, limitación de finalidad y derechos de los titulares —acceso, rectificación, supresión, portabilidad—. Es el piso de protección con efectos extraterritoriales.",
+        source: "Reglamento (UE) 2016/679, Diario Oficial de la UE."
+    },
+    {
+        term: "GPAI",
+        acronym: "General Purpose AI · IA de propósito general",
+        category: "ia",
+        def: "Modelos de IA capaces de realizar un amplio rango de tareas distintas. El AI Act les impone obligaciones específicas de transparencia y documentación técnica, con requisitos adicionales cuando superan umbrales de riesgo sistémico.",
+        source: "Reglamento (UE) 2024/1689 — AI Act, capítulo V."
+    },
+    {
+        term: "GPU",
+        acronym: "Graphics Processing Unit",
+        category: "tech",
+        def: "Procesador originalmente diseñado para tareas gráficas que resultó óptimo para entrenar modelos de IA por su capacidad de cálculo paralelo. La disponibilidad de GPU especializadas es uno de los cuellos de botella del desarrollo de IA a gran escala.",
+        source: "Elaboración propia."
+    },
+    {
+        term: "Gobernanza de datos",
+        category: "datos",
+        def: "Conjunto de políticas, roles y procesos que rigen la disponibilidad, integridad, seguridad y uso de los datos en una organización. Es uno de los requisitos para sistemas de IA de alto riesgo según el AI Act.",
+        source: "Reglamento (UE) 2024/1689 — AI Act, artículo 10."
+    },
+    // H
+    {
+        term: "Habeas Data",
+        category: "legal",
+        def: "Acción constitucional argentina que permite a toda persona acceder a los datos referidos a ella obrantes en registros públicos o privados, y exigir su supresión, rectificación, confidencialidad o actualización en caso de falsedad o discriminación.",
+        source: "Constitución Nacional Argentina, artículo 43, párrafo tercero; Ley 25.326."
+    },
+    {
+        term: "Hardware",
+        category: "tech",
+        def: "Componentes físicos de un sistema informático: procesadores, memoria, almacenamiento, dispositivos de entrada y salida. En IA, las GPU y los chips especializados son centrales para entrenar modelos grandes.",
+        source: "Elaboración propia."
+    },
+    // I
+    {
+        term: "IA estrecha",
+        acronym: "ANI · Artificial Narrow Intelligence",
+        category: "ia",
+        def: "Sistemas competentes en tareas específicas: generación de texto, reconocimiento facial, análisis de datos. No pueden transferir conocimiento entre dominios sin entrenamiento adicional. Es la IA que existe hoy.",
+        source: "Council of Economic Advisers (EE.UU.), Artificial Intelligence and the Great Divergence, enero de 2026."
+    },
+    {
+        term: "IA generalizada",
+        acronym: "IAG · AGI · Artificial General Intelligence",
+        category: "ia",
+        def: "Sistema hipotético capaz de realizar cualquier tarea intelectual humana con competencia comparable. Incluiría razonamiento, planificación, aprendizaje autónomo y adaptación a contextos nuevos. No existe aún; las estimaciones sobre su llegada varían entre 3 y 30 años.",
+        source: "Council of Economic Advisers (2026); 80,000 Hours, Shrinking AGI timelines, marzo de 2025."
+    },
+    {
+        term: "IA generativa",
+        category: "ia",
+        def: "Subconjunto de la IA que produce contenido nuevo —texto, imágenes, audio, video, código— a partir de instrucciones del usuario. ChatGPT, Claude, Gemini y los generadores de imágenes operan bajo este paradigma.",
+        source: "NIST AI 600-1, Generative AI Profile, julio de 2024."
+    },
+    {
+        term: "IA superior",
+        acronym: "ASI · Artificial Superintelligence",
+        category: "ia",
+        def: "Inteligencia que superaría a los mejores cerebros humanos en prácticamente todos los dominios: ciencia, creatividad, estrategia. Concepto teórico. No existe.",
+        source: "Council of Economic Advisers (EE.UU.), 2026."
+    },
+    {
+        term: "Inferencia",
+        category: "ia",
+        def: "Etapa en la que un modelo de IA ya entrenado se utiliza para producir resultados —predicciones, clasificaciones, contenidos— a partir de datos nuevos. Es lo que ocurre cada vez que alguien envía un prompt a un chatbot.",
+        source: "Elaboración propia a partir de OCDE, 2024."
+    },
+    {
+        term: "Ingeniería social",
+        category: "tech",
+        def: "Manipulación psicológica de personas para que entreguen información confidencial, hagan clic en enlaces maliciosos o ejecuten acciones que comprometan la seguridad. La IA generativa amplifica esta amenaza al permitir suplantaciones de voz e identidad cada vez más convincentes a gran escala.",
+        source: "NIST SP 800-61r2, Computer Security Incident Handling Guide; CISA, Social Engineering, 2024."
+    },
+    {
+        term: "Inteligencia artificial",
+        acronym: "IA",
+        category: "ia",
+        featured: true,
+        def: "La UNESCO no fija una definición única, porque cualquier definición cerrada quedaría obsoleta con los avances tecnológicos. La Recomendación de 2021 caracteriza los sistemas de IA en estos términos:<span class=\"quote\">«sistemas capaces de procesar datos e información de una manera que se asemeja a un comportamiento inteligente, y abarca generalmente aspectos de razonamiento, aprendizaje, percepción, predicción, planificación o control»</span>Tres elementos ocupan un lugar central: integran modelos y algoritmos que producen capacidad de aprender y realizar tareas cognitivas; generan resultados como predicciones y decisiones en entornos materiales y virtuales; y operan con niveles variables de autonomía y adaptabilidad tras el despliegue.",
+        source: "UNESCO, Recomendación sobre la ética de la inteligencia artificial, París, 23 de noviembre de 2021, párrafo 2. Definición convergente con OCDE (2024) y AI Act (UE, 2024)."
+    },
+    {
+        term: "Internet de las cosas",
+        acronym: "IoT · Internet of Things",
+        category: "tech",
+        def: "Red de dispositivos físicos —sensores, electrodomésticos, vehículos, maquinaria industrial— conectados a internet y capaces de generar e intercambiar datos. Plantea desafíos específicos de ciberseguridad y privacidad por su escala y heterogeneidad.",
+        source: "NIST, Considerations for Managing Internet of Things Cybersecurity, NISTIR 8228, 2019."
+    },
+    {
+        term: "Jailbreaking de IA",
+        category: "ia",
+        def: "Conjunto de técnicas para hacer que un modelo de IA genere contenido o realice acciones que sus desarrolladores intentaron impedir mediante salvaguardas. Aprovecha vulnerabilidades de instrucción, formato o contexto. Distinto del prompt injection: el jailbreak lo intenta el propio usuario; la inyección viene de un tercero.",
+        source: "OWASP Top 10 for Large Language Model Applications, 2024."
+    },
+    // L
+    {
+        term: "Ley 25.326",
+        acronym: "Argentina · Protección de Datos Personales",
+        category: "legal",
+        def: "Norma argentina sancionada en 2000 que regula la protección integral de los datos personales asentados en archivos, registros o bancos de datos públicos o privados. Inspirada en la directiva europea previa al GDPR, reconoce derechos de acceso, rectificación y supresión, y está en proceso de actualización legislativa.",
+        source: "Ley 25.326, Boletín Oficial de la República Argentina, 2 de noviembre de 2000."
+    },
+    {
+        term: "LLM",
+        acronym: "Large Language Model · Modelo de lenguaje grande",
+        category: "ia",
+        def: "Modelo de IA entrenado con grandes volúmenes de texto para predecir la siguiente palabra en una secuencia. Esta arquitectura básica permite traducir, resumir, redactar, programar y dialogar, pero también produce respuestas plausibles aunque falsas.",
+        source: "Elaboración propia a partir de King et al., Stanford HAI, 2025."
+    },
+    // M
+    {
+        term: "Malware",
+        acronym: "Software malicioso",
+        category: "tech",
+        def: "Cualquier programa diseñado para dañar, interrumpir, robar información o tomar control no autorizado de un sistema. Incluye virus, troyanos, ransomware, spyware y gusanos. Su distribución suele combinarse con técnicas de ingeniería social.",
+        source: "NIST SP 800-83, Guide to Malware Incident Prevention and Handling, 2013."
+    },
+    {
+        term: "MCP",
+        acronym: "Model Context Protocol",
+        category: "ia",
+        def: "Protocolo abierto introducido en 2024 que estandariza la conexión entre modelos de IA y herramientas, datos y servicios externos. Cumple para la IA un rol análogo al de USB-C para los dispositivos: permite que cualquier modelo se conecte a cualquier sistema mediante una interfaz común.",
+        source: "Anthropic, Introducing the Model Context Protocol, noviembre de 2024."
+    },
+    {
+        term: "Minimización de datos",
+        category: "datos",
+        def: "Principio según el cual solo deben recolectarse los datos personales estrictamente necesarios para la finalidad del tratamiento. Es uno de los principios rectores del GDPR y una buena práctica aplicable al uso de motores de IA.",
+        source: "Reglamento (UE) 2016/679 — GDPR, artículo 5."
+    },
+    {
+        term: "Modelo de fundación",
+        acronym: "Foundation Model",
+        category: "ia",
+        def: "Modelo entrenado sobre grandes volúmenes de datos diversos que sirve de base para adaptarse a múltiples tareas posteriores. Los LLM modernos son modelos de fundación.",
+        source: "Stanford CRFM, On the Opportunities and Risks of Foundation Models, 2021."
+    },
+    {
+        term: "Multimodal",
+        category: "ia",
+        def: "Modelos de IA capaces de procesar y combinar múltiples tipos de datos en una misma interacción: texto, imagen, audio, video. Los modelos multimodales pueden, por ejemplo, describir una imagen, transcribir audio o generar video a partir de un texto.",
+        source: "Elaboración propia."
+    },
+    // N
+    {
+        term: "NIST AI RMF",
+        acronym: "AI Risk Management Framework",
+        category: "legal",
+        def: "Marco voluntario de gestión de riesgos publicado por el Instituto Nacional de Estándares y Tecnología de EE.UU. en enero de 2023. Organiza las prácticas en cuatro funciones —Gobernar, Mapear, Medir, Gestionar— y se ha convertido en referencia de facto internacional. En julio de 2024 se publicó un perfil específico para IA generativa.",
+        source: "NIST AI 100-1 (2023); NIST AI 600-1, Generative AI Profile (2024)."
+    },
+    // O
+    {
+        term: "Open source · Modelo de pesos abiertos",
+        category: "ia",
+        def: "Modelos de IA cuyos parámetros entrenados —pesos— se publican bajo licencias que permiten su descarga, modificación y uso. Habilitan la ejecución local, sin transmitir datos a servidores externos, lo que cambia el panorama de privacidad y soberanía tecnológica.",
+        source: "Elaboración propia."
+    },
+    {
+        term: "Opt-in / Opt-out",
+        category: "datos",
+        def: "Modelos de consentimiento. Opt-in: el procesamiento requiere acción afirmativa explícita del usuario. Opt-out: el procesamiento ocurre por defecto salvo que el usuario lo desactive. En 2025, al menos un proveedor de IA cambió su modelo de opt-in a opt-out.",
+        source: "Stanford HAI, King et al. (2025); Psychiatric Times, marzo de 2026."
+    },
+    // P
+    {
+        term: "Parámetros",
+        category: "ia",
+        def: "Variables internas que un modelo de IA ajusta durante el entrenamiento y que codifican lo que aprendió. Los modelos de lenguaje modernos tienen miles de millones —incluso billones— de parámetros. El tamaño es una proxy de capacidad, aunque no la garantiza por sí solo.",
+        source: "Elaboración propia."
+    },
+    {
+        term: "Phishing",
+        category: "tech",
+        def: "Técnica fraudulenta que suplanta la identidad de una organización legítima —generalmente por correo electrónico— para engañar a la víctima y obtener credenciales, datos financieros o accesos. La variante por mensaje es smishing; por voz, vishing. La IA generativa elevó dramáticamente la calidad y escala de estos ataques.",
+        source: "CISA, Avoiding Social Engineering and Phishing Attacks; ENISA Threat Landscape 2024."
+    },
+    {
+        term: "Privacidad desde el diseño",
+        acronym: "Privacy by design",
+        category: "datos",
+        def: "Principio según el cual la protección de la privacidad debe incorporarse desde el diseño y por defecto en cualquier sistema o producto que procese datos personales. Exigible bajo el GDPR.",
+        source: "Reglamento (UE) 2016/679 — GDPR, artículo 25."
+    },
+    {
+        term: "Prompt",
+        category: "ia",
+        def: "Instrucción o conjunto de instrucciones que un usuario envía a un modelo de IA generativa para obtener una respuesta. La calidad del prompt condiciona fuertemente la calidad del resultado.",
+        source: "Elaboración propia."
+    },
+    {
+        term: "Prompt injection",
+        acronym: "Inyección de instrucciones",
+        category: "ia",
+        def: "Técnica de ataque en la que un atacante introduce instrucciones maliciosas dentro del contenido que procesa un modelo de IA —documentos, páginas web, correos— para manipular su comportamiento o exfiltrar información.",
+        source: "OWASP Top 10 for Large Language Model Applications, 2024."
+    },
+    // R
+    {
+        term: "RAG",
+        acronym: "Retrieval-Augmented Generation",
+        category: "ia",
+        def: "Técnica que combina un modelo de lenguaje con un sistema de recuperación de información. Antes de generar la respuesta, el modelo consulta una base documental específica, lo que reduce alucinaciones y permite trabajar con información actualizada o confidencial sin necesidad de reentrenar el modelo.",
+        source: "Lewis et al., Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks, NeurIPS 2020."
+    },
+    {
+        term: "Ransomware",
+        category: "tech",
+        def: "Tipo de malware que cifra los archivos de la víctima y exige un pago —generalmente en criptomonedas— para restituir el acceso. En los últimos años se sumó la práctica de doble extorsión: además de cifrar, los atacantes amenazan con publicar los datos robados.",
+        source: "CISA, Stop Ransomware initiative; ENISA Threat Landscape, 2024."
+    },
+    {
+        term: "Razonamiento",
+        acronym: "Reasoning",
+        category: "ia",
+        def: "Capacidad de un modelo de IA de articular pasos intermedios de pensamiento antes de producir una respuesta. Los modelos modernos de razonamiento explicitan cadenas de inferencia, lo que mejora su desempeño en problemas complejos pero aumenta tiempo y costo.",
+        source: "Elaboración propia."
+    },
+    {
+        term: "Red teaming de IA",
+        category: "ia",
+        def: "Práctica de poner a prueba un sistema de IA mediante ataques simulados, intentos de jailbreak y casos extremos para identificar vulnerabilidades antes del despliegue. El NIST y el AI Act la recomiendan o exigen para modelos de propósito general con riesgo sistémico.",
+        source: "NIST AI 600-1, Generative AI Profile, 2024; Reglamento (UE) 2024/1689 — AI Act, artículo 55."
+    },
+    {
+        term: "Red neuronal",
+        category: "ia",
+        def: "Modelo computacional inspirado libremente en la estructura del cerebro humano. Organiza unidades de procesamiento —nodos— en capas conectadas que ajustan sus pesos durante el entrenamiento. Es la arquitectura base del aprendizaje profundo.",
+        source: "OCDE, Recommendation of the Council on Artificial Intelligence, OECD/LEGAL/0449."
+    },
+    {
+        term: "Retención de datos",
+        category: "datos",
+        def: "Período durante el cual un proveedor conserva los datos del usuario en sus sistemas. Varía según el plan contratado y la jurisdicción. Algunos proveedores conservan datos de conversaciones de forma indefinida en planes gratuitos.",
+        source: "King et al., Stanford HAI, 2025."
+    },
+    {
+        term: "Riesgo sistémico",
+        category: "legal",
+        def: "Categoría que el AI Act aplica a modelos GPAI con capacidades de alto impacto. Activa obligaciones adicionales: evaluación del modelo, pruebas adversariales, reporte de incidentes graves y protecciones de ciberseguridad reforzadas.",
+        source: "Reglamento (UE) 2024/1689 — AI Act, artículo 51."
+    },
+    // S
+    {
+        term: "Sandbox regulatorio",
+        category: "legal",
+        def: "Entorno controlado donde innovadores pueden probar productos o servicios bajo supervisión de un regulador, con flexibilizaciones temporarias de ciertos requisitos. El AI Act prevé sandboxes obligatorios en cada Estado miembro.",
+        source: "Reglamento (UE) 2024/1689 — AI Act, artículo 57."
+    },
+    {
+        term: "Sesgo algorítmico",
+        category: "ia",
+        def: "Distorsión sistemática en los resultados de un sistema de IA que reproduce o amplifica desigualdades existentes. Puede originarse en los datos de entrenamiento, en el diseño del modelo o en el contexto de uso.",
+        source: "NIST AI 100-1 (2023); UNESCO, Recomendación sobre la ética de la IA (2021)."
+    },
+    {
+        term: "Sistema de IA",
+        category: "ia",
+        def: "Sistema basado en máquinas que, para objetivos explícitos o implícitos, infiere a partir de la información que recibe y genera resultados —predicciones, contenidos, recomendaciones o decisiones— que pueden influir en entornos físicos o virtuales, con niveles variables de autonomía y adaptabilidad.",
+        source: "OCDE, Explanatory memorandum on the updated OECD definition of an AI System, OECD Artificial Intelligence Papers N.º 8, 2024."
+    },
+    {
+        term: "Software",
+        category: "tech",
+        def: "Conjunto de programas, instrucciones y datos que indican a una computadora qué hacer. Se distingue del hardware, que es el soporte físico.",
+        source: "Elaboración propia."
+    },
+    {
+        term: "Supervisión humana",
+        category: "ia",
+        def: "Mecanismo por el cual una persona revisa, valida o corrige las decisiones de un sistema de IA. El AI Act la exige para sistemas de alto riesgo. Regla básica de los tres marcos internacionales: la responsabilidad del resultado es siempre de la persona, no de la herramienta.",
+        source: "Reglamento (UE) 2024/1689 — AI Act, artículo 14; NIST AI RMF 1.0."
+    },
+    // T
+    {
+        term: "Temperatura",
+        category: "ia",
+        def: "Parámetro que controla el grado de aleatoriedad en las respuestas de un modelo de lenguaje. Una temperatura baja produce salidas más predecibles y consistentes; una temperatura alta produce respuestas más variadas y creativas, pero también menos confiables.",
+        source: "Elaboración propia."
+    },
+    {
+        term: "Test de Turing",
+        acronym: "Prueba de Turing",
+        category: "ia",
+        def: "Prueba propuesta por Alan Turing en 1950 para evaluar si una máquina puede exhibir comportamiento inteligente indistinguible del humano. Un juez humano mantiene conversaciones con un humano y una máquina sin saber cuál es cuál; si no logra distinguirlos de forma consistente, la máquina supera el test. Sigue siendo referencia conceptual, aunque hoy se cuestiona su validez como medida de inteligencia: los LLM modernos lo aprueban en muchas variantes sin que ello implique comprensión real.",
+        source: "Turing, A.M. (1950). Computing Machinery and Intelligence. Mind, LIX(236), 433-460."
+    },
+    {
+        term: "Token",
+        category: "ia",
+        def: "Unidad mínima con la que opera un modelo de lenguaje. Puede ser una palabra, parte de una palabra o un signo de puntuación. El costo y los límites de uso de un modelo suelen medirse en tokens.",
+        source: "Elaboración propia."
+    },
+    {
+        term: "Transparencia",
+        category: "ia",
+        def: "Principio según el cual los usuarios deben poder saber cuándo interactúan con un sistema de IA, cómo se procesan sus datos y bajo qué lógica opera el sistema. Uno de los cinco principios éticos identificados por UNESCO y aplicados por la UNAM al ámbito universitario.",
+        source: "UNESCO (2021); Castañeda de León et al., DGTIC-UNAM, 2025."
+    },
+    {
+        term: "Transformer",
+        category: "ia",
+        def: "Arquitectura de red neuronal introducida por Google en 2017 que revolucionó el procesamiento de lenguaje natural. Sustituye a las arquitecturas recurrentes anteriores con un mecanismo de atención que procesa todas las palabras de una secuencia en paralelo. Es la base técnica de prácticamente todos los modelos de lenguaje modernos.",
+        source: "Vaswani et al., Attention Is All You Need, NeurIPS 2017."
+    },
+    {
+        term: "Trazabilidad",
+        category: "ia",
+        def: "Capacidad de reconstruir el recorrido de los datos y las decisiones dentro de un sistema de IA: qué datos se usaron, cómo se procesaron, qué versión del modelo produjo el resultado. Es requisito documental para sistemas de alto riesgo bajo el AI Act.",
+        source: "Reglamento (UE) 2024/1689 — AI Act, artículo 12."
+    },
+    // U
+    {
+        term: "UX",
+        acronym: "User Experience · Experiencia de usuario",
+        category: "tech",
+        def: "Conjunto de percepciones y respuestas de una persona al usar un producto, sistema o servicio. En IA, una buena UX incluye que el sistema comunique con claridad sus capacidades, sus límites y el origen de sus respuestas.",
+        source: "ISO 9241-210, Ergonomics of human-system interaction."
+    },
+    // V
+    {
+        term: "Validación",
+        category: "ia",
+        def: "Proceso de verificar que un sistema de IA cumple los requisitos para los que fue diseñado, antes de su despliegue. Implica pruebas con datos representativos del contexto real de uso.",
+        source: "NIST AI 100-1, función MEASURE."
+    },
+    {
+        term: "Ventana de contexto",
+        acronym: "Context Window",
+        category: "ia",
+        def: "Cantidad máxima de información —medida en tokens— que un modelo de lenguaje puede procesar en una sola consulta. Determina cuánto texto previo puede recordar dentro de una conversación.",
+        source: "Elaboración propia."
+    },
+    {
+        term: "VPN",
+        acronym: "Virtual Private Network · Red privada virtual",
+        category: "tech",
+        def: "Servicio que crea un canal cifrado entre el dispositivo del usuario y un servidor remoto, ocultando el tráfico de internet a redes intermedias. Se usa para proteger conexiones en redes públicas y para acceder a recursos restringidos por geografía o red corporativa.",
+        source: "NIST SP 800-77r1, Guide to IPsec VPNs, 2020."
+    },
+    {
+        term: "Vulnerabilidad zero-day",
+        category: "tech",
+        def: "Falla de seguridad en un software desconocida para su fabricante o para el público, y por lo tanto sin parche disponible. Los atacantes que las descubren pueden explotarlas antes de que existan defensas, lo que las hace especialmente valiosas y peligrosas.",
+        source: "ENISA Threat Landscape, 2024."
+    },
+    // W
+    {
+        term: "Watermarking de contenido IA",
+        acronym: "Marca de agua",
+        category: "ia",
+        def: "Técnicas que insertan señales imperceptibles —en texto, imagen, audio o video generados por IA— para permitir su detección posterior como contenido sintético. El AI Act lo exige a los proveedores de IA generativa como parte de las obligaciones de transparencia.",
+        source: "Reglamento (UE) 2024/1689 — AI Act, artículo 50; NIST AI 600-1, julio de 2024."
+    },
+    {
+        term: "Web scraping",
+        category: "tech",
+        def: "Técnica automatizada de extracción de datos de páginas web. Su uso a gran escala para entrenar modelos de IA ha generado litigios sobre propiedad intelectual y privacidad.",
+        source: "Elaboración propia."
+    },
+    // Z
+    {
+        term: "Zero-trust",
+        acronym: "Confianza cero",
+        category: "tech",
+        def: "Modelo de seguridad informática que parte del supuesto de que ningún usuario, dispositivo o red es confiable por defecto. Cada solicitud de acceso se verifica explícitamente, sin importar su origen.",
+        source: "NIST SP 800-207, Zero Trust Architecture, 2020."
+    }
+];
+
+/* ═══════════════════════════════════════════════
+   RENDER
+   ═══════════════════════════════════════════════ */
+const CATEGORY_LABELS = {
+    ia: "IA",
+    tech: "Tecnología",
+    datos: "Datos",
+    legal: "Regulación"
+};
+
+const CATEGORY_ICONS = {
+    ia:    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="1.8"/><circle cx="18" cy="6" r="1.8"/><circle cx="12" cy="12" r="2.2"/><circle cx="6" cy="18" r="1.8"/><circle cx="18" cy="18" r="1.8"/><path d="M7.4 7.2 10 11M16.6 7.2 14 11M7.4 16.8 10 13M16.6 16.8 14 13"/></svg>',
+    tech:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="1"/><rect x="10" y="10" width="4" height="4"/><path d="M10 2v3M14 2v3M10 19v3M14 19v3M2 10h3M2 14h3M19 10h3M19 14h3"/></svg>',
+    datos: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg>',
+    legal: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18M5 7h14M8 21h8"/><path d="M7 7l-3 7a4 4 0 0 0 6 0Z M17 7l-3 7a4 4 0 0 0 6 0Z"/></svg>'
+};
+
+function slugify(str) {
+    return normalize(str)
+        .replace(/[^a-z0-9\s-]/g, '')
+        .trim()
+        .replace(/\s+/g, '-')
+        .substring(0, 60);
+}
+
+const glossary = document.getElementById('glossary');
+const emptyState = document.getElementById('emptyState');
+const searchInput = document.getElementById('searchInput');
+const alphabet = document.getElementById('alphabet');
+const resultsCount = document.getElementById('resultsCount');
+const clearBtn = document.getElementById('clearBtn');
+let activeFilter = 'all';
+let activeSearch = '';
+
+function normalize(str) {
+    return str.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+}
+
+function getSortKey(term) {
+    // Ignorar artículos y normalizar para orden alfabético
+    return normalize(term).replace(/^(el|la|los|las|un|una)\s+/, '');
+}
+
+function groupTerms(terms) {
+    const groups = {};
+    terms.forEach(t => {
+        const letter = normalize(t.term).charAt(0).toUpperCase();
+        if (!groups[letter]) groups[letter] = [];
+        groups[letter].push(t);
+    });
+    Object.keys(groups).forEach(k => {
+        groups[k].sort((a, b) => getSortKey(a.term).localeCompare(getSortKey(b.term)));
+    });
+    return groups;
+}
+
+function renderAlphabet() {
+    const allLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+    const groups = groupTerms(TERMS);
+    alphabet.innerHTML = allLetters.map(letter => {
+        const has = groups[letter] && groups[letter].length > 0;
+        return `<a href="#letter-${letter}" class="alpha-btn ${has ? 'has-terms' : 'disabled'}" aria-label="Ir a letra ${letter}">${letter}</a>`;
+    }).join('');
+}
+
+function render() {
+    const filtered = TERMS.filter(t => {
+        const matchesFilter = activeFilter === 'all' || t.category === activeFilter;
+        if (!matchesFilter) return false;
+        if (!activeSearch) return true;
+        const haystack = normalize(`${t.term} ${t.acronym || ''} ${t.def}`);
+        const needle = normalize(activeSearch);
+        return haystack.includes(needle);
+    });
+
+    // Actualizar contador y botón limpiar
+    const isFiltering = activeFilter !== 'all' || activeSearch !== '';
+    if (isFiltering) {
+        resultsCount.innerHTML = `<strong>${filtered.length}</strong> de ${TERMS.length} términos`;
+        clearBtn.classList.add('show');
+    } else {
+        resultsCount.innerHTML = `<strong>${TERMS.length}</strong> términos totales`;
+        clearBtn.classList.remove('show');
+    }
+
+    const groups = groupTerms(filtered);
+    const letters = Object.keys(groups).sort();
+
+    if (letters.length === 0) {
+        glossary.innerHTML = '';
+        glossary.appendChild(emptyState);
+        emptyState.classList.add('show');
+        return;
+    }
+    emptyState.classList.remove('show');
+
+    glossary.innerHTML = letters.map(letter => {
+        const items = groups[letter];
+        return `
+            <section class="letter-group" id="letter-${letter}">
+                <h2 class="letter-heading">
+                    ${letter}
+                    <span class="letter-count">${items.length} ${items.length === 1 ? 'término' : 'términos'}</span>
+                </h2>
+                ${items.map(t => renderTerm(t)).join('')}
+            </section>
+        `;
+    }).join('');
+}
+
+function renderTerm(t) {
+    const id = `term-${slugify(t.term)}`;
+    return `
+        <article class="term-card reveal ${t.featured ? 'featured' : ''}" data-category="${t.category}" id="${id}">
+            <div class="term-header">
+                <h3 class="term-name">
+                    ${t.term}${t.acronym ? `<span class="term-acronym"> · ${t.acronym}</span>` : ''}
+                    <button type="button" class="term-permalink" data-id="${id}" aria-label="Copiar enlace al término ${t.term}" title="Copiar enlace al término">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                    </button>
+                </h3>
+                <div class="term-tags">
+                    <span class="tag ${t.category}">${CATEGORY_ICONS[t.category] || ''}${CATEGORY_LABELS[t.category]}</span>
+                </div>
+            </div>
+            <p class="term-def">${t.def}</p>
+            ${t.source ? `<div class="term-source">${t.source}</div>` : ''}
+        </article>
+    `;
+}
+
+function updateCounts() {
+    document.getElementById('count-all').textContent = TERMS.length;
+    const heroEl = document.getElementById('termCountHero');
+    heroEl.dataset.target = TERMS.length;
+    heroEl.textContent = TERMS.length;
+    ['ia', 'tech', 'datos', 'legal'].forEach(cat => {
+        const count = TERMS.filter(t => t.category === cat).length;
+        document.getElementById(`count-${cat}`).textContent = count;
+    });
+}
+
+/* ═══════════════════════════════════════════════
+   INTERACCIÓN: reveal, counter, scroll-spy, permalink
+   ═══════════════════════════════════════════════ */
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// Scroll reveal con IntersectionObserver
+let revealObserver = null;
+function setupRevealObserver() {
+    if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+        document.querySelectorAll('.reveal').forEach(el => el.classList.add('in-view'));
+        return;
+    }
+    if (revealObserver) revealObserver.disconnect();
+    revealObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('in-view');
+                revealObserver.unobserve(entry.target);
+            }
+        });
+    }, { rootMargin: '0px 0px -80px 0px', threshold: 0.05 });
+    document.querySelectorAll('.reveal:not(.in-view)').forEach(el => revealObserver.observe(el));
+}
+
+// Animar contador del hero una vez
+function animateCounter() {
+    const el = document.getElementById('termCountHero');
+    const target = parseInt(el.dataset.target, 10) || 0;
+    if (prefersReducedMotion || !target) { el.textContent = target; return; }
+    const duration = 1100;
+    const start = performance.now();
+    function step(now) {
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.round(target * eased);
+        if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+}
+
+// Scroll-spy: resaltar letra activa en el alfabeto
+function setupAlphabetSpy() {
+    if (!('IntersectionObserver' in window)) return;
+    const buttons = new Map();
+    document.querySelectorAll('.alpha-btn').forEach(btn => {
+        const letter = btn.textContent.trim();
+        buttons.set(letter, btn);
+    });
+    const spy = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            const letter = entry.target.id.replace('letter-', '');
+            const btn = buttons.get(letter);
+            if (!btn) return;
+            if (entry.isIntersecting) {
+                document.querySelectorAll('.alpha-btn.is-current').forEach(b => {
+                    b.classList.remove('is-current');
+                    b.removeAttribute('aria-current');
+                });
+                btn.classList.add('is-current');
+                btn.setAttribute('aria-current', 'true');
+            }
+        });
+    }, { rootMargin: '-240px 0px -60% 0px' });
+    document.querySelectorAll('.letter-group').forEach(g => spy.observe(g));
+}
+
+// Permalink: copiar URL del término al clipboard
+function setupPermalinks() {
+    document.addEventListener('click', e => {
+        const btn = e.target.closest('.term-permalink');
+        if (!btn) return;
+        e.preventDefault();
+        const id = btn.dataset.id;
+        const url = `${location.origin}${location.pathname}#${id}`;
+        history.replaceState(null, '', `#${id}`);
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(url).catch(() => {});
+        }
+        btn.classList.add('copied');
+        setTimeout(() => btn.classList.remove('copied'), 1200);
+    });
+}
+
+// Aplicar todos los efectos posteriores al render
+function applyPostRender() {
+    setupRevealObserver();
+    setupAlphabetSpy();
+    if (location.hash) {
+        const el = document.querySelector(location.hash);
+        if (el) {
+            el.classList.add('in-view');
+            requestAnimationFrame(() => el.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' }));
+        }
+    }
+}
+
+// Eventos
+function updateSearchActiveStyle() {
+    if (!searchTrigger) return;
+    searchTrigger.classList.toggle('has-query', activeSearch.length > 0);
+}
+searchInput.addEventListener('input', e => {
+    activeSearch = e.target.value;
+    updateSearchActiveStyle();
+    render();
+    applyPostRender();
+});
+
+// Filtro: dropdown trigger + opciones
+const filterDropdown = document.getElementById('filterDropdown');
+const filterTrigger = document.getElementById('filterTrigger');
+const filterMenu = document.getElementById('filterMenu');
+const filterValueEl = document.getElementById('filterValue');
+const FILTER_LABELS = {
+    all: 'Todos',
+    ia: 'Inteligencia artificial',
+    tech: 'Tecnología',
+    datos: 'Datos y privacidad',
+    legal: 'Marco regulatorio'
+};
+
+function openFilterMenu() {
+    filterDropdown.classList.add('open');
+    filterTrigger.setAttribute('aria-expanded', 'true');
+}
+function closeFilterMenu() {
+    filterDropdown.classList.remove('open');
+    filterTrigger.setAttribute('aria-expanded', 'false');
+}
+function setFilter(value) {
+    activeFilter = value;
+    filterMenu.querySelectorAll('.filter-option').forEach(o => {
+        const isActive = o.dataset.filter === value;
+        o.classList.toggle('active', isActive);
+        o.setAttribute('aria-selected', isActive ? 'true' : 'false');
+    });
+    filterValueEl.textContent = FILTER_LABELS[value] || 'Todos';
+    filterDropdown.classList.toggle('has-active', value !== 'all');
+}
+
+filterTrigger.addEventListener('click', e => {
+    e.stopPropagation();
+    filterDropdown.classList.contains('open') ? closeFilterMenu() : openFilterMenu();
+});
+filterMenu.querySelectorAll('.filter-option').forEach(opt => {
+    opt.addEventListener('click', () => {
+        setFilter(opt.dataset.filter);
+        closeFilterMenu();
+        render();
+        applyPostRender();
+        filterTrigger.focus();
+    });
+});
+document.addEventListener('click', e => {
+    if (filterDropdown.classList.contains('open') && !filterDropdown.contains(e.target)) {
+        closeFilterMenu();
+    }
+});
+
+clearBtn.addEventListener('click', () => {
+    setFilter('all');
+    activeSearch = '';
+    searchInput.value = '';
+    updateSearchActiveStyle();
+    render();
+    applyPostRender();
+    if (document.body.classList.contains('search-open')) {
+        searchInput.focus();
+    } else {
+        searchTrigger.focus();
+    }
+});
+
+// Búsqueda colapsable: trigger (lupa) ↔ expandida (input + X)
+const searchTrigger = document.getElementById('searchTrigger');
+const searchClose = document.getElementById('searchClose');
+
+function openSearch() {
+    document.body.classList.add('search-open');
+    searchTrigger.setAttribute('aria-expanded', 'true');
+    requestAnimationFrame(() => { searchInput.focus(); searchInput.select(); });
+}
+function closeSearch() {
+    document.body.classList.remove('search-open');
+    searchTrigger.setAttribute('aria-expanded', 'false');
+    if (activeSearch) {
+        searchInput.value = '';
+        activeSearch = '';
+        updateSearchActiveStyle();
+        render();
+        applyPostRender();
+    }
+    searchInput.blur();
+    searchTrigger.focus();
+}
+searchTrigger.addEventListener('click', openSearch);
+searchClose.addEventListener('click', closeSearch);
+
+// Atajo de teclado: "/" abre o enfoca la búsqueda
+document.addEventListener('keydown', e => {
+    const inEditable = ['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName) || document.activeElement.isContentEditable;
+    if (e.key === '/' && !inEditable) {
+        e.preventDefault();
+        if (!document.body.classList.contains('search-open')) {
+            openSearch();
+        } else {
+            searchInput.focus();
+            searchInput.select();
+        }
+    }
+    if (e.key === 'Escape') {
+        if (filterDropdown.classList.contains('open')) {
+            closeFilterMenu();
+            filterTrigger.focus();
+        } else if (document.activeElement === searchInput) {
+            closeSearch();
+        }
+    }
+});
+
+// Back to top
+const backToTop = document.getElementById('backToTop');
+let scrollTicking = false;
+window.addEventListener('scroll', () => {
+    if (scrollTicking) return;
+    scrollTicking = true;
+    requestAnimationFrame(() => {
+        backToTop.classList.toggle('show', window.scrollY > 600);
+        scrollTicking = false;
+    });
+}, { passive: true });
+backToTop.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+});
+
+// Init
+renderAlphabet();
+updateCounts();
+render();
+applyPostRender();
+// Observer para animar el contador cuando el hero es visible
+if ('IntersectionObserver' in window) {
+    const counterObs = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCounter();
+                obs.disconnect();
+            }
+        });
+    });
+    counterObs.observe(document.getElementById('termCountHero'));
+} else {
+    animateCounter();
+}
+setupPermalinks();
+
+/* ═══════════════════════════════════════════════
+   MORPH: search + filter migran al header al hacer
+   scroll más allá del bloque controls.
+   ═══════════════════════════════════════════════ */
+(function setupHeaderMorph() {
+    if (!('IntersectionObserver' in window)) return;
+    const controlsSection = document.querySelector('.controls');
+    const controlsRowEl = document.querySelector('.controls-row');
+    const headerControls = document.getElementById('headerControls');
+    if (!controlsSection || !controlsRowEl || !headerControls) return;
+
+    const searchWrap = document.getElementById('searchWrap');
+    const filterDropdownEl = document.getElementById('filterDropdown');
+    const moveables = [searchTrigger, searchWrap, filterDropdownEl];
+
+    const sentinel = document.createElement('div');
+    sentinel.id = 'morphSentinel';
+    sentinel.setAttribute('aria-hidden', 'true');
+    sentinel.style.cssText = 'position: relative; height: 1px; width: 100%; pointer-events: none;';
+    controlsSection.parentNode.insertBefore(sentinel, controlsSection);
+
+    let morphed = false;
+    function collapseUI() {
+        // Colapsa search y dropdown sin perder el query activo
+        document.body.classList.remove('search-open');
+        searchTrigger.setAttribute('aria-expanded', 'false');
+        closeFilterMenu();
+    }
+    function morphIn() {
+        if (morphed) return;
+        collapseUI();
+        moveables.forEach(el => headerControls.appendChild(el));
+        document.body.classList.add('header-has-controls');
+        morphed = true;
+    }
+    function morphOut() {
+        if (!morphed) return;
+        collapseUI();
+        moveables.forEach(el => controlsRowEl.appendChild(el));
+        document.body.classList.remove('header-has-controls');
+        morphed = false;
+    }
+
+    const obs = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) morphOut();
+            else morphIn();
+        });
+    }, { rootMargin: '-120px 0px 0px 0px', threshold: 0 });
+    obs.observe(sentinel);
+})();
+</script>
+
+</body>
+</html>
