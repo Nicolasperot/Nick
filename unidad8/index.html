@@ -59,18 +59,18 @@
   @keyframes presence-pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.85; transform: scale(1.08); } }
   @keyframes presence-ring { 0% { transform: scale(1); opacity: 0.55; } 80% { transform: scale(2.6); opacity: 0; } 100% { transform: scale(2.6); opacity: 0; } }
 
-  /* Reveal-on-scroll */
-  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  /* Reveal-on-scroll · 0.45s ease-out · translación 18px (snappy, no demora) */
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.45s ease-out, transform 0.45s ease-out; }
   .reveal.in-view { opacity: 1; transform: translateY(0); }
-  .reveal-left { opacity: 0; transform: translateX(-30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal-left { opacity: 0; transform: translateX(-18px); transition: opacity 0.45s ease-out, transform 0.45s ease-out; }
   .reveal-left.in-view { opacity: 1; transform: translateX(0); }
-  .reveal-right { opacity: 0; transform: translateX(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal-right { opacity: 0; transform: translateX(18px); transition: opacity 0.45s ease-out, transform 0.45s ease-out; }
   .reveal-right.in-view { opacity: 1; transform: translateX(0); }
-  .reveal-scale { opacity: 0; transform: scale(0.95); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal-scale { opacity: 0; transform: scale(0.97); transition: opacity 0.4s ease-out, transform 0.4s ease-out; }
   .reveal-scale.in-view { opacity: 1; transform: scale(1); }
-  .reveal-delay-1 { transition-delay: 0.1s; }
-  .reveal-delay-2 { transition-delay: 0.2s; }
-  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-1 { transition-delay: 0.08s; }
+  .reveal-delay-2 { transition-delay: 0.16s; }
+  .reveal-delay-3 { transition-delay: 0.24s; }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html {
@@ -229,8 +229,8 @@
   .sidebar-collapse::after {
     content: 'Ocultar';
     position: absolute;
-    right: 100%; top: 50%; transform: translateY(-50%) translateX(0);
-    margin-right: 8px;
+    top: 100%; right: 0; transform: translateY(0);
+    margin-top: 6px;
     font-size: 0.62em; text-transform: uppercase;
     letter-spacing: 1.5px; font-weight: 700;
     color: var(--color-soft);
@@ -244,7 +244,7 @@
   }
   .sidebar-collapse:hover::after {
     opacity: 1;
-    transform: translateY(-50%) translateX(-2px);
+    transform: translateY(2px);
   }
 
   .sidebar-expand {
@@ -260,7 +260,7 @@
     align-items: center;
     justify-content: center;
     padding: 0;
-    z-index: 95;
+    z-index: 96;
     box-shadow: 0 6px 18px rgba(42,17,51,0.45), inset 0 1px 0 rgba(255,255,255,0.1);
     transition: background 0.25s, transform 0.25s, box-shadow 0.25s, border-color 0.25s;
   }
@@ -388,6 +388,31 @@
     margin-bottom: 18px; text-transform: uppercase;
     border: 1px solid rgba(210,180,222,0.2);
   }
+  /* Row con el badge y el botón Aula Virtual (compacto · sólo ícono) */
+  .sidebar-badge-row {
+    display: flex; align-items: center; gap: 8px;
+    margin-bottom: 18px;
+  }
+  .sidebar-badge-row .sidebar-unit-badge { margin-bottom: 0; }
+  .sidebar-aula-btn {
+    flex-shrink: 0;
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 24px; height: 24px;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-anchor));
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.95em;
+    line-height: 1;
+    border-radius: 50%;
+    border: 1px solid rgba(210,180,222,0.32);
+    box-shadow: 0 3px 8px rgba(74,35,90,0.32), inset 0 1px 0 rgba(255,255,255,0.15);
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+  }
+  .sidebar-aula-btn:hover {
+    transform: translateY(-1px);
+    background: linear-gradient(135deg, #a35bc7, var(--color-anchor));
+    box-shadow: 0 5px 12px rgba(74,35,90,0.45), inset 0 1px 0 rgba(255,255,255,0.18);
+  }
 
   /* ═══════ TOGGLE DE EFECTOS VISUALES ═══════ */
   .fx-toggle {
@@ -484,6 +509,47 @@
   body.fx-off .hero-node { animation: none !important; }
   body.fx-off .doc-footer-brand-dot,
   body.fx-off .doc-footer-brand-dot::after { animation: none !important; }
+
+  /* ═══════ FX-OFF · "apagar lo verde" del checklist ═══════
+     Reemplaza los tildes verdes y la barra verde por tonos neutros.
+     El usuario sigue viendo qué visitó, pero sin colorante celebratorio. */
+  body.fx-off .sidebar nav a.visited::before {
+    background: rgba(255,255,255,0.18) !important;
+    color: rgba(255,255,255,0.6) !important;
+    box-shadow: 0 0 0 1.5px rgba(42,17,51,1) !important;
+  }
+  body.fx-off .sp-fill {
+    background: linear-gradient(90deg, rgba(255,255,255,0.18), rgba(255,255,255,0.32)) !important;
+    box-shadow: none !important;
+  }
+  body.fx-off .sp-count.is-complete strong { color: rgba(255,255,255,0.9) !important; }
+  body.fx-off .estacion.visited {
+    background: rgba(255,255,255,0.03) !important;
+    border-color: rgba(210,180,222,0.20) !important;
+  }
+  body.fx-off .estacion.visited .estacion-num {
+    background: rgba(255,255,255,0.18) !important;
+    color: rgba(255,255,255,0.85) !important;
+    border-color: transparent !important;
+  }
+  body.fx-off .estacion.visited::after {
+    color: rgba(255,255,255,0.55) !important;
+  }
+  body.fx-off .lg-item.is-done .lg-check {
+    background: rgba(0,0,0,0.15) !important;
+    border: 2px solid rgba(0,0,0,0.18) !important;
+    box-shadow: none !important;
+  }
+  body.fx-off .lg-item.is-done .lg-check::before {
+    background:
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23555555' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>") center/contain no-repeat !important;
+  }
+  body.fx-off .lg-item.is-done .lg-item-body h4 { color: var(--color-deepest) !important; }
+  body.fx-off .lg-item.is-done .lg-item-meta { color: var(--color-text-muted) !important; }
+  body.fx-off .lg-item.is-done .lg-item-meta .lgm-chip {
+    background: rgba(0,0,0,0.06) !important;
+    color: var(--color-text-secondary) !important;
+  }
 
   /* ═══════ PANEL DE PROGRESO DEL SIDEBAR ═══════ */
   .sidebar-progress {
@@ -685,16 +751,8 @@
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     font-size: 1.2em;
   }
-  @media (max-width: 1000px) {
-    .sidebar { transform: translateX(-100%); transition: transform 0.3s; }
-    .sidebar.open { transform: translateX(0); }
-    .doc-wrapper { margin-left: 0; padding: 70px 20px 60px; }
-    .mobile-toggle { display: block; }
-  }
-  @media print {
-    .sidebar, .scroll-top, .mobile-toggle, .progress-bar { display: none; }
-    .doc-wrapper { margin-left: 0; padding: 20px; }
-  }
+  /* (Las media queries de mobile/print están consolidadas más abajo,
+     después de los estilos del footer, para evitar duplicación.) */
 
   /* ============ HERO INTERNACIONAL ============ */
   .hero {
@@ -1273,6 +1331,42 @@
     .flashcards-grid { grid-template-columns: 1fr; gap: 12px; }
     .flashcard { height: 200px; }
     .flashcard-q { font-size: 0.94em; -webkit-line-clamp: 6; }
+  }
+
+  /* ════════════════════════════════════════════
+     CATHEDRA NOTICE · "Guía de cátedra"
+     ════════════════════════════════════════════ */
+  .cathedra-notice {
+    background: linear-gradient(135deg, #fdfbff, #f4f0f7);
+    border: 1px solid var(--color-border);
+    border-left: 4px solid var(--color-anchor);
+    border-radius: 10px;
+    padding: 22px 26px;
+    margin-top: 40px;
+    margin-bottom: 36px;
+    position: relative;
+  }
+  .cathedra-notice .nc-tag {
+    display: inline-block;
+    font-size: 0.65em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--color-anchor);
+    font-weight: 700;
+    padding: 3px 10px;
+    background: rgba(74,35,90,0.08);
+    border-radius: 12px;
+    margin-bottom: 10px;
+  }
+  .cathedra-notice p {
+    margin: 0;
+    color: var(--color-text-secondary);
+    font-size: 0.95em;
+    line-height: 1.6;
+  }
+  .cathedra-notice strong { color: var(--color-anchor); font-weight: 700; }
+  @media (max-width: 800px) {
+    .cathedra-notice { padding: 18px 20px; margin-top: 30px; }
   }
 
   /* ════════════════════════════════════════════
@@ -3625,14 +3719,39 @@
     cursor: pointer;
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     font-size: 1.2em;
+    transition: transform 0.2s, opacity 0.2s;
   }
+  /* Cuando el sidebar mobile está abierto, ocultamos el hamburger para
+     que no se superponga visualmente con el contenido del sidebar */
+  body.sidebar-open-mobile .mobile-toggle {
+    opacity: 0;
+    transform: translateX(-10px);
+    pointer-events: none;
+  }
+  /* Backdrop oscuro detrás del sidebar abierto en mobile */
+  .sidebar-backdrop {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(26,8,34,0.55);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    z-index: 95;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .sidebar-backdrop.show { opacity: 1; }
+  /* Bloqueo de scroll del body cuando el sidebar mobile está abierto */
+  body.sidebar-open-mobile { overflow: hidden; touch-action: none; }
 
   /* ════════ RESPONSIVE ════════ */
   @media (max-width: 1000px) {
-    .sidebar { transform: translateX(-100%); transition: transform 0.3s; }
-    .sidebar.open { transform: translateX(0); }
+    .sidebar { transform: translateX(-100%); transition: transform 0.3s cubic-bezier(.4,0,.2,1); }
+    .sidebar.open { transform: translateX(0); box-shadow: 8px 0 32px rgba(0,0,0,0.4); }
     .doc-wrapper { margin-left: 0; padding: 70px 20px 60px; }
     .mobile-toggle { display: block; }
+    .sidebar-backdrop { display: block; pointer-events: none; }
+    .sidebar.open ~ .sidebar-backdrop,
+    .sidebar-backdrop.show { pointer-events: auto; }
     .progress-bar-bottom { left: 0; }
     .progress-percent { left: 16px; bottom: 22px; }
     .hero { margin: -70px -20px 30px; }
@@ -3691,7 +3810,7 @@
      SIDEBAR
      ══════════════════════════════════════════════ -->
 <aside class="sidebar" id="sidebar">
-  <button class="sidebar-collapse" id="sidebarCollapse" type="button" title="Ocultar panel de navegación" aria-label="Ocultar panel de navegación">
+  <button class="sidebar-collapse" id="sidebarCollapse" type="button" title="Ocultar panel de navegación" aria-label="Ocultar panel de navegación" aria-controls="sidebar">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
       <rect x="3" y="4" width="18" height="16" rx="2"/>
       <line x1="9" y1="4" x2="9" y2="20"/>
@@ -3711,7 +3830,10 @@
     </a>
   </div>
   <span class="sidebar-subtitle">El Sistema Capitalista Internacional</span>
-  <span class="sidebar-unit-badge">Unidad 08</span>
+  <div class="sidebar-badge-row">
+    <span class="sidebar-unit-badge">Unidad 08</span>
+    <a href="https://servicios.unl.edu.ar/aulavirtual/fcjs/" class="sidebar-aula-btn" target="_blank" rel="noopener" title="Volver al Aula Virtual" aria-label="Volver al Aula Virtual">⌂</a>
+  </div>
 
   <!-- Toggle de efectos visuales -->
   <button class="fx-toggle" id="fxToggle" type="button" aria-pressed="true" aria-label="Activar o desactivar efectos visuales">
@@ -3759,8 +3881,9 @@
   </div>
 </aside>
 
-<button class="mobile-toggle" id="mobileToggle" aria-label="Abrir navegación">☰</button>
-<button class="sidebar-expand" id="sidebarExpand" type="button" title="Mostrar panel de navegación" aria-label="Mostrar panel de navegación">
+<button class="mobile-toggle" id="mobileToggle" type="button" aria-label="Abrir navegación" aria-controls="sidebar" aria-expanded="false">☰</button>
+<div class="sidebar-backdrop" id="sidebarBackdrop" aria-hidden="true"></div>
+<button class="sidebar-expand" id="sidebarExpand" type="button" title="Mostrar panel de navegación" aria-label="Mostrar panel de navegación" aria-controls="sidebar">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
     <rect x="3" y="4" width="18" height="16" rx="2"/>
     <line x1="9" y1="4" x2="9" y2="20"/>
@@ -4203,6 +4326,23 @@
     </div>
 
   </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     AVISO DE CÁTEDRA · guía de lectura
+     ═══════════════════════════════════════════ -->
+<div class="cathedra-notice reveal">
+  <span class="nc-tag">Guía de cátedra</span>
+  <p>
+    Este es un <strong>documento de cátedra</strong> pensado como <strong>guía de
+    lectura</strong>: acompaña el estudio pero <strong>no reemplaza</strong> el trabajo
+    con la bibliografía obligatoria. Las instancias de evaluación se realizan
+    <strong>sobre el contenido del material de la bibliografía obligatoria</strong>
+    (Lafferriere · <em>Orígenes y Evolución del Sistema Capitalista Internacional</em>;
+    Córdova · <em>Crisis económica mundial y futuro de América Latina</em>;
+    Sevares · <em>El Imperio de las Finanzas</em>, caps. 1–3; y
+    Vázquez Barquero · <em>Desarrollo, redes e innovación</em>, cap. 1).
+  </p>
 </div>
 
 <!-- ═══════════════════════════════════════════
@@ -5608,17 +5748,48 @@
   });
 })();
 
-// ════════ MOBILE TOGGLE ════════
+// ════════ MOBILE TOGGLE · sidebar + backdrop + body-lock + ESC ════════
 const sidebar = document.getElementById('sidebar');
 const mobileToggle = document.getElementById('mobileToggle');
-if (mobileToggle) {
-  mobileToggle.addEventListener('click', () => sidebar.classList.toggle('open'));
+const sidebarBackdrop = document.getElementById('sidebarBackdrop');
+
+function setSidebarOpen(open) {
+  sidebar.classList.toggle('open', open);
+  if (sidebarBackdrop) sidebarBackdrop.classList.toggle('show', open);
+  document.body.classList.toggle('sidebar-open-mobile', open);
+  if (mobileToggle) {
+    mobileToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    mobileToggle.setAttribute('aria-label', open ? 'Cerrar navegación' : 'Abrir navegación');
+  }
 }
-sidebar.querySelectorAll('nav a').forEach(a => {
+
+if (mobileToggle) {
+  mobileToggle.addEventListener('click', () => {
+    setSidebarOpen(!sidebar.classList.contains('open'));
+  });
+}
+// Click en el backdrop cierra el sidebar
+if (sidebarBackdrop) {
+  sidebarBackdrop.addEventListener('click', () => setSidebarOpen(false));
+}
+// Click en cualquier link del sidebar lo cierra (en mobile)
+sidebar.querySelectorAll('nav a, .sidebar-aula-btn, .sidebar-nav-arrow').forEach(a => {
   a.addEventListener('click', () => {
-    if (window.innerWidth <= 1000) sidebar.classList.remove('open');
+    if (window.innerWidth <= 1000) setSidebarOpen(false);
   });
 });
+// ESC cierra el sidebar (mobile)
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && sidebar.classList.contains('open') && window.innerWidth <= 1000) {
+    setSidebarOpen(false);
+  }
+});
+// Si la ventana se agranda más allá del mobile, descartar el estado open
+window.addEventListener('resize', () => {
+  if (window.innerWidth > 1000 && sidebar.classList.contains('open')) {
+    setSidebarOpen(false);
+  }
+}, { passive: true });
 
 // ════════ COLAPSAR/EXPANDIR SIDEBAR (escritorio) ════════
 (function() {
@@ -5645,12 +5816,22 @@ sidebar.querySelectorAll('nav a').forEach(a => {
   collapseBtn.addEventListener('click', () => setCollapsed(true));
   expandBtn.addEventListener('click',  () => setCollapsed(false));
 
-  // En mobile el estado colapsado no aplica · quitar la clase si se achica la ventana
+  // Resize: en mobile la clase no aplica; al volver a desktop, restaurar
+  // el estado guardado (sino se desincroniza con localStorage).
   window.addEventListener('resize', () => {
-    if (window.innerWidth <= 1000 && document.body.classList.contains('sidebar-collapsed')) {
-      document.body.classList.remove('sidebar-collapsed');
+    if (window.innerWidth <= 1000) {
+      if (document.body.classList.contains('sidebar-collapsed')) {
+        document.body.classList.remove('sidebar-collapsed');
+      }
+    } else {
+      try {
+        if (localStorage.getItem(COLLAPSE_KEY) === '1' &&
+            !document.body.classList.contains('sidebar-collapsed')) {
+          setCollapsed(true, false);
+        }
+      } catch (e) {}
     }
-  });
+  }, { passive: true });
 })();
 
 // ════════ PROGRESS BAR INFERIOR (con porcentaje + hitos) ════════
@@ -5794,29 +5975,74 @@ function fireConfetti(count = 60) {
   updateSidebarProgress();
   setTimeout(() => { window.__u8Hydrated = true; }, 200);
 
-  // Observer de visitados (al hacer scroll)
+  // ════════ DETECCIÓN DE VISITADOS POR SCROLL ════════
+  // Reemplazo del IntersectionObserver: era poco confiable con secciones
+  // cortas (objetivos, rubrica) y con la última (#sec-fuentes), que al
+  // estar al fondo nunca alcanzaba el threshold.
+  //
+  // Lógica nueva: una sección se marca como visitada cuando su parte
+  // superior cruza una "línea de lectura" en el 35% del viewport (desde
+  // arriba). Además, garantía de cobertura: si el usuario llega cerca
+  // del fondo de la página, todas las secciones se marcan.
   let hasScrolled = false;
-  window.addEventListener('scroll', () => { hasScrolled = true; }, { once: true, passive: true });
+  let cachedOffsets = null;
+  let scrollRafId = null;
 
-  const navObs = new IntersectionObserver((entries) => {
-    if (!hasScrolled) return;
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const data = linkByTarget.get(entry.target);
-        if (data) markVisited(data.id, true);
-      }
+  function computeOffsets() {
+    cachedOffsets = [];
+    linkByTarget.forEach((data, target) => {
+      cachedOffsets.push({ id: data.id, top: target.offsetTop });
     });
-  }, { threshold: 0.2, rootMargin: '0px 0px -30% 0px' });
+    cachedOffsets.sort((a, b) => a.top - b.top);
+  }
 
-  linkByTarget.forEach((_, target) => navObs.observe(target));
+  function checkVisitedFromScroll() {
+    if (suppressVisits || !hasScrolled) return;
+    if (scrollRafId !== null) return;
+    scrollRafId = requestAnimationFrame(() => {
+      scrollRafId = null;
+      if (!cachedOffsets) computeOffsets();
+
+      const scrollY    = window.scrollY;
+      const viewportH  = window.innerHeight;
+      const docH       = document.documentElement.scrollHeight;
+      const readingLine = scrollY + viewportH * 0.35;
+      const nearBottom = (scrollY + viewportH) >= (docH - 80);
+
+      cachedOffsets.forEach(({ id, top }) => {
+        if (nearBottom || top <= readingLine) {
+          markVisited(id, true);
+        }
+      });
+    });
+  }
+
+  // Recalcular offsets en resize (cambian alturas al adaptarse) y cuando
+  // todo el layout esté listo (imágenes/fuentes pueden empujar las posiciones)
+  let resizeT;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeT);
+    resizeT = setTimeout(() => { cachedOffsets = null; checkVisitedFromScroll(); }, 120);
+  }, { passive: true });
+  window.addEventListener('load', () => { cachedOffsets = null; }, { passive: true, once: true });
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(() => { cachedOffsets = null; });
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!hasScrolled) hasScrolled = true;
+    checkVisitedFromScroll();
+  }, { passive: true });
 
   if (spReset) {
     spReset.addEventListener('click', () => {
       if (!confirm('¿Reiniciar tu progreso en esta unidad? Se borrarán las secciones visitadas y las respuestas a quizzes, emparejamientos y reflexiones.')) return;
 
-      // Activar bandera anti-rebote ANTES de hacer cualquier cosa para evitar
-      // que el observador re-marque secciones durante el scroll.
+      // Activar banderas anti-rebote ANTES de hacer cualquier cosa para evitar
+      // que (a) el detector de scroll re-marque secciones durante el scroll-up
+      // (b) el auto-scroll del sidebar se dispare por el cambio de sección activa.
       suppressVisits = true;
+      window.__u8SuppressAutoScroll = true;
 
       // 1 · sidebar + estaciones
       visitedIds.clear();
@@ -5898,9 +6124,12 @@ function fireConfetti(count = 60) {
       window.scrollTo(0, 0);
       __htmlEl.style.scrollBehavior = __prevScrollBehavior;
 
-      // Liberar la bandera tras una pausa generosa. Garantizado vía setTimeout
+      // Liberar las banderas tras una pausa generosa. Garantizado vía setTimeout
       // simple (sin rAF anidados que podrían no dispararse en pestañas inactivas).
-      setTimeout(() => { suppressVisits = false; }, 700);
+      setTimeout(() => {
+        suppressVisits = false;
+        window.__u8SuppressAutoScroll = false;
+      }, 700);
     });
   }
 })();
@@ -5977,6 +6206,8 @@ function fireConfetti(count = 60) {
 })();
 
 // ════════ REVEAL ON SCROLL ════════
+// Triggers as soon as the element starts to enter the viewport (with a 200px
+// pre-trigger zone) for a snappy feel — no more "waiting" for content to appear.
 (function() {
   const items = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
   if (!items.length || !('IntersectionObserver' in window)) {
@@ -5990,13 +6221,18 @@ function fireConfetti(count = 60) {
         obs.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
+  }, { threshold: 0.01, rootMargin: '0px 0px 200px 0px' });
   items.forEach(i => obs.observe(i));
 })();
 
-// ════════ ACTIVE SECTION HIGHLIGHTING ════════
+// ════════ ACTIVE SECTION HIGHLIGHTING + AUTO-SCROLL SIDEBAR ════════
 const navSections = document.querySelectorAll('section[id], header[id]');
 const navLinksArr = sidebar.querySelectorAll('nav a');
+let __u8LastActiveId = null;
+// Bandera global · permite al botón "Reiniciar" cortar momentáneamente
+// el auto-scroll del sidebar durante su scrollTo(0,0).
+window.__u8SuppressAutoScroll = false;
+
 function updateActiveSection() {
   const scrollPos = window.scrollY + 120;
   let currentId = '';
@@ -6007,8 +6243,40 @@ function updateActiveSection() {
   navLinksArr.forEach(link => {
     link.classList.toggle('active', link.getAttribute('href') === '#' + currentId);
   });
+
+  // Auto-scroll sidebar · busca centrar el link activo (más natural que
+  // 'nearest'). Para las últimas 3 entradas del nav usamos 'nearest' así
+  // no se fuerza scroll que dejaría espacio vacío debajo.
+  if (currentId !== __u8LastActiveId) {
+    __u8LastActiveId = currentId;
+    if (window.__u8SuppressAutoScroll) return; // durante reset, no auto-scroll
+    const isAtTop    = window.scrollY < 240;
+    const docH       = document.documentElement.scrollHeight;
+    const isAtBottom = (window.scrollY + window.innerHeight) >= (docH - 200);
+    const sidebarVisible =
+      (window.innerWidth > 1000 && !document.body.classList.contains('sidebar-collapsed'))
+      || (window.innerWidth <= 1000 && sidebar.classList.contains('open'));
+
+    if (!isAtTop && !isAtBottom && sidebarVisible) {
+      const active = sidebar.querySelector('nav a.active');
+      if (active && typeof active.scrollIntoView === 'function') {
+        // ¿Es de las últimas 3 entradas? (objetivos · rúbrica · bibliografía)
+        // Para ellas no centramos — quedan naturalmente abajo del nav.
+        const allNavLinks = [...sidebar.querySelectorAll('nav a[href^="#"]')];
+        const activeIdx = allNavLinks.indexOf(active);
+        const isNearEnd = activeIdx >= 0 && activeIdx >= allNavLinks.length - 3;
+
+        const wantsReduced = window.matchMedia &&
+          window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        active.scrollIntoView({
+          block: isNearEnd ? 'nearest' : 'center',
+          behavior: wantsReduced || window.__u8FxEnabled === false ? 'auto' : 'smooth'
+        });
+      }
+    }
+  }
 }
-window.addEventListener('scroll', updateActiveSection);
+window.addEventListener('scroll', updateActiveSection, { passive: true });
 updateActiveSection();
 </script>
 
