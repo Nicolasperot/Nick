@@ -99,6 +99,36 @@ body{font-family:var(--sans);background:var(--bg);color:var(--dark-txt);line-hei
 [data-theme="dark"] .tool-btn .sun{display:block}[data-theme="dark"] .tool-btn .moon{display:none}
 .tool-btn .sun{display:none}.tool-btn .moon{display:block}
 
+/* MOBILE NAV — botón hamburguesa + panel desplegable integrado al header flotante */
+.mobile-menu-btn{display:none}
+@media (max-width:1019px){.mobile-menu-btn{display:flex}}
+.mobile-menu-btn .menu-icon-close{display:none}
+.mobile-menu-btn[aria-expanded="true"] .menu-icon-bars{display:none}
+.mobile-menu-btn[aria-expanded="true"] .menu-icon-close{display:block}
+.mobile-menu-btn[aria-expanded="true"]{background:var(--navy);color:#fff;border-color:var(--navy)}
+[data-theme="dark"] .mobile-menu-btn[aria-expanded="true"]{background:#5BA8E0;color:#0B1620;border-color:#5BA8E0}
+
+.mobile-nav{max-height:0;overflow:hidden;transition:max-height .35s var(--ease),margin-top .25s var(--ease),padding-top .25s var(--ease),border-top-color .25s var(--ease);border-top:1px solid transparent;margin-top:0;padding:0 8px}
+.mobile-nav[aria-hidden="false"]{max-height:480px;margin-top:10px;padding-top:8px;padding-bottom:6px;border-top-color:var(--line-soft)}
+.mobile-nav-inner{display:flex;flex-direction:column;gap:2px}
+.mobile-nav-inner a{display:flex;align-items:center;justify-content:space-between;color:var(--soft-txt);text-decoration:none;font-family:var(--sans);font-size:14.5px;font-weight:500;padding:11px 14px;border-radius:10px;transition:all .18s var(--ease)}
+.mobile-nav-inner a:hover,.mobile-nav-inner a:focus-visible{color:var(--navy);background:var(--accent);outline:none}
+.mobile-nav-inner a.active{color:var(--navy);background:var(--accent);font-weight:600}
+.mobile-nav-dot{width:6px;height:6px;border-radius:50%;background:transparent;transition:background .2s var(--ease)}
+.mobile-nav-inner a.active .mobile-nav-dot{background:var(--blue);box-shadow:0 0 0 3px rgba(37,99,168,.18)}
+[data-theme="dark"] .mobile-nav-inner a:hover,[data-theme="dark"] .mobile-nav-inner a.active{color:#7FB9E8;background:rgba(91,168,224,.1)}
+[data-theme="dark"] .mobile-nav-inner a.active .mobile-nav-dot{background:#5BA8E0;box-shadow:0 0 0 3px rgba(91,168,224,.18)}
+@media (min-width:1020px){.mobile-nav{display:none!important}}
+
+/* Header compacto en pantallas muy chicas (para acomodar 4 tool-btns) */
+@media (max-width:480px){
+    .header-inner{padding:10px 14px;gap:10px}
+    .header-tools{gap:4px}
+    .tool-btn{width:32px;height:32px}
+    .tool-btn svg{width:14px;height:14px}
+    .brand-version{display:none}
+}
+
 /* SPY NAV */
 .spy-nav{position:fixed;left:18px;top:50%;transform:translateY(-50%);z-index:80;display:none;flex-direction:column;gap:3px}
 @media (min-width:1440px){.spy-nav{display:flex}}
@@ -731,6 +761,10 @@ section[id],article[id]{scroll-margin-top:100px}
             <a href="#adhesion">Adherir</a>
         </nav>
         <div class="header-tools">
+            <button class="tool-btn mobile-menu-btn" id="mobileMenuBtn" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="mobileNav">
+                <svg class="menu-icon-bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+                <svg class="menu-icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="6" y1="18" x2="18" y2="6"/></svg>
+            </button>
             <button class="tool-btn" id="themeToggle" aria-label="Cambiar tema">
                 <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
                 <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
@@ -743,6 +777,17 @@ section[id],article[id]{scroll-margin-top:100px}
             </button>
         </div>
     </div>
+    <nav class="mobile-nav" id="mobileNav" aria-hidden="true" aria-label="Navegación móvil">
+        <div class="mobile-nav-inner">
+            <a href="#manifiesto">Manifiesto<span class="mobile-nav-dot"></span></a>
+            <a href="#marcos">Marcos<span class="mobile-nav-dot"></span></a>
+            <a href="#riesgo">Riesgo<span class="mobile-nav-dot"></span></a>
+            <a href="#principios">Principios<span class="mobile-nav-dot"></span></a>
+            <a href="#autoevaluacion">Autoevaluación<span class="mobile-nav-dot"></span></a>
+            <a href="#gobernanza">Gobernanza<span class="mobile-nav-dot"></span></a>
+            <a href="#adhesion">Adherir<span class="mobile-nav-dot"></span></a>
+        </div>
+    </nav>
 </header>
 
 <nav class="spy-nav" id="spyNav" aria-label="Navegación rápida">
@@ -1881,6 +1926,34 @@ document.getElementById('shareBtn').addEventListener('click', async () => {
     else { navigator.clipboard.writeText(url); showToast('Enlace copiado'); }
 });
 
+// MOBILE NAV — toggle + cierre por link, escape, o click afuera
+const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+const mobileNav = document.getElementById('mobileNav');
+function setMobileNavOpen(open){
+    mobileMenuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    mobileNav.setAttribute('aria-hidden', open ? 'false' : 'true');
+    mobileMenuBtn.setAttribute('aria-label', open ? 'Cerrar menú de navegación' : 'Abrir menú de navegación');
+}
+mobileMenuBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
+    setMobileNavOpen(!isOpen);
+});
+mobileNav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => setMobileNavOpen(false));
+});
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mobileMenuBtn.getAttribute('aria-expanded') === 'true'){
+        setMobileNavOpen(false);
+        mobileMenuBtn.focus();
+    }
+});
+document.addEventListener('click', (e) => {
+    if (mobileMenuBtn.getAttribute('aria-expanded') !== 'true') return;
+    if (mobileMenuBtn.contains(e.target) || mobileNav.contains(e.target)) return;
+    setMobileNavOpen(false);
+});
+
 // REVEAL ON SCROLL — trigger antes de entrar al viewport, animación más corta
 const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -1889,9 +1962,9 @@ const revealObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0, rootMargin: '0px 0px 250px 0px' });
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-// SCROLL SPY (sidebar + header nav)
+// SCROLL SPY (sidebar + header nav + mobile nav)
 const spyItems = document.querySelectorAll('.spy-nav-item');
-const headerLinks = document.querySelectorAll('.header-nav a');
+const navLinks = document.querySelectorAll('.header-nav a, .mobile-nav-inner a');
 const principles = document.querySelectorAll('.principle');
 const sections = document.querySelectorAll('section[id], article[id]');
 const spyObserver = new IntersectionObserver((entries) => {
@@ -1899,7 +1972,7 @@ const spyObserver = new IntersectionObserver((entries) => {
         if (entry.isIntersecting) {
             const id = entry.target.id;
             spyItems.forEach(item => item.classList.toggle('active', item.dataset.target === id));
-            headerLinks.forEach(link => {
+            navLinks.forEach(link => {
                 const linkSection = link.getAttribute('href').replace('#','');
                 link.classList.toggle('active', linkSection === id);
             });
