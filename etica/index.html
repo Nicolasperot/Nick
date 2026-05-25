@@ -1,0 +1,2045 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nuestro código de ética · Nick Perot</title>
+<meta name="description" content="El código de ética que usamos en Nick Perot. Diez principios pragmáticos para trabajar con tecnología e IA con criterio, alineados a UNESCO, OCDE, EU AI Act, NIST AI RMF, ISO 42001 y GDPR.">
+<meta name="author" content="Nick Perot">
+<meta name="theme-color" content="#1A3A5C">
+<meta property="og:title" content="Nuestro código de ética · Nick Perot">
+<meta property="og:description" content="Diez principios alineados a marcos internacionales. Documento abierto, vivo y verificable.">
+<meta property="og:locale" content="es_AR">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%231A3A5C'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='Georgia' font-weight='700' font-size='18' fill='white'%3EN%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;0,800;0,900;1,400;1,700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --navy:#1A3A5C; --navy-deep:#0F2438; --navy-darker:#081722; --navy-soft:#2C4F76;
+    --blue:#2563A8; --blue-bright:#3B82D9; --blue-glow:#5BA8E0;
+    --silver:#8FA8C0; --mid-gray:#6B7E8F; --dark-txt:#1E2D3D; --soft-txt:#4A5C6E;
+    --line:#C5D5E8; --line-soft:#E3ECF5; --accent:#EFF4FA; --paper:#FBFAF6; --paper-warm:#F5F0E4;
+    --white:#FFFFFF; --bg:#FCFCFA;
+    --ember:#B8763B; --crimson:#A64242; --green:#3D8B5A; --gold:#C99B2E; --violet:#7659A6;
+    --sans:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+    --serif:'EB Garamond',Georgia,serif; --display:'Playfair Display',Georgia,serif;
+    --label:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+    --mono:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+    --container:1240px; --reading:720px;
+    --radius:4px; --radius-lg:12px; --radius-xl:20px;
+    --ease:cubic-bezier(0.25,0.8,0.25,1); --ease-out:cubic-bezier(0.16,1,0.3,1); --ease-spring:cubic-bezier(0.34,1.56,0.64,1);
+}
+[data-theme="dark"]{
+    --bg:#0B1620; --white:#142433; --paper:#0F1E2A; --paper-warm:#1A2A38;
+    --dark-txt:#E8EEF5; --soft-txt:#B8C5D2; --mid-gray:#8A9AAB; --silver:#6B7E8F;
+    --line:#2C4055; --line-soft:#1F3145; --accent:#1A2D40;
+    --navy:#5BA8E0; --navy-soft:#7FB9E8; --blue:#5BA8E0;
+}
+/* Dark mode: fixes legibilidad de elementos con fondo navy (logos, botones, sección oscura) */
+[data-theme="dark"] .brand-mark{background:#5BA8E0;color:#0B1620}
+[data-theme="dark"] .signature-mark{background:#5BA8E0;color:#0B1620}
+[data-theme="dark"] .btn-primary{background:#5BA8E0;color:#0B1620;box-shadow:0 6px 20px rgba(91,168,224,.22)}
+[data-theme="dark"] .btn-primary:hover{background:#7FB9E8;color:#0B1620;box-shadow:0 10px 28px rgba(91,168,224,.3)}
+[data-theme="dark"] .assessment{background:linear-gradient(135deg,#061320 0%,#0F2438 65%,#1A3A5C 100%)}
+[data-theme="dark"] .assessment::before{background-image:radial-gradient(circle,rgba(91,168,224,.08) 1px,transparent 1.5px)}
+[data-theme="dark"] .site-footer{background:#050D14}
+[data-theme="dark"] .audit-stamp-dot,[data-theme="dark"] .app-head-status::after,[data-theme="dark"] .control-card::before{box-shadow:0 0 0 3px rgba(61,139,90,.25)}
+[data-theme="dark"] .control-card{background:linear-gradient(135deg,rgba(61,139,90,.09),rgba(61,139,90,.16));border-color:rgba(61,139,90,.45)}
+[data-theme="dark"] .principle:nth-of-type(even) .control-card{background:linear-gradient(135deg,rgba(61,139,90,.12),rgba(61,139,90,.2))}
+[data-theme="dark"] .control-num,[data-theme="dark"] .control-ref::before,[data-theme="dark"] .app-head-status,[data-theme="dark"] .app-head-status strong{color:#7FCE9A}
+[data-theme="dark"] .control-check{background:#3D8B5A;border-color:#3D8B5A}
+[data-theme="dark"] .control-chip--prev{background:rgba(125,206,154,.18);color:#7FCE9A;border-color:rgba(125,206,154,.45)}
+[data-theme="dark"] .control-chip--det{background:rgba(91,168,224,.18);color:#7FB9E8;border-color:rgba(91,168,224,.45)}
+[data-theme="dark"] .control-chip--cor{background:rgba(212,149,91,.18);color:#D4955B;border-color:rgba(212,149,91,.45)}
+[data-theme="dark"] .control-chip--phase{background:rgba(255,255,255,.06);color:var(--dark-txt);border-color:rgba(255,255,255,.12)}
+[data-theme="dark"] .control-ref{border-top-color:rgba(125,206,154,.3)}
+[data-theme="dark"] .ai-notice-icon{background:linear-gradient(135deg,rgba(91,168,224,.12),rgba(91,168,224,.22));border-color:rgba(91,168,224,.35)}
+[data-theme="dark"] .rm-tier--prohibited{background:linear-gradient(180deg,var(--white) 0%,rgba(212,90,90,.1) 100%)}
+[data-theme="dark"] .callout--why{border-left-color:#D4955B}
+[data-theme="dark"] .callout--why .callout-label{color:#D4955B}
+[data-theme="dark"] .callout--why .callout-label::before{background:#D4955B}
+[data-theme="dark"] .callout--anti{border-left-color:#D45A5A}
+[data-theme="dark"] .callout--anti .callout-label{color:#D45A5A}
+[data-theme="dark"] .callout--anti .callout-label::before{background:#D45A5A}
+[data-theme="dark"] .antipattern-item{border-left-color:#D45A5A}
+[data-theme="dark"] .antipattern-num{color:#D45A5A}
+[data-theme="dark"] .principle-rule{border-left-color:#7FB9E8}
+[data-theme="dark"] .pullquote::before{background:var(--paper)}
+[data-theme="dark"] .stat:hover{border-left-color:#7FB9E8}
+[data-theme="dark"] .toc-card,[data-theme="dark"] .fm-card{border-color:var(--line)}
+[data-theme="dark"] .gloss-term-source{background:rgba(91,168,224,.14);color:#7FB9E8}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--dark-txt);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden;transition:background .3s var(--ease),color .3s var(--ease)}
+::selection{background:var(--navy);color:#fff}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}.reveal{opacity:1!important;transform:none!important}}
+
+/* PROGRESS BAR */
+.progress-bar{position:fixed;top:0;left:0;right:0;height:3px;z-index:200;pointer-events:none}
+.progress-bar-fill{height:100%;background:linear-gradient(to right,var(--navy),var(--blue),var(--blue-glow));width:0%;transition:width .1s linear;box-shadow:0 0 12px rgba(91,168,224,.5)}
+
+/* HEADER */
+.site-header{position:sticky;top:12px;z-index:100;margin:18px clamp(12px,2vw,24px) 0;background:rgba(252,252,250,.78);border:1px solid rgba(197,213,232,.45);border-radius:var(--radius-xl);backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);box-shadow:0 10px 36px rgba(26,58,92,.07),0 2px 8px rgba(26,58,92,.04);transition:all .25s var(--ease)}
+[data-theme="dark"] .site-header{background:rgba(15,30,42,.78);border-color:rgba(91,168,224,.2)}
+.header-inner{max-width:var(--container);margin:0 auto;padding:12px 22px;display:flex;align-items:center;gap:16px}
+.brand{font-weight:700;font-size:15px;color:var(--navy);text-decoration:none;display:flex;align-items:center;gap:12px;margin-right:auto}
+.brand-mark{width:32px;height:32px;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:700;font-size:16px;border-radius:4px;position:relative;overflow:hidden}
+.brand-mark::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 0%,rgba(255,255,255,.35) 50%,transparent 100%);transform:translateY(-110%);animation:scanline 6s ease-in-out infinite}
+@keyframes scanline{0%,55%{transform:translateY(-110%)}75%,100%{transform:translateY(110%)}}
+.brand-sub{color:var(--mid-gray);font-weight:400;font-size:13px;display:none}
+@media (min-width:720px){.brand-sub{display:inline}}
+.brand-version{font-family:var(--mono);font-size:10px;background:var(--accent);color:var(--navy);padding:2px 9px;border-radius:50px;font-weight:700;letter-spacing:.06em;margin-left:8px;border:1px solid var(--line)}
+.header-nav{display:none;align-items:center;gap:2px}
+@media (min-width:1020px){.header-nav{display:flex}}
+.header-nav a{color:var(--mid-gray);text-decoration:none;font-size:13px;font-weight:500;padding:7px 11px;border-radius:50px;transition:all .18s var(--ease)}
+.header-nav a:hover,.header-nav a.active{color:var(--navy);background:var(--accent)}
+.header-tools{display:flex;align-items:center;gap:6px}
+.tool-btn{width:36px;height:36px;border-radius:50%;background:transparent;border:1px solid var(--line);color:var(--mid-gray);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s var(--ease)}
+.tool-btn:hover{color:var(--navy);border-color:var(--blue);background:var(--accent)}
+.tool-btn svg{width:16px;height:16px}
+[data-theme="dark"] .tool-btn .sun{display:block}[data-theme="dark"] .tool-btn .moon{display:none}
+.tool-btn .sun{display:none}.tool-btn .moon{display:block}
+
+/* SPY NAV */
+.spy-nav{position:fixed;left:18px;top:50%;transform:translateY(-50%);z-index:80;display:none;flex-direction:column;gap:3px}
+@media (min-width:1440px){.spy-nav{display:flex}}
+.spy-nav-item{width:26px;height:26px;display:flex;align-items:center;justify-content:center;text-decoration:none;color:var(--silver);font-family:var(--mono);font-size:9.5px;font-weight:700;border-radius:50%;transition:all .2s var(--ease);position:relative;border:1px solid var(--line-soft);background:var(--bg)}
+.spy-nav-item::before{content:"";position:absolute;left:50%;top:100%;width:1px;height:5px;background:var(--line);transform:translateX(-50%)}
+.spy-nav-item:last-child::before{display:none}
+.spy-nav-item .label{position:absolute;left:100%;margin-left:12px;padding:5px 12px;background:var(--navy);color:#fff;font-family:var(--sans);font-size:12px;font-weight:500;border-radius:4px;white-space:nowrap;opacity:0;pointer-events:none;transform:translateX(-6px);transition:all .2s var(--ease)}
+.spy-nav-item:hover .label,.spy-nav-item:focus-visible .label{opacity:1;transform:translateX(0)}
+.spy-nav-item:hover,.spy-nav-item.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+.spy-nav-item.active{transform:scale(1.15);box-shadow:0 4px 12px rgba(26,58,92,.25)}
+
+/* HERO */
+.hero{background:var(--white);border-bottom:1px solid var(--line);padding:clamp(80px,12vw,140px) clamp(20px,4vw,48px) clamp(60px,9vw,100px);position:relative;overflow:hidden}
+.hero-inner{max-width:var(--container);margin:0 auto;position:relative}
+.hero-seal{position:absolute;top:clamp(32px,5vw,56px);right:clamp(20px,4vw,52px);width:clamp(180px,19vw,255px);height:clamp(180px,19vw,255px);color:var(--navy);z-index:5;opacity:.88;transition:opacity .3s var(--ease),transform .5s var(--ease-spring);text-decoration:none;display:block}
+.hero-seal:hover,.hero-seal:focus-visible{opacity:1;transform:rotate(4deg) scale(1.05);outline:none}
+.hero-seal svg{width:100%;height:100%;display:block}
+.hero-seal-spin{animation:seal-rotate 42s linear infinite;transform-origin:center}
+@media (max-width:768px){.hero-seal{width:clamp(110px,17vw,156px);height:clamp(110px,17vw,156px);opacity:.78}}
+@media (max-width:540px){.hero-seal{top:22px;right:18px;width:108px;height:108px;opacity:.72}}
+.hero-label{font-size:12px;font-weight:700;color:var(--silver);text-transform:uppercase;letter-spacing:.18em;margin-bottom:28px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.hero-label::before{content:"";display:block;width:36px;height:2px;background:var(--blue)}
+.hero-label .dot{display:inline-block;width:6px;height:6px;background:var(--blue);border-radius:50%;margin-left:6px;animation:blink 1.8s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+.hero-title{font-family:var(--display);font-size:clamp(46px,7.5vw,92px);font-weight:700;color:var(--navy);line-height:.98;letter-spacing:-.03em;margin-bottom:30px;max-width:1000px}
+.hero-title em{font-style:italic;color:var(--blue);font-weight:400}
+.hero-sub{font-family:var(--serif);font-size:clamp(20px,2.2vw,26px);color:var(--soft-txt);font-style:italic;max-width:820px;margin-bottom:46px;line-height:1.5}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:50px}
+.btn-primary,.btn-secondary{display:inline-flex;align-items:center;gap:10px;padding:14px 22px;border-radius:50px;text-decoration:none;font-size:14px;font-weight:600;transition:all .2s var(--ease);cursor:pointer;border:none;font-family:var(--sans)}
+.btn-primary{background:var(--navy);color:#fff;box-shadow:0 6px 20px rgba(26,58,92,.18)}
+.btn-primary:hover{background:var(--navy-deep);transform:translateY(-2px);box-shadow:0 10px 28px rgba(26,58,92,.25)}
+.btn-secondary{background:transparent;color:var(--navy);border:1px solid var(--line)}
+.btn-secondary:hover{border-color:var(--blue);color:var(--blue);background:var(--accent)}
+.hero-meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:24px 36px;padding-top:36px;border-top:1px solid var(--line);font-size:13px;color:var(--mid-gray)}
+.hero-meta strong{color:var(--navy);font-weight:600}
+.hero-meta a{color:var(--navy);font-weight:500;text-decoration:none;border-bottom:1px solid var(--line);transition:all .2s var(--ease)}
+.hero-meta a:hover{color:var(--blue);border-bottom-color:var(--blue)}
+.hero-meta-item{display:flex;flex-direction:column;gap:4px}
+.hero-meta-label{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.1em;color:var(--silver);font-weight:600}
+
+/* MANIFIESTO */
+.manifesto{background:var(--paper);border-bottom:1px solid var(--line);padding:clamp(70px,10vw,120px) clamp(20px,4vw,48px)}
+.manifesto-inner{max-width:var(--reading);margin:0 auto;position:relative}
+.section-eyebrow{font-family:var(--mono);font-size:11px;color:var(--ember);text-transform:uppercase;letter-spacing:.18em;font-weight:600;margin-bottom:22px;display:flex;align-items:center;gap:10px}
+.section-eyebrow::before{content:"";width:28px;height:1px;background:var(--ember)}
+.manifesto h2{font-family:var(--display);font-size:clamp(32px,4.5vw,50px);font-weight:700;color:var(--navy);line-height:1.05;letter-spacing:-.025em;margin-bottom:36px}
+.manifesto h2 em{font-style:italic;color:var(--blue);font-weight:400}
+.manifesto p{font-family:var(--serif);font-size:clamp(19px,2.1vw,22px);line-height:1.65;color:var(--dark-txt);margin-bottom:22px}
+.manifesto p:first-of-type::first-letter{font-family:var(--display);font-weight:700;font-size:4.8em;float:left;line-height:.88;margin:8px 14px 0 -4px;color:var(--navy)}
+.manifesto p strong{color:var(--navy);font-weight:600}
+.manifesto-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:24px;margin:50px 0;padding:32px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.stat{display:flex;flex-direction:column;gap:6px;position:relative;padding-left:14px;border-left:2px solid var(--line)}
+.stat:hover{border-left-color:var(--blue)}
+.stat-num{font-family:var(--display);font-size:clamp(34px,4vw,48px);font-weight:700;color:var(--navy);line-height:1;letter-spacing:-.02em}
+.stat-num em{font-style:italic;color:var(--blue)}
+.stat-label{font-size:12px;color:var(--mid-gray);text-transform:uppercase;letter-spacing:.06em;font-weight:500;margin-top:4px}
+
+.pullquote{margin:50px 0;padding:36px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);text-align:center;position:relative}
+.pullquote::before{content:"\201C";position:absolute;top:-28px;left:50%;transform:translateX(-50%);font-family:var(--display);font-size:80px;color:var(--blue);line-height:1;background:var(--paper);padding:0 18px;font-style:italic}
+.pullquote p{font-family:var(--display);font-style:italic;font-size:clamp(22px,2.6vw,30px);font-weight:400;color:var(--navy);line-height:1.3;max-width:620px;margin:0 auto 16px}
+.pullquote p::first-letter{font-size:1em;float:none;margin:0;color:inherit}
+.pullquote cite{font-family:var(--mono);font-size:12px;color:var(--silver);text-transform:uppercase;letter-spacing:.12em;font-style:normal;font-weight:600}
+
+/* FRAMEWORK MAPPING */
+.framework-map{background:var(--bg);border-bottom:1px solid var(--line);padding:clamp(70px,10vw,110px) clamp(20px,4vw,48px)}
+.fm-inner{max-width:var(--container);margin:0 auto}
+.section-label{font-family:var(--mono);font-size:11px;color:var(--silver);text-transform:uppercase;letter-spacing:.18em;font-weight:600;margin-bottom:16px;display:flex;align-items:center;gap:12px}
+.section-label::before{content:"";width:32px;height:1px;background:var(--silver)}
+.section-title{font-family:var(--display);font-size:clamp(34px,5vw,56px);font-weight:700;color:var(--navy);letter-spacing:-.025em;line-height:1.05;margin-bottom:16px;max-width:900px}
+.section-title em{font-style:italic;color:var(--blue);font-weight:400}
+.section-lead{font-family:var(--serif);font-size:clamp(18px,2vw,22px);color:var(--soft-txt);font-style:italic;max-width:740px;line-height:1.55;margin-bottom:50px}
+
+.fm-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:40px}
+.fm-card{background:var(--white);border:1px solid var(--line-soft);border-radius:var(--radius-lg);padding:22px 24px;transition:all .2s var(--ease);position:relative;overflow:hidden}
+.fm-card:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(26,58,92,.07);border-color:var(--blue)}
+.fm-card-acronym{font-family:var(--display);font-size:24px;font-weight:800;color:var(--navy);letter-spacing:-.02em;margin-bottom:4px}
+.fm-card-acronym em{font-style:italic;color:var(--blue);font-weight:400}
+.fm-card-name{font-size:13px;color:var(--mid-gray);font-weight:500;line-height:1.4;margin-bottom:14px;padding-bottom:14px;border-bottom:1px dashed var(--line-soft)}
+.fm-card-mapping{font-family:var(--mono);font-size:11px;color:var(--soft-txt);line-height:1.6}
+.fm-card-mapping strong{color:var(--navy);font-weight:700;display:block;font-size:10px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px}
+.fm-card-link{margin-top:14px;padding-top:14px;border-top:1px dashed var(--line-soft);font-size:12px;color:var(--blue);text-decoration:none;display:flex;align-items:center;gap:6px;font-weight:600}
+.fm-card-link:hover{color:var(--navy)}
+
+/* RISK MATRIX */
+.risk-matrix{background:var(--paper);border-bottom:1px solid var(--line);padding:clamp(70px,10vw,110px) clamp(20px,4vw,48px)}
+.rm-inner{max-width:var(--container);margin:0 auto}
+.rm-grid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:40px}
+@media (min-width:720px){.rm-grid{grid-template-columns:1fr 1fr}}
+@media (min-width:1080px){.rm-grid{grid-template-columns:repeat(4,1fr)}}
+.rm-tier{background:var(--white);border:1px solid var(--line-soft);border-radius:var(--radius-lg);padding:24px;position:relative;display:flex;flex-direction:column;gap:14px;transition:all .25s var(--ease)}
+.rm-tier:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(26,58,92,.08)}
+.rm-tier-level{display:flex;justify-content:space-between;align-items:baseline}
+.rm-tier-num{font-family:var(--display);font-size:48px;font-weight:800;line-height:1;letter-spacing:-.04em}
+.rm-tier-badge{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.12em;font-weight:700;padding:4px 10px;border-radius:50px;color:#fff}
+.rm-tier--low{border-top:4px solid var(--green)}
+.rm-tier--low .rm-tier-num,.rm-tier--low .rm-tier-name{color:var(--green)}
+.rm-tier--low .rm-tier-badge{background:var(--green)}
+.rm-tier--medium{border-top:4px solid var(--gold)}
+.rm-tier--medium .rm-tier-num,.rm-tier--medium .rm-tier-name{color:var(--gold)}
+.rm-tier--medium .rm-tier-badge{background:var(--gold)}
+.rm-tier--high{border-top:4px solid var(--ember)}
+.rm-tier--high .rm-tier-num,.rm-tier--high .rm-tier-name{color:var(--ember)}
+.rm-tier--high .rm-tier-badge{background:var(--ember)}
+.rm-tier--prohibited{border-top:4px solid var(--crimson);background:linear-gradient(180deg,var(--white) 0%,rgba(166,66,66,.04) 100%)}
+.rm-tier--prohibited .rm-tier-num,.rm-tier--prohibited .rm-tier-name{color:var(--crimson)}
+.rm-tier--prohibited .rm-tier-badge{background:var(--crimson)}
+.rm-tier-name{font-family:var(--display);font-size:20px;font-weight:700;letter-spacing:-.01em;line-height:1.2}
+.rm-tier-desc{font-family:var(--serif);font-size:15px;color:var(--soft-txt);line-height:1.5;font-style:italic}
+.rm-tier-examples{font-size:13.5px;color:var(--dark-txt);line-height:1.55;padding-top:14px;border-top:1px dashed var(--line-soft)}
+.rm-tier-examples strong{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--mid-gray);display:block;margin-bottom:6px;font-weight:700}
+.rm-tier-controls{font-size:13px;color:var(--mid-gray);font-style:italic;padding-top:10px;border-top:1px dashed var(--line-soft)}
+
+/* CONSTELACIÓN */
+.constellation{background:linear-gradient(180deg,var(--bg) 0%,var(--paper) 100%);padding:clamp(70px,10vw,110px) clamp(20px,4vw,48px);border-bottom:1px solid var(--line)}
+.constellation-inner{max-width:var(--container);margin:0 auto}
+.principle-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;margin-top:50px}
+.principle-card{background:var(--white);border:1px solid var(--line-soft);border-radius:var(--radius-lg);padding:26px;text-decoration:none;color:inherit;transition:all .25s var(--ease);position:relative;overflow:hidden;display:flex;flex-direction:column;gap:14px}
+.principle-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--navy);transform:scaleX(0);transform-origin:left;transition:transform .3s var(--ease)}
+.principle-card:hover{transform:translateY(-3px);box-shadow:0 16px 36px rgba(26,58,92,.1);border-color:var(--blue)}
+.principle-card:hover::before{transform:scaleX(1)}
+.principle-card-head{display:flex;justify-content:space-between;align-items:flex-start;gap:14px}
+.principle-card-num{font-family:var(--display);font-size:42px;font-weight:800;color:var(--navy);line-height:1;letter-spacing:-.04em}
+.principle-card-num em{font-style:italic;color:var(--blue);font-weight:400}
+.principle-card-icon{width:44px;height:44px;color:var(--blue);opacity:.6;transition:opacity .2s var(--ease)}
+.principle-card:hover .principle-card-icon{opacity:1}
+.principle-card-name{font-family:var(--display);font-size:21px;font-weight:700;color:var(--navy);line-height:1.2;letter-spacing:-.01em}
+.principle-card-rule{font-family:var(--serif);font-style:italic;font-size:15.5px;color:var(--soft-txt);line-height:1.5}
+.principle-card-foot{margin-top:auto;padding-top:14px;border-top:1px solid var(--line-soft);font-family:var(--mono);font-size:11px;color:var(--silver);text-transform:uppercase;letter-spacing:.1em;font-weight:600;display:flex;justify-content:space-between;align-items:center}
+.principle-card-foot svg{width:14px;height:14px;transition:transform .2s var(--ease)}
+.principle-card:hover .principle-card-foot svg{transform:translateX(4px);color:var(--blue)}
+
+/* PRINCIPIO */
+section[id],article[id]{scroll-margin-top:100px}
+.principle{padding:clamp(80px,11vw,130px) clamp(20px,4vw,48px);border-bottom:1px solid var(--line);position:relative;background:var(--bg)}
+.principle:nth-of-type(even){background:var(--paper)}
+.principle-inner{max-width:var(--container);margin:0 auto;display:grid;grid-template-columns:1fr;gap:50px}
+@media (min-width:980px){.principle-inner{grid-template-columns:minmax(220px,280px) 1fr;gap:80px}}
+.principle-aside{position:relative}
+@media (min-width:980px){.principle-aside{position:sticky;top:110px;align-self:start}}
+.principle-num{font-family:var(--display);font-size:clamp(96px,13vw,156px);font-weight:800;color:var(--navy);line-height:.85;letter-spacing:-.05em;position:relative;display:inline-block}
+.principle-num::before{content:"";position:absolute;left:-2px;top:-18px;width:44px;height:3px;background:var(--blue)}
+.principle-num em{font-style:italic;color:var(--blue);font-weight:400}
+.principle-tag{font-family:var(--mono);font-size:11px;color:var(--silver);text-transform:uppercase;letter-spacing:.14em;font-weight:600;margin-top:18px;display:block}
+.principle-frameworks{margin-top:20px;display:flex;flex-wrap:wrap;gap:5px}
+.fw-chip{font-family:var(--mono);font-size:9.5px;font-weight:700;letter-spacing:.05em;padding:3px 8px;border-radius:50px;background:var(--accent);color:var(--navy);border:1px solid var(--line)}
+.principle-title{font-family:var(--display);font-size:clamp(30px,4.5vw,50px);font-weight:700;color:var(--navy);line-height:1.05;letter-spacing:-.025em;margin-bottom:28px;max-width:800px}
+.principle-title em{font-style:italic;color:var(--blue);font-weight:400}
+.principle-rule{font-family:var(--serif);font-size:clamp(20px,2.1vw,24px);line-height:1.5;color:var(--dark-txt);font-style:italic;margin-bottom:36px;padding-left:24px;border-left:3px solid var(--blue);max-width:760px}
+.principle-text{font-size:17px;line-height:1.75;color:var(--soft-txt);max-width:720px}
+.principle-text p{margin-bottom:20px}
+.principle-text p strong{color:var(--navy);font-weight:600}
+
+.callout{margin-top:32px;padding:26px 30px;background:var(--white);border:1px solid var(--line-soft);border-radius:var(--radius-lg);max-width:740px;box-shadow:0 4px 18px rgba(26,58,92,.04)}
+.principle:nth-of-type(even) .callout{background:var(--bg)}
+.callout-label{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.16em;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.callout-label::before{content:"";width:20px;height:1px}
+.callout p,.callout li{font-family:var(--serif);font-size:17px;line-height:1.6;color:var(--dark-txt);margin:0}
+.callout--why{border-left:3px solid var(--ember)}
+.callout--why .callout-label{color:var(--ember)}.callout--why .callout-label::before{background:var(--ember)}
+.callout--anti{border-left:3px solid var(--crimson)}
+.callout--anti .callout-label{color:var(--crimson)}.callout--anti .callout-label::before{background:var(--crimson)}
+
+/* APLICACIÓN OPERATIVA · estado aplicado, estático */
+.application{margin-top:36px;max-width:820px}
+.app-head{display:flex;justify-content:space-between;align-items:baseline;gap:20px;flex-wrap:wrap;margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.app-head-label{font-family:var(--label);font-size:11.5px;text-transform:uppercase;letter-spacing:.14em;color:var(--silver);font-weight:600;display:flex;align-items:center;gap:10px}
+.app-head-label::before{content:"";width:26px;height:1px;background:var(--silver)}
+.app-head-status{display:inline-flex;align-items:center;gap:9px;font-family:var(--label);font-size:12.5px;font-weight:500;color:var(--green);letter-spacing:.01em}
+.app-head-status strong{font-family:var(--display);font-size:20px;font-weight:700;letter-spacing:-.01em;color:var(--green);line-height:1}
+.app-head-status::after{content:"";width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 0 3px rgba(61,139,90,.18);flex-shrink:0}
+.app-phases{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.app-phase-chip{font-family:var(--label);font-size:11px;letter-spacing:.02em;font-weight:500;color:var(--mid-gray);padding:5px 12px;border-radius:50px;background:var(--white);border:1px solid var(--line-soft);display:inline-flex;align-items:center;gap:7px}
+.principle:nth-of-type(even) .app-phase-chip{background:var(--bg)}
+.app-phase-chip strong{font-weight:600;color:var(--navy)}
+.app-phase-chip::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--silver)}
+.app-phase-chip[data-phase="antes"]::before{background:var(--blue)}
+.app-phase-chip[data-phase="durante"]::before{background:var(--ember)}
+.app-phase-chip[data-phase="despues"]::before{background:var(--violet)}
+.control-grid{display:grid;grid-template-columns:1fr;gap:12px}
+@media (min-width:760px){.control-grid{grid-template-columns:1fr 1fr}}
+.control-card{position:relative;background:linear-gradient(135deg,rgba(61,139,90,.045),rgba(61,139,90,.085));border:1px solid rgba(61,139,90,.25);border-radius:var(--radius-lg);padding:20px 22px 18px;display:flex;flex-direction:column;gap:11px;overflow:hidden}
+.principle:nth-of-type(even) .control-card{background:linear-gradient(135deg,rgba(61,139,90,.06),rgba(61,139,90,.1))}
+.control-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--green)}
+.control-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.control-num{font-family:var(--display);font-size:30px;font-weight:400;font-style:italic;color:var(--green);line-height:.95;letter-spacing:-.025em}
+.control-check{width:26px;height:26px;border-radius:50%;background:var(--green);border:1.5px solid var(--green);display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 4px rgba(61,139,90,.16);flex-shrink:0;margin-top:2px}
+.control-check svg{width:13px;height:13px;color:#fff}
+.control-meta{display:flex;gap:5px;flex-wrap:wrap}
+.control-chip{font-family:var(--label);font-size:10.5px;letter-spacing:.02em;font-weight:500;padding:3px 10px;border-radius:50px;border:1px solid transparent;line-height:1.3;display:inline-flex;align-items:center;gap:5px}
+.control-chip--phase{background:rgba(255,255,255,.6);color:var(--navy);border-color:rgba(197,213,232,.6)}
+.principle:nth-of-type(even) .control-chip--phase{background:rgba(252,252,250,.7)}
+.control-chip--phase::before{content:"";width:4px;height:4px;border-radius:50%;background:var(--navy);opacity:.4}
+.control-chip--prev{background:rgba(61,139,90,.14);color:var(--green);border-color:rgba(61,139,90,.3);font-weight:600}
+.control-chip--det{background:rgba(37,99,168,.12);color:var(--blue);border-color:rgba(37,99,168,.28);font-weight:600}
+.control-chip--cor{background:rgba(184,118,59,.12);color:var(--ember);border-color:rgba(184,118,59,.28);font-weight:600}
+.control-text{font-family:var(--serif);font-size:16px;line-height:1.5;color:var(--dark-txt);flex:1;font-weight:500}
+.control-ref{font-family:var(--label);font-size:11px;color:var(--mid-gray);letter-spacing:.01em;font-weight:500;padding-top:11px;border-top:1px dashed rgba(61,139,90,.25);display:flex;align-items:center;gap:8px}
+.control-ref::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--green);flex-shrink:0}
+
+/* AUTOEVALUACIÓN */
+.assessment{background:linear-gradient(135deg,var(--navy-deep) 0%,var(--navy) 65%,var(--navy-soft) 100%);color:#fff;padding:clamp(80px,11vw,130px) clamp(20px,4vw,48px);position:relative;overflow:hidden;isolation:isolate}
+.assessment::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.06) 1px,transparent 1.5px);background-size:32px 32px;mask-image:radial-gradient(ellipse at 30% 50%,black 0%,transparent 75%);-webkit-mask-image:radial-gradient(ellipse at 30% 50%,black 0%,transparent 75%);z-index:1}
+.assessment-inner{max-width:var(--container);margin:0 auto;position:relative;z-index:2}
+.assessment .section-label{color:var(--silver)}.assessment .section-label::before{background:var(--blue-glow)}
+.assessment .section-title{color:#fff}.assessment .section-title em{color:var(--blue-glow)}
+.assessment .section-lead{color:rgba(255,255,255,.75)}
+.assessment-layout{display:grid;grid-template-columns:1fr;gap:50px;margin-top:50px}
+@media (min-width:980px){.assessment-layout{grid-template-columns:1.2fr 1fr;gap:70px;align-items:start}}
+.assessment-sliders{display:flex;flex-direction:column;gap:18px}
+.slider-block{padding:18px 22px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius-lg);transition:all .2s var(--ease)}
+.slider-block:hover{background:rgba(255,255,255,.06);border-color:rgba(91,168,224,.3)}
+.slider-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;gap:16px}
+.slider-q{font-family:var(--serif);font-size:clamp(15px,1.7vw,16.5px);font-style:italic;color:#fff;line-height:1.4}
+.slider-q-num{font-family:var(--mono);font-size:10.5px;color:var(--silver);font-weight:700;letter-spacing:.05em;margin-right:8px}
+.slider-value{font-family:var(--mono);font-size:14px;font-weight:700;color:var(--blue-glow);min-width:30px;text-align:right}
+.slider-input{-webkit-appearance:none;appearance:none;width:100%;height:6px;background:rgba(255,255,255,.12);border-radius:3px;outline:none;cursor:pointer}
+.slider-input::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:22px;height:22px;border-radius:50%;background:var(--blue-glow);cursor:pointer;box-shadow:0 2px 12px rgba(91,168,224,.5);transition:transform .18s var(--ease-spring)}
+.slider-input::-webkit-slider-thumb:hover{transform:scale(1.2)}
+.slider-input::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--blue-glow);cursor:pointer;border:none;box-shadow:0 2px 12px rgba(91,168,224,.5)}
+.slider-scale{display:flex;justify-content:space-between;margin-top:6px;font-family:var(--mono);font-size:10px;color:var(--silver);text-transform:uppercase;letter-spacing:.08em}
+.assessment-result{position:sticky;top:110px;align-self:start;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:var(--radius-xl);padding:32px;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.result-label{font-family:var(--mono);font-size:10.5px;color:var(--silver);text-transform:uppercase;letter-spacing:.16em;font-weight:700;margin-bottom:14px}
+.result-score{display:flex;align-items:baseline;gap:10px;margin-bottom:6px}
+.result-score-num{font-family:var(--display);font-size:clamp(64px,9vw,96px);font-weight:800;line-height:.85;color:#fff;letter-spacing:-.04em}
+.result-score-max{font-family:var(--display);font-size:28px;color:var(--silver);font-weight:400}
+.result-status{font-family:var(--display);font-size:clamp(22px,2.6vw,28px);font-style:italic;color:var(--blue-glow);font-weight:400;margin-bottom:20px;transition:color .3s var(--ease)}
+.result-radar{width:100%;max-width:320px;margin:0 auto 20px}
+.result-radar svg{width:100%;height:auto}
+.result-message{font-family:var(--serif);font-size:15px;line-height:1.55;color:rgba(255,255,255,.8);font-style:italic;margin-top:16px;padding-top:18px;border-top:1px solid rgba(255,255,255,.12)}
+
+/* GOBERNANZA / INCIDENTES */
+.governance{background:var(--bg);border-bottom:1px solid var(--line);padding:clamp(70px,10vw,110px) clamp(20px,4vw,48px)}
+.gov-inner{max-width:var(--container);margin:0 auto}
+.gov-grid{display:grid;grid-template-columns:1fr;gap:24px;margin-top:40px}
+@media (min-width:900px){.gov-grid{grid-template-columns:1fr 1fr}}
+.gov-block{background:var(--white);border:1px solid var(--line-soft);border-radius:var(--radius-lg);padding:30px 32px;position:relative;overflow:hidden}
+.gov-block::before{content:"";position:absolute;top:0;left:0;width:60px;height:3px;background:var(--blue)}
+.gov-block-label{font-family:var(--mono);font-size:11px;color:var(--blue);text-transform:uppercase;letter-spacing:.14em;font-weight:700;margin-bottom:16px}
+.gov-block-title{font-family:var(--display);font-size:24px;font-weight:700;color:var(--navy);letter-spacing:-.01em;margin-bottom:16px;line-height:1.2}
+.gov-block-text{font-family:var(--serif);font-size:16.5px;color:var(--soft-txt);line-height:1.6}
+.gov-block-text p{margin-bottom:14px}
+.gov-block-text strong{color:var(--navy);font-weight:600}
+.gov-steps{counter-reset:gov;display:flex;flex-direction:column;gap:12px;margin-top:16px}
+.gov-step{display:grid;grid-template-columns:36px 1fr;gap:14px;align-items:start;padding:12px 0;border-bottom:1px dashed var(--line);counter-increment:gov}
+.gov-step:last-child{border-bottom:none}
+.gov-step::before{content:counter(gov,decimal-leading-zero);font-family:var(--mono);font-size:12px;font-weight:700;color:var(--blue);background:var(--accent);width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.gov-step-text{font-family:var(--serif);font-size:16px;color:var(--dark-txt);line-height:1.55;padding-top:6px}
+.gov-step-text strong{color:var(--navy);font-weight:600}
+.gov-contact{margin-top:24px;padding:18px 22px;background:var(--accent);border-radius:var(--radius);font-family:var(--mono);font-size:13px;color:var(--navy);display:flex;align-items:center;gap:10px}
+.gov-contact strong{font-weight:700}
+
+/* ANTIPATRONES */
+.antipatterns{background:var(--paper-warm);padding:clamp(70px,10vw,120px) clamp(20px,4vw,48px);border-bottom:1px solid var(--line)}
+.antipatterns-inner{max-width:var(--container);margin:0 auto}
+.antipatterns .section-label{color:var(--crimson)}.antipatterns .section-label::before{background:var(--crimson)}
+.antipattern-list{list-style:none;margin-top:40px;display:flex;flex-direction:column;gap:12px}
+.antipattern-item{display:grid;grid-template-columns:auto 1fr;gap:24px;padding:24px 28px;background:var(--white);border:1px solid var(--line-soft);border-left:4px solid var(--crimson);border-radius:var(--radius-lg);align-items:start;transition:all .2s var(--ease)}
+.antipattern-item:hover{transform:translateX(4px);box-shadow:0 8px 20px rgba(166,66,66,.08)}
+.antipattern-num{font-family:var(--display);font-size:30px;font-weight:700;color:var(--crimson);line-height:1;letter-spacing:-.02em;opacity:.7}
+.antipattern-name{font-family:var(--display);font-size:22px;font-weight:700;color:var(--navy);line-height:1.2;margin-bottom:8px;letter-spacing:-.01em}
+.antipattern-text{font-family:var(--serif);font-size:16.5px;color:var(--soft-txt);line-height:1.55}
+.antipattern-text strong{color:var(--navy);font-weight:600}
+
+/* GLOSARIO */
+.glossary{background:var(--bg);padding:clamp(70px,10vw,110px) clamp(20px,4vw,48px);border-bottom:1px solid var(--line)}
+.glossary-inner{max-width:var(--container);margin:0 auto}
+.glossary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:40px}
+.gloss-term{background:var(--white);border:1px solid var(--line-soft);border-radius:var(--radius-lg);padding:22px 24px;transition:all .2s var(--ease)}
+.gloss-term:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(26,58,92,.06);border-color:var(--blue)}
+.gloss-term dt{font-family:var(--display);font-size:19px;font-weight:700;color:var(--navy);margin-bottom:8px;letter-spacing:-.01em;display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.gloss-term dt em{font-style:italic;color:var(--blue);font-weight:400}
+.gloss-term-source{font-family:var(--mono);font-size:9.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--silver);font-weight:700;background:var(--accent);padding:2px 8px;border-radius:50px;white-space:nowrap}
+.gloss-term dd{font-family:var(--serif);font-size:15.5px;color:var(--soft-txt);line-height:1.55}
+
+/* ADHESIÓN */
+.adoption{background:linear-gradient(180deg,var(--paper) 0%,var(--bg) 100%);padding:clamp(80px,10vw,120px) clamp(20px,4vw,48px);border-bottom:1px solid var(--line)}
+.adoption-inner{max-width:var(--container);margin:0 auto;display:grid;grid-template-columns:1fr;gap:50px;align-items:center}
+@media (min-width:880px){.adoption-inner{grid-template-columns:1.3fr 1fr;gap:80px}}
+.adoption-text .section-title{font-size:clamp(30px,4vw,44px)}
+.adoption-text p{font-family:var(--serif);font-size:18px;line-height:1.65;color:var(--soft-txt);margin-bottom:18px;max-width:560px}
+.adoption-text p strong{color:var(--navy);font-weight:600}
+.adoption-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.seal-wrapper{display:flex;align-items:center;justify-content:center}
+.seal{width:100%;max-width:340px;aspect-ratio:1;position:relative;color:var(--navy);transition:transform .4s var(--ease-spring);cursor:pointer}
+.seal:hover{transform:rotate(8deg) scale(1.04)}
+.seal svg{width:100%;height:100%}
+.seal-spin{animation:seal-rotate 60s linear infinite;transform-origin:center}
+@keyframes seal-rotate{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+
+/* CIERRE */
+.signoff{background:var(--white);padding:clamp(80px,10vw,120px) clamp(20px,4vw,48px);border-bottom:1px solid var(--line)}
+.signoff-inner{max-width:var(--reading);margin:0 auto}
+.signoff h2{font-family:var(--display);font-size:clamp(30px,4vw,42px);font-weight:700;color:var(--navy);line-height:1.1;letter-spacing:-.02em;margin-bottom:32px}
+.signoff h2 em{font-style:italic;color:var(--blue);font-weight:400}
+.signoff p{font-family:var(--serif);font-size:clamp(20px,2.2vw,23px);line-height:1.6;color:var(--dark-txt);margin-bottom:22px}
+.signoff p strong{color:var(--navy);font-weight:600}
+.signature{margin-top:56px;padding-top:38px;border-top:1px solid var(--line);display:flex;align-items:center;gap:20px}
+.signature-mark{width:64px;height:64px;background:var(--navy);color:#fff;border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:700;font-size:30px;position:relative;overflow:hidden;flex-shrink:0}
+.signature-mark::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 0%,rgba(255,255,255,.3) 50%,transparent 100%);transform:translateY(-110%);animation:scanline 5s ease-in-out infinite}
+.signature-name{font-family:var(--display);font-weight:700;font-size:24px;color:var(--navy);line-height:1.1;letter-spacing:-.01em}
+.signature-role{font-size:13px;color:var(--mid-gray);margin-top:4px}
+
+/* DECLARACIÓN DE USO DE IA */
+.ai-notice{background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:clamp(36px,5vw,56px) clamp(20px,4vw,48px)}
+.ai-notice-inner{max-width:var(--reading);margin:0 auto;display:flex;gap:20px;align-items:flex-start}
+.ai-notice-icon{flex-shrink:0;width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),rgba(91,168,224,.18));color:var(--blue);display:flex;align-items:center;justify-content:center;border:1px solid var(--line)}
+.ai-notice-icon svg{width:22px;height:22px}
+.ai-notice-text{flex:1}
+.ai-notice-label{font-family:var(--label);font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:var(--blue);font-weight:600;margin-bottom:6px}
+.ai-notice-text p{font-family:var(--serif);font-size:clamp(15px,1.6vw,16.5px);line-height:1.6;color:var(--soft-txt);font-style:italic;margin:0}
+.ai-notice-text p strong{color:var(--navy);font-style:normal;font-weight:600}
+
+/* FOOTER */
+.site-footer{background:var(--navy-darker);color:rgba(255,255,255,.7);padding:70px clamp(20px,4vw,48px) 36px}
+.footer-inner{max-width:var(--container);margin:0 auto;display:grid;grid-template-columns:1fr;gap:40px}
+@media (min-width:720px){.footer-inner{grid-template-columns:1.4fr 1fr 1fr;gap:60px}}
+.footer-brand-name{font-family:var(--display);font-weight:700;font-size:32px;color:#fff;margin-bottom:14px;letter-spacing:-.01em}
+.footer-tag{font-family:var(--serif);font-style:italic;color:rgba(255,255,255,.6);font-size:16px;max-width:420px;line-height:1.6}
+.footer-col-label{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.14em;color:var(--silver);font-weight:700;margin-bottom:14px}
+.footer-col a,.footer-col span{display:block;color:rgba(255,255,255,.7);text-decoration:none;font-size:14px;margin-bottom:8px;transition:color .2s var(--ease)}
+.footer-col a:hover{color:var(--blue-glow)}
+.footer-bottom{grid-column:1/-1;margin-top:50px;padding-top:26px;border-top:1px solid rgba(255,255,255,.12);font-size:12px;color:rgba(255,255,255,.45);font-family:var(--mono);letter-spacing:.04em;display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease-out),transform .7s var(--ease-out)}
+.reveal.revealed{opacity:1;transform:translateY(0)}
+
+/* BACK TO TOP & TOAST */
+.back-to-top{position:fixed;bottom:24px;right:24px;width:44px;height:44px;border-radius:50%;background:var(--navy);color:#fff;border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 8px 24px rgba(26,58,92,.25);opacity:0;pointer-events:none;transform:translateY(8px);transition:all .25s var(--ease);z-index:90}
+.back-to-top.visible{opacity:1;pointer-events:auto;transform:translateY(0)}
+.back-to-top:hover{background:var(--navy-deep);transform:translateY(-3px)}
+.back-to-top svg{width:18px;height:18px}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--navy);color:#fff;padding:12px 22px;border-radius:50px;font-size:14px;font-weight:500;box-shadow:0 10px 30px rgba(26,58,92,.3);opacity:0;pointer-events:none;transition:all .3s var(--ease-spring);z-index:200}
+.toast.visible{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* PRINT · versión papel · diseño basado en bordes y colores de texto */
+@media print{
+    @page{margin:18mm 14mm}
+
+    /* Forzar impresión de color (donde el navegador lo permite) */
+    *,*::before,*::after{
+        -webkit-print-color-adjust:exact!important;
+        print-color-adjust:exact!important;
+        color-adjust:exact!important;
+        animation:none!important;transition:none!important;
+        text-shadow:none!important;
+    }
+    html,body{background:#fff!important;color:#1a1a1a!important;font-size:10pt;line-height:1.5;font-family:'Inter',Arial,sans-serif}
+    body{overflow:visible!important}
+
+    /* CRÍTICO: forzar visibilidad de TODOS los elementos .reveal (la animación de scroll los deja en opacity:0) */
+    .reveal{opacity:1!important;transform:none!important;visibility:visible!important}
+
+    /* Ocultar UI interactiva y elementos no útiles en papel */
+    .site-header,.spy-nav,.progress-bar,.back-to-top,.toast,
+    .header-tools,.hero-actions,.adoption-actions,.hero-seal,
+    .assessment{display:none!important}
+
+    /* SECCIONES: flujo natural, sin saltos forzados, con divisores */
+    .hero,.manifesto,.framework-map,.risk-matrix,.constellation,
+    .principle,.governance,.antipatterns,.glossary,.adoption,
+    .signoff,.ai-notice{
+        background:#fff!important;
+        padding:14pt 0!important;
+        margin:0!important;
+        border:none!important;
+        border-top:0.5pt solid #ccc!important;
+        page-break-inside:avoid;
+    }
+    .hero{padding-top:0!important;border-top:none!important;border-bottom:2pt solid #1A3A5C!important;padding-bottom:14pt!important}
+    .principle{padding:12pt 0!important}
+
+    .hero-inner,.manifesto-inner,.signoff-inner,.fm-inner,.rm-inner,
+    .constellation-inner,.gov-inner,.antipatterns-inner,.glossary-inner,
+    .adoption-inner,.principle-inner,.ai-notice-inner{padding:0!important;max-width:none!important;margin:0!important}
+
+    /* Sin sticky */
+    .principle-aside,.principle-frameworks,.assessment-result{position:static!important;top:auto!important}
+
+    /* Links */
+    a{color:#1A3A5C!important;text-decoration:none!important;border-bottom:none!important}
+
+    /* ───────── HERO ───────── */
+    .hero-label{font-size:8pt!important;color:#666!important;margin-bottom:10pt!important;letter-spacing:.12em!important}
+    .hero-label::before,.hero-label .dot{display:none!important}
+    .hero-title{font-size:32pt!important;color:#1A3A5C!important;line-height:1.02!important;margin-bottom:10pt!important;letter-spacing:-.5pt!important;font-family:'Playfair Display',Georgia,serif}
+    .hero-title em{color:#2563A8!important}
+    .hero-sub{font-size:12pt!important;color:#333!important;margin-bottom:14pt!important;font-style:italic;font-family:'EB Garamond',Georgia,serif}
+    .hero-meta{padding-top:10pt!important;border-top:0.5pt solid #999!important;display:grid!important;grid-template-columns:repeat(3,1fr)!important;gap:8pt 16pt!important;font-size:9pt!important}
+    .hero-meta-item{display:block!important}
+    .hero-meta-label{font-size:7pt!important;color:#888!important;display:block!important;text-transform:uppercase;letter-spacing:.08em}
+    .hero-meta strong{color:#1A3A5C!important;font-weight:600}
+    .hero-meta a{color:#1A3A5C!important}
+
+    /* ───────── MANIFIESTO ───────── */
+    .manifesto h2{font-size:20pt!important;color:#1A3A5C!important;margin-bottom:12pt!important;line-height:1.1!important;font-family:'Playfair Display',Georgia,serif}
+    .manifesto h2 em{color:#2563A8!important}
+    .manifesto p{font-size:11pt!important;color:#222!important;margin-bottom:9pt!important;font-family:'EB Garamond',Georgia,serif}
+    .manifesto p strong{color:#1A3A5C!important;font-weight:600}
+    .manifesto p:first-of-type::first-letter{font-size:3em!important;color:#1A3A5C!important;margin:3pt 6pt 0 -1pt!important;font-family:'Playfair Display',Georgia,serif;font-weight:700}
+    .manifesto-stats{margin:12pt 0!important;padding:10pt 0!important;border-top:0.5pt solid #999!important;border-bottom:0.5pt solid #999!important;display:grid!important;grid-template-columns:repeat(5,1fr)!important;gap:6pt!important}
+    .stat{padding-left:8pt!important;border-left:1pt solid #ccc!important;display:flex;flex-direction:column;gap:2pt}
+    .stat-num{font-size:18pt!important;color:#1A3A5C!important;font-family:'Playfair Display',Georgia,serif;font-weight:700}
+    .stat-num em{color:#2563A8!important;font-style:italic}
+    .stat-label{font-size:7pt!important;color:#666!important;text-transform:uppercase;letter-spacing:.04em}
+    .pullquote{margin:14pt 0!important;padding:12pt 0!important;border-top:1pt solid #1A3A5C!important;border-bottom:1pt solid #1A3A5C!important;text-align:center}
+    .pullquote p{font-size:13pt!important;color:#1A3A5C!important;font-style:italic;font-family:'Playfair Display',Georgia,serif;margin:0 auto 6pt!important;max-width:90%}
+    .pullquote::before{display:none!important}
+    .pullquote cite{font-size:7.5pt!important;color:#777!important;text-transform:uppercase;letter-spacing:.1em}
+
+    /* ───────── SECTION HEADERS ───────── */
+    .section-label,.section-eyebrow{font-size:7.5pt!important;color:#666!important;letter-spacing:.1em!important;margin-bottom:6pt!important;display:flex;align-items:center;gap:8pt}
+    .section-label::before,.section-eyebrow::before{content:""!important;width:18pt!important;height:0.5pt!important;background:#999!important;display:block!important}
+    .section-title{font-size:18pt!important;color:#1A3A5C!important;margin-bottom:6pt!important;line-height:1.1!important;font-family:'Playfair Display',Georgia,serif}
+    .section-title em{color:#2563A8!important;font-style:italic}
+    .section-lead{font-size:10.5pt!important;color:#444!important;margin-bottom:12pt!important;font-style:italic;font-family:'EB Garamond',Georgia,serif}
+
+    /* ───────── FRAMEWORK MAP ───────── */
+    .fm-grid{display:grid!important;grid-template-columns:repeat(2,1fr)!important;gap:8pt!important}
+    .fm-card{background:#fff!important;border:0.75pt solid #999!important;border-left:3pt solid #1A3A5C!important;padding:8pt 10pt!important;page-break-inside:avoid}
+    .fm-card-acronym{font-size:14pt!important;color:#1A3A5C!important;font-family:'Playfair Display',Georgia,serif;font-weight:700}
+    .fm-card-acronym em{color:#2563A8!important;font-style:italic}
+    .fm-card-name{font-size:8.5pt!important;color:#555!important;border-bottom-color:#ddd!important}
+    .fm-card-mapping{font-size:8pt!important;color:#333!important}
+    .fm-card-mapping strong{color:#1A3A5C!important;font-size:7pt!important}
+
+    /* ───────── RISK MATRIX ───────── */
+    .rm-grid{display:grid!important;grid-template-columns:repeat(2,1fr)!important;gap:8pt!important}
+    .rm-tier{background:#fff!important;border:0.75pt solid #999!important;border-top:3pt solid #999!important;padding:8pt 10pt!important;page-break-inside:avoid}
+    .rm-tier--low{border-top-color:#3D8B5A!important;border-left:3pt solid #3D8B5A!important}
+    .rm-tier--medium{border-top-color:#C99B2E!important;border-left:3pt solid #C99B2E!important}
+    .rm-tier--high{border-top-color:#B8763B!important;border-left:3pt solid #B8763B!important}
+    .rm-tier--prohibited{border-top-color:#A64242!important;border-left:3pt solid #A64242!important;background:#fff!important}
+    .rm-tier-num{font-size:18pt!important;font-family:'Playfair Display',Georgia,serif;font-weight:700}
+    .rm-tier-name{font-size:12pt!important;font-family:'Playfair Display',Georgia,serif;font-weight:700}
+    .rm-tier--low .rm-tier-num,.rm-tier--low .rm-tier-name{color:#3D8B5A!important}
+    .rm-tier--medium .rm-tier-num,.rm-tier--medium .rm-tier-name{color:#C99B2E!important}
+    .rm-tier--high .rm-tier-num,.rm-tier--high .rm-tier-name{color:#B8763B!important}
+    .rm-tier--prohibited .rm-tier-num,.rm-tier--prohibited .rm-tier-name{color:#A64242!important}
+    .rm-tier-badge{padding:1pt 5pt!important;font-size:6.5pt!important;color:#fff!important;letter-spacing:.05em}
+    .rm-tier-desc,.rm-tier-controls{font-size:9pt!important;color:#333!important;font-style:italic;font-family:'EB Garamond',Georgia,serif}
+    .rm-tier-examples{font-size:8.5pt!important;color:#333!important}
+    .rm-tier-examples strong{color:#777!important;font-size:7pt!important;text-transform:uppercase;letter-spacing:.08em}
+
+    /* ───────── CONSTELLATION (índice de principios) ───────── */
+    .principle-grid{display:grid!important;grid-template-columns:repeat(2,1fr)!important;gap:6pt!important}
+    .principle-card{background:#fff!important;border:0.5pt solid #ccc!important;border-left:3pt solid #1A3A5C!important;padding:6pt 8pt!important;page-break-inside:avoid;color:#222!important}
+    .principle-card-num{font-size:18pt!important;color:#1A3A5C!important;font-family:'Playfair Display',Georgia,serif;font-weight:700}
+    .principle-card-num em{color:#2563A8!important;font-style:italic}
+    .principle-card-icon{display:none!important}
+    .principle-card-name{font-size:11pt!important;color:#1A3A5C!important;font-family:'Playfair Display',Georgia,serif;font-weight:700}
+    .principle-card-rule{font-size:8.5pt!important;color:#444!important;font-style:italic;font-family:'EB Garamond',Georgia,serif}
+    .principle-card-foot{font-size:7pt!important;color:#777!important;padding-top:5pt!important;border-top:0.5pt solid #ddd!important}
+    .principle-card-foot svg{display:none!important}
+
+    /* ───────── PRINCIPIO INDIVIDUAL ───────── */
+    .principle-inner{display:block!important;gap:0!important}
+    .principle-aside{margin-bottom:8pt!important;display:flex!important;align-items:baseline!important;gap:14pt!important;flex-wrap:wrap}
+    .principle-num{font-size:46pt!important;color:#1A3A5C!important;line-height:.85!important;letter-spacing:-2pt!important;font-family:'Playfair Display',Georgia,serif;font-weight:800;margin:0!important}
+    .principle-num::before{display:none!important}
+    .principle-num em{color:#2563A8!important;font-style:italic;font-weight:400}
+    .principle-tag{font-size:8pt!important;color:#666!important;margin:0!important;text-transform:uppercase;letter-spacing:.12em}
+    .principle-frameworks{margin:0 0 0 auto!important;display:flex;flex-wrap:wrap;gap:4pt!important}
+    .fw-chip{font-size:7pt!important;background:#fff!important;border:0.5pt solid #999!important;color:#1A3A5C!important;padding:1pt 6pt!important;font-weight:600}
+    .principle-title{font-size:17pt!important;color:#1A3A5C!important;margin:8pt 0 8pt!important;line-height:1.1!important;font-family:'Playfair Display',Georgia,serif}
+    .principle-title em{color:#2563A8!important;font-style:italic}
+    .principle-rule{font-size:11pt!important;color:#1A3A5C!important;border-left:2pt solid #2563A8!important;padding-left:9pt!important;margin-bottom:10pt!important;font-style:italic;font-family:'EB Garamond',Georgia,serif}
+    .principle-text{font-size:10pt!important;color:#222!important;font-family:'EB Garamond',Georgia,serif}
+    .principle-text p{margin-bottom:6pt!important}
+    .principle-text p strong{color:#1A3A5C!important;font-weight:600}
+
+    /* ───────── CALLOUTS ───────── */
+    .callout{background:#fafaf6!important;border:0.5pt solid #ccc!important;border-left:3pt solid #B8763B!important;padding:8pt 10pt!important;box-shadow:none!important;margin:10pt 0!important;page-break-inside:avoid}
+    .callout-label{font-size:7pt!important;color:#B8763B!important;margin-bottom:5pt!important;letter-spacing:.1em!important;font-weight:700}
+    .callout-label::before{background:#B8763B!important;width:14pt!important}
+    .callout p{font-size:9.5pt!important;color:#222!important;margin:0!important;font-family:'EB Garamond',Georgia,serif}
+    .callout--anti{border-left-color:#A64242!important}
+    .callout--anti .callout-label{color:#A64242!important}
+    .callout--anti .callout-label::before{background:#A64242!important}
+
+    /* ───────── APLICACIÓN OPERATIVA (control cards) ───────── */
+    .application{margin-top:10pt!important;max-width:none!important}
+    .app-head{padding-bottom:5pt!important;margin-bottom:6pt!important;border-bottom:0.5pt solid #ccc!important;display:flex!important;justify-content:space-between!important;align-items:baseline!important}
+    .app-head-label{font-size:7.5pt!important;color:#666!important;letter-spacing:.1em!important}
+    .app-head-label::before{background:#999!important;width:18pt!important}
+    .app-head-status{font-size:8.5pt!important;color:#3D8B5A!important;font-weight:600}
+    .app-head-status strong{font-size:11pt!important;color:#3D8B5A!important;font-family:'Playfair Display',Georgia,serif;font-weight:700}
+    .app-head-status::after{background:#3D8B5A!important;box-shadow:none!important;width:5pt!important;height:5pt!important}
+    .app-phases{margin-bottom:6pt!important;gap:4pt!important}
+    .app-phase-chip{background:#fff!important;border:0.5pt solid #999!important;color:#333!important;font-size:7pt!important;padding:1pt 6pt!important}
+    .app-phase-chip strong{color:#1A3A5C!important;font-weight:600}
+    .app-phase-chip::before{width:4pt!important;height:4pt!important}
+    .app-phase-chip[data-phase="antes"]::before{background:#2563A8!important}
+    .app-phase-chip[data-phase="durante"]::before{background:#B8763B!important}
+    .app-phase-chip[data-phase="despues"]::before{background:#7659A6!important}
+
+    /* Control cards: borde verde sólido como ancla visual, sin depender de fondos */
+    .control-grid{display:grid!important;grid-template-columns:repeat(2,1fr)!important;gap:5pt!important}
+    .control-card{
+        background:#fff!important;
+        border:0.5pt solid #999!important;
+        border-left:4pt solid #3D8B5A!important;
+        border-top:0!important;
+        padding:7pt 9pt!important;
+        box-shadow:none!important;
+        page-break-inside:avoid;
+        display:flex;flex-direction:column;gap:4pt!important;
+    }
+    .control-card[data-type="detectivo"]{border-left-color:#2563A8!important}
+    .control-card[data-type="correctivo"]{border-left-color:#B8763B!important}
+    .control-card::before{display:none!important}
+    .control-head{display:flex;justify-content:space-between;align-items:flex-start;gap:8pt!important;margin-bottom:2pt!important}
+    .control-num{font-size:14pt!important;color:#3D8B5A!important;line-height:.9!important;font-family:'Playfair Display',Georgia,serif;font-style:italic;font-weight:400}
+    .control-card[data-type="detectivo"] .control-num{color:#2563A8!important}
+    .control-card[data-type="correctivo"] .control-num{color:#B8763B!important}
+    .control-check{background:#3D8B5A!important;border:0.75pt solid #3D8B5A!important;box-shadow:none!important;width:12pt!important;height:12pt!important;border-radius:50%!important;flex-shrink:0;margin-top:0!important}
+    .control-check svg{color:#fff!important;width:8pt!important;height:8pt!important;opacity:1!important;transform:none!important}
+    .control-card[data-type="detectivo"] .control-check{background:#2563A8!important;border-color:#2563A8!important}
+    .control-card[data-type="correctivo"] .control-check{background:#B8763B!important;border-color:#B8763B!important}
+    .control-meta{gap:3pt!important;margin-bottom:2pt!important}
+    .control-chip{font-size:6.5pt!important;padding:0.5pt 4pt!important;border-width:0.5pt!important;line-height:1.3!important}
+    .control-chip--phase{background:#f0f0ed!important;color:#333!important;border-color:#bbb!important}
+    .control-chip--phase::before{display:none!important}
+    .control-chip--prev{background:#fff!important;color:#3D8B5A!important;border-color:#3D8B5A!important;font-weight:600}
+    .control-chip--det{background:#fff!important;color:#2563A8!important;border-color:#2563A8!important;font-weight:600}
+    .control-chip--cor{background:#fff!important;color:#B8763B!important;border-color:#B8763B!important;font-weight:600}
+    .control-text{font-size:9pt!important;color:#222!important;line-height:1.35!important;font-family:'EB Garamond',Georgia,serif;font-weight:500}
+    .control-ref{font-size:7pt!important;color:#666!important;padding-top:5pt!important;border-top:0.5pt dashed #ccc!important;letter-spacing:.02em}
+    .control-ref::before{background:#3D8B5A!important;width:3.5pt!important;height:3.5pt!important}
+
+    /* ───────── GOBERNANZA ───────── */
+    .gov-grid{display:grid!important;grid-template-columns:repeat(2,1fr)!important;gap:10pt!important}
+    .gov-block{background:#fff!important;border:0.75pt solid #999!important;padding:9pt 11pt!important;box-shadow:none!important;page-break-inside:avoid}
+    .gov-block::before{background:#2563A8!important;width:40pt!important;height:2pt!important}
+    .gov-block-label{font-size:7pt!important;color:#2563A8!important;letter-spacing:.1em!important}
+    .gov-block-title{font-size:12pt!important;color:#1A3A5C!important;font-family:'Playfair Display',Georgia,serif;font-weight:700}
+    .gov-block-text p,.gov-step-text{font-size:9pt!important;color:#222!important;font-family:'EB Garamond',Georgia,serif}
+    .gov-block-text strong{color:#1A3A5C!important;font-weight:600}
+    .gov-step{padding:5pt 0!important;border-bottom-color:#ddd!important;gap:8pt!important;grid-template-columns:16pt 1fr!important}
+    .gov-step::before{background:#eef0f5!important;color:#1A3A5C!important;width:16pt!important;height:16pt!important;font-size:7.5pt!important;font-weight:700}
+    .gov-contact{background:#f0f0ed!important;color:#1A3A5C!important;font-size:8.5pt!important;padding:5pt 9pt!important;border:0.5pt solid #ccc!important;margin-top:8pt!important}
+    .gov-contact strong{color:#1A3A5C!important}
+
+    /* ───────── ANTIPATRONES ───────── */
+    .antipattern-list{gap:5pt!important;display:flex;flex-direction:column}
+    .antipattern-item{background:#fff!important;border:0.5pt solid #ccc!important;border-left:3pt solid #A64242!important;padding:7pt 10pt!important;box-shadow:none!important;page-break-inside:avoid;display:grid;grid-template-columns:auto 1fr;gap:10pt!important}
+    .antipattern-num{font-size:16pt!important;color:#A64242!important;font-family:'Playfair Display',Georgia,serif;font-weight:700;opacity:.85}
+    .antipattern-name{font-size:11pt!important;color:#1A3A5C!important;font-family:'Playfair Display',Georgia,serif;font-weight:700;margin-bottom:3pt!important}
+    .antipattern-text{font-size:9pt!important;color:#222!important;font-family:'EB Garamond',Georgia,serif}
+    .antipattern-text strong{color:#1A3A5C!important;font-weight:600}
+
+    /* ───────── GLOSARIO ───────── */
+    .glossary-grid{display:grid!important;grid-template-columns:repeat(2,1fr)!important;gap:5pt!important}
+    .gloss-term{background:#fff!important;border:0.5pt solid #ccc!important;padding:6pt 8pt!important;box-shadow:none!important;page-break-inside:avoid}
+    .gloss-term dt{font-size:10pt!important;color:#1A3A5C!important;margin-bottom:3pt!important;font-family:'Playfair Display',Georgia,serif;font-weight:700;display:flex;flex-wrap:wrap;align-items:baseline;gap:5pt}
+    .gloss-term dt em{color:#2563A8!important;font-style:italic}
+    .gloss-term-source{background:#fff!important;color:#666!important;border:0.5pt solid #bbb!important;font-size:6.5pt!important;padding:0.5pt 4pt!important}
+    .gloss-term dd{font-size:8.5pt!important;color:#444!important;font-family:'EB Garamond',Georgia,serif}
+
+    /* ───────── ADHESIÓN + SELLO ───────── */
+    .adoption-inner{display:grid!important;grid-template-columns:1.5fr 1fr!important;gap:18pt!important;align-items:start!important}
+    .adoption-text p{font-size:10pt!important;color:#222!important;font-family:'EB Garamond',Georgia,serif;margin-bottom:6pt!important}
+    .adoption-text p strong{color:#1A3A5C!important;font-weight:600}
+    .seal{max-width:130pt!important;color:#1A3A5C!important;margin:0 auto!important;display:block!important;aspect-ratio:1}
+    .seal-spin{animation:none!important;transform:none!important}
+
+    /* ───────── CIERRE ───────── */
+    .signoff h2{font-size:17pt!important;color:#1A3A5C!important;line-height:1.1!important;margin-bottom:8pt!important;font-family:'Playfair Display',Georgia,serif}
+    .signoff h2 em{color:#2563A8!important;font-style:italic}
+    .signoff p{font-size:10pt!important;color:#222!important;margin-bottom:7pt!important;font-family:'EB Garamond',Georgia,serif}
+    .signoff p strong{color:#1A3A5C!important;font-weight:600}
+    .signature{margin-top:14pt!important;padding-top:10pt!important;border-top:0.5pt solid #999!important;display:flex;align-items:center;gap:10pt!important}
+    .signature-mark{width:30pt!important;height:30pt!important;font-size:16pt!important;background:#1A3A5C!important;color:#fff!important;border-radius:3pt!important;font-family:'Playfair Display',Georgia,serif;font-weight:700}
+    .signature-mark::before{display:none!important}
+    .signature-name{font-size:13pt!important;color:#1A3A5C!important;font-family:'Playfair Display',Georgia,serif;font-weight:700}
+    .signature-role{font-size:8.5pt!important;color:#666!important}
+
+    /* ───────── DECLARACIÓN DE USO DE IA ───────── */
+    .ai-notice{padding:10pt 0!important;page-break-inside:avoid}
+    .ai-notice-inner{display:flex!important;gap:10pt!important;align-items:flex-start!important;max-width:none!important}
+    .ai-notice-icon{width:22pt!important;height:22pt!important;background:#fff!important;border:0.5pt solid #2563A8!important;color:#2563A8!important;border-radius:5pt!important;flex-shrink:0!important}
+    .ai-notice-icon svg{width:12pt!important;height:12pt!important}
+    .ai-notice-label{font-size:7pt!important;color:#2563A8!important;margin-bottom:3pt!important;letter-spacing:.1em!important;font-weight:700}
+    .ai-notice-text p{font-size:9pt!important;color:#333!important;font-style:italic!important;font-family:'EB Garamond',Georgia,serif;line-height:1.45!important}
+    .ai-notice-text p strong{color:#1A3A5C!important;font-style:normal!important;font-weight:600}
+
+    /* ───────── FOOTER ───────── */
+    .site-footer{background:#fff!important;color:#222!important;border-top:1pt solid #1A3A5C!important;padding:10pt 0 6pt!important}
+    .site-footer *{color:#222!important}
+    .footer-inner{display:grid!important;grid-template-columns:1.4fr 1fr 1fr!important;gap:14pt!important;max-width:none!important;padding:0!important}
+    .footer-brand-name{font-size:14pt!important;color:#1A3A5C!important;margin-bottom:4pt!important;font-family:'Playfair Display',Georgia,serif;font-weight:700}
+    .footer-tag{font-size:8.5pt!important;color:#444!important;font-style:italic;font-family:'EB Garamond',Georgia,serif}
+    .footer-col-label{font-size:6.5pt!important;color:#666!important;margin-bottom:4pt!important;text-transform:uppercase;letter-spacing:.1em;font-weight:700}
+    .footer-col a,.footer-col span{font-size:8pt!important;color:#1A3A5C!important;margin-bottom:2pt!important;display:block}
+    .footer-bottom{font-size:7pt!important;color:#666!important;margin-top:8pt!important;padding-top:5pt!important;border-top:0.5pt solid #ccc!important;grid-column:1/-1!important;display:flex;flex-wrap:wrap;gap:10pt;justify-content:space-between}
+}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:2px}
+</style>
+<script>
+(function(){try{var t=localStorage.getItem('cep-theme');if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}catch(e){}})();
+</script>
+</head>
+<body>
+
+<div class="progress-bar"><div class="progress-bar-fill" id="progressFill"></div></div>
+
+<header class="site-header">
+    <div class="header-inner">
+        <a href="#" class="brand">
+            <span class="brand-mark">N</span>
+            <span>Nick Perot <span class="brand-sub">· Código de ética</span><span class="brand-version">v 2.0</span></span>
+        </a>
+        <nav class="header-nav" id="headerNav">
+            <a href="#manifiesto">Manifiesto</a>
+            <a href="#marcos">Marcos</a>
+            <a href="#riesgo">Riesgo</a>
+            <a href="#principios">Principios</a>
+            <a href="#autoevaluacion">Autoevaluación</a>
+            <a href="#gobernanza">Gobernanza</a>
+            <a href="#adhesion">Adherir</a>
+        </nav>
+        <div class="header-tools">
+            <button class="tool-btn" id="themeToggle" aria-label="Cambiar tema">
+                <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+            </button>
+            <button class="tool-btn" onclick="window.print()" aria-label="Imprimir">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+            </button>
+            <button class="tool-btn" id="shareBtn" aria-label="Compartir">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+        </div>
+    </div>
+</header>
+
+<nav class="spy-nav" id="spyNav" aria-label="Navegación rápida">
+    <a href="#p01" class="spy-nav-item" data-target="p01">01<span class="label">Conocer antes de adoptar</span></a>
+    <a href="#p02" class="spy-nav-item" data-target="p02">02<span class="label">Los datos no son neutros</span></a>
+    <a href="#p03" class="spy-nav-item" data-target="p03">03<span class="label">Seguridad pragmática</span></a>
+    <a href="#p04" class="spy-nav-item" data-target="p04">04<span class="label">Herramienta correcta</span></a>
+    <a href="#p05" class="spy-nav-item" data-target="p05">05<span class="label">Conocer el propio nivel</span></a>
+    <a href="#p06" class="spy-nav-item" data-target="p06">06<span class="label">Verificación múltiple</span></a>
+    <a href="#p07" class="spy-nav-item" data-target="p07">07<span class="label">Transparencia con el uso</span></a>
+    <a href="#p08" class="spy-nav-item" data-target="p08">08<span class="label">Equidad y no discriminación</span></a>
+    <a href="#p09" class="spy-nav-item" data-target="p09">09<span class="label">Supervisión humana significativa</span></a>
+    <a href="#p10" class="spy-nav-item" data-target="p10">10<span class="label">Rendición de cuentas e impacto</span></a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <a class="hero-seal" href="#adhesion" aria-label="Ir al sello de adhesión">
+        <svg viewBox="0 0 120 120">
+            <defs>
+                <path id="heroSealPath" d="M 60, 60 m -44, 0 a 44,44 0 1,1 88,0 a 44,44 0 1,1 -88,0"/>
+            </defs>
+            <circle cx="60" cy="60" r="58" fill="none" stroke="currentColor" stroke-width="1" opacity="0.7"/>
+            <circle cx="60" cy="60" r="34" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.35"/>
+            <g class="hero-seal-spin">
+                <text font-family="Inter, sans-serif" font-size="6" font-weight="700" fill="currentColor" letter-spacing="1.3">
+                    <textPath href="#heroSealPath">NICK PEROT · CÓDIGO DE ÉTICA · V 2.0 · </textPath>
+                </text>
+            </g>
+            <g transform="translate(60 67)" text-anchor="middle">
+                <text font-family="Playfair Display" font-style="italic" font-size="24" font-weight="700" fill="currentColor" letter-spacing="-1">N</text>
+            </g>
+            <circle cx="60" cy="18" r="1.6" fill="currentColor"/>
+            <circle cx="60" cy="102" r="1.6" fill="currentColor"/>
+            <circle cx="18" cy="60" r="1.6" fill="currentColor"/>
+            <circle cx="102" cy="60" r="1.6" fill="currentColor"/>
+        </svg>
+    </a>
+    <div class="hero-inner">
+        <div class="hero-label">Documento abierto · v 2.0<span class="dot"></span></div>
+        <h1 class="hero-title">Nuestro código <em>de ética</em>.</h1>
+        <p class="hero-sub">Cómo decidimos, en Nick Perot, qué tecnología usar, cómo usarla y cuándo dar un paso atrás. Pragmático. Verificable. Abierto a toda persona que quiera adoptarlo.</p>
+        <div class="hero-actions">
+            <a href="#principios" class="btn-primary">Leer los 10 principios
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+            <a href="#autoevaluacion" class="btn-secondary">Hacer la autoevaluación</a>
+            <a href="#adhesion" class="btn-secondary">Adherir al código</a>
+        </div>
+        <div class="hero-meta">
+            <div class="hero-meta-item"><span class="hero-meta-label">Versión</span><strong>2.0</strong></div>
+            <div class="hero-meta-item"><span class="hero-meta-label">Vigente desde</span><strong>Mayo 2026</strong></div>
+            <div class="hero-meta-item"><span class="hero-meta-label">Próxima revisión</span><strong>Mayo 2027</strong></div>
+            <div class="hero-meta-item"><span class="hero-meta-label">Autor</span><a href="https://nickperot.com" target="_blank" rel="noopener noreferrer">Nick Perot</a></div>
+            <div class="hero-meta-item"><span class="hero-meta-label">Licencia</span><strong>CC BY 4.0</strong></div>
+            <div class="hero-meta-item"><span class="hero-meta-label">Idioma</span><strong>Español</strong></div>
+        </div>
+    </div>
+</section>
+
+<!-- MANIFIESTO -->
+<section class="manifesto reveal" id="manifiesto">
+    <div class="manifesto-inner">
+        <div class="section-eyebrow">Por qué lo escribimos</div>
+        <h2>Si lleva nuestro nombre, <em>lleva nuestro criterio</em>.</h2>
+        <p>Si una herramienta lleva nuestro nombre, lleva nuestro criterio. Lo mismo aplica para todo el equipo de Nick Perot y para cualquier persona que confíe en lo que recomendamos. Esa es la razón concreta por la que este documento existe.</p>
+        <p>No lo escribimos como declaración de buenas intenciones. Lo escribimos porque vimos, en los últimos años, demasiadas decisiones tecnológicas tomadas con liviandad. Plataformas adoptadas sin saber quién las hace. Datos volcados a herramientas que nadie revisó. Resultados aceptados sin verificar. Cada una de esas decisiones tiene consecuencias que aparecen meses después, cuando ya es tarde para volver atrás.</p>
+        <div class="manifesto-stats">
+            <div class="stat"><div class="stat-num" data-count="10">0</div><div class="stat-label">Principios pragmáticos</div></div>
+            <div class="stat"><div class="stat-num" data-count="6">0</div><div class="stat-label">Marcos internacionales</div></div>
+            <div class="stat"><div class="stat-num" data-count="4">0</div><div class="stat-label">Niveles de riesgo</div></div>
+            <div class="stat"><div class="stat-num" data-count="5">0</div><div class="stat-label">Antipatrones declarados</div></div>
+            <div class="stat"><div class="stat-num">100<em>%</em></div><div class="stat-label">Documento abierto</div></div>
+        </div>
+        <p>Lo que sigue es <strong>el código que usamos en Nick Perot</strong>. Lo aplicamos antes de adoptar una herramienta, durante su uso y cuando decidimos abandonarla. Lo compartimos abierto porque la responsabilidad con la tecnología no debería ser un secreto profesional. Si te sirve, usalo. Si querés ajustarlo a tu realidad, mejor.</p>
+        <blockquote class="pullquote">
+            <p>Un código de ética que no se cumple no es un código. Es decoración profesional, y este campo ya tiene demasiada.</p>
+            <cite>— Principio operativo</cite>
+        </blockquote>
+        <p>Una aclaración importante: este código es <strong>pragmático</strong>, no idealista. Cada principio acá tiene que poder cumplirse. Si no se puede cumplir, no está escrito. Y es <strong>verificable</strong>: cada principio se mapea a marcos reconocidos y cada incumplimiento tiene una ruta de respuesta declarada.</p>
+    </div>
+</section>
+
+<!-- FRAMEWORK MAPPING -->
+<section class="framework-map reveal" id="marcos">
+    <div class="fm-inner">
+        <div class="section-label">Mapeo a marcos internacionales</div>
+        <h2 class="section-title">Lo que escribimos acá, <em>otros</em> ya lo escribieron antes.</h2>
+        <p class="section-lead">Este código no inventa. Sintetiza, operacionaliza y traduce a la práctica diaria seis marcos que la comunidad internacional viene construyendo desde hace años. Acá los nombramos para que cualquier persona pueda auditar la alineación.</p>
+        <div class="fm-grid">
+            <div class="fm-card">
+                <div class="fm-card-acronym">UNESCO</div>
+                <div class="fm-card-name">Recomendación sobre la Ética de la IA (2021)</div>
+                <div class="fm-card-mapping"><strong>Cubre</strong>Proporcionalidad · Equidad · Sostenibilidad · Supervisión humana · Transparencia · Rendición de cuentas</div>
+                <div class="fm-card-mapping" style="margin-top:8px"><strong>Mapeo</strong>P01 · P02 · P07 · P08 · P09 · P10</div>
+            </div>
+            <div class="fm-card">
+                <div class="fm-card-acronym">OCDE</div>
+                <div class="fm-card-name">Principios sobre IA (2019, actualizados 2024)</div>
+                <div class="fm-card-mapping"><strong>Cubre</strong>Crecimiento inclusivo · Valores centrados en humanos · Transparencia · Robustez · Rendición de cuentas</div>
+                <div class="fm-card-mapping" style="margin-top:8px"><strong>Mapeo</strong>P03 · P07 · P08 · P09 · P10</div>
+            </div>
+            <div class="fm-card">
+                <div class="fm-card-acronym">EU AI <em>Act</em></div>
+                <div class="fm-card-name">Reglamento (UE) 2024/1689 sobre IA</div>
+                <div class="fm-card-mapping"><strong>Cubre</strong>Clasificación de riesgo · Prohibiciones · Alto riesgo · Transparencia · Supervisión humana</div>
+                <div class="fm-card-mapping" style="margin-top:8px"><strong>Mapeo</strong>Matriz de riesgo · P07 · P09 · P10</div>
+            </div>
+            <div class="fm-card">
+                <div class="fm-card-acronym">NIST <em>AI RMF</em></div>
+                <div class="fm-card-name">AI Risk Management Framework 1.0 (2023)</div>
+                <div class="fm-card-mapping"><strong>Cubre</strong>Govern · Map · Measure · Manage · Funciones de gestión de riesgo</div>
+                <div class="fm-card-mapping" style="margin-top:8px"><strong>Mapeo</strong>Gobernanza · Matriz de riesgo · P03 · P06 · P10</div>
+            </div>
+            <div class="fm-card">
+                <div class="fm-card-acronym">ISO <em>42001</em></div>
+                <div class="fm-card-name">Sistema de gestión de IA (2023)</div>
+                <div class="fm-card-mapping"><strong>Cubre</strong>Política · Roles · Ciclo de vida · Auditoría interna · Mejora continua</div>
+                <div class="fm-card-mapping" style="margin-top:8px"><strong>Mapeo</strong>Gobernanza · Protocolo de incidentes · Revisión anual</div>
+            </div>
+            <div class="fm-card">
+                <div class="fm-card-acronym">GDPR</div>
+                <div class="fm-card-name">Reglamento General de Protección de Datos UE</div>
+                <div class="fm-card-mapping"><strong>Cubre</strong>Licitud · Minimización · Propósito · Derechos del titular · DPIA</div>
+                <div class="fm-card-mapping" style="margin-top:8px"><strong>Mapeo</strong>P02 · P03 · P07 · P10</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- RISK MATRIX -->
+<section class="risk-matrix reveal" id="riesgo">
+    <div class="rm-inner">
+        <div class="section-label">Clasificación de riesgo · 4 niveles</div>
+        <h2 class="section-title">No todas las herramientas <em>se evalúan igual</em>.</h2>
+        <p class="section-lead">Tomado del enfoque de tiering del EU AI Act y del NIST AI RMF. Cada uso tecnológico cae en uno de cuatro niveles. El nivel determina qué tan rigurosa es la aplicación del código.</p>
+        <div class="rm-grid">
+            <div class="rm-tier rm-tier--low">
+                <div class="rm-tier-level"><div class="rm-tier-num">01</div><span class="rm-tier-badge">Bajo</span></div>
+                <div class="rm-tier-name">Riesgo mínimo</div>
+                <div class="rm-tier-desc">Usos exploratorios sin datos sensibles ni impacto sobre terceros.</div>
+                <div class="rm-tier-examples"><strong>Ejemplos</strong>Brainstorming general, traducción de textos públicos, redacción de borradores internos.</div>
+                <div class="rm-tier-controls">Verificación liviana. Checklist simplificado.</div>
+            </div>
+            <div class="rm-tier rm-tier--medium">
+                <div class="rm-tier-level"><div class="rm-tier-num">02</div><span class="rm-tier-badge">Medio</span></div>
+                <div class="rm-tier-name">Riesgo limitado</div>
+                <div class="rm-tier-desc">Datos profesionales o decisiones que afectan a un equipo identificable.</div>
+                <div class="rm-tier-examples"><strong>Ejemplos</strong>Análisis de procesos, documentación técnica, recomendaciones internas.</div>
+                <div class="rm-tier-controls">Verificación cruzada obligatoria. Transparencia declarada.</div>
+            </div>
+            <div class="rm-tier rm-tier--high">
+                <div class="rm-tier-level"><div class="rm-tier-num">03</div><span class="rm-tier-badge">Alto</span></div>
+                <div class="rm-tier-name">Alto riesgo</div>
+                <div class="rm-tier-desc">Decisiones que afectan a personas determinadas o información confidencial.</div>
+                <div class="rm-tier-examples"><strong>Ejemplos</strong>Asesoramiento legal, evaluación académica, análisis con datos personales.</div>
+                <div class="rm-tier-controls">Supervisión humana significativa. DPIA. Auditoría documental.</div>
+            </div>
+            <div class="rm-tier rm-tier--prohibited">
+                <div class="rm-tier-level"><div class="rm-tier-num">04</div><span class="rm-tier-badge">Veto</span></div>
+                <div class="rm-tier-name">Uso prohibido</div>
+                <div class="rm-tier-desc">Aplicaciones incompatibles con derechos fundamentales o nuestra ética.</div>
+                <div class="rm-tier-examples"><strong>Ejemplos</strong>Scoring social, manipulación dirigida, vigilancia biométrica indiscriminada, sustitución encubierta de personas.</div>
+                <div class="rm-tier-controls">No se adopta. No se recomienda. Se desaconseja explícitamente.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CONSTELACIÓN DE 10 PRINCIPIOS -->
+<section class="constellation reveal" id="principios">
+    <div class="constellation-inner">
+        <div class="section-label">Los diez principios</div>
+        <h2 class="section-title">Diez decisiones que tomamos <em>antes</em> de tocar una sola herramienta.</h2>
+        <p class="section-lead">Cada principio tiene su regla, su razón, su mapeo a marcos internacionales y su forma operativa de aplicarse. Ninguno es opcional. Ninguno está completo sin los otros nueve. Los principios 08, 09 y 10 cubren equidad, supervisión humana significativa y rendición de cuentas.</p>
+        <div class="principle-grid">
+            <a href="#p01" class="principle-card"><div class="principle-card-head"><span class="principle-card-num"><em>01</em></span><svg class="principle-card-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="22" cy="22" r="12"/><circle cx="22" cy="22" r="7"/><line x1="31" y1="31" x2="40" y2="40" stroke-linecap="round"/></svg></div><h3 class="principle-card-name">Conocer antes de adoptar</h3><p class="principle-card-rule">Quién la hace, qué busca, dónde vive.</p><div class="principle-card-foot"><span>Investigación previa</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div></a>
+            <a href="#p02" class="principle-card"><div class="principle-card-head"><span class="principle-card-num"><em>02</em></span><svg class="principle-card-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="24" cy="24" r="3" fill="currentColor"/><circle cx="10" cy="10" r="3"/><circle cx="38" cy="10" r="3"/><circle cx="10" cy="38" r="3"/><circle cx="38" cy="38" r="3"/><line x1="24" y1="24" x2="10" y2="10"/><line x1="24" y1="24" x2="38" y2="10"/><line x1="24" y1="24" x2="10" y2="38"/><line x1="24" y1="24" x2="38" y2="38"/></svg></div><h3 class="principle-card-name">Los datos no son neutros</h3><p class="principle-card-rule">Cada palabra que escribís va a algún lado.</p><div class="principle-card-foot"><span>Datos y privacidad</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div></a>
+            <a href="#p03" class="principle-card"><div class="principle-card-head"><span class="principle-card-num"><em>03</em></span><svg class="principle-card-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M24 6 L40 12 L40 26 C40 34 33 41 24 44 C15 41 8 34 8 26 L8 12 Z"/><path d="M18 24 L30 24" stroke-linecap="round"/></svg></div><h3 class="principle-card-name">Seguridad pragmática</h3><p class="principle-card-rule">No existe el 100%. Existe un umbral aceptable.</p><div class="principle-card-foot"><span>Umbral verificable</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div></a>
+            <a href="#p04" class="principle-card"><div class="principle-card-head"><span class="principle-card-num"><em>04</em></span><svg class="principle-card-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="14" cy="14" r="4"/><circle cx="34" cy="14" r="4"/><circle cx="14" cy="34" r="6" fill="currentColor" fill-opacity="0.15"/><circle cx="34" cy="34" r="4"/></svg></div><h3 class="principle-card-name">Herramienta correcta, tarea correcta</h3><p class="principle-card-rule">Best practice contextual, no universal.</p><div class="principle-card-foot"><span>Selección con criterio</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div></a>
+            <a href="#p05" class="principle-card"><div class="principle-card-head"><span class="principle-card-num"><em>05</em></span><svg class="principle-card-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 36 Q14 30 20 26 T36 14" stroke-linecap="round"/><circle cx="8" cy="36" r="2.5" fill="currentColor"/><circle cx="20" cy="26" r="2.5" fill="currentColor"/><circle cx="36" cy="14" r="2.5" fill="currentColor"/></svg></div><h3 class="principle-card-name">Conocer el propio nivel</h3><p class="principle-card-rule">Principiante y experto no usan igual.</p><div class="principle-card-foot"><span>Autoconciencia operativa</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div></a>
+            <a href="#p06" class="principle-card"><div class="principle-card-head"><span class="principle-card-num"><em>06</em></span><svg class="principle-card-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 10 L24 24 M38 10 L24 24 M24 38 L24 24" stroke-linecap="round"/><circle cx="10" cy="10" r="3"/><circle cx="38" cy="10" r="3"/><circle cx="24" cy="38" r="3"/><circle cx="24" cy="24" r="4" fill="currentColor"/></svg></div><h3 class="principle-card-name">Verificación múltiple, siempre</h3><p class="principle-card-rule">Un resultado no es una respuesta.</p><div class="principle-card-foot"><span>Triangular fuentes</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div></a>
+            <a href="#p07" class="principle-card"><div class="principle-card-head"><span class="principle-card-num"><em>07</em></span><svg class="principle-card-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="10" y="6" width="22" height="28" rx="2"/><rect x="14" y="12" width="22" height="28" rx="2" fill="currentColor" fill-opacity="0.08"/></svg></div><h3 class="principle-card-name">Transparencia con el uso</h3><p class="principle-card-rule">Si la IA ayudó, se dice.</p><div class="principle-card-foot"><span>Atribución honesta</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div></a>
+            <a href="#p08" class="principle-card"><div class="principle-card-head"><span class="principle-card-num"><em>08</em></span><svg class="principle-card-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="16" cy="20" r="6"/><circle cx="32" cy="20" r="6"/><path d="M8 40 C8 33 12 28 16 28 C20 28 24 33 24 40 M24 40 C24 33 28 28 32 28 C36 28 40 33 40 40" stroke-linecap="round"/></svg></div><h3 class="principle-card-name">Equidad y no discriminación</h3><p class="principle-card-rule">La IA puede amplificar sesgos. Nosotros no.</p><div class="principle-card-foot"><span>Auditoría de sesgo</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div></a>
+            <a href="#p09" class="principle-card"><div class="principle-card-head"><span class="principle-card-num"><em>09</em></span><svg class="principle-card-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="24" cy="14" r="6"/><path d="M14 40 C14 32 18 26 24 26 C30 26 34 32 34 40" stroke-linecap="round"/><circle cx="38" cy="14" r="2" fill="currentColor"/><line x1="36" y1="14" x2="40" y2="14" stroke-linecap="round"/></svg></div><h3 class="principle-card-name">Supervisión humana significativa</h3><p class="principle-card-rule">En lo que importa, decide una persona.</p><div class="principle-card-foot"><span>Human-in-the-loop</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div></a>
+            <a href="#p10" class="principle-card"><div class="principle-card-head"><span class="principle-card-num"><em>10</em></span><svg class="principle-card-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M24 6 L24 30 M14 20 L24 30 L34 20" stroke-linecap="round"/><circle cx="24" cy="40" r="4"/></svg></div><h3 class="principle-card-name">Rendición de cuentas e impacto</h3><p class="principle-card-rule">Quien decide, responde. Lo que falla, se repara.</p><div class="principle-card-foot"><span>Accountability + redress</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div></a>
+        </div>
+    </div>
+</section>
+
+<!-- PRINCIPIOS INDIVIDUALES -->
+
+<article class="principle reveal" id="p01">
+    <div class="principle-inner">
+        <aside class="principle-aside">
+            <div class="principle-num"><em>01</em></div>
+            <span class="principle-tag">Investigación previa</span>
+            <div class="principle-frameworks"><span class="fw-chip">ISO 42001 cl. 4</span></div>
+        </aside>
+        <div class="principle-body">
+            <h3 class="principle-title">Conocer la herramienta <em>antes</em> de usarla.</h3>
+            <p class="principle-rule">No incorporamos ninguna tecnología sin saber quién la hace, qué busca esa empresa, cuándo apareció y dónde corren sus servidores.</p>
+            <div class="principle-text">
+                <p>Suena básico. En la práctica, casi nadie lo hace. La mayoría adopta herramientas porque vio una demo entusiasta o porque alguien las recomendó en LinkedIn. Eso no es información: es ruido.</p>
+                <p>Hay una diferencia enorme entre las plataformas que vienen de empresas con trayectoria pública, gobernanza visible y políticas auditables, y las que aparecen un martes desde un dominio sin historia. <strong>Las segundas son una red flag</strong>. No las usamos. No las recomendamos. Cuando alguien nos las trae, lo primero que preguntamos es: ¿quién está detrás de esto?</p>
+            </div>
+            <div class="callout callout--why">
+                <div class="callout-label">Por qué importa</div>
+                <p>La diferencia entre una herramienta legítima y una que parece legítima rara vez está en la interfaz. Está en la trazabilidad de la empresa, la jurisdicción donde corren los datos y la auditabilidad pública de la operación. Cuando esos tres puntos no se confirman antes de adoptar, el costo de descubrirlos después suele superar al de no haberla usado.</p>
+            </div>
+            <div class="application" data-app="p01">
+                <div class="app-head">
+                    <span class="app-head-label">Aplicación operativa</span>
+                    <span class="app-head-status"><strong>5</strong> controles aplicados</span>
+                </div>
+                <div class="app-phases">
+                    <span class="app-phase-chip" data-phase="antes"><strong>Antes</strong> del uso</span>
+                    <span class="app-phase-chip" data-phase="durante"><strong>Durante</strong> el uso</span>
+                    <span class="app-phase-chip" data-phase="despues"><strong>Después</strong> del uso</span>
+                </div>
+                <div class="control-grid">
+                    <div class="control-card" data-type="preventivo">
+                        <div class="control-head"><span class="control-num">01</span><span class="control-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+                        <div class="control-meta"><span class="control-chip control-chip--phase">Antes</span><span class="control-chip control-chip--prev">Preventivo</span></div>
+                        <p class="control-text">Identificar empresa operadora y jurisdicción legal aplicable.</p>
+                        <div class="control-ref">ISO 42001 cl. 4</div>
+                    </div>
+                    <div class="control-card" data-type="preventivo">
+                        <div class="control-head"><span class="control-num">02</span><span class="control-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+                        <div class="control-meta"><span class="control-chip control-chip--phase">Antes</span><span class="control-chip control-chip--prev">Preventivo</span></div>
+                        <p class="control-text">Verificar año de fundación, financiación y trayectoria pública.</p>
+                        <div class="control-ref">OCDE 1.5</div>
+                    </div>
+                    <div class="control-card" data-type="detectivo">
+                        <div class="control-head"><span class="control-num">03</span><span class="control-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+                        <div class="control-meta"><span class="control-chip control-chip--phase">Antes</span><span class="control-chip control-chip--det">Detectivo</span></div>
+                        <p class="control-text">Leer términos de uso completos, no resumen comercial.</p>
+                        <div class="control-ref">GDPR art. 13 · ISO 42001 cl. 4</div>
+                    </div>
+                    <div class="control-card" data-type="detectivo">
+                        <div class="control-head"><span class="control-num">04</span><span class="control-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+                        <div class="control-meta"><span class="control-chip control-chip--phase">Antes</span><span class="control-chip control-chip--det">Detectivo</span></div>
+                        <p class="control-text">Buscar reseñas técnicas independientes, no testimonios pagos.</p>
+                        <div class="control-ref">NIST AI RMF · Map</div>
+                    </div>
+                    <div class="control-card" data-type="correctivo">
+                        <div class="control-head"><span class="control-num">05</span><span class="control-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+                        <div class="control-meta"><span class="control-chip control-chip--phase">Antes</span><span class="control-chip control-chip--cor">Correctivo</span></div>
+                        <p class="control-text">Ante dato faltante o ambiguo: no se adopta. Sin excepciones.</p>
+                        <div class="control-ref">ISO 42001 cl. 6</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>
+
+<article class="principle reveal" id="p02">
+    <div class="principle-inner">
+        <aside class="principle-aside">
+            <div class="principle-num"><em>02</em></div>
+            <span class="principle-tag">Datos y privacidad</span>
+            <div class="principle-frameworks"><span class="fw-chip">GDPR art. 5</span><span class="fw-chip">OCDE 1.3</span></div>
+        </aside>
+        <div class="principle-body">
+            <h3 class="principle-title">Los datos <em>no</em> son neutros.</h3>
+            <p class="principle-rule">Cada palabra que escribimos dentro de una herramienta va a algún lado. Ese "algún lado" lo investigamos antes de empezar.</p>
+            <div class="principle-text">
+                <p>Lo decimos directo porque la confusión en este punto es la fuente de la mayoría de los errores que vemos. Muchas personas creen que escribir en una herramienta es como escribir en un cuaderno. No lo es. Cada interacción puede ser almacenada, procesada, usada para entrenar modelos o compartida con terceros, según el plan, el país y las condiciones contractuales.</p>
+                <p>Antes de subir información, hay que saber tres cosas: <strong>qué hace la plataforma con los datos en su plan gratuito, qué cambia en sus planes pagos y qué jurisdicción regula esos datos</strong>. Las tres respuestas son distintas y todas importan.</p>
+                <p>Aplicamos principios GDPR aun cuando el marco legal local no los exige: minimización, propósito explícito, conservación limitada y derecho de acceso. No por exceso de celo, sino porque son la práctica internacional más sólida.</p>
+            </div>
+            <div class="callout callout--why">
+                <div class="callout-label">El criterio operativo</div>
+                <p>Distinguimos tres niveles de información: pública, profesional sensible y confidencial. Cada nivel tiene plataformas habilitadas y plataformas vedadas. La regla es simple: el dato más sensible que vamos a procesar define qué herramienta podemos usar, no al revés.</p>
+            </div>
+            <div class="application" data-app="p02">
+                <div class="app-head">
+                    <span class="app-head-label">Aplicación operativa</span>
+                    <span class="app-head-status"><strong>6</strong> controles aplicados</span>
+                </div>
+                <div class="app-phases">
+                    <span class="app-phase-chip" data-phase="antes"><strong>Antes</strong> del uso</span>
+                    <span class="app-phase-chip" data-phase="durante"><strong>Durante</strong> el uso</span>
+                </div>
+                <div class="control-grid">
+                    <div class="control-card" data-type="preventivo">
+                        <div class="control-head"><span class="control-num">01</span><span class="control-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+                        <div class="control-meta"><span class="control-chip control-chip--phase">Antes</span><span class="control-chip control-chip--prev">Preventivo</span></div>
+                        <p class="control-text">Mapear cada herramienta según el tipo de datos que puede recibir.</p>
+                        <div class="control-ref">GDPR art. 5 · ISO 42001 cl. 7</div>
+                    </div>
+                    <div class="control-card" data-type="detectivo">
+                        <div class="control-head"><span class="control-num">02</span><span class="control-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+                        <div class="control-meta"><span class="control-chip control-chip--phase">Antes</span><span class="control-chip control-chip--det">Detectivo</span></div>
+                        <p class="control-text">Verificar diferencias de privacidad entre plan gratuito y planes pagos.</p>
+                        <div class="control-ref">GDPR art. 13</div>
+                    </div>
+                    <div class="control-card" data-type="preventivo">
+                        <div class="control-head"><span class="control-num">03</span><span class="control-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+                        <div class="control-meta"><span class="control-chip control-chip--phase">Antes</span><span class="control-chip control-chip--prev">Preventivo</span></div>
+                        <p class="control-text">Identificar jurisdicción del proveedor y marcos legales aplicables.</p>
+                        <div class="control-ref">GDPR art. 44–50</div>
+                    </div>
+                    <div class="control-card" data-type="preventivo">
+                        <div class="control-head"><span class="control-num">04</span><span class="control-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+                        <div class="control-meta"><span class="control-chip control-chip--phase">Antes</span><span class="control-chip control-chip--prev">Preventivo</span></div>
+                        <p class="control-text">Confirmar consentimiento informado antes de procesar datos de terceros.</p>
+                        <div class="control-ref">GDPR art. 7</div>
+                    </div>
+                    <div class="control-card" data-type="preventivo">
+                        <div class="control-head"><span class="control-num">05</span><span class="control-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+                        <div class="control-meta"><span class="control-chip control-chip--phase">Durante</span><span class="control-chip control-chip--prev">Preventivo</span></div>
+                        <p class="control-text">Aplicar principios GDPR de minimización y propósito explícito.</p>
+                        <div class="control-ref">GDPR art. 5</div>
+                    </div>
+                    <div class="control-card" data-type="detectivo">
+                        <div class="control-head"><span class="control-num">06</span><span class="control-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+                        <div class="control-meta"><span class="control-chip control-chip--phase">Durante</span><span class="control-chip control-chip--det">Detectivo</span></div>
+                        <p class="control-text">Documentar qué plataforma se usó para qué dato y bajo qué finalidad.</p>
+                        <div class="control-ref">ISO 42001 cl. 7.5</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>
+
+<article class="principle reveal" id="p03">
+    <div class="principle-inner">
+        <aside class="principle-aside">
+            <div class="principle-num"><em>03</em></div>
+            <span class="principle-tag">Seguridad</span>
+            <div class="principle-frameworks"><span class="fw-chip">NIST AI RMF · Manage</span><span class="fw-chip">ISO 42001 cl. 8</span></div>
+        </aside>
+        <div class="principle-body">
+            <h3 class="principle-title">Seguridad pragmática, <em>no</em> ilusoria.</h3>
+            <p class="principle-rule">La seguridad al 100% no existe. La seguridad aceptable, sí, y se construye con decisiones concretas.</p>
+            <div class="principle-text">
+                <p>Acá se cae más de un código que termina sonando a folleto institucional. Prometer "máxima seguridad" es una de las frases que más desconfianza nos genera, porque técnicamente nadie la puede sostener. Toda infraestructura tiene riesgos. Toda persona tiene errores. Toda herramienta tiene puntos débiles.</p>
+                <p>Lo que sí podemos hacer es <strong>fijar un umbral aceptable</strong> y trabajar para mantenernos por encima. Ese umbral depende del tipo de información, del impacto potencial de una falla y de la sensibilidad del contexto. No es el mismo umbral para un brainstorming que para un expediente legal. Por eso el código se cruza con la matriz de riesgo: a mayor nivel, más alto el umbral.</p>
+            </div>
+            <div class="callout callout--why">
+                <div class="callout-label">El umbral, en concreto</div>
+                <p>Para cada herramienta definimos: qué tipo de datos puede manejar, qué nivel de cifrado necesita, qué backups requiere, qué historial de incidentes tiene el proveedor. Si los cuatro no están al nivel del trabajo, la herramienta no entra. Y si baja el nivel, sale.</p>
+            </div>
+            <div class="application" data-app="p03">
+                <div class="app-head">
+                    <span class="app-head-label">Aplicación operativa</span>
+                    <span class="app-head-status"><strong>5</strong> controles aplicados</span>
+                </div>
+                <div class="app-phases">
+                    <span class="app-phase-chip" data-phase="antes"><strong>Antes</strong> del uso</span>
+                    <span class="app-phase-chip" data-phase="durante"><strong>Durante</strong> el uso</span>
+                </div>
+                <div class="control-grid">
+                    <div class="control-card" data-type="preventivo">
+                        <div class="control-head"><span class="control-num">01</span><span class="control-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+                        <div class="control-meta"><span class="control-chip control-chip--phase">Antes</span><span class="control-chip control-chip--prev">Preventivo</span></div>
+                        <p class="control-text">Definir umbral de seguridad por tipo de información, antes de elegir.</p>
+                        <div class="control-ref">NIST AI RMF · Govern</div>
+                    </div>
+                    <div class="control-card" data-type="detectivo">
+                        <div class="control-head"><span class="control-num">02</span><span class="control-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+                        <div class="control-meta"><span class="control-chip control-chip--phase">Antes</span><span class="control-chip control-chip--det">Detectivo</span></div>
+                        <p class="control-text">Verificar cifrado en tránsito y en reposo de la plataforma.</p>
+                        <div class="control-ref">ISO 27001 · ISO 42001 cl. 8</div>
+                    </div>
+                    <div class="control-card" data-type="detectivo">
+                        <div class="control-head"><span class="control-num">03</span><span class="control-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+                        <div class="control-meta"><span class="control-chip control-chip--phase">Antes</span><span class="control-chip control-chip--det">Detectivo</span></div>
+                        <p class="control-text">Revisar historial público de incidentes del proveedor.</p>
+                        <div class="control-ref">NIST AI RMF · Map</div>
+                    </div>
+                    <div class="control-card" data-type="preventivo">
+                        <div class="control-head"><span class="control-num">04</span><span class="control-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+                        <div class="control-meta"><span class="control-chip control-chip--phase">Durante</span><span class="control-chip control-chip--prev">Preventivo</span></div>
+                        <p class="control-text">Toda contraseña reutilizada se trata como filtrada.</p>
+                        <div class="control-ref">NIST SP 800-63</div>
+                    </div>
+                    <div class="control-card" data-type="preventivo">
+                        <div class="control-head"><span class="control-num">05</span><span class="control-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+                        <div class="control-meta"><span class="control-chip control-chip--phase">Durante</span><span class="control-chip control-chip--prev">Preventivo</span></div>
+                        <p class="control-text">Segundo factor activo en toda herramienta que lo permita.</p>
+                        <div class="control-ref">NIST SP 800-63</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>
+
+<article class="principle reveal" id="p04">
+    <div class="principle-inner">
+        <aside class="principle-aside">
+            <div class="principle-num"><em>04</em></div>
+            <span class="principle-tag">Mejor práctica contextual</span>
+            <div class="principle-frameworks"><span class="fw-chip">NIST AI RMF · Map</span><span class="fw-chip">ISO 42001 cl. 6</span></div>
+        </aside>
+        <div class="principle-body">
+            <h3 class="principle-title">La herramienta correcta <br>para la tarea <em>correcta</em>.</h3>
+            <p class="principle-rule">Cada herramienta tiene un uso óptimo. Forzarla fuera de ese uso es una decisión cara y, casi siempre, evitable.</p>
+            <div class="principle-text">
+                <p>Acá entra el concepto de <em>best practice</em>: no la práctica perfecta ni la universal, sino la mejor posible para una situación, una persona y un contexto. Cuando elegimos qué herramienta usar para una tarea, no preguntamos cuál es "la mejor del mercado". Preguntamos cuál es la mejor para este caso, dada esta información, este equipo y este objetivo.</p>
+                <p><strong>Las personas que confunden best practice con regla universal terminan usando un martillo para todo</strong>, incluyendo lo que no es un clavo. Junto a esto, hay un punto central: la calidad del prompting. Una buena base de instrucciones y memoria personalizada con cada herramienta cambia los resultados de forma drástica. La diferencia no está en la tecnología; está en cómo la operamos.</p>
+            </div>
+            <div class="callout callout--why">
+                <div class="callout-label">Lo que verificamos antes de elegir</div>
+                <p>¿Qué tarea vamos a hacer? ¿Qué calidad de resultado necesitamos? ¿Cuánto tiempo tenemos? ¿Qué nivel de privacidad requerimos? ¿Qué nivel de control sobre el output nos hace falta? Las respuestas reducen el universo a una o dos opciones.</p>
+            </div>
+            <div class="application" data-app="p04">
+                <div class="app-head">
+                    <span class="app-head-label">Aplicación operativa</span>
+                    <span class="app-head-status"><strong>5</strong> controles aplicados</span>
+                </div>
+                <div class="app-phases">
+                    <span class="app-phase-chip" data-phase="antes"><strong>Antes</strong> del uso</span>
+                    <span class="app-phase-chip" data-phase="durante"><strong>Durante</strong> el uso</span>
+                </div>
+                <div class="control-grid">
+                    <div class="control-card" data-type="preventivo">
+                        <div class="control-head"><span class="control-num">01</span><span class="control-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+                        <div class="control-meta"><span class="control-chip control-chip--phase">Antes</span><span class="control-chip control-chip--prev">Preventivo</span></div>
+                        <p class="control-text">Mapear herramientas por su fortaleza específica, no por su popularidad.</p>
+                        <div class="control-ref">ISO 42001 cl. 6</div>
+                    </div>
+                    <div class="control-card" data-type="preventivo">
+                        <div class="control-head"><span class="control-num">02</span><span class="control-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+                        <div class="control-meta"><span class="control-chip control-chip--phase">Antes</span><span class="control-chip control-chip--prev">Preventivo</span></div>
+                        <p class="control-text">Construir prompts base reutilizables para tareas recurrentes.</p>
+                        <div class="control-ref">Buena práctica · OCDE 1.4</div>
+                    </div>
+                    <div class="control-card" data-type="preventivo">
+                        <div class="control-head"><span class="control-num">03</span><span class="control-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+                        <div class="control-meta"><span class="control-chip control-chip--phase">Durante</span><span class="control-chip control-chip--prev">Preventivo</span></div>
+                        <p class="control-text">Personalizar memorias de cada modelo con contexto relevante.</p>
+                        <div class="control-ref">Buena práctica</div>
+                    </div>
+                    <div class="control-card" data-type="preventivo">
+                        <div class="control-head"><span class="control-num">04</span><span class="control-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+                        <div class="control-meta"><span class="control-chip control-chip--phase">Durante</span><span class="control-chip control-chip--prev">Preventivo</span></div>
+                        <p class="control-text">Evitar una sola herramienta para todo. Diversificar es criterio.</p>
+                        <div class="control-ref">NIST AI RMF · Manage</div>
+                    </div>
+                    <div class="control-card" data-type="correctivo">
+                        <div class="control-head"><span class="control-num">05</span><span class="control-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+                        <div class="control-meta"><span class="control-chip control-chip--phase">Durante</span><span class="control-chip control-chip--cor">Correctivo</span></div>
+                        <p class="control-text">Si una tarea se hace mejor sin tecnología, se hace sin tecnología.</p>
+                        <div class="control-ref">Buena práctica</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>
+
+<article class="principle reveal" id="p05">
+    <div class="principle-inner">
+        <aside class="principle-aside">
+            <div class="principle-num"><em>05</em></div>
+            <span class="principle-tag">Autoconciencia</span>
+            <div class="principle-frameworks"><span class="fw-chip">NIST AI RMF · Govern</span></div>
+        </aside>
+        <div class="principle-body">
+            <h3 class="principle-title">Conocer el propio <em>nivel</em>.</h3>
+            <p class="principle-rule">No es lo mismo usar una herramienta por primera vez que usarla por décima. La cautela tiene que escalar con esa diferencia.</p>
+            <div class="principle-text">
+                <p>De todos los principios, este es el que más nos cuesta enseñar. Porque exige honestidad incómoda con uno mismo. Es muy fácil convencerse, después de leer dos artículos sobre IA, de que ya "se entiende cómo funciona". No es así.</p>
+                <p>Hay una curva de experimentación que cada persona recorre con cada tecnología. Al principio, los resultados parecen mágicos. Con el tiempo, aparecen los puntos débiles, las inconsistencias, los errores sutiles. <strong>Las personas que usan la herramienta por décima vez no la usan mejor por ser más inteligentes. La usan mejor porque ya saben dónde falla</strong>.</p>
+            </div>
+            <div class="callout callout--why">
+                <div class="callout-label">La escala que aplicamos</div>
+                <p>Tres estados internos por herramienta: exploración (verificación máxima), trabajo asistido (verificación dirigida) y uso productivo (verificación nunca desaparece). Cambiar de estado lleva tiempo, no horas.</p>
+            </div>
+            <div class="application" data-app="p05">
+                <div class="app-head">
+                    <span class="app-head-label">Aplicación operativa</span>
+                    <span class="app-head-status"><strong>5</strong> controles aplicados</span>
+                </div>
+                <div class="app-phases">
+                    <span class="app-phase-chip" data-phase="antes"><strong>Antes</strong> del uso</span>
+                    <span class="app-phase-chip" data-phase="durante"><strong>Durante</strong> el uso</span>
+                    <span class="app-phase-chip" data-phase="despues"><strong>Después</strong> del uso</span>
+                </div>
+                <div class="control-grid">
+                    <div class="control-card" data-type="preventivo">
+                        <div class="control-head"><span class="control-num">01</span><span class="control-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+                        <div class="control-meta"><span class="control-chip control-chip--phase">Antes</span><span class="control-chip control-chip--prev">Preventivo</span></div>
+                        <p class="control-text">Declarar honestamente el propio nivel con cada herramienta.</p>
+                    </div>
+                    <div class="control-card" data-type="preventivo">
+                        <div class="control-head"><span class="control-num">02</span><span class="control-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+                        <div class="control-meta"><span class="control-chip control-chip--phase">Antes</span><span class="control-chip control-chip--prev">Preventivo</span></div>
+                        <p class="control-text">No recomendar tecnologías sin diez usos reales propios.</p>
+                        <div class="control-ref">Buena práctica</div>
+                    </div>
+                    <div class="control-card" data-type="detectivo">
+                        <div class="control-head"><span class="control-num">03</span><span class="control-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+                        <div class="control-meta"><span class="control-chip control-chip--phase">Durante</span><span class="control-chip control-chip--det">Detectivo</span></div>
+                        <p class="control-text">Registrar errores propios para detectar patrones recurrentes.</p>
+                        <div class="control-ref">NIST AI RMF · Measure</div>
+                    </div>
+                    <div class="control-card" data-type="detectivo">
+                        <div class="control-head"><span class="control-num">04</span><span class="control-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+                        <div class="control-meta"><span class="control-chip control-chip--phase">Durante</span><span class="control-chip control-chip--det">Detectivo</span></div>
+                        <p class="control-text">Decisión crítica de principiante: revisión de alguien con experiencia.</p>
+                    </div>
+                    <div class="control-card" data-type="correctivo">
+                        <div class="control-head"><span class="control-num">05</span><span class="control-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+                        <div class="control-meta"><span class="control-chip control-chip--phase">Después</span><span class="control-chip control-chip--cor">Correctivo</span></div>
+                        <p class="control-text">Compartir lo que funcionó y lo que falló, sin maquillaje.</p>
+                        <div class="control-ref">Buena práctica</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>
+
+<article class="principle reveal" id="p06">
+    <div class="principle-inner">
+        <aside class="principle-aside">
+            <div class="principle-num"><em>06</em></div>
+            <span class="principle-tag">Verificación</span>
+            <div class="principle-frameworks"><span class="fw-chip">NIST AI RMF · Measure</span><span class="fw-chip">ISO 42001 cl. 9</span></div>
+        </aside>
+        <div class="principle-body">
+            <h3 class="principle-title">Verificación múltiple, <em>siempre</em>.</h3>
+            <p class="principle-rule">Un resultado generado por una herramienta no es una respuesta. Es una hipótesis que necesita confirmación.</p>
+            <div class="principle-text">
+                <p>Aun habiendo investigado la herramienta, cuidado los datos, fijado un umbral de seguridad, elegido la mejor opción y reconocido el propio nivel, sigue existiendo el riesgo del error. El error de una IA no se ve a simple vista: viene escrito con la misma confianza que un acierto.</p>
+                <p>Por eso la verificación no es opcional. Es estructural. <strong>"La IA dijo que…" no es fuente. Es señal para empezar a buscar la fuente real</strong>. En la práctica, esto significa cruzar resultados con fuentes primarias, con otras herramientas, con conocimiento humano experto o con la propia experiencia documentada. Cuanto más alto el costo de equivocarse, más densa la verificación.</p>
+            </div>
+            <div class="callout callout--why">
+                <div class="callout-label">Los tres niveles de verificación</div>
+                <p>Liviana: coherencia interna y fuentes citadas. Cruzada: contrastar con otra herramienta o fuente externa. Experta: pasar por una persona con conocimiento real del campo. Toda decisión profesional importante exige al menos los dos primeros.</p>
+            </div>
+            <div class="application" data-app="p06">
+                <div class="app-head">
+                    <span class="app-head-label">Aplicación operativa</span>
+                    <span class="app-head-status"><strong>5</strong> controles aplicados</span>
+                </div>
+                <div class="app-phases">
+                    <span class="app-phase-chip" data-phase="durante"><strong>Durante</strong> el uso</span>
+                    <span class="app-phase-chip" data-phase="despues"><strong>Después</strong> del uso</span>
+                </div>
+                <div class="control-grid">
+                    <div class="control-card" data-type="detectivo">
+                        <div class="control-head"><span class="control-num">01</span><span class="control-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+                        <div class="control-meta"><span class="control-chip control-chip--phase">Durante</span><span class="control-chip control-chip--det">Detectivo</span></div>
+                        <p class="control-text">Toda cita o dato se verifica en su fuente original.</p>
+                        <div class="control-ref">Buena práctica</div>
+                    </div>
+                    <div class="control-card" data-type="detectivo">
+                        <div class="control-head"><span class="control-num">02</span><span class="control-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+                        <div class="control-meta"><span class="control-chip control-chip--phase">Durante</span><span class="control-chip control-chip--det">Detectivo</span></div>
+                        <p class="control-text">Resultados con impacto profesional: cruzar con segunda herramienta o fuente.</p>
+                        <div class="control-ref">NIST AI RMF · Measure</div>
+                    </div>
+                    <div class="control-card" data-type="detectivo">
+                        <div class="control-head"><span class="control-num">03</span><span class="control-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+                        <div class="control-meta"><span class="control-chip control-chip--phase">Durante</span><span class="control-chip control-chip--det">Detectivo</span></div>
+                        <p class="control-text">Decisiones críticas: revisión humana experta antes de publicar.</p>
+                        <div class="control-ref">EU AI Act art. 14</div>
+                    </div>
+                    <div class="control-card" data-type="correctivo">
+                        <div class="control-head"><span class="control-num">04</span><span class="control-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+                        <div class="control-meta"><span class="control-chip control-chip--phase">Durante</span><span class="control-chip control-chip--cor">Correctivo</span></div>
+                        <p class="control-text">Dato no verificable: no se incluye. Sin matices.</p>
+                        <div class="control-ref">Buena práctica</div>
+                    </div>
+                    <div class="control-card" data-type="correctivo">
+                        <div class="control-head"><span class="control-num">05</span><span class="control-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+                        <div class="control-meta"><span class="control-chip control-chip--phase">Después</span><span class="control-chip control-chip--cor">Correctivo</span></div>
+                        <p class="control-text">Error detectado: se nombra, se corrige y se documenta.</p>
+                        <div class="control-ref">ISO 42001 cl. 10</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>
+
+<article class="principle reveal" id="p07">
+    <div class="principle-inner">
+        <aside class="principle-aside">
+            <div class="principle-num"><em>07</em></div>
+            <span class="principle-tag">Transparencia</span>
+            <div class="principle-frameworks"><span class="fw-chip">EU AI Act art. 50</span><span class="fw-chip">OCDE 1.3</span></div>
+        </aside>
+        <div class="principle-body">
+            <h3 class="principle-title">Si la IA ayudó, <em>se dice</em>.</h3>
+            <p class="principle-rule">No ocultamos la asistencia tecnológica en el trabajo. La declaramos con claridad y sin defensiva.</p>
+            <div class="principle-text">
+                <p>La transparencia con el uso de IA es una decisión profesional, no una concesión moral. Quien recibe nuestro trabajo tiene derecho a saber con qué herramientas se hizo, porque eso modifica cómo lo va a leer, qué revisión va a pedir y qué tipo de confianza va a depositar.</p>
+                <p>No compartimos la idea de que declarar el uso de IA debilita el trabajo. <strong>Lo que debilita el trabajo es esconderlo y que se note igual</strong>. La autoría sigue siendo nuestra: decidimos qué pedirle a la herramienta, evaluamos el resultado, lo ajustamos, lo verificamos y somos responsables. Lo único que cambia es que ahora se nombra. No por ceremonia, por respeto a quien lee.</p>
+                <p>El EU AI Act (artículo 50) ya impone obligaciones de transparencia para contenido sintético. Nosotros las aplicamos aunque no nos alcance jurisdiccionalmente: es buena práctica.</p>
+            </div>
+            <div class="callout callout--why">
+                <div class="callout-label">Cómo declaramos el uso</div>
+                <p>Si una pieza tuvo asistencia de IA en etapa relevante (estructura, redacción, análisis, traducción), se aclara al pie o al inicio. La fórmula: qué tecnología se usó, en qué etapa, quién hizo la revisión humana. No declaración decorativa: calibración real de confianza.</p>
+            </div>
+            <div class="application" data-app="p07">
+                <div class="app-head">
+                    <span class="app-head-label">Aplicación operativa</span>
+                    <span class="app-head-status"><strong>5</strong> controles aplicados</span>
+                </div>
+                <div class="app-phases">
+                    <span class="app-phase-chip" data-phase="durante"><strong>Durante</strong> el uso</span>
+                    <span class="app-phase-chip" data-phase="despues"><strong>Después</strong> del uso</span>
+                </div>
+                <div class="control-grid">
+                    <div class="control-card" data-type="preventivo">
+                        <div class="control-head"><span class="control-num">01</span><span class="control-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+                        <div class="control-meta"><span class="control-chip control-chip--phase">Durante</span><span class="control-chip control-chip--prev">Preventivo</span></div>
+                        <p class="control-text">Pieza con asistencia de IA: mención visible del uso.</p>
+                        <div class="control-ref">EU AI Act art. 50</div>
+                    </div>
+                    <div class="control-card" data-type="detectivo">
+                        <div class="control-head"><span class="control-num">02</span><span class="control-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+                        <div class="control-meta"><span class="control-chip control-chip--phase">Durante</span><span class="control-chip control-chip--det">Detectivo</span></div>
+                        <p class="control-text">Identificar y declarar etapa asistida vs. etapa humana.</p>
+                        <div class="control-ref">EU AI Act art. 50</div>
+                    </div>
+                    <div class="control-card" data-type="preventivo">
+                        <div class="control-head"><span class="control-num">03</span><span class="control-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+                        <div class="control-meta"><span class="control-chip control-chip--phase">Durante</span><span class="control-chip control-chip--prev">Preventivo</span></div>
+                        <p class="control-text">No firmar como propio lo que no atravesó el criterio humano palabra a palabra.</p>
+                        <div class="control-ref">Buena práctica</div>
+                    </div>
+                    <div class="control-card" data-type="preventivo">
+                        <div class="control-head"><span class="control-num">04</span><span class="control-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+                        <div class="control-meta"><span class="control-chip control-chip--phase">Durante</span><span class="control-chip control-chip--prev">Preventivo</span></div>
+                        <p class="control-text">Imágenes, audios o videos generados se declaran como tales.</p>
+                        <div class="control-ref">EU AI Act art. 50</div>
+                    </div>
+                    <div class="control-card" data-type="correctivo">
+                        <div class="control-head"><span class="control-num">05</span><span class="control-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+                        <div class="control-meta"><span class="control-chip control-chip--phase">Después</span><span class="control-chip control-chip--cor">Correctivo</span></div>
+                        <p class="control-text">Si alguien pregunta cómo se hizo, se responde con detalle.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>
+
+<article class="principle reveal" id="p08">
+    <div class="principle-inner">
+        <aside class="principle-aside">
+            <div class="principle-num"><em>08</em></div>
+            <span class="principle-tag">Equidad</span>
+            <div class="principle-frameworks"><span class="fw-chip">EU AI Act art. 9</span><span class="fw-chip">OCDE 1.2</span></div>
+        </aside>
+        <div class="principle-body">
+            <h3 class="principle-title">La IA puede amplificar sesgos. <em>Nosotros no</em>.</h3>
+            <p class="principle-rule">Toda herramienta entrenada con datos humanos hereda los sesgos de esos datos. Nuestro trabajo es no propagarlos sin filtro.</p>
+            <div class="principle-text">
+                <p>Toda herramienta de IA aprende de datos humanos, y los datos humanos arrastran sesgos históricos: de género, étnicos, lingüísticos, socioeconómicos, geográficos. Una IA que recomienda candidatos, evalúa textos, traduce expresiones o genera imágenes puede reproducir esos sesgos sin que nadie lo note.</p>
+                <p>No alcanza con buenas intenciones. <strong>El sesgo no se ve a simple vista: hay que buscarlo</strong>. Y hay que documentarlo cuando aparece, porque silenciarlo equivale a normalizarlo.</p>
+                <p>Trabajamos con tres preguntas operativas: ¿esta herramienta fue auditada en su sesgo conocido?, ¿estamos validando los resultados con personas que pueden detectar lo que no vemos?, ¿el output favorece sistemáticamente a un grupo y desfavorece a otro?</p>
+            </div>
+            <div class="callout callout--why">
+                <div class="callout-label">Por qué importa</div>
+                <p>El sesgo algorítmico está documentado en literatura académica e institucional desde hace más de una década: UNESCO, IEEE, AI Now Institute, Algorithmic Justice League. No existe modelo entrenado con datos humanos que esté completamente libre de sesgo. Lo que cambia entre una práctica madura y una negligente es cuánto se mide, cuánto se documenta y qué se hace cuando aparece.</p>
+            </div>
+            <div class="application" data-app="p08">
+                <div class="app-head">
+                    <span class="app-head-label">Aplicación operativa</span>
+                    <span class="app-head-status"><strong>6</strong> controles aplicados</span>
+                </div>
+                <div class="app-phases">
+                    <span class="app-phase-chip" data-phase="antes"><strong>Antes</strong> del uso</span>
+                    <span class="app-phase-chip" data-phase="durante"><strong>Durante</strong> el uso</span>
+                </div>
+                <div class="control-grid">
+                    <div class="control-card" data-type="detectivo">
+                        <div class="control-head"><span class="control-num">01</span><span class="control-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+                        <div class="control-meta"><span class="control-chip control-chip--phase">Antes</span><span class="control-chip control-chip--det">Detectivo</span></div>
+                        <p class="control-text">Revisar auditorías públicas de sesgo del modelo antes de adoptarlo.</p>
+                        <div class="control-ref">EU AI Act art. 9</div>
+                    </div>
+                    <div class="control-card" data-type="preventivo">
+                        <div class="control-head"><span class="control-num">02</span><span class="control-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+                        <div class="control-meta"><span class="control-chip control-chip--phase">Antes</span><span class="control-chip control-chip--prev">Preventivo</span></div>
+                        <p class="control-text">Considerar accesibilidad lingüística: variantes del español y otros idiomas.</p>
+                    </div>
+                    <div class="control-card" data-type="preventivo">
+                        <div class="control-head"><span class="control-num">03</span><span class="control-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+                        <div class="control-meta"><span class="control-chip control-chip--phase">Antes</span><span class="control-chip control-chip--prev">Preventivo</span></div>
+                        <p class="control-text">No usar IA en contextos donde el sesgo conocido sea inadmisible.</p>
+                        <div class="control-ref">Matriz Veto · EU AI Act art. 5</div>
+                    </div>
+                    <div class="control-card" data-type="preventivo">
+                        <div class="control-head"><span class="control-num">04</span><span class="control-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+                        <div class="control-meta"><span class="control-chip control-chip--phase">Antes</span><span class="control-chip control-chip--prev">Preventivo</span></div>
+                        <p class="control-text">Si la herramienta no permite auditoría de sesgo, se clasifica como alto riesgo.</p>
+                        <div class="control-ref">EU AI Act art. 9 · NIST AI RMF</div>
+                    </div>
+                    <div class="control-card" data-type="detectivo">
+                        <div class="control-head"><span class="control-num">05</span><span class="control-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+                        <div class="control-meta"><span class="control-chip control-chip--phase">Durante</span><span class="control-chip control-chip--det">Detectivo</span></div>
+                        <p class="control-text">En decisiones sobre personas: aplicar revisión con perspectiva diversa.</p>
+                        <div class="control-ref">EU AI Act art. 9</div>
+                    </div>
+                    <div class="control-card" data-type="detectivo">
+                        <div class="control-head"><span class="control-num">06</span><span class="control-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+                        <div class="control-meta"><span class="control-chip control-chip--phase">Durante</span><span class="control-chip control-chip--det">Detectivo</span></div>
+                        <p class="control-text">Documentar cuando un output muestra patrones diferenciales por grupo.</p>
+                        <div class="control-ref">ISO 42001 cl. 7.5</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>
+
+<article class="principle reveal" id="p09">
+    <div class="principle-inner">
+        <aside class="principle-aside">
+            <div class="principle-num"><em>09</em></div>
+            <span class="principle-tag">Supervisión humana</span>
+            <div class="principle-frameworks"><span class="fw-chip">EU AI Act art. 14</span><span class="fw-chip">OCDE 1.5</span></div>
+        </aside>
+        <div class="principle-body">
+            <h3 class="principle-title">En lo que importa, <em>decide una persona</em>.</h3>
+            <p class="principle-rule">La supervisión humana no es una etiqueta: es una persona identificable que puede frenar, ajustar o revertir el resultado.</p>
+            <div class="principle-text">
+                <p>"Human-in-the-loop" se convirtió en frase de catálogo. Decirlo no es hacerlo. Este principio se cruza directamente con la matriz de riesgo: en alto riesgo, la supervisión humana significativa es obligatoria.</p>
+                <p>Supervisión significativa quiere decir tres cosas: <strong>la persona tiene la competencia para evaluar el output, tiene el tiempo real para hacerlo, y tiene la autoridad para cambiarlo</strong>. Si falta una de las tres, no hay supervisión. Hay supervisión decorativa, que es peor que ninguna porque crea falsa confianza.</p>
+                <p>La decisión final sobre una persona —contratar, evaluar, asesorar, recomendar— nunca puede ser tomada por una IA en nuestro flujo. La IA puede informar, ordenar, sintetizar. La decisión la firma alguien con nombre.</p>
+            </div>
+            <div class="callout callout--why">
+                <div class="callout-label">El criterio operativo</div>
+                <p>Para cada uso identificamos: qué decisión está en juego, quién es la persona supervisora, qué competencia tiene, cuánto tiempo dedica por caso y qué autoridad de modificación posee. Si los cinco datos no están claros, la supervisión no existe.</p>
+            </div>
+            <div class="application" data-app="p09">
+                <div class="app-head">
+                    <span class="app-head-label">Aplicación operativa</span>
+                    <span class="app-head-status"><strong>6</strong> controles aplicados</span>
+                </div>
+                <div class="app-phases">
+                    <span class="app-phase-chip" data-phase="antes"><strong>Antes</strong> del uso</span>
+                    <span class="app-phase-chip" data-phase="durante"><strong>Durante</strong> el uso</span>
+                </div>
+                <div class="control-grid">
+                    <div class="control-card" data-type="preventivo">
+                        <div class="control-head"><span class="control-num">01</span><span class="control-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+                        <div class="control-meta"><span class="control-chip control-chip--phase">Antes</span><span class="control-chip control-chip--prev">Preventivo</span></div>
+                        <p class="control-text">Identificar a la persona supervisora por nombre, no por rol genérico.</p>
+                        <div class="control-ref">EU AI Act art. 14</div>
+                    </div>
+                    <div class="control-card" data-type="preventivo">
+                        <div class="control-head"><span class="control-num">02</span><span class="control-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+                        <div class="control-meta"><span class="control-chip control-chip--phase">Antes</span><span class="control-chip control-chip--prev">Preventivo</span></div>
+                        <p class="control-text">Confirmar competencia técnica relevante para el dominio.</p>
+                        <div class="control-ref">EU AI Act art. 14</div>
+                    </div>
+                    <div class="control-card" data-type="preventivo">
+                        <div class="control-head"><span class="control-num">03</span><span class="control-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+                        <div class="control-meta"><span class="control-chip control-chip--phase">Durante</span><span class="control-chip control-chip--prev">Preventivo</span></div>
+                        <p class="control-text">Garantizar tiempo real de revisión, no aprobación automática.</p>
+                        <div class="control-ref">EU AI Act art. 14</div>
+                    </div>
+                    <div class="control-card" data-type="preventivo">
+                        <div class="control-head"><span class="control-num">04</span><span class="control-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+                        <div class="control-meta"><span class="control-chip control-chip--phase">Durante</span><span class="control-chip control-chip--prev">Preventivo</span></div>
+                        <p class="control-text">Asegurar autoridad real para modificar o frenar el resultado.</p>
+                        <div class="control-ref">EU AI Act art. 14</div>
+                    </div>
+                    <div class="control-card" data-type="correctivo">
+                        <div class="control-head"><span class="control-num">05</span><span class="control-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+                        <div class="control-meta"><span class="control-chip control-chip--phase">Durante</span><span class="control-chip control-chip--cor">Correctivo</span></div>
+                        <p class="control-text">Decisión final sobre personas: siempre lleva firma humana identificable.</p>
+                        <div class="control-ref">OCDE 1.5</div>
+                    </div>
+                    <div class="control-card" data-type="detectivo">
+                        <div class="control-head"><span class="control-num">06</span><span class="control-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+                        <div class="control-meta"><span class="control-chip control-chip--phase">Durante</span><span class="control-chip control-chip--det">Detectivo</span></div>
+                        <p class="control-text">Documentar cada intervención supervisora con fecha y razón.</p>
+                        <div class="control-ref">ISO 42001 cl. 7.5</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>
+
+<article class="principle reveal" id="p10">
+    <div class="principle-inner">
+        <aside class="principle-aside">
+            <div class="principle-num"><em>10</em></div>
+            <span class="principle-tag">Accountability</span>
+            <div class="principle-frameworks"><span class="fw-chip">OCDE 1.5</span><span class="fw-chip">ISO 42001 cl. 5</span><span class="fw-chip">GDPR art. 24</span></div>
+        </aside>
+        <div class="principle-body">
+            <h3 class="principle-title">Quien decide, responde. Lo que falla, <em>se repara</em>.</h3>
+            <p class="principle-rule">No basta con buenos principios: hace falta saber quién responde cuando algo sale mal, y qué se hace para repararlo.</p>
+            <div class="principle-text">
+                <p>El principio que cierra el código incluye tres dimensiones que suelen quedar fuera: responsabilidad nombrada, mecanismo de remediación para personas afectadas, e impacto ambiental y social del uso.</p>
+                <p><strong>Responsabilidad nombrada</strong>: cada uso de IA en Nick Perot tiene una persona responsable identificable, no "el equipo" en abstracto. <strong>Mecanismo de remediación</strong>: si alguien se ve afectado por una decisión asistida por IA en nuestro trabajo, tiene una vía concreta para reclamar, recibir respuesta humana en tiempo razonable y obtener corrección si corresponde. <strong>Impacto</strong>: las herramientas de IA generativa consumen recursos computacionales y energía. Lo asumimos al elegir, lo declaramos al cliente cuando importa.</p>
+            </div>
+            <div class="callout callout--why">
+                <div class="callout-label">Lo que asumimos al firmar este código</div>
+                <p>Asumimos errores. Asumimos que algún resultado va a fallar a pesar de aplicar los nueve principios anteriores. La diferencia entre una práctica madura y una práctica decorativa está en qué pasa después del error. Acá hay una ruta declarada: ver sección Gobernanza.</p>
+            </div>
+            <div class="application" data-app="p10">
+                <div class="app-head">
+                    <span class="app-head-label">Aplicación operativa</span>
+                    <span class="app-head-status"><strong>7</strong> controles aplicados</span>
+                </div>
+                <div class="app-phases">
+                    <span class="app-phase-chip" data-phase="antes"><strong>Antes</strong> del uso</span>
+                    <span class="app-phase-chip" data-phase="durante"><strong>Durante</strong> el uso</span>
+                    <span class="app-phase-chip" data-phase="despues"><strong>Después</strong> del uso</span>
+                </div>
+                <div class="control-grid">
+                    <div class="control-card" data-type="preventivo">
+                        <div class="control-head"><span class="control-num">01</span><span class="control-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+                        <div class="control-meta"><span class="control-chip control-chip--phase">Antes</span><span class="control-chip control-chip--prev">Preventivo</span></div>
+                        <p class="control-text">Cada proyecto con IA tiene persona responsable nombrada.</p>
+                        <div class="control-ref">ISO 42001 cl. 5 · GDPR art. 24</div>
+                    </div>
+                    <div class="control-card" data-type="preventivo">
+                        <div class="control-head"><span class="control-num">02</span><span class="control-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+                        <div class="control-meta"><span class="control-chip control-chip--phase">Antes</span><span class="control-chip control-chip--prev">Preventivo</span></div>
+                        <p class="control-text">Canal de contacto público para reportar incidentes o afectaciones.</p>
+                    </div>
+                    <div class="control-card" data-type="preventivo">
+                        <div class="control-head"><span class="control-num">03</span><span class="control-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+                        <div class="control-meta"><span class="control-chip control-chip--phase">Antes</span><span class="control-chip control-chip--prev">Preventivo</span></div>
+                        <p class="control-text">Plazo declarado de respuesta a reclamos: 72 horas hábiles.</p>
+                        <div class="control-ref">Buena práctica</div>
+                    </div>
+                    <div class="control-card" data-type="preventivo">
+                        <div class="control-head"><span class="control-num">04</span><span class="control-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+                        <div class="control-meta"><span class="control-chip control-chip--phase">Antes</span><span class="control-chip control-chip--prev">Preventivo</span></div>
+                        <p class="control-text">Consideración de huella computacional al elegir entre opciones equivalentes.</p>
+                    </div>
+                    <div class="control-card" data-type="detectivo">
+                        <div class="control-head"><span class="control-num">05</span><span class="control-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+                        <div class="control-meta"><span class="control-chip control-chip--phase">Durante</span><span class="control-chip control-chip--det">Detectivo</span></div>
+                        <p class="control-text">Registro interno de incidentes con causa, acción y resultado.</p>
+                        <div class="control-ref">ISO 42001 cl. 10</div>
+                    </div>
+                    <div class="control-card" data-type="detectivo">
+                        <div class="control-head"><span class="control-num">06</span><span class="control-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+                        <div class="control-meta"><span class="control-chip control-chip--phase">Durante</span><span class="control-chip control-chip--det">Detectivo</span></div>
+                        <p class="control-text">Declaración de impacto ambiental en proyectos donde sea material.</p>
+                    </div>
+                    <div class="control-card" data-type="correctivo">
+                        <div class="control-head"><span class="control-num">07</span><span class="control-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+                        <div class="control-meta"><span class="control-chip control-chip--phase">Después</span><span class="control-chip control-chip--cor">Correctivo</span></div>
+                        <p class="control-text">Revisión anual del código con incorporación de aprendizajes.</p>
+                        <div class="control-ref">ISO 42001 cl. 9.3</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>
+
+<!-- AUTOEVALUACIÓN -->
+<section class="assessment reveal" id="autoevaluacion">
+    <div class="assessment-inner">
+        <div class="section-label">Autoevaluación interactiva</div>
+        <h2 class="section-title">¿Cómo estás <em>aplicando</em> este código?</h2>
+        <p class="section-lead">Diez preguntas, una por principio. Movés los sliders según tu honestidad. El resultado se calcula en tiempo real y se grafica abajo. No se guarda en ningún servidor: vive solo en tu navegador.</p>
+        <div class="assessment-layout">
+            <div class="assessment-sliders">
+                <div class="slider-block"><div class="slider-head"><span class="slider-q"><span class="slider-q-num">01</span>¿Investigamos quién opera cada herramienta antes de adoptarla?</span><span class="slider-value" data-slider-value="0">3</span></div><input type="range" min="1" max="5" value="3" class="slider-input" data-slider="0"><div class="slider-scale"><span>Nunca</span><span>A veces</span><span>Siempre</span></div></div>
+                <div class="slider-block"><div class="slider-head"><span class="slider-q"><span class="slider-q-num">02</span>¿Tenemos claro qué hace cada plataforma con nuestros datos?</span><span class="slider-value" data-slider-value="1">3</span></div><input type="range" min="1" max="5" value="3" class="slider-input" data-slider="1"><div class="slider-scale"><span>Nunca</span><span>A veces</span><span>Siempre</span></div></div>
+                <div class="slider-block"><div class="slider-head"><span class="slider-q"><span class="slider-q-num">03</span>¿Fijamos un umbral de seguridad acorde al tipo de información?</span><span class="slider-value" data-slider-value="2">3</span></div><input type="range" min="1" max="5" value="3" class="slider-input" data-slider="2"><div class="slider-scale"><span>Nunca</span><span>A veces</span><span>Siempre</span></div></div>
+                <div class="slider-block"><div class="slider-head"><span class="slider-q"><span class="slider-q-num">04</span>¿Usamos cada herramienta para lo que es realmente buena?</span><span class="slider-value" data-slider-value="3">3</span></div><input type="range" min="1" max="5" value="3" class="slider-input" data-slider="3"><div class="slider-scale"><span>Nunca</span><span>A veces</span><span>Siempre</span></div></div>
+                <div class="slider-block"><div class="slider-head"><span class="slider-q"><span class="slider-q-num">05</span>¿Somos honestos sobre nuestro nivel de experiencia con cada tecnología?</span><span class="slider-value" data-slider-value="4">3</span></div><input type="range" min="1" max="5" value="3" class="slider-input" data-slider="4"><div class="slider-scale"><span>Nunca</span><span>A veces</span><span>Siempre</span></div></div>
+                <div class="slider-block"><div class="slider-head"><span class="slider-q"><span class="slider-q-num">06</span>¿Verificamos los resultados antes de usarlos en algo que importa?</span><span class="slider-value" data-slider-value="5">3</span></div><input type="range" min="1" max="5" value="3" class="slider-input" data-slider="5"><div class="slider-scale"><span>Nunca</span><span>A veces</span><span>Siempre</span></div></div>
+                <div class="slider-block"><div class="slider-head"><span class="slider-q"><span class="slider-q-num">07</span>¿Declaramos cuando usamos IA en nuestro trabajo entregable?</span><span class="slider-value" data-slider-value="6">3</span></div><input type="range" min="1" max="5" value="3" class="slider-input" data-slider="6"><div class="slider-scale"><span>Nunca</span><span>A veces</span><span>Siempre</span></div></div>
+                <div class="slider-block"><div class="slider-head"><span class="slider-q"><span class="slider-q-num">08</span>¿Consideramos el sesgo cuando usamos IA en decisiones sobre personas?</span><span class="slider-value" data-slider-value="7">3</span></div><input type="range" min="1" max="5" value="3" class="slider-input" data-slider="7"><div class="slider-scale"><span>Nunca</span><span>A veces</span><span>Siempre</span></div></div>
+                <div class="slider-block"><div class="slider-head"><span class="slider-q"><span class="slider-q-num">09</span>¿Garantizamos supervisión humana real (no decorativa) en alto riesgo?</span><span class="slider-value" data-slider-value="8">3</span></div><input type="range" min="1" max="5" value="3" class="slider-input" data-slider="8"><div class="slider-scale"><span>Nunca</span><span>A veces</span><span>Siempre</span></div></div>
+                <div class="slider-block"><div class="slider-head"><span class="slider-q"><span class="slider-q-num">10</span>¿Tenemos claro quién responde si algo sale mal y cómo se repara?</span><span class="slider-value" data-slider-value="9">3</span></div><input type="range" min="1" max="5" value="3" class="slider-input" data-slider="9"><div class="slider-scale"><span>Nunca</span><span>A veces</span><span>Siempre</span></div></div>
+            </div>
+            <aside class="assessment-result">
+                <div class="result-label">Tu puntaje en tiempo real</div>
+                <div class="result-score">
+                    <span class="result-score-num" id="scoreNum">30</span>
+                    <span class="result-score-max">/ 50</span>
+                </div>
+                <div class="result-status" id="scoreStatus">En camino</div>
+                <div class="result-radar" id="resultRadar">
+                    <svg viewBox="0 0 320 320" aria-hidden="true">
+                        <g transform="translate(160 160)">
+                            <circle r="40" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+                            <circle r="70" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+                            <circle r="100" fill="none" stroke="rgba(255,255,255,0.09)" stroke-width="1"/>
+                            <circle r="130" fill="none" stroke="rgba(255,255,255,0.14)" stroke-width="1"/>
+                            <g id="radarAxes" stroke="rgba(255,255,255,0.08)" stroke-width="1"></g>
+                            <polygon id="radarShape" points="0,0" fill="rgba(91,168,224,0.25)" stroke="#5BA8E0" stroke-width="2" stroke-linejoin="round" style="transition:all .35s cubic-bezier(0.16,1,0.3,1)"/>
+                            <g id="radarPoints"></g>
+                            <g id="radarLabels" font-family="Inter, sans-serif" font-size="10" font-weight="700" fill="rgba(255,255,255,0.6)" text-anchor="middle"></g>
+                        </g>
+                    </svg>
+                </div>
+                <p class="result-message" id="resultMessage">Movés los sliders y el gráfico se actualiza. Apuntamos al perímetro: no se trata de tener 50, se trata de saber dónde estás más débil.</p>
+            </aside>
+        </div>
+    </div>
+</section>
+
+<!-- GOBERNANZA / INCIDENTES -->
+<section class="governance reveal" id="gobernanza">
+    <div class="gov-inner">
+        <div class="section-label">Gobernanza · Protocolo de incidentes</div>
+        <h2 class="section-title">Qué hacemos <em>cuando algo sale mal</em>.</h2>
+        <p class="section-lead">Asumimos que va a pasar. La diferencia entre una práctica madura y una decorativa está en tener una ruta declarada antes del incidente, no después. Este protocolo cumple ISO 42001 cláusulas 8 y 10.</p>
+        <div class="gov-grid">
+            <div class="gov-block">
+                <div class="gov-block-label">Estructura de responsabilidad</div>
+                <h3 class="gov-block-title">Quién responde por este código</h3>
+                <div class="gov-block-text">
+                    <p><strong>Responsable de cumplimiento</strong>: Nick Perot. Firma este documento, lo aplica y responde por su correcta operación.</p>
+                    <p><strong>Revisión anual</strong>: obligatoria. La próxima, mayo 2027. Incluye incidentes registrados, ajustes a marcos internacionales y aprendizajes operativos.</p>
+                    <p><strong>Adherentes externos</strong>: si una persona u organización adhiere a este código, asume su propio cumplimiento. No constituye relación contractual con Nick Perot.</p>
+                </div>
+            </div>
+            <div class="gov-block">
+                <div class="gov-block-label">Si te viste afectado</div>
+                <h3 class="gov-block-title">Protocolo de incidentes y reclamos</h3>
+                <div class="gov-block-text">
+                    <ol class="gov-steps">
+                        <li class="gov-step"><span class="gov-step-text"><strong>Reportá</strong> el incidente al canal indicado abajo, con descripción y fecha.</span></li>
+                        <li class="gov-step"><span class="gov-step-text"><strong>Acuse de recibo</strong> en menos de 24 horas hábiles.</span></li>
+                        <li class="gov-step"><span class="gov-step-text"><strong>Respuesta sustantiva</strong> en menos de 72 horas hábiles, con análisis y propuesta.</span></li>
+                        <li class="gov-step"><span class="gov-step-text"><strong>Remediación</strong> si corresponde: corrección, retractación o reparación documentada.</span></li>
+                        <li class="gov-step"><span class="gov-step-text"><strong>Registro</strong> del incidente y lección incorporada a la revisión anual.</span></li>
+                    </ol>
+                    <div class="gov-contact"><strong>Canal:</strong> nickperot.com · sección Contacto</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ANTIPATRONES -->
+<section class="antipatterns reveal" id="antipatrones">
+    <div class="antipatterns-inner">
+        <div class="section-label">Antipatrones declarados</div>
+        <h2 class="section-title">Cinco cosas que <em>no</em> hacemos, aunque la industria las haga.</h2>
+        <p class="section-lead">Para que un código signifique algo, hay que decir también qué se excluye. Estos son los antipatrones que vemos repetidos y que en Nick Perot rechazamos explícitamente.</p>
+        <ul class="antipattern-list">
+            <li class="antipattern-item"><div class="antipattern-num">01</div><div><h3 class="antipattern-name">Demos sin medición</h3><p class="antipattern-text">Mostrar una herramienta funcionando en condiciones controladas y vender eso como prueba de eficacia. <strong>Lo que no se midió en uso real, no se afirma como hecho</strong>.</p></div></li>
+            <li class="antipattern-item"><div class="antipattern-num">02</div><div><h3 class="antipattern-name">Promesas de seguridad absoluta</h3><p class="antipattern-text">Decir "100% seguro", "máxima privacidad", "datos completamente protegidos". <strong>Ninguna de esas frases es técnicamente sostenible</strong>. Prometen lo imposible para ocultar lo posible.</p></div></li>
+            <li class="antipattern-item"><div class="antipattern-num">03</div><div><h3 class="antipattern-name">Sustitución encubierta</h3><p class="antipattern-text">Entregar trabajo asistido por IA firmando como si hubiera sido íntegramente humano. <strong>La autoría no se decora: se declara</strong>. Quien recibe el trabajo decide qué hacer con esa información.</p></div></li>
+            <li class="antipattern-item"><div class="antipattern-num">04</div><div><h3 class="antipattern-name">IA como árbitro final sobre personas</h3><p class="antipattern-text">Dejar que un modelo decida contrataciones, evaluaciones, asesoramientos o sentencias. <strong>La decisión sobre personas la firma una persona</strong>. La IA informa; nunca reemplaza la firma humana.</p></div></li>
+            <li class="antipattern-item"><div class="antipattern-num">05</div><div><h3 class="antipattern-name">Ética declarativa sin operación</h3><p class="antipattern-text">Códigos llenos de palabras como "responsable", "ético", "transparente" sin un solo control verificable. <strong>Si no hay checklist, no hay código: hay folleto</strong>. Por eso cada principio de este documento tiene controles operativos.</p></div></li>
+        </ul>
+    </div>
+</section>
+
+<!-- GLOSARIO -->
+<section class="glossary reveal" id="glosario">
+    <div class="glossary-inner">
+        <div class="section-label">Glosario operativo</div>
+        <h2 class="section-title">Las palabras que usamos, <em>en serio</em>.</h2>
+        <p class="section-lead">No diccionario académico: definiciones operativas, tal como las aplicamos. Cada término viene con su fuente para que pueda verificarse.</p>
+        <dl class="glossary-grid">
+            <div class="gloss-term"><dt>Best practice <em>contextual</em><span class="gloss-term-source">OCDE 2019</span></dt><dd>La mejor práctica posible dado un contexto, persona y objetivo. No universal; se adapta.</dd></div>
+            <div class="gloss-term"><dt>DPIA<span class="gloss-term-source">GDPR art. 35</span></dt><dd>Data Protection Impact Assessment. Evaluación obligatoria de impacto cuando hay riesgo alto sobre datos personales.</dd></div>
+            <div class="gloss-term"><dt>Human-in-the-loop<span class="gloss-term-source">EU AI Act art. 14</span></dt><dd>Persona identificable con competencia, tiempo y autoridad para evaluar, modificar o frenar el output de una IA.</dd></div>
+            <div class="gloss-term"><dt>Minimización de datos<span class="gloss-term-source">GDPR art. 5</span></dt><dd>Procesar solo los datos estrictamente necesarios para el propósito declarado.</dd></div>
+            <div class="gloss-term"><dt>Pragmático<span class="gloss-term-source">Nick Perot · este código</span></dt><dd>Que puede cumplirse efectivamente. Si no se puede cumplir, no se escribe.</dd></div>
+            <div class="gloss-term"><dt>Redress<span class="gloss-term-source">ISO 42001 cl. 10</span></dt><dd>Mecanismo de reparación para personas afectadas por una decisión asistida por IA.</dd></div>
+            <div class="gloss-term"><dt>Riesgo aceptable<span class="gloss-term-source">NIST AI RMF</span></dt><dd>Umbral declarado y documentado que el responsable considera asumible para el contexto.</dd></div>
+            <div class="gloss-term"><dt>Sesgo algorítmico<span class="gloss-term-source">EU AI Act art. 9</span></dt><dd>Patrón sistemático del modelo que favorece o desfavorece a grupos identificables sin justificación.</dd></div>
+            <div class="gloss-term"><dt>Supervisión <em>significativa</em><span class="gloss-term-source">EU AI Act art. 14</span></dt><dd>Supervisión humana con competencia técnica, tiempo real de revisión y autoridad de modificación.</dd></div>
+            <div class="gloss-term"><dt>Tiering de riesgo<span class="gloss-term-source">EU AI Act</span></dt><dd>Clasificación del uso de IA en niveles según su potencial de daño. Determina los controles aplicables.</dd></div>
+            <div class="gloss-term"><dt>Trazabilidad<span class="gloss-term-source">ISO 42001 cl. 8</span></dt><dd>Capacidad de reconstruir qué herramienta se usó, con qué datos, en qué etapa y bajo qué supervisión.</dd></div>
+            <div class="gloss-term"><dt>Verificación cruzada<span class="gloss-term-source">Nick Perot · este código</span></dt><dd>Contrastar un resultado con al menos una fuente o herramienta independiente antes de usarlo.</dd></div>
+        </dl>
+    </div>
+</section>
+
+<!-- ADHESIÓN -->
+<section class="adoption reveal" id="adhesion">
+    <div class="adoption-inner">
+        <div class="adoption-text">
+            <div class="section-label">Adhesión voluntaria</div>
+            <h2 class="section-title">Si te sirve, <em>adoptalo</em>.</h2>
+            <p>Este código está bajo licencia <strong>Creative Commons BY 4.0</strong>. Podés copiarlo, modificarlo y publicarlo en tu organización, con la única condición de citar la fuente.</p>
+            <p>Si tu trabajo adhiere a este código, podés <strong>descargar el sello de adhesión</strong> y exhibirlo donde corresponda. La adhesión es declaración pública de compromiso, no certificación externa. La verificación está en lo que hacés, no en lo que mostrás.</p>
+            <p>Si tu organización quiere adaptar el código a su realidad, te dejamos la plantilla editable y el listado de controles operativos en formato abierto.</p>
+            <div class="adoption-actions">
+                <a href="#" class="btn-primary" id="downloadSeal">Descargar sello (SVG)
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                </a>
+                <a href="https://nickperot.com" target="_blank" rel="noopener noreferrer" class="btn-secondary">Solicitar plantilla editable</a>
+                <a href="#" onclick="window.print();return false" class="btn-secondary">Imprimir como PDF</a>
+            </div>
+        </div>
+        <div class="seal-wrapper">
+            <div class="seal" id="seal" title="Sello de adhesión">
+                <svg viewBox="0 0 340 340" aria-label="Sello de adhesión al código de ética Nick Perot">
+                    <defs>
+                        <path id="circlePath" d="M 170, 170 m -132, 0 a 132,132 0 1,1 264,0 a 132,132 0 1,1 -264,0"/>
+                    </defs>
+                    <circle cx="170" cy="170" r="160" fill="none" stroke="currentColor" stroke-width="2"/>
+                    <circle cx="170" cy="170" r="148" fill="none" stroke="currentColor" stroke-width="0.5"/>
+                    <circle cx="170" cy="170" r="100" fill="none" stroke="currentColor" stroke-width="0.5"/>
+                    <g class="seal-spin">
+                        <text font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="currentColor" letter-spacing="3">
+                            <textPath href="#circlePath">CÓDIGO DE ÉTICA · NICK PEROT · V 2.0 · MAYO 2026 · CC BY 4.0 · DOCUMENTO ABIERTO ·</textPath>
+                        </text>
+                    </g>
+                    <g transform="translate(170 110)" text-anchor="middle">
+                        <text font-family="Inter, sans-serif" font-size="9" font-weight="600" fill="currentColor" opacity="0.65" letter-spacing="2">ADHIERE A</text>
+                    </g>
+                    <g transform="translate(170 170)" text-anchor="middle">
+                        <text font-family="Playfair Display" font-size="40" font-weight="800" fill="currentColor" letter-spacing="-2">10</text>
+                        <text y="22" font-family="Playfair Display" font-style="italic" font-size="18" font-weight="400" fill="currentColor" opacity="0.7">principios</text>
+                    </g>
+                    <g transform="translate(170 235)" text-anchor="middle">
+                        <text font-family="Inter, sans-serif" font-size="9" font-weight="600" fill="currentColor" opacity="0.65" letter-spacing="2">6 MARCOS · 4 NIVELES</text>
+                    </g>
+                    <circle cx="170" cy="48" r="3" fill="currentColor"/>
+                    <circle cx="170" cy="292" r="3" fill="currentColor"/>
+                    <circle cx="48" cy="170" r="3" fill="currentColor"/>
+                    <circle cx="292" cy="170" r="3" fill="currentColor"/>
+                </svg>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CIERRE -->
+<section class="signoff reveal" id="cierre">
+    <div class="signoff-inner">
+        <div class="section-eyebrow" style="color:var(--silver)">Una última cosa</div>
+        <h2>Este código <em>va a cambiar</em>.</h2>
+        <p>Va a cambiar no porque hoy esté equivocado, sino porque la tecnología cambia y la práctica cambia. Lo que hoy es buena práctica el año que viene puede ser apenas el mínimo aceptable. Por eso lo escribimos como documento vivo, con revisión anual calendarizada.</p>
+        <p>Si vas a usarlo, copialo, adaptalo, mejoralo. Lo único que pedimos es honestidad con vos mismo en la aplicación. <strong>Un código de ética que no se cumple no es un código: es decoración profesional</strong>, y este campo ya tiene demasiada.</p>
+        <p>Aplicamos este código todos los días. Lo escribimos acá porque escribirlo nos obliga a sostenerlo. Y porque, si una persona más decide usar la tecnología con un poco más de criterio, valió la pena dejarlo público.</p>
+        <div class="signature">
+            <div class="signature-mark">N</div>
+            <div>
+                <div class="signature-name">Nick Perot</div>
+                <div class="signature-role">Abogado · Docente · Consultor en transformación digital</div>
+                <div class="signature-role" style="margin-top:8px;font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--silver)">Responsable de cumplimiento · v 2.0</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- DECLARACIÓN DE USO DE IA -->
+<aside class="ai-notice" aria-label="Declaración de uso de Inteligencia Artificial">
+    <div class="ai-notice-inner">
+        <div class="ai-notice-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3l1.5 4.5L18 9l-4.5 1.5L12 15l-1.5-4.5L6 9l4.5-1.5L12 3z"/>
+                <path d="M19 14l.8 2.2L22 17l-2.2.8L19 20l-.8-2.2L16 17l2.2-.8L19 14z"/>
+                <path d="M5 16l.6 1.4L7 18l-1.4.6L5 20l-.6-1.4L3 18l1.4-.6L5 16z"/>
+            </svg>
+        </div>
+        <div class="ai-notice-text">
+            <div class="ai-notice-label">Declaración de uso de IA</div>
+            <p>Se utilizó <strong>Inteligencia Artificial generativa</strong> en la elaboración de este documento. La Inteligencia Artificial puede cometer errores. Se sugiere su uso responsable y consciente.</p>
+        </div>
+    </div>
+</aside>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+    <div class="footer-inner">
+        <div>
+            <div class="footer-brand-name">Nick Perot</div>
+            <p class="footer-tag">Derecho, educación y tecnología, desde la práctica. Documento abierto bajo licencia Creative Commons BY 4.0.</p>
+        </div>
+        <div class="footer-col">
+            <div class="footer-col-label">Documento</div>
+            <span>Versión 2.0</span>
+            <span>Mayo 2026 — Mayo 2027</span>
+            <span>10 principios · 6 marcos</span>
+            <a href="#gobernanza">Reportar incidente</a>
+        </div>
+        <div class="footer-col">
+            <div class="footer-col-label">Recursos</div>
+            <a href="https://nickperot.com" target="_blank" rel="noopener noreferrer">nickperot.com</a>
+            <a href="#adhesion">Sello de adhesión</a>
+            <a href="#glosario">Glosario operativo</a>
+            <a href="#autoevaluacion">Autoevaluación</a>
+            <a href="#" onclick="window.print();return false">Imprimir como PDF</a>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2026 Nick Perot · CC BY 4.0 · Uso libre con atribución</span>
+            <span>Se actualiza con la práctica · Próxima revisión: 2027</span>
+        </div>
+    </div>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="Volver arriba">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+</button>
+
+<div class="toast" id="toast">Copiado al portapapeles</div>
+
+<script>
+// PROGRESS BAR
+const progressFill = document.getElementById('progressFill');
+window.addEventListener('scroll', () => {
+    const h = document.documentElement;
+    const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+    progressFill.style.width = pct + '%';
+}, { passive: true });
+
+// THEME TOGGLE
+const themeToggle = document.getElementById('themeToggle');
+const savedTheme = localStorage.getItem('cep-theme') || 'light';
+document.documentElement.setAttribute('data-theme', savedTheme);
+themeToggle.addEventListener('click', () => {
+    const cur = document.documentElement.getAttribute('data-theme');
+    const next = cur === 'light' ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('cep-theme', next);
+});
+
+// SHARE
+const toast = document.getElementById('toast');
+function showToast(msg) {
+    toast.textContent = msg;
+    toast.classList.add('visible');
+    setTimeout(() => toast.classList.remove('visible'), 2200);
+}
+document.getElementById('shareBtn').addEventListener('click', async () => {
+    const url = window.location.href;
+    const data = { title: 'Nuestro código de ética · Nick Perot', text: 'Documento abierto y vivo. Diez principios para trabajar con tecnología con criterio.', url };
+    if (navigator.share) { try { await navigator.share(data); } catch(e){} }
+    else { navigator.clipboard.writeText(url); showToast('Enlace copiado'); }
+});
+
+// REVEAL ON SCROLL
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) { entry.target.classList.add('revealed'); revealObserver.unobserve(entry.target); }
+    });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// SCROLL SPY (sidebar + header nav)
+const spyItems = document.querySelectorAll('.spy-nav-item');
+const headerLinks = document.querySelectorAll('.header-nav a');
+const principles = document.querySelectorAll('.principle');
+const sections = document.querySelectorAll('section[id], article[id]');
+const spyObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const id = entry.target.id;
+            spyItems.forEach(item => item.classList.toggle('active', item.dataset.target === id));
+            headerLinks.forEach(link => {
+                const linkSection = link.getAttribute('href').replace('#','');
+                link.classList.toggle('active', linkSection === id);
+            });
+        }
+    });
+}, { rootMargin: '-30% 0px -60% 0px' });
+principles.forEach(p => spyObserver.observe(p));
+sections.forEach(s => spyObserver.observe(s));
+
+// APLICACIÓN OPERATIVA · cards estáticas (sin interactividad)
+// El conteo se renderiza directamente en el HTML, no requiere JS.
+
+// ANIMATED COUNTERS
+const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const el = entry.target;
+            const target = parseInt(el.dataset.count, 10);
+            const duration = 1200;
+            const start = performance.now();
+            const animate = (now) => {
+                const elapsed = now - start;
+                const progress = Math.min(elapsed / duration, 1);
+                const eased = 1 - Math.pow(1 - progress, 3);
+                el.textContent = Math.round(target * eased);
+                if (progress < 1) requestAnimationFrame(animate);
+                else el.textContent = target;
+            };
+            requestAnimationFrame(animate);
+            counterObserver.unobserve(el);
+        }
+    });
+}, { threshold: 0.5 });
+document.querySelectorAll('[data-count]').forEach(el => counterObserver.observe(el));
+
+// Antes de imprimir: forzar todos los contadores a su valor final
+// (si el usuario imprime sin scrollear, el observer no los habrá disparado)
+function finalizeCounters(){
+    document.querySelectorAll('[data-count]').forEach(el => {
+        el.textContent = el.dataset.count;
+        counterObserver.unobserve(el);
+    });
+}
+window.addEventListener('beforeprint', finalizeCounters);
+if (window.matchMedia){
+    const printMQ = window.matchMedia('print');
+    if (printMQ.addEventListener) printMQ.addEventListener('change', e => { if (e.matches) finalizeCounters(); });
+}
+
+// AUTOEVALUACIÓN — sliders + radar
+const sliders = document.querySelectorAll('.slider-input');
+const sliderValues = document.querySelectorAll('[data-slider-value]');
+const scoreNum = document.getElementById('scoreNum');
+const scoreStatus = document.getElementById('scoreStatus');
+const resultMessage = document.getElementById('resultMessage');
+const radarShape = document.getElementById('radarShape');
+const radarPoints = document.getElementById('radarPoints');
+const radarAxes = document.getElementById('radarAxes');
+const radarLabels = document.getElementById('radarLabels');
+const N = sliders.length;
+const R = 130;
+
+// Build axes and labels
+for (let i = 0; i < N; i++) {
+    const angle = (Math.PI * 2 * i) / N - Math.PI / 2;
+    const x = Math.cos(angle) * R;
+    const y = Math.sin(angle) * R;
+    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    line.setAttribute('x1', 0); line.setAttribute('y1', 0);
+    line.setAttribute('x2', x); line.setAttribute('y2', y);
+    radarAxes.appendChild(line);
+    const labelX = Math.cos(angle) * (R + 18);
+    const labelY = Math.sin(angle) * (R + 18) + 3;
+    const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    label.setAttribute('x', labelX); label.setAttribute('y', labelY);
+    label.textContent = String(i + 1).padStart(2, '0');
+    radarLabels.appendChild(label);
+}
+
+function updateAssessment() {
+    const values = Array.from(sliders).map(s => parseInt(s.value, 10));
+    sliderValues.forEach((sv, i) => sv.textContent = values[i]);
+    const total = values.reduce((a, b) => a + b, 0);
+    scoreNum.textContent = total;
+
+    let status, msg;
+    if (total >= 45) { status = 'Cumplimiento sólido'; msg = 'Aplicás el código de forma consistente. La revisión periódica es lo que mantiene el nivel.'; }
+    else if (total >= 35) { status = 'En buen camino'; msg = 'Hay un nivel sólido, con áreas específicas para fortalecer. Mirá los puntos más bajos del radar.'; }
+    else if (total >= 25) { status = 'En camino'; msg = 'Aplicás parte del código. Identificá los principios más débiles y trabajá uno por mes.'; }
+    else if (total >= 15) { status = 'Inicio del proceso'; msg = 'Estás empezando. El primer paso es leer cada principio con honestidad y elegir uno para implementar.'; }
+    else { status = 'Sin aplicación'; msg = 'El código todavía no está incorporado. Empezá por el principio que más fricción te genera.'; }
+    scoreStatus.textContent = status;
+    resultMessage.textContent = msg;
+
+    const points = values.map((v, i) => {
+        const angle = (Math.PI * 2 * i) / N - Math.PI / 2;
+        const radius = (v / 5) * R;
+        return [Math.cos(angle) * radius, Math.sin(angle) * radius];
+    });
+    radarShape.setAttribute('points', points.map(p => p.join(',')).join(' '));
+    radarPoints.innerHTML = '';
+    points.forEach(([x, y]) => {
+        const c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        c.setAttribute('cx', x); c.setAttribute('cy', y); c.setAttribute('r', 3);
+        c.setAttribute('fill', '#5BA8E0');
+        radarPoints.appendChild(c);
+    });
+}
+sliders.forEach(s => s.addEventListener('input', updateAssessment));
+updateAssessment();
+
+// BACK TO TOP
+const backToTop = document.getElementById('backToTop');
+window.addEventListener('scroll', () => {
+    backToTop.classList.toggle('visible', window.scrollY > 800);
+}, { passive: true });
+backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+// DOWNLOAD SEAL
+document.getElementById('downloadSeal').addEventListener('click', (e) => {
+    e.preventDefault();
+    const sealSvg = document.querySelector('#seal svg').cloneNode(true);
+    sealSvg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+    sealSvg.setAttribute('width', '512');
+    sealSvg.setAttribute('height', '512');
+    const blob = new Blob([sealSvg.outerHTML], { type: 'image/svg+xml' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = 'sello-codigo-etica-nick-perot.svg';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    showToast('Sello descargado');
+});
+
+// SMOOTH ANCHOR SCROLL with header offset
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', (e) => {
+        const href = link.getAttribute('href');
+        if (!href || href === '#' || href.length < 2) return;
+        const target = document.querySelector(href);
+        if (target) {
+            e.preventDefault();
+            const offset = 80;
+            const top = target.getBoundingClientRect().top + window.scrollY - offset;
+            window.scrollTo({ top, behavior: 'smooth' });
+        }
+    });
+});
+</script>
+</body>
+</html>
