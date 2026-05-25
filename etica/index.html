@@ -13,7 +13,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%231A3A5C'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='Georgia' font-weight='700' font-size='18' fill='white'%3EN%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;0,800;0,900;1,400;1,700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,700;0,800;1,400;1,700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
 
 <style>
 :root{
@@ -45,7 +45,7 @@
 [data-theme="dark"] .assessment{background:linear-gradient(135deg,#061320 0%,#0F2438 65%,#1A3A5C 100%)}
 [data-theme="dark"] .assessment::before{background-image:radial-gradient(circle,rgba(91,168,224,.08) 1px,transparent 1.5px)}
 [data-theme="dark"] .site-footer{background:#050D14}
-[data-theme="dark"] .audit-stamp-dot,[data-theme="dark"] .app-head-status::after,[data-theme="dark"] .control-card::before{box-shadow:0 0 0 3px rgba(61,139,90,.25)}
+[data-theme="dark"] .app-head-status::after,[data-theme="dark"] .control-card::before{box-shadow:0 0 0 3px rgba(61,139,90,.25)}
 [data-theme="dark"] .control-card{background:linear-gradient(135deg,rgba(61,139,90,.09),rgba(61,139,90,.16));border-color:rgba(61,139,90,.45)}
 [data-theme="dark"] .principle:nth-of-type(even) .control-card{background:linear-gradient(135deg,rgba(61,139,90,.12),rgba(61,139,90,.2))}
 [data-theme="dark"] .control-num,[data-theme="dark"] .control-ref::before,[data-theme="dark"] .app-head-status,[data-theme="dark"] .app-head-status strong{color:#7FCE9A}
@@ -60,9 +60,6 @@
 [data-theme="dark"] .callout--why{border-left-color:#D4955B}
 [data-theme="dark"] .callout--why .callout-label{color:#D4955B}
 [data-theme="dark"] .callout--why .callout-label::before{background:#D4955B}
-[data-theme="dark"] .callout--anti{border-left-color:#D45A5A}
-[data-theme="dark"] .callout--anti .callout-label{color:#D45A5A}
-[data-theme="dark"] .callout--anti .callout-label::before{background:#D45A5A}
 [data-theme="dark"] .antipattern-item{border-left-color:#D45A5A}
 [data-theme="dark"] .antipattern-num{color:#D45A5A}
 [data-theme="dark"] .principle-rule{border-left-color:#7FB9E8}
@@ -160,7 +157,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--dark-txt);line-hei
 .stat-label{font-size:12px;color:var(--mid-gray);text-transform:uppercase;letter-spacing:.06em;font-weight:500;margin-top:4px}
 
 .pullquote{margin:50px 0;padding:36px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);text-align:center;position:relative}
-.pullquote::before{content:"\201C";position:absolute;top:-28px;left:50%;transform:translateX(-50%);font-family:var(--display);font-size:80px;color:var(--blue);line-height:1;background:var(--paper);padding:0 18px;font-style:italic}
+.pullquote::before{content:"\201C";position:absolute;top:-42px;left:50%;transform:translateX(-50%);font-family:var(--display);font-size:56px;color:var(--blue);line-height:1;background:var(--paper);padding:0 16px;font-style:italic;pointer-events:none}
 .pullquote p{font-family:var(--display);font-style:italic;font-size:clamp(22px,2.6vw,30px);font-weight:400;color:var(--navy);line-height:1.3;max-width:620px;margin:0 auto 16px}
 .pullquote p::first-letter{font-size:1em;float:none;margin:0;color:inherit}
 .pullquote cite{font-family:var(--mono);font-size:12px;color:var(--silver);text-transform:uppercase;letter-spacing:.12em;font-style:normal;font-weight:600}
@@ -175,8 +172,11 @@ body{font-family:var(--sans);background:var(--bg);color:var(--dark-txt);line-hei
 .section-lead{font-family:var(--serif);font-size:clamp(18px,2vw,22px);color:var(--soft-txt);font-style:italic;max-width:740px;line-height:1.55;margin-bottom:50px}
 
 .fm-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:40px}
-.fm-card{background:var(--white);border:1px solid var(--line-soft);border-radius:var(--radius-lg);padding:22px 24px;transition:all .2s var(--ease);position:relative;overflow:hidden}
-.fm-card:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(26,58,92,.07);border-color:var(--blue)}
+.fm-card{background:var(--white);border:1px solid var(--line-soft);border-radius:var(--radius-lg);padding:22px 24px;transition:all .2s var(--ease);position:relative;overflow:hidden;text-decoration:none;color:inherit;display:block}
+.fm-card:hover,.fm-card:focus-visible{transform:translateY(-2px);box-shadow:0 12px 28px rgba(26,58,92,.07);border-color:var(--blue);outline:none}
+.fm-card::after{content:"";position:absolute;top:18px;right:18px;width:14px;height:14px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238FA8C0' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 17 17 7M9 7h8v8'/%3E%3C/svg%3E");background-repeat:no-repeat;background-size:contain;opacity:.6;transition:opacity .2s var(--ease),transform .2s var(--ease)}
+.fm-card:hover::after,.fm-card:focus-visible::after{opacity:1;transform:translate(2px,-2px)}
+[data-theme="dark"] .fm-card::after{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%237FB9E8' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 17 17 7M9 7h8v8'/%3E%3C/svg%3E")}
 .fm-card-acronym{font-family:var(--display);font-size:24px;font-weight:800;color:var(--navy);letter-spacing:-.02em;margin-bottom:4px}
 .fm-card-acronym em{font-style:italic;color:var(--blue);font-weight:400}
 .fm-card-name{font-size:13px;color:var(--mid-gray);font-weight:500;line-height:1.4;margin-bottom:14px;padding-bottom:14px;border-bottom:1px dashed var(--line-soft)}
@@ -258,11 +258,9 @@ section[id],article[id]{scroll-margin-top:100px}
 .principle:nth-of-type(even) .callout{background:var(--bg)}
 .callout-label{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.16em;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:10px}
 .callout-label::before{content:"";width:20px;height:1px}
-.callout p,.callout li{font-family:var(--serif);font-size:17px;line-height:1.6;color:var(--dark-txt);margin:0}
+.callout p{font-family:var(--serif);font-size:17px;line-height:1.6;color:var(--dark-txt);margin:0}
 .callout--why{border-left:3px solid var(--ember)}
 .callout--why .callout-label{color:var(--ember)}.callout--why .callout-label::before{background:var(--ember)}
-.callout--anti{border-left:3px solid var(--crimson)}
-.callout--anti .callout-label{color:var(--crimson)}.callout--anti .callout-label::before{background:var(--crimson)}
 
 /* APLICACIÓN OPERATIVA · estado aplicado, estático */
 .application{margin-top:36px;max-width:820px}
@@ -328,7 +326,19 @@ section[id],article[id]{scroll-margin-top:100px}
 .result-score-num{font-family:var(--display);font-size:clamp(64px,9vw,96px);font-weight:800;line-height:.85;color:#fff;letter-spacing:-.04em}
 .result-score-max{font-family:var(--display);font-size:28px;color:var(--silver);font-weight:400}
 .result-status{font-family:var(--display);font-size:clamp(22px,2.6vw,28px);font-style:italic;color:var(--blue-glow);font-weight:400;margin-bottom:20px;transition:color .3s var(--ease)}
-.result-radar{width:100%;max-width:320px;margin:0 auto 20px}
+.result-radar{width:100%;max-width:320px;margin:0 auto 20px;position:relative}
+.radar-label-group{cursor:pointer}
+.radar-label-group .radar-label-hit{fill:transparent;transition:fill .18s var(--ease)}
+.radar-label-group .radar-label{transition:fill .18s var(--ease),font-size .18s var(--ease)}
+.radar-label-group:hover .radar-label-hit,.radar-label-group:focus-visible .radar-label-hit{fill:rgba(91,168,224,.18)}
+.radar-label-group:hover .radar-label,.radar-label-group:focus-visible .radar-label{fill:#fff;font-size:11px}
+.radar-tooltip{position:absolute;background:#fff;color:var(--navy);padding:10px 13px;border-radius:8px;font-family:var(--sans);font-size:12.5px;font-weight:500;line-height:1.35;box-shadow:0 10px 28px rgba(0,0,0,.5),0 0 0 1px rgba(91,168,224,.15);pointer-events:none;opacity:0;transform:translate(-50%,calc(-100% - 8px)) scale(.94);transition:opacity .18s ease,transform .18s cubic-bezier(0.34,1.56,0.64,1);z-index:10;width:max-content;max-width:220px;text-align:center}
+.radar-tooltip.visible{opacity:1;transform:translate(-50%,calc(-100% - 12px)) scale(1)}
+.radar-tooltip::after{content:"";position:absolute;bottom:-6px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:6px solid #fff}
+.radar-tooltip-num{font-family:var(--display);font-style:italic;color:var(--blue);font-weight:700;font-size:14px;margin-right:5px}
+.radar-tooltip-name{display:inline}
+.radar-tooltip-score{display:block;margin-top:5px;padding-top:5px;border-top:1px solid var(--line-soft);font-size:11px;color:var(--mid-gray);text-transform:uppercase;letter-spacing:.06em;font-weight:600}
+.radar-tooltip-score b{font-family:var(--display);font-size:14px;color:var(--green);font-weight:700;margin-right:3px}
 .result-radar svg{width:100%;height:auto}
 .result-message{font-family:var(--serif);font-size:15px;line-height:1.55;color:rgba(255,255,255,.8);font-style:italic;margin-top:16px;padding-top:18px;border-top:1px solid rgba(255,255,255,.12)}
 
@@ -426,7 +436,7 @@ section[id],article[id]{scroll-margin-top:100px}
 .footer-bottom{grid-column:1/-1;margin-top:50px;padding-top:26px;border-top:1px solid rgba(255,255,255,.12);font-size:12px;color:rgba(255,255,255,.45);font-family:var(--mono);letter-spacing:.04em;display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between}
 
 /* REVEAL */
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease-out),transform .7s var(--ease-out)}
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .35s var(--ease-out),transform .35s var(--ease-out)}
 .reveal.revealed{opacity:1;transform:translateY(0)}
 
 /* BACK TO TOP & TOAST */
@@ -578,9 +588,6 @@ section[id],article[id]{scroll-margin-top:100px}
     .callout-label{font-size:7pt!important;color:#B8763B!important;margin-bottom:5pt!important;letter-spacing:.1em!important;font-weight:700}
     .callout-label::before{background:#B8763B!important;width:14pt!important}
     .callout p{font-size:9.5pt!important;color:#222!important;margin:0!important;font-family:'EB Garamond',Georgia,serif}
-    .callout--anti{border-left-color:#A64242!important}
-    .callout--anti .callout-label{color:#A64242!important}
-    .callout--anti .callout-label::before{background:#A64242!important}
 
     /* ───────── APLICACIÓN OPERATIVA (control cards) ───────── */
     .application{margin-top:10pt!important;max-width:none!important}
@@ -826,42 +833,42 @@ section[id],article[id]{scroll-margin-top:100px}
         <h2 class="section-title">Lo que escribimos acá, <em>otros</em> ya lo escribieron antes.</h2>
         <p class="section-lead">Este código no inventa. Sintetiza, operacionaliza y traduce a la práctica diaria seis marcos que la comunidad internacional viene construyendo desde hace años. Acá los nombramos para que cualquier persona pueda auditar la alineación.</p>
         <div class="fm-grid">
-            <div class="fm-card">
+            <a class="fm-card" href="https://www.unesco.org/en/legal-affairs/recommendation-ethics-artificial-intelligence" target="_blank" rel="noopener noreferrer" aria-label="Abrir Recomendación de UNESCO sobre la Ética de la IA en una pestaña nueva">
                 <div class="fm-card-acronym">UNESCO</div>
                 <div class="fm-card-name">Recomendación sobre la Ética de la IA (2021)</div>
                 <div class="fm-card-mapping"><strong>Cubre</strong>Proporcionalidad · Equidad · Sostenibilidad · Supervisión humana · Transparencia · Rendición de cuentas</div>
                 <div class="fm-card-mapping" style="margin-top:8px"><strong>Mapeo</strong>P01 · P02 · P07 · P08 · P09 · P10</div>
-            </div>
-            <div class="fm-card">
+            </a>
+            <a class="fm-card" href="https://oecd.ai/en/ai-principles" target="_blank" rel="noopener noreferrer" aria-label="Abrir Principios de OCDE sobre IA en una pestaña nueva">
                 <div class="fm-card-acronym">OCDE</div>
                 <div class="fm-card-name">Principios sobre IA (2019, actualizados 2024)</div>
                 <div class="fm-card-mapping"><strong>Cubre</strong>Crecimiento inclusivo · Valores centrados en humanos · Transparencia · Robustez · Rendición de cuentas</div>
                 <div class="fm-card-mapping" style="margin-top:8px"><strong>Mapeo</strong>P03 · P07 · P08 · P09 · P10</div>
-            </div>
-            <div class="fm-card">
+            </a>
+            <a class="fm-card" href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj" target="_blank" rel="noopener noreferrer" aria-label="Abrir Reglamento UE 2024/1689 sobre IA en una pestaña nueva">
                 <div class="fm-card-acronym">EU AI <em>Act</em></div>
                 <div class="fm-card-name">Reglamento (UE) 2024/1689 sobre IA</div>
                 <div class="fm-card-mapping"><strong>Cubre</strong>Clasificación de riesgo · Prohibiciones · Alto riesgo · Transparencia · Supervisión humana</div>
                 <div class="fm-card-mapping" style="margin-top:8px"><strong>Mapeo</strong>Matriz de riesgo · P07 · P09 · P10</div>
-            </div>
-            <div class="fm-card">
+            </a>
+            <a class="fm-card" href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener noreferrer" aria-label="Abrir NIST AI Risk Management Framework en una pestaña nueva">
                 <div class="fm-card-acronym">NIST <em>AI RMF</em></div>
                 <div class="fm-card-name">AI Risk Management Framework 1.0 (2023)</div>
                 <div class="fm-card-mapping"><strong>Cubre</strong>Govern · Map · Measure · Manage · Funciones de gestión de riesgo</div>
                 <div class="fm-card-mapping" style="margin-top:8px"><strong>Mapeo</strong>Gobernanza · Matriz de riesgo · P03 · P06 · P10</div>
-            </div>
-            <div class="fm-card">
+            </a>
+            <a class="fm-card" href="https://www.iso.org/standard/42001" target="_blank" rel="noopener noreferrer" aria-label="Abrir ISO/IEC 42001:2023 en una pestaña nueva">
                 <div class="fm-card-acronym">ISO <em>42001</em></div>
                 <div class="fm-card-name">Sistema de gestión de IA (2023)</div>
                 <div class="fm-card-mapping"><strong>Cubre</strong>Política · Roles · Ciclo de vida · Auditoría interna · Mejora continua</div>
                 <div class="fm-card-mapping" style="margin-top:8px"><strong>Mapeo</strong>Gobernanza · Protocolo de incidentes · Revisión anual</div>
-            </div>
-            <div class="fm-card">
+            </a>
+            <a class="fm-card" href="https://eur-lex.europa.eu/eli/reg/2016/679/oj" target="_blank" rel="noopener noreferrer" aria-label="Abrir GDPR (Reglamento UE 2016/679) en una pestaña nueva">
                 <div class="fm-card-acronym">GDPR</div>
                 <div class="fm-card-name">Reglamento General de Protección de Datos UE</div>
                 <div class="fm-card-mapping"><strong>Cubre</strong>Licitud · Minimización · Propósito · Derechos del titular · DPIA</div>
                 <div class="fm-card-mapping" style="margin-top:8px"><strong>Mapeo</strong>P02 · P03 · P07 · P10</div>
-            </div>
+            </a>
         </div>
     </div>
 </section>
@@ -1637,6 +1644,7 @@ section[id],article[id]{scroll-margin-top:100px}
                             <g id="radarLabels" font-family="Inter, sans-serif" font-size="10" font-weight="700" fill="rgba(255,255,255,0.6)" text-anchor="middle"></g>
                         </g>
                     </svg>
+                    <div class="radar-tooltip" id="radarTooltip" role="tooltip" aria-hidden="true"></div>
                 </div>
                 <p class="result-message" id="resultMessage">Movés los sliders y el gráfico se actualiza. Apuntamos al perímetro: no se trata de tener 50, se trata de saber dónde estás más débil.</p>
             </aside>
@@ -1873,12 +1881,12 @@ document.getElementById('shareBtn').addEventListener('click', async () => {
     else { navigator.clipboard.writeText(url); showToast('Enlace copiado'); }
 });
 
-// REVEAL ON SCROLL
+// REVEAL ON SCROLL — trigger antes de entrar al viewport, animación más corta
 const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) { entry.target.classList.add('revealed'); revealObserver.unobserve(entry.target); }
     });
-}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+}, { threshold: 0, rootMargin: '0px 0px 250px 0px' });
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
 // SCROLL SPY (sidebar + header nav)
@@ -1951,10 +1959,27 @@ const radarShape = document.getElementById('radarShape');
 const radarPoints = document.getElementById('radarPoints');
 const radarAxes = document.getElementById('radarAxes');
 const radarLabels = document.getElementById('radarLabels');
+const radarTooltip = document.getElementById('radarTooltip');
+const resultRadar = document.getElementById('resultRadar');
 const N = sliders.length;
 const R = 130;
 
-// Build axes and labels
+const principleNames = [
+    'Conocer antes de adoptar',
+    'Los datos no son neutros',
+    'Seguridad pragmática',
+    'Herramienta correcta, tarea correcta',
+    'Conocer el propio nivel',
+    'Verificación múltiple, siempre',
+    'Transparencia con el uso',
+    'Equidad y no discriminación',
+    'Supervisión humana significativa',
+    'Rendición de cuentas e impacto'
+];
+
+const labelGroups = [];
+
+// Build axes and label groups (with hit-area + hover handlers)
 for (let i = 0; i < N; i++) {
     const angle = (Math.PI * 2 * i) / N - Math.PI / 2;
     const x = Math.cos(angle) * R;
@@ -1963,12 +1988,59 @@ for (let i = 0; i < N; i++) {
     line.setAttribute('x1', 0); line.setAttribute('y1', 0);
     line.setAttribute('x2', x); line.setAttribute('y2', y);
     radarAxes.appendChild(line);
+
     const labelX = Math.cos(angle) * (R + 18);
-    const labelY = Math.sin(angle) * (R + 18) + 3;
+    const labelY = Math.sin(angle) * (R + 18);
+
+    const group = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    group.classList.add('radar-label-group');
+    group.setAttribute('tabindex', '0');
+    group.setAttribute('role', 'button');
+    group.setAttribute('aria-label', `Principio ${String(i + 1).padStart(2, '0')}: ${principleNames[i]}`);
+
+    const hit = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    hit.classList.add('radar-label-hit');
+    hit.setAttribute('cx', labelX);
+    hit.setAttribute('cy', labelY);
+    hit.setAttribute('r', 14);
+    group.appendChild(hit);
+
     const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-    label.setAttribute('x', labelX); label.setAttribute('y', labelY);
+    label.classList.add('radar-label');
+    label.setAttribute('x', labelX);
+    label.setAttribute('y', labelY + 3);
     label.textContent = String(i + 1).padStart(2, '0');
-    radarLabels.appendChild(label);
+    group.appendChild(label);
+
+    const svgTitle = document.createElementNS('http://www.w3.org/2000/svg', 'title');
+    svgTitle.textContent = `${String(i + 1).padStart(2, '0')} · ${principleNames[i]}`;
+    group.appendChild(svgTitle);
+
+    radarLabels.appendChild(group);
+
+    // Tooltip positioning (using SVG viewBox coords → percent of container)
+    const tooltipPosX = ((labelX + 160) / 320) * 100;
+    const tooltipPosY = ((labelY + 160) / 320) * 100;
+
+    const showTooltip = () => {
+        const score = parseInt(sliders[i].value, 10);
+        radarTooltip.innerHTML = `<span class="radar-tooltip-num">${String(i + 1).padStart(2, '0')}</span><span class="radar-tooltip-name">${principleNames[i]}</span><span class="radar-tooltip-score"><b>${score}</b>/ 5 actual</span>`;
+        radarTooltip.style.left = tooltipPosX + '%';
+        radarTooltip.style.top = tooltipPosY + '%';
+        radarTooltip.classList.add('visible');
+        radarTooltip.setAttribute('aria-hidden', 'false');
+    };
+    const hideTooltip = () => {
+        radarTooltip.classList.remove('visible');
+        radarTooltip.setAttribute('aria-hidden', 'true');
+    };
+
+    group.addEventListener('mouseenter', showTooltip);
+    group.addEventListener('mouseleave', hideTooltip);
+    group.addEventListener('focus', showTooltip);
+    group.addEventListener('blur', hideTooltip);
+
+    labelGroups.push({ group, label });
 }
 
 function updateAssessment() {
