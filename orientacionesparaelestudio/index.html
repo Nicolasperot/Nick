@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cómo estudiar en el siglo XXI — Nick Perot</title>
+<style>
+  :root {
+    --color-primary: #8e44ad;
+    --color-primary-dark: #6c3483;
+    --color-anchor: #4a235a;
+    --color-deepest: #2a1133;
+    --color-soft: #d2b4de;
+    --color-bg-tinted: #fdfbff;
+    --color-bg-gradient-end: #f4f0f7;
+    --color-border-subtle: #eaddf5;
+    --color-text-primary: #1a1a1a;
+    --color-text-body: #333333;
+    --color-text-secondary: #555555;
+    --color-text-muted: #666666;
+    --color-text-faint: #888888;
+    --color-border: #eaeaea;
+    --color-bg-white: #ffffff;
+    --color-good: #27ae60;
+    --color-good-dark: #1e8449;
+    --color-good-bg: rgba(39, 174, 96, 0.04);
+    --color-bad: #c0392b;
+    --color-bad-dark: #962b1c;
+    --color-bad-bg: rgba(192, 57, 43, 0.04);
+    --font-display: 'Georgia', 'Times New Roman', serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-body);
+    color: var(--color-text-body);
+    background: #f8f7fc;
+    line-height: 1.75;
+    font-size: 17px;
+  }
+
+  .article-wrapper {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 60px 30px 80px;
+  }
+
+  /* ════════════ HERO ════════════ */
+  .hero {
+    margin-bottom: 50px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--color-border-subtle);
+    position: relative;
+  }
+  .hero-watermark {
+    position: absolute;
+    top: -20px;
+    right: -10px;
+    font-family: var(--font-display);
+    font-size: 12em;
+    font-weight: 700;
+    color: rgba(142, 68, 173, 0.04);
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+  }
+  .hero-eyebrow {
+    font-size: 0.72em;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: var(--color-primary-dark);
+    font-weight: 700;
+    margin-bottom: 18px;
+    position: relative;
+    z-index: 1;
+  }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: 2.8em;
+    font-weight: normal;
+    color: var(--color-deepest);
+    line-height: 1.15;
+    margin-bottom: 14px;
+    letter-spacing: -1px;
+    position: relative;
+    z-index: 1;
+  }
+  .hero h1 .acento {
+    color: var(--color-primary);
+    font-style: italic;
+  }
+  .hero-subtitle {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.25em;
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+    margin-bottom: 22px;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-byline {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 0.85em;
+    color: var(--color-text-muted);
+    position: relative;
+    z-index: 1;
+  }
+  .hero-byline .author {
+    font-weight: 600;
+    color: var(--color-text-primary);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: 0.92em;
+  }
+  .hero-byline .dot {
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    opacity: 0.6;
+  }
+
+  /* ════════════ CONTENIDO ════════════ */
+  h2 {
+    font-family: var(--font-display);
+    font-size: 1.7em;
+    font-weight: normal;
+    color: var(--color-deepest);
+    line-height: 1.25;
+    margin-top: 55px;
+    margin-bottom: 8px;
+    letter-spacing: -0.3px;
+  }
+  h2 .num {
+    display: block;
+    font-family: var(--font-body);
+    font-size: 0.42em;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--color-primary-dark);
+    font-weight: 700;
+    margin-bottom: 10px;
+    font-style: normal;
+  }
+  h3 {
+    font-family: var(--font-display);
+    font-size: 1.25em;
+    font-weight: normal;
+    color: var(--color-anchor);
+    margin-top: 32px;
+    margin-bottom: 12px;
+  }
+
+  p {
+    margin-bottom: 18px;
+    color: var(--color-text-body);
+  }
+  p strong { color: var(--color-deepest); font-weight: 700; }
+  p em { color: var(--color-anchor); }
+
+  .lead {
+    font-size: 1.08em;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+  }
+
+  /* ════════════ PULL QUOTE ════════════ */
+  .pullquote {
+    position: relative;
+    margin: 38px 0;
+    padding: 26px 28px 22px 60px;
+    border-left: 3px solid var(--color-primary);
+    background: linear-gradient(to right, rgba(142,68,173,0.04), transparent);
+    border-radius: 0 8px 8px 0;
+  }
+  .pullquote::before {
+    content: '\201C';
+    position: absolute;
+    top: -10px;
+    left: 14px;
+    font-family: var(--font-display);
+    font-size: 5em;
+    color: var(--color-soft);
+    line-height: 1;
+    font-weight: 700;
+    pointer-events: none;
+  }
+  .pullquote blockquote {
+    font-family: var(--font-display);
+    font-size: 1.18em;
+    line-height: 1.5;
+    color: var(--color-deepest);
+    font-style: italic;
+    margin: 0;
+  }
+
+  /* ════════════ CALLOUT PREGUNTAS ════════════ */
+  .questions-block {
+    margin: 28px 0;
+    padding: 24px 28px;
+    background: var(--color-bg-tinted);
+    border: 1px solid var(--color-border-subtle);
+    border-left: 4px solid var(--color-primary);
+    border-radius: 0 10px 10px 0;
+  }
+  .questions-block .label {
+    font-size: 0.7em;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    color: var(--color-primary-dark);
+    font-weight: 700;
+    margin-bottom: 14px;
+    display: block;
+  }
+  .questions-block p {
+    margin-bottom: 14px;
+  }
+  .questions-block p:last-child { margin-bottom: 0; }
+
+  /* ════════════ TARJETAS DE MODALIDADES ════════════ */
+  .modalidades-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 18px;
+    margin: 30px 0;
+  }
+  .modalidad-card {
+    background: #fff;
+    border: 1px solid var(--color-border);
+    border-top: 3px solid var(--color-primary);
+    border-radius: 8px;
+    padding: 20px 22px;
+  }
+  .modalidad-card:nth-child(2) { border-top-color: var(--color-primary-dark); }
+  .modalidad-card:nth-child(3) { border-top-color: var(--color-anchor); }
+  .modalidad-card:nth-child(4) { border-top-color: var(--color-deepest); }
+  .modalidad-card h4 {
+    font-family: var(--font-display);
+    font-size: 1.1em;
+    color: var(--color-deepest);
+    margin-bottom: 10px;
+    font-weight: normal;
+  }
+  .modalidad-card p {
+    font-size: 0.93em;
+    margin-bottom: 0;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+  }
+
+  /* ════════════ SEPARADOR ════════════ */
+  .breath {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 50px auto;
+    max-width: 200px;
+  }
+  .breath::before, .breath::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(142,68,173,0.25), transparent);
+  }
+  .breath-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--color-primary);
+    margin: 0 12px;
+    opacity: 0.6;
+  }
+
+  /* ════════════ SECCIÓN IA — BUENAS Y MALAS PRÁCTICAS ════════════ */
+  .ia-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 22px;
+    margin: 30px 0 10px;
+  }
+  .ia-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 26px 26px 22px;
+    border: 1px solid var(--color-border);
+    position: relative;
+  }
+  .ia-card.good {
+    border-top: 4px solid var(--color-good);
+    background: linear-gradient(180deg, var(--color-good-bg) 0%, #fff 100px);
+  }
+  .ia-card.bad {
+    border-top: 4px solid var(--color-bad);
+    background: linear-gradient(180deg, var(--color-bad-bg) 0%, #fff 100px);
+  }
+  .ia-card .ia-tag {
+    font-size: 0.7em;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    display: block;
+  }
+  .ia-card.good .ia-tag { color: var(--color-good-dark); }
+  .ia-card.bad .ia-tag { color: var(--color-bad-dark); }
+  .ia-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.3em;
+    color: var(--color-deepest);
+    margin: 0 0 16px 0;
+    line-height: 1.25;
+  }
+  .ia-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .ia-card li {
+    position: relative;
+    padding-left: 24px;
+    margin-bottom: 14px;
+    font-size: 0.95em;
+    color: var(--color-text-body);
+    line-height: 1.6;
+  }
+  .ia-card li:last-child { margin-bottom: 0; }
+  .ia-card li::before {
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-weight: 700;
+    font-size: 1.05em;
+    line-height: 1.55;
+  }
+  .ia-card.good li::before {
+    content: '✓';
+    color: var(--color-good);
+  }
+  .ia-card.bad li::before {
+    content: '✗';
+    color: var(--color-bad);
+  }
+  .ia-card li strong {
+    color: var(--color-deepest);
+    font-weight: 700;
+  }
+
+  .ia-bottom-note {
+    margin-top: 22px;
+    padding: 20px 24px;
+    background: linear-gradient(135deg, var(--color-bg-tinted), var(--color-bg-gradient-end));
+    border: 1px solid var(--color-border-subtle);
+    border-radius: 10px;
+    font-size: 0.95em;
+    color: var(--color-deepest);
+    line-height: 1.65;
+  }
+  .ia-bottom-note strong {
+    color: var(--color-primary-dark);
+  }
+
+  /* ════════════ CIERRE ════════════ */
+  .cierre-card {
+    margin-top: 50px;
+    padding: 36px 38px;
+    background: linear-gradient(135deg, var(--color-deepest), var(--color-anchor));
+    border-radius: 14px;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+  .cierre-card::before {
+    content: '\201D';
+    position: absolute;
+    bottom: -60px;
+    right: 20px;
+    font-family: var(--font-display);
+    font-size: 14em;
+    color: rgba(255,255,255,0.05);
+    line-height: 1;
+    pointer-events: none;
+  }
+  .cierre-card .label {
+    font-size: 0.7em;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--color-soft);
+    font-weight: 700;
+    margin-bottom: 14px;
+    display: block;
+  }
+  .cierre-card h2 {
+    font-family: var(--font-display);
+    font-size: 1.6em;
+    color: #fff;
+    margin: 0 0 16px 0;
+    line-height: 1.25;
+    font-weight: normal;
+  }
+  .cierre-card p {
+    color: rgba(255,255,255,0.85);
+    font-size: 1em;
+    line-height: 1.7;
+    position: relative;
+    z-index: 1;
+  }
+  .cierre-card p:last-child { margin-bottom: 0; }
+  .cierre-card p strong {
+    color: #fff;
+  }
+
+  /* ════════════ SOBRE NICK ════════════ */
+  .sobre-nick {
+    margin-top: 60px;
+    padding: 32px 34px;
+    background: var(--color-bg-tinted);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: 12px;
+    position: relative;
+  }
+  .sobre-nick .label {
+    font-size: 0.7em;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--color-primary-dark);
+    font-weight: 700;
+    margin-bottom: 14px;
+    display: block;
+  }
+  .sobre-nick h2 {
+    font-family: var(--font-display);
+    font-size: 1.5em;
+    color: var(--color-deepest);
+    margin: 0 0 16px 0;
+    line-height: 1.25;
+    font-weight: normal;
+  }
+  .sobre-nick p {
+    font-size: 0.97em;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin-bottom: 14px;
+  }
+  .sobre-nick p:last-child { margin-bottom: 0; }
+  .sobre-nick p strong { color: var(--color-deepest); }
+
+  /* ════════════ CONTACTO ════════════ */
+  .contacto-block {
+    margin-top: 30px;
+    padding: 26px 30px;
+    background: #fff;
+    border: 1px solid var(--color-border);
+    border-top: 3px solid var(--color-primary);
+    border-radius: 10px;
+    text-align: center;
+  }
+  .contacto-block .label {
+    font-size: 0.7em;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--color-primary-dark);
+    font-weight: 700;
+    margin-bottom: 10px;
+    display: block;
+  }
+  .contacto-block p {
+    font-size: 1em;
+    color: var(--color-text-body);
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+  .contacto-block a.email-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 22px;
+    background: linear-gradient(180deg, #ffffff 0%, #fcfcfc 100%);
+    color: var(--color-anchor);
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.88em;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    border: 1px solid var(--color-border-subtle);
+    box-shadow: 0 4px 12px rgba(108, 52, 131, 0.08), inset 0 1px 0 #ffffff;
+    transition: all 0.18s;
+  }
+  .contacto-block a.email-link:hover {
+    background: linear-gradient(180deg, #fdfbff 0%, #f6eefa 100%);
+    box-shadow: 0 6px 18px rgba(108, 52, 131, 0.14);
+    transform: translateY(-1px);
+  }
+  .contacto-block a.email-link .arrow {
+    font-size: 1.15em;
+    line-height: 1;
+    color: var(--color-primary);
+  }
+
+  /* ════════════ FIRMA ════════════ */
+  .firma {
+    margin-top: 50px;
+    padding-top: 24px;
+    border-top: 1px solid var(--color-border-subtle);
+    text-align: center;
+  }
+  .firma .author-name {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.3em;
+    color: var(--color-deepest);
+    margin-bottom: 4px;
+  }
+  .firma .meta {
+    font-size: 0.75em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--color-text-faint);
+  }
+
+  /* ════════════ RESPONSIVE ════════════ */
+  @media (max-width: 600px) {
+    body { font-size: 16px; }
+    .article-wrapper { padding: 40px 20px 60px; }
+    .hero h1 { font-size: 2.1em; }
+    .hero-watermark { font-size: 8em; }
+    h2 { font-size: 1.5em; margin-top: 45px; }
+    .cierre-card { padding: 28px 24px; }
+    .ia-grid { grid-template-columns: 1fr; }
+  }
+
+  @media print {
+    body { background: #fff; font-size: 12pt; }
+    .article-wrapper { max-width: 100%; padding: 20px; }
+    .hero-watermark { display: none; }
+    .cierre-card { background: var(--color-deepest) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .ia-card { break-inside: avoid; }
+    h2, h3 { break-after: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<article class="article-wrapper">
+
+  <!-- ════════════ HERO ════════════ -->
+  <header class="hero">
+    <div class="hero-watermark">21</div>
+    <p class="hero-eyebrow">Ensayo · Orientaciones para el estudio universitario</p>
+    <h1>Cómo estudiar en el <span class="acento">siglo XXI</span></h1>
+    <p class="hero-subtitle">Una conversación honesta sobre técnicas, planificación, autoconocimiento y herramientas de aprendizaje.</p>
+    <div class="hero-byline">
+      <span class="author">Nick Perot</span>
+      <span class="dot"></span>
+      <span>Mayo de 2026</span>
+    </div>
+  </header>
+
+  <!-- ════════════ INTRO ════════════ -->
+  <p class="lead">Hay una pregunta que se repite todos los años, en distintas versiones, casi siempre cerca de las primeras evaluaciones: <em>¿cómo se estudia?</em> La formulan los que recién llegan a la universidad, pero también la formulan, con otras palabras, estudiantes avanzados que sienten que algo no termina de funcionarles. Voy a intentar responderla acá con la mayor honestidad posible, porque creo que sobre este tema circula mucha receta de manual y poca conversación verdadera.</p>
+
+  <p>Lo primero que conviene decir es lo más incómodo: <strong>no existe el método universal</strong>. Existen principios bastante sólidos —que la ciencia cognitiva viene confirmando hace décadas— y existe el trabajo, irrenunciable, de descubrir cómo se traducen esos principios en tu propio cuerpo, tu propia cabeza y tu propia vida. Estudiar bien es, antes que cualquier técnica, un ejercicio de autoconocimiento.</p>
+
+  <!-- ════════════ SECCIÓN 1: ITERAR ════════════ -->
+  <h2><span class="num">01 · Método</span>Iterar, no acertar a la primera</h2>
+
+  <p>Hay una idea muy instalada de que estudiar es un proceso lineal: se lee, se subraya, se resume, se memoriza, se rinde. En la práctica, los estudiantes que mejor rinden hacen algo bastante distinto: <strong>iteran</strong>. Vuelven sobre el mismo material varias veces, en niveles de profundidad distintos. Una primera lectura amplia para tener el mapa general. Una segunda lectura más detenida sobre los puntos que parecieron centrales. Una tercera vuelta, ya con apuntes propios, donde se discuten los conceptos contra ejemplos concretos o contra otros textos. Y después, idealmente, ejercicios de recuperación: cerrar el material y tratar de explicar el tema sin mirar.</p>
+
+  <p>Ese último paso —lo que la literatura llama <em>retrieval practice</em>— es probablemente el hallazgo más sólido de las últimas décadas en ciencias del aprendizaje. Rinde mucho más que releer. Releer da una sensación cómoda de familiaridad que se confunde con saber; recuperar de memoria, aunque sea con errores, fija el contenido y revela exactamente dónde están los huecos. Es incómodo. Es lento. Funciona.</p>
+
+  <div class="pullquote">
+    <blockquote>La iteración también opera en otra escala: la del calendario. Lo que se estudia hoy y no se vuelve a tocar durante tres semanas, en general, se pierde.</blockquote>
+  </div>
+
+  <p>Lo que se revisita a los dos días, a la semana, a las tres semanas —la llamada <em>repetición espaciada</em>— se sostiene. No hace falta una app fancy para esto; alcanza con un cronograma honesto.</p>
+
+  <!-- ════════════ SECCIÓN 2: PLANIFICAR ════════════ -->
+  <h2><span class="num">02 · Planificación</span>Planificar de verdad, no como un ritual</h2>
+
+  <p>La planificación es el lugar donde más gente se miente a sí misma. Se arman cronogramas hermosos en hojas cuadriculadas, con colores, con horarios redondos, que después no se cumplen un solo día. El problema casi nunca es la voluntad: el problema es que el plan estaba mal hecho desde el inicio.</p>
+
+  <p>Un plan realista parte de tres preguntas que conviene contestarse con brutal honestidad:</p>
+
+  <div class="questions-block">
+    <span class="label">Las tres preguntas honestas</span>
+    <p><strong>¿Cuánto material hay?</strong> No "cuántas unidades", sino cuántas páginas, cuántos textos, cuántas clases grabadas, cuántos apuntes. Pesar el material en términos físicos es la única forma de saber la magnitud del desafío.</p>
+    <p><strong>¿Cuánto tiempo tengo?</strong> No el tiempo nominal hasta el examen, sino el tiempo neto: descontando la cursada de las otras materias, el trabajo si lo hay, las obligaciones familiares, el descanso, los días que sabés que vas a estar agotado. Si te quedan tres semanas y trabajás veinte horas, no te quedan tres semanas: te quedan, quizás, sesenta horas reales de estudio.</p>
+    <p><strong>¿A qué velocidad estudio yo?</strong> Esta es la pregunta que casi nadie se hace. Cuánto tardo realmente en leer y procesar diez páginas de un texto denso. No cuánto debería tardar; cuánto tardo. Si todavía no lo sabés, cronometrate una tarde. Te vas a sorprender.</p>
+  </div>
+
+  <p>Recién con esos tres números encima de la mesa se puede armar algo serio. Y un plan serio <strong>incluye, obligatoriamente, días de repaso antes del examen</strong>. No uno: varios. La última semana no debería ser una semana de aprendizaje nuevo; debería ser una semana de consolidación, de simulacros, de pulir los puntos débiles.</p>
+
+  <!-- ════════════ SECCIÓN 3: MODALIDAD ════════════ -->
+  <h2><span class="num">03 · Modalidad</span>Saber para qué tipo de examen se está estudiando</h2>
+
+  <p>Esto es algo que en los primeros años se subestima muchísimo: <strong>no se estudia igual para distintas modalidades de examen</strong>. Y, sin embargo, una cantidad enorme de estudiantes prepara un final como si todos los finales fueran iguales.</p>
+
+  <div class="modalidades-grid">
+    <div class="modalidad-card">
+      <h4>Escrito de desarrollo</h4>
+      <p>Te pide armar argumentos: vincular conceptos, sostener una tesis, ordenar una exposición con principio, medio y fin. Se prepara practicando redacción, escribiendo respuestas completas a preguntas hipotéticas, ensayando transiciones, cuidando la jerarquía de ideas. Saberlo "de memoria" no alcanza: hay que saber <em>contarlo</em>.</p>
+    </div>
+    <div class="modalidad-card">
+      <h4>Múltiple choice</h4>
+      <p>Te pide algo casi opuesto: discriminar opciones muy parecidas, identificar matices, detectar la palabra que cambia todo. La trampa es el "más o menos lo sé". Las opciones están diseñadas para que el "más o menos" caiga en la incorrecta. Hay que practicar con bancos de preguntas, identificar distractores típicos y ser implacable con los detalles del texto.</p>
+    </div>
+    <div class="modalidad-card">
+      <h4>Oral con tema</h4>
+      <p>Es un examen de exposición: te dan unos minutos para abrir, vos elegís por dónde entrar, llevás un guion mental. Se prepara <em>ampliando</em> el material de la bibliografía obligatoria —yendo a fuentes complementarias de primera calidad—, practicando el tema en voz alta y armando una exposición ajustada al tiempo asignado, pero sabiendo muchísimo, muchísimo más sobre ese tema del que vas a poder decir. Las preguntas, en primer lugar, son sobre ese tema o temas afines; recién después se pasa a preguntas de otros temas del programa.</p>
+    </div>
+    <div class="modalidad-card">
+      <h4>Oral con preguntas generales</h4>
+      <p>Es una conversación: no hay un tema propio, el tribunal examinador entra por donde quiere, las preguntas se encadenan. Se prepara trabajando las conexiones entre temas, los puentes, los "y cómo se relaciona esto con aquello". Es el formato más exigente porque no permite refugiarse en un guion.</p>
+    </div>
+  </div>
+
+  <p>La regla, entonces, es averiguar <strong>con la mayor anticipación posible</strong> qué tipo de examen es y orientar el estudio en consecuencia. Preguntárselo al equipo de cátedra, mirar parciales viejos, hablar con quienes ya rindieron.</p>
+
+  <!-- ════════════ SECCIÓN 4: AUTOCONOCIMIENTO ════════════ -->
+  <h2><span class="num">04 · Autoconocimiento</span>Conocerse a uno mismo</h2>
+
+  <p><strong>¿En qué momento del día rendís mejor?</strong> Hay personas que a las siete de la mañana tienen una claridad mental que a las once de la noche les es imposible. Y hay otras que a las once de la noche recién se están encendiendo. No hay virtud en madrugar si tu cabeza arranca a las cuatro de la tarde. Pero hay que averiguarlo, no asumirlo.</p>
+
+  <p><strong>¿Estudiás mejor solo o en grupo?</strong> Tampoco hay respuesta correcta. El grupo es invaluable para explicar en voz alta, para que te pregunten lo que no se te había ocurrido, para sostener la disciplina cuando la motivación flaquea. El estudio solo es invaluable para la concentración profunda, para la lectura paciente, para la integración personal del material. Lo más común es que se necesiten los dos en proporciones distintas según la etapa: solo para la primera apropiación, en grupo para la consolidación y los repasos.</p>
+
+  <p><strong>¿En qué espacio rendís mejor?</strong> ¿Necesitás silencio absoluto o música? ¿Escritorio ordenado o desorden creativo? ¿Café, mate, agua? Todo eso, que parece accesorio, es lo que define si una sesión de dos horas rinde como dos horas o como cuarenta minutos.</p>
+
+  <div class="pullquote">
+    <blockquote>La pregunta de fondo es: ¿estás dispuesto a investigarte como objeto de estudio? Porque ese es, en última instancia, el trabajo de fondo del estudiante universitario.</blockquote>
+  </div>
+
+  <!-- ════════════ SECCIÓN 5: PAUSAS ════════════ -->
+  <h2><span class="num">05 · Ritmo</span>Sesiones de estudio con pausas activas</h2>
+
+  <p>Una de las cosas más probadas que tenemos sobre concentración es que <strong>el cerebro no sostiene atención profunda por períodos largos sin caída de rendimiento</strong>. Los números varían según el autor —cuarenta y cinco minutos, cincuenta, noventa— pero la idea es la misma: en algún momento el rendimiento por minuto empieza a bajar. Si seguís de largo, las dos horas siguientes te van a rendir como una. Si parás, te movés, tomás agua, mirás por la ventana cinco o diez minutos, y volvés, recuperás casi todo.</p>
+
+  <p>Hay técnicas formalizadas para esto —la más conocida es Pomodoro, con sus bloques de veinticinco minutos— pero el punto no es la técnica, es la idea: <strong>trabajar por bloques con pausas pautadas</strong>. Y que las pausas sean activas: levantarse, caminar, estirar, no quedarse en la misma silla mirando el celular (eso no es una pausa, es otra forma de pantalla).</p>
+
+  <p>Una sesión de tres horas con pausas rinde más que cinco horas seguidas sin parar. Eso está medido por diversos estudios. El estudiante que no descansa no es más serio: es menos eficiente.</p>
+
+  <!-- ════════════ SECCIÓN 6: SALUD MENTAL ════════════ -->
+  <h2><span class="num">06 · Salud mental</span>La salud mental no es accesoria</h2>
+
+  <p>Esto lo digo con la convicción que da haber visto muchas trayectorias: <strong>no se puede estudiar bien cuando se está mal</strong>. La ansiedad, la falta de sueño, la mala alimentación, el aislamiento, no son temas de bienestar abstracto: son variables que destruyen la memoria, atacan la concentración y arruinan la planificación. Un estudiante que duerme cinco horas durante un mes no es un estudiante muy esforzado; es un estudiante que se está saboteando.</p>
+
+  <p>Conviene dormir. Conviene comer. Conviene moverse. Conviene tener una vida fuera de la cursada, ver gente, salir. Conviene pedir ayuda profesional cuando algo está desbordando, y eso incluye recursos universitarios: gabinetes psicopedagógicos, tutorías, sistemas de acompañamiento. No es debilidad, es uso inteligente de lo que la institución pone a disposición.</p>
+
+  <p>La universidad puede ser una experiencia exigente. Lo es. Pero exigencia no es lo mismo que sufrimiento, y la confusión entre las dos cosas es uno de los grandes mitos que conviene desarmar temprano.</p>
+
+  <!-- ════════════ SECCIÓN 7: IA — BUENAS Y MALAS PRÁCTICAS ════════════ -->
+  <div class="breath"><span class="breath-dot"></span></div>
+
+  <h2><span class="num">07 · Herramientas</span>Inteligencia artificial: cómo usarla bien (y cómo no)</h2>
+
+  <p>No puedo cerrar este texto sin hablar del elefante en la habitación. Hoy se estudia con una caja de herramientas que hace diez años era impensable: PDFs anotables, apps de flashcards con repetición espaciada, transcripciones automáticas de clases, y —sobre todo— modelos de lenguaje capaces de explicar conceptos, resumir textos, generar preguntas de práctica o redactar respuestas completas en segundos.</p>
+
+  <p>Mi posición sobre esto es bastante clara: <strong>la IA es una herramienta, no un atajo</strong>. Puede ser un compañero de estudio extraordinario o un sabotaje silencioso a tu propio aprendizaje. La diferencia no está en la herramienta: está en cómo la usás. Te dejo, abajo, una guía honesta sobre dónde está cada cosa.</p>
+
+  <div class="ia-grid">
+
+    <div class="ia-card good">
+      <span class="ia-tag">Buenas prácticas</span>
+      <h3>Cuando la IA te hace pensar más</h3>
+      <ul>
+        <li><strong>Aprendé a escribir buenos prompts</strong>. Una pregunta vaga produce respuestas vagas. Una pregunta con contexto —qué materia, qué autor, qué texto, qué nivel de profundidad, para qué tipo de examen— produce respuestas útiles. La calidad de lo que recibís depende, casi siempre, de la calidad de lo que pediste. Es una habilidad nueva que vale la pena entrenar.</li>
+        <li><strong>Usá herramientas como NotebookLM cargadas con tu propio material</strong>. La diferencia es enorme: en lugar de preguntarle a una IA "qué sabés de Keynes" —donde puede traerte cualquier cosa de internet—, le subís la bibliografía obligatoria, los apuntes de clase, las fuentes complementarias que el equipo de cátedra recomendó, y le hacés preguntas sobre <em>ese</em> material. Las respuestas se anclan en lo que vas a tener que saber, no en lo que la IA leyó por su cuenta en otro lado.</li>
+        <li><strong>Pedile que te explique un concepto que no entendiste</strong>, con distintas analogías hasta que algo encaje. Después contale vos a la IA con tus propias palabras y mirá qué tan bien podés sostener la explicación.</li>
+        <li><strong>Generá preguntas de práctica</strong> sobre el material que estás estudiando. Una IA puede armarte veinte preguntas en distintos niveles de dificultad en treinta segundos. Respondelas vos, después chequeá contra el texto.</li>
+        <li><strong>Usala como simulador de examen oral</strong>: pedile que te entreviste sobre un tema, que te pregunte y repregunte. Ensayar con un compañero o con el equipo de cátedra es mejor, pero la IA está disponible a las tres de la mañana.</li>
+        <li><strong>Compará versiones de un mismo tema</strong>. "Explicame qué dice Keynes sobre X. Ahora explicame qué dirían los neoclásicos. Ahora confrontalos." Las IA son útiles para producir contrapuntos rápidos que después vos verificás contra los textos.</li>
+        <li><strong>Pedile que te ayude a organizar apuntes</strong> que ya escribiste vos: jerarquizar, detectar redundancias, sugerir títulos. Está procesando tu material, no inventando el contenido por vos.</li>
+        <li><strong>Chequeá siempre contra la fuente</strong>. La IA puede equivocarse, inventar citas, atribuir frases a autores que nunca las dijeron. Si algo va a entrar en tu examen, verificalo en el texto obligatorio antes de darlo por bueno.</li>
+        <li><strong>Sé transparente</strong>. Si en un trabajo usaste IA para algo, declaralo. La transparencia es parte del oficio académico, y los docentes lo valoran.</li>
+      </ul>
+    </div>
+
+    <div class="ia-card bad">
+      <span class="ia-tag">Prácticas no recomendadas</span>
+      <h3>Cuando la IA te hace pensar menos</h3>
+      <ul>
+        <li><strong>Preguntarle conceptos sin darle contexto ni material</strong>. "Explicame qué es la inflación" puede traerte una definición de manual de secundario, escrita desde una perspectiva teórica cualquiera, que no tiene nada que ver con la que sostiene tu cátedra ni con los autores que estás leyendo. Sin bibliografía obligatoria como anclaje, la respuesta puede ser correcta en general y completamente inútil para tu examen.</li>
+        <li><strong>Pedirle resúmenes para no leer los textos</strong>. El resumen de una IA puede ser correcto, pero el conocimiento se construye en el proceso de leer, no en el producto final. Si saltás la lectura, la idea no se inscribe en tu cabeza.</li>
+        <li><strong>Copiar y pegar respuestas sin metabolizarlas</strong>. Si entregás un trabajo escrito por la IA, no aprendiste nada y además es deshonestidad académica. Y en un oral, esa respuesta no la vas a poder reproducir ni defender.</li>
+        <li><strong>Confiar ciegamente en lo que dice</strong>. Los modelos alucinan: inventan datos, autores, fechas, citas textuales. En materias con autores específicos, esto es directamente peligroso. La IA no es una fuente, es un asistente.</li>
+        <li><strong>Reemplazar la bibliografía obligatoria con explicaciones de la IA</strong>. Un examen evalúa que hayas leído lo que se pidió leer, en la versión que se pidió leer. Una explicación general no equivale al texto específico.</li>
+        <li><strong>Usarla como sustituto del esfuerzo de comprensión</strong>. Si cada vez que algo cuesta entender vas a la IA antes de pelearlo solo cinco minutos, te perdés el ejercicio cognitivo más valioso: tolerar la confusión hasta que algo se acomoda.</li>
+        <li><strong>Pedirle que te arme el plan de estudio sin haber pesado vos el material</strong>. La IA no sabe cuánto tardás vos en leer, ni qué temas ya manejás, ni cómo es tu semana. Un cronograma genérico no es un cronograma realista.</li>
+        <li><strong>Usarla en exámenes o trabajos sin autorización</strong>. Cada cátedra tiene sus reglas. Asumir que está permitido sin preguntarlo puede costarte el examen o la materia. Preguntá antes.</li>
+        <li><strong>Esperar que reemplace la conversación humana</strong>. La IA no reemplaza a un compañero de estudio, a una consulta con el docente, a un tutor. Sirve cuando esas opciones no están disponibles, no como primera opción.</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="ia-bottom-note">
+    <strong>El criterio simple:</strong> ¿la herramienta te está haciendo pensar más o menos? Si te empuja a hacer preguntas mejores, a discutir, a confrontar versiones distintas de un mismo tema, va bien. Si te entrega productos cerrados que vos copiás y pegás sin metabolizar, va mal. El siglo XXI no inventó la inteligencia humana; sólo le agregó copilotos. El piloto seguís siendo vos.
+  </div>
+
+  <!-- ════════════ CIERRE ════════════ -->
+  <div class="cierre-card">
+    <span class="label">Para cerrar</span>
+    <h2>No hay magia. Hay método, hay disciplina, hay cuidado de uno mismo, y hay tiempo.</h2>
+    <p>Si tengo que resumir todo esto en una sola idea, diría que estudiar bien es, sobre todo, <strong>un ejercicio sostenido de autoconocimiento y de honestidad</strong>. Honestidad para reconocer cuánto sabés y cuánto no. Honestidad para planificar con datos reales sobre tu tiempo y tu velocidad. Honestidad para parar cuando hay que parar y para pedir ayuda cuando hace falta. Y un trabajo paciente, iterativo, de descubrir qué métodos funcionan en tu caso particular, sabiendo que lo que le sirve al compañero quizás a vos no te sirva.</p>
+    <p>Cuando esas cuatro cosas se alinean, estudiar deja de ser una tortura y empieza a parecerse a lo que en realidad es: <strong>una de las formas más sofisticadas que tenemos los humanos de transformarnos a nosotros mismos</strong>. Y eso, dicho con toda la convicción del mundo, vale la pena.</p>
+  </div>
+
+  <!-- ════════════ SOBRE NICK ════════════ -->
+  <div class="sobre-nick">
+    <span class="label">Sobre el autor</span>
+    <h2>Sobre Nick</h2>
+    <p>Soy <strong>Nick Perot</strong>, docente universitario en Santa Fe. Doy clases de Economía Política en la Facultad de Ciencias Jurídicas y Sociales de la Universidad Nacional del Litoral, donde trabajo con estudiantes de los primeros años de Abogacía y Trabajo Social.</p>
+    <p>Me interesa pensar la docencia desde adentro: cómo se diseña una cursada, cómo se acompaña a quien recién llega a la universidad, cómo se integran de forma honesta las nuevas tecnologías al aula. Escribo sobre eso de tanto en tanto, no como especialista en pedagogía, sino como alguien que forma hace más de 10 años y que sigue aprendiendo sobre la educación, y adecuando las nuevas tecnologías a espacios educativos.</p>
+    <p>Este texto surge de conversaciones repetidas con estudiantes a lo largo de varios años. Lo comparto con la idea de que pueda ser útil.</p>
+  </div>
+
+  <!-- ════════════ CONTACTO ════════════ -->
+  <div class="contacto-block">
+    <span class="label">Escribime</span>
+    <p>Si llegaste hasta acá, me interesa saber qué te pareció. Mandame tus comentarios, críticas, desacuerdos o lo que sea que el texto te haya disparado.</p>
+    <a class="email-link" href="mailto:educacion@nickperot.com">educacion@nickperot.com <span class="arrow">→</span></a>
+  </div>
+
+  <!-- ════════════ FIRMA ════════════ -->
+  <footer class="firma">
+    <p class="author-name">Nick Perot</p>
+    <p class="meta">Santa Fe · Mayo de 2026</p>
+  </footer>
+
+</article>
+
+</body>
+</html>
