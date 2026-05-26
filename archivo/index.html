@@ -360,11 +360,11 @@ button { font-family: inherit; cursor: pointer; background: none; border: none; 
 .hud-top.scrolled .hud-brand-mark { width: 26px; height: 26px; }
 .hud-top.scrolled .hud-system { opacity: 0.5; }
 
-.hud-left { display: flex; align-items: baseline; gap: 18px; }
+.hud-left { display: flex; align-items: center; gap: 18px; }
 
 .hud-brand {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   gap: 12px;
   font-family: var(--serif);
   font-weight: 300;
@@ -556,6 +556,50 @@ button { font-family: inherit; cursor: pointer; background: none; border: none; 
   background: var(--paper-2);
   color: var(--ink-3);
   border-radius: 2px;
+}
+
+/* Botón hamburguesa — sólo visible en mobile (mínimo 44×44 para tap target) */
+.menu-burger {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  border: 1px solid var(--rule-soft);
+  background: var(--paper);
+  color: var(--ink);
+  border-radius: 8px;
+  transition: background 0.15s var(--ease), color 0.15s var(--ease), border-color 0.15s var(--ease), transform 0.15s var(--ease);
+  flex-shrink: 0;
+  touch-action: manipulation;
+}
+.menu-burger:active { transform: scale(0.94); }
+.menu-burger svg { width: 20px; height: 20px; display: block; }
+.menu-burger .icon-close { display: none; }
+.menu-burger[aria-expanded="true"] .icon-burger { display: none; }
+.menu-burger[aria-expanded="true"] .icon-close  { display: block; }
+.menu-burger[aria-expanded="true"] {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+
+/* Scrim que oscurece el contenido cuando el menú está abierto */
+.menu-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 55;
+  background: rgba(20, 25, 31, 0.18);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s var(--ease);
+}
+body.menu-open .menu-scrim {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -1110,6 +1154,9 @@ button { font-family: inherit; cursor: pointer; background: none; border: none; 
   font-size: 13px;
   font-feature-settings: "tnum";
 }
+
+/* Extras del menú móvil — ocultos en desktop, visibles dentro del panel en mobile */
+.menu-extras { display: none; }
 
 /* ═══════════════════════════════════════════════════════════════
    ARCHIVO — secciones editoriales
@@ -1751,9 +1798,31 @@ button { font-family: inherit; cursor: pointer; background: none; border: none; 
   font-weight: 600;
   letter-spacing: 0.14em;
   color: var(--ink-3);
-  padding: 4px 8px;
+  padding: 6px 10px;
   border: 1px solid var(--rule-soft);
+  background: var(--paper);
+  border-radius: 4px;
   text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.15s var(--ease), border-color 0.15s var(--ease), color 0.15s var(--ease);
+  flex-shrink: 0;
+  touch-action: manipulation;
+}
+.cmd-close:hover,
+.cmd-close:focus-visible {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+  outline: none;
+}
+
+/* En mobile: tap target más cómodo */
+@media (max-width: 720px) {
+  .cmd-close {
+    padding: 10px 14px;
+    font-size: 11px;
+    min-height: 38px;
+  }
 }
 
 .cmd-list {
@@ -2529,38 +2598,225 @@ footer {
   .hero-marquee { padding-top: 22px; }
   .marquee-track { font-size: 14px; gap: 28px; animation-duration: 45s; }
 
-  /* SECTION TABS — scroll horizontal */
+  /* SECTION TABS — panel desplegable desde el header en mobile */
+  .menu-burger { display: flex; }
+
+  /* En mobile el día/noche y la búsqueda viven dentro del panel del menú,
+     no en el header. El duplicado interno se identifica con .menu-mode-toggle-inline */
+  .hud-right > .hud-cmd,
+  .hud-right > .hud-clock,
+  .hud-right > .hud-mode-toggle { display: none; }
+
   .control-bar {
-    padding: 0 14px;
-    gap: 0;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
+    position: fixed;
+    /* Alineado con el header flotante: mismo margin lateral + safe-area */
+    top: calc(env(safe-area-inset-top, 0px) + 78px);
+    left:  max(12px, env(safe-area-inset-left, 0px));
+    right: max(12px, env(safe-area-inset-right, 0px));
+    z-index: 60;
+
+    /* Limitar altura y permitir scroll interno si el panel no entra */
+    max-height: calc(100vh - 96px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
+    overflow-y: auto;
+    overscroll-behavior: contain;
     -webkit-overflow-scrolling: touch;
-    top: 56px;
+
+    border: 1px solid var(--rule-soft);
+    border-radius: 14px;
+    box-shadow:
+      0 18px 44px -8px rgba(22, 27, 35, 0.20),
+      0 6px 14px -4px rgba(22, 27, 35, 0.12),
+      inset 0 1px 0 rgba(255, 255, 255, 0.4);
+
+    flex-direction: column;
+    gap: 14px;
+    padding: 14px;
+    margin: 0;
+    max-width: none;
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    background: color-mix(in srgb, var(--paper) 92%, transparent);
+
+    opacity: 0;
+    transform: translateY(-8px);
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+      opacity 0.22s var(--ease),
+      transform 0.22s var(--ease-snap),
+      visibility 0.22s;
   }
+
+  /* Bloquear scroll del body cuando el menú está abierto */
+  body.menu-open {
+    overflow: hidden;
+  }
+
+  /* Ajuste fino del top cuando el header está en su forma compacta (scrolled) */
+  body.header-scrolled .control-bar {
+    top: calc(env(safe-area-inset-top, 0px) + 70px);
+  }
+  body.menu-open .control-bar {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+    pointer-events: auto;
+  }
+
   .control-bar::-webkit-scrollbar { display: none; }
-  .control-section { flex-shrink: 0; }
-  .control-divider { flex-shrink: 0; margin: 0 10px; height: 18px; }
-  .spacer { display: none; }
-  .control-counter { flex-shrink: 0; padding: 0 8px; font-size: 11px; }
-  .control-counter strong { font-size: 12px; }
   .control-label { display: none; }
-  .chip {
-    font-size: 11.5px;
-    padding: 14px 12px;
-    min-height: 44px;
+  .spacer { display: none; }
+  .control-divider { display: none; }
+
+  /* Sección filtros — chips en grilla 2 columnas, full-width buttons */
+  .control-bar > .control-section:first-of-type {
+    flex: 1 0 100%;
+    width: 100%;
+    padding: 0 0 14px;
+    border-bottom: 1px solid var(--rule-soft);
+    overflow: visible;
   }
-  .chip::before { left: 12px; right: 12px; }
-  .chip .num { font-size: 10px; }
-  .view-toggle button {
-    padding: 8px 9px;
-    min-height: 36px;
+  .control-bar > .control-section:first-of-type::before {
+    content: "Sección";
+    display: block;
+    font-family: var(--sans);
     font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 10px;
   }
-  .view-toggle button span { display: none; }
-  .view-toggle svg { width: 13px; height: 13px; }
+  .control-chips {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    width: 100%;
+  }
+  .chip {
+    width: 100%;
+    padding: 11px 14px;
+    justify-content: space-between;
+    border: 1px solid var(--rule-soft);
+    border-radius: 6px;
+    font-size: 12.5px;
+    min-height: auto;
+    background: var(--paper);
+  }
+  .chip::before { display: none; }
+  .chip.active {
+    background: var(--ink);
+    color: var(--paper);
+    border-color: var(--ink);
+  }
+  .chip.active .num { color: var(--paper); opacity: 0.65; }
+
+  /* Sección vista — segmented control full-width */
+  .control-bar > .control-section:last-of-type {
+    width: 100%;
+    flex-shrink: 0;
+    padding: 0;
+  }
+  .control-bar > .control-section:last-of-type::before {
+    content: "Vista";
+    display: block;
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 10px;
+  }
+  .view-toggle {
+    width: 100%;
+    border: 1px solid var(--rule-soft);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .view-toggle button {
+    flex: 1;
+    padding: 12px 0;
+    min-height: 44px;
+    justify-content: center;
+    font-size: 11px;
+    gap: 8px;
+  }
+  .view-toggle button span { display: inline; }
+  .view-toggle svg { width: 14px; height: 14px; }
+
+  /* Counter en el pie del panel */
+  .control-counter {
+    width: 100%;
+    text-align: center;
+    padding: 8px 0 0;
+    font-size: 11px;
+    color: var(--ink-3);
+    border-top: 1px dashed var(--rule-soft);
+    order: 99; /* siempre al final */
+  }
+  .control-counter strong { font-size: 12px; }
+
+  /* Extras del menú: búsqueda + modo día/noche dentro del panel */
+  .menu-extras {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    order: 97;
+    padding-top: 12px;
+    border-top: 1px dashed var(--rule-soft);
+  }
+
+  .menu-extras-search {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 11px 14px;
+    border: 1px solid var(--rule-soft);
+    border-radius: 6px;
+    background: var(--paper);
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink-2);
+    text-align: left;
+    cursor: pointer;
+    transition: background 0.15s var(--ease), border-color 0.15s var(--ease), color 0.15s var(--ease);
+  }
+  .menu-extras-search:hover {
+    border-color: var(--ink);
+    color: var(--ink);
+  }
+  .menu-extras-search svg {
+    width: 16px; height: 16px; flex-shrink: 0;
+    color: var(--ink-3);
+  }
+  .menu-extras-search:hover svg { color: var(--red); }
+
+  .menu-mode-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 4px 2px 0;
+    flex-wrap: wrap;
+  }
+  .menu-mode-row .label {
+    font-family: var(--sans);
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    flex-shrink: 0;
+  }
+  .menu-mode-toggle-inline {
+    display: flex;
+    flex-shrink: 0;
+  }
+  .menu-mode-toggle-inline button { min-height: 36px; padding: 8px 14px; }
 
   /* ARCHIVO */
   .archive-main { padding: 36px 14px 70px; }
@@ -2711,6 +2967,34 @@ footer {
   .principle-num { font-size: 24px; }
   .principle h3 { font-size: 18px; }
   .map-svg { height: clamp(380px, 90vw, 480px); }
+
+  /* Menú hamburguesa en mobile chico — chips en 1 columna full-width */
+  .control-bar { gap: 12px; padding: 12px; }
+  .control-chips { grid-template-columns: 1fr; gap: 4px; }
+  .chip { padding: 12px 14px; font-size: 12px; }
+  .menu-burger { width: 38px; height: 38px; min-width: 38px; border-radius: 7px; }
+  .menu-burger svg { width: 18px; height: 18px; }
+  .menu-extras-search { padding: 10px 12px; font-size: 12.5px; }
+  .menu-extras { gap: 8px; padding-top: 10px; }
+  .menu-mode-row { padding-top: 2px; }
+  .menu-mode-toggle-inline button { padding: 7px 12px; font-size: 10px; }
+}
+
+/* Landscape mobile: ventana baja — panel más compacto */
+@media (max-width: 900px) and (max-height: 520px) {
+  .control-bar {
+    top: calc(env(safe-area-inset-top, 0px) + 60px);
+    max-height: calc(100vh - 76px - env(safe-area-inset-bottom, 0px));
+    gap: 10px;
+    padding: 12px;
+  }
+  .control-bar > .control-section:first-of-type { padding-bottom: 10px; }
+  .control-bar > .control-section:first-of-type::before,
+  .control-bar > .control-section:last-of-type::before { margin-bottom: 6px; }
+  .control-chips { grid-template-columns: 1fr 1fr 1fr; }
+  .chip { padding: 9px 10px; min-height: 36px; font-size: 11.5px; }
+  .view-toggle button { padding: 9px 0; min-height: 38px; }
+  .menu-extras { gap: 8px; padding-top: 8px; }
 }
 
 /* Reduce motion — accesibilidad */
@@ -2776,8 +3060,14 @@ footer {
       <button class="active" data-mode-btn="paper">Día</button>
       <button data-mode-btn="terminal">Noche</button>
     </div>
+    <button class="menu-burger" id="menu-burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="control-bar">
+      <svg class="icon-burger" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      <svg class="icon-close"  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M6 18L18 6"/></svg>
+    </button>
   </div>
 </header>
+
+<div class="menu-scrim" aria-hidden="true"></div>
 
 <!-- ═══════════════════════════════════════════════════════════════
      HERO
@@ -2912,7 +3202,7 @@ footer {
 <!-- ═══════════════════════════════════════════════════════════════
      CONTROL BAR
      ═══════════════════════════════════════════════════════════════ -->
-<div class="control-bar">
+<div class="control-bar" id="control-bar">
   <div class="control-section">
     <span class="control-label">Sección</span>
     <div class="control-chips">
@@ -2947,6 +3237,21 @@ footer {
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><circle cx="4" cy="6" r="2"/><circle cx="20" cy="6" r="2"/><circle cx="4" cy="18" r="2"/><circle cx="20" cy="18" r="2"/><path d="M6 6h4M14 6h4M6 18h4M14 18h4M12 9V6M12 15v3"/></svg>
         <span>Mapa</span>
       </button>
+    </div>
+  </div>
+
+  <!-- Extras del menú móvil: búsqueda + modo día/noche (oculto en desktop) -->
+  <div class="menu-extras">
+    <button class="menu-extras-search" id="menu-search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <span>Buscar en el archivo</span>
+    </button>
+    <div class="menu-mode-row">
+      <span class="label">Modo de lectura</span>
+      <div class="hud-mode-toggle menu-mode-toggle-inline">
+        <button class="active" data-mode-btn="paper">Día</button>
+        <button data-mode-btn="terminal">Noche</button>
+      </div>
     </div>
   </div>
 </div>
@@ -3870,7 +4175,7 @@ footer {
       <span class="cmd-prompt">Buscar</span>
       <label for="cmd-input" class="sr-only">Buscar en el archivo</label>
       <input class="cmd-input" id="cmd-input" type="search" placeholder="Título, organismo, palabra clave…" autocomplete="off" aria-label="Buscar en el archivo">
-      <span class="cmd-close">ESC</span>
+      <button class="cmd-close" id="cmd-close" type="button" aria-label="Cerrar buscador">ESC</button>
     </div>
     <div class="cmd-list" id="cmd-list"></div>
     <div class="cmd-footer">
@@ -4381,6 +4686,7 @@ function renderCmd(query) {
 
 document.getElementById('open-cmd').addEventListener('click', openCmd);
 document.getElementById('open-cmd-2').addEventListener('click', openCmd);
+document.getElementById('cmd-close').addEventListener('click', closeCmd);
 cmdInput.addEventListener('input', e => renderCmd(e.target.value));
 
 document.addEventListener('keydown', e => {
@@ -4493,8 +4799,10 @@ let scrollTicking = false;
 
 function onScroll() {
   const y = window.scrollY;
+  const scrolled = y > 60;
   scrollTopBtn.classList.toggle('visible', y > 600);
-  hudTop.classList.toggle('scrolled', y > 60);
+  hudTop.classList.toggle('scrolled', scrolled);
+  document.body.classList.toggle('header-scrolled', scrolled);
   scrollTicking = false;
 }
 
@@ -4506,6 +4814,55 @@ window.addEventListener('scroll', () => {
 
 scrollTopBtn.addEventListener('click', () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// ═══════════════════════════════════════════════════════════════
+// MENÚ MOBILE (hamburguesa + panel desplegable)
+// ═══════════════════════════════════════════════════════════════
+const menuBurger = document.getElementById('menu-burger');
+const menuScrim  = document.querySelector('.menu-scrim');
+const controlBar = document.getElementById('control-bar');
+const menuSearch = document.getElementById('menu-search');
+
+function setMenu(open) {
+  document.body.classList.toggle('menu-open', open);
+  menuBurger.setAttribute('aria-expanded', String(open));
+  menuBurger.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+}
+
+menuBurger.addEventListener('click', (e) => {
+  e.stopPropagation();
+  setMenu(!document.body.classList.contains('menu-open'));
+});
+
+menuScrim.addEventListener('click', () => setMenu(false));
+
+// El botón "Buscar" del panel abre el command palette y cierra el menú
+menuSearch.addEventListener('click', () => {
+  setMenu(false);
+  setTimeout(() => document.getElementById('open-cmd').click(), 80);
+});
+
+// Cerrar al seleccionar un filtro o cambiar de vista (solo cuando está como panel mobile)
+controlBar.addEventListener('click', (e) => {
+  if (!document.body.classList.contains('menu-open')) return;
+  if (e.target.closest('.chip') || e.target.closest('[data-view-btn]')) {
+    setTimeout(() => setMenu(false), 120);
+  }
+});
+
+// ESC cierra el menú (sin pisar el ESC del command palette)
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && document.body.classList.contains('menu-open')) {
+    setMenu(false);
+  }
+});
+
+// Si la pantalla pasa a desktop con el menú abierto, lo cerramos para evitar estados raros
+window.addEventListener('resize', () => {
+  if (window.innerWidth > 720 && document.body.classList.contains('menu-open')) {
+    setMenu(false);
+  }
 });
 
 // ═══════════════════════════════════════════════════════════════
