@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#2a1133">
+<meta name="color-scheme" content="light">
 <meta name="description" content="Unidad 4 de Economía Política · Cátedra B · FCJS UNL. El Sector Público: rol del Estado, fallas del mercado, ingresos y gastos públicos, impuestos y política fiscal.">
 <meta name="author" content="Cátedra B · Economía Política · FCJS UNL">
 <meta name="keywords" content="economía política, sector público, Estado, fallas del mercado, ingresos públicos, gastos públicos, impuestos, política fiscal, Mochón, Beker, Pérez Enrri, Cibotti, Sierra, Cátedra B, FCJS, UNL">
@@ -50,7 +51,10 @@
 
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
+  html {
+    scroll-behavior: smooth;
+    background-color: #f8f7fc; /* fallback antes de que el gradient del body se aplique */
+  }
   body {
     font-family: var(--font-body);
     color: var(--color-text-body);
@@ -7912,7 +7916,10 @@
 
   scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-  // ════════ REVEAL ON SCROLL — rápido, elementos pequeños ════════
+  // ════════ REVEAL ON SCROLL — solo abajo del fold ════════
+  // Elementos arriba del fold se muestran sin animación (sin flash).
+  // Solo los que están abajo del viewport reciben la clase .reveal
+  // y se observan para animarse cuando entren al hacer scroll.
   const revealObs = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) {
@@ -7921,6 +7928,7 @@
       }
     });
   }, { threshold: 0.08, rootMargin: '0px 0px -5% 0px' });
+  const viewportH = window.innerHeight;
   document.querySelectorAll(
     'section h2, section h3, .lead-paragraph, .card, .definition, .callout, .callout-arrow, ' +
     '.accordion, .tabs, .timeline, .formula-box, .comparativa, .flow, .tree, ' +
@@ -7928,8 +7936,11 @@
     '.vision-grid, .cibotti-frame, .fuentes-frame, .deficit-frame, .rubrica, ' +
     '.companion-banner, .historia-track, .idea-fuerza, .contexto-arg, .cita-fuente'
   ).forEach(el => {
-    el.classList.add('reveal');
-    revealObs.observe(el);
+    // Solo animar si el elemento está debajo del viewport inicial
+    if (el.getBoundingClientRect().top > viewportH) {
+      el.classList.add('reveal');
+      revealObs.observe(el);
+    }
   });
 
   // ════════ NAVEGACIÓN ENRIQUECIDA · checklist + progreso + estado actual ════════
@@ -8049,14 +8060,23 @@
     }, { threshold: 0.2, rootMargin: '0px 0px -30% 0px' });
     linkByTarget.forEach((data, target) => navObs.observe(target));
 
-    // "Leyendo ahora": el último target cuyo top quedó arriba de la línea activa
+    // "Leyendo ahora": el último target cuyo top quedó arriba de la línea activa.
+    // Además, marca como visitada cualquier sección que se haya pasado (top < línea).
+    // Esto cubre el caso de secciones muy largas donde el IntersectionObserver
+    // no llega al threshold del 20% (matemáticamente imposible para elementos
+    // más altos que el viewport efectivo).
     function updateCurrent() {
       const line = window.scrollY + 120;
       let current = null;
       linkByTarget.forEach((data, target) => {
         const top = target.getBoundingClientRect().top + window.scrollY;
-        if (top <= line && (!current || top > current.top)) {
-          current = { link: data.link, top };
+        if (top <= line) {
+          // Top de esta sección quedó arriba de la línea de lectura → marcar visitada
+          if (hasScrolled) markVisited(data.id, true);
+          // Candidato a "leyendo ahora": el de top más cercano a la línea
+          if (!current || top > current.top) {
+            current = { link: data.link, top };
+          }
         }
       });
       navLinks.forEach(l => l.classList.remove('in-view-now'));
