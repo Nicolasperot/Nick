@@ -64,7 +64,7 @@
     padding:60px 24px;
   }
   .hero::before{
-    content:"✝";
+    content:"\271D\FE0E"; /* cruz + selector de variación: fuerza texto, no emoji */
     position:absolute;
     font-size:680px;
     color:rgba(214,90,49,.04);
@@ -967,7 +967,7 @@
     .back-top{bottom:20px;right:20px;width:48px;height:48px;font-size:18px}
 
     .hero{min-height:88vh;padding:80px 20px 60px}
-    .hero::before{font-size:380px}
+    .hero::before{display:none}
     .scroll-hint{bottom:20px;font-size:11px}
     .issue-num{font-size:64px}
     .issue-num small{font-size:14px;letter-spacing:4px}
@@ -1575,7 +1575,7 @@
 
 <!-- ============== FOOTER ============== -->
 <footer class="footer">
-  <div class="ornament">✝</div>
+  <div class="ornament">✝&#xFE0E;</div>
   <h3>"Una humanidad más cercana, más fraterna y más capaz de mirar, escuchar y abrazar al otro."</h3>
   <div style="font-family:'Fraunces',serif;font-style:italic;color:var(--gold);font-size:16px;letter-spacing:.5px;margin-top:4px">— Mensaje de Corpus Christi 2026 · «Eucaristía, escuela de humanidad»</div>
   <div class="meta">
