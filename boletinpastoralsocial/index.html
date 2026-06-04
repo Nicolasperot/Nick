@@ -1,0 +1,1639 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Boletín N° 5 · Pastoral Social · Arquidiócesis de Santa Fe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --coral:#d65a31;
+    --coral-soft:#f4a987;
+    --coral-light:#fde8dc;
+    --cream:#fdf8f3;
+    --cream-deep:#faf0e6;
+    --ink:#2a2a2a;
+    --ink-soft:#4a4a4a;
+    --muted:#8a7e74;
+    --gold:#c9923a;
+    --sky:#a8c8d8;
+    --sky-soft:#e3eef3;
+    --line:#ead9c6;
+    --mourning:#6d5d7a;
+    --mourning-soft:#f1edf3;
+    --shadow:0 8px 30px rgba(214,90,49,.08);
+    --shadow-lift:0 16px 50px rgba(214,90,49,.14);
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+
+  /* ===== Scrollbar general (estilo coral, a juego con la barra lateral) ===== */
+  ::-webkit-scrollbar{width:14px;height:14px}
+  ::-webkit-scrollbar-track{background:var(--cream-deep)}
+  ::-webkit-scrollbar-thumb{
+    background:var(--coral-soft);
+    border-radius:12px;
+    border:4px solid var(--cream-deep);
+  }
+  ::-webkit-scrollbar-thumb:hover{background:var(--coral)}
+  ::-webkit-scrollbar-corner{background:var(--cream-deep)}
+  body{
+    font-family:'Inter',sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    line-height:1.65;
+    font-size:16px;
+    overflow-x:hidden;
+  }
+
+  /* ================ HERO ================ */
+  .hero{
+    min-height:100vh;
+    background:
+      radial-gradient(circle at 15% 20%, rgba(214,90,49,.10), transparent 40%),
+      radial-gradient(circle at 85% 75%, rgba(168,200,216,.18), transparent 45%),
+      linear-gradient(180deg, var(--cream) 0%, var(--cream-deep) 100%);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    overflow:hidden;
+    padding:60px 24px;
+  }
+  .hero::before{
+    content:"✝";
+    position:absolute;
+    font-size:680px;
+    color:rgba(214,90,49,.04);
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    font-family:'Fraunces',serif;
+    pointer-events:none;
+  }
+  .hero-inner{
+    position:relative;
+    z-index:2;
+    text-align:center;
+    max-width:780px;
+  }
+  .badge-top{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:8px 20px;
+    background:rgba(255,255,255,.7);
+    backdrop-filter:blur(10px);
+    border:1px solid var(--line);
+    border-radius:100px;
+    font-size:13px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:var(--coral);
+    font-weight:600;
+    margin-bottom:32px;
+  }
+  .badge-top .dot{
+    width:8px;height:8px;border-radius:50%;
+    background:var(--coral);
+    animation:pulse 2s infinite;
+  }
+  @keyframes pulse{
+    0%,100%{opacity:1;transform:scale(1)}
+    50%{opacity:.5;transform:scale(1.3)}
+  }
+  .hero h1{
+    font-family:'Fraunces',serif;
+    font-size:clamp(48px,8vw,104px);
+    font-weight:900;
+    line-height:.95;
+    letter-spacing:-2px;
+    color:var(--ink);
+    margin-bottom:8px;
+  }
+  .hero h1 .accent{
+    color:var(--coral);
+    font-style:italic;
+    font-weight:400;
+  }
+  .hero .sub{
+    font-family:'Fraunces',serif;
+    font-style:italic;
+    font-size:clamp(18px,2.2vw,24px);
+    color:var(--muted);
+    margin-bottom:48px;
+  }
+  .issue-strip{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:32px;
+    flex-wrap:wrap;
+    padding-top:32px;
+    border-top:1px solid var(--line);
+  }
+  .issue-num{
+    font-family:'Fraunces',serif;
+    font-size:88px;
+    font-weight:900;
+    color:var(--coral);
+    line-height:1;
+  }
+  .issue-num small{
+    font-size:18px;
+    display:block;
+    letter-spacing:6px;
+    color:var(--muted);
+    font-weight:500;
+    margin-bottom:-8px;
+  }
+  .issue-meta{
+    text-align:left;
+    border-left:2px solid var(--line);
+    padding-left:32px;
+  }
+  .issue-meta .date{
+    font-family:'Fraunces',serif;
+    font-size:24px;
+    font-weight:600;
+    color:var(--ink);
+  }
+  .issue-meta .place{
+    font-size:14px;
+    color:var(--muted);
+    letter-spacing:1px;
+    text-transform:uppercase;
+  }
+  .scroll-hint{
+    position:absolute;
+    bottom:32px;
+    left:50%;
+    transform:translateX(-50%);
+    font-size:12px;
+    letter-spacing:3px;
+    padding-left:3px;
+    color:var(--muted);
+    text-transform:uppercase;
+    text-align:center;
+    z-index:2;
+  }
+  .scroll-hint::after{
+    content:"↓";
+    display:block;
+    font-size:20px;
+    margin-top:8px;
+    letter-spacing:0;
+    padding-left:0;
+    animation:bounce 2s infinite;
+  }
+  @keyframes bounce{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(8px)}
+  }
+  /* en ventanas muy bajas el hero centrado choca con el hint: lo ocultamos */
+  @media (max-height:640px){
+    .scroll-hint{display:none}
+  }
+
+  /* ================ WELCOME ================ */
+  .welcome{
+    max-width:760px;
+    margin:0 auto;
+    padding:120px 24px 80px;
+    text-align:center;
+  }
+  .welcome .ornament{
+    font-size:32px;
+    color:var(--coral-soft);
+    margin-bottom:24px;
+    letter-spacing:12px;
+  }
+  .welcome p{
+    font-family:'Fraunces',serif;
+    font-size:clamp(22px,2.6vw,30px);
+    font-weight:400;
+    line-height:1.45;
+    color:var(--ink-soft);
+    font-style:italic;
+  }
+  .welcome .signature{
+    margin-top:32px;
+    font-family:'Inter',sans-serif;
+    font-style:normal;
+    font-size:14px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    color:var(--coral);
+    font-weight:600;
+  }
+
+  /* ================ TOC ================ */
+  .toc{
+    max-width:1100px;
+    margin:0 auto 100px;
+    padding:0 24px;
+  }
+  .toc-header{
+    display:flex;
+    align-items:baseline;
+    gap:24px;
+    margin-bottom:40px;
+  }
+  .toc-header .num{
+    font-family:'Fraunces',serif;
+    font-size:18px;
+    color:var(--coral);
+    font-weight:600;
+    letter-spacing:2px;
+  }
+  .toc-header h2{
+    font-family:'Fraunces',serif;
+    font-size:clamp(32px,4vw,48px);
+    font-weight:700;
+    color:var(--ink);
+    letter-spacing:-1px;
+  }
+  .toc-header .line{
+    flex:1;
+    height:1px;
+    background:var(--line);
+  }
+  .toc-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+    gap:2px;
+    background:var(--line);
+    border:1px solid var(--line);
+    border-radius:24px;
+    overflow:hidden;
+  }
+  .toc-item{
+    background:var(--cream);
+    padding:24px 28px;
+    text-decoration:none;
+    color:inherit;
+    transition:all .3s ease;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    position:relative;
+  }
+  .toc-item:hover{
+    background:#fff;
+    transform:translateY(-2px);
+  }
+  .toc-item .toc-num{
+    font-family:'Fraunces',serif;
+    font-size:14px;
+    color:var(--coral);
+    font-weight:700;
+    letter-spacing:2px;
+  }
+  .toc-item .toc-title{
+    font-family:'Fraunces',serif;
+    font-size:18px;
+    font-weight:600;
+    line-height:1.3;
+    color:var(--ink);
+  }
+  .toc-item .toc-date{
+    font-size:12px;
+    color:var(--muted);
+    letter-spacing:1px;
+    text-transform:uppercase;
+    margin-top:4px;
+  }
+  .toc-item::after{
+    content:"→";
+    position:absolute;
+    top:24px;
+    right:24px;
+    color:var(--coral);
+    opacity:0;
+    transition:all .3s ease;
+  }
+  .toc-item:hover::after{
+    opacity:1;
+    transform:translateX(4px);
+  }
+
+  /* ================ ARTICLE ================ */
+  .article{
+    max-width:780px;
+    margin:0 auto;
+    padding:80px 24px;
+    position:relative;
+  }
+  .article.wide{max-width:1100px}
+
+  .article-header{
+    margin-bottom:48px;
+  }
+  .tag{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:6px 16px;
+    border-radius:100px;
+    font-size:11px;
+    letter-spacing:2.5px;
+    text-transform:uppercase;
+    font-weight:700;
+    margin-bottom:24px;
+  }
+  .tag.noticia{background:var(--coral);color:#fff}
+  .tag.evento{background:var(--gold);color:#fff}
+  .tag.reunion{background:var(--sky);color:#fff}
+  .tag.invitacion{background:#7ba87b;color:#fff}
+  .tag.equipo{background:var(--ink);color:#fff}
+  .tag.comunicado{background:var(--mourning);color:#fff}
+  .tag .date-chip{
+    background:rgba(255,255,255,.25);
+    padding:2px 10px;
+    border-radius:100px;
+    letter-spacing:1px;
+  }
+
+  .article h2{
+    font-family:'Fraunces',serif;
+    font-size:clamp(34px,4.5vw,54px);
+    font-weight:700;
+    line-height:1.05;
+    letter-spacing:-1.5px;
+    color:var(--ink);
+    margin-bottom:16px;
+  }
+  .article h2 .em{
+    color:var(--coral);
+    font-style:italic;
+    font-weight:400;
+  }
+  .article .lead{
+    font-family:'Fraunces',serif;
+    font-size:22px;
+    line-height:1.5;
+    color:var(--ink-soft);
+    font-style:italic;
+    padding-left:24px;
+    border-left:3px solid var(--coral-soft);
+    margin-bottom:32px;
+  }
+  .article p{
+    font-size:17px;
+    line-height:1.75;
+    color:var(--ink-soft);
+    margin-bottom:20px;
+  }
+  .article p strong{color:var(--ink);font-weight:600}
+  .article a{
+    color:var(--coral);
+    text-decoration:none;
+    border-bottom:1px solid var(--coral-soft);
+    transition:all .2s;
+  }
+  .article a:hover{
+    background:var(--coral-light);
+  }
+  .article h3{
+    font-family:'Fraunces',serif;
+    font-size:24px;
+    font-weight:600;
+    color:var(--coral);
+    margin:36px 0 16px;
+  }
+  .article ul{
+    list-style:none;
+    margin:20px 0;
+  }
+  .article ul li{
+    padding:14px 0 14px 32px;
+    border-bottom:1px dashed var(--line);
+    position:relative;
+    font-size:16px;
+    color:var(--ink-soft);
+  }
+  .article ul li:last-child{border-bottom:none}
+  .article ul li::before{
+    content:"✦";
+    position:absolute;
+    left:8px;
+    top:14px;
+    color:var(--coral);
+    font-size:14px;
+  }
+  .article ul li strong{color:var(--ink);font-weight:600}
+
+  /* divider */
+  .divider{
+    max-width:780px;
+    margin:40px auto;
+    padding:0 24px;
+    text-align:center;
+  }
+  .divider span{
+    display:inline-block;
+    color:var(--coral-soft);
+    font-size:14px;
+    letter-spacing:24px;
+    padding-left:24px;
+  }
+
+  /* card variant */
+  .card{
+    background:#fff;
+    border-radius:24px;
+    padding:40px;
+    box-shadow:var(--shadow);
+    border:1px solid var(--line);
+    margin:32px 0;
+  }
+  .card.coral{
+    background:linear-gradient(135deg, var(--coral-light) 0%, var(--cream) 100%);
+    border:none;
+  }
+  .card.sky{
+    background:linear-gradient(135deg, var(--sky-soft) 0%, var(--cream) 100%);
+    border:none;
+  }
+  .card.mourning{
+    background:var(--mourning-soft);
+    border:none;
+    border-left:4px solid var(--mourning);
+    border-radius:0 20px 20px 0;
+  }
+  .card h4{
+    font-family:'Fraunces',serif;
+    font-size:22px;
+    font-weight:600;
+    color:var(--ink);
+    margin-bottom:8px;
+  }
+  .card .small{
+    font-size:13px;
+    color:var(--muted);
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    margin-bottom:16px;
+  }
+
+  .info-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:16px;
+    margin:28px 0;
+  }
+  .info-cell{
+    padding:20px;
+    background:var(--cream);
+    border-radius:16px;
+    border:1px solid var(--line);
+  }
+  .info-cell .icon{
+    font-size:22px;
+    margin-bottom:8px;
+  }
+  .info-cell .label{
+    font-size:11px;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin-bottom:4px;
+  }
+  .info-cell .val{
+    font-family:'Fraunces',serif;
+    font-size:17px;
+    font-weight:600;
+    color:var(--ink);
+    line-height:1.3;
+  }
+
+  /* pull quote */
+  .pull{
+    margin:48px 0;
+    padding:48px;
+    background:var(--coral);
+    border-radius:32px;
+    color:#fff;
+    position:relative;
+    overflow:hidden;
+  }
+  .pull.sober{background:var(--mourning)}
+  .pull::before{
+    content:"❝";
+    position:absolute;
+    top:-30px;
+    right:24px;
+    font-size:180px;
+    color:rgba(255,255,255,.15);
+    font-family:'Fraunces',serif;
+  }
+  .pull p{
+    font-family:'Fraunces',serif;
+    font-size:28px;
+    line-height:1.4;
+    font-style:italic;
+    color:#fff;
+    position:relative;
+    z-index:1;
+    margin:0;
+  }
+  .pull .src{
+    margin-top:16px;
+    font-style:normal;
+    font-size:14px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    opacity:.8;
+    font-family:'Inter',sans-serif;
+  }
+
+  /* people */
+  .people{
+    margin:32px 0;
+  }
+  .person{
+    display:flex;
+    gap:20px;
+    padding:24px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .person:last-child{border-bottom:none}
+  .person .avatar{
+    width:56px;height:56px;
+    border-radius:50%;
+    background:var(--coral-light);
+    color:var(--coral);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'Fraunces',serif;
+    font-size:22px;
+    font-weight:700;
+    flex-shrink:0;
+  }
+  .person .info h5{
+    font-family:'Fraunces',serif;
+    font-size:18px;
+    font-weight:600;
+    margin-bottom:4px;
+    color:var(--ink);
+  }
+  .person .info p{
+    font-size:14px;
+    color:var(--muted);
+    margin:0;
+  }
+
+  /* hashtags */
+  .hashtags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin:24px 0;
+  }
+  .hashtags span{
+    font-size:13px;
+    font-weight:600;
+    color:var(--mourning);
+    background:var(--mourning-soft);
+    padding:6px 14px;
+    border-radius:100px;
+  }
+
+  /* section bg variants */
+  section.section-alt{
+    background:var(--cream-deep);
+  }
+  section.section-warm{
+    background:linear-gradient(180deg, var(--cream) 0%, var(--coral-light) 100%);
+  }
+  section.section-mourning{
+    background:linear-gradient(180deg, var(--cream) 0%, var(--mourning-soft) 100%);
+  }
+
+  /* footer */
+  .footer{
+    background:var(--ink);
+    color:#fff;
+    padding:80px 24px 40px;
+    text-align:center;
+  }
+  .footer .ornament{
+    font-size:48px;
+    color:var(--coral);
+    margin-bottom:24px;
+    font-family:'Fraunces',serif;
+  }
+  .footer h3{
+    font-family:'Fraunces',serif;
+    font-size:32px;
+    font-weight:400;
+    font-style:italic;
+    margin-bottom:24px;
+    max-width:600px;
+    margin-left:auto;
+    margin-right:auto;
+    line-height:1.4;
+  }
+  .footer .meta{
+    margin-top:48px;
+    padding-top:32px;
+    border-top:1px solid rgba(255,255,255,.1);
+    font-size:13px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:rgba(255,255,255,.5);
+  }
+  .footer .meta strong{color:#fff}
+
+  /* responsive base */
+  @media (max-width:640px){
+    .hero{padding:48px 20px}
+    .issue-strip{flex-direction:column;gap:16px}
+    .issue-meta{border-left:none;border-top:2px solid var(--line);padding:16px 0 0;text-align:center}
+    .article{padding:60px 20px}
+    .pull{padding:32px 24px}
+    .pull p{font-size:22px}
+    .card{padding:28px 24px}
+  }
+
+  /* ================ SIDEBAR ================ */
+  .sidenav{
+    position:fixed;
+    left:0;
+    top:0;
+    height:100vh;
+    width:72px;
+    background:rgba(253,248,243,.85);
+    backdrop-filter:blur(12px);
+    border-right:1px solid var(--line);
+    z-index:100;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding:24px 0;
+    transition:width .35s cubic-bezier(.4,0,.2,1);
+    overflow:hidden;
+  }
+  .sidenav:hover{
+    width:300px;
+    box-shadow:var(--shadow-lift);
+  }
+  .sidenav-logo{
+    width:46px;
+    height:46px;
+    border-radius:14px;
+    background:var(--coral);
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'Fraunces',serif;
+    font-weight:900;
+    font-size:20px;
+    flex-shrink:0;
+    margin-bottom:14px;
+    box-shadow:0 6px 16px rgba(214,90,49,.28);
+    transition:transform .35s cubic-bezier(.4,0,.2,1),box-shadow .35s;
+    text-decoration:none;
+  }
+  .sidenav:hover .sidenav-logo{
+    transform:scale(1.06);
+    box-shadow:0 8px 22px rgba(214,90,49,.36);
+  }
+  .sidenav-title{
+    font-family:'Fraunces',serif;
+    font-size:13px;
+    font-weight:600;
+    color:var(--ink);
+    letter-spacing:1px;
+    text-align:center;
+    width:100%;
+    padding:0 16px;
+    box-sizing:border-box;
+    max-height:0;
+    opacity:0;
+    overflow:hidden;
+    border-bottom:1px solid transparent;
+    transition:max-height .35s cubic-bezier(.4,0,.2,1),opacity .25s ease .05s,padding .35s ease,margin .35s ease;
+    flex-shrink:0;
+  }
+  .sidenav:hover .sidenav-title{
+    max-height:80px;
+    opacity:1;
+    padding-bottom:18px;
+    margin-bottom:16px;
+    border-bottom-color:var(--line);
+  }
+  .sidenav-list{
+    list-style:none;
+    width:100%;
+    overflow-y:auto;
+    overflow-x:hidden;
+    flex:1;
+    padding:0 12px;
+    scrollbar-width:none;
+  }
+  /* contraída: sin scrollbar para que los números queden centrados */
+  .sidenav-list::-webkit-scrollbar{width:0;height:0}
+  /* expandida: scrollbar fino coral */
+  .sidenav:hover .sidenav-list{scrollbar-width:thin;scrollbar-color:var(--coral-soft) transparent}
+  .sidenav:hover .sidenav-list::-webkit-scrollbar{width:6px}
+  .sidenav:hover .sidenav-list::-webkit-scrollbar-track{background:transparent}
+  .sidenav:hover .sidenav-list::-webkit-scrollbar-thumb{background:var(--coral-soft);border:none;border-radius:6px}
+  .sidenav:hover .sidenav-list::-webkit-scrollbar-thumb:hover{background:var(--coral)}
+  .sidenav-item{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding:10px 12px;
+    margin:2px 0;
+    border-radius:12px;
+    text-decoration:none;
+    color:var(--ink-soft);
+    transition:all .25s;
+    white-space:nowrap;
+    position:relative;
+  }
+  .sidenav-item:hover{
+    background:var(--coral-light);
+    color:var(--coral);
+  }
+  .sidenav-item.active{
+    background:var(--coral);
+    color:#fff;
+    box-shadow:0 6px 16px rgba(214,90,49,.28);
+  }
+  .sidenav-item.active .sidenav-num{
+    background:rgba(255,255,255,.25);
+    color:#fff;
+  }
+  .sidenav-num{
+    width:24px;
+    height:24px;
+    border-radius:8px;
+    background:var(--cream-deep);
+    color:var(--coral);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'Fraunces',serif;
+    font-size:11px;
+    font-weight:700;
+    flex-shrink:0;
+    transition:all .25s;
+  }
+  .sidenav-label{
+    font-size:13px;
+    font-weight:500;
+    opacity:0;
+    transition:opacity .25s;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+  .sidenav:hover .sidenav-label{
+    opacity:1;
+  }
+  .sidenav-footer{
+    padding:16px 12px 0;
+    border-top:1px solid var(--line);
+    width:100%;
+    font-size:11px;
+    color:var(--muted);
+    text-align:center;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    opacity:0;
+    transition:opacity .25s;
+  }
+  .sidenav:hover .sidenav-footer{opacity:1}
+
+  /* shift main content to make room */
+  .main-shift{padding-left:72px}
+
+  /* ================ BACK TO TOP ================ */
+  .back-top{
+    position:fixed;
+    bottom:32px;
+    right:32px;
+    width:56px;
+    height:56px;
+    background:var(--coral);
+    color:#fff;
+    border:none;
+    border-radius:50%;
+    cursor:pointer;
+    box-shadow:var(--shadow-lift);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+    z-index:99;
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(20px);
+    transition:all .35s cubic-bezier(.4,0,.2,1);
+  }
+  .back-top.visible{
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
+  }
+  .back-top:hover{
+    background:#b94a25;
+    transform:translateY(-4px);
+    box-shadow:0 20px 40px rgba(214,90,49,.4);
+  }
+  .back-top::before{
+    content:"";
+    position:absolute;
+    inset:-4px;
+    border-radius:50%;
+    border:2px solid var(--coral);
+    opacity:0;
+    transform:scale(.8);
+    transition:all .4s;
+  }
+  .back-top:hover::before{
+    opacity:.3;
+    transform:scale(1.15);
+  }
+
+  /* hamburger — hidden on desktop */
+  .nav-toggle{display:none}
+
+  /* mobile: top bar + slide-down drawer */
+  @media (max-width:900px){
+    .sidenav{
+      width:100%;
+      height:64px;
+      flex-direction:row;
+      padding:12px 16px;
+      border-right:none;
+      border-bottom:1px solid var(--line);
+      align-items:center;
+      gap:12px;
+      overflow:visible;
+      background:rgba(253,248,243,.96);
+    }
+    .sidenav:hover{width:100%;box-shadow:none}
+    .sidenav-logo{margin:0 !important;width:40px;height:40px;font-size:17px}
+    .sidenav:hover .sidenav-logo{margin-left:0}
+    .sidenav-title{
+      flex:1;
+      width:auto;
+      opacity:1;
+      margin:0;
+      padding:0;
+      border:none;
+      font-size:13px;
+      line-height:1.3;
+      text-align:left;
+      max-height:none;
+      overflow:visible;
+    }
+    .nav-toggle{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:40px;
+      height:40px;
+      background:var(--cream-deep);
+      border:1px solid var(--line);
+      border-radius:12px;
+      cursor:pointer;
+      flex-shrink:0;
+      padding:0;
+      color:var(--ink);
+    }
+    .nav-toggle span{
+      display:block;
+      width:18px;
+      height:2px;
+      background:var(--ink);
+      position:relative;
+    }
+    .nav-toggle span::before,
+    .nav-toggle span::after{
+      content:"";
+      position:absolute;
+      left:0;
+      width:18px;
+      height:2px;
+      background:var(--ink);
+      transition:transform .25s;
+    }
+    .nav-toggle span::before{top:-6px}
+    .nav-toggle span::after{top:6px}
+    .sidenav.open .nav-toggle span{background:transparent}
+    .sidenav.open .nav-toggle span::before{transform:translateY(6px) rotate(45deg)}
+    .sidenav.open .nav-toggle span::after{transform:translateY(-6px) rotate(-45deg)}
+
+    .sidenav-list{
+      position:fixed;
+      top:64px;
+      left:0;
+      right:0;
+      background:var(--cream);
+      backdrop-filter:blur(14px);
+      max-height:0;
+      overflow:hidden;
+      padding:0 14px;
+      transition:max-height .4s cubic-bezier(.4,0,.2,1), padding .4s ease, box-shadow .4s ease;
+      border-bottom:1px solid transparent;
+      border-radius:0 0 20px 20px;
+      z-index:99;
+    }
+    .sidenav.open .sidenav-list{
+      max-height:calc(100vh - 64px);
+      overflow-y:auto;
+      padding:12px 14px 18px;
+      border-bottom-color:var(--line);
+      box-shadow:0 20px 36px rgba(42,42,42,.16);
+      scrollbar-width:thin;
+      scrollbar-color:var(--coral-soft) transparent;
+    }
+    .sidenav.open .sidenav-list::-webkit-scrollbar{width:6px}
+    .sidenav.open .sidenav-list::-webkit-scrollbar-track{background:transparent}
+    .sidenav.open .sidenav-list::-webkit-scrollbar-thumb{background:var(--coral-soft);border:none;border-radius:6px}
+    .sidenav.open .sidenav-list::-webkit-scrollbar-thumb:hover{background:var(--coral)}
+    .sidenav-label{opacity:1}
+    .sidenav-footer{display:none}
+    .main-shift{padding-left:0;padding-top:64px}
+    html{scroll-padding-top:80px}
+    .back-top{bottom:20px;right:20px;width:48px;height:48px;font-size:18px}
+
+    .hero{min-height:88vh;padding:80px 20px 60px}
+    .hero::before{font-size:380px}
+    .scroll-hint{bottom:20px;font-size:11px}
+    .issue-num{font-size:64px}
+    .issue-num small{font-size:14px;letter-spacing:4px}
+
+    .welcome{padding:80px 20px 60px}
+
+    .toc{margin-bottom:60px}
+    .toc-header{flex-wrap:wrap;gap:12px}
+    .toc-header .line{display:none}
+    .toc-grid{border-radius:16px;grid-template-columns:1fr}
+
+    .article{padding:48px 18px}
+    .article .lead{font-size:18px;padding-left:18px}
+    .article p{font-size:16px}
+
+    .card{padding:24px 20px;border-radius:18px}
+    .info-grid{grid-template-columns:1fr;gap:10px}
+    .info-cell{padding:16px}
+    .pull{padding:28px 22px;border-radius:22px;margin:32px 0}
+    .pull p{font-size:19px;line-height:1.45}
+    .pull::before{font-size:120px;top:-16px;right:14px}
+
+    .link-card{padding:18px;gap:14px;border-radius:16px}
+    .link-card .icon-big{width:48px;height:48px;font-size:24px;border-radius:12px}
+    .link-card .lc-content h5{font-size:16px}
+
+    .footer{padding:60px 20px 32px}
+    .footer h3{font-size:22px}
+  }
+
+  @media (max-width:480px){
+    .hero h1{letter-spacing:-1px}
+    .issue-strip{gap:12px}
+    .toc-item{padding:18px 20px}
+    .article h2{letter-spacing:-1px}
+    .person{gap:14px;padding:18px 0}
+    .person .avatar{width:48px;height:48px;font-size:18px}
+  }
+
+  /* small flourish */
+  .flourish{
+    text-align:center;
+    margin:24px 0;
+    color:var(--coral-soft);
+    font-size:20px;
+    letter-spacing:8px;
+  }
+
+  /* link cards */
+  .link-card{
+    display:flex;
+    align-items:center;
+    gap:20px;
+    padding:24px;
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:20px;
+    text-decoration:none;
+    color:inherit;
+    margin:20px 0;
+    transition:all .3s;
+  }
+  .link-card:hover{
+    border-color:var(--coral);
+    box-shadow:var(--shadow-lift);
+    transform:translateY(-2px);
+  }
+  .link-card .icon-big{
+    font-size:32px;
+    width:60px;height:60px;
+    background:var(--coral-light);
+    border-radius:16px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+  }
+  .link-card .lc-content h5{
+    font-family:'Fraunces',serif;
+    font-size:18px;
+    font-weight:600;
+    color:var(--ink);
+    margin-bottom:4px;
+  }
+  .link-card .lc-content p{
+    font-size:14px;
+    color:var(--muted);
+    margin:0;
+    border:none;
+    word-break:break-word;
+  }
+  .link-card.muted .icon-big{background:var(--mourning-soft)}
+
+</style>
+</head>
+<body>
+
+<!-- ============== SIDEBAR ============== -->
+<nav class="sidenav" id="sidenav" aria-label="Navegación del boletín">
+  <a href="#top" class="sidenav-logo" aria-label="Ir al inicio">PS</a>
+  <div class="sidenav-title">Boletín N° 5<br><span style="font-weight:400;color:var(--muted);font-size:11px;letter-spacing:1.5px;text-transform:uppercase">Junio 2026</span></div>
+  <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false"><span></span></button>
+  <ul class="sidenav-list">
+    <li><a href="#top" class="sidenav-item"><span class="sidenav-num">★</span><span class="sidenav-label">Portada</span></a></li>
+    <li><a href="#tedeum" class="sidenav-item"><span class="sidenav-num">01</span><span class="sidenav-label">Tedeum por la Patria</span></a></li>
+    <li><a href="#enciclica" class="sidenav-item"><span class="sidenav-num">02</span><span class="sidenav-label">Magnifica Humanitas</span></a></li>
+    <li><a href="#claseabierta" class="sidenav-item"><span class="sidenav-num">03</span><span class="sidenav-label">Clase abierta · Economía Social</span></a></li>
+    <li><a href="#sintecho" class="sidenav-item"><span class="sidenav-num">04</span><span class="sidenav-label">Programa Los Sin Techo</span></a></li>
+    <li><a href="#carta" class="sidenav-item"><span class="sidenav-num">05</span><span class="sidenav-label">Conversatorio Carta Orgánica</span></a></li>
+    <li><a href="#cuidacoches" class="sidenav-item"><span class="sidenav-num">06</span><span class="sidenav-label">Reflexión sobre cuidacoches</span></a></li>
+    <li><a href="#comunicado" class="sidenav-item"><span class="sidenav-num">07</span><span class="sidenav-label">Ante los femicidios</span></a></li>
+    <li><a href="#ollas" class="sidenav-item"><span class="sidenav-num">08</span><span class="sidenav-label">Bendición de ollas</span></a></li>
+    <li><a href="#corpus" class="sidenav-item"><span class="sidenav-num">09</span><span class="sidenav-label">Corpus Christi 2026</span></a></li>
+    <li><a href="#ecologia" class="sidenav-item"><span class="sidenav-num">10</span><span class="sidenav-label">Taller de Ecología Integral</span></a></li>
+    <li><a href="#otras" class="sidenav-item"><span class="sidenav-num">11</span><span class="sidenav-label">Otras noticias arquidiocesanas</span></a></li>
+  </ul>
+  <div class="sidenav-footer">Pastoral Social · Santa Fe</div>
+</nav>
+
+<!-- ============== MAIN ============== -->
+<main class="main-shift" id="top">
+
+<!-- ============== HERO ============== -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="badge-top"><span class="dot"></span>Boletín Interno · Edición Junio</div>
+    <h1>Pastoral <span class="accent">Social</span></h1>
+    <p class="sub">Arquidiócesis de Santa Fe de la Vera Cruz</p>
+    <div class="issue-strip">
+      <div class="issue-num">
+        <small>NÚMERO</small>
+        05
+      </div>
+      <div class="issue-meta">
+        <div class="date">3 de junio de 2026</div>
+        <div class="place">Junio 2026</div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint">Comencemos</div>
+</section>
+
+<!-- ============== WELCOME ============== -->
+<section class="welcome">
+  <div class="ornament">✦ ✦ ✦</div>
+  <p>"Salimos a las calles para poner a Jesús en el centro, aprendiendo de Él una humanidad más cercana, más fraterna y más capaz de mirar, escuchar y abrazar al otro."</p>
+  <div class="signature">— Corpus Christi 2026 · Eucaristía, escuela de humanidad</div>
+</section>
+
+<!-- ============== TOC ============== -->
+<section class="toc">
+  <div class="toc-header">
+    <span class="num">ÍNDICE</span>
+    <h2>¿Qué tenemos hoy?</h2>
+    <span class="line"></span>
+  </div>
+  <div class="toc-grid">
+    <a href="#tedeum" class="toc-item">
+      <span class="toc-num">01 · EVENTO</span>
+      <span class="toc-title">Tedeum por la Patria</span>
+      <span class="toc-date">25 de mayo</span>
+    </a>
+    <a href="#enciclica" class="toc-item">
+      <span class="toc-num">02 · NOTICIA</span>
+      <span class="toc-title">Magnifica Humanitas ya está disponible</span>
+      <span class="toc-date">25 de mayo</span>
+    </a>
+    <a href="#claseabierta" class="toc-item">
+      <span class="toc-num">03 · EVENTO</span>
+      <span class="toc-title">Clase abierta: Economía Social y Solidaria (FCJS–UNL)</span>
+      <span class="toc-date">27 de mayo</span>
+    </a>
+    <a href="#sintecho" class="toc-item">
+      <span class="toc-num">04 · EQUIPO</span>
+      <span class="toc-title">Visita al Programa Los Sin Techo</span>
+      <span class="toc-date">29 de mayo</span>
+    </a>
+    <a href="#carta" class="toc-item">
+      <span class="toc-num">05 · REUNIÓN</span>
+      <span class="toc-title">Conversatorio sobre la futura Carta Orgánica</span>
+      <span class="toc-date">3 de junio</span>
+    </a>
+    <a href="#cuidacoches" class="toc-item">
+      <span class="toc-num">06 · NOTICIA</span>
+      <span class="toc-title">Reflexión sobre el proyecto de cuidacoches</span>
+      <span class="toc-date">3 de junio</span>
+    </a>
+    <a href="#comunicado" class="toc-item">
+      <span class="toc-num">07 · COMUNICADO</span>
+      <span class="toc-title">Ante los femicidios: nos hacemos eco de la CEA</span>
+      <span class="toc-date">3 de junio</span>
+    </a>
+    <a href="#ollas" class="toc-item">
+      <span class="toc-num">08 · EVENTO</span>
+      <span class="toc-title">Bendición de ollas de los Movimientos Sociales</span>
+      <span class="toc-date">4 de junio</span>
+    </a>
+    <a href="#corpus" class="toc-item">
+      <span class="toc-num">09 · INVITACIÓN</span>
+      <span class="toc-title">Corpus Christi 2026</span>
+      <span class="toc-date">6 y 7 de junio</span>
+    </a>
+    <a href="#ecologia" class="toc-item">
+      <span class="toc-num">10 · INVITACIÓN</span>
+      <span class="toc-title">Taller de Ecología Integral · Laudato Si'</span>
+      <span class="toc-date">22 de junio</span>
+    </a>
+    <a href="#otras" class="toc-item">
+      <span class="toc-num">11 · ENLACES</span>
+      <span class="toc-title">Otras noticias arquidiocesanas</span>
+      <span class="toc-date">Para leer</span>
+    </a>
+  </div>
+</section>
+
+<!-- ============== ARTICLE 1: TEDEUM ============== -->
+<section class="section-alt">
+<article class="article" id="tedeum">
+  <div class="article-header">
+    <span class="tag evento">Evento <span class="date-chip">25 may</span></span>
+    <h2>Tedeum: <span class="em">oración por la Patria</span></h2>
+    <p style="display:inline-block;font-size:13px;font-weight:600;color:var(--ink-soft);background:var(--coral-light);padding:6px 14px;border-radius:20px;margin:10px 0 0"><span style="color:var(--coral);text-transform:uppercase;letter-spacing:1px;font-size:11px">Presentes&nbsp;·&nbsp;</span>Meli, Nico, David</p>
+  </div>
+
+  <p class="lead">Junto a autoridades provinciales, locales, eclesiales y de instituciones de la sociedad civil, celebramos el Tedeum presidido por Mons. Matías Vecino, con el acompañamiento de Mons. Sergio Fenoy.</p>
+
+  <p>Luego, acompañamos el desfile cívico militar en Plaza de Mayo.</p>
+
+  <div class="pull">
+    <p>"(...) Concédenos la sabiduría del diálogo y la alegría de la esperanza que no defrauda. Tú nos convocas. Aquí estamos, Señor, cercanos a María, que desde Luján nos dice: ¡Argentina! ¡Canta y camina! Jesucristo, Señor de la historia, te necesitamos."</p>
+    <div class="src">Oración por la Patria</div>
+  </div>
+
+  <p style="text-align:center;font-family:'Fraunces',serif;font-style:italic;font-size:24px;color:var(--coral)">¡Viva la patria!</p>
+
+  <a href="https://www.instagram.com/reel/DYxr9l1R1SB/?igsh=Z2l6YmtpNzRzejFp" target="_blank" rel="noopener" class="link-card">
+    <div class="icon-big">📹</div>
+    <div class="lc-content">
+      <h5>Ver el reel</h5>
+      <p>Instagram</p>
+    </div>
+  </a>
+
+  <h3>Homilías del 25 de mayo</h3>
+
+  <a href="https://docs.google.com/document/d/179Au8uY2HMK6E_BbNgPU437EJfacE2VdTqd_q58NmD0/edit?usp=sharing" target="_blank" rel="noopener" class="link-card">
+    <div class="icon-big">📖</div>
+    <div class="lc-content">
+      <h5>Te Deum en Santa Fe de la Vera Cruz</h5>
+      <p>Homilía de Mons. Matías Vecino, obispo auxiliar de Santa Fe · documento</p>
+    </div>
+  </a>
+
+  <a href="https://pastoralsocial.org.ar/2026/05/24/la-revolucion-de-la-participacion-homilia-de-monsenor-braida-presidente-de-cepas-el-25-de-mayo-de-2026/" target="_blank" rel="noopener" class="link-card">
+    <div class="icon-big">📖</div>
+    <div class="lc-content">
+      <h5>«La revolución de la participación»</h5>
+      <p>Homilía de Mons. Dante Braida, presidente de CEPAS · pastoralsocial.org.ar</p>
+    </div>
+  </a>
+
+  <a href="https://episcopado.org/ver/4889" target="_blank" rel="noopener" class="link-card">
+    <div class="icon-big">📖</div>
+    <div class="lc-content">
+      <h5>Te Deum nacional, en Buenos Aires</h5>
+      <p>Homilía de Mons. Jorge García Cuerva, arzobispo de Buenos Aires · episcopado.org</p>
+    </div>
+  </a>
+</article>
+</section>
+
+<div class="divider"><span>✦ ✦ ✦</span></div>
+
+<!-- ============== ARTICLE 2: ENCÍCLICA ============== -->
+<article class="article" id="enciclica">
+  <div class="article-header">
+    <span class="tag noticia">Noticia <span class="date-chip">25 may</span></span>
+    <h2><em style="font-style:italic;color:var(--coral)">Magnifica Humanitas</em> ya está disponible</h2>
+  </div>
+
+  <p class="lead">Como anunciábamos en nuestra edición anterior, ya se encuentra disponible la primera encíclica del Papa León XIV, sobre la protección de la dignidad humana en la era de la inteligencia artificial.</p>
+
+  <p>Compartimos el video en español que presenta el documento y el texto completo publicado por el Vaticano, para leer, rezar y compartir en comunidad.</p>
+
+  <div style="position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:18px;margin:24px 0;box-shadow:0 12px 34px rgba(0,0,0,.14)">
+    <iframe style="position:absolute;top:0;left:0;width:100%;height:100%;border:0" src="https://www.youtube.com/embed/Ned-3mtoxbU?si=nhQTpKI8kXJUQE2A" title="Magnifica Humanitas — presentación en español" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  </div>
+
+  <a href="http://www.vatican.va/content/leo-xiv/es/encyclicals/documents/20260515-magnifica-humanitas.html" target="_blank" rel="noopener" class="link-card">
+    <div class="icon-big">📜</div>
+    <div class="lc-content">
+      <h5>Texto completo</h5>
+      <p>vatican.va · Magnifica Humanitas</p>
+    </div>
+  </a>
+</article>
+
+<div class="divider"><span>✦ ✦ ✦</span></div>
+
+<!-- ============== ARTICLE 3: CLASE ABIERTA · ECONOMÍA SOCIAL ============== -->
+<article class="article" id="claseabierta">
+  <div class="article-header">
+    <span class="tag evento">Evento <span class="date-chip">27 may</span></span>
+    <h2>Clase abierta: <span class="em">Economía Social y Solidaria</span></h2>
+    <p style="display:inline-block;font-size:13px;font-weight:600;color:var(--ink-soft);background:var(--coral-light);padding:6px 14px;border-radius:20px;margin:10px 0 0"><span style="color:var(--coral);text-transform:uppercase;letter-spacing:1px;font-size:11px">Presentes&nbsp;·&nbsp;</span>Nico, Max, Jorge</p>
+  </div>
+
+  <p class="lead">El miércoles 27 de mayo, de 14 a 16, se realizó en la Facultad de Ciencias Jurídicas y Sociales de la Universidad Nacional del Litoral (FCJS–UNL) la clase abierta «Resignificando el trabajo desde la Economía Social y Solidaria», organizada en el marco de la Cátedra Optativa Economía Social y Solidaria.</p>
+
+  <p>El encuentro se desarrolló bajo la modalidad de <strong>conversatorio</strong> y propuso generar un espacio de intercambio y reflexión sobre el trabajo asociativo, las experiencias cooperativas y los desafíos actuales de la Economía Social y Solidaria.</p>
+
+  <p>La propuesta partió de una mirada crítica sobre las concepciones tradicionales del trabajo, recuperando su <strong>dimensión social, democrática y transformadora</strong>. Desde la Economía Social y Solidaria, el trabajo no se reduce únicamente a la generación de ingresos, sino que también constituye una herramienta de construcción colectiva, autonomía, inclusión y ciudadanía económica. En este marco, el encuentro puso en diálogo distintas experiencias concretas atravesadas por la autogestión, la cooperación y el trabajo comunitario.</p>
+
+  <a href="https://www.unl.edu.ar/noticias/news/view/clase_abierta_resignificando_el_trabajo_desde_la_econom%C3%ADa_social_y_solidaria" target="_blank" rel="noopener" class="link-card">
+    <div class="icon-big">📰</div>
+    <div class="lc-content">
+      <h5>Universidad Nacional del Litoral</h5>
+      <p>Clase abierta: «Resignificando el trabajo desde la Economía Social y Solidaria»</p>
+    </div>
+  </a>
+</article>
+
+<!-- ============== ARTICLE 4: LOS SIN TECHO ============== -->
+<section class="section-alt">
+<article class="article" id="sintecho">
+  <div class="article-header">
+    <span class="tag equipo">Actividades del equipo <span class="date-chip">29 may</span></span>
+    <h2>Visita al Programa <span class="em">Los Sin Techo</span></h2>
+  </div>
+
+  <p class="lead">El pasado 29 de mayo, Jorge visitó la sede del Colegio Mayor Universitario, donde funciona el Programa Los Sin Techo. Allí fue recibido por uno de sus referentes, el Ing. Luciano Zocola, con quien se acordaron líneas de mutua colaboración.</p>
+
+  <p>Una de ellas comprende el <strong>intercambio de datos y análisis de la realidad</strong> en la zona de cobertura del Programa. Sobre el cordón oeste santafesino, los Sin Techo poseen siete aulas interactivas desde donde se imparten ponencias curriculares de alfabetización, y se realizan tareas de seguimiento en el desarrollo cognitivo en niños y adolescentes. Además, realizan operativos en territorio referidos a las temáticas de hábitat y salud.</p>
+
+  <div class="card coral">
+    <div class="small">🔭 Observatorio Social</div>
+    <p style="margin:0;font-family:'Fraunces',serif;font-size:18px;font-style:italic;color:var(--ink-soft)">Esta información es valiosa para las estadísticas que se están elaborando en el área de Observatorio Social. Agradecemos la apertura y disponibilidad de todo el equipo de este importante Programa, cuyo mentor e iniciador fue el recordado <strong style="color:var(--coral)">padre Atilio Rosso</strong>.</p>
+  </div>
+</article>
+</section>
+
+<!-- ============== ARTICLE 5: CONVERSATORIO CARTA ORGÁNICA ============== -->
+<article class="article" id="carta">
+  <div class="article-header">
+    <span class="tag reunion">Reunión <span class="date-chip">3 jun</span></span>
+    <h2>Conversatorio sobre la futura <span class="em">Carta Orgánica</span> de Santa Fe</h2>
+    <p style="display:inline-block;font-size:13px;font-weight:600;color:var(--ink-soft);background:var(--coral-light);padding:6px 14px;border-radius:20px;margin:10px 0 0"><span style="color:var(--coral);text-transform:uppercase;letter-spacing:1px;font-size:11px">Presente&nbsp;·&nbsp;</span>Fede</p>
+  </div>
+
+  <p class="lead">Participamos del conversatorio "Claves territoriales y demográficas para proyectar el futuro", el primero de los espacios de intercambio que forman parte del proceso de elaboración de la futura Carta Orgánica de la ciudad de Santa Fe.</p>
+
+  <p>Durante la jornada se compartieron datos y reflexiones sobre la realidad actual de la ciudad y los desafíos de su crecimiento, abordando temas como la <strong>expansión urbana, las desigualdades territoriales, la integración metropolitana, la movilidad y la gestión de datos</strong>.</p>
+
+  <p>El encuentro destacó la importancia de construir una Carta Orgánica a partir de un proceso participativo que contemple las necesidades y experiencias de la comunidad. Desde Pastoral Social seguimos acompañando estos espacios de diálogo, convencidos de que <strong>fortalecen la participación ciudadana y la vida democrática</strong>.</p>
+
+  <h3>Para saber más</h3>
+
+  <a href="https://www.airedesantafe.com.ar/politica/autonomia-municipal-se-realizo-el-conversatorio-claves-territoriales-y-demograficas-proyectar-el-futuro-n658613" target="_blank" rel="noopener" class="link-card">
+    <div class="icon-big">📰</div>
+    <div class="lc-content">
+      <h5>Aire de Santa Fe</h5>
+      <p>Se realizó el conversatorio "Claves territoriales y demográficas para proyectar el futuro"</p>
+    </div>
+  </a>
+
+  <a href="https://www.autonomiasf.concejosantafe.gov.ar/" target="_blank" rel="noopener" class="link-card">
+    <div class="icon-big">🏛️</div>
+    <div class="lc-content">
+      <h5>Autonomía Santa Fe</h5>
+      <p>autonomiasf.concejosantafe.gov.ar</p>
+    </div>
+  </a>
+
+  <a href="https://www.ellitoral.com/area-metropolitana/primer-conversatorio-santafe-debate-autonomia-municipal-territorio-tensiones-demograficas-geografia-urbanismo-marco-teorico-redaccion-cartaorganica-capital-provincial_0_XZIenI8LUK.html" target="_blank" rel="noopener" class="link-card">
+    <div class="icon-big">📰</div>
+    <div class="lc-content">
+      <h5>El Litoral</h5>
+      <p>Primer conversatorio: Santa Fe debate la autonomía municipal y la redacción de la Carta Orgánica</p>
+    </div>
+  </a>
+</article>
+
+<!-- ============== ARTICLE 6: CUIDACOCHES ============== -->
+<section class="section-alt">
+<article class="article" id="cuidacoches">
+  <div class="article-header">
+    <span class="tag noticia">Noticia <span class="date-chip">3 jun</span></span>
+    <h2>Reflexión sobre el proyecto de <span class="em">cuidacoches</span></h2>
+  </div>
+
+  <p class="lead">En un trabajo conjunto con la Pastoral Social de Rosario y de Rafaela, e invitados por tres comisiones de la Cámara de Diputados, expusimos nuestros reparos al proyecto sobre los cuidacoches que cuenta con media sanción del Senado provincial.</p>
+
+  <p>Lo hicimos en virtud de <strong>defender la dignidad humana</strong> y de impulsar <strong>políticas de acompañamiento</strong> para quienes hoy encuentran en esta actividad un medio de subsistencia.</p>
+
+  <a href="https://www.airedesantafe.com.ar/politica/la-iglesia-advierte-que-prohibir-cuidacoches-agravara-la-exclusion-social-santa-fe-n658708" target="_blank" rel="noopener" class="link-card">
+    <div class="icon-big">📰</div>
+    <div class="lc-content">
+      <h5>Aire de Santa Fe</h5>
+      <p>La Iglesia advierte que prohibir cuidacoches agravará la exclusión social</p>
+    </div>
+  </a>
+</article>
+</section>
+
+<!-- ============== ARTICLE 7: COMUNICADO (SOBRIO) ============== -->
+<section class="section-mourning">
+<article class="article" id="comunicado">
+  <div class="article-header">
+    <span class="tag comunicado">Comunicado <span class="date-chip">3 jun</span></span>
+    <h2>Ante los femicidios: <span style="color:var(--mourning);font-style:italic;font-weight:400">nos hacemos eco de la CEA</span></h2>
+  </div>
+
+  <p>Desde la Pastoral Social de la Arquidiócesis de Santa Fe, nos hacemos eco de las palabras de la Conferencia Episcopal Argentina:</p>
+
+  <div class="pull sober">
+    <p>"Si un miembro sufre, todos los miembros sufren con él."</p>
+    <div class="src">1 Cor 12, 26</div>
+  </div>
+
+  <p><strong>El dolor nos vuelve a golpear con fuerza en las últimas horas.</strong></p>
+
+  <p>El femicidio de una niña y los de otras mujeres de nuestro país no son solo noticias en los medios lamentablemente; son vidas arrebatadas, familias rotas y comunidades heridas que exigen justicia y verdad. Una justicia que requiere ejercicio probo y eficaz de quienes la imparten.</p>
+
+  <p>Como hemos expresado desde el <strong>@areamujeresdeplai</strong>, condenamos enérgicamente los femicidios denunciando toda violencia que sufren las mujeres, exigiendo el cese de toda vulneración de sus derechos.</p>
+
+  <p>Nuestro deber hoy es educar en la no violencia y el respeto mutuo. Por eso, interpelamos y convocamos a las instituciones y autoridades correspondientes a arbitrar todos los medios posibles, para que la justicia alcance a todas estas víctimas.</p>
+
+  <div class="card mourning">
+    <p style="margin:0;font-family:'Fraunces',serif;font-size:19px;font-style:italic;color:var(--ink-soft)">Creemos en una Iglesia que anuncia y que denuncia, que abraza, que sana y que se planta con valentía del lado de la vida. "Todos, todos, todos", siempre por el respeto a su vida y dignidad.</p>
+  </div>
+
+  <p>Que María, Madre de la ternura y la fortaleza, nos acompañe a seguir trabajando por una auténtica cultura del cuidado.</p>
+
+  <div class="hashtags">
+    <span>#justiciaporagostina</span>
+    <span>#nocallaráslasviolencias</span>
+  </div>
+
+  <a href="https://www.instagram.com/p/DZIcMvQEbuI/?igsh=dHl2Y3o4cnJ0MjVh" target="_blank" rel="noopener" class="link-card muted">
+    <div class="icon-big">🕊️</div>
+    <div class="lc-content">
+      <h5>Leer el comunicado completo</h5>
+      <p>Instagram</p>
+    </div>
+  </a>
+</article>
+</section>
+
+<!-- ============== ARTICLE 8: BENDICIÓN DE OLLAS ============== -->
+<article class="article" id="ollas">
+  <div class="article-header">
+    <span class="tag evento">Evento <span class="date-chip">4 jun</span></span>
+    <h2>Bendición de ollas de los <span class="em">Movimientos Sociales</span></h2>
+  </div>
+
+  <p class="lead">El jueves 4 de junio el P. Andrés realizará la bendición de ollas de los Movimientos Sociales por la "Ley de Cocineras Comunitarias".</p>
+
+  <div class="card coral">
+    <div class="small">📌 Cómo acompañar</div>
+    <div class="info-grid" style="margin:6px 0 0">
+      <div class="info-cell">
+        <div class="icon">🗓️</div>
+        <div class="label">Fecha y hora</div>
+        <div class="val">Jueves 4 de junio · 8.30 h</div>
+      </div>
+      <div class="info-cell">
+        <div class="icon">⛪</div>
+        <div class="label">Lugar</div>
+        <div class="val">Catedral Metropolitana</div>
+      </div>
+      <div class="info-cell">
+        <div class="icon">🤝</div>
+        <div class="label">Acompaña confirmado</div>
+        <div class="val">Jorge</div>
+      </div>
+    </div>
+  </div>
+
+  <p style="text-align:center;font-family:'Fraunces',serif;font-style:italic;font-size:20px;color:var(--coral)">¡Quien pueda acompañar, estaría muy bueno!</p>
+</article>
+
+<!-- ============== ARTICLE 9: CORPUS CHRISTI ============== -->
+<section class="section-warm">
+<article class="article" id="corpus">
+  <div class="article-header">
+    <span class="tag invitacion">Invitación <span class="date-chip">6 y 7 jun</span></span>
+    <h2>Corpus Christi 2026: <span class="em">escuela de humanidad</span></h2>
+  </div>
+
+  <p class="lead">Este 6 de junio, la Iglesia se une para celebrar la fiesta de Corpus Christi. Salimos a las calles para poner a Jesús en el centro, aprendiendo de Él una humanidad más cercana, más fraterna y más capaz de mirar, escuchar y abrazar al otro.</p>
+
+  <p>Bajo el lema <strong>"Eucaristía, escuela de humanidad"</strong>, este año queremos caminar juntos como pueblo que cree, celebra y se compromete con una caridad concreta, especialmente en un tiempo donde muchas veces nos volvemos indiferentes.</p>
+
+  <div class="card">
+    <div class="small">📌 Misa Central</div>
+    <h4>Frente a la Catedral Metropolitana</h4>
+    <div class="info-grid" style="margin:20px 0 0">
+      <div class="info-cell">
+        <div class="icon">🗓️</div>
+        <div class="label">Fecha</div>
+        <div class="val">6 de junio · 15:30 h</div>
+      </div>
+      <div class="info-cell">
+        <div class="icon">🥖</div>
+        <div class="label">Gesto solidario</div>
+        <div class="val">Alimentos no perecederos para Cáritas</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card sky">
+    <div class="small">🙌 Nuestra colaboración</div>
+    <p style="margin:0 0 16px">La Pastoral Social colaborará durante la Misa Central en Ciudad Sede con la realización de la <strong>colecta</strong>, para lo cual sería necesario contar con <strong>6 voluntarios</strong>.</p>
+    <div class="info-grid">
+      <div class="info-cell">
+        <div class="icon">✅</div>
+        <div class="label">Confirmados para la colecta</div>
+        <div class="val">Juli, Fede, Silvi, Nadi, Oscar</div>
+      </div>
+      <div class="info-cell">
+        <div class="icon">🧭</div>
+        <div class="label">Coordinación</div>
+        <div class="val">Coordina Meli · Nico con Comunicación</div>
+      </div>
+      <div class="info-cell">
+        <div class="icon">⛪</div>
+        <div class="label">Celebración en Santo Tomé</div>
+        <div class="val">Andrés y Jorge</div>
+      </div>
+    </div>
+  </div>
+
+  <h3>Celebraciones en el interior</h3>
+  <ul>
+    <li><strong>Santo Tomé</strong> — 6 de junio · 15 h · Frente a la parroquia Inmaculada Concepción</li>
+    <li><strong>San Javier</strong> — 6 de junio · 16 h · Santuario San Francisco Javier</li>
+    <li><strong>Esperanza</strong> — 7 de junio · 10 h · Basílica Natividad de la Santísima Virgen</li>
+  </ul>
+
+  <div class="flourish">✦ ✦ ✦</div>
+
+  <p style="font-size:14px;color:var(--muted);text-align:center;font-style:italic">Año Jubilar de San Francisco de Asís · Consejo Arquidiocesano de Laicos · Consejo Pastoral Arquidiocesano</p>
+  <div class="hashtags" style="justify-content:center">
+    <span style="color:var(--coral);background:var(--coral-light)">#CorpusChristi</span>
+    <span style="color:var(--coral);background:var(--coral-light)">#Eucaristia</span>
+    <span style="color:var(--coral);background:var(--coral-light)">#arquisantafe</span>
+  </div>
+</article>
+</section>
+
+<!-- ============== ARTICLE 10: TALLER ECOLOGÍA INTEGRAL ============== -->
+<article class="article" id="ecologia">
+  <div class="article-header">
+    <span class="tag invitacion">Invitación <span class="date-chip">22 jun</span></span>
+    <h2>Taller de <span class="em">Ecología Integral</span>, a la luz de <em style="font-style:italic;color:var(--coral)">Laudato Si'</em></h2>
+  </div>
+
+  <p class="lead">El Área de Ecología Integral de la Pastoral Social Nacional invita a una serie de talleres de concientización inspirados en la encíclica <em style="font-style:italic">Laudato Si'</em>, partiendo de una certeza: la primera evangelización es dentro de la Iglesia.</p>
+
+  <p>La propuesta nos invita a <strong>revalorizar lo creado por Dios</strong>, poniendo en primer lugar la dignidad del hombre, y a denunciar un sistema económico que perjudica a los más vulnerables en su falta de respeto a la creación.</p>
+
+  <p>En esta área hay representación de Santa Fe y, entre quienes participan, también hay representantes de nuestra Pastoral Social. Además, <strong>Mons. Matías Vecino</strong>, obispo auxiliar, forma parte de la Comisión de Pastoral Social Nacional e integra la organización; suya fue una de las presentaciones del primer taller.</p>
+
+  <div style="background:linear-gradient(135deg,#3e6b4f 0%,#5b8c6b 100%);color:#fff;border-radius:22px;padding:34px 30px;margin:26px 0;box-shadow:0 16px 40px rgba(62,107,79,.28);text-align:center">
+    <div style="font-size:12px;letter-spacing:2px;text-transform:uppercase;opacity:.85;margin-bottom:10px">🌿 Taller online · En vivo</div>
+    <h4 style="font-family:'Fraunces',serif;font-style:italic;font-size:26px;line-height:1.25;margin:0 0 20px;color:#fff">"El valor intrínseco de toda la creación"</h4>
+    <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center">
+      <span style="background:rgba(255,255,255,.16);padding:8px 16px;border-radius:30px;font-size:14px;font-weight:600">🗓️ 22 de junio</span>
+      <span style="background:rgba(255,255,255,.16);padding:8px 16px;border-radius:30px;font-size:14px;font-weight:600">🕖 19 a 20.30 h</span>
+      <span style="background:rgba(255,255,255,.16);padding:8px 16px;border-radius:30px;font-size:14px;font-weight:600">📝 Inscripción previa</span>
+    </div>
+    <a href="https://bit.ly/CEPAS_AEI_Inscripciones2%C2%BATaller" target="_blank" rel="noopener" style="display:inline-block;margin-top:24px;background:#fff;color:#3e6b4f;font-weight:700;font-size:15px;padding:13px 32px;border-radius:30px;text-decoration:none;box-shadow:0 6px 18px rgba(0,0,0,.2)">Inscribirme al taller →</a>
+  </div>
+
+  <p style="font-size:14px;color:var(--muted);text-align:center;font-style:italic">El próximo taller será el 22 de junio, con inscripción previa.</p>
+</article>
+
+<!-- ============== ARTICLE 11: OTRAS NOTICIAS ============== -->
+<section class="section-alt">
+<article class="article" id="otras">
+  <div class="article-header">
+    <span class="tag noticia">Enlaces</span>
+    <h2>Otras <span class="em">noticias arquidiocesanas</span></h2>
+  </div>
+
+  <p class="lead">Compartimos otras novedades de nuestra Arquidiócesis para seguir creciendo en la cultura del cuidado.</p>
+
+  <a href="https://arquisantafe.org.ar/jornada-del-buen-trato-la-arquidiocesis-de-santa-fe-fortalecio-la-cultura-del-cuidado/" target="_blank" rel="noopener" class="link-card">
+    <div class="icon-big">🤝</div>
+    <div class="lc-content">
+      <h5>Jornada del Buen Trato</h5>
+      <p>La Arquidiócesis de Santa Fe fortaleció la cultura del cuidado</p>
+    </div>
+  </a>
+
+  <a href="https://arquisantafe.org.ar/nuevos-documentos-sobre-la-prevencion-de-abusos/" target="_blank" rel="noopener" class="link-card">
+    <div class="icon-big">📄</div>
+    <div class="lc-content">
+      <h5>Prevención de abusos</h5>
+      <p>Nuevos documentos sobre la prevención de abusos</p>
+    </div>
+  </a>
+</article>
+</section>
+
+<!-- ============== FOOTER ============== -->
+<footer class="footer">
+  <div class="ornament">✝</div>
+  <h3>"Una humanidad más cercana, más fraterna y más capaz de mirar, escuchar y abrazar al otro."</h3>
+  <div style="font-family:'Fraunces',serif;font-style:italic;color:var(--gold);font-size:16px;letter-spacing:.5px;margin-top:4px">— Mensaje de Corpus Christi 2026 · «Eucaristía, escuela de humanidad»</div>
+  <div class="meta">
+    <strong>Pastoral Social</strong> · Arquidiócesis de Santa Fe de la Vera Cruz<br>
+    Boletín Interno N° 5 · 3 de junio de 2026
+  </div>
+</footer>
+
+</main>
+
+<!-- ============== BACK TO TOP ============== -->
+<button class="back-top" id="backTop" aria-label="Volver arriba" title="Volver arriba">↑</button>
+
+<script>
+  // Back-to-top visibility
+  const backTop = document.getElementById('backTop');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 400) backTop.classList.add('visible');
+    else backTop.classList.remove('visible');
+  });
+  backTop.addEventListener('click', () => {
+    // forma de 2 argumentos (compatible en todos los navegadores);
+    // la animación suave la aporta el CSS scroll-behavior:smooth
+    window.scrollTo(0, 0);
+  });
+
+  // Mobile nav toggle
+  const sidenav = document.getElementById('sidenav');
+  const navToggle = document.getElementById('navToggle');
+  navToggle.addEventListener('click', () => {
+    const open = sidenav.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    navToggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+  });
+  document.querySelectorAll('.sidenav-item').forEach(item => {
+    item.addEventListener('click', () => {
+      if (sidenav.classList.contains('open')) {
+        sidenav.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  });
+
+  // Active section highlighting in sidebar
+  const sections = document.querySelectorAll('section[id], article[id]');
+  const navItems = document.querySelectorAll('.sidenav-item');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        navItems.forEach(item => {
+          item.classList.toggle('active', item.getAttribute('href') === '#' + id);
+        });
+      }
+    });
+  }, {rootMargin: '-40% 0px -55% 0px'});
+  sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
