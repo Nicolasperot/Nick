@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Coloquio Final · Temario Unidades 8 y 9 — Economía Política · Cátedra B · FCJS UNL</title>
+<style>
+  :root{
+    --primary:#8e44ad;
+    --primary-dark:#6c3483;
+    --anchor:#4a235a;
+    --deepest:#2a1133;
+    --soft:#d2b4de;
+    --bg-tinted:#fdfbff;
+    --bg-grad-end:#f4f0f7;
+    --text-primary:#1a1a1a;
+    --text-body:#444444;
+    --text-secondary:#555555;
+    --text-muted:#666666;
+    --text-faint:#888888;
+    --border:#eaeaea;
+    --border-card:#e0e0e0;
+    --bg-footer:#fbfbfb;
+    --font-display:'Georgia','Times New Roman',serif;
+    --font-body:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;overflow-x:hidden;-webkit-text-size-adjust:100%;text-size-adjust:100%;}
+  body{
+    font-family:var(--font-body);
+    color:var(--text-body);
+    background:#f8f7fc;
+    line-height:1.7;
+    padding:30px 16px 60px;
+    overflow-x:hidden;
+  }
+  .page{max-width:900px;margin:0 auto;width:100%;}
+
+  /* ---------- Portada (contenedor cerrado) ---------- */
+  .portada{
+    background:#fff;border-radius:12px;border:1px solid var(--border-card);
+    box-shadow:0 10px 30px rgba(0,0,0,0.05);overflow:hidden;margin-bottom:40px;
+  }
+  .portada-banner{
+    background:linear-gradient(to right,#fcfbff,#f4f0f7);
+    border-top:4px solid var(--primary);border-bottom:1px solid var(--border);
+    padding:12px 20px;text-align:center;
+  }
+  .banner-inner{display:flex;justify-content:center;align-items:center;gap:15px;flex-wrap:wrap;}
+  .banner-line{width:40px;height:1px;flex-shrink:0;}
+  .banner-line.l{background:linear-gradient(to right,rgba(210,180,222,0),rgba(142,68,173,0.3));}
+  .banner-line.r{background:linear-gradient(to left,rgba(210,180,222,0),rgba(142,68,173,0.3));}
+  .banner-text{font-size:0.72em;text-transform:uppercase;letter-spacing:4px;color:var(--anchor);font-weight:bold;}
+  .portada-body{padding:40px 45px 35px;background:var(--bg-tinted);}
+  .portada h1{
+    font-family:var(--font-display);font-weight:normal;font-size:2.9em;
+    color:var(--text-primary);letter-spacing:-1px;line-height:1.1;margin-bottom:18px;
+  }
+  .portada h1 span{color:var(--primary);}
+  .portada .lead{font-size:1.12em;color:var(--text-secondary);font-weight:300;line-height:1.7;max-width:680px;margin-bottom:24px;}
+  .unit-pills{display:flex;flex-wrap:wrap;gap:10px;}
+  .pill{
+    display:inline-block;font-size:0.72em;text-transform:uppercase;letter-spacing:2px;
+    color:var(--primary-dark);font-weight:bold;background:rgba(108,52,131,0.06);
+    padding:6px 14px;border-radius:20px;
+  }
+  .portada-foot{
+    background:var(--bg-footer);border-top:1px solid var(--border);
+    padding:14px 35px;text-align:center;
+  }
+  .portada-foot p{margin:0;font-size:0.72em;color:var(--text-muted);letter-spacing:1.5px;text-transform:uppercase;font-weight:bold;}
+
+  /* ---------- Secciones abiertas ---------- */
+  .section{margin:48px auto;position:relative;}
+  .section-label{display:flex;align-items:center;gap:15px;margin-bottom:18px;}
+  .section-label .line-a{width:40px;height:1px;background:linear-gradient(to right,transparent,rgba(142,68,173,0.6));flex-shrink:0;}
+  .section-label .line-b{flex-grow:1;height:1px;background:linear-gradient(to left,transparent,rgba(142,68,173,0.2));}
+  .section-label span{font-size:0.78em;text-transform:uppercase;letter-spacing:4px;color:var(--primary-dark);font-weight:bold;white-space:nowrap;}
+  .section h2{
+    font-family:var(--font-display);font-weight:normal;font-size:2.3em;
+    color:var(--text-primary);letter-spacing:-0.5px;line-height:1.15;margin-bottom:18px;
+  }
+  .section h2 span{color:var(--primary);}
+  .section > p{color:var(--text-secondary);margin-bottom:14px;}
+  .watermark{
+    position:absolute;top:-25px;right:0;font-family:var(--font-display);font-weight:900;
+    font-size:9em;line-height:1;color:rgba(142,68,173,0.045);pointer-events:none;z-index:0;
+  }
+  .section-inner{position:relative;z-index:1;}
+
+  h3{font-family:var(--font-display);font-weight:normal;font-size:1.45em;color:var(--anchor);margin:30px 0 14px;}
+  h4{font-size:0.78em;text-transform:uppercase;letter-spacing:2px;color:var(--primary-dark);font-weight:bold;margin:22px 0 10px;}
+
+  /* ---------- Listas de temario ---------- */
+  .topic-list{list-style:none;}
+  .topic-list > li{
+    position:relative;padding:9px 0 9px 26px;border-bottom:1px solid var(--border);
+    color:var(--text-primary);font-size:1.02em;
+  }
+  .topic-list > li:last-child{border-bottom:none;}
+  .topic-list > li::before{
+    content:"";position:absolute;left:2px;top:17px;width:8px;height:8px;border-radius:50%;
+    background:var(--primary);
+  }
+  .topic-list .note{color:var(--text-muted);font-weight:400;font-size:0.92em;}
+  .sublist{list-style:none;margin:10px 0 2px;}
+  .sublist li{
+    position:relative;padding:6px 0 6px 24px;color:var(--text-body);font-size:0.97em;border:none;
+  }
+  .sublist li::before{
+    content:"";position:absolute;left:2px;top:14px;width:6px;height:6px;border-radius:2px;
+    background:var(--soft);border:1px solid var(--primary-dark);
+  }
+  .sublist li .sub2{display:block;margin-top:6px;padding-left:22px;position:relative;color:var(--text-muted);font-size:0.93em;}
+  .sublist li .sub2::before{content:"\21B3";position:absolute;left:2px;color:var(--primary);}
+
+  /* ---------- Objetivos / competencias ---------- */
+  .goal{margin:16px 0;padding-left:22px;position:relative;}
+  .goal::before{content:"";position:absolute;left:0;top:4px;width:4px;height:calc(100% - 6px);border-radius:4px;background:var(--primary);}
+  .goal .goal-title{display:block;color:var(--text-primary);font-weight:600;font-size:1.02em;margin-bottom:3px;}
+  .goal p{margin:0;color:var(--text-secondary);font-size:0.96em;}
+
+  /* ---------- Callouts ---------- */
+  .callout{
+    background:linear-gradient(to right,rgba(142,68,173,0.05),transparent);
+    border-left:3px solid var(--primary);border-radius:0 6px 6px 0;
+    padding:14px 18px;margin:18px 0;
+  }
+  .callout p{margin:0;font-size:0.95em;color:var(--deepest);line-height:1.55;}
+  .callout strong{color:var(--primary-dark);}
+  .note-box{
+    display:flex;align-items:flex-start;gap:15px;padding:20px 24px;margin:20px 0;
+    background:rgba(108,52,131,0.025);border:1px solid rgba(108,52,131,0.12);border-radius:12px;
+  }
+  .note-box .arrow{color:var(--primary-dark);font-size:1.4em;line-height:1.3;flex-shrink:0;}
+  .note-box .ttl{display:block;color:var(--text-primary);font-size:0.9em;font-weight:bold;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}
+  .note-box p{margin:0;color:var(--text-secondary);font-size:0.96em;line-height:1.6;}
+
+  /* ---------- Recomendaciones ---------- */
+  .rec-list{list-style:none;margin:10px 0 6px;}
+  .rec-list li{position:relative;padding:7px 0 7px 28px;color:var(--text-secondary);font-size:0.98em;line-height:1.55;}
+  .rec-list li::before{content:"\2192";position:absolute;left:2px;top:7px;color:var(--primary);font-weight:bold;}
+  .rec-list li strong{color:var(--text-primary);}
+  .fine{display:block;margin-top:4px;font-size:0.85em;color:var(--text-muted);font-weight:400;line-height:1.4;}
+  .key-box{
+    background:linear-gradient(to right,rgba(142,68,173,0.05),transparent);
+    border:1px solid rgba(142,68,173,0.14);border-left:4px solid var(--primary);
+    border-radius:0 10px 10px 0;padding:18px 22px;margin:22px 0 6px;
+  }
+  .key-box .ttl{display:block;font-size:0.78em;text-transform:uppercase;letter-spacing:1.5px;color:var(--primary-dark);font-weight:bold;margin-bottom:10px;}
+  .key-box ul{list-style:none;}
+  .key-box li{position:relative;padding:5px 0 5px 26px;color:var(--text-secondary);font-size:0.95em;line-height:1.5;}
+  .key-box li::before{content:"\2713";position:absolute;left:2px;top:5px;color:var(--primary-dark);font-weight:bold;font-size:0.9em;}
+
+  /* ---------- Datos clave (grid) ---------- */
+  .facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin:24px 0 8px;}
+  .fact{
+    background:#fff;border:1px solid rgba(142,68,173,0.1);border-radius:10px;
+    border-top:3px solid var(--primary-dark);padding:16px 18px;box-shadow:0 4px 15px rgba(0,0,0,0.02);
+  }
+  .fact .k{font-size:0.68em;text-transform:uppercase;letter-spacing:1.5px;color:var(--primary-dark);font-weight:bold;display:block;margin-bottom:7px;}
+  .fact .v{display:block;color:var(--text-primary);font-size:0.96em;line-height:1.4;font-weight:500;}
+
+  /* ---------- Criterios de evaluación ---------- */
+  .crit-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin:22px 0 8px;}
+  .crit{
+    background:#fff;border:1px solid var(--border);
+    border-top:3px solid var(--primary-dark);border-radius:10px;padding:20px 22px;
+    box-shadow:0 4px 15px rgba(0,0,0,0.02);
+  }
+  .crit-head{display:flex;align-items:center;gap:12px;}
+  .crit-n{
+    flex-shrink:0;width:30px;height:30px;border-radius:50%;
+    background:rgba(142,68,173,0.08);color:var(--primary-dark);
+    font-weight:700;font-size:0.95em;display:flex;align-items:center;justify-content:center;
+  }
+  .crit h4{margin:0;font-family:var(--font-display);font-size:1.18em;color:var(--deepest);text-transform:none;letter-spacing:0;font-weight:normal;line-height:1.2;}
+  .crit p{margin:11px 0 0;color:var(--text-secondary);font-size:0.92em;line-height:1.5;}
+
+  /* ---------- Flujo / desarrollo ---------- */
+  .flow{margin:22px 0 8px;}
+  .flow-item{display:flex;gap:18px;}
+  .flow-rail{display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:30px;}
+  .flow-dot{width:14px;height:14px;border-radius:50%;background:var(--primary);border:3px solid #fff;box-shadow:0 0 0 2px var(--primary);margin-top:5px;}
+  .flow-line{width:2px;flex-grow:1;min-height:16px;background:linear-gradient(to bottom,var(--primary),rgba(142,68,173,0.15));margin:5px 0;}
+  .flow-body{flex:1;padding-bottom:24px;min-width:0;}
+  .flow-body .step{display:block;font-size:0.7em;text-transform:uppercase;letter-spacing:2px;color:var(--primary-dark);font-weight:bold;margin-bottom:5px;}
+  .flow-body h4{margin:0 0 5px;font-family:var(--font-display);font-size:1.18em;color:var(--deepest);text-transform:none;letter-spacing:0;font-weight:normal;line-height:1.2;}
+  .flow-body p{margin:0;color:var(--text-secondary);font-size:0.95em;line-height:1.55;}
+  .flow-item.alt .flow-dot{background:var(--primary-dark);box-shadow:0 0 0 2px var(--primary-dark);}
+  .flow-item.alt .flow-line{background:linear-gradient(to bottom,var(--primary-dark),rgba(108,52,131,0.15));}
+  .flow-item.cond .flow-dot{width:18px;height:18px;margin-top:3px;background:var(--anchor);box-shadow:0 0 0 2px var(--anchor),0 0 12px rgba(74,35,90,0.25);}
+  .flow-item.cond .flow-body{padding-bottom:0;}
+  .cond-card{background:rgba(74,35,90,0.05);border:1px solid rgba(74,35,90,0.15);border-radius:10px;padding:14px 18px;}
+  .cond-card .step{color:var(--anchor);}
+
+  /* ---------- Separador ---------- */
+  .sep{display:flex;align-items:center;justify-content:center;margin:46px auto;max-width:850px;}
+  .sep .sl{flex:1;height:1px;background:linear-gradient(to right,rgba(142,68,173,0),rgba(142,68,173,0.3));}
+  .sep .sr{flex:1;height:1px;background:linear-gradient(to left,rgba(142,68,173,0),rgba(142,68,173,0.3));}
+  .sep .dot{margin:0 20px;width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,0.65);
+    border:1px solid rgba(142,68,173,0.2);border-top:1px solid #fff;border-left:1px solid #fff;
+    box-shadow:0 3px 8px rgba(0,0,0,0.04),inset 0 0 4px rgba(255,255,255,0.5);}
+
+  /* ---------- Pie ---------- */
+  .footer{margin-top:50px;text-align:center;border-top:1px solid rgba(142,68,173,0.15);padding-top:26px;}
+  .footer .sig{font-size:0.74em;color:var(--text-faint);letter-spacing:1.5px;text-transform:uppercase;font-weight:600;margin-bottom:8px;}
+  .footer .year{font-family:var(--font-display);color:var(--anchor);font-size:1.05em;margin-bottom:10px;}
+  .footer .ai{font-size:0.72em;color:#999;letter-spacing:0.3px;}
+
+  /* ════════ RESPONSIVE ════════ */
+  @media(max-width:560px){
+    .crit-grid{grid-template-columns:1fr;}
+  }
+  @media(max-width:680px){
+    body{padding:18px 12px 44px;}
+    .portada{margin-bottom:32px;}
+    .portada-body{padding:26px 22px 30px;}
+    .portada h1{font-size:2em;}
+    .portada .lead{font-size:1.02em;}
+    .portada-banner{padding:11px 14px;}
+    .banner-line{display:none;}
+    .banner-text{letter-spacing:2px;font-size:0.62em;}
+    .portada-foot{padding:12px 16px;}
+    .portada-foot p{letter-spacing:1px;font-size:0.64em;}
+    .section{margin:38px auto;}
+    .section h2{font-size:1.72em;}
+    .section-label span{letter-spacing:3px;font-size:0.72em;}
+    .watermark{font-size:5.5em;top:-12px;}
+    .note-box{padding:16px 18px;gap:12px;}
+    .sep{margin:34px auto;}
+    h3{font-size:1.32em;}
+  }
+  @media(max-width:420px){
+    .portada h1{font-size:1.74em;}
+    .portada-body{padding:22px 18px 26px;}
+    .section h2{font-size:1.52em;}
+    .banner-text{font-size:0.56em;letter-spacing:1.2px;}
+    .facts{gap:12px;}
+    .fact{padding:14px 16px;}
+    .crit{padding:18px 18px;}
+  }
+
+  @media print{
+    body{background:#fff;padding:0;}
+    .portada,.fact,.crit,.note-box,.portada-banner,.key-box,.cond-card,.flow-dot,.flow-line{box-shadow:none;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+    .section{break-inside:avoid;}
+    .crit,.fact,.note-box{break-inside:avoid;}
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ════════════════ PORTADA ════════════════ -->
+  <div class="portada">
+    <div class="portada-banner">
+      <div class="banner-inner">
+        <div class="banner-line l"></div>
+        <span class="banner-text">Economía Política · Cátedra B · FCJS UNL</span>
+        <div class="banner-line r"></div>
+      </div>
+    </div>
+    <div class="portada-body">
+      <h1>Coloquio Final <br><span>Temario y consignas</span></h1>
+      <p class="lead">Les compartimos el temario de las Unidades 8 y 9 y las pautas del coloquio final. Organicen su preparación a partir de la bibliografía obligatoria de la cátedra.</p>
+      <div class="unit-pills">
+        <span class="pill">Unidad 8 · El capitalismo</span>
+        <span class="pill">Unidad 9 · Teorías económicas</span>
+      </div>
+    </div>
+    <div class="portada-foot">
+      <p>Facultad de Ciencias Jurídicas y Sociales · UNL · Ciclo Lectivo 2026</p>
+    </div>
+  </div>
+
+  <!-- ════════════════ ¿CÓMO ES EL COLOQUIO? ════════════════ -->
+  <div class="section">
+    <div class="section-label"><div class="line-a"></div><span>La instancia</span><div class="line-b"></div></div>
+    <div class="section-inner">
+      <h2>¿Cómo es el <span>coloquio?</span></h2>
+
+      <p>Es un <strong>examen oral e individual</strong> ante el comité evaluador. Cada estudiante da cuenta de los conocimientos y competencias de la bibliografía obligatoria de las unidades a evaluar.</p>
+
+      <div class="facts">
+        <div class="fact" style="border-top-color:#6c3483;"><span class="k">Modalidad</span><span class="v">Oral e individual</span></div>
+        <div class="fact" style="border-top-color:#4a235a;"><span class="k">Duración</span><span class="v">5 a 15 min (aprox.)</span></div>
+        <div class="fact" style="border-top-color:#8e44ad;"><span class="k">Exposición inicial</span><span class="v">Tema a elección · 2–3 min</span></div>
+        <div class="fact" style="border-top-color:#2a1133;"><span class="k">Material a evaluar</span><span class="v">Bibliografía obligatoria · U8 y U9<span class="fine">Quienes acceden a recuperatorio: unidades 4 a 9 (toda la bibliografía obligatoria).</span></span></div>
+      </div>
+
+      <h3>Cómo se desarrolla</h3>
+      <div class="flow">
+        <div class="flow-item">
+          <div class="flow-rail"><div class="flow-dot"></div><div class="flow-line"></div></div>
+          <div class="flow-body">
+            <span class="step">Paso 1 · Apertura</span>
+            <h4>Exposición del tema elegido</h4>
+            <p>De 2 a 3 minutos, que el comité puede interrumpir en cualquier momento. Debe estar rigurosamente preparado con la bibliografía obligatoria y, deseablemente, la complementaria.</p>
+          </div>
+        </div>
+        <div class="flow-item alt">
+          <div class="flow-rail"><div class="flow-dot"></div><div class="flow-line"></div></div>
+          <div class="flow-body">
+            <span class="step">Paso 2 · Intercambio</span>
+            <h4>Preguntas</h4>
+            <p>Sobre el tema elegido y sobre los demás temas. Se realizan preguntas de <strong>todas las unidades a evaluar</strong>.</p>
+          </div>
+        </div>
+        <div class="flow-item cond">
+          <div class="flow-rail"><div class="flow-dot"></div></div>
+          <div class="flow-body">
+            <div class="cond-card">
+              <span class="step">Condición</span>
+              <p>Si en algún momento no se demuestran los conocimientos y competencias básicos de temas centrales, el examen se da por finalizado, no aprobando el mismo.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="note-box">
+        <span class="arrow">→</span>
+        <div>
+          <span class="ttl">Sobre el tema elegido</span>
+          <p>El tema es de <strong>libre elección</strong>: pueden elegir cualquier tema de la bibliografía obligatoria de las unidades a evaluar. Se recomienda que sea una <strong>teoría económica de la Unidad 9</strong>.</p>
+          <p style="margin-top:10px;">Deseablemente, en el tema elegido se deberá mostrar la <strong>integralidad</strong> con los contenidos aprendidos durante la materia.</p>
+        </div>
+      </div>
+
+      <h3>Se evalúa</h3>
+      <div class="crit-grid">
+        <div class="crit" style="border-top-color:#6c3483;">
+          <div class="crit-head"><span class="crit-n">1</span><h4>Precisión conceptual</h4></div>
+          <p>Se valorará el uso correcto y riguroso de los conceptos, las categorías y las definiciones propios de cada teoría y contenido, evitando imprecisiones o generalizaciones.</p>
+        </div>
+        <div class="crit" style="border-top-color:#4a235a;">
+          <div class="crit-head"><span class="crit-n">2</span><h4>Habilidades comunicativas</h4></div>
+          <p>Se valorará la claridad y fluidez en la exposición de ideas y el uso de un lenguaje académico adecuado.</p>
+        </div>
+        <div class="crit" style="border-top-color:#8e44ad;">
+          <div class="crit-head"><span class="crit-n">3</span><h4>Reflexión crítica</h4></div>
+          <p>Se espera que el estudiante demuestre la capacidad de reflexionar sobre lo aprendido y el contexto actual.</p>
+        </div>
+        <div class="crit" style="border-top-color:#2a1133;">
+          <div class="crit-head"><span class="crit-n">4</span><h4>Comparación de teorías</h4></div>
+          <p>Se valorará la capacidad de relacionar y contrastar las distintas corrientes, distinguiendo sus supuestos, categorías y posiciones frente a los problemas centrales.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sep"><div class="sl"></div><div class="dot"></div><div class="sr"></div></div>
+
+  <!-- RECOMENDACIONES -->
+  <div class="section">
+    <div class="section-label"><div class="line-a"></div><span>Preparación</span><div class="line-b"></div></div>
+    <div class="section-inner">
+      <h2>Recomendaciones <span>para el coloquio</span></h2>
+
+      <p>Estas recomendaciones son una <strong>guía para organizar la preparación y encarar el examen</strong>.</p>
+
+      <h3>Al elegir el tema</h3>
+      <ul class="rec-list">
+        <li>Elijan preferentemente una <strong>teoría económica de la Unidad 9</strong>: suelen ser los temas que mejor permiten mostrar integralidad.
+          <span class="fine">También pueden preparar cualquier tema de la bibliografía obligatoria de los contenidos a evaluar.</span></li>
+        <li>Prepárenlo con la <strong>bibliografía obligatoria</strong> y, si pueden, apóyense también en la complementaria.</li>
+        <li><strong>Practiquen la exposición inicial en voz alta y con reloj</strong> (2–3 min): como puede interrumpirse en cualquier momento, lo esencial debe ir al principio.</li>
+      </ul>
+
+      <div class="callout">
+        <p><strong>Una estructura útil para la exposición inicial:</strong> (1) presenten la teoría y su contexto; (2) desarrollen sus ideas y categorías centrales; (3) conéctenla con otros contenidos de la materia; (4) cierren con una breve reflexión sobre su vigencia o sus límites.</p>
+      </div>
+
+      <h3>Al preparar cada tema</h3>
+      <ul class="rec-list">
+        <li>Usen un <strong>mismo esquema para cada teoría</strong>: cuándo surge, en qué época y lugar, en respuesta a qué contexto y cuáles son sus principales aportes.</li>
+        <li>Prioricen <strong>comprender por sobre memorizar</strong>: las repreguntas son las que distinguen el conocimiento real.</li>
+        <li>Tengan lista la <strong>comparación entre corrientes</strong> —es un criterio de evaluación—, atendiendo a los ejes que señala la competencia: el mercado, el trabajo, la distribución del ingreso, las crisis y el papel del Estado.</li>
+        <li>En <strong>Estructuralismo (CEPAL) y Teoría de la Dependencia</strong>, no olviden el diagnóstico y las propuestas.</li>
+        <li>Tengan presente el <strong>contexto actual</strong>: se valora la reflexión crítica sobre lo aprendido y el presente.</li>
+      </ul>
+
+      <h3>Durante la exposición y las preguntas</h3>
+      <ul class="rec-list">
+        <li>Usen un <strong>lenguaje académico preciso</strong> y nombren cada categoría con su término exacto.</li>
+        <li><strong>Tiendan puentes entre temas</strong> ("esto se vincula con…", "a diferencia de…"): así muestran integralidad sin que se las pidan.</li>
+        <li>Recuerden que las <strong>preguntas pueden venir de todas las unidades a evaluar</strong>; no se queden solo en el tema elegido.</li>
+        <li>Si no entienden una pregunta, <strong>pidan que la reformulen</strong>. Si no saben algo puntual, reconózcanlo y reconduzcan hacia lo que sí dominan.</li>
+      </ul>
+
+      <div class="key-box">
+        <span class="ttl">Para una buena defensa</span>
+        <ul>
+          <li>Demuestren que comprenden y pueden fundamentar, más que recitar de memoria.</li>
+          <li>Ubiquen con precisión la época, los autores y el lugar de cada corriente.</li>
+          <li>Muestren cómo el tema elegido se articula con el resto de la materia.</li>
+          <li>Anímense a comparar corrientes y a nombrar cada categoría con su término exacto.</li>
+          <li>Si algo no sale, retómenlo con calma y reconduzcan hacia lo que sí dominan.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="sep"><div class="sl"></div><div class="dot"></div><div class="sr"></div></div>
+
+  <!-- ════════════════ UNIDAD 8 ════════════════ -->
+  <div class="section">
+    <div class="watermark">8</div>
+    <div class="section-label"><div class="line-a"></div><span>Unidad 8</span><div class="line-b"></div></div>
+    <div class="section-inner">
+      <h2>El capitalismo <span>y sus etapas</span></h2>
+
+      <h4>Contenidos</h4>
+      <ul class="topic-list">
+        <li>Definición y características del capitalismo</li>
+        <li>
+          Etapas del capitalismo <span class="note">— épocas y características de cada etapa</span>
+          <ul class="sublist">
+            <li>Capitalismo Mercantil <span class="note">(temprano y tardío)</span></li>
+            <li>Capitalismo competitivo <span class="note">(o de libre competencia)</span></li>
+            <li>Capitalismo Monopolístico</li>
+            <li>
+              Capitalismo Fordista-Keynesiano
+              <span class="sub2">Crisis del régimen Fordista-Keynesiano</span>
+            </li>
+            <li>Capitalismo Globalizado</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h3>Competencias y objetivos de aprendizaje</h3>
+
+      <div class="goal">
+        <span class="goal-title">Analizar la evolución histórica del sistema capitalista internacional</span>
+        <p>Distinguir las principales etapas del capitalismo, sus formas de expansión y sus efectos sobre la configuración del mercado mundial, la división internacional del trabajo y las relaciones entre centro y periferia.</p>
+      </div>
+
+      <div class="goal">
+        <span class="goal-title">Interpretar las transformaciones del capitalismo contemporáneo en el contexto de la globalización</span>
+        <p>Reconocer el papel de la innovación, las redes productivas, la competitividad territorial y la financiarización en la reestructuración de la economía mundial, identificando sus efectos sobre la producción, la distribución y la dinámica social.</p>
+      </div>
+
+      <div class="goal">
+        <span class="goal-title">Evaluar las formas de inserción de América Latina en la economía mundial y sus desafíos de desarrollo</span>
+        <p>Analizar la relación entre crisis mundial y crisis latinoamericana, distinguiendo modalidades de inserción periférica, límites del modelo desarrollista y aportes de enfoques como el desarrollo endógeno para pensar alternativas de crecimiento y transformación estructural.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="sep"><div class="sl"></div><div class="dot"></div><div class="sr"></div></div>
+
+  <!-- ════════════════ UNIDAD 9 ════════════════ -->
+  <div class="section">
+    <div class="watermark">9</div>
+    <div class="section-label"><div class="line-a"></div><span>Unidad 9</span><div class="line-b"></div></div>
+    <div class="section-inner">
+      <h2>Teorías <span>económicas</span></h2>
+
+      <h4>Contenidos</h4>
+      <ul class="topic-list">
+        <li>
+          Teorías económicas <span class="note">— cuándo surgen, época y lugar, y principales aportes y teorías</span>
+          <ul class="sublist">
+            <li>Clásicos</li>
+            <li>Marx</li>
+            <li>Neoclásicos</li>
+            <li>Keynes</li>
+          </ul>
+        </li>
+        <li>
+          América Latina
+          <ul class="sublist">
+            <li>Liberalismo</li>
+            <li>Estructuralismo (CEPAL)</li>
+            <li>Teoría de la Dependencia</li>
+          </ul>
+        </li>
+      </ul>
+
+      <div class="callout">
+        <p><strong>Importante:</strong> en Estructuralismo (CEPAL) y Teoría de la Dependencia, además de época, lugar y principales aportes, es necesario comprender el <strong>diagnóstico</strong> y las <strong>propuestas</strong>.</p>
+      </div>
+
+      <h3>Competencias</h3>
+
+      <div class="goal">
+        <span class="goal-title">Analizar el surgimiento histórico de las principales teorías económicas</span>
+        <p>Reconocer el contexto social, político y productivo en el que emergen corrientes como el mercantilismo, la fisiocracia y la economía clásica, identificando sus distintas respuestas al problema de la riqueza, el valor y el funcionamiento del sistema económico.</p>
+      </div>
+
+      <div class="goal">
+        <span class="goal-title">Comparar los principales enfoques del pensamiento económico moderno y contemporáneo</span>
+        <p>Distinguir los supuestos, categorías y explicaciones centrales de las corrientes clásica, marxista, neoclásica y keynesiana, atendiendo especialmente a sus interpretaciones sobre el mercado, el trabajo, la distribución del ingreso, las crisis y el papel del Estado.</p>
+      </div>
+
+      <div class="goal">
+        <span class="goal-title">Interpretar las principales corrientes de pensamiento económico en América Latina</span>
+        <p>Identificar los rasgos del liberalismo, el estructuralismo y la teoría de la dependencia, analizando sus distintas lecturas sobre el subdesarrollo, la inserción internacional de la región y las estrategias de industrialización y desarrollo.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════ PIE ════════════════ -->
+  <div class="sep"><div class="sl"></div><div class="dot"></div><div class="sr"></div></div>
+
+  <div class="section">
+    <div class="section-label"><div class="line-a"></div><span>Consultas</span><div class="line-b"></div></div>
+    <div class="section-inner">
+      <div class="note-box">
+        <span class="arrow">→</span>
+        <div>
+          <span class="ttl">Canales de consulta</span>
+          <p>Ante cualquier duda, pueden utilizar el <strong>Foro de Consultas</strong> del aula virtual hasta <strong>24 horas antes</strong> de la fecha de examen, además de los demás canales de comunicación indicados por la cátedra.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p class="sig">Economía Política · Cátedra B · FCJS UNL</p>
+    <p class="year">Ciclo Lectivo 2026</p>
+    <p class="ai">Material apoyado en IA generativa. Se sugiere uso responsable.</p>
+  </div>
+
+</div>
+</body>
+</html>
