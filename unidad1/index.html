@@ -568,6 +568,34 @@
   .aviso-biblio-ico { font-size: 1.6rem; flex-shrink: 0; line-height: 1.2; }
   .aviso-biblio strong { display: block; font-family: var(--font-display); font-size: 1.12rem; color: #1e6d3e; line-height: 1.3; margin-bottom: 6px; }
   .aviso-biblio p { font-size: .92rem; color: var(--color-text-secondary); line-height: 1.6; margin: 0; }
+
+  /* ════════ GUÍA DE USO · sin fondo, tick verde ════════ */
+  .guia-uso { margin: 40px 0; padding: 0; background: none; border: none; box-shadow: none; }
+  .guia-head { display: flex; align-items: center; gap: 15px; margin-bottom: 16px; }
+  .guia-ico { width: 40px; height: 40px; border-radius: 50%; background: var(--color-success); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; font-weight: 700; flex-shrink: 0; box-shadow: 0 2px 8px rgba(39,174,96,.35); }
+  .guia-head h2 { font-family: var(--font-display); font-size: clamp(1.7rem, 4.2vw, 2.5rem); line-height: 1.15; color: var(--color-deepest); font-weight: 700; margin: 0; letter-spacing: -.4px; }
+  .guia-head h2 .acento { color: var(--color-primary); font-style: italic; }
+  .guia-intro { font-size: .97rem; color: var(--color-text-body); line-height: 1.68; margin-bottom: 22px; }
+  .guia-intro strong, .guia-list li strong { background: linear-gradient(180deg, transparent 62%, rgba(255,214,115,.5) 62%); color: var(--color-deepest); font-weight: 600; padding: 0 2px; }
+  .guia-list { list-style: none; display: flex; flex-direction: column; gap: 15px; }
+  .guia-list li { display: flex; gap: 15px; align-items: flex-start; font-size: .94rem; color: var(--color-text-body); line-height: 1.6; }
+  .guia-n { flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; background: rgba(39,174,96,.14); color: #1e6d3e; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 700; font-size: .92rem; margin-top: 1px; }
+
+  /* ════════ GLOSARIO · término + tooltip flotante ════════ */
+  .gloss { border-bottom: 1.5px dotted var(--color-primary); cursor: help; transition: background .2s; border-radius: 2px; }
+  .gloss:hover, .gloss:focus { background: rgba(142,68,173,.1); outline: none; }
+  .gloss-pop { position: fixed; z-index: 4500; max-width: 290px; background: var(--color-deepest); color: #fff; font-family: var(--font-body); font-size: .82rem; font-weight: 400; font-style: normal; text-transform: none; letter-spacing: .1px; line-height: 1.5; padding: 11px 14px; border-radius: 10px; box-shadow: 0 12px 32px rgba(42,17,51,.42); opacity: 0; pointer-events: none; transition: opacity .18s ease; }
+  .gloss-pop.show { opacity: 1; }
+  .gloss-pop::after { content: ""; position: absolute; left: var(--arrow-x, 50%); transform: translateX(-50%); border: 6px solid transparent; }
+  .gloss-pop:not(.below)::after { top: 100%; border-top-color: var(--color-deepest); }
+  .gloss-pop.below::after { bottom: 100%; border-bottom-color: var(--color-deepest); }
+
+  /* ════════ GLOSARIO · tarjeta consolidada ════════ */
+  .glosario-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 20px 0; }
+  @media (max-width: 640px) { .glosario-grid { grid-template-columns: 1fr; } }
+  .glos-item { padding: 14px 16px; background: #fff; border: 1px solid var(--color-border); border-left: 3px solid var(--color-primary); border-radius: 10px; }
+  .glos-term { display: block; font-family: var(--font-display); font-weight: 700; color: var(--color-primary-dark); font-size: 1rem; margin-bottom: 3px; }
+  .glos-def { font-size: .85rem; color: var(--color-text-secondary); line-height: 1.5; }
   .docend-reset { background: none; border: 1px solid var(--color-border-card); color: var(--color-text-muted); padding: 8px 18px; border-radius: 999px; cursor: pointer; font-size: .78rem; font-family: var(--font-body); transition: all .3s; }
   .docend-reset:hover { border-color: var(--color-red); color: var(--color-red); background: rgba(192,57,43,.05); }
 
@@ -595,7 +623,8 @@
 
   /* ════════ IMPRESIÓN ════════ */
   @media print {
-    .sidebar, .sidebar-expand, .sidebar-backdrop, .scroll-top, .toast, .read-progress, .hero-cue, .hero-net, .docend-reset { display: none !important; }
+    .sidebar, .sidebar-expand, .sidebar-backdrop, .scroll-top, .toast, .read-progress, .hero-cue, .hero-net, .docend-reset, .gloss-pop { display: none !important; }
+    .gloss { border-bottom: none; }
     .main { margin-left: 0 !important; }
     body { background: #fff; font-size: 11pt; }
     .reveal, .reveal-left, .reveal-right, .reveal-scale { opacity: 1 !important; transform: none !important; }
@@ -797,6 +826,16 @@
 
 <div class="wrap">
 
+  <div class="guia-uso reveal">
+    <div class="guia-head"><span class="guia-ico" aria-hidden="true">✓</span><h2>¿Para qué sirve esta <span class="acento">guía interactiva</span>?</h2></div>
+    <p class="guia-intro">Junto con el equipo de cátedra preparamos esta guía para ayudarte a <strong>comprender mejor la bibliografía obligatoria</strong>. Sabemos que el primer acercamiento a los textos académicos puede presentar desafíos, y estamos para acompañarte en ese camino. Algunas sugerencias para sacarle el máximo provecho:</p>
+    <ul class="guia-list">
+      <li><span class="guia-n">1</span><div><strong>Leé con algo para anotar al lado.</strong> Escribí las ideas y definiciones con tus propias palabras: te va a servir para repasar y para las instancias de examen.</div></li>
+      <li><span class="guia-n">2</span><div><strong>Las palabras <span class="gloss" tabindex="0" data-def="Los términos del glosario aparecen subrayados con puntitos. Pasá el mouse por encima o tocalos para ver su definición.">subrayadas con puntitos</span> tienen definición.</strong> Pasales el mouse (o tocalas en el celular) para verla sin perder el hilo de la lectura.</div></li>
+      <li><span class="guia-n">3</span><div><strong>Esto acompaña, no reemplaza.</strong> La guía ordena los contenidos, pero la lectura de los textos originales es imprescindible para las instancias de examen.</div></li>
+    </ul>
+  </div>
+
   <!-- ═══════ SEC 1 · ¿Qué estudia? ═══════ -->
   <section class="seccion reveal" id="sec-1">
     <span class="sec-eyebrow"><span class="sec-eyebrow-num">1</span> Conceptos fundamentales</span>
@@ -815,7 +854,7 @@
         <span class="q3-big">2</span>
         <div class="q3-icon">🔍</div>
         <h4>Causas</h4>
-        <p>El análisis profundo de los factores estructurales y coyunturales que <em>generan</em> esos problemas.</p>
+        <p>El análisis profundo de los factores estructurales y <span class="gloss" tabindex="0" data-def="Que depende de la situación del momento y es pasajero. Se opone a «estructural»: lo de fondo, que perdura en el tiempo.">coyunturales</span> que <em>generan</em> esos problemas.</p>
       </div>
       <div class="q3 c reveal-scale reveal-delay-2">
         <span class="q3-big">3</span>
@@ -853,7 +892,7 @@
         </div>
         <div class="comp-row">
           <div>Sus explicaciones son diversas, contradictorias y no se verifican.</div>
-          <div>Procura <span class="hl">verificación empírica</span> y <span class="hl">establece relaciones causales</span>.</div>
+          <div>Procura <span class="hl">verificación <span class="gloss" tabindex="0" data-def="Basada en la observación de los hechos y la experiencia concreta, no solo en el razonamiento o la teoría.">empírica</span></span> y <span class="hl">establece relaciones causales</span>.</div>
         </div>
         <div class="comp-row">
           <div>Se queda en lo que está «a la vista de todos».</div>
@@ -1036,11 +1075,11 @@
     <div class="divider-flourish"><span>◆</span></div>
     <p class="lead-p">El ser humano se relaciona con la <strong>naturaleza</strong> y con <strong>otros seres humanos</strong>. De ahí surgen dos grandes campos de la ciencia: las ciencias naturales (que estudian la relación con la naturaleza y sus leyes) y las <span class="hl">ciencias sociales</span>, que tienen por objeto a la persona en cuanto ser social.</p>
 
-    <p>Para Demarco, la Economía Política es una disciplina cuyo objeto de estudio es el <strong>sistema económico</strong>, entendido como un <em>subsistema</em> del sistema social. ¿Qué es un sistema? Un conjunto de elementos <strong>más</strong> un patrón de relaciones que le da estructura. Un conjunto de elementos sueltos no es un sistema; lo es cuando se les incorpora una red de relaciones.</p>
+    <p>Para Demarco, la Economía Política es una disciplina cuyo objeto de estudio es el <strong>sistema económico</strong>, entendido como un <em class="gloss" tabindex="0" data-def="Un sistema más pequeño que forma parte de otro mayor y se relaciona con él. Aquí: lo económico como parte del sistema social.">subsistema</em> del sistema social. ¿Qué es un sistema? Un conjunto de elementos <strong>más</strong> un patrón de relaciones que le da estructura. Un conjunto de elementos sueltos no es un sistema; lo es cuando se les incorpora una red de relaciones.</p>
 
     <div class="defstrip">
       <div class="def-term">El sistema económico</div>
-      <div class="def-body">Conjunto coherente de <strong>instituciones jurídicas y sociales</strong> donde se organizan medios técnicos para alcanzar <strong>objetivos económicos</strong>. Lo económico es parte <strong>indisoluble</strong> del sistema social mayor.</div>
+      <div class="def-body">Conjunto coherente de <strong>instituciones jurídicas y sociales</strong> donde se organizan medios técnicos para alcanzar <strong>objetivos económicos</strong>. Lo económico es parte <strong class="gloss" tabindex="0" data-def="Que no se puede separar ni dividir.">indisoluble</strong> del sistema social mayor.</div>
       <span class="def-source">Cátedra B · Unidad 1</span>
     </div>
 
@@ -1063,7 +1102,7 @@
         <text x="230" y="175" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" fill="#6c3483" font-weight="700">Económico</text>
         <text x="230" y="192" text-anchor="middle" font-family="Inter,sans-serif" font-size="9.5" fill="#6c3483">(subsistema)</text>
       </svg>
-      <div class="diagram-cap">Los subsistemas no son compartimentos estancos: se superponen y entrelazan como una red. Solo se «aíslan» con fines analíticos, mediante la <strong>abstracción</strong>.</div>
+      <div class="diagram-cap">Los subsistemas no son compartimentos estancos: se superponen y entrelazan como una red. Solo se «aíslan» con fines analíticos, mediante la <strong class="gloss" tabindex="0" data-def="Operación mental que separa un aspecto de la realidad, dejando de lado el resto, para poder estudiarlo con más claridad.">abstracción</strong>.</div>
     </div>
 
     <p>Lo económico es una <strong>dimensión</strong> —no una parte separada— del sistema social. Está tan estrechamente ligado a lo político, lo cultural y lo jurídico que es imposible separar los problemas económicos «sin desvirtuar la naturaleza misma de los fenómenos sociales». La ciencia política y la economía no estudian realidades distintas: <span class="hl">observan la misma realidad desde ópticas diferentes</span> —una desde las relaciones de poder, la otra desde la producción y distribución de bienes.</p>
@@ -1160,7 +1199,7 @@
       <div class="desafio reveal-scale reveal-delay-1">
         <div class="desafio-head"><span class="desafio-num">5</span><span class="desafio-ico">🔀</span></div>
         <h4>Multiplicidad de explicaciones</h4>
-        <p>Un mismo fenómeno admite diferentes interpretaciones según el marco teórico. Como dice Demarco, un mismo fenómeno económico «puede ser explicado mediante más de un modelo». La ciencia no da «la explicación correcta»: busca la <strong>más plausible</strong>.</p>
+        <p>Un mismo fenómeno admite diferentes interpretaciones según el marco teórico. Como dice Demarco, un mismo fenómeno económico «puede ser explicado mediante más de un modelo». La ciencia no da «la explicación correcta»: busca la <strong>más <span class="gloss" tabindex="0" data-def="Que parece razonable y aceptable, aunque no esté probado del todo. La explicación más creíble entre las posibles.">plausible</span></strong>.</p>
       </div>
       <div class="desafio reveal-scale reveal-delay-2">
         <div class="desafio-head"><span class="desafio-num">6</span><span class="desafio-ico">🕰️</span></div>
@@ -1209,7 +1248,7 @@
     </div>
 
     <h3>Las leyes económicas tienen tres rasgos propios</h3>
-    <p>Ojo: no hablamos de leyes jurídicas (normas que dictan las personas), sino de leyes en sentido <strong>epistemológico</strong> —regularidades que están en los hechos y que la ciencia económica <em>descubre</em>. Tienen la forma «si ocurre <em>p</em>, entonces es probable que <em>q</em>». Tocá cada tarjeta:</p>
+    <p>Ojo: no hablamos de leyes jurídicas (normas que dictan las personas), sino de leyes en sentido <strong class="gloss" tabindex="0" data-def="Relativo a la teoría del conocimiento científico: cómo se construye y valida el saber. No tiene que ver con lo jurídico.">epistemológico</strong> —regularidades que están en los hechos y que la ciencia económica <em>descubre</em>. Tienen la forma «si ocurre <em>p</em>, entonces es probable que <em>q</em>». Tocá cada tarjeta:</p>
 
     <div class="flipgrid">
       <div class="flip" tabindex="0">
@@ -1315,6 +1354,12 @@
         <h4>Macroeconomía</h4>
         <p>Estudia la economía como un todo, con magnitudes globales o agregadas (ingreso nacional, consumo, empleo). Se desarrolla con Keynes (1936), tras la Gran Depresión, cuando la mirada «microscópica» no alcanzó.</p>
       </div>
+    </div>
+
+    <div class="callout tip">
+      <div class="callout-icon">🕰️</div>
+      <h4>Un poco de contexto histórico</h4>
+      <p>La <strong>Gran Depresión</strong> fue la crisis económica mundial que estalló en 1929, con el desplome de la Bolsa de Nueva York, y dejó a millones de personas sin trabajo durante los años 30. Frente a ese derrumbe, <strong>John Maynard Keynes</strong> (1883–1946), economista británico, sostuvo que el <strong>Estado</strong> debía intervenir para sostener el empleo y la demanda —en lugar de esperar que el mercado se corrigiera solo—. De ahí nace la macroeconomía moderna. Esa discusión (¿cuánto interviene el Estado?) atraviesa toda la materia.</p>
     </div>
 
     <!-- QUIZ 5 -->
@@ -1455,6 +1500,20 @@
       <div class="idea"><span class="idea-num">4</span><div><h4>Tres soluciones históricas</h4><p>Tradición, mando y mercado: mecanismos que conviven y se combinan en toda sociedad concreta.</p></div></div>
       <div class="idea"><span class="idea-num">5</span><div><h4>Una ciencia social</h4><p>Lo económico es una dimensión del sistema social, entrelazada con lo político, lo cultural y lo jurídico. Por eso incide la ideología.</p></div></div>
       <div class="idea"><span class="idea-num">6</span><div><h4>Ciencia y acción</h4><p>La economía política explica; la política económica actúa. Se dividen en positiva/normativa, micro/macro, y usan instrumentos fiscales, monetarios, cambiarios y de ingresos.</p></div></div>
+    </div>
+
+    <h3>Glosario de la unidad</h3>
+    <p>Las palabras que más cuestan al empezar, en una línea. En el texto aparecen <span class="gloss" tabindex="0" data-def="Los términos del glosario van subrayados con puntitos. Pasales el mouse o tocalos para ver la definición sin perder el hilo.">subrayadas con puntitos</span>.</p>
+    <div class="glosario-grid">
+      <div class="glos-item"><span class="glos-term">Abstracción</span><span class="glos-def">Operación mental que separa un aspecto de la realidad, dejando el resto de lado, para estudiarlo mejor.</span></div>
+      <div class="glos-item"><span class="glos-term">Coyuntural</span><span class="glos-def">Pasajero, ligado a la situación del momento. Lo opuesto a estructural (lo de fondo, que perdura).</span></div>
+      <div class="glos-item"><span class="glos-term">Empírico/a</span><span class="glos-def">Basado en la observación de los hechos y la experiencia, no solo en el razonamiento.</span></div>
+      <div class="glos-item"><span class="glos-term">Epistemológico/a</span><span class="glos-def">Relativo a cómo se construye y valida el conocimiento científico. No es lo mismo que «jurídico».</span></div>
+      <div class="glos-item"><span class="glos-term">Indisoluble</span><span class="glos-def">Que no se puede separar ni dividir.</span></div>
+      <div class="glos-item"><span class="glos-term">Plausible</span><span class="glos-def">Razonable y aceptable, aunque no esté probado del todo. Lo más creíble entre lo posible.</span></div>
+      <div class="glos-item"><span class="glos-term">Subsistema</span><span class="glos-def">Sistema más pequeño que forma parte de otro mayor (lo económico dentro de lo social).</span></div>
+      <div class="glos-item"><span class="glos-term">Tendencial</span><span class="glos-def">Que se cumple como tendencia, en la gran mayoría de los casos, pero no siempre ni al 100%.</span></div>
+      <div class="glos-item"><span class="glos-term">Rara avis</span><span class="glos-def">Expresión latina: «ave rara». Un caso excepcional, fuera de lo común.</span></div>
     </div>
 
     <h3>Mini-test: cinco preguntas de toda la unidad</h3>
@@ -1709,6 +1768,8 @@
   <div class="toast-txt"><strong id="toastTitle">¡Bien!</strong><span id="toastSub"></span></div>
 </div>
 
+<div class="gloss-pop" id="glossPop" role="tooltip" aria-hidden="true"></div>
+
 <script>
 (function(){
   "use strict";
@@ -1719,6 +1780,46 @@
   state.quiz = state.quiz || {};
   state.checks = state.checks || {};
   state.visited = state.visited || {};
+
+  /* ===== Glosario · tooltip flotante (hover + click/tap) ===== */
+  (function(){
+    var pop = document.getElementById('glossPop');
+    if(!pop) return;
+    var current = null;
+    function show(el){
+      pop.textContent = el.getAttribute('data-def') || '';
+      pop.style.left = '-9999px'; pop.style.top = '0px';
+      pop.classList.add('show');
+      var r = el.getBoundingClientRect();
+      var pw = pop.offsetWidth, ph = pop.offsetHeight;
+      var cx = r.left + r.width / 2;
+      var left = Math.max(10, Math.min(cx - pw / 2, window.innerWidth - pw - 10));
+      var top = r.top - ph - 10, below = false;
+      if(top < 10){ top = r.bottom + 10; below = true; }
+      pop.style.left = left + 'px';
+      pop.style.top = top + 'px';
+      pop.classList.toggle('below', below);
+      pop.style.setProperty('--arrow-x', (cx - left) + 'px');
+      pop.setAttribute('aria-hidden', 'false');
+      current = el;
+    }
+    function hide(){ pop.classList.remove('show'); pop.setAttribute('aria-hidden', 'true'); current = null; }
+    document.querySelectorAll('.gloss').forEach(function(el){
+      el.addEventListener('mouseenter', function(){ show(el); });
+      el.addEventListener('mouseleave', function(){ if(current === el) hide(); });
+      el.addEventListener('focus', function(){ show(el); });
+      el.addEventListener('blur', function(){ if(current === el) hide(); });
+      el.addEventListener('click', function(e){ e.stopPropagation(); if(current === el) hide(); else show(el); });
+      el.addEventListener('keydown', function(e){
+        if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); if(current === el) hide(); else show(el); }
+        else if(e.key === 'Escape') hide();
+      });
+    });
+    document.addEventListener('click', function(e){ if(current && !e.target.closest('.gloss')) hide(); });
+    document.addEventListener('keydown', function(e){ if(e.key === 'Escape') hide(); });
+    window.addEventListener('scroll', function(){ if(current) hide(); }, { passive: true });
+    window.addEventListener('resize', function(){ if(current) hide(); });
+  })();
 
   /* ===== Reveal on scroll (con fallback si no hay IntersectionObserver) ===== */
   var hasIO = 'IntersectionObserver' in window;
