@@ -1,0 +1,1897 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#2a1133">
+<meta name="description" content="Unidad 1 de Economía Política · Cátedra B · FCJS UNL. Introducción a la Economía Política: qué estudia, conocimiento vulgar y científico, el problema económico, las tres preguntas fundamentales, tradición/mando/mercado, la economía como ciencia social, divisiones de la economía y política económica.">
+<meta name="author" content="Cátedra B · Economía Política · FCJS UNL">
+<meta name="keywords" content="economía política, problema económico, conocimiento científico, qué producir cómo producir para quién producir, tradición mando mercado, ciencia social, política económica, Heilbroner, Demarco, Rossetti, Lafferriere, Cátedra B, FCJS, UNL">
+<title>Unidad 1 · Introducción a la Economía Política · Cátedra B · FCJS UNL</title>
+<noscript><style>
+  .reveal, .reveal-left, .reveal-right, .reveal-scale { opacity: 1 !important; transform: none !important; }
+  .tab-panel { display: block !important; }
+  .flip { height: auto !important; }
+  .flip-face { position: static !important; transform: none !important; backface-visibility: visible !important; }
+  .mt-q { display: block !important; }
+  .mt-next, .mt-counter, .mt-progress { display: none !important; }
+</style></noscript>
+<style>
+  /* ════════════════════════════════════════════
+     DESIGN TOKENS (heredados de la serie · Cátedra B)
+     ════════════════════════════════════════════ */
+  :root {
+    --color-primary: #8e44ad;
+    --color-primary-dark: #6c3483;
+    --color-anchor: #4a235a;
+    --color-deepest: #2a1133;
+    --color-soft: #d2b4de;
+    --color-bg-tinted: #fdfbff;
+    --color-bg-gradient-end: #f4f0f7;
+    --color-text-primary: #1a1a1a;
+    --color-text-body: #444444;
+    --color-text-secondary: #555555;
+    --color-text-muted: #666666;
+    --color-text-faint: #888888;
+    --color-border: #eaeaea;
+    --color-border-card: #e0e0e0;
+    --color-border-subtle: #eaddf5;
+    --color-bg-footer: #fbfbfb;
+    --color-gold: #ffd673;
+    --color-win: #2e7d4f;
+    --color-success: #27ae60;
+    --color-blue: #4ca0d8;
+    --color-blue-dark: #1f5d8c;
+    --color-red: #c0392b;
+    --color-red-dark: #7b241c;
+    --font-display: 'Georgia', 'Times New Roman', serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --sidebar-width: 280px;
+    --ease-out-quart: cubic-bezier(.25, 1, .5, 1);
+    --ease-spring: cubic-bezier(.2, .85, .4, 1.4);
+    --ease-pop: cubic-bezier(.2, .85, .4, 1.6);
+    --ease-swift: cubic-bezier(.2, .8, .2, 1);
+  }
+
+  /* ════════ KEYFRAMES ════════ */
+  @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+  @keyframes confetti-fall { 0% { transform: translateY(-20px) rotateZ(0deg); opacity: 1; } 100% { transform: translateY(110vh) rotateZ(720deg); opacity: 0; } }
+  @keyframes nav-now-glow { 0%, 100% { box-shadow: 0 0 8px rgba(210,180,222,0.4); } 50% { box-shadow: 0 0 16px rgba(210,180,222,0.9); } }
+  @keyframes scroll-top-bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+  @keyframes badge-pop { 0% { transform: scale(0); } 60% { transform: scale(1.25); } 100% { transform: scale(1); } }
+
+  /* Reveal on scroll */
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity .45s ease-out, transform .45s ease-out; }
+  .reveal.in-view { opacity: 1; transform: translateY(0); }
+  .reveal-left { opacity: 0; transform: translateX(-18px); transition: opacity .45s ease-out, transform .45s ease-out; }
+  .reveal-left.in-view { opacity: 1; transform: translateX(0); }
+  .reveal-right { opacity: 0; transform: translateX(18px); transition: opacity .45s ease-out, transform .45s ease-out; }
+  .reveal-right.in-view { opacity: 1; transform: translateX(0); }
+  .reveal-scale { opacity: 0; transform: scale(.97); transition: opacity .4s ease-out, transform .4s ease-out; }
+  .reveal-scale.in-view { opacity: 1; transform: scale(1); }
+  .reveal-delay-1 { transition-delay: .08s; }
+  .reveal-delay-2 { transition-delay: .16s; }
+  .reveal-delay-3 { transition-delay: .24s; }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(142,68,173,0.3) transparent;
+  }
+  html::-webkit-scrollbar { width: 6px; }
+  html::-webkit-scrollbar-track { background: transparent; }
+  html::-webkit-scrollbar-thumb { background: rgba(142,68,173,0.28); border-radius: 3px; }
+  html:hover::-webkit-scrollbar-thumb { background: rgba(142,68,173,0.42); }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--color-text-body);
+    background: linear-gradient(180deg, var(--color-bg-tinted), var(--color-bg-gradient-end));
+    line-height: 1.7;
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
+  }
+
+  /* ════════ PROGRESS BAR (top) ════════ */
+  .read-progress {
+    position: fixed; top: 0; left: 0; height: 4px; width: 0%;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-gold));
+    z-index: 3000; transition: width .1s linear;
+  }
+
+  /* ════════ SIDEBAR ════════ */
+  .sidebar {
+    position: fixed; top: 0; left: 0; height: 100vh; width: var(--sidebar-width);
+    background: linear-gradient(180deg, var(--color-deepest), var(--color-anchor));
+    color: #fff; padding: 26px 0 20px; z-index: 2000;
+    display: flex; flex-direction: column;
+    transition: transform .45s var(--ease-out-quart);
+    box-shadow: 4px 0 24px rgba(42,17,51,.18);
+  }
+  .sidebar.collapsed { transform: translateX(-100%); }
+  .sidebar-brand {
+    display: block; text-align: center; font-size: .72rem; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--color-soft); margin-bottom: 10px; font-weight: 700;
+  }
+  .sidebar-title-row { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 0 18px; }
+  .sidebar-title { font-family: var(--font-display); font-size: 1.9rem; font-weight: 700; color: #fff; }
+  .sidebar-nav-arrow {
+    width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    background: rgba(255,255,255,.08); color: var(--color-soft); text-decoration: none; font-size: 1rem;
+    border: 1px solid rgba(210,180,222,.25); transition: all .3s;
+  }
+  .sidebar-nav-arrow:hover { background: var(--color-primary); color: #fff; transform: scale(1.1); }
+  .sidebar-nav-arrow.disabled { opacity: .3; pointer-events: none; }
+  .sidebar-subtitle {
+    display: block; text-align: center; font-size: .82rem; color: var(--color-soft);
+    padding: 6px 24px 0; font-style: italic; font-family: var(--font-display);
+  }
+  .sidebar-aula-btn {
+    display: flex; align-items: center; justify-content: center; gap: 7px;
+    margin: 16px 20px 4px; padding: 9px 12px; border-radius: 9px;
+    background: rgba(255,255,255,.06); border: 1px solid rgba(210,180,222,.22);
+    color: var(--color-soft); text-decoration: none; font-size: .78rem; font-weight: 600;
+    letter-spacing: .3px; transition: all .3s;
+  }
+  .sidebar-aula-btn:hover { background: var(--color-primary); color: #fff; border-color: var(--color-primary); }
+  .sidebar-progress { padding: 14px 22px 6px; }
+  .sidebar-progress-track { height: 6px; border-radius: 4px; background: rgba(255,255,255,.1); overflow: hidden; }
+  .sidebar-progress-fill { height: 100%; width: 0%; border-radius: 4px; background: linear-gradient(90deg, var(--color-soft), var(--color-gold)); transition: width .4s var(--ease-out-quart); }
+  .sidebar-progress-label { font-size: .68rem; letter-spacing: 1px; text-transform: uppercase; color: var(--color-soft); margin-top: 7px; text-align: center; opacity: .85; }
+  .sidebar-nav { flex: 1; overflow-y: auto; padding: 12px 14px 0; scrollbar-width: thin; scrollbar-color: rgba(210,180,222,.3) transparent; }
+  .sidebar-nav::-webkit-scrollbar { width: 5px; }
+  .sidebar-nav::-webkit-scrollbar-thumb { background: rgba(210,180,222,.3); border-radius: 3px; }
+  .section-title {
+    display: flex; align-items: center; gap: 11px; padding: 9px 12px; margin-bottom: 3px;
+    border-radius: 8px; text-decoration: none; color: rgba(255,255,255,.72);
+    font-size: .84rem; transition: all .25s; position: relative; border-left: 2px solid transparent;
+  }
+  .section-title .st-num {
+    font-family: var(--font-display); font-size: .8rem; font-weight: 700; color: var(--color-soft);
+    min-width: 20px; text-align: center; opacity: .8;
+  }
+  .section-title:hover { background: rgba(255,255,255,.07); color: #fff; }
+  .section-title.active { background: rgba(142,68,173,.35); color: #fff; border-left-color: var(--color-gold); }
+  .section-title.active .st-num { color: var(--color-gold); opacity: 1; }
+  .section-title.visited .st-num::after { content: "✓"; color: var(--color-success); font-family: var(--font-body); margin-left: 2px; font-size: .7rem; }
+  .sidebar-foot { padding: 12px 22px 0; text-align: center; font-size: .66rem; color: rgba(210,180,222,.6); letter-spacing: .5px; }
+  .sidebar-collapse {
+    position: absolute; top: 14px; right: 12px; width: 26px; height: 26px; border-radius: 6px;
+    background: rgba(255,255,255,.08); border: none; color: var(--color-soft); cursor: pointer;
+    display: flex; align-items: center; justify-content: center; font-size: 1rem; transition: all .3s;
+  }
+  .sidebar-collapse:hover { background: var(--color-primary); color: #fff; }
+  .sidebar-backdrop { display: none; }
+  .sidebar-expand {
+    position: fixed; top: 16px; left: 16px; z-index: 1900; width: 46px; height: 46px; border-radius: 12px;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-anchor)); border: none; color: #fff;
+    cursor: pointer; display: none; align-items: center; justify-content: center; font-size: 1.3rem;
+    box-shadow: 0 6px 18px rgba(42,17,51,.45); animation: nav-now-glow 2.6s ease-in-out infinite;
+  }
+  .sidebar.collapsed ~ .sidebar-expand { display: flex; }
+
+  /* ════════ MAIN LAYOUT ════════ */
+  .main { margin-left: var(--sidebar-width); transition: margin-left .45s var(--ease-out-quart); }
+  .sidebar.collapsed ~ .main { margin-left: 0; }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 0 26px; }
+
+  /* ════════ HERO ════════ */
+  .hero {
+    position: relative; overflow: hidden; color: #fff;
+    background: linear-gradient(150deg, var(--color-deepest) 0%, var(--color-anchor) 45%, var(--color-primary-dark) 100%);
+    padding: 92px 26px 76px;
+  }
+  /* Fondo de RED (nodos + conexiones) · sutil para no competir con el texto */
+  .hero-net {
+    position: absolute; inset: -40px; width: calc(100% + 80px); height: calc(100% + 80px);
+    pointer-events: none; opacity: .8; animation: netdrift 26s ease-in-out infinite;
+  }
+  @keyframes netdrift { 0%,100% { transform: translate(0,0); } 50% { transform: translate(-18px,-12px); } }
+  .hero-net .net-line { stroke: rgba(210,180,222,.09); stroke-width: 1; }
+  .hero-net .net-line.hot { stroke: rgba(255,214,115,.12); }
+  .hero-net .net-node { fill: rgba(210,180,222,.38); }
+  .hero-net .net-node.gold { fill: rgba(255,214,115,.5); }
+  .hero-net .net-node.blue { fill: rgba(76,160,216,.42); }
+  .hero-net .net-pulse { animation: netpulse 3.6s ease-in-out infinite; }
+  .hero-net .np2 { animation-delay: .6s; } .hero-net .np3 { animation-delay: 1.2s; }
+  .hero-net .np4 { animation-delay: 1.8s; } .hero-net .np5 { animation-delay: 2.4s; }
+  .hero-net .np6 { animation-delay: 3s; }
+  @keyframes netpulse { 0%,100% { opacity: .22; r: 2; } 50% { opacity: .7; r: 4.5; } }
+  @media (prefers-reduced-motion: reduce) { .hero-net { animation: none; } .hero-net .net-pulse { animation: none; } }
+  .hero-glow { position: absolute; border-radius: 50%; filter: blur(70px); pointer-events: none; }
+  .hero-glow.g1 { width: 340px; height: 340px; background: rgba(142,68,173,.5); top: -80px; right: -60px; }
+  .hero-glow.g2 { width: 260px; height: 260px; background: rgba(76,160,216,.28); bottom: -70px; left: -40px; }
+  .hero-inner { position: relative; max-width: 860px; margin: 0 auto; z-index: 2; }
+  .hero-tag {
+    display: inline-block; font-size: .74rem; letter-spacing: 2.5px; text-transform: uppercase;
+    color: var(--color-soft); background: rgba(255,255,255,.07); border: 1px solid rgba(210,180,222,.3);
+    padding: 7px 15px; border-radius: 999px; margin-bottom: 24px; font-weight: 600;
+  }
+  .hero h1 { font-family: var(--font-display); font-size: clamp(2.3rem, 6vw, 3.7rem); line-height: 1.08; font-weight: 700; margin-bottom: 22px; letter-spacing: -.5px; }
+  .hero h1 em { font-style: italic; color: var(--color-gold); }
+  .hero-lead { font-size: clamp(1rem, 2.3vw, 1.15rem); color: rgba(255,255,255,.9); max-width: 680px; line-height: 1.7; }
+  .hero-lead em { color: var(--color-gold); font-style: italic; }
+
+  .hero-chips-head { display: flex; align-items: center; gap: 12px; margin-top: 34px; margin-bottom: 12px; }
+  .hero-chips-eyebrow { font-size: .68rem; letter-spacing: 2px; text-transform: uppercase; color: var(--color-soft); font-weight: 700; white-space: nowrap; }
+  .hero-chips-thread { flex: 1; height: 1px; background: linear-gradient(90deg, rgba(210,180,222,.5), rgba(210,180,222,0)); }
+  .hero-chips { display: flex; flex-wrap: wrap; gap: 9px; }
+  .hero-chip {
+    display: inline-flex; align-items: center; gap: 7px; font-size: .78rem; font-weight: 600;
+    color: #fff; background: rgba(255,255,255,.06); border: 1px solid rgba(210,180,222,.22);
+    padding: 6px 13px; border-radius: 999px;
+  }
+  .hero-chip-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--color-gold); }
+  .hero-chip.c2 .hero-chip-dot { background: var(--color-blue); }
+  .hero-chip.c3 .hero-chip-dot { background: var(--color-red); }
+  .hero-chip.c4 .hero-chip-dot { background: var(--color-success); }
+
+  .hero-ficha { margin-top: 36px; background: rgba(255,255,255,.05); border: 1px solid rgba(210,180,222,.2); border-radius: 16px; padding: 22px 24px; backdrop-filter: blur(4px); }
+  .hero-ficha-eyebrow { font-size: .66rem; letter-spacing: 2px; text-transform: uppercase; color: var(--color-soft); font-weight: 700; }
+  .hero-meta { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 16px; }
+  .hero-meta-item { display: flex; flex-direction: column; gap: 4px; }
+  .hero-meta-item .lbl { font-size: .66rem; letter-spacing: 1px; text-transform: uppercase; color: var(--color-soft); }
+  .hero-meta-item .val { font-size: .92rem; color: #fff; font-weight: 600; }
+  @media (max-width: 680px) { .hero-meta { grid-template-columns: repeat(2, 1fr); } }
+
+  /* Scroll cue */
+  .hero-cue { display: flex; flex-direction: column; align-items: center; gap: 6px; margin-top: 40px; color: var(--color-soft); font-size: .72rem; letter-spacing: 1.5px; text-transform: uppercase; animation: float 2.6s ease-in-out infinite; }
+  .hero-cue svg { width: 22px; height: 22px; }
+
+  /* ════════ SECTIONS ════════ */
+  .seccion { padding: 62px 0 12px; scroll-margin-top: 20px; }
+  .sec-eyebrow {
+    display: inline-flex; align-items: center; gap: 9px; font-size: .72rem; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--color-primary); font-weight: 700; margin-bottom: 14px;
+  }
+  .sec-eyebrow .sec-eyebrow-num {
+    display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px;
+    border-radius: 8px; background: linear-gradient(135deg, var(--color-primary), var(--color-anchor));
+    color: #fff; font-family: var(--font-display); font-size: .82rem; font-weight: 700;
+  }
+  .seccion h2 { font-family: var(--font-display); font-size: clamp(1.7rem, 4.2vw, 2.5rem); line-height: 1.15; color: var(--color-deepest); font-weight: 700; margin-bottom: 8px; letter-spacing: -.4px; }
+  .seccion h2 .acento { color: var(--color-primary); font-style: italic; }
+  .seccion h3 { font-family: var(--font-display); font-size: 1.42rem; color: var(--color-anchor); margin: 34px 0 12px; font-weight: 700; }
+  .seccion p { margin-bottom: 16px; color: var(--color-text-body); }
+  .seccion p .hl, .comp-body .hl, .hl { background: linear-gradient(180deg, transparent 62%, rgba(255,214,115,.5) 62%); font-weight: 600; color: var(--color-deepest); padding: 0 2px; }
+  .lead-p { font-size: 1.12rem; color: var(--color-text-secondary); line-height: 1.7; }
+  .divider-flourish { display: flex; align-items: center; justify-content: center; gap: 14px; margin: 4px 0 26px; }
+  .divider-flourish::before, .divider-flourish::after { content: ""; height: 1px; width: 60px; background: linear-gradient(90deg, transparent, var(--color-soft)); }
+  .divider-flourish span { color: var(--color-primary); font-size: 1.1rem; }
+
+  /* ════════ CALLOUTS ════════ */
+  .callout {
+    position: relative; margin: 24px 0; padding: 20px 22px 20px 56px; border-radius: 14px;
+    background: #fff; border: 1px solid var(--color-border); box-shadow: 0 6px 22px rgba(74,35,90,.05);
+  }
+  .callout::before {
+    content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 5px; border-radius: 14px 0 0 14px;
+    background: var(--color-primary);
+  }
+  .callout-icon {
+    position: absolute; left: 16px; top: 20px; width: 28px; height: 28px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center; font-size: 1rem; color: #fff;
+    background: var(--color-primary); flex-shrink: 0;
+  }
+  .callout h4 { font-family: var(--font-body); font-size: .78rem; text-transform: uppercase; letter-spacing: 1.4px; color: var(--color-primary-dark); margin-bottom: 6px; font-weight: 700; }
+  .callout p { margin-bottom: 0; font-size: .96rem; color: var(--color-text-secondary); }
+  .callout.tip::before { background: var(--color-blue); } .callout.tip .callout-icon { background: var(--color-blue); } .callout.tip h4 { color: var(--color-blue-dark); }
+  .callout.warn::before { background: var(--color-red); } .callout.warn .callout-icon { background: var(--color-red); } .callout.warn h4 { color: var(--color-red-dark); }
+  .callout.key::before { background: var(--color-gold); } .callout.key .callout-icon { background: linear-gradient(135deg, var(--color-gold), #e6a532); color: #5a3d00; } .callout.key h4 { color: #8a6400; }
+
+  /* Definition strip */
+  .defstrip {
+    margin: 22px 0; padding: 24px 26px; border-radius: 16px; text-align: center;
+    background: linear-gradient(135deg, rgba(142,68,173,.06), rgba(76,160,216,.05));
+    border: 1px dashed var(--color-border-subtle);
+  }
+  .defstrip .def-term { font-family: var(--font-display); font-size: 1.35rem; color: var(--color-primary-dark); font-weight: 700; margin-bottom: 6px; }
+  .defstrip .def-body { font-size: 1.02rem; color: var(--color-text-secondary); line-height: 1.65; max-width: 640px; margin: 0 auto; }
+  .defstrip .def-body strong { color: var(--color-deepest); }
+  .defstrip .def-source { display: block; margin-top: 12px; font-size: .74rem; text-transform: uppercase; letter-spacing: 1.2px; color: var(--color-text-faint); }
+
+  /* ════════ REFLEXIÓN / PAUSA ════════ */
+  .pausa {
+    margin: 28px 0; padding: 24px 26px; border-radius: 16px; position: relative;
+    background: linear-gradient(135deg, var(--color-deepest), var(--color-anchor)); color: #fff; overflow: hidden;
+  }
+  .pausa::after { content: "?"; position: absolute; right: 18px; bottom: -18px; font-family: var(--font-display); font-size: 8rem; color: rgba(255,255,255,.06); font-weight: 700; line-height: 1; }
+  .pausa-tag { display: inline-flex; align-items: center; gap: 8px; font-size: .7rem; letter-spacing: 2px; text-transform: uppercase; color: var(--color-gold); font-weight: 700; margin-bottom: 10px; }
+  .pausa h4 { font-family: var(--font-display); font-size: 1.3rem; color: #fff; margin-bottom: 8px; font-weight: 700; position: relative; z-index: 2; }
+  .pausa p { color: rgba(255,255,255,.86); margin-bottom: 0; font-size: .98rem; position: relative; z-index: 2; }
+
+  /* ════════ CARD GRID ════════ */
+  .cardgrid { display: grid; gap: 18px; margin: 26px 0; }
+  .cardgrid.c2 { grid-template-columns: repeat(2, 1fr); }
+  .cardgrid.c3 { grid-template-columns: repeat(3, 1fr); }
+  @media (max-width: 720px) { .cardgrid.c2, .cardgrid.c3 { grid-template-columns: 1fr; } }
+  .ecard {
+    --a: var(--color-primary); --b: var(--color-anchor);
+    position: relative; background: #fff; border: 1px solid var(--color-border); border-radius: 14px;
+    padding: 24px 22px 20px; overflow: hidden; box-shadow: 0 6px 22px rgba(74,35,90,.06);
+    transition: transform .45s var(--ease-out-quart), box-shadow .45s var(--ease-out-quart);
+  }
+  .ecard::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--a), var(--b)); }
+  .ecard:hover { transform: translateY(-4px); box-shadow: 0 16px 34px rgba(74,35,90,.12); }
+  .ecard.v2 { --a: var(--color-blue); --b: var(--color-blue-dark); }
+  .ecard.v3 { --a: var(--color-red); --b: var(--color-red-dark); }
+  .ecard.v4 { --a: var(--color-success); --b: #1e6d3e; }
+  .ecard-ico { width: 46px; height: 46px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; background: linear-gradient(135deg, var(--a), var(--b)); color: #fff; margin-bottom: 14px; }
+  .ecard h4 { font-family: var(--font-display); font-size: 1.2rem; color: var(--color-deepest); margin-bottom: 8px; font-weight: 700; }
+  .ecard p { font-size: .92rem; color: var(--color-text-secondary); line-height: 1.6; margin-bottom: 0; }
+  .ecard .ecard-num { position: absolute; top: 16px; right: 18px; font-family: var(--font-display); font-size: 2.4rem; line-height: 1; font-weight: 700; color: rgba(142,68,173,.12); }
+  .ecard.v2 .ecard-num { color: rgba(76,160,216,.14); }
+  .ecard.v3 .ecard-num { color: rgba(192,57,43,.12); }
+  .ecard.v4 .ecard-num { color: rgba(39,174,96,.14); }
+
+  /* ════════ COMPARISON TABLE ════════ */
+  .comp-table { margin: 26px 0; border-radius: 14px; overflow: hidden; border: 1px solid var(--color-border); box-shadow: 0 6px 22px rgba(74,35,90,.05); }
+  .comp-row { display: grid; grid-template-columns: 1fr 1fr; }
+  .comp-head { background: var(--color-deepest); color: #fff; }
+  .comp-head > div { padding: 14px 18px; font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; }
+  .comp-head > div:first-child { border-right: 1px solid rgba(255,255,255,.12); }
+  .comp-head .badge-v { display: inline-block; font-family: var(--font-body); font-size: .64rem; letter-spacing: 1px; text-transform: uppercase; background: rgba(192,57,43,.8); padding: 2px 8px; border-radius: 6px; margin-left: 8px; vertical-align: middle; }
+  .comp-head .badge-c { background: rgba(39,174,96,.85); }
+  .comp-body .comp-row:nth-child(odd) { background: #fff; }
+  .comp-body .comp-row:nth-child(even) { background: var(--color-bg-tinted); }
+  .comp-body > .comp-row > div { padding: 13px 18px; font-size: .92rem; color: var(--color-text-secondary); }
+  .comp-body > .comp-row > div:first-child { border-right: 1px solid var(--color-border); }
+  @media (max-width: 620px) { .comp-body > .comp-row > div { font-size: .85rem; padding: 11px 12px; } .comp-head > div { font-size: .92rem; padding: 12px; } }
+
+  /* ════════ TABS (tradición/mando/mercado) ════════ */
+  .tabs { margin: 26px 0; }
+  .tab-btns { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 0; }
+  .tab-btn {
+    flex: 1; min-width: 140px; padding: 14px 16px; border: 1px solid var(--color-border-card);
+    background: #fff; border-radius: 12px 12px 0 0; cursor: pointer; font-family: var(--font-body);
+    font-size: .95rem; font-weight: 600; color: var(--color-text-muted); transition: all .3s; position: relative;
+    display: flex; flex-direction: column; align-items: center; gap: 4px; border-bottom: none;
+  }
+  .tab-btn .tab-ico { font-size: 1.5rem; }
+  .tab-btn:hover { color: var(--color-primary); background: var(--color-bg-tinted); }
+  .tab-btn.active { color: #fff; background: linear-gradient(135deg, var(--color-primary), var(--color-anchor)); border-color: var(--color-primary); }
+  .tab-panels { border: 1px solid var(--color-border-card); border-radius: 0 0 14px 14px; background: #fff; padding: 26px 24px; box-shadow: 0 6px 22px rgba(74,35,90,.05); }
+  .tab-panel { display: none; animation: fadeIn .4s ease; }
+  .tab-panel.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  .tab-panel h4 { font-family: var(--font-display); font-size: 1.35rem; color: var(--color-deepest); margin-bottom: 6px; }
+  .tab-panel .tp-sub { font-size: .8rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--color-primary); font-weight: 700; margin-bottom: 14px; }
+  .tab-panel p { font-size: .96rem; color: var(--color-text-secondary); }
+  .tp-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+  .tp-tag { font-size: .78rem; background: var(--color-bg-tinted); border: 1px solid var(--color-border-subtle); color: var(--color-primary-dark); padding: 5px 12px; border-radius: 999px; font-weight: 600; }
+
+  /* ════════ FLIP CARDS ════════ */
+  .flipgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 26px 0; }
+  @media (max-width: 720px) { .flipgrid { grid-template-columns: 1fr; } }
+  .flip { perspective: 1200px; height: 232px; cursor: pointer; }
+  .flip-inner { position: relative; width: 100%; height: 100%; transition: transform .6s var(--ease-spring); transform-style: preserve-3d; }
+  .flip.flipped .flip-inner { transform: rotateY(180deg); }
+  .flip-face { position: absolute; inset: 0; backface-visibility: hidden; border-radius: 14px; padding: 22px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; overflow: hidden; }
+  .flip-front { background: linear-gradient(150deg, var(--color-primary), var(--color-anchor)); color: #fff; }
+  .flip-front .flip-q { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; }
+  .flip-front .flip-hint { font-size: .72rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--color-soft); margin-top: 12px; display: flex; align-items: center; gap: 6px; }
+  .flip-back { background: #fff; border: 1px solid var(--color-border-card); color: var(--color-text-secondary); transform: rotateY(180deg); padding: 20px 18px; overflow-y: auto; }
+  .flip-back .flip-a-title { font-family: var(--font-display); font-size: 1.02rem; color: var(--color-primary-dark); font-weight: 700; margin-bottom: 7px; }
+  .flip-back p { font-size: .84rem; line-height: 1.5; margin: 0; }
+  .flip.v2 .flip-front { background: linear-gradient(150deg, var(--color-blue), var(--color-blue-dark)); }
+  .flip.v3 .flip-front { background: linear-gradient(150deg, var(--color-red), var(--color-red-dark)); }
+
+  /* ════════ DESAFÍOS (tarjetas visibles) ════════ */
+  .desafios-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 26px 0; }
+  @media (max-width: 720px) { .desafios-grid { grid-template-columns: 1fr; } }
+  .desafio {
+    position: relative; background: #fff; border: 1px solid var(--color-border); border-radius: 14px;
+    padding: 20px 22px; box-shadow: 0 6px 20px rgba(74,35,90,.05);
+    transition: transform .4s var(--ease-out-quart), box-shadow .4s var(--ease-out-quart); border-left: 4px solid var(--color-primary);
+  }
+  .desafio:hover { transform: translateY(-3px); box-shadow: 0 14px 30px rgba(74,35,90,.11); }
+  .desafio-head { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+  .desafio-num { display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 10px; background: linear-gradient(135deg, var(--color-primary), var(--color-anchor)); color: #fff; font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; flex-shrink: 0; }
+  .desafio-ico { font-size: 1.5rem; }
+  .desafio h4 { font-family: var(--font-display); font-size: 1.12rem; color: var(--color-deepest); margin-bottom: 7px; font-weight: 700; line-height: 1.25; }
+  .desafio p { font-size: .9rem; color: var(--color-text-secondary); line-height: 1.6; margin: 0; }
+
+  /* ════════ QUIZ ════════ */
+  .quiz {
+    margin: 30px 0; padding: 26px 24px; border-radius: 16px; background: #fff;
+    border: 1px solid var(--color-border-card); box-shadow: 0 8px 28px rgba(74,35,90,.07); position: relative;
+  }
+  .quiz-badge { position: absolute; top: -13px; left: 24px; background: linear-gradient(135deg, var(--color-primary), var(--color-anchor)); color: #fff; font-size: .68rem; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700; padding: 6px 14px; border-radius: 999px; display: flex; align-items: center; gap: 6px; box-shadow: 0 4px 12px rgba(108,52,131,.3); }
+  .quiz-q { font-family: var(--font-display); font-size: 1.22rem; color: var(--color-deepest); margin: 10px 0 18px; font-weight: 700; line-height: 1.4; }
+  .quiz-options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 6px; }
+  .quiz-opt {
+    text-align: left; padding: 14px 16px; border: 1.5px solid var(--color-border-card); border-radius: 11px;
+    background: #fff; cursor: pointer; font-family: var(--font-body); font-size: .96rem; color: var(--color-text-body);
+    transition: all .25s; display: flex; gap: 10px; align-items: flex-start; line-height: 1.5;
+  }
+  .quiz-opt .opt-letter { flex-shrink: 0; width: 24px; height: 24px; border-radius: 7px; background: var(--color-bg-tinted); border: 1px solid var(--color-border-subtle); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: .82rem; color: var(--color-primary-dark); transition: all .25s; }
+  .quiz-opt:hover { border-color: var(--color-primary); background: rgba(142,68,173,.03); }
+  .quiz-opt:hover .opt-letter { background: var(--color-primary); color: #fff; }
+  .quiz-opt.correcta { border-color: var(--color-success); background: rgba(39,174,96,.08); color: #1e6d3e; }
+  .quiz-opt.correcta .opt-letter { background: var(--color-success); color: #fff; border-color: var(--color-success); }
+  .quiz-opt.incorrecta { border-color: var(--color-red); background: rgba(192,57,43,.06); color: #8b2c20; }
+  .quiz-opt.incorrecta .opt-letter { background: var(--color-red); color: #fff; border-color: var(--color-red); }
+  .quiz-opt.disabled { cursor: default; opacity: .78; }
+  .quiz-feedback { display: none; margin-top: 14px; padding: 14px 16px; border-radius: 11px; font-size: .92rem; line-height: 1.6; }
+  .quiz-feedback.ok { background: rgba(39,174,96,.08); color: #1e6d3e; border-left: 3px solid var(--color-success); }
+  .quiz-feedback.fail { background: rgba(192,57,43,.06); color: #8b2c20; border-left: 3px solid var(--color-red); }
+  .quiz-feedback.show { display: block; animation: fadeIn .35s ease; }
+
+  /* ════════ MINI-TEST FINAL ════════ */
+  .minitest { margin: 26px 0 34px; padding: 30px 26px 26px; border-radius: 16px; background: #fff; border: 1px solid var(--color-border-card); box-shadow: 0 8px 28px rgba(74,35,90,.07); position: relative; }
+  .mt-progress { height: 6px; border-radius: 4px; background: var(--color-bg-gradient-end); overflow: hidden; margin: 8px 0 10px; }
+  .mt-progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--color-primary), var(--color-gold)); transition: width .4s var(--ease-out-quart); border-radius: 4px; }
+  .mt-counter { font-size: .72rem; letter-spacing: 1.6px; text-transform: uppercase; color: var(--color-primary-dark); font-weight: 700; margin-bottom: 14px; }
+  .mt-q { display: none; }
+  .mt-q.active { display: block; animation: fadeIn .35s ease; }
+  .mt-next { display: none; margin-top: 16px; padding: 11px 24px; border: none; border-radius: 10px; background: linear-gradient(135deg, var(--color-primary), var(--color-anchor)); color: #fff; font-family: var(--font-body); font-weight: 600; font-size: .92rem; cursor: pointer; transition: transform .25s, box-shadow .25s; }
+  .mt-next.show { display: inline-flex; animation: fadeIn .3s ease; }
+  .mt-next:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(108,52,131,.32); }
+  .mt-result { display: none; text-align: center; padding: 12px 0 4px; }
+  .mt-result.show { display: block; animation: fadeIn .4s ease; }
+  .mt-score { font-family: var(--font-display); font-size: 3.2rem; font-weight: 700; line-height: 1.1; background: linear-gradient(135deg, var(--color-primary), var(--color-anchor)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .mt-msg { color: var(--color-text-secondary); font-size: .98rem; margin: 10px auto 18px; max-width: 480px; line-height: 1.6; }
+  .mt-retry { background: none; border: 1.5px solid var(--color-primary); color: var(--color-primary-dark); padding: 9px 22px; border-radius: 999px; cursor: pointer; font-family: var(--font-body); font-weight: 600; font-size: .88rem; transition: all .3s; }
+  .mt-retry:hover { background: var(--color-primary); color: #fff; }
+
+  /* ════════ DIAGRAM (SVG boxes) ════════ */
+  .diagram-card { margin: 26px 0; padding: 26px 22px; border-radius: 16px; background: #fff; border: 1px solid var(--color-border); box-shadow: 0 6px 22px rgba(74,35,90,.05); text-align: center; }
+  .diagram-card svg { max-width: 100%; height: auto; }
+  .diagram-cap { font-size: .82rem; color: var(--color-text-faint); margin-top: 14px; font-style: italic; font-family: var(--font-display); }
+
+  /* Three questions interactive */
+  .q3grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 26px 0; }
+  @media (max-width: 720px) { .q3grid { grid-template-columns: 1fr; } }
+  .q3 { border-radius: 16px; padding: 24px 20px; color: #fff; position: relative; overflow: hidden; text-align: center; }
+  .q3.a { background: linear-gradient(150deg, var(--color-primary), var(--color-anchor)); }
+  .q3.b { background: linear-gradient(150deg, var(--color-blue), var(--color-blue-dark)); }
+  .q3.c { background: linear-gradient(150deg, var(--color-red), var(--color-red-dark)); }
+  .q3-big { font-family: var(--font-display); font-size: 2.4rem; font-weight: 700; opacity: .3; position: absolute; top: 8px; right: 14px; }
+  .q3-icon { font-size: 2.2rem; margin-bottom: 8px; }
+  .q3 h4 { font-family: var(--font-display); font-size: 1.35rem; margin-bottom: 8px; }
+  .q3 p { font-size: .88rem; color: rgba(255,255,255,.9); margin: 0; }
+
+  /* ════════ SÍNTESIS / IDEAS ════════ */
+  .ideas { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin: 26px 0; }
+  @media (max-width: 700px) { .ideas { grid-template-columns: 1fr; } }
+  .idea { display: flex; gap: 16px; padding: 22px 20px; background: #fff; border: 1px solid var(--color-border); border-radius: 14px; box-shadow: 0 6px 20px rgba(74,35,90,.05); }
+  .idea-num { font-family: var(--font-display); font-size: 2.5rem; line-height: 1; font-weight: 700; background: linear-gradient(135deg, var(--color-primary), var(--color-anchor)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; flex-shrink: 0; }
+  .idea h4 { font-family: var(--font-display); font-size: 1.15rem; color: var(--color-deepest); margin-bottom: 6px; font-weight: 700; }
+  .idea p { font-size: .9rem; color: var(--color-text-secondary); margin: 0; line-height: 1.6; }
+
+  /* ════════ CHECKLIST (self-test) ════════ */
+  .checklist { margin: 26px 0; display: flex; flex-direction: column; gap: 10px; }
+  .check-item { display: flex; align-items: flex-start; gap: 14px; padding: 15px 18px; background: #fff; border: 1px solid var(--color-border-card); border-radius: 12px; cursor: pointer; transition: all .3s; }
+  .check-item:hover { border-color: var(--color-primary); }
+  .check-item.done { background: rgba(39,174,96,.05); border-color: var(--color-success); }
+  .check-box { flex-shrink: 0; width: 26px; height: 26px; border-radius: 8px; border: 2px solid var(--color-border-card); display: flex; align-items: center; justify-content: center; transition: all .3s; color: transparent; font-weight: 700; }
+  .check-item.done .check-box { background: var(--color-success); border-color: var(--color-success); color: #fff; animation: badge-pop .4s var(--ease-pop); }
+  .check-item .check-txt { font-size: .95rem; color: var(--color-text-body); line-height: 1.5; }
+  .check-item.done .check-txt { color: var(--color-text-muted); }
+  .check-progress { text-align: center; font-size: .85rem; color: var(--color-primary-dark); font-weight: 600; margin-top: 4px; }
+
+  /* ════════ OBJETIVOS ════════ */
+  .obj-section { margin: 40px 0 0; padding: 34px 30px; border-radius: 20px; background: linear-gradient(135deg, rgba(142,68,173,.05), rgba(76,160,216,.04)); border: 1px solid var(--color-border-subtle); }
+  .obj-section h2 { font-family: var(--font-display); font-size: 1.7rem; color: var(--color-deepest); margin-bottom: 6px; }
+  .obj-section h2 em { color: var(--color-primary); font-style: italic; }
+  .obj-list { list-style: none; margin-top: 20px; display: flex; flex-direction: column; gap: 12px; }
+  .obj-list li { display: flex; gap: 14px; align-items: flex-start; font-size: .96rem; color: var(--color-text-secondary); }
+  .obj-list li .obj-check { flex-shrink: 0; width: 26px; height: 26px; border-radius: 8px; background: linear-gradient(135deg, var(--color-primary), var(--color-anchor)); color: #fff; display: flex; align-items: center; justify-content: center; font-size: .82rem; margin-top: 1px; }
+  .obj-list li strong { color: var(--color-deepest); }
+
+  /* ════════ FUENTES ════════ */
+  .fuentes { margin: 44px 0 0; }
+  .fuentes h2 { font-family: var(--font-display); font-size: 1.7rem; color: var(--color-deepest); margin-bottom: 6px; }
+  .fuentes h2 em { color: var(--color-primary); font-style: italic; }
+  .fuente { display: flex; gap: 16px; padding: 18px 20px; background: #fff; border: 1px solid var(--color-border); border-radius: 12px; margin-top: 14px; box-shadow: 0 4px 16px rgba(74,35,90,.04); }
+  .fuente-tag { flex-shrink: 0; width: 44px; height: 44px; border-radius: 10px; background: linear-gradient(135deg, var(--color-anchor), var(--color-primary)); color: #fff; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; }
+  .fuente-info .f-title { font-family: var(--font-display); font-size: 1.05rem; color: var(--color-deepest); font-weight: 700; }
+  .fuente-info .f-meta { font-size: .85rem; color: var(--color-text-muted); margin-top: 3px; }
+  .fuente-info .f-use { font-size: .82rem; color: var(--color-primary-dark); margin-top: 7px; font-style: italic; }
+
+  /* ════════ DOC END ════════ */
+  .docend { margin-top: 60px; background: linear-gradient(150deg, var(--color-deepest), var(--color-anchor)); color: #fff; padding: 48px 26px; }
+  .docend-inner { max-width: 860px; margin: 0 auto; }
+  .docend-nav { display: flex; gap: 14px; flex-wrap: wrap; }
+  .docend-link { flex: 1; min-width: 200px; display: flex; align-items: center; gap: 14px; padding: 18px 20px; background: rgba(255,255,255,.06); border: 1px solid rgba(210,180,222,.2); border-radius: 14px; text-decoration: none; color: #fff; transition: all .3s; }
+  .docend-link:hover { background: rgba(142,68,173,.35); border-color: var(--color-soft); transform: translateY(-3px); }
+  .docend-link.disabled { opacity: .4; pointer-events: none; }
+  .docend-link .del-arrow { font-size: 1.6rem; color: var(--color-soft); }
+  .docend-link .del-lbl { display: block; font-size: .66rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--color-soft); margin-bottom: 3px; }
+  .docend-link .del-title { display: block; font-family: var(--font-display); font-size: 1.05rem; font-weight: 700; }
+  .docend-team { display: grid; grid-template-columns: 1.1fr 1fr; gap: 26px; margin-top: 36px; padding-top: 30px; border-top: 1px solid rgba(210,180,222,.15); }
+  @media (max-width: 720px) { .docend-team { grid-template-columns: 1fr; gap: 22px; } }
+  .docend-brand-line { display: flex; align-items: center; gap: 9px; margin-bottom: 12px; }
+  .docend-brand-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--color-gold); box-shadow: 0 0 8px rgba(255,214,115,.6); }
+  .docend-brand-line span:last-child { font-size: .72rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--color-soft); font-weight: 700; }
+  .docend-team-brand h4 { font-family: var(--font-display); font-size: 1.35rem; font-weight: 700; color: #fff; margin-bottom: 10px; line-height: 1.25; }
+  .docend-team-brand h4 em { font-style: italic; color: var(--color-gold); }
+  .docend-team-brand p { font-size: .86rem; color: var(--color-soft); line-height: 1.6; }
+  .docend-profes { background: rgba(255,255,255,.05); border: 1px solid rgba(210,180,222,.18); border-radius: 16px; padding: 20px 22px; }
+  .docend-profes-tag { display: inline-block; font-size: .66rem; letter-spacing: 1.8px; text-transform: uppercase; color: var(--color-gold); font-weight: 700; margin-bottom: 14px; }
+  .docend-profes ul { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+  .docend-profes li { display: flex; flex-direction: column; gap: 2px; padding-left: 14px; border-left: 2px solid rgba(210,180,222,.35); }
+  .docend-profes li strong { font-family: var(--font-display); font-size: 1.02rem; color: #fff; font-weight: 700; }
+  .docend-profes li span { font-size: .8rem; color: var(--color-soft); }
+  .docend-revisado { display: flex; align-items: center; gap: 9px; margin-top: 16px; padding-top: 14px; border-top: 1px dashed rgba(210,180,222,.22); font-size: .8rem; color: var(--color-soft); font-style: italic; }
+  .docend-revisado-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--color-success); box-shadow: 0 0 8px rgba(39,174,96,.6); flex-shrink: 0; }
+  /* Aviso visible · bibliografía obligatoria */
+  .aviso-biblio { display: flex; gap: 16px; align-items: flex-start; margin: 40px 0 8px; padding: 22px 24px; border-radius: 16px; background: linear-gradient(135deg, rgba(39,174,96,.08), rgba(46,125,79,.05)); border: 1.5px solid rgba(39,174,96,.32); border-left: 5px solid var(--color-success); box-shadow: 0 6px 22px rgba(30,109,62,.08); }
+  .aviso-biblio-ico { font-size: 1.6rem; flex-shrink: 0; line-height: 1.2; }
+  .aviso-biblio strong { display: block; font-family: var(--font-display); font-size: 1.12rem; color: #1e6d3e; line-height: 1.3; margin-bottom: 6px; }
+  .aviso-biblio p { font-size: .92rem; color: var(--color-text-secondary); line-height: 1.6; margin: 0; }
+  /* Disclaimer sutil · uso de IA */
+  .docend-ia { font-size: .66rem; color: rgba(210,180,222,.42); letter-spacing: .2px; margin-top: 10px; font-style: italic; }
+  .docend-foot { text-align: center; margin-top: 30px; padding-top: 24px; border-top: 1px solid rgba(210,180,222,.15); }
+  .docend-meta { font-size: .8rem; color: var(--color-soft); }
+  .docend-date { font-size: .74rem; color: rgba(210,180,222,.65); margin-top: 4px; font-family: var(--font-display); font-style: italic; }
+  .docend-reset { margin-top: 18px; background: none; border: 1px solid rgba(210,180,222,.3); color: var(--color-soft); padding: 8px 18px; border-radius: 999px; cursor: pointer; font-size: .78rem; font-family: var(--font-body); transition: all .3s; }
+  .docend-reset:hover { background: rgba(192,57,43,.3); border-color: var(--color-red); color: #fff; }
+
+  /* ════════ SCROLL TOP ════════ */
+  .scroll-top { position: fixed; bottom: 24px; right: 24px; width: 48px; height: 48px; border-radius: 14px; background: linear-gradient(135deg, var(--color-primary), var(--color-anchor)); color: #fff; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; box-shadow: 0 8px 22px rgba(108,52,131,.4); opacity: 0; pointer-events: none; transition: all .4s; z-index: 1500; }
+  .scroll-top.show { opacity: 1; pointer-events: auto; }
+  .scroll-top:hover { animation: scroll-top-bounce .6s ease infinite; }
+
+  /* ════════ ACHIEVEMENT TOAST ════════ */
+  .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(120px); background: linear-gradient(135deg, var(--color-deepest), var(--color-anchor)); color: #fff; padding: 14px 22px; border-radius: 14px; box-shadow: 0 12px 32px rgba(42,17,51,.5); display: flex; align-items: center; gap: 12px; z-index: 4000; transition: transform .5s var(--ease-pop); max-width: 90vw; }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+  .toast .toast-ico { font-size: 1.5rem; }
+  .toast .toast-txt strong { display: block; font-family: var(--font-display); font-size: .98rem; }
+  .toast .toast-txt span { font-size: .8rem; color: var(--color-soft); }
+
+  @media (max-width: 1040px) {
+    .sidebar { transform: translateX(-100%); }
+    .sidebar.open { transform: translateX(0); }
+    .main { margin-left: 0; }
+    .sidebar-expand { display: flex; }
+    .sidebar.open ~ .sidebar-expand { display: none; }
+    .sidebar-backdrop { display: block; position: fixed; inset: 0; background: rgba(42,17,51,.5); z-index: 1950; opacity: 0; pointer-events: none; transition: opacity .4s; }
+    .sidebar.open ~ .sidebar-backdrop { opacity: 1; pointer-events: auto; }
+  }
+
+  /* ════════ IMPRESIÓN ════════ */
+  @media print {
+    .sidebar, .sidebar-expand, .sidebar-backdrop, .scroll-top, .toast, .read-progress, .hero-cue, .hero-net, .docend-reset { display: none !important; }
+    .main { margin-left: 0 !important; }
+    body { background: #fff; font-size: 11pt; }
+    .reveal, .reveal-left, .reveal-right, .reveal-scale { opacity: 1 !important; transform: none !important; }
+    .hero { padding: 40px 26px; }
+    .seccion, .quiz, .ecard, .desafio, .callout, .pausa, .defstrip, .idea, .fuente, .aviso-biblio { break-inside: avoid; }
+    .flip { height: auto; }
+    .flip-face { position: static; transform: none; backface-visibility: visible; }
+    .flip-front .flip-hint { display: none; }
+    .tab-panel { display: block !important; border-top: 1px dashed var(--color-border-subtle); padding-top: 14px; margin-top: 14px; }
+    .mt-q { display: block !important; break-inside: avoid; }
+    .mt-next, .mt-retry, .mt-counter, .mt-progress, .mt-result { display: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="read-progress" id="readProgress"></div>
+
+<!-- ════════════ SIDEBAR ════════════ -->
+<aside class="sidebar" id="sidebar">
+  <button class="sidebar-collapse" id="sidebarCollapse" type="button" title="Ocultar panel" aria-label="Ocultar panel">‹</button>
+  <span class="sidebar-brand">Cátedra B</span>
+  <div class="sidebar-title-row">
+    <a href="#" class="sidebar-nav-arrow prev disabled" title="Primera unidad" aria-label="Primera unidad">‹</a>
+    <h2 class="sidebar-title">Unidad 1</h2>
+    <a href="https://nickperot.com/unidad2" class="sidebar-nav-arrow next" title="Ir a Unidad 2" aria-label="Ir a Unidad 2" rel="noopener">›</a>
+  </div>
+  <span class="sidebar-subtitle">Introducción a la Economía Política</span>
+
+  <a href="https://servicios.unl.edu.ar/aulavirtual/fcjs/" class="sidebar-aula-btn" target="_blank" rel="noopener" title="Volver al Aula Virtual">
+    ⌂ Aula Virtual
+  </a>
+
+  <div class="sidebar-progress" aria-label="Progreso de lectura">
+    <div class="sidebar-progress-track"><div class="sidebar-progress-fill" id="sbProgressFill"></div></div>
+    <div class="sidebar-progress-label" id="sbProgressLabel">0% recorrido</div>
+  </div>
+
+  <nav class="sidebar-nav" id="sidebarNav">
+    <a href="#top" class="section-title" data-st="intro"><span class="st-num">★</span><span class="st-text">Portada</span></a>
+    <a href="#sec-1" class="section-title"><span class="st-num">01</span><span class="st-text">¿Qué estudia?</span></a>
+    <a href="#sec-2" class="section-title"><span class="st-num">02</span><span class="st-text">Vulgar vs. científico</span></a>
+    <a href="#sec-3" class="section-title"><span class="st-num">03</span><span class="st-text">El problema económico</span></a>
+    <a href="#sec-4" class="section-title"><span class="st-num">04</span><span class="st-text">Las tres preguntas</span></a>
+    <a href="#sec-5" class="section-title"><span class="st-num">05</span><span class="st-text">Tradición · mando · mercado</span></a>
+    <a href="#sec-6" class="section-title"><span class="st-num">06</span><span class="st-text">Ciencia social</span></a>
+    <a href="#sec-7" class="section-title"><span class="st-num">07</span><span class="st-text">Conceptos de economía</span></a>
+    <a href="#sec-8" class="section-title"><span class="st-num">08</span><span class="st-text">Desafíos metodológicos</span></a>
+    <a href="#sec-9" class="section-title"><span class="st-num">09</span><span class="st-text">Leyes, teorías y modelos</span></a>
+    <a href="#sec-10" class="section-title"><span class="st-num">10</span><span class="st-text">Divisiones de la economía</span></a>
+    <a href="#sec-11" class="section-title"><span class="st-num">11</span><span class="st-text">Política económica</span></a>
+    <a href="#sec-12" class="section-title"><span class="st-num">12</span><span class="st-text">Instrumentos de acción</span></a>
+    <a href="#sec-cierre" class="section-title" data-st="cierre"><span class="st-num">✦</span><span class="st-text">Síntesis y autoevaluación</span></a>
+  </nav>
+
+  <div class="sidebar-foot">Economía Política · FCJS – UNL · 2026</div>
+</aside>
+<div class="sidebar-backdrop" id="sidebarBackdrop" aria-hidden="true"></div>
+<button class="sidebar-expand" id="sidebarExpand" type="button" title="Mostrar panel" aria-label="Mostrar panel">☰</button>
+
+<!-- ════════════ MAIN ════════════ -->
+<div class="main" id="main">
+
+<!-- ═══════ HERO ═══════ -->
+<header class="hero" id="top">
+  <svg class="hero-net" viewBox="0 0 1200 620" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <g>
+      <!-- fila 1 horizontal -->
+      <line class="net-line" x1="80" y1="70" x2="250" y2="50"/>
+      <line class="net-line" x1="250" y1="50" x2="430" y2="95"/>
+      <line class="net-line hot" x1="430" y1="95" x2="610" y2="60"/>
+      <line class="net-line" x1="610" y1="60" x2="790" y2="100"/>
+      <line class="net-line" x1="790" y1="100" x2="970" y2="55"/>
+      <line class="net-line" x1="970" y1="55" x2="1130" y2="90"/>
+      <!-- fila 2 horizontal -->
+      <line class="net-line" x1="150" y1="210" x2="340" y2="180"/>
+      <line class="net-line" x1="340" y1="180" x2="520" y2="230"/>
+      <line class="net-line" x1="520" y1="230" x2="700" y2="190"/>
+      <line class="net-line hot" x1="700" y1="190" x2="880" y2="235"/>
+      <line class="net-line" x1="880" y1="235" x2="1060" y2="195"/>
+      <!-- fila 3 horizontal -->
+      <line class="net-line" x1="90" y1="350" x2="270" y2="330"/>
+      <line class="net-line" x1="270" y1="330" x2="450" y2="375"/>
+      <line class="net-line" x1="450" y1="375" x2="640" y2="340"/>
+      <line class="net-line" x1="640" y1="340" x2="820" y2="380"/>
+      <line class="net-line" x1="820" y1="380" x2="1010" y2="335"/>
+      <line class="net-line" x1="1010" y1="335" x2="1150" y2="370"/>
+      <!-- fila 4 horizontal -->
+      <line class="net-line" x1="200" y1="490" x2="400" y2="470"/>
+      <line class="net-line" x1="400" y1="470" x2="590" y2="515"/>
+      <line class="net-line" x1="590" y1="515" x2="780" y2="480"/>
+      <line class="net-line" x1="780" y1="480" x2="980" y2="510"/>
+      <line class="net-line" x1="980" y1="510" x2="1120" y2="475"/>
+      <!-- fila 1 → fila 2 -->
+      <line class="net-line" x1="80" y1="70" x2="150" y2="210"/>
+      <line class="net-line" x1="250" y1="50" x2="150" y2="210"/>
+      <line class="net-line" x1="250" y1="50" x2="340" y2="180"/>
+      <line class="net-line" x1="430" y1="95" x2="340" y2="180"/>
+      <line class="net-line" x1="430" y1="95" x2="520" y2="230"/>
+      <line class="net-line" x1="610" y1="60" x2="520" y2="230"/>
+      <line class="net-line" x1="610" y1="60" x2="700" y2="190"/>
+      <line class="net-line" x1="790" y1="100" x2="700" y2="190"/>
+      <line class="net-line" x1="790" y1="100" x2="880" y2="235"/>
+      <line class="net-line" x1="970" y1="55" x2="880" y2="235"/>
+      <line class="net-line" x1="970" y1="55" x2="1060" y2="195"/>
+      <line class="net-line" x1="1130" y1="90" x2="1060" y2="195"/>
+      <!-- fila 2 → fila 3 -->
+      <line class="net-line" x1="150" y1="210" x2="90" y2="350"/>
+      <line class="net-line" x1="150" y1="210" x2="270" y2="330"/>
+      <line class="net-line" x1="340" y1="180" x2="270" y2="330"/>
+      <line class="net-line" x1="340" y1="180" x2="450" y2="375"/>
+      <line class="net-line" x1="520" y1="230" x2="450" y2="375"/>
+      <line class="net-line" x1="520" y1="230" x2="640" y2="340"/>
+      <line class="net-line" x1="700" y1="190" x2="640" y2="340"/>
+      <line class="net-line" x1="700" y1="190" x2="820" y2="380"/>
+      <line class="net-line" x1="880" y1="235" x2="820" y2="380"/>
+      <line class="net-line" x1="880" y1="235" x2="1010" y2="335"/>
+      <line class="net-line" x1="1060" y1="195" x2="1010" y2="335"/>
+      <line class="net-line" x1="1060" y1="195" x2="1150" y2="370"/>
+      <!-- fila 3 → fila 4 -->
+      <line class="net-line" x1="90" y1="350" x2="200" y2="490"/>
+      <line class="net-line" x1="270" y1="330" x2="200" y2="490"/>
+      <line class="net-line" x1="270" y1="330" x2="400" y2="470"/>
+      <line class="net-line" x1="450" y1="375" x2="400" y2="470"/>
+      <line class="net-line" x1="450" y1="375" x2="590" y2="515"/>
+      <line class="net-line" x1="640" y1="340" x2="590" y2="515"/>
+      <line class="net-line" x1="640" y1="340" x2="780" y2="480"/>
+      <line class="net-line" x1="820" y1="380" x2="780" y2="480"/>
+      <line class="net-line" x1="820" y1="380" x2="980" y2="510"/>
+      <line class="net-line" x1="1010" y1="335" x2="980" y2="510"/>
+      <line class="net-line" x1="1010" y1="335" x2="1120" y2="475"/>
+    </g>
+    <g>
+      <circle class="net-node" cx="80" cy="70" r="2.5"/>
+      <circle class="net-node gold net-pulse" cx="250" cy="50" r="2.5"/>
+      <circle class="net-node" cx="430" cy="95" r="2.5"/>
+      <circle class="net-node blue net-pulse np4" cx="610" cy="60" r="2.5"/>
+      <circle class="net-node" cx="790" cy="100" r="2.5"/>
+      <circle class="net-node net-pulse np2" cx="970" cy="55" r="2.5"/>
+      <circle class="net-node" cx="1130" cy="90" r="2.5"/>
+      <circle class="net-node net-pulse np5" cx="150" cy="210" r="2.5"/>
+      <circle class="net-node" cx="340" cy="180" r="2.5"/>
+      <circle class="net-node gold net-pulse np3" cx="520" cy="230" r="2.5"/>
+      <circle class="net-node" cx="700" cy="190" r="2.5"/>
+      <circle class="net-node blue" cx="880" cy="235" r="2.5"/>
+      <circle class="net-node net-pulse np6" cx="1060" cy="195" r="2.5"/>
+      <circle class="net-node" cx="90" cy="350" r="2.5"/>
+      <circle class="net-node net-pulse np2" cx="270" cy="330" r="2.5"/>
+      <circle class="net-node" cx="450" cy="375" r="2.5"/>
+      <circle class="net-node gold" cx="640" cy="340" r="2.5"/>
+      <circle class="net-node net-pulse np4" cx="820" cy="380" r="2.5"/>
+      <circle class="net-node" cx="1010" cy="335" r="2.5"/>
+      <circle class="net-node blue net-pulse np3" cx="1150" cy="370" r="2.5"/>
+      <circle class="net-node" cx="200" cy="490" r="2.5"/>
+      <circle class="net-node net-pulse np6" cx="400" cy="470" r="2.5"/>
+      <circle class="net-node gold" cx="590" cy="515" r="2.5"/>
+      <circle class="net-node net-pulse np5" cx="780" cy="480" r="2.5"/>
+      <circle class="net-node" cx="980" cy="510" r="2.5"/>
+      <circle class="net-node blue" cx="1120" cy="475" r="2.5"/>
+    </g>
+  </svg>
+  <div class="hero-glow g1"></div>
+  <div class="hero-glow g2"></div>
+  <div class="hero-inner">
+    <span class="hero-tag">Unidad 1 · Introducción a la Economía Política</span>
+    <h1>Les damos la bienvenida a <em>Economía Política</em></h1>
+    <p class="hero-lead">Antes de estudiar mercados, precios o inflación, hace falta responder preguntas más básicas: <em>¿qué estudia esta ciencia?</em>, ¿por qué las cosas se producen y se reparten como se reparten?, ¿por qué frente a un mismo problema hay explicaciones tan distintas? Esta unidad es el punto de partida: las herramientas para <em>mirar la realidad económica con ojos científicos</em>.</p>
+
+    <div class="hero-chips-head">
+      <span class="hero-chips-eyebrow">Voces de la unidad</span>
+      <span class="hero-chips-thread"></span>
+    </div>
+    <div class="hero-chips">
+      <span class="hero-chip"><span class="hero-chip-dot"></span>Heilbroner</span>
+      <span class="hero-chip c2"><span class="hero-chip-dot"></span>Demarco</span>
+      <span class="hero-chip c3"><span class="hero-chip-dot"></span>Rossetti</span>
+      <span class="hero-chip c4"><span class="hero-chip-dot"></span>Lafferriere</span>
+    </div>
+
+    <div class="hero-ficha">
+      <span class="hero-ficha-eyebrow">Ficha de la unidad</span>
+      <div class="hero-meta">
+        <div class="hero-meta-item"><span class="lbl">Materia</span><span class="val">Economía Política</span></div>
+        <div class="hero-meta-item"><span class="lbl">Cátedra</span><span class="val">B</span></div>
+        <div class="hero-meta-item"><span class="lbl">Nivel</span><span class="val">Primer año</span></div>
+        <div class="hero-meta-item"><span class="lbl">Lectura</span><span class="val">⏱ 35–45 min</span></div>
+      </div>
+    </div>
+
+    <div class="hero-cue">
+      <span>Empezá a bajar</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- ═══════ SEC 1 · ¿Qué estudia? ═══════ -->
+  <section class="seccion reveal" id="sec-1">
+    <span class="sec-eyebrow"><span class="sec-eyebrow-num">1</span> Conceptos fundamentales</span>
+    <h2>¿Qué estudia la <span class="acento">Economía Política</span>?</h2>
+    <div class="divider-flourish"><span>◆</span></div>
+    <p class="lead-p">La Economía Política aborda <strong>tres dimensiones</strong> de los fenómenos económicos que observamos todos los días en la sociedad. No se queda solo en describir lo que pasa: quiere entender <span class="hl">por qué pasa</span> y qué se puede hacer al respecto.</p>
+
+    <div class="q3grid">
+      <div class="q3 a reveal-scale">
+        <span class="q3-big">1</span>
+        <div class="q3-icon">👁️</div>
+        <h4>Problemas</h4>
+        <p>Desocupación, inflación, salarios bajos, pobreza: los fenómenos <em>visibles</em> que afectan la vida cotidiana.</p>
+      </div>
+      <div class="q3 b reveal-scale reveal-delay-1">
+        <span class="q3-big">2</span>
+        <div class="q3-icon">🔍</div>
+        <h4>Causas</h4>
+        <p>El análisis profundo de los factores estructurales y coyunturales que <em>generan</em> esos problemas.</p>
+      </div>
+      <div class="q3 c reveal-scale reveal-delay-2">
+        <span class="q3-big">3</span>
+        <div class="q3-icon">🛠️</div>
+        <h4>Soluciones</h4>
+        <p>Las propuestas —diversas— para resolverlos, según distintos enfoques teóricos y marcos interpretativos.</p>
+      </div>
+    </div>
+
+    <p>Fijate en una cosa importante: sobre los <strong>problemas</strong> suele haber acuerdo (nadie duda de que existe la desocupación o la inflación). Pero sobre las <strong>causas</strong> y las <strong>soluciones</strong> las opiniones se multiplican y hasta se contradicen. Como escribe Lafferriere, si se hiciera una encuesta, muchos coincidirían en señalar los mismos problemas, pero al preguntar por sus causas «las respuestas serán mucho más diversas y menos convergentes».</p>
+
+    <div class="callout key">
+      <div class="callout-icon">★</div>
+      <h4>Idea clave</h4>
+      <p>Los problemas económicos son <strong>manifestaciones de hechos más complejos</strong> que no son totalmente visibles. Solo percibimos lo que está en la superficie; lo que está más abajo —el origen— no se ve a simple vista. Por eso hace falta la ciencia.</p>
+    </div>
+  </section>
+
+  <!-- ═══════ SEC 2 · Vulgar vs científico ═══════ -->
+  <section class="seccion reveal" id="sec-2">
+    <span class="sec-eyebrow"><span class="sec-eyebrow-num">2</span> Formas de conocer</span>
+    <h2>Del conocimiento vulgar al <span class="acento">conocimiento científico</span></h2>
+    <div class="divider-flourish"><span>◆</span></div>
+    <p class="lead-p">«La realidad siempre es esquiva al conocimiento humano; la apariencia es contradictoria con la esencia de los fenómenos» (Frigerio). Podemos <em>ver</em> a un desocupado o percibir un aumento de precios. Pero el <strong>origen</strong> de esos problemas no se presenta ante nuestros ojos con la misma claridad.</p>
+
+    <div class="comp-table reveal-scale">
+      <div class="comp-row comp-head">
+        <div>Conocimiento vulgar <span class="badge-v">superficial</span></div>
+        <div>Conocimiento científico <span class="badge-v badge-c">profundo</span></div>
+      </div>
+      <div class="comp-body">
+        <div class="comp-row">
+          <div>Se basa en la percepción directa, la experiencia personal y las opiniones cotidianas.</div>
+          <div>Busca la esencia de los fenómenos <span class="hl">mediante métodos rigurosos y sistemáticos</span>.</div>
+        </div>
+        <div class="comp-row">
+          <div>Sus explicaciones son diversas, contradictorias y no se verifican.</div>
+          <div>Procura <span class="hl">verificación empírica</span> y <span class="hl">establece relaciones causales</span>.</div>
+        </div>
+        <div class="comp-row">
+          <div>Se queda en lo que está «a la vista de todos».</div>
+          <div><span class="hl">Desentraña</span> lo que subyace debajo de la superficie.</div>
+        </div>
+        <div class="comp-row">
+          <div>No formula leyes ni construye teorías.</div>
+          <div><span class="hl">Formula leyes</span> y <span class="hl">construye teorías</span> con capacidad explicativa y predictiva.</div>
+        </div>
+      </div>
+    </div>
+
+    <p>Como afirma Frigerio, «precisamente esas dificultades para entender la realidad son las que afirman la necesidad de la ciencia». Si queremos <span class="hl">entender —y no solo percibir superficialmente—</span> la realidad, debemos acudir a un camino más riguroso: el procedimiento científico.</p>
+
+    <div class="pausa">
+      <span class="pausa-tag">◆ Pausa para pensar</span>
+      <h4>Dos personas, dos explicaciones</h4>
+      <p>Frente a la suba de precios en el kiosco de la esquina, una persona dice «es la codicia de los comerciantes» y otra dice «es que emitieron mucho dinero». Las dos vieron lo mismo. ¿Por qué llegan a explicaciones distintas? Guardá tu respuesta: la vamos a retomar en los <em>Desafíos metodológicos</em>.</p>
+    </div>
+  </section>
+
+  <!-- ═══════ SEC 3 · El problema económico ═══════ -->
+  <section class="seccion reveal" id="sec-3">
+    <span class="sec-eyebrow"><span class="sec-eyebrow-num">3</span> Heilbroner · el punto de partida</span>
+    <h2>El <span class="acento">problema económico</span></h2>
+    <div class="divider-flourish"><span>◆</span></div>
+    <p class="lead-p">«No solo de pan vive el hombre»… pero es evidente que <strong>sin pan no puede vivir</strong>. Para Robert Heilbroner, toda sociedad enfrenta un desafío básico e ineludible: garantizar su propia supervivencia material.</p>
+
+    <p>El punto de partida es la <strong>escasez</strong>: la naturaleza es «avara» y los bienes no nos son dados directamente. Pero atención —Heilbroner señala algo sorprendente— <span class="hl">el ser humano, y no la naturaleza, es la fuente de la mayoría de nuestros problemas económicos</span>. La escasez no depende solo de lo que la naturaleza rinde, sino también de los deseos siempre crecientes de la «naturaleza humana».</p>
+
+    <div class="callout">
+      <div class="callout-icon">⚙️</div>
+      <h4>Somos ricos como sociedad, no como individuos</h4>
+      <p>Cuanto más rica es una nación, más <strong>dependemos</strong> unos de otros. Casi nadie cultiva su comida ni fabrica su ropa: sobrevivimos gracias a una enorme <em>división del trabajo</em>. Nuestra abundancia está asegurada solo mientras funcione la cooperación organizada de millones de personas.</p>
+    </div>
+
+    <p>De aquí Heilbroner deriva que toda sociedad debe resolver <strong>dos tareas</strong> distintas pero relacionadas. Tocá cada tarjeta para ver el desafío oculto que encierra cada una:</p>
+
+    <div class="flipgrid" style="grid-template-columns: repeat(2,1fr);">
+      <div class="flip" tabindex="0">
+        <div class="flip-inner">
+          <div class="flip-face flip-front">
+            <span class="flip-q">1 · Producción</span>
+            <span class="flip-hint">↻ Tocá para ver</span>
+          </div>
+          <div class="flip-face flip-back">
+            <div class="flip-a-title">Movilizar el esfuerzo</div>
+            <p>No basta la técnica: hay que <strong>organizar instituciones</strong> que movilicen la energía humana hacia fines productivos <em>y</em> la asignen a las labores adecuadas. En 1933, EE.UU. tenía 13 millones de desocupados dispuestos a trabajar: faltaba el mecanismo social, no la naturaleza.</p>
+          </div>
+        </div>
+      </div>
+      <div class="flip v2" tabindex="0">
+        <div class="flip-inner">
+          <div class="flip-face flip-front">
+            <span class="flip-q">2 · Distribución</span>
+            <span class="flip-hint">↻ Tocá para ver</span>
+          </div>
+          <div class="flip-face flip-back">
+            <div class="flip-a-title">Repartir para continuar</div>
+            <p>Hay que distribuir lo producido de modo que se mantenga la <strong>capacidad</strong> y la <strong>voluntad</strong> de la gente para seguir trabajando. Una mala solución no siempre colapsa la economía: se manifiesta como intranquilidad social, política o incluso revoluciones.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="defstrip">
+      <div class="def-term">El problema básico de la economía</div>
+      <div class="def-body">Cómo las sociedades <strong>forjan y mantienen los vínculos</strong> que garantizan su supervivencia material, resolviendo las tareas gemelas de la <strong>producción</strong> y la <strong>distribución</strong>.</div>
+      <span class="def-source">Heilbroner · La formación de la sociedad económica</span>
+    </div>
+  </section>
+
+  <!-- ═══════ SEC 4 · Las tres preguntas ═══════ -->
+  <section class="seccion reveal" id="sec-4">
+    <span class="sec-eyebrow"><span class="sec-eyebrow-num">4</span> El problema, en tres preguntas</span>
+    <h2>Qué, cómo y <span class="acento">para quién</span> producir</h2>
+    <div class="divider-flourish"><span>◆</span></div>
+    <p class="lead-p">Existe una coincidencia bastante generalizada en la ciencia económica: <strong>toda economía concreta debe responder a tres grandes interrogantes</strong>. Según cómo esté organizado un sistema económico, los resolverá de una manera u otra.</p>
+
+    <div class="q3grid">
+      <div class="q3 a reveal-scale">
+        <span class="q3-big">?</span>
+        <div class="q3-icon">📦</div>
+        <h4>¿Qué producir?</h4>
+        <p>Qué tipo de bienes y servicios, y en qué cantidades.</p>
+      </div>
+      <div class="q3 b reveal-scale reveal-delay-1">
+        <span class="q3-big">?</span>
+        <div class="q3-icon">🏭</div>
+        <h4>¿Cómo producir?</h4>
+        <p>Con qué técnicas y qué recursos productivos.</p>
+      </div>
+      <div class="q3 c reveal-scale reveal-delay-2">
+        <span class="q3-big">?</span>
+        <div class="q3-icon">🤝</div>
+        <h4>¿Para quién producir?</h4>
+        <p>Cómo se distribuye entre los miembros la riqueza generada.</p>
+      </div>
+    </div>
+
+    <p>La pregunta «para quién producir» —la <strong>distribución</strong>— es, para la mirada de la cátedra, la más decisiva. Lo que interesa al analizar un sistema económico concreto es si logra una producción indispensable y una distribución adecuada, «de manera que logre una mejora persistente en la calidad de vida de su población, <span class="hl">sin poner en peligro la existencia de recursos para las generaciones futuras</span>».</p>
+
+    <div class="callout tip">
+      <div class="callout-icon">💡</div>
+      <h4>Conectá con lo anterior</h4>
+      <p>Estas tres preguntas son la versión ordenada de las dos tareas de Heilbroner: <strong>qué</strong> y <strong>cómo</strong> producir resuelven la <em>producción</em>; <strong>para quién</strong> producir resuelve la <em>distribución</em>.</p>
+    </div>
+  </section>
+
+  <!-- ═══════ SEC 5 · Tradición, mando, mercado ═══════ -->
+  <section class="seccion reveal" id="sec-5">
+    <span class="sec-eyebrow"><span class="sec-eyebrow-num">5</span> Las tres soluciones históricas</span>
+    <h2>Tradición, mando y <span class="acento">mercado</span></h2>
+    <div class="divider-flourish"><span>◆</span></div>
+    <p class="lead-p">A lo largo de la historia, la humanidad no ha resuelto los problemas de producción y distribución sino a través de <strong>tres caminos</strong>. Ya sea por separado o combinados entre sí, permiten a cualquier sociedad enfrentar su desafío económico. Explorá cada uno:</p>
+
+    <div class="tabs" id="tabsMercado">
+      <div class="tab-btns" role="tablist" aria-label="Las tres soluciones al problema económico">
+        <button class="tab-btn active" data-tab="trad" role="tab" aria-selected="true"><span class="tab-ico">🏛️</span>Tradición</button>
+        <button class="tab-btn" data-tab="mando" role="tab" aria-selected="false"><span class="tab-ico">👑</span>Mando</button>
+        <button class="tab-btn" data-tab="merc" role="tab" aria-selected="false"><span class="tab-ico">⚖️</span>Mercado</button>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel active" data-panel="trad" role="tabpanel">
+          <h4>La tradición</h4>
+          <div class="tp-sub">La solución más antigua</div>
+          <p>La producción y la distribución se basan en <strong>procedimientos heredados del pasado</strong>, consolidados por ensayo y error y sostenidos por la ley, la costumbre y la creencia. El oficio pasa de padres a hijos; en el antiguo Egipto —cuenta Adam Smith— cambiar de ocupación era «el más abominable sacrilegio».</p>
+          <p><strong>Su límite:</strong> la solución es <em>estática</em>. Resuelve el problema económico, pero a expensas del <strong>progreso económico</strong>: una aldea puede repetir hoy las rutinas de hace mil años.</p>
+          <div class="tp-tags"><span class="tp-tag">Herencia</span><span class="tp-tag">Costumbre</span><span class="tp-tag">Estabilidad</span><span class="tp-tag">Sin cambio interno</span></div>
+        </div>
+        <div class="tab-panel" data-panel="mando" role="tabpanel">
+          <h4>El mando</h4>
+          <div class="tp-sub">La autoridad impuesta</div>
+          <p>El sistema se organiza según las <strong>órdenes de una autoridad económica</strong>. Los faraones movilizaron el esfuerzo para construir las pirámides; lo mismo la Gran Muralla china o, hoy, la planificación centralizada. En nuestra sociedad aparece en forma más moderada: los <em>impuestos</em> son mando económico.</p>
+          <p><strong>Su fuerza:</strong> a diferencia de la tradición, el mando <em>no</em> retarda el cambio: es «el instrumento más poderoso para reforzar la transformación económica». Puede ser democrático o totalitario: en sí mismo no merece elogio ni censura.</p>
+          <div class="tp-tags"><span class="tp-tag">Autoridad</span><span class="tp-tag">Planificación</span><span class="tp-tag">Órdenes</span><span class="tp-tag">Transformación</span></div>
+        </div>
+        <div class="tab-panel" data-panel="merc" role="tabpanel">
+          <h4>El mercado</h4>
+          <div class="tp-sub">Nadie manda, y sin embargo funciona</div>
+          <p>La sociedad se organiza a base del <strong>mercado</strong>: no se le asigna a nadie una tarea; cada persona decide por sí misma qué hacer, y aun así todos los empleos se cubren y la producción se equilibra. «Nadie dirige el mercado —se maneja él solo». Resulta la solución más <em>paradójica</em> y también la más interesante para quien estudia economía.</p>
+          <p>Es la que exige más conocimiento económico: en la tradición y el mando entendemos rápido cómo funciona todo; ante una sociedad de mercado, «nos encontramos perdidos si carecemos de conocimientos económicos».</p>
+          <div class="tp-tags"><span class="tp-tag">Oferta y demanda</span><span class="tp-tag">Precios</span><span class="tp-tag">Libre intercambio</span><span class="tp-tag">Descentralizado</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout warn">
+      <div class="callout-icon">!</div>
+      <h4>Ninguna sociedad es «pura»</h4>
+      <p>Ninguna sociedad moderna carece de elementos de <strong>mando</strong>, ni está desprovista de la influencia de la <strong>tradición</strong>. Los tres mecanismos conviven y se combinan: lo que cambia es cuál predomina.</p>
+    </div>
+
+    <div class="defstrip">
+      <div class="def-term">¿Qué es el mercado?</div>
+      <div class="def-body">El mercado es una <strong>abstracción</strong> donde se enfrentan <strong>compradores (demandantes)</strong> y <strong>vendedores (oferentes)</strong>, determinando el <strong>precio</strong> y la <strong>cantidad</strong> de lo que se intercambia.</div>
+      <span class="def-source">Cátedra B · Unidad 1</span>
+    </div>
+
+    <!-- QUIZ 1 -->
+    <div class="quiz" data-quiz="q1">
+      <span class="quiz-badge">✓ Quiz</span>
+      <p class="quiz-q">Una familia cultiva una huerta para su propio consumo y reparte la cosecha según lo que cada integrante hizo siempre. ¿Qué mecanismo predomina en esa distribución?</p>
+      <div class="quiz-options">
+        <button class="quiz-opt" data-correct="false" data-fb="No es lo más adecuado. En el mercado, la distribución se resuelve por el intercambio y los precios; acá no hay ni venta ni precios: se reparte según la costumbre.">
+          <span class="opt-letter">A</span><span>El mercado, porque hay producción y reparto.</span></button>
+        <button class="quiz-opt" data-correct="false" data-fb="No. El mando implica una autoridad que da órdenes y planifica. En la huerta familiar no hay una autoridad externa imponiendo el reparto: hay una costumbre compartida.">
+          <span class="opt-letter">B</span><span>El mando, porque alguien decide el reparto.</span></button>
+        <button class="quiz-opt" data-correct="true" data-fb="¡Correcto! Se reparte «según lo que cada integrante hizo siempre»: es una asignación heredada y sostenida por la costumbre. Ese es, exactamente, el mecanismo de la tradición.">
+          <span class="opt-letter">C</span><span>La tradición, porque el reparto sigue la costumbre.</span></button>
+      </div>
+      <div class="quiz-feedback" data-fb-for="q1"></div>
+    </div>
+  </section>
+
+  <!-- ═══════ SEC 6 · Ciencia social ═══════ -->
+  <section class="seccion reveal" id="sec-6">
+    <span class="sec-eyebrow"><span class="sec-eyebrow-num">6</span> Demarco · el objeto de estudio</span>
+    <h2>La economía como <span class="acento">ciencia social</span></h2>
+    <div class="divider-flourish"><span>◆</span></div>
+    <p class="lead-p">El ser humano se relaciona con la <strong>naturaleza</strong> y con <strong>otros seres humanos</strong>. De ahí surgen dos grandes campos de la ciencia: las ciencias naturales (que estudian la relación con la naturaleza y sus leyes) y las <span class="hl">ciencias sociales</span>, que tienen por objeto a la persona en cuanto ser social.</p>
+
+    <p>Para Demarco, la Economía Política es una disciplina cuyo objeto de estudio es el <strong>sistema económico</strong>, entendido como un <em>subsistema</em> del sistema social. ¿Qué es un sistema? Un conjunto de elementos <strong>más</strong> un patrón de relaciones que le da estructura. Un conjunto de elementos sueltos no es un sistema; lo es cuando se les incorpora una red de relaciones.</p>
+
+    <div class="defstrip">
+      <div class="def-term">El sistema económico</div>
+      <div class="def-body">Conjunto coherente de <strong>instituciones jurídicas y sociales</strong> donde se organizan medios técnicos para alcanzar <strong>objetivos económicos</strong>. Lo económico es parte <strong>indisoluble</strong> del sistema social mayor.</div>
+      <span class="def-source">Cátedra B · Unidad 1</span>
+    </div>
+
+    <div class="diagram-card reveal-scale">
+      <svg viewBox="0 0 460 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="El sistema social y sus subsistemas entrelazados">
+        <defs>
+          <radialGradient id="socGrad" cx="50%" cy="45%" r="70%">
+            <stop offset="0%" stop-color="#f7f0fb"/>
+            <stop offset="100%" stop-color="#efe4f6"/>
+          </radialGradient>
+        </defs>
+        <rect x="20" y="20" width="420" height="200" rx="18" fill="url(#socGrad)" stroke="#d2b4de" stroke-width="1.5"/>
+        <text x="230" y="42" text-anchor="middle" font-family="Georgia,serif" font-size="15" fill="#4a235a" font-weight="bold">Sistema social</text>
+        <!-- overlapping circles -->
+        <circle cx="175" cy="140" r="66" fill="rgba(76,160,216,.28)" stroke="#4ca0d8" stroke-width="1.5"/>
+        <circle cx="285" cy="140" r="66" fill="rgba(192,57,43,.20)" stroke="#c0392b" stroke-width="1.5"/>
+        <circle cx="230" cy="150" r="72" fill="rgba(142,68,173,.30)" stroke="#8e44ad" stroke-width="2"/>
+        <text x="150" y="120" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="#1f5d8c" font-weight="700">Político</text>
+        <text x="312" y="120" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="#7b241c" font-weight="700">Cultural</text>
+        <text x="230" y="175" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" fill="#6c3483" font-weight="700">Económico</text>
+        <text x="230" y="192" text-anchor="middle" font-family="Inter,sans-serif" font-size="9.5" fill="#6c3483">(subsistema)</text>
+      </svg>
+      <div class="diagram-cap">Los subsistemas no son compartimentos estancos: se superponen y entrelazan como una red. Solo se «aíslan» con fines analíticos, mediante la <strong>abstracción</strong>.</div>
+    </div>
+
+    <p>Lo económico es una <strong>dimensión</strong> —no una parte separada— del sistema social. Está tan estrechamente ligado a lo político, lo cultural y lo jurídico que es imposible separar los problemas económicos «sin desvirtuar la naturaleza misma de los fenómenos sociales». La ciencia política y la economía no estudian realidades distintas: <span class="hl">observan la misma realidad desde ópticas diferentes</span> —una desde las relaciones de poder, la otra desde la producción y distribución de bienes.</p>
+
+    <div class="callout warn">
+      <div class="callout-icon">!</div>
+      <h4>Robinson Crusoe no le interesa a la economía</h4>
+      <p>La «economía» de un individuo aislado con la naturaleza carece de interés. Los problemas de la Economía Política aparecen <strong>cuando las personas deben organizarse para producir</strong> lo que la comunidad requiere, y surgen relaciones de cooperación, competencia o conflicto. Por eso es una ciencia <em>social</em>.</p>
+    </div>
+  </section>
+
+  <!-- ═══════ SEC 7 · Conceptos de economía ═══════ -->
+  <section class="seccion reveal" id="sec-7">
+    <span class="sec-eyebrow"><span class="sec-eyebrow-num">7</span> Distintos conceptos</span>
+    <h2>¿Existe un solo <span class="acento">concepto de economía</span>?</h2>
+    <div class="divider-flourish"><span>◆</span></div>
+    <p class="lead-p">No. Existen <strong>múltiples definiciones</strong>. La interpretación de las relaciones económicas varía según la ideología y la perspectiva de quien investiga, y eso da origen a distintas teorías. Mirá tres miradas históricas:</p>
+
+    <div class="cardgrid c3">
+      <div class="ecard reveal-scale">
+        <div class="ecard-ico">📘</div>
+        <h4>Escuela Clásica</h4>
+        <p>«Ciencia que estudia las leyes que explican la producción y distribución de la riqueza.»</p>
+        <p style="margin-top:10px;font-style:italic;color:var(--color-text-faint);font-size:.82rem;">Adam Smith · David Ricardo</p>
+      </div>
+      <div class="ecard v2 reveal-scale reveal-delay-1">
+        <div class="ecard-ico">📗</div>
+        <h4>Visión Neoclásica</h4>
+        <p>«Ciencia que estudia la conducta humana como relación entre objetivos y medios escasos.»</p>
+        <p style="margin-top:10px;font-style:italic;color:var(--color-text-faint);font-size:.82rem;">Lionel Robbins</p>
+      </div>
+      <div class="ecard v3 reveal-scale reveal-delay-2">
+        <div class="ecard-ico">📕</div>
+        <h4>Enfoque Marxista</h4>
+        <p>«Ciencia de las leyes sociales que rigen la producción y distribución de medios materiales.»</p>
+        <p style="margin-top:10px;font-style:italic;color:var(--color-text-faint);font-size:.82rem;">Oskar Lange</p>
+      </div>
+    </div>
+
+    <p>La cátedra toma partido. Para Lafferriere, definir la economía como «la manera en que los hombres utilizan recursos escasos para satisfacer necesidades ilimitadas» (Samuelson) o como la relación «entre fines y medios» (Robbins) no delimita bien su objeto: la confunde con la <em>tecnología</em> o la vuelve la ciencia de cualquier conducta humana. En cambio, la cátedra pone el acento en el <strong>proceso productivo</strong> como centro y en el carácter <strong>social</strong> de la disciplina.</p>
+
+    <div class="defstrip">
+      <div class="def-term">Definición adoptada por la cátedra</div>
+      <div class="def-body">La <strong>Economía Política</strong> es la ciencia social que estudia las <strong>relaciones económicas</strong> que establecen las personas para <strong>producir y distribuir</strong> bienes destinados a satisfacer necesidades, y las <strong>leyes científicas</strong> que rigen esos fenómenos.</div>
+      <span class="def-source">Cátedra B · a partir de Lafferriere y Frigerio</span>
+    </div>
+
+    <p style="text-align:center;color:var(--color-text-muted);font-size:.92rem;">Su objeto de estudio incluye: empresas y organizaciones productivas · procesos de producción · mecanismos de distribución · funcionamiento del mercado · formación de precios · sistemas económicos.</p>
+
+    <!-- QUIZ 4 -->
+    <div class="quiz" data-quiz="q4">
+      <span class="quiz-badge">✓ Quiz</span>
+      <p class="quiz-q">Para la cátedra, ¿qué distingue a la Economía Política de definiciones como las de Samuelson o Robbins?</p>
+      <div class="quiz-options">
+        <button class="quiz-opt" data-correct="true" data-fb="¡Correcto! La cátedra pone el acento en el carácter social: la economía política estudia las relaciones que establecen las personas entre sí para producir y distribuir, no la relación de las personas con las cosas.">
+          <span class="opt-letter">A</span><span>Que estudia las relaciones sociales que se establecen para producir y distribuir bienes.</span></button>
+        <button class="quiz-opt" data-correct="false" data-fb="No. Estudiar cómo combinar recursos escasos para obtener productos es, según Lafferriere, el objeto de la tecnología, no de la economía política. Esa es justamente la confusión que la cátedra critica en la definición de Samuelson.">
+          <span class="opt-letter">B</span><span>Que estudia cómo combinar recursos escasos para fabricar productos.</span></button>
+        <button class="quiz-opt" data-correct="false" data-fb="No. Esa es la definición de Robbins, que la cátedra critica porque convierte a la economía en la ciencia del comportamiento humano en cualquier campo, desnaturalizando su esencia de ciencia social.">
+          <span class="opt-letter">C</span><span>Que estudia la conducta individual como relación entre fines y medios escasos.</span></button>
+      </div>
+      <div class="quiz-feedback" data-fb-for="q4"></div>
+    </div>
+  </section>
+
+  <!-- ═══════ SEC 8 · Desafíos metodológicos ═══════ -->
+  <section class="seccion reveal" id="sec-8">
+    <span class="sec-eyebrow"><span class="sec-eyebrow-num">8</span> Dificultades del conocimiento</span>
+    <h2>Desafíos <span class="acento">metodológicos</span></h2>
+    <div class="divider-flourish"><span>◆</span></div>
+    <p class="lead-p">¿Por qué, si la economía es una ciencia, hay <strong>varias explicaciones</strong> para un mismo problema? Aquí retomamos la pausa de antes. Conocer a fondo la realidad económica choca con <strong>seis dificultades</strong> propias de las ciencias sociales:</p>
+
+    <div class="desafios-grid">
+      <div class="desafio reveal-scale">
+        <div class="desafio-head"><span class="desafio-num">1</span><span class="desafio-ico">🧪</span></div>
+        <h4>Imposibilidad de experimentación</h4>
+        <p>No existe un «laboratorio económico» donde reproducir un fenómeno en condiciones controladas, aislando un solo factor causal. Sin ese procedimiento contundente para corroborar o descartar hipótesis, pueden coexistir muchas explicaciones, aunque estén en abierta contradicción.</p>
+      </div>
+      <div class="desafio reveal-scale reveal-delay-1">
+        <div class="desafio-head"><span class="desafio-num">2</span><span class="desafio-ico">👤</span></div>
+        <h4>Doble rol de quien investiga</h4>
+        <p>Quien investiga no es solo espectador: es también <strong>protagonista</strong> de la realidad que estudia. Forma parte de lo que observa, por lo que no puede tener una visión totalmente objetiva, por más que se lo proponga.</p>
+      </div>
+      <div class="desafio reveal-scale reveal-delay-2">
+        <div class="desafio-head"><span class="desafio-num">3</span><span class="desafio-ico">🕸️</span></div>
+        <h4>Complejidad de los fenómenos</h4>
+        <p>Lo económico tiene múltiples causas y es parte indisoluble del sistema social. Hay problemas que son económicos en su manifestación, pero tienen origen en factores <strong>extraeconómicos</strong> (políticos, culturales), y viceversa. Además, separar «lo esencial» de «lo secundario» admite criterios distintos.</p>
+      </div>
+      <div class="desafio reveal-scale">
+        <div class="desafio-head"><span class="desafio-num">4</span><span class="desafio-ico">🎭</span></div>
+        <h4>Influencia de la ideología</h4>
+        <p>Quien investiga ve la realidad desde su subjetividad. ¿Se puede ser totalmente objetivo? «En realidad, no es posible nunca»: alguien sin ideología «no tendría capacidad de pensar ni de razonar; sería un objeto». También pesan los <strong>intereses económicos</strong> y el <strong>poder político</strong>.</p>
+      </div>
+      <div class="desafio reveal-scale reveal-delay-1">
+        <div class="desafio-head"><span class="desafio-num">5</span><span class="desafio-ico">🔀</span></div>
+        <h4>Multiplicidad de explicaciones</h4>
+        <p>Un mismo fenómeno admite diferentes interpretaciones según el marco teórico. Como dice Demarco, un mismo fenómeno económico «puede ser explicado mediante más de un modelo». La ciencia no da «la explicación correcta»: busca la <strong>más plausible</strong>.</p>
+      </div>
+      <div class="desafio reveal-scale reveal-delay-2">
+        <div class="desafio-head"><span class="desafio-num">6</span><span class="desafio-ico">🕰️</span></div>
+        <h4>Relatividad histórica y geográfica</h4>
+        <p>Las leyes y teorías económicas son <strong>históricas</strong> y, por lo tanto, cambiantes. La explicación de la inflación argentina de hoy no sirve para EE.UU. ni para la Argentina de hace cincuenta años: son otros contextos.</p>
+      </div>
+    </div>
+
+    <div class="callout tip">
+      <div class="callout-icon">↩</div>
+      <h4>Volvemos a la pausa</h4>
+      <p>Las dos personas del ejemplo dieron explicaciones distintas de la suba de precios porque no se puede experimentar, porque cada quien mira desde su ideología y porque el fenómeno es complejo. <strong>La diversidad de opiniones no es falta de rigor: es una característica propia de las ciencias sociales.</strong></p>
+    </div>
+  </section>
+
+  <!-- ═══════ SEC 9 · Método, leyes, teorías, modelos ═══════ -->
+  <section class="seccion reveal" id="sec-9">
+    <span class="sec-eyebrow"><span class="sec-eyebrow-num">9</span> Cómo trabaja la ciencia económica</span>
+    <h2>Método, leyes, teorías y <span class="acento">modelos</span></h2>
+    <div class="divider-flourish"><span>◆</span></div>
+    <p class="lead-p">Como toda ciencia fáctica, la economía parte de la <strong>observación</strong>, plantea hipótesis, establece leyes explicativas y busca anticipar el comportamiento futuro de los fenómenos. Este es su recorrido:</p>
+
+    <div class="diagram-card reveal-scale" style="text-align:left;">
+      <div style="display:flex;flex-direction:column;gap:0;">
+        <div class="metodo-step" style="display:flex;gap:16px;align-items:flex-start;padding:14px 6px;border-bottom:1px dashed var(--color-border-subtle);">
+          <span style="flex-shrink:0;width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,#8e44ad,#4a235a);color:#fff;display:flex;align-items:center;justify-content:center;font-family:Georgia,serif;font-weight:700;">1</span>
+          <div><strong style="color:var(--color-deepest);">Observación</strong> — mirar la realidad económica y los fenómenos que en ella ocurren.</div>
+        </div>
+        <div class="metodo-step" style="display:flex;gap:16px;align-items:flex-start;padding:14px 6px;border-bottom:1px dashed var(--color-border-subtle);">
+          <span style="flex-shrink:0;width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,#8e44ad,#4a235a);color:#fff;display:flex;align-items:center;justify-content:center;font-family:Georgia,serif;font-weight:700;">2</span>
+          <div><strong style="color:var(--color-deepest);">Abstracción</strong> — aislar los aspectos esenciales y separarlos de los secundarios.</div>
+        </div>
+        <div class="metodo-step" style="display:flex;gap:16px;align-items:flex-start;padding:14px 6px;border-bottom:1px dashed var(--color-border-subtle);">
+          <span style="flex-shrink:0;width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,#8e44ad,#4a235a);color:#fff;display:flex;align-items:center;justify-content:center;font-family:Georgia,serif;font-weight:700;">3</span>
+          <div><strong style="color:var(--color-deepest);">Hipótesis</strong> — formular relaciones causales entre hechos y consecuencias.</div>
+        </div>
+        <div class="metodo-step" style="display:flex;gap:16px;align-items:flex-start;padding:14px 6px;border-bottom:1px dashed var(--color-border-subtle);">
+          <span style="flex-shrink:0;width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,#8e44ad,#4a235a);color:#fff;display:flex;align-items:center;justify-content:center;font-family:Georgia,serif;font-weight:700;">4</span>
+          <div><strong style="color:var(--color-deepest);">Leyes y teorías</strong> — representar la realidad mediante leyes y marcos explicativos.</div>
+        </div>
+        <div class="metodo-step" style="display:flex;gap:16px;align-items:flex-start;padding:14px 6px;">
+          <span style="flex-shrink:0;width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,#ffd673,#e6a532);color:#5a3d00;display:flex;align-items:center;justify-content:center;font-family:Georgia,serif;font-weight:700;">5</span>
+          <div><strong style="color:var(--color-deepest);">Verificación</strong> — contrastar con los hechos reales para comprobar las teorías.</div>
+        </div>
+      </div>
+    </div>
+
+    <h3>Las leyes económicas tienen tres rasgos propios</h3>
+    <p>Ojo: no hablamos de leyes jurídicas (normas que dictan las personas), sino de leyes en sentido <strong>epistemológico</strong> —regularidades que están en los hechos y que la ciencia económica <em>descubre</em>. Tienen la forma «si ocurre <em>p</em>, entonces es probable que <em>q</em>». Tocá cada tarjeta:</p>
+
+    <div class="flipgrid">
+      <div class="flip" tabindex="0">
+        <div class="flip-inner">
+          <div class="flip-face flip-front"><span class="flip-q">Tendenciales</span><span class="flip-hint">↻ Tocá</span></div>
+          <div class="flip-face flip-back"><div class="flip-a-title">No al 100%</div><p>La regularidad se cumple de modo estadístico o tendencial, en la gran mayoría de los casos, pero no en todos. Puede haber una excepción «rara avis», y aun así la ley de la maximización del beneficio rige el conjunto.</p></div>
+        </div>
+      </div>
+      <div class="flip v2" tabindex="0">
+        <div class="flip-inner">
+          <div class="flip-face flip-front"><span class="flip-q">Históricas</span><span class="flip-hint">↻ Tocá</span></div>
+          <div class="flip-face flip-back"><div class="flip-a-title">Tiempo y lugar</div><p>Su validez depende de la época histórica y del lugar geográfico donde se formulan y aplican. Los hechos de la economía «cambian en el tiempo y en el espacio».</p></div>
+        </div>
+      </div>
+      <div class="flip v3" tabindex="0">
+        <div class="flip-inner">
+          <div class="flip-face flip-front"><span class="flip-q">Objetivas</span><span class="flip-hint">↻ Tocá</span></div>
+          <div class="flip-face flip-back"><div class="flip-a-title">Al margen de la voluntad</div><p>Se verifican con independencia de la voluntad humana y de quien investiga. Nos gusten o no, se cumplen: por eso conviene conocerlas para prever tendencias y actuar.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cardgrid c2">
+      <div class="ecard v4">
+        <div class="ecard-ico">🧩</div>
+        <h4>Teorías</h4>
+        <p>Conjuntos de leyes económicas <strong>sistematizadas</strong>, corroboradas y coherentes entre sí. Las leyes de una misma teoría no pueden ser contradictorias.</p>
+      </div>
+      <div class="ecard v2">
+        <div class="ecard-ico">🗺️</div>
+        <h4>Modelos</h4>
+        <p>Simplificaciones de la realidad que permiten analizar fenómenos complejos. Como el <em>mapa</em> de Demarco: un mapa en escala 1:1 sería inútil; el modelo es útil justamente porque simplifica.</p>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-icon">✎</div>
+      <h4>Por qué estudiamos modelos y no «la realidad directa»</h4>
+      <p>Toda ciencia parte de <strong>simplificaciones</strong>. En física se estudia el péndulo suponiendo un hilo sin peso: es irreal, pero útil. La realidad puede simplificarse solo hasta cierto punto —conservando los factores esenciales—. Un mismo fenómeno económico puede explicarse con más de un modelo; por eso la ciencia económica no busca «la» explicación correcta sino la <em>más plausible</em>: la que incorpora más elementos de realismo.</p>
+    </div>
+
+    <!-- QUIZ 2 -->
+    <div class="quiz" data-quiz="q2">
+      <span class="quiz-badge">✓ Quiz</span>
+      <p class="quiz-q">Cuando decimos que las leyes económicas son «tendenciales», queremos decir que…</p>
+      <div class="quiz-options">
+        <button class="quiz-opt" data-correct="true" data-fb="¡Exacto! Se verifican de modo estadístico, en la gran mayoría de los casos, aunque pueda existir alguna excepción (una «rara avis»). No se cumplen en el 100% de los casos.">
+          <span class="opt-letter">A</span><span>se verifican en la gran mayoría de los casos, pero admiten excepciones.</span></button>
+        <button class="quiz-opt" data-correct="false" data-fb="No. Al contrario: las leyes económicas tienen validez histórica y geográfica limitada. No valen «siempre y en cualquier lugar» como la ley de la gravedad.">
+          <span class="opt-letter">B</span><span>valen para cualquier época y cualquier lugar, como la ley de la gravedad.</span></button>
+        <button class="quiz-opt" data-correct="false" data-fb="No. Las leyes económicas no dependen de que a alguien le gusten o no: son objetivas, se cumplen al margen de la voluntad humana. Ese es otro de sus rasgos.">
+          <span class="opt-letter">C</span><span>se cumplen solo si las personas están de acuerdo con ellas.</span></button>
+      </div>
+      <div class="quiz-feedback" data-fb-for="q2"></div>
+    </div>
+  </section>
+
+  <!-- ═══════ SEC 10 · Divisiones ═══════ -->
+  <section class="seccion reveal" id="sec-10">
+    <span class="sec-eyebrow"><span class="sec-eyebrow-num">10</span> Rossetti · el mapa de la economía</span>
+    <h2>Las divisiones principales <span class="acento">de la economía</span></h2>
+    <div class="divider-flourish"><span>◆</span></div>
+    <p class="lead-p">Según la mayoría de los autores, la ciencia económica tiene <strong>tres divisiones principales</strong>, agrupadas en dos grandes campos: la <em>economía positiva</em> (qué es y cómo es) y la <em>economía normativa</em> (cómo debería ser).</p>
+
+    <div class="diagram-card reveal-scale" style="text-align:left;">
+      <div style="margin-bottom:18px;">
+        <div style="font-family:Georgia,serif;font-weight:700;color:#1f5d8c;font-size:1.05rem;margin-bottom:4px;">▸ Economía positiva <span style="font-weight:400;font-style:italic;font-size:.85rem;color:var(--color-text-muted);">— «así es la realidad»</span></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px;">
+          <div style="background:var(--color-bg-tinted);border:1px solid var(--color-border-subtle);border-radius:12px;padding:14px 16px;">
+            <strong style="color:var(--color-deepest);">Economía descriptiva</strong><br><span style="font-size:.88rem;color:var(--color-text-secondary);">Observa, recopila y sistematiza los datos y hechos de la realidad económica.</span>
+          </div>
+          <div style="background:var(--color-bg-tinted);border:1px solid var(--color-border-subtle);border-radius:12px;padding:14px 16px;">
+            <strong style="color:var(--color-deepest);">Teoría económica</strong><br><span style="font-size:.88rem;color:var(--color-text-secondary);">Establece principios, leyes y modelos explicativos sobre los fenómenos. Es la parte central.</span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div style="font-family:Georgia,serif;font-weight:700;color:#7b241c;font-size:1.05rem;margin-bottom:4px;">▸ Economía normativa <span style="font-weight:400;font-style:italic;font-size:.85rem;color:var(--color-text-muted);">— «cómo debería ser» (implica juicios de valor)</span></div>
+        <div style="background:var(--color-bg-tinted);border:1px solid var(--color-border-subtle);border-radius:12px;padding:14px 16px;margin-top:10px;">
+          <strong style="color:var(--color-deepest);">Política económica</strong><br><span style="font-size:.88rem;color:var(--color-text-secondary);">Conduce y orienta la acción económica a través de decisiones, instrumentos y medidas concretas de intervención.</span>
+        </div>
+      </div>
+      <div class="diagram-cap" style="margin-top:16px;">Secuencia: la economía descriptiva <strong>alimenta</strong> a la teoría económica, y la política económica <strong>aplica</strong> esos desarrollos para conducir la acción económica.</div>
+    </div>
+
+    <div class="callout tip">
+      <div class="callout-icon">⇄</div>
+      <h4>Positivo vs. normativo</h4>
+      <p>En el campo <strong>positivo</strong> describimos o teorizamos los hechos «tal como son», sin juicios de valor. Al pasar al campo <strong>normativo</strong> (la política económica) aparecen los <em>juicios de valor</em>: decimos cómo <em>deben</em> ser las cosas. Como escribió Samuelson: «No existe una teoría económica para los trabajadores y otra para los empresarios»; el desacuerdo aparece sobre todo en lo normativo.</p>
+    </div>
+
+    <h3>La teoría económica se divide en dos</h3>
+    <div class="cardgrid c2">
+      <div class="ecard">
+        <span class="ecard-num">μ</span>
+        <div class="ecard-ico">🔬</div>
+        <h4>Microeconomía</h4>
+        <p>Estudia individualmente el comportamiento de consumidores y productores y el funcionamiento de los mercados. También llamada «teoría de los precios». Origen: los clásicos (Smith, Ricardo) y los neoclásicos (Marshall, Walras).</p>
+      </div>
+      <div class="ecard v2">
+        <span class="ecard-num">Σ</span>
+        <div class="ecard-ico">🌐</div>
+        <h4>Macroeconomía</h4>
+        <p>Estudia la economía como un todo, con magnitudes globales o agregadas (ingreso nacional, consumo, empleo). Se desarrolla con Keynes (1936), tras la Gran Depresión, cuando la mirada «microscópica» no alcanzó.</p>
+      </div>
+    </div>
+
+    <!-- QUIZ 5 -->
+    <div class="quiz" data-quiz="q5">
+      <span class="quiz-badge">✓ Quiz</span>
+      <p class="quiz-q">«El Estado debería aumentar el gasto público para reducir la desocupación». Este enunciado pertenece a…</p>
+      <div class="quiz-options">
+        <button class="quiz-opt" data-correct="false" data-fb="No. Fijate en el «debería»: el enunciado no describe cómo son los hechos, sino cómo deberían ser. Eso es un juicio de valor, y los juicios de valor pertenecen al campo normativo.">
+          <span class="opt-letter">A</span><span>La economía positiva, porque describe una relación entre gasto y empleo.</span></button>
+        <button class="quiz-opt" data-correct="true" data-fb="¡Correcto! El «debería» delata un juicio de valor sobre lo deseable: estamos en el terreno de la economía normativa, cuyo instrumento es la política económica.">
+          <span class="opt-letter">B</span><span>La economía normativa, porque implica un juicio de valor sobre lo que se debe hacer.</span></button>
+        <button class="quiz-opt" data-correct="false" data-fb="No. El gasto público y la desocupación son magnitudes agregadas (terreno de la macroeconomía, no de la micro). Y lo decisivo del enunciado es el juicio de valor («debería»), que lo ubica en el campo normativo.">
+          <span class="opt-letter">C</span><span>La microeconomía, porque analiza el comportamiento de un agente individual.</span></button>
+      </div>
+      <div class="quiz-feedback" data-fb-for="q5"></div>
+    </div>
+  </section>
+
+  <!-- ═══════ SEC 11 · Política económica ═══════ -->
+  <section class="seccion reveal" id="sec-11">
+    <span class="sec-eyebrow"><span class="sec-eyebrow-num">11</span> La acción sobre la economía</span>
+    <h2>Política económica: concepto, <span class="acento">formulación y objetivos</span></h2>
+    <div class="divider-flourish"><span>◆</span></div>
+    <p class="lead-p">Las personas conocen la realidad <strong>para actuar sobre ella</strong> y transformarla. Ahí entra la política económica: parte de una situación inicial (con problemas) y busca llegar a una situación ideal (los objetivos).</p>
+
+    <div class="defstrip">
+      <div class="def-term">Política económica</div>
+      <div class="def-body">Es la <strong>actuación consciente de la voluntad política en el campo económico</strong>: el conjunto de instrumentos de los que hace uso el Estado para conducir la acción económica hacia determinados objetivos, persiguiendo los fines de la sociedad o del Estado.</div>
+      <span class="def-source">Lafferriere · Rossetti · Demarco</span>
+    </div>
+
+    <div class="callout warn">
+      <div class="callout-icon">≠</div>
+      <h4>No confundir: economía política ≠ política económica</h4>
+      <p>La <strong>economía política</strong> (ciencia) explica cómo funciona el sistema y descubre las leyes. La <strong>política económica</strong> (acción) usa esos conocimientos para alcanzar objetivos. Ejemplo con la desocupación: la economía política <em>busca la causa</em>; la política económica <em>toma las medidas</em> para reducirla. No se puede curar sin diagnóstico.</p>
+    </div>
+
+    <h3>Formulación: dos procedimientos interdependientes</h3>
+    <div class="cardgrid c2">
+      <div class="ecard">
+        <span class="ecard-num">1</span>
+        <div class="ecard-ico">🎯</div>
+        <h4>Determinar los objetivos</h4>
+        <p>Definir los fines que se quieren alcanzar, interrelacionados y cuantificados. Siempre implica una <strong>selección con criterio</strong>: no se puede todo a la vez, y a veces los objetivos entran en conflicto entre sí.</p>
+      </div>
+      <div class="ecard v2">
+        <span class="ecard-num">2</span>
+        <div class="ecard-ico">🧰</div>
+        <h4>Elegir los instrumentos</h4>
+        <p>Seleccionar los <strong>medios de acción</strong> que se usarán para conseguir esos objetivos. Provienen de la teoría económica, que indica el efecto probable de cada medida.</p>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-icon">⚖</div>
+      <h4>Los objetivos pueden entrar en conflicto</h4>
+      <p>Definir objetivos supone un elemento de <strong>valoración subjetiva</strong>: una misma situación (por ejemplo, un gasto público alto) puede ser «indeseable» para unos y deseable para otros. Además, alcanzar un objetivo a veces agrava otro: es el clásico <em>conflicto entre objetivos</em> (por ejemplo, entre pleno empleo e inflación).</p>
+    </div>
+
+    <h3>Los tres grandes objetivos</h3>
+    <p>La mayoría de los autores sintetizan los objetivos en tres grandes conjuntos:</p>
+    <div class="cardgrid c3">
+      <div class="ecard reveal-scale">
+        <div class="ecard-ico">📈</div>
+        <h4>Desarrollo económico</h4>
+        <p>Crecimiento estructural y tecnológico sostenido a largo plazo.</p>
+      </div>
+      <div class="ecard v2 reveal-scale reveal-delay-1">
+        <div class="ecard-ico">⚖️</div>
+        <h4>Estabilidad económica</h4>
+        <p>Pleno empleo, estabilidad de precios y equilibrio de la balanza de pagos.</p>
+      </div>
+      <div class="ecard v4 reveal-scale reveal-delay-2">
+        <div class="ecard-ico">🤲</div>
+        <h4>Eficiencia distributiva</h4>
+        <p>Reducir brechas sociales, asimetrías regionales y redistribuir ingresos.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ SEC 12 · Instrumentos ═══════ -->
+  <section class="seccion reveal" id="sec-12">
+    <span class="sec-eyebrow"><span class="sec-eyebrow-num">12</span> El Estado en acción</span>
+    <h2>Instrumentos <span class="acento">de acción</span></h2>
+    <div class="divider-flourish"><span>◆</span></div>
+    <p class="lead-p">El Estado dispone de diversos instrumentos para conducir el sistema económico hacia los objetivos predeterminados. Los más significativos se correlacionan con la teoría macroeconómica.</p>
+
+    <div class="desafios-grid">
+      <div class="desafio reveal-scale">
+        <div class="desafio-head"><span class="desafio-num">💰</span><span class="desafio-ico">🏛️</span></div>
+        <h4>Política fiscal</h4>
+        <p>Manejo estatal del <strong>gasto público</strong> y de los <strong>tributos</strong> (impuestos, subsidios, retenciones). Ligada a la teoría de las finanzas públicas. Mediante gastos e ingresos, el Estado influye sobre el desarrollo, la estabilidad y la distribución.</p>
+      </div>
+      <div class="desafio reveal-scale reveal-delay-1">
+        <div class="desafio-head"><span class="desafio-num">🏦</span><span class="desafio-ico">💵</span></div>
+        <h4>Política monetaria y crediticia</h4>
+        <p>Control de la <strong>cantidad de moneda circulante</strong>, encajes bancarios y tasas de interés. Ligada a la teoría de la moneda. La falta o el exceso de dinero puede afectar el desarrollo, la estabilidad y hasta la distribución del ingreso.</p>
+      </div>
+      <div class="desafio reveal-scale reveal-delay-2">
+        <div class="desafio-head"><span class="desafio-num">🌍</span><span class="desafio-ico">🚢</span></div>
+        <h4>Política cambiaria y de comercio exterior</h4>
+        <p>Regulación del <strong>tipo de cambio</strong>, aranceles aduaneros y relaciones comerciales externas. Ligada a la teoría de las relaciones internacionales; influye sobre importaciones, exportaciones e inversiones.</p>
+      </div>
+      <div class="desafio reveal-scale">
+        <div class="desafio-head"><span class="desafio-num">📊</span><span class="desafio-ico">⚖️</span></div>
+        <h4>Política de ingresos</h4>
+        <p>Intervención sobre <strong>salarios, precios</strong> y mecanismos de distribución del ingreso nacional. Existen además otras políticas sectoriales (industrial, de estabilización, crediticia): todas integran la política económica de un gobierno.</p>
+      </div>
+    </div>
+
+    <!-- QUIZ 3 -->
+    <div class="quiz" data-quiz="q3">
+      <span class="quiz-badge">✓ Quiz</span>
+      <p class="quiz-q">Un gobierno sube los impuestos a las ganancias y aumenta los subsidios a las familias de menores ingresos. ¿Qué instrumento de política económica está usando?</p>
+      <div class="quiz-options">
+        <button class="quiz-opt" data-correct="false" data-fb="No. La política monetaria maneja la cantidad de dinero, los encajes y las tasas de interés, no los impuestos ni los subsidios.">
+          <span class="opt-letter">A</span><span>Política monetaria.</span></button>
+        <button class="quiz-opt" data-correct="false" data-fb="No. La política cambiaria regula el tipo de cambio y el comercio exterior (aranceles, importaciones/exportaciones), no los impuestos internos ni los subsidios.">
+          <span class="opt-letter">B</span><span>Política cambiaria.</span></button>
+        <button class="quiz-opt" data-correct="true" data-fb="¡Correcto! Impuestos y subsidios son gasto público y tributos: eso es política fiscal. Además, al gravar ganancias y subsidiar a los que menos tienen, apunta a la eficiencia distributiva.">
+          <span class="opt-letter">C</span><span>Política fiscal.</span></button>
+      </div>
+      <div class="quiz-feedback" data-fb-for="q3"></div>
+    </div>
+  </section>
+
+  <!-- ═══════ CIERRE ═══════ -->
+  <section class="seccion reveal" id="sec-cierre">
+    <span class="sec-eyebrow"><span class="sec-eyebrow-num">✦</span> Cierre de la unidad</span>
+    <h2>Síntesis e <span class="acento">ideas para llevar</span></h2>
+    <div class="divider-flourish"><span>◆</span></div>
+    <p class="lead-p">Recorriste el punto de partida de toda la materia. Estas son las ideas que conviene fijar antes de avanzar:</p>
+
+    <div class="ideas">
+      <div class="idea"><span class="idea-num">1</span><div><h4>Tres dimensiones</h4><p>La Economía Política estudia los problemas económicos, sus causas y sus soluciones. Hay acuerdo sobre los problemas; la diversidad aparece en causas y soluciones.</p></div></div>
+      <div class="idea"><span class="idea-num">2</span><div><h4>Ciencia, no opinión</h4><p>Frente al conocimiento vulgar (superficial), la ciencia busca la esencia de los fenómenos con método riguroso y verificación.</p></div></div>
+      <div class="idea"><span class="idea-num">3</span><div><h4>Un problema básico</h4><p>Toda sociedad debe resolver la producción y la distribución, respondiendo qué, cómo y para quién producir.</p></div></div>
+      <div class="idea"><span class="idea-num">4</span><div><h4>Tres soluciones históricas</h4><p>Tradición, mando y mercado: mecanismos que conviven y se combinan en toda sociedad concreta.</p></div></div>
+      <div class="idea"><span class="idea-num">5</span><div><h4>Una ciencia social</h4><p>Lo económico es una dimensión del sistema social, entrelazada con lo político, lo cultural y lo jurídico. Por eso incide la ideología.</p></div></div>
+      <div class="idea"><span class="idea-num">6</span><div><h4>Ciencia y acción</h4><p>La economía política explica; la política económica actúa. Se dividen en positiva/normativa, micro/macro, y usan instrumentos fiscales, monetarios, cambiarios y de ingresos.</p></div></div>
+    </div>
+
+    <h3>Mini-test: cinco preguntas de toda la unidad</h3>
+    <p>Antes de la autoevaluación, poné a prueba lo aprendido. Las preguntas mezclan temas de <strong>toda la unidad</strong> —así funciona la memoria de verdad: recuperando, no releyendo. No se guarda ninguna nota.</p>
+
+    <div class="minitest" id="minitest">
+      <span class="quiz-badge">✦ Mini-test final</span>
+      <div class="mt-progress"><div class="mt-progress-fill"></div></div>
+      <div class="mt-counter">Pregunta 1 de 5</div>
+
+      <div class="mt-q">
+        <p class="quiz-q">Cualquiera puede ver una fila de gente buscando trabajo. Pero explicar <em>por qué</em> hay desocupación exige otro tipo de conocimiento. ¿Cuál y por qué?</p>
+        <div class="quiz-options">
+          <button class="quiz-opt" data-correct="false" data-fb="No. El conocimiento vulgar se queda justamente en lo que se ve —la fila, el desempleo—, pero las causas no se perciben a simple vista: están debajo de la superficie.">
+            <span class="opt-letter">A</span><span>El vulgar, porque se basa en la experiencia directa de ver el problema.</span></button>
+          <button class="quiz-opt" data-correct="false" data-fb="No. Que el problema sea evidente no significa que sus causas lo sean: sobre las causas de la desocupación hay explicaciones muy diversas, y por eso hace falta la ciencia.">
+            <span class="opt-letter">B</span><span>Ninguno especial: las causas de la desocupación son evidentes.</span></button>
+          <button class="quiz-opt" data-correct="true" data-fb="¡Correcto! El problema es visible, pero su origen no. Para ir «debajo de la superficie» y encontrar las causas se necesita el conocimiento científico, con método riguroso y verificación.">
+            <span class="opt-letter">C</span><span>El científico, porque las causas no se perciben a simple vista.</span></button>
+        </div>
+        <div class="quiz-feedback mt-fb"></div>
+        <button class="mt-next" type="button">Siguiente →</button>
+      </div>
+
+      <div class="mt-q">
+        <p class="quiz-q">Según Heilbroner, las dos tareas que toda sociedad debe resolver para sobrevivir materialmente son…</p>
+        <div class="quiz-options">
+          <button class="quiz-opt" data-correct="false" data-fb="No. Ahorrar e invertir son operaciones dentro de una economía, pero el problema económico básico es anterior: organizar la producción y coordinar la distribución de lo producido.">
+            <span class="opt-letter">A</span><span>Ahorrar e invertir.</span></button>
+          <button class="quiz-opt" data-correct="true" data-fb="¡Correcto! Producir los bienes y servicios que la sociedad necesita, y distribuirlos de modo que se mantenga la capacidad y la voluntad de seguir trabajando.">
+            <span class="opt-letter">B</span><span>Producir y distribuir.</span></button>
+          <button class="quiz-opt" data-correct="false" data-fb="No. Exportar e importar suponen ya un sistema funcionando. Las tareas básicas de todo sistema económico —de cualquier época— son la producción y la distribución.">
+            <span class="opt-letter">C</span><span>Exportar e importar.</span></button>
+        </div>
+        <div class="quiz-feedback mt-fb"></div>
+        <button class="mt-next" type="button">Siguiente →</button>
+      </div>
+
+      <div class="mt-q">
+        <p class="quiz-q">Un gobierno dicta un decreto que moviliza trabajadores estatales para construir una represa. ¿Qué mecanismo de resolución del problema económico opera?</p>
+        <div class="quiz-options">
+          <button class="quiz-opt" data-correct="false" data-fb="No. La tradición asigna tareas por herencia y costumbre, de generación en generación. Acá hay una orden expresa de una autoridad: eso es otra cosa.">
+            <span class="opt-letter">A</span><span>La tradición.</span></button>
+          <button class="quiz-opt" data-correct="false" data-fb="No. En el mercado nadie asigna tareas: cada persona decide por sí misma qué hacer, guiada por precios e incentivos. Un decreto que moviliza trabajadores es exactamente lo contrario.">
+            <span class="opt-letter">B</span><span>El mercado.</span></button>
+          <button class="quiz-opt" data-correct="true" data-fb="¡Correcto! Es el mando: una autoridad dirige el esfuerzo económico hacia metas elegidas desde «arriba» —como los faraones con las pirámides, pero también como los impuestos de hoy.">
+            <span class="opt-letter">C</span><span>El mando.</span></button>
+        </div>
+        <div class="quiz-feedback mt-fb"></div>
+        <button class="mt-next" type="button">Siguiente →</button>
+      </div>
+
+      <div class="mt-q">
+        <p class="quiz-q">«Si aumenta el precio de un bien, tiende a caer la cantidad demandada». Este enunciado es…</p>
+        <div class="quiz-options">
+          <button class="quiz-opt" data-correct="true" data-fb="¡Correcto! Describe una regularidad tal como se presenta en los hechos, sin decir si es buena o mala: economía positiva. Y el «tiende a» refleja el carácter tendencial de las leyes económicas.">
+            <span class="opt-letter">A</span><span>Positivo, porque describe una regularidad sin juicios de valor.</span></button>
+          <button class="quiz-opt" data-correct="false" data-fb="No. No hay ningún «debería» ni juicio sobre lo deseable: solo se describe cómo se comportan los hechos. Lo normativo aparece cuando proponemos cómo deben ser.">
+            <span class="opt-letter">B</span><span>Normativo, porque dice qué debería pasar con los precios.</span></button>
+          <button class="quiz-opt" data-correct="false" data-fb="No. No es una norma dictada por el Estado, sino una ley en sentido epistemológico: una regularidad que está en los hechos y que la ciencia descubre.">
+            <span class="opt-letter">C</span><span>Jurídico, porque establece una norma de cumplimiento obligatorio.</span></button>
+        </div>
+        <div class="quiz-feedback mt-fb"></div>
+        <button class="mt-next" type="button">Siguiente →</button>
+      </div>
+
+      <div class="mt-q">
+        <p class="quiz-q">El Banco Central sube la tasa de interés para frenar la inflación. ¿Qué instrumento se usa y a qué gran objetivo apunta?</p>
+        <div class="quiz-options">
+          <button class="quiz-opt" data-correct="false" data-fb="No. La política fiscal maneja el gasto público y los tributos. La tasa de interés pertenece al instrumental monetario y crediticio.">
+            <span class="opt-letter">A</span><span>Política fiscal · desarrollo económico.</span></button>
+          <button class="quiz-opt" data-correct="true" data-fb="¡Correcto! La tasa de interés es un instrumento monetario, y la estabilidad de precios integra el objetivo de estabilidad económica (junto con el pleno empleo y el equilibrio externo).">
+            <span class="opt-letter">B</span><span>Política monetaria · estabilidad económica.</span></button>
+          <button class="quiz-opt" data-correct="false" data-fb="No. La política cambiaria regula el tipo de cambio y el comercio exterior. Acá el instrumento es la tasa de interés (monetario) y el objetivo, frenar la inflación (estabilidad).">
+            <span class="opt-letter">C</span><span>Política cambiaria · eficiencia distributiva.</span></button>
+        </div>
+        <div class="quiz-feedback mt-fb"></div>
+        <button class="mt-next" type="button">Siguiente →</button>
+      </div>
+
+      <div class="mt-result">
+        <div class="mt-score">0 / 5</div>
+        <p class="mt-msg"></p>
+        <button class="mt-retry" type="button">↻ Repetir el mini-test</button>
+      </div>
+    </div>
+
+    <h3>Autoevaluación: ¿puedo…?</h3>
+    <p>Marcá cada afirmación que sientas que ya podés hacer. Es tu termómetro personal —no se guarda ninguna nota, solo tu propio control.</p>
+    <div class="checklist" id="checklist">
+      <div class="check-item"><span class="check-box">✓</span><span class="check-txt">Distinguir las <strong>tres dimensiones</strong> que estudia la Economía Política (problemas, causas, soluciones).</span></div>
+      <div class="check-item"><span class="check-box">✓</span><span class="check-txt">Diferenciar el <strong>conocimiento vulgar</strong> del <strong>científico</strong> con un ejemplo propio.</span></div>
+      <div class="check-item"><span class="check-box">✓</span><span class="check-txt">Explicar el <strong>problema económico</strong> y las dos tareas (producción y distribución) según Heilbroner.</span></div>
+      <div class="check-item"><span class="check-box">✓</span><span class="check-txt">Enunciar las <strong>tres preguntas</strong>: qué, cómo y para quién producir.</span></div>
+      <div class="check-item"><span class="check-box">✓</span><span class="check-txt">Caracterizar la <strong>tradición, el mando y el mercado</strong> como soluciones al problema económico.</span></div>
+      <div class="check-item"><span class="check-box">✓</span><span class="check-txt">Justificar por qué la economía es una <strong>ciencia social</strong> y qué es un sistema/subsistema.</span></div>
+      <div class="check-item"><span class="check-box">✓</span><span class="check-txt">Reconocer la <strong>definición de cátedra</strong> y por qué se distingue de otras.</span></div>
+      <div class="check-item"><span class="check-box">✓</span><span class="check-txt">Listar las <strong>dificultades</strong> del conocimiento económico y el papel de la ideología.</span></div>
+      <div class="check-item"><span class="check-box">✓</span><span class="check-txt">Describir las <strong>divisiones</strong> de la economía (positiva/normativa, micro/macro).</span></div>
+      <div class="check-item"><span class="check-box">✓</span><span class="check-txt">Diferenciar <strong>economía política</strong> de <strong>política económica</strong>, con sus objetivos e instrumentos.</span></div>
+    </div>
+    <div class="check-progress" id="checkProgress">0 de 10 completadas</div>
+
+    <div class="pausa" style="margin-top:34px;">
+      <span class="pausa-tag">◆ Para llevar al aula</span>
+      <h4>Una pregunta para pensar</h4>
+      <p>Elegí un problema económico que te preocupe (la desocupación, los precios, los salarios). ¿Cuál creés que es su causa? ¿Y qué mecanismo —tradición, mando o mercado— predomina hoy en cómo se resuelve? No hay una única respuesta correcta: se trata de <em>fundamentar</em> la tuya con las herramientas de esta unidad.</p>
+    </div>
+  </section>
+
+  <!-- ═══════ OBJETIVOS ═══════ -->
+  <section class="obj-section reveal" id="objetivos">
+    <h2>Estás <em>aprendiendo a</em>…</h2>
+    <p style="color:var(--color-text-secondary);font-size:.96rem;">Estos son los aprendizajes que se espera que puedas demostrar después de recorrer la unidad.</p>
+    <ul class="obj-list">
+      <li><span class="obj-check">✓</span><span><strong>Comprender</strong> el objeto de estudio de la Economía Política y su carácter de ciencia social.</span></li>
+      <li><span class="obj-check">✓</span><span><strong>Distinguir</strong> el conocimiento científico del conocimiento vulgar y valorar el porqué del método.</span></li>
+      <li><span class="obj-check">✓</span><span><strong>Identificar</strong> el problema económico y las tres preguntas fundamentales de todo sistema.</span></li>
+      <li><span class="obj-check">✓</span><span><strong>Analizar</strong> las tres resoluciones históricas —tradición, mando y mercado— y reconocerlas en casos concretos.</span></li>
+      <li><span class="obj-check">✓</span><span><strong>Relacionar</strong> las divisiones de la economía y diferenciar la economía política de la política económica.</span></li>
+      <li><span class="obj-check">✓</span><span><strong>Reconocer</strong> los objetivos e instrumentos de la política económica.</span></li>
+    </ul>
+  </section>
+
+  <!-- ═══════ FUENTES ═══════ -->
+  <section class="fuentes reveal" id="sec-fuentes">
+    <h2>Bibliografía <em>de la unidad</em></h2>
+    <p style="color:var(--color-text-secondary);font-size:.96rem;">Los textos de la cátedra sobre los que se construye esta unidad.</p>
+
+    <div class="fuente">
+      <div class="fuente-tag">H</div>
+      <div class="fuente-info">
+        <div class="f-title">Robert L. Heilbroner — <em>La formación de la sociedad económica</em></div>
+        <div class="f-meta">Cap. I: «El problema económico». Fondo de Cultura Económica.</div>
+        <div class="f-use">El problema económico, escasez, producción y distribución, y las tres soluciones: tradición, mando y mercado.</div>
+      </div>
+    </div>
+    <div class="fuente">
+      <div class="fuente-tag">D</div>
+      <div class="fuente-info">
+        <div class="f-title">Gustavo Demarco — <em>Acerca del objeto de estudio de la ciencia económica</em></div>
+        <div class="f-meta">Documento de cátedra · Fac. de Ciencias Económicas · UNC, 1987.</div>
+        <div class="f-use">Sistema y subsistema, la economía como ciencia social, leyes, modelos, teoría y política económica.</div>
+      </div>
+    </div>
+    <div class="fuente">
+      <div class="fuente-tag">R</div>
+      <div class="fuente-info">
+        <div class="f-title">José P. Rossetti — <em>Introducción a la Economía. Enfoque latinoamericano</em></div>
+        <div class="f-meta">Cap. 3. Ed. Harla, 1979.</div>
+        <div class="f-use">Divisiones de la economía (descriptiva, teórica, política), micro y macro, objetivos e instrumentos.</div>
+      </div>
+    </div>
+    <div class="fuente">
+      <div class="fuente-tag">L</div>
+      <div class="fuente-info">
+        <div class="f-title">Luis F. Lafferriere — <em>Nuestros problemas económicos… y el rol de la Economía Política</em></div>
+        <div class="f-meta">Documento de cátedra · Paraná (E.R.), 2004.</div>
+        <div class="f-use">Conocimiento vulgar y científico, definición de cátedra, dificultades metodológicas, leyes económicas y las tres preguntas.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="aviso-biblio reveal">
+    <span class="aviso-biblio-ico" aria-hidden="true">📖</span>
+    <div>
+      <strong>Este material no reemplaza la lectura de la bibliografía obligatoria.</strong>
+      <p>Es una guía de estudio para acompañar y ordenar los contenidos de la unidad. Para la comprensión completa —y para las instancias de examen— es imprescindible leer los textos citados en su versión original.</p>
+    </div>
+  </div>
+
+</div><!-- /wrap -->
+
+<!-- ═══════ DOC END ═══════ -->
+<footer class="docend">
+  <div class="docend-inner">
+    <nav class="docend-nav" aria-label="Navegación entre unidades">
+      <a href="#" class="docend-link disabled">
+        <span class="del-arrow">‹</span>
+        <span><span class="del-lbl">Unidad anterior</span><span class="del-title">Primera unidad</span></span>
+      </a>
+      <a href="https://nickperot.com/unidad2" class="docend-link" rel="noopener">
+        <span><span class="del-lbl">Siguiente unidad</span><span class="del-title">Unidad 2 →</span></span>
+        <span class="del-arrow" style="margin-left:auto;">›</span>
+      </a>
+    </nav>
+
+    <div class="docend-team">
+      <div class="docend-team-brand">
+        <div class="docend-brand-line"><span class="docend-brand-dot" aria-hidden="true"></span><span>Cátedra B · Economía Política</span></div>
+        <h4>Unidad 1 · Introducción a la <em>Economía Política</em></h4>
+        <p>Facultad de Ciencias Jurídicas y Sociales<br>Universidad Nacional del Litoral</p>
+      </div>
+      <div class="docend-profes">
+        <span class="docend-profes-tag">Equipo docente</span>
+        <ul>
+          <li><strong>Prof. Abog. Nicolás Perot</strong><span>Responsable de la edición pedagógica y la gestión digital</span></li>
+          <li><strong>Prof. Lic. Julio Tealdo</strong><span>Titular de cátedra</span></li>
+        </ul>
+        <div class="docend-revisado"><span class="docend-revisado-dot" aria-hidden="true"></span>Revisado por docentes de la Cátedra B</div>
+      </div>
+    </div>
+
+    <div class="docend-foot">
+      <div class="docend-meta">Documento de estudio · Equipo de Cátedra · Ciclo Lectivo 2026</div>
+      <div class="docend-date">Julio de 2026</div>
+      <p class="docend-ia">En su elaboración se utilizaron herramientas de inteligencia artificial, especialmente Claude Opus 4.8 (Anthropic), para tareas de edición y codificación, bajo revisión y supervisión docente.</p>
+      <p class="docend-ia">Se sugiere un uso responsable de la inteligencia artificial: puede cometer errores.</p>
+      <button class="docend-reset" id="resetBtn" type="button">↺ Reiniciar mi progreso en esta unidad</button>
+    </div>
+  </div>
+</footer>
+
+</div><!-- /main -->
+
+<button class="scroll-top" id="scrollTop" title="Volver arriba" aria-label="Volver arriba">↑</button>
+
+<div class="toast" id="toast">
+  <span class="toast-ico">🎉</span>
+  <div class="toast-txt"><strong id="toastTitle">¡Bien!</strong><span id="toastSub"></span></div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var STORE = 'ep_unidad1_v2';
+  function load(){ try { return JSON.parse(localStorage.getItem(STORE)) || {}; } catch(e){ return {}; } }
+  function save(s){ try { localStorage.setItem(STORE, JSON.stringify(s)); } catch(e){} }
+  var state = load();
+  state.quiz = state.quiz || {};
+  state.checks = state.checks || {};
+  state.visited = state.visited || {};
+
+  /* ===== Reveal on scroll (con fallback si no hay IntersectionObserver) ===== */
+  var hasIO = 'IntersectionObserver' in window;
+  var revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+  if(hasIO){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in-view'); io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    revealEls.forEach(function(el){ io.observe(el); });
+  } else {
+    revealEls.forEach(function(el){ el.classList.add('in-view'); });
+  }
+
+  /* ===== Progress bar (top + sidebar) ===== */
+  var progressBar = document.getElementById('readProgress');
+  var sbFill = document.getElementById('sbProgressFill');
+  var sbLabel = document.getElementById('sbProgressLabel');
+  function updateProgress(){
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    var pct = max > 0 ? Math.min(100, Math.round((h.scrollTop || document.body.scrollTop) / max * 100)) : 0;
+    progressBar.style.width = pct + '%';
+    sbFill.style.width = pct + '%';
+    sbLabel.textContent = pct + '% recorrido';
+  }
+
+  /* ===== Scrollspy + visited ===== */
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('.section-title'));
+  var sections = navLinks.map(function(l){ var id = l.getAttribute('href').replace('#',''); return document.getElementById(id); });
+  function markVisited(id){
+    if(!state.visited[id]){ state.visited[id] = true; save(state); }
+    navLinks.forEach(function(l){ var id2 = l.getAttribute('href').replace('#',''); if(state.visited[id2]) l.classList.add('visited'); });
+  }
+  navLinks.forEach(function(l){ var id = l.getAttribute('href').replace('#',''); if(state.visited[id]) l.classList.add('visited'); });
+
+  if(hasIO){
+    var spy = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          var id = e.target.id;
+          navLinks.forEach(function(l){ l.classList.toggle('active', l.getAttribute('href') === '#' + id); });
+          markVisited(id);
+        }
+      });
+    }, { rootMargin: '-30% 0px -60% 0px' });
+    sections.forEach(function(s){ if(s) spy.observe(s); });
+  }
+
+  var scrollTopBtn = document.getElementById('scrollTop');
+  window.addEventListener('scroll', function(){
+    updateProgress();
+    scrollTopBtn.classList.toggle('show', window.scrollY > 600);
+  }, { passive: true });
+  updateProgress();
+  scrollTopBtn.addEventListener('click', function(){ window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+  /* ===== Sidebar toggle ===== */
+  var sidebar = document.getElementById('sidebar');
+  var collapseBtn = document.getElementById('sidebarCollapse');
+  var expandBtn = document.getElementById('sidebarExpand');
+  var backdrop = document.getElementById('sidebarBackdrop');
+  var isMobile = function(){ return window.matchMedia('(max-width: 1040px)').matches; };
+  collapseBtn.addEventListener('click', function(){ if(isMobile()) sidebar.classList.remove('open'); else sidebar.classList.add('collapsed'); });
+  expandBtn.addEventListener('click', function(){ if(isMobile()) sidebar.classList.add('open'); else sidebar.classList.remove('collapsed'); });
+  backdrop.addEventListener('click', function(){ sidebar.classList.remove('open'); });
+  navLinks.forEach(function(l){ l.addEventListener('click', function(){ if(isMobile()) sidebar.classList.remove('open'); }); });
+
+  /* ===== Toast ===== */
+  var toast = document.getElementById('toast'), toastTitle = document.getElementById('toastTitle'), toastSub = document.getElementById('toastSub'), toastTimer;
+  function showToast(ico, title, sub){
+    document.querySelector('#toast .toast-ico').textContent = ico;
+    toastTitle.textContent = title; toastSub.textContent = sub || '';
+    toast.classList.add('show');
+    clearTimeout(toastTimer); toastTimer = setTimeout(function(){ toast.classList.remove('show'); }, 3200);
+  }
+
+  /* ===== Confetti ===== */
+  function confetti(){
+    var colors = ['#8e44ad','#ffd673','#4ca0d8','#27ae60','#c0392b'];
+    for(var i=0;i<70;i++){
+      (function(){
+        var p = document.createElement('div');
+        var size = 6 + Math.random()*8;
+        p.style.cssText = 'position:fixed;top:-20px;left:'+(Math.random()*100)+'vw;width:'+size+'px;height:'+size+'px;background:'+colors[Math.floor(Math.random()*colors.length)]+';z-index:5000;pointer-events:none;border-radius:'+(Math.random()>.5?'50%':'2px')+';animation:confetti-fall '+(2.5+Math.random()*2)+'s linear forwards;';
+        document.body.appendChild(p);
+        setTimeout(function(){ p.remove(); }, 4800);
+      })();
+    }
+  }
+
+  /* ===== Quizzes ===== */
+  document.querySelectorAll('.quiz').forEach(function(quiz){
+    var name = quiz.dataset.quiz;
+    var fb = quiz.querySelector('[data-fb-for="'+name+'"]');
+    var opts = quiz.querySelectorAll('.quiz-opt');
+    function lock(chosenBtn, correct){
+      opts.forEach(function(b){
+        b.classList.add('disabled');
+        if(b.dataset.correct === 'true') b.classList.add('correcta');
+      });
+      if(!correct && chosenBtn) chosenBtn.classList.add('incorrecta');
+      fb.textContent = chosenBtn.dataset.fb;
+      fb.className = 'quiz-feedback show ' + (correct ? 'ok' : 'fail');
+    }
+    if(state.quiz[name] !== undefined){
+      var saved = state.quiz[name];
+      opts.forEach(function(b, i){ if(i === saved.idx) lock(b, saved.correct); });
+    }
+    opts.forEach(function(btn, idx){
+      btn.addEventListener('click', function(){
+        if(btn.classList.contains('disabled')) return;
+        var correct = btn.dataset.correct === 'true';
+        lock(btn, correct);
+        state.quiz[name] = { idx: idx, correct: correct }; save(state);
+        if(correct) showToast('✅','¡Respuesta correcta!','Seguí así.');
+      });
+    });
+  });
+
+  /* ===== Tabs ===== */
+  document.querySelectorAll('.tabs').forEach(function(tabs){
+    var btns = tabs.querySelectorAll('.tab-btn');
+    var panels = tabs.querySelectorAll('.tab-panel');
+    btns.forEach(function(btn){
+      btn.addEventListener('click', function(){
+        btns.forEach(function(b){ b.classList.remove('active'); b.setAttribute('aria-selected','false'); });
+        panels.forEach(function(p){ p.classList.remove('active'); });
+        btn.classList.add('active');
+        btn.setAttribute('aria-selected','true');
+        var pnl = tabs.querySelector('.tab-panel[data-panel="'+btn.dataset.tab+'"]');
+        if(pnl) pnl.classList.add('active');
+      });
+    });
+  });
+
+  /* ===== Flip cards ===== */
+  document.querySelectorAll('.flip').forEach(function(f){
+    function toggle(){ f.classList.toggle('flipped'); }
+    f.addEventListener('click', toggle);
+    f.addEventListener('keydown', function(e){ if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); } });
+  });
+
+  /* ===== Mini-test final ===== */
+  (function(){
+    var mt = document.getElementById('minitest');
+    if(!mt) return;
+    var qs = Array.prototype.slice.call(mt.querySelectorAll('.mt-q'));
+    var counter = mt.querySelector('.mt-counter');
+    var fill = mt.querySelector('.mt-progress-fill');
+    var result = mt.querySelector('.mt-result');
+    var score = 0;
+    function showQ(i){
+      qs.forEach(function(q, j){ q.classList.toggle('active', j === i); });
+      result.classList.remove('show');
+      counter.style.display = 'block';
+      counter.textContent = 'Pregunta ' + (i + 1) + ' de ' + qs.length;
+      fill.style.width = (i / qs.length * 100) + '%';
+    }
+    function showResult(fresh){
+      qs.forEach(function(q){ q.classList.remove('active'); });
+      counter.style.display = 'none';
+      fill.style.width = '100%';
+      result.classList.add('show');
+      var msg;
+      if(score === qs.length) msg = '¡Excelente! Dominás los conceptos centrales de la unidad.';
+      else if(score >= 4) msg = '¡Muy bien! Repasá el punto que fallaste y quedás a pleno.';
+      else if(score >= 3) msg = 'Buen intento. Volvé a las secciones de las preguntas que fallaste antes del examen.';
+      else msg = 'Conviene releer la unidad con calma y volver a intentarlo. La relectura con propósito rinde más que la prisa.';
+      result.querySelector('.mt-score').textContent = score + ' / ' + qs.length;
+      result.querySelector('.mt-msg').textContent = msg;
+      if(fresh){
+        state.minitest = { score: score, done: true }; save(state);
+        if(score >= 4){ confetti(); showToast('🎓', 'Mini-test completado', score + ' de ' + qs.length + ' correctas'); }
+        else showToast('📚', 'Mini-test completado', score + ' de ' + qs.length + ' correctas');
+      }
+    }
+    qs.forEach(function(q, qi){
+      var opts = q.querySelectorAll('.quiz-opt');
+      var fb = q.querySelector('.mt-fb');
+      var nextBtn = q.querySelector('.mt-next');
+      opts.forEach(function(btn){
+        btn.addEventListener('click', function(){
+          if(btn.classList.contains('disabled')) return;
+          var ok = btn.dataset.correct === 'true';
+          if(ok) score++;
+          opts.forEach(function(b){
+            b.classList.add('disabled');
+            if(b.dataset.correct === 'true') b.classList.add('correcta');
+          });
+          if(!ok) btn.classList.add('incorrecta');
+          fb.textContent = btn.dataset.fb;
+          fb.className = 'quiz-feedback mt-fb show ' + (ok ? 'ok' : 'fail');
+          nextBtn.classList.add('show');
+          nextBtn.textContent = (qi < qs.length - 1) ? 'Siguiente →' : 'Ver mi resultado ✦';
+        });
+      });
+      nextBtn.addEventListener('click', function(){
+        if(qi < qs.length - 1) showQ(qi + 1);
+        else showResult(true);
+      });
+    });
+    result.querySelector('.mt-retry').addEventListener('click', function(){
+      score = 0;
+      qs.forEach(function(q){
+        q.querySelectorAll('.quiz-opt').forEach(function(b){ b.classList.remove('disabled', 'correcta', 'incorrecta'); });
+        var fb = q.querySelector('.mt-fb'); fb.className = 'quiz-feedback mt-fb'; fb.textContent = '';
+        var nb = q.querySelector('.mt-next'); nb.classList.remove('show'); nb.textContent = 'Siguiente →';
+      });
+      showQ(0);
+    });
+    if(state.minitest && state.minitest.done){ score = state.minitest.score; showResult(false); }
+    else showQ(0);
+  })();
+
+  /* ===== Checklist ===== */
+  var checkItems = document.querySelectorAll('#checklist .check-item');
+  var checkProgress = document.getElementById('checkProgress');
+  var celebrated = state.checksCelebrated || false;
+  function updateCheckProgress(){
+    var done = document.querySelectorAll('#checklist .check-item.done').length;
+    checkProgress.textContent = done + ' de ' + checkItems.length + ' completadas';
+    if(done === checkItems.length && !celebrated){
+      celebrated = true; state.checksCelebrated = true; save(state);
+      confetti(); showToast('🏆','¡Unidad 1 dominada!','Completaste toda la autoevaluación.');
+    }
+  }
+  checkItems.forEach(function(item, i){
+    if(state.checks[i]) item.classList.add('done');
+    item.addEventListener('click', function(){
+      item.classList.toggle('done');
+      state.checks[i] = item.classList.contains('done'); save(state);
+      updateCheckProgress();
+    });
+  });
+  updateCheckProgress();
+
+  /* ===== Reset ===== */
+  document.getElementById('resetBtn').addEventListener('click', function(){
+    if(!confirm('¿Reiniciar tu progreso en esta unidad? Se borrarán las secciones visitadas, las respuestas a los quizzes, el mini-test y la autoevaluación.')) return;
+    localStorage.removeItem(STORE);
+    location.reload();
+  });
+})();
+</script>
+</body>
+</html>
