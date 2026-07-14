@@ -26,6 +26,18 @@
     --color-warning: #e67e22;
     --color-danger: #c0392b;
     --color-info: #2980b9;
+    /* Paleta canónica (serie EP · U1) para componentes didácticos */
+    --color-gold: #ffd673;
+    --color-blue: #4ca0d8;
+    --color-blue-dark: #1f5d8c;
+    --color-red: #c0392b;
+    --color-red-dark: #7b241c;
+    --color-turquoise: #16a085;
+    --color-amber: #e67e22;
+    --color-border-card: #e0e0e0;
+    --color-bg-tinted: #fdfbff;
+    --color-bg-gradient-end: #f4f0f7;
+    --color-text-faint: #888888;
     --font-display: 'Georgia', 'Times New Roman', serif;
     --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     --shadow-card: 0 10px 30px rgba(0,0,0,0.05);
@@ -37,7 +49,6 @@
     --ease-swift: cubic-bezier(.2, .8, .2, 1);        /* veloz con desaceleración */
   }
 
-  @keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
   @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
   @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
   @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
@@ -54,7 +65,19 @@
   html {
     scroll-behavior: smooth;
     background-color: #f8f7fc; /* fallback antes de que el gradient del body se aplique */
+    /* Scrollbar general · lila fina (canon U1) */
+    scrollbar-width: thin;
+    scrollbar-color: rgba(142,68,173,0.3) transparent;
   }
+  html::-webkit-scrollbar { width: 10px; }
+  html::-webkit-scrollbar-track { background: transparent; }
+  html::-webkit-scrollbar-thumb {
+    background: rgba(142,68,173,0.28);
+    border-radius: 6px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+  html::-webkit-scrollbar-thumb:hover { background: rgba(142,68,173,0.45); background-clip: padding-box; }
   body {
     font-family: var(--font-body);
     color: var(--color-text-body);
@@ -67,7 +90,8 @@
   .layout { display: flex; min-height: 100vh; }
   .sidebar {
     width: 280px; position: fixed; top: 0; left: 0; height: 100vh;
-    overflow-y: auto;
+    display: flex; flex-direction: column;
+    transition: transform 0.4s var(--ease-out-quart);
     color: #fff;
     padding: 30px 20px;
     z-index: 100;
@@ -77,19 +101,17 @@
       radial-gradient(ellipse at 50% -10%, rgba(142,68,173,0.18) 0%, transparent 45%),
       radial-gradient(ellipse at 50% 110%, rgba(74,35,90,0.22) 0%, transparent 55%),
       linear-gradient(180deg, var(--color-deepest) 0%, #1a0822 100%);
-    /* Scrollbar premium · thin lila con hover */
-    scrollbar-width: thin;
-    scrollbar-color: rgba(210,180,222,0.18) transparent;
   }
-  .sidebar::-webkit-scrollbar { width: 6px; }
-  .sidebar::-webkit-scrollbar-track { background: transparent; }
-  .sidebar::-webkit-scrollbar-thumb {
+  /* Solo la nav scrollea · encabezado y pie quedan fijos (canon U1–U3) */
+  .sidebar-nav::-webkit-scrollbar { width: 6px; }
+  .sidebar-nav::-webkit-scrollbar-track { background: transparent; }
+  .sidebar-nav::-webkit-scrollbar-thumb {
     background: rgba(210,180,222,0.15);
     border-radius: 3px;
     transition: background 0.3s;
   }
-  .sidebar:hover::-webkit-scrollbar-thumb { background: rgba(210,180,222,0.35); }
-  .sidebar::-webkit-scrollbar-thumb:hover { background: rgba(210,180,222,0.55); }
+  .sidebar-nav:hover::-webkit-scrollbar-thumb { background: rgba(210,180,222,0.35); }
+  .sidebar-nav::-webkit-scrollbar-thumb:hover { background: rgba(210,180,222,0.55); }
   /* Decorativo · línea fina lila a la derecha que actúa de "spine" */
   .sidebar::after {
     content: '';
@@ -106,29 +128,23 @@
     pointer-events: none;
     z-index: 99;
   }
-  /* "Cátedra B" · etiqueta chica arriba del título de la unidad */
-  .sidebar .brand {
-    display: block;
-    font-size: 0.65em;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    color: var(--color-soft);
-    margin: 28px 0 6px;  /* push debajo del botón colapsador (top:18 + 32) */
+  /* "Cátedra B" · etiqueta chica centrada arriba del título (canon U1) */
+  .sidebar-brand {
+    display: block; text-align: center;
+    font-size: 0.68em; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--color-soft); font-weight: 700;
+    margin: 26px 0 8px;  /* clearance del botón colapsador */
   }
-  /* "Unidad 4" · título principal del sidebar (font-display) */
-  .sidebar .sidebar-title {
+  .sidebar-title {
     font-family: var(--font-display);
-    font-size: 1.35em;
-    font-weight: normal;
-    margin: 0;
-    color: #fff;
-    line-height: 1.2;
+    font-size: 1.7em; font-weight: 700; color: #fff;
+    margin: 0; line-height: 1.15;
   }
-  .sidebar .subtitle {
-    font-size: 0.75em;
-    color: rgba(255,255,255,0.55);
-    display: block;
-    margin: 4px 0 22px;
+  .sidebar-subtitle {
+    display: block; text-align: center;
+    font-size: 0.8em; color: var(--color-soft);
+    font-style: italic; font-family: var(--font-display);
+    padding: 6px 18px 0; margin: 0 0 4px;
   }
   /* ═══════════════════════════════════════════════
      COLAPSADOR · botón discreto premium (escritorio)
@@ -217,10 +233,6 @@
   /* ═══════════════════════════════════════════════
      EXPAND · botón flotante cuando sidebar oculto
      ═══════════════════════════════════════════════ */
-  @keyframes sidebar-expand-pulse {
-    0%, 100% { box-shadow: 0 6px 18px rgba(42,17,51,0.45), 0 0 0 0 rgba(210,180,222,0.4), inset 0 1px 0 rgba(255,255,255,0.1); }
-    50%      { box-shadow: 0 8px 24px rgba(42,17,51,0.55), 0 0 0 8px rgba(210,180,222,0), inset 0 1px 0 rgba(255,255,255,0.1); }
-  }
   .sidebar-expand {
     position: fixed;
     top: 16px; left: 16px;
@@ -242,9 +254,7 @@
       box-shadow 0.3s,
       border-color 0.3s,
       color 0.25s;
-    animation: sidebar-expand-pulse 2.4s ease-in-out infinite;
   }
-  body.fx-off .sidebar-expand { animation: none !important; }
   .sidebar-expand svg {
     width: 20px; height: 20px;
     display: block;
@@ -285,160 +295,60 @@
   /* En tablet 881-1000 no hay mobile-nav, el sidebar es siempre visible · no mostrar collapse tampoco */
   @media (max-width: 1000px) and (min-width: 881px) {
     .sidebar-collapse { display: none; }
-    .sidebar .brand { margin-top: 4px; }
+    .sidebar-brand { margin-top: 4px; }
   }
 
-  /* ═══════ FILA · título "Unidad 4" + flecha a siguiente unidad ═══════ */
+  /* ═══════ FILA · flecha prev · título · flecha next (canon U1) ═══════ */
   .sidebar-title-row {
-    display: flex; align-items: center; gap: 8px;
-    margin: 0 0 6px;
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    padding: 0 4px;
   }
-  .sidebar-title-row .sidebar-title { flex: 1; margin: 0; }
-  /* Botón ghost minimal · siguiente unidad
-     Pill outlined sobre el sidebar oscuro · arrow chip integrado */
+  /* Flechas circulares simples · glifo ‹ › */
   .sidebar-nav-arrow {
     flex-shrink: 0;
-    display: inline-flex; align-items: center; gap: 7px;
-    padding: 4px 4px 4px 10px;
-    border-radius: 50px;
-    background: rgba(255,255,255,0.025);
-    border: 1px solid rgba(210,180,222,0.18);
-    color: rgba(255,255,255,0.78);
-    text-decoration: none;
-    font-size: 0.66em;
-    font-weight: 700;
-    letter-spacing: 0.8px;
-    line-height: 1;
-    transition:
-      background 0.3s,
-      border-color 0.3s,
-      color 0.25s,
-      transform 0.3s var(--ease-spring);
-  }
-  .sidebar-nav-arrow .nav-arrow-num {
-    font-variant-numeric: tabular-nums;
-  }
-  .sidebar-nav-arrow .nav-arrow-icon {
-    display: inline-flex; align-items: center; justify-content: center;
-    width: 20px; height: 20px;
-    border-radius: 50%;
-    background: rgba(210,180,222,0.08);
-    border: 1px solid rgba(210,180,222,0.16);
+    width: 30px; height: 30px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(255,255,255,0.08);
     color: var(--color-soft);
-    transition: background 0.3s, border-color 0.3s, color 0.25s, transform 0.3s var(--ease-spring);
-  }
-  .sidebar-nav-arrow .nav-arrow-icon svg {
-    width: 11px; height: 11px;
-    display: block;
+    text-decoration: none;
+    font-size: 1em; line-height: 1;
+    border: 1px solid rgba(210,180,222,0.25);
+    transition: background 0.3s, color 0.25s, border-color 0.3s, transform 0.3s var(--ease-spring);
   }
   .sidebar-nav-arrow:hover {
-    background: rgba(210,180,222,0.07);
-    border-color: rgba(210,180,222,0.35);
+    background: var(--color-primary);
     color: #fff;
-    transform: translateY(-1px);
-  }
-  .sidebar-nav-arrow:hover .nav-arrow-icon {
-    background: linear-gradient(135deg, var(--color-soft), var(--color-primary));
-    border-color: transparent;
-    color: #fff;
-    transform: translateX(2px);
+    border-color: var(--color-primary);
+    transform: scale(1.1);
   }
   .sidebar-nav-arrow:focus-visible {
     outline: 2px solid var(--color-soft);
     outline-offset: 2px;
   }
-  .sidebar-nav-arrow:active { transform: scale(0.96); }
+  .sidebar-nav-arrow.disabled { opacity: 0.3; pointer-events: none; }
 
-  /* ═══════════════════════════════════════════════
-     BOTÓN AULA VIRTUAL · minimal · ghost outlined
-     · una sola línea de texto + arrow chip a la derecha
-     · accent vertical sutil que crece en hover
-     ═══════════════════════════════════════════════ */
+  /* ═══════ BOTÓN AULA VIRTUAL · simple (canon U1) ═══════ */
   .sidebar-aula-btn {
-    position: relative;
-    display: flex; align-items: center; justify-content: space-between;
-    gap: 12px;
-    width: 100%;
-    margin: 0 0 22px;
-    padding: 12px 14px 12px 16px;
-    background: rgba(255,255,255,0.025);
-    border: 1px solid rgba(210,180,222,0.15);
-    border-radius: 10px;
-    color: rgba(255,255,255,0.85);
+    display: flex; align-items: center; justify-content: center; gap: 7px;
+    margin: 16px 20px 4px;
+    padding: 9px 12px;
+    border-radius: 9px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(210,180,222,0.22);
+    color: var(--color-soft);
     text-decoration: none;
-    overflow: hidden;
-    transition:
-      background 0.3s,
-      border-color 0.3s,
-      color 0.25s,
-      transform 0.3s var(--ease-out-quart);
-  }
-  /* Accent vertical a la izquierda · sólo aparece en hover */
-  .sidebar-aula-btn::before {
-    content: '';
-    position: absolute;
-    left: 0; top: 50%;
-    width: 2px; height: 0;
-    background: linear-gradient(180deg, var(--color-soft), var(--color-primary));
-    transform: translateY(-50%);
-    border-radius: 0 2px 2px 0;
-    transition: height 0.4s var(--ease-out-quart), opacity 0.25s;
-    opacity: 0;
+    font-size: 0.78em; font-weight: 600;
+    letter-spacing: 0.3px;
+    transition: background 0.3s, color 0.25s, border-color 0.3s;
   }
   .sidebar-aula-btn:hover {
-    background: rgba(210,180,222,0.06);
-    border-color: rgba(210,180,222,0.32);
+    background: var(--color-primary);
     color: #fff;
+    border-color: var(--color-primary);
   }
-  .sidebar-aula-btn:hover::before { height: 70%; opacity: 1; }
   .sidebar-aula-btn:focus-visible {
     outline: 2px solid var(--color-soft);
     outline-offset: 2px;
-  }
-  .sidebar-aula-btn:active { transform: scale(0.985); }
-  /* Texto · eyebrow chiquita + label en font-display */
-  .sidebar-aula-btn .aula-btn-text {
-    flex: 1;
-    display: flex; flex-direction: column;
-    gap: 2px;
-    line-height: 1.2;
-    min-width: 0;
-  }
-  .sidebar-aula-btn .aula-btn-eyebrow {
-    font-size: 0.58em;
-    text-transform: uppercase;
-    letter-spacing: 2.2px;
-    color: rgba(210,180,222,0.72);
-    font-weight: 700;
-  }
-  .sidebar-aula-btn .aula-btn-label {
-    font-family: var(--font-display);
-    font-size: 0.98em;
-    color: #fff;
-    font-weight: 500;
-    letter-spacing: 0.1px;
-  }
-  /* Arrow externo · chip circular sutil */
-  .sidebar-aula-btn .aula-btn-arrow {
-    flex-shrink: 0;
-    width: 26px; height: 26px;
-    display: inline-flex; align-items: center; justify-content: center;
-    background: rgba(210,180,222,0.06);
-    border: 1px solid rgba(210,180,222,0.16);
-    border-radius: 50%;
-    color: var(--color-soft);
-    transition:
-      background 0.3s,
-      border-color 0.3s,
-      color 0.25s,
-      transform 0.3s var(--ease-spring);
-  }
-  .sidebar-aula-btn .aula-btn-arrow svg { width: 13px; height: 13px; }
-  .sidebar-aula-btn:hover .aula-btn-arrow {
-    background: linear-gradient(135deg, var(--color-soft), var(--color-primary));
-    border-color: transparent;
-    color: #fff;
-    transform: translate(2px, -2px);
   }
 
   /* ═══════════════════════════════════════════════
@@ -447,7 +357,14 @@
      ═══════════════════════════════════════════════ */
   .sidebar-nav {
     position: relative;
-    padding: 4px 0 6px;
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin: 4px -20px 0;
+    padding: 4px 20px 6px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(210,180,222,0.18) transparent;
   }
   /* Sub-links · base */
   .sidebar nav a {
@@ -536,183 +453,47 @@
     background: rgba(46,204,113,0.55);
     border-color: rgba(46,204,113,0.7);
   }
-  body.fx-off .sidebar nav a.visited:not(.section-title):not(.active)::before {
-    background: rgba(210,180,222,0.5);
-    border-color: rgba(210,180,222,0.7);
-  }
 
-  /* ═══════════════════════════════════════════════
-     PANEL DE PROGRESO DEL SIDEBAR · diseño cinematic
-     · número hero grande, barra con depth, glow trail
-     · shine periódico cuando hay avance
-     ═══════════════════════════════════════════════ */
-  @keyframes sp-shine {
-    0%   { transform: translateX(-100%); }
-    60%  { transform: translateX(280%); }
-    100% { transform: translateX(280%); }
-  }
-  .sidebar-progress {
-    margin: 0 -2px 22px;
-    padding: 16px 16px 14px;
-    background:
-      radial-gradient(ellipse at top right, rgba(46,204,113,0.12), transparent 55%),
-      radial-gradient(ellipse at bottom left, rgba(142,68,173,0.08), transparent 60%),
-      linear-gradient(160deg, rgba(255,255,255,0.05), rgba(210,180,222,0.03));
-    border: 1px solid rgba(210,180,222,0.18);
-    border-radius: 16px;
-    position: relative;
+  /* ═══════ PANEL DE PROGRESO · barra + reset ↺ + % recorrido (canon U1) ═══════ */
+  .sidebar-progress { padding: 14px 22px 6px; }
+  .sidebar-progress-track {
+    height: 6px; border-radius: 4px;
+    background: rgba(255,255,255,0.1);
     overflow: hidden;
-    isolation: isolate;
-    box-shadow:
-      inset 0 1px 0 rgba(255,255,255,0.05),
-      0 4px 16px rgba(0,0,0,0.12);
   }
-  /* Hairline decorativo arriba del panel */
-  .sidebar-progress::before {
-    content: ''; position: absolute;
-    top: 0; left: 12%; right: 12%; height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(210,180,222,0.4), transparent);
+  .sidebar-progress-fill {
+    height: 100%; width: 0%; border-radius: 4px;
+    background: linear-gradient(90deg, var(--color-soft), #ffd673);
+    transition: width 0.4s var(--ease-out-quart);
   }
-  .sp-header {
-    display: flex; justify-content: space-between; align-items: flex-end;
-    margin-bottom: 12px;
-    position: relative;
-    z-index: 1;
+  .sidebar-progress-row {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    margin-top: 7px;
   }
-  .sp-label {
-    display: inline-flex; align-items: center; gap: 6px;
-    font-size: 0.58em;
-    text-transform: uppercase;
-    letter-spacing: 2.5px;
-    color: var(--color-soft);
-    font-weight: 700;
-  }
-  .sp-label::before {
-    content: '';
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--color-soft);
-    box-shadow: 0 0 8px rgba(210,180,222,0.6);
-  }
-  .sp-count {
-    font-size: 0.7em;
-    color: rgba(255,255,255,0.55);
-    font-weight: 500;
-    letter-spacing: 0.3px;
+  .sidebar-progress-label {
+    font-size: 0.62em; letter-spacing: 1px; text-transform: uppercase;
+    color: var(--color-soft); opacity: 0.85;
     font-variant-numeric: tabular-nums;
-    line-height: 1;
-    display: inline-flex; align-items: baseline; gap: 2px;
   }
-  .sp-count strong {
-    color: #fff;
-    font-size: 2em;
-    font-family: var(--font-display);
-    font-weight: 700;
-    line-height: 1;
-    background: linear-gradient(180deg, #fff 30%, rgba(255,255,255,0.7) 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    transition: color 0.3s;
-  }
-  .sp-count.is-complete strong {
-    background: linear-gradient(180deg, #58d68d 0%, #27ae60 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 0 8px rgba(88,214,141,0.5));
-  }
-  /* Barra · más alta y con depth */
-  .sp-bar {
-    height: 8px;
-    background:
-      linear-gradient(180deg, rgba(0,0,0,0.18), rgba(255,255,255,0.02));
-    border-radius: 5px;
-    overflow: hidden;
-    position: relative;
-    border: 1px solid rgba(255,255,255,0.04);
-    box-shadow: inset 0 1px 2px rgba(0,0,0,0.22);
-    z-index: 1;
-  }
-  .sp-fill {
-    height: 100%; width: 0%;
-    transition: width 0.8s var(--ease-out-quart);
-    background: linear-gradient(90deg, #1e8449 0%, #27ae60 40%, #2ecc71 75%, #58d68d 100%);
-    box-shadow:
-      0 0 10px rgba(46,204,113,0.55),
-      inset 0 1px 0 rgba(255,255,255,0.25);
-    border-radius: 4px;
-    position: relative;
-  }
-  /* Punto brillante (cabezal) en el extremo · "comet head" */
-  .sp-fill::before {
-    content: '';
-    position: absolute; right: -2px; top: -2px; bottom: -2px;
-    width: 8px;
-    background: radial-gradient(circle, rgba(255,255,255,0.95), rgba(255,255,255,0.3) 70%, transparent);
-    border-radius: 50%;
-    filter: blur(1px);
-  }
-  /* Shine que cruza periódicamente cuando hay avance */
-  .sp-fill::after {
-    content: '';
-    position: absolute; inset: 0;
-    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.5) 50%, transparent 100%);
-    width: 36%;
-    transform: translateX(-100%);
-    animation: sp-shine 4.5s ease-in-out infinite;
-    animation-delay: 2s;
-  }
-  body.fx-off .sp-fill::after { animation: none !important; display: none; }
-  body.fx-off .sp-fill::before { filter: none; }
-  .sp-footer {
-    display: flex; align-items: center; justify-content: space-between;
-    gap: 8px;
-    margin-top: 12px; position: relative; z-index: 1;
-  }
-  .sp-hint {
-    display: inline-flex; align-items: center; gap: 5px;
-    font-size: 0.62em;
-    color: rgba(210,180,222,0.5);
-    letter-spacing: 0.4px;
-    font-weight: 500;
-  }
-  .sp-hint::before {
-    content: '';
-    width: 4px; height: 4px;
-    border-radius: 50%;
-    background: rgba(210,180,222,0.4);
-    box-shadow: 0 0 6px rgba(210,180,222,0.3);
-  }
-  .sp-reset {
-    background: rgba(255,255,255,0.025);
-    border: 1px solid rgba(210,180,222,0.15);
-    font-family: var(--font-body);
-    color: rgba(210,180,222,0.55);
-    font-size: 0.64em;
+  .sidebar-reset {
+    background: none;
+    border: 1px solid rgba(210,180,222,0.28);
+    color: var(--color-soft);
+    width: 22px; height: 22px; border-radius: 6px;
     cursor: pointer;
-    padding: 4px 9px;
-    border-radius: 50px;
-    display: inline-flex; align-items: center; gap: 5px;
-    letter-spacing: 0.3px;
-    font-weight: 600;
-    transition:
-      color 0.25s,
-      background 0.25s,
-      border-color 0.25s,
-      transform 0.3s var(--ease-spring);
+    font-size: 0.82em; line-height: 1;
+    display: flex; align-items: center; justify-content: center;
+    padding: 0;
+    transition: all 0.3s;
+    flex-shrink: 0;
   }
-  .sp-reset:hover {
+  .sidebar-reset:hover {
+    border-color: var(--color-danger);
     color: #fff;
-    background: rgba(210,180,222,0.12);
-    border-color: rgba(210,180,222,0.4);
-    transform: translateY(-1px);
+    background: rgba(192,57,43,0.45);
+    transform: rotate(-90deg);
   }
-  .sp-reset:active { transform: translateY(0) scale(0.96); }
-  .sp-reset:focus-visible {
-    outline: 2px solid var(--color-soft);
-    outline-offset: 2px;
-  }
+  .sidebar-reset:focus-visible { outline: 2px solid var(--color-soft); outline-offset: 2px; }
 
   /* "just-visited" · breve glow al marcar visitado */
   .sidebar nav a.just-visited { animation: nav-glow 0.9s ease-out; }
@@ -736,12 +517,7 @@
   .sidebar nav a.in-view-now::after {
     height: 80%;
     opacity: 1;
-    box-shadow: 0 0 12px rgba(210,180,222,0.7);
-    animation: nav-now-glow 1.8s ease-in-out infinite;
-  }
-  @keyframes nav-now-glow {
-    0%, 100% { box-shadow: 0 0 8px rgba(210,180,222,0.4); }
-    50%      { box-shadow: 0 0 16px rgba(210,180,222,0.9); }
+    box-shadow: 0 0 8px rgba(210,180,222,0.5);
   }
 
   /* ═══════════════════════════════════════════════
@@ -834,11 +610,6 @@
     border-color: rgba(46,204,113,0.4);
     color: #58d68d;
   }
-  body.fx-off .sidebar nav a.section-title.visited .st-num {
-    background: linear-gradient(135deg, rgba(210,180,222,0.25), rgba(142,68,173,0.12));
-    border-color: rgba(210,180,222,0.4);
-    color: var(--color-soft);
-  }
 
   /* ═══════════════════════════════════════════════
      SECCIÓN COMPLETA · chip dorado con glow respirando
@@ -853,13 +624,8 @@
     color: #fff;
     text-shadow: 0 1px 2px rgba(120,60,0,0.35);
     box-shadow:
-      0 4px 14px rgba(243,156,18,0.45),
+      0 3px 12px rgba(243,156,18,0.38),
       inset 0 1px 0 rgba(255,255,255,0.35);
-    animation: nav-complete-glow 2.4s ease-in-out infinite;
-  }
-  @keyframes nav-complete-glow {
-    0%, 100% { box-shadow: 0 3px 10px rgba(243,156,18,0.35), inset 0 1px 0 rgba(255,255,255,0.35); }
-    50%      { box-shadow: 0 4px 18px rgba(255,214,115,0.7), inset 0 1px 0 rgba(255,255,255,0.45); }
   }
   .sidebar nav a.section-title.just-completed .st-num {
     animation: nav-complete-pop 0.8s var(--ease-pop);
@@ -870,12 +636,6 @@
     70%  { transform: scale(0.95) rotate(360deg); }
     100% { transform: scale(1) rotate(360deg); }
   }
-  body.fx-off .sidebar nav a.section-title.section-complete .st-num {
-    animation: none !important;
-    background: linear-gradient(135deg, var(--color-soft), var(--color-primary)) !important;
-    border-color: rgba(210,180,222,0.5) !important;
-  }
-  body.fx-off .sidebar nav a.section-title.section-complete { color: var(--color-soft); }
 
   /* ═══════════════════════════════════════════════
      PROGRESS BAR INFERIOR · trail con comet head + shimmer
@@ -901,38 +661,21 @@
     height: 100%; width: 0%;
     background: linear-gradient(90deg,
       var(--color-soft) 0%,
-      var(--color-primary) 30%,
-      var(--color-anchor) 70%,
-      var(--color-deepest) 100%);
-    background-size: 200% 100%;
-    animation: shimmer 3s linear infinite;
+      var(--color-primary) 45%,
+      var(--color-anchor) 100%);
     transition: width 0.15s ease-out;
-    box-shadow:
-      0 0 16px rgba(142,68,173,0.55),
-      inset 0 1px 0 rgba(255,255,255,0.2);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
     position: relative;
   }
-  /* Comet head · doble capa (glow + core) */
-  .progress-bar-bottom .progress-fill::before {
-    content: ''; position: absolute;
-    right: -8px; top: -10px;
-    width: 24px; height: 24px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(210,180,222,0.4), transparent 60%);
-    filter: blur(4px);
-    pointer-events: none;
-  }
+  /* Cabezal · punto sutil en el extremo (sin glow marcado) */
   .progress-bar-bottom .progress-fill::after {
     content: ''; position: absolute;
-    right: -2px; top: -3px;
-    width: 10px; height: 10px;
+    right: -2px; top: 50%; transform: translateY(-50%);
+    width: 6px; height: 6px;
     border-radius: 50%;
-    background: radial-gradient(circle, #fff 0%, rgba(255,255,255,0.85) 50%, transparent 100%);
-    box-shadow:
-      0 0 12px var(--color-soft),
-      0 0 6px #fff;
+    background: #fff;
+    box-shadow: 0 0 6px rgba(210,180,222,0.6);
   }
-  body.fx-off .progress-bar-bottom .progress-fill::before { display: none; }
 
   /* Chip de porcentaje · glass premium con dot lila */
   .progress-percent {
@@ -962,6 +705,10 @@
     text-shadow: 0 1px 2px rgba(0,0,0,0.4);
   }
   /* Dot lila pulsante a la izquierda del % */
+  @keyframes docend-blink {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%      { opacity: 0.4; transform: scale(0.85); }
+  }
   .progress-percent::before {
     content: '';
     width: 6px; height: 6px;
@@ -971,7 +718,6 @@
     animation: docend-blink 2s ease-in-out infinite;
     flex-shrink: 0;
   }
-  body.fx-off .progress-percent::before { animation: none; }
 
   /* ═══════════════════════════════════════════════
      ACHIEVEMENT TOAST · entrada cinematográfica
@@ -1047,8 +793,6 @@
     animation: achievement-star-spin 3.6s ease-in-out infinite;
     text-shadow: 0 1px 2px rgba(0,0,0,0.3);
   }
-  body.fx-off .achievement .star { animation: none !important; }
-  body.fx-off .achievement::after { display: none !important; }
 
   /* ═══════════════════════════════════════════════
      SCROLL-TOP · botón flotante premium
@@ -1122,7 +866,6 @@
   .scroll-top:hover::after { animation: scroll-top-bounce 0.8s ease-in-out infinite; }
   .scroll-top:focus-visible { outline: 2px solid var(--color-soft); outline-offset: 4px; }
   .scroll-top:active { transform: translateY(-2px) scale(0.97); }
-  body.fx-off .scroll-top:hover::after { animation: none !important; }
 
   .main { margin-left: 280px; flex: 1; padding: 0; max-width: calc(100% - 280px); }
   .container { max-width: 900px; margin: 0 auto; padding: 40px 50px; }
@@ -1282,15 +1025,27 @@
     border-radius: 20px; border: 1px solid rgba(210,180,222,0.25);
   }
   .hero h1 {
-    font-family: var(--font-display); font-weight: normal;
-    font-size: 4em; line-height: 1.05; letter-spacing: -1.5px;
+    font-family: var(--font-display); font-weight: 700;
+    font-size: clamp(2.3rem, 6vw, 3.7rem); line-height: 1.08; letter-spacing: -0.5px;
     margin-bottom: 25px; color: #fff;
   }
-  .hero h1 .accent { color: var(--color-soft); font-style: italic; }
+  .hero h1 em { color: var(--color-gold); font-style: italic; }
   .hero p.lead {
-    font-size: 1.15em; max-width: 700px; color: rgba(255,255,255,0.85);
+    font-size: clamp(1rem, 2.3vw, 1.15rem); max-width: 700px; color: rgba(255,255,255,0.9);
     font-weight: 300; line-height: 1.7;
   }
+  .hero p.lead em { color: var(--color-gold); font-style: italic; }
+  /* Cue de scroll · invita a empezar el recorrido */
+  .hero-scroll-cue {
+    margin-top: 42px; display: inline-flex; align-items: center; gap: 10px;
+    font-size: 0.72em; letter-spacing: 2.5px; text-transform: uppercase;
+    color: var(--color-soft); font-weight: 700; animation-delay: 0.65s;
+  }
+  .hero-scroll-cue .cue-arrow {
+    display: inline-block; font-size: 1.3em; color: var(--color-gold);
+    animation: cue-bounce 2.2s ease-in-out infinite;
+  }
+  @keyframes cue-bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
   .hero-meta {
     display: flex; gap: 30px; margin-top: 40px; flex-wrap: wrap;
   }
@@ -1303,6 +1058,21 @@
     color: var(--color-soft); margin-bottom: 4px;
   }
   .hero-meta .meta-item .value { font-size: 0.95em; color: #fff; font-weight: 500; }
+
+  /* Voces de la unidad · chips de autores */
+  .hero-voces { margin-top: 34px; animation-delay: 0.42s; }
+  .hero-chips-head { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+  .hero-chips-eyebrow { font-size: 0.68em; letter-spacing: 2px; text-transform: uppercase; color: var(--color-soft); font-weight: 700; white-space: nowrap; }
+  .hero-chips-thread { flex: 1; height: 1px; background: linear-gradient(90deg, rgba(210,180,222,0.5), rgba(210,180,222,0)); }
+  .hero-chips { display: flex; flex-wrap: wrap; gap: 9px; }
+  .hero-chip {
+    display: inline-flex; align-items: center; gap: 7px; font-size: 0.78em; font-weight: 600;
+    color: #fff; background: rgba(255,255,255,0.06); border: 1px solid rgba(210,180,222,0.22);
+    padding: 6px 13px; border-radius: 999px;
+  }
+  .hero-chip-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--color-gold); flex-shrink: 0; }
+  .hero-chip.c2 .hero-chip-dot { background: var(--color-blue); }
+  .hero-chip.c3 .hero-chip-dot { background: var(--color-success); }
 
   /* ════════ AVISO DE CÁTEDRA ════════ */
   .cathedra-notice {
@@ -1532,12 +1302,20 @@
   section { padding: 60px 0; scroll-margin-top: 10px; }
   .section-header { margin-bottom: 40px; }
   .section-label { display: flex; align-items: center; gap: 15px; margin-bottom: 18px; }
-  .section-label .line { width: 40px; height: 1px; background: linear-gradient(to right, transparent, rgba(142,68,173,0.6)); }
+  .section-label .sec-num {
+    display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+    width: 26px; height: 26px; border-radius: 8px; line-height: 1;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-anchor));
+    color: #fff; font-family: var(--font-display); font-size: 0.82em; font-weight: 700;
+  }
   .section-label .text {
     font-size: 0.75em; text-transform: uppercase; letter-spacing: 4px;
     color: var(--color-primary-dark); font-weight: 700;
   }
   .section-label .grow { flex-grow: 1; height: 1px; background: linear-gradient(to left, transparent, rgba(142,68,173,0.15)); }
+  .divider-flourish { display: flex; align-items: center; justify-content: center; gap: 14px; margin: 8px 0 0; }
+  .divider-flourish::before, .divider-flourish::after { content: ""; height: 1px; width: 60px; background: linear-gradient(90deg, transparent, var(--color-soft)); }
+  .divider-flourish span { color: var(--color-primary); font-size: 1.1em; }
   section h2 {
     font-family: var(--font-display); font-weight: normal;
     font-size: 2.6em; color: var(--color-text-primary);
@@ -1580,6 +1358,8 @@
   .callout.warning strong { color: var(--color-warning); }
   .callout.success { border-left-color: var(--color-success); background: linear-gradient(to right, rgba(39,174,96,0.05), transparent); }
   .callout.success strong { color: var(--color-success); }
+  .callout.data { border-left-color: var(--color-turquoise); background: linear-gradient(to right, rgba(22,160,133,0.06), transparent); }
+  .callout.data strong { color: var(--color-turquoise); }
   .callout.tip { border-left-color: var(--color-anchor); background: linear-gradient(to right, rgba(74,35,90,0.04), transparent); }
   .callout.tip strong { color: var(--color-anchor); }
 
@@ -1867,33 +1647,6 @@
   }
   .card .example strong { color: var(--color-primary-dark); }
 
-  /* ════════ ACORDEÓN ════════ */
-  .accordion { margin: 20px 0; }
-  .acc-item {
-    background: #fff; margin-bottom: 12px; border-radius: 10px;
-    border: 1px solid var(--color-border-subtle); overflow: hidden;
-    box-shadow: var(--shadow-soft);
-  }
-  .acc-trigger {
-    width: 100%; background: linear-gradient(to right, #fcfbff, #fff);
-    border: none; padding: 18px 24px; cursor: pointer;
-    text-align: left; font-family: var(--font-body);
-    font-size: 1em; color: var(--color-text-primary);
-    display: flex; justify-content: space-between; align-items: center;
-    gap: 15px; font-weight: 600; transition: background 0.2s;
-  }
-  .acc-trigger:hover { background: linear-gradient(to right, #f4f0f7, #fdfbff); }
-  .acc-trigger .icon {
-    width: 28px; height: 28px; border-radius: 50%;
-    background: var(--color-primary); color: #fff;
-    display: flex; align-items: center; justify-content: center;
-    transition: transform 0.3s; flex-shrink: 0; font-size: 0.9em;
-  }
-  .acc-item.open .acc-trigger .icon { transform: rotate(45deg); background: var(--color-anchor); }
-  .acc-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; padding: 0 24px; }
-  .acc-item.open .acc-content { max-height: 2200px; padding: 5px 24px 22px; }
-  .acc-content > *:first-child { margin-top: 0; }
-
   /* ════════ TABS ════════ */
   .tabs { margin: 25px 0; }
   .tab-list { display: flex; gap: 4px; border-bottom: 2px solid var(--color-border-subtle); flex-wrap: wrap; }
@@ -2000,6 +1753,8 @@
   .comp-card.indirectos { border-top: 4px solid var(--color-primary); }
   .comp-card.progresivos { border-top: 4px solid var(--color-success); }
   .comp-card.regresivos { border-top: 4px solid var(--color-danger); }
+  .comp-card.gobierno { border-top: 4px solid var(--color-info); }
+  .comp-card.publico { border-top: 4px solid var(--color-primary); }
   .comp-card .comp-tag {
     display: inline-block; font-size: 0.65em; text-transform: uppercase;
     letter-spacing: 2px; padding: 3px 10px; border-radius: 12px;
@@ -2011,6 +1766,8 @@
   .comp-card.indirectos .comp-tag { background: rgba(41,128,185,0.1); color: #1f5d8c; }
   .comp-card.progresivos .comp-tag { background: rgba(39,174,96,0.1); color: #1e6b3c; }
   .comp-card.regresivos .comp-tag { background: rgba(192,57,43,0.1); color: #8e2a1f; }
+  .comp-card.gobierno .comp-tag { background: rgba(41,128,185,0.1); color: #1f5d8c; }
+  .comp-card.publico .comp-tag { background: rgba(142,68,173,0.1); color: #6c3483; }
   .comp-card h4 {
     font-family: var(--font-display); font-size: 1.4em;
     color: var(--color-deepest); font-weight: normal; margin: 0 0 12px;
@@ -2112,13 +1869,9 @@
     box-shadow: var(--shadow-card); margin: 30px 0;
     border: 1px solid var(--color-border-subtle);
   }
-  .quiz-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; flex-wrap: wrap; gap: 15px; }
-  .quiz-header h3 { margin: 0; }
-  .quiz-progress {
-    font-size: 0.78em; text-transform: uppercase; letter-spacing: 2px;
-    color: var(--color-primary-dark); font-weight: 700;
-    background: rgba(142,68,173,0.08); padding: 6px 14px; border-radius: 20px;
-  }
+  /* Quiz distribuido · autoevaluación inline al cierre de cada bloque (marco fino) */
+  .quiz-inline { padding: 7px; margin: 34px 0; }
+  .quiz-inline .quiz-question { margin-bottom: 0; }
   .quiz-question {
     background: #fff; padding: 25px; border-radius: 12px;
     margin-bottom: 18px; border: 1px solid var(--color-border-subtle);
@@ -2164,21 +1917,6 @@
   .quiz-feedback.correct { background: rgba(39,174,96,0.08); border-left: 3px solid var(--color-success); color: #1e6b3c; }
   .quiz-feedback.incorrect { background: rgba(192,57,43,0.06); border-left: 3px solid var(--color-danger); color: #8e2a1f; }
   .quiz-feedback strong { display: block; margin-bottom: 4px; }
-  .quiz-final {
-    background: linear-gradient(135deg, var(--color-deepest), var(--color-anchor));
-    color: #fff; padding: 30px; border-radius: 14px;
-    text-align: center; margin-top: 20px; display: none;
-  }
-  .quiz-final.show { display: block; animation: fadeIn 0.4s; }
-  .quiz-final h4 {
-    font-family: var(--font-display); font-weight: normal;
-    color: #fff; font-size: 1.6em; margin-bottom: 10px;
-  }
-  .quiz-final .score {
-    font-size: 3em; font-family: var(--font-display);
-    color: var(--color-soft); font-weight: 700; margin: 10px 0;
-  }
-  .quiz-final p { color: rgba(255,255,255,0.85); margin-bottom: 20px; }
 
   /* ════════ RÚBRICA DE EVALUACIÓN ════════ */
   .rubrica {
@@ -3749,7 +3487,6 @@
     top: -13px;
     border-bottom-color: var(--color-deepest);
   }
-  body.fx-off .gloss-tooltip { transition: none !important; }
 
   /* ════════ CITA-FUENTE · pullquote académica ════════ */
   .cita-fuente {
@@ -4137,9 +3874,17 @@
   }
   .hero-skyline .cr-window:nth-child(odd) { animation-delay: 2s; }
   .hero-skyline .cr-window:nth-child(3n) { animation-delay: 4s; }
+  .hero-skyline .cr-window:nth-child(4n) { animation-delay: 1.2s; animation-duration: 7.5s; }
   @keyframes cr-window-blink {
     0%, 88%, 100% { fill-opacity: 0.45; }
     92%, 96% { fill-opacity: 0.85; }
+  }
+  .hero-skyline .cr-glow {
+    animation: cr-glow-pulse 8s ease-in-out infinite;
+  }
+  @keyframes cr-glow-pulse {
+    0%, 100% { opacity: 0.55; }
+    50% { opacity: 1; }
   }
   .hero-skyline .cr-flag {
     transform-origin: 400px -10px;
@@ -4153,6 +3898,9 @@
     position: absolute;
     left: 50%; bottom: 12px;
     transform: translateX(-50%);
+    max-width: 94vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
     font-size: 0.6em;
     text-transform: uppercase;
     letter-spacing: 4px;
@@ -4164,195 +3912,10 @@
   }
   @media (max-width: 600px) {
     .hero-skyline { height: 130px; }
-    .hero-skyline-label { font-size: 0.55em; letter-spacing: 2.5px; bottom: 8px; }
+    .hero-skyline-label { font-size: 0.5em; letter-spacing: 1.5px; bottom: 8px; }
   }
-
-  /* ═══════════════════════════════════════════════
-     FX-TOGGLE · switch premium tipo iOS
-     · glass background con depth
-     · icono que respira sutilmente cuando ON
-     · switch con knob que comprime al moverse
-     ═══════════════════════════════════════════════ */
-  @keyframes fx-icon-breathe {
-    0%, 100% { box-shadow: 0 0 10px rgba(210,180,222,0.4), 0 0 0 0 rgba(210,180,222,0.3); }
-    50%      { box-shadow: 0 0 14px rgba(210,180,222,0.55), 0 0 0 6px rgba(210,180,222,0); }
-  }
-  .fx-toggle {
-    display: flex; align-items: center; gap: 12px;
-    width: 100%;
-    margin: 0 0 18px;
-    padding: 11px 14px;
-    background:
-      radial-gradient(ellipse at top right, rgba(46,204,113,0.07), transparent 55%),
-      linear-gradient(160deg, rgba(255,255,255,0.04), rgba(210,180,222,0.04));
-    border: 1px solid rgba(210,180,222,0.18);
-    border-radius: 14px;
-    cursor: pointer;
-    color: rgba(255,255,255,0.85);
-    font-family: inherit;
-    font-size: 0.75em;
-    text-align: left;
-    box-shadow:
-      inset 0 1px 0 rgba(255,255,255,0.05),
-      0 2px 8px rgba(0,0,0,0.12);
-    transition:
-      background 0.3s,
-      border-color 0.3s,
-      color 0.25s,
-      box-shadow 0.3s,
-      transform 0.25s var(--ease-spring);
-  }
-  .fx-toggle:hover {
-    background:
-      radial-gradient(ellipse at top right, rgba(46,204,113,0.12), transparent 55%),
-      linear-gradient(160deg, rgba(255,255,255,0.07), rgba(210,180,222,0.07));
-    border-color: rgba(210,180,222,0.35);
-    color: #fff;
-    transform: translateY(-1px);
-    box-shadow:
-      inset 0 1px 0 rgba(255,255,255,0.08),
-      0 6px 14px rgba(0,0,0,0.22);
-  }
-  .fx-toggle.fx-off {
-    background:
-      radial-gradient(ellipse at top right, rgba(255,255,255,0.02), transparent 55%),
-      linear-gradient(160deg, rgba(255,255,255,0.025), rgba(255,255,255,0.015));
-  }
-  .fx-toggle:focus-visible {
-    outline: 2px solid var(--color-soft);
-    outline-offset: 2px;
-  }
-  .fx-toggle:active { transform: translateY(0) scale(0.985); }
-  /* Ícono · diamante lila con halo respirando cuando ON */
-  .fx-icon {
-    flex-shrink: 0;
-    width: 28px; height: 28px;
-    border-radius: 9px;
-    background: linear-gradient(135deg, var(--color-soft) 0%, var(--color-primary) 70%, var(--color-anchor) 100%);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 0.9em; color: #fff;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
-    border: 1px solid rgba(255,255,255,0.15);
-    box-shadow:
-      inset 0 1px 0 rgba(255,255,255,0.2),
-      0 0 10px rgba(210,180,222,0.4);
-    animation: fx-icon-breathe 2.4s ease-in-out infinite;
-    transition: background 0.3s, box-shadow 0.3s, animation 0.3s;
-  }
-  .fx-toggle.fx-off .fx-icon {
-    background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
-    border-color: rgba(255,255,255,0.08);
-    color: rgba(255,255,255,0.35);
-    text-shadow: none;
-    box-shadow:
-      inset 0 1px 0 rgba(255,255,255,0.05),
-      0 0 0 0 rgba(0,0,0,0);
-    animation: none;
-  }
-  body.fx-off .fx-icon { animation: none !important; }
-  /* Texto · label + state */
-  .fx-text { flex: 1; line-height: 1.25; min-width: 0; }
-  .fx-label {
-    display: block;
-    font-size: 1em;
-    color: inherit;
-    letter-spacing: 0.3px;
-    font-weight: 600;
-  }
-  .fx-state {
-    display: inline-flex; align-items: center;
-    margin-top: 3px;
-    padding: 2px 8px;
-    font-size: 0.7em;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    color: #58d68d;
-    font-weight: 700;
-    background: rgba(46,204,113,0.12);
-    border: 1px solid rgba(46,204,113,0.22);
-    border-radius: 50px;
-    transition: color 0.3s, background 0.3s, border-color 0.3s;
-  }
-  .fx-toggle.fx-off .fx-state {
-    color: rgba(255,255,255,0.4);
-    background: rgba(255,255,255,0.04);
-    border-color: rgba(255,255,255,0.08);
-  }
-  /* Switch tipo iOS · track con depth + knob con compresión al moverse */
-  .fx-switch {
-    flex-shrink: 0;
-    width: 36px; height: 20px;
-    border-radius: 50px;
-    background: linear-gradient(180deg, #1e8449, #27ae60);
-    position: relative;
-    border: 1px solid rgba(46,204,113,0.4);
-    box-shadow:
-      inset 0 1px 2px rgba(0,0,0,0.25),
-      0 0 8px rgba(46,204,113,0.35);
-    transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
-  }
-  .fx-switch::after {
-    content: '';
-    position: absolute; top: 2px; left: 2px;
-    width: 14px; height: 14px;
-    border-radius: 50%;
-    background: linear-gradient(180deg, #fff, #f4f0f7);
-    box-shadow:
-      0 2px 4px rgba(0,0,0,0.22),
-      inset 0 1px 0 rgba(255,255,255,0.9);
-    transition:
-      transform 0.35s var(--ease-spring),
-      width 0.2s ease,
-      background 0.3s;
-  }
-  /* Compresión visual del knob durante el slide */
-  .fx-toggle:active .fx-switch::after { width: 18px; }
-  .fx-toggle.fx-off .fx-switch {
-    background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.14));
-    border-color: rgba(255,255,255,0.12);
-    box-shadow:
-      inset 0 1px 2px rgba(0,0,0,0.25),
-      0 0 0 0 rgba(0,0,0,0);
-  }
-  .fx-toggle.fx-off .fx-switch::after {
-    transform: translateX(16px);
-    background: linear-gradient(180deg, #f4f0f7, #d8d4dc);
-  }
-  .fx-toggle.fx-off:active .fx-switch::after { width: 18px; transform: translateX(12px); }
-
-  /* MODO SIN EFECTOS: desactiva animaciones/transiciones */
-  body.fx-off *,
-  body.fx-off *::before,
-  body.fx-off *::after {
-    animation-duration: 0.001s !important;
-    animation-delay: 0s !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.001s !important;
-    transition-delay: 0s !important;
-  }
-  body.fx-off .reveal { opacity: 1 !important; transform: none !important; }
-  body.fx-off .progress-bar-bottom .progress-fill { animation: none !important; }
-  body.fx-off .hero::before,
-  body.fx-off .hero::after,
-  body.fx-off .hero-skyline .cr-window,
-  body.fx-off .hero-skyline .cr-flag,
-  body.fx-off .learn-goals::before,
-  body.fx-off .lg-tag::before { animation: none !important; }
-  body.fx-off .achievement { display: none !important; }
-  body.fx-off .sidebar nav a.in-view-now::after { animation: none !important; }
-
-  /* Barra de progreso · verde → lila */
-  body.fx-off .sp-fill {
-    background: linear-gradient(90deg, var(--color-soft) 0%, var(--color-primary) 60%, var(--color-anchor) 100%) !important;
-    box-shadow: none !important;
-  }
-  body.fx-off .sp-fill::after { display: none !important; }
-  body.fx-off .sp-count.is-complete strong { color: var(--color-soft) !important; }
-  /* Objetivos · tilde verde → lila */
-  body.fx-off .lg-item.is-done .lg-check {
-    background: linear-gradient(135deg, var(--color-soft), var(--color-primary)) !important;
-    border: 2px solid transparent !important;
-    box-shadow: 0 4px 12px rgba(108,52,131,0.25) !important;
+  @media (max-width: 400px) {
+    .hero-skyline-label { font-size: 0.46em; letter-spacing: 0.7px; }
   }
 
   .sidebar-foot {
@@ -4384,442 +3947,76 @@
     font-size: 0.95em;
   }
 
-  /* ═══════════════════════════════════════════════
-     DOCEND · pie unificado · diseño claro + sutil
-     · misma paleta que el cuerpo (cream + lila accent)
-     · pre-footer y footer comparten estilo · cero
-       slab oscuro al final
-     ═══════════════════════════════════════════════ */
-  .docend {
-    background: transparent;
-    color: var(--color-text-body);
-    position: relative;
-    margin: 0;
-  }
-  .docend-nav { margin-top: 60px; }
-  .docend-foot { padding-bottom: 50px; }
-  /* Hairline acento arriba del bloque · marca el inicio del cierre */
-  .docend-nav::before {
-    content: '';
-    display: block;
-    height: 1px;
-    max-width: 720px;
-    margin: 0 auto 0;
-    background: linear-gradient(90deg,
-      transparent 0%,
-      var(--color-border-subtle) 20%,
-      rgba(142,68,173,0.45) 50%,
-      var(--color-border-subtle) 80%,
-      transparent 100%);
-  }
-  .docend-inner {
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 40px 50px 0;
-    position: relative;
-  }
-
-  /* ═══ HEAD · eyebrow + título editorial ═══ */
-  .docend-head {
-    text-align: center;
-    margin-bottom: 28px;
-  }
-  .docend-eyebrow {
-    display: inline-block;
-    font-size: 0.62em;
-    text-transform: uppercase;
-    letter-spacing: 3.5px;
-    color: var(--color-anchor);
-    font-weight: 700;
-    margin-bottom: 12px;
-    opacity: 0.7;
-  }
-  .docend-title {
-    font-family: var(--font-display);
-    font-size: 1.55em;
-    color: var(--color-anchor);
-    line-height: 1.25;
-    margin: 0;
-    font-weight: normal;
-    letter-spacing: -0.3px;
-  }
-  .docend-title em {
-    font-style: italic;
-    color: var(--color-primary);
-  }
-
-  /* ═══ PROGRESS · ubicación de la unidad ═══ */
-  .docend-progress {
-    display: flex; align-items: center; justify-content: center;
-    gap: 16px;
-    margin: 0 auto 30px;
-    flex-wrap: wrap;
-  }
-  .docend-dots {
-    display: flex; align-items: center;
-    gap: 7px;
-  }
-  .docend-dot {
-    width: 7px; height: 7px;
-    border-radius: 50%;
-    background: rgba(142,68,173,0.10);
-    border: 1px solid rgba(142,68,173,0.18);
-    transition: background 0.3s;
-  }
-  .docend-dot.is-done {
-    background: rgba(142,68,173,0.5);
-    border-color: rgba(142,68,173,0.55);
-  }
-  .docend-dot.is-current {
-    width: 26px;
-    border-radius: 50px;
-    background: linear-gradient(90deg, var(--color-primary), var(--color-anchor));
-    border-color: transparent;
-    box-shadow: 0 2px 8px rgba(142,68,173,0.3);
-  }
-  .docend-progress-label {
-    font-size: 0.7em;
-    color: var(--color-text-muted);
-    letter-spacing: 0.4px;
-    font-variant-numeric: tabular-nums;
-  }
-  .docend-progress-label strong {
-    color: var(--color-anchor);
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: 1.1em;
-    margin: 0 1px;
-  }
-
-  /* ═══ ACTIONS · ghost + primary, mismo radius ═══ */
-  .docend-actions {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    max-width: 600px;
-    margin: 0 auto 36px;
-  }
-  .docend-btn {
-    position: relative;
-    display: flex; align-items: center; justify-content: space-between;
-    gap: 12px;
-    padding: 14px 18px;
-    min-height: 64px;
-    border-radius: 12px;
-    text-decoration: none;
-    line-height: 1.25;
-    transition:
-      transform 0.3s var(--ease-spring),
-      box-shadow 0.3s,
-      background 0.3s,
-      border-color 0.3s;
-  }
-  .docend-btn:active { transform: scale(0.985); }
-  .docend-btn:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 3px; }
-  .docend-btn-text {
-    display: flex; flex-direction: column;
-    gap: 2px;
-    min-width: 0;
-  }
-  .docend-btn-eyebrow {
-    font-size: 0.58em;
-    text-transform: uppercase;
-    letter-spacing: 2.2px;
-    font-weight: 700;
-  }
-  .docend-btn-label {
-    font-family: var(--font-display);
-    font-size: 1em;
-    font-weight: 600;
-    letter-spacing: 0.1px;
-  }
-  .docend-btn-label em {
-    font-style: italic;
-    font-weight: 600;
-  }
-  .docend-btn-arrow {
-    flex-shrink: 0;
-    width: 30px; height: 30px;
-    display: inline-flex; align-items: center; justify-content: center;
-    border-radius: 50%;
-    transition:
-      transform 0.3s var(--ease-spring),
-      background 0.3s,
-      border-color 0.3s,
-      color 0.25s;
-  }
-  .docend-btn-arrow svg { width: 14px; height: 14px; }
-
-  /* Ghost (Aula virtual) · outline sobre fondo claro */
-  .docend-btn-ghost {
-    color: var(--color-text-body);
-    background: #fff;
-    border: 1px solid var(--color-border-subtle);
-  }
-  .docend-btn-ghost .docend-btn-eyebrow { color: var(--color-text-muted); }
-  .docend-btn-ghost .docend-btn-label { color: var(--color-anchor); }
-  .docend-btn-ghost .docend-btn-arrow {
-    background: rgba(142,68,173,0.08);
-    border: 1px solid rgba(142,68,173,0.18);
-    color: var(--color-primary);
-  }
-  .docend-btn-ghost:hover {
-    border-color: rgba(142,68,173,0.35);
-    background: #fdfbff;
-    transform: translateY(-2px);
-    box-shadow: 0 10px 24px rgba(74,35,90,0.10);
-  }
-  .docend-btn-ghost:hover .docend-btn-arrow {
-    background: linear-gradient(135deg, var(--color-primary), var(--color-anchor));
-    border-color: transparent;
-    color: #fff;
-    transform: translate(2px, -2px);
-  }
-
-  /* Primary (Siguiente unidad) · mismo fondo blanco que ghost,
-     se diferencia por el arrow chip ya filled lila (acción principal) */
-  .docend-btn-primary {
-    color: var(--color-text-body);
-    background: #fff;
-    border: 1px solid var(--color-border-subtle);
-  }
-  .docend-btn-primary .docend-btn-eyebrow { color: var(--color-text-muted); }
-  .docend-btn-primary .docend-btn-label { color: var(--color-anchor); }
-  .docend-btn-primary .docend-btn-label em {
-    color: var(--color-anchor);
-    font-style: italic;
-  }
-  .docend-btn-primary .docend-btn-arrow {
-    background: linear-gradient(135deg, var(--color-primary), var(--color-anchor));
-    border: 1px solid transparent;
-    color: #fff;
-    box-shadow: 0 4px 12px rgba(74,35,90,0.25);
-  }
-  .docend-btn-primary:hover {
-    border-color: rgba(142,68,173,0.35);
-    background: #fdfbff;
-    transform: translateY(-2px);
-    box-shadow: 0 10px 24px rgba(74,35,90,0.10);
-  }
-  .docend-btn-primary:hover .docend-btn-arrow {
-    background: linear-gradient(135deg, #a35bc7, var(--color-anchor));
-    box-shadow: 0 6px 16px rgba(74,35,90,0.38);
-    transform: translateX(3px);
-  }
-
-  /* ═══════════════════════════════════════════════
-     FOOT META · marca + aviso + créditos
-     ═══════════════════════════════════════════════ */
-  .docend-foot .docend-inner {
-    padding-top: 36px;
-    border-top: 1px dashed var(--color-border-subtle);
-  }
-  .docend-meta {
-    display: grid;
-    grid-template-columns: 1.05fr 1fr;
-    gap: 36px;
-    margin-bottom: 28px;
-  }
-  /* Brand · cátedra + título + sub · centrado */
-  .docend-meta-brand {
-    position: relative;
-    text-align: center;
-  }
-  .docend-brand-line {
-    display: inline-flex; align-items: center; gap: 10px;
-    margin-bottom: 12px;
-  }
-  .docend-brand-dot {
-    width: 7px; height: 7px;
-    border-radius: 50%;
-    background: var(--color-success);
-    flex-shrink: 0;
-    box-shadow: 0 0 8px rgba(46,204,113,0.55);
-    animation: docend-brand-pulse 2.2s ease-in-out infinite;
-  }
-  @keyframes docend-brand-pulse {
-    0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 8px rgba(46,204,113,0.55); }
-    50%      { opacity: 0.55; transform: scale(0.85); box-shadow: 0 0 4px rgba(46,204,113,0.35); }
-  }
-  body.fx-off .docend-brand-dot {
-    animation: none;
-    background: var(--color-primary);
-    box-shadow: 0 0 0 3px rgba(142,68,173,0.10);
-  }
-  .docend-brand-label {
-    font-size: 0.66em;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    color: var(--color-anchor);
-    font-weight: 700;
-    opacity: 0.75;
-  }
-  .docend-meta-title {
-    font-family: var(--font-display);
-    font-size: 1.25em;
-    color: var(--color-text-primary);
-    font-weight: normal;
-    line-height: 1.25;
-    margin: 0 0 10px;
-    letter-spacing: -0.2px;
-  }
-  .docend-meta-title em {
-    font-style: italic;
-    color: var(--color-primary);
-  }
-  .docend-meta-sub {
-    font-size: 0.82em;
-    color: var(--color-text-muted);
-    line-height: 1.55;
-    margin: 0;
-  }
-
-  /* Aviso · card limpio con border-left lila */
-  .docend-aviso {
-    background: #fdfbff;
-    border: 1px solid var(--color-border-subtle);
-    border-left: 2px solid var(--color-primary);
-    border-radius: 0 10px 10px 0;
-    padding: 16px 18px;
-  }
-  .docend-aviso-tag {
-    display: inline-flex; align-items: center; gap: 7px;
-    font-size: 0.58em;
-    text-transform: uppercase;
-    letter-spacing: 2.5px;
-    color: var(--color-anchor);
-    font-weight: 700;
-    margin-bottom: 10px;
-  }
-  .docend-aviso-tag::before {
-    content: '';
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--color-primary);
-    box-shadow: 0 0 8px rgba(142,68,173,0.6);
-    animation: docend-blink 2.4s ease-in-out infinite;
-  }
-  @keyframes docend-blink {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50%      { opacity: 0.4; transform: scale(0.85); }
-  }
-  body.fx-off .docend-aviso-tag::before { animation: none; }
-  .docend-aviso p {
-    font-size: 0.8em;
-    color: var(--color-text-body);
-    line-height: 1.55;
-    margin: 0 0 12px;
-  }
-  .docend-aviso strong { color: var(--color-anchor); font-weight: 600; }
-  .docend-aviso ul {
-    list-style: none;
-    padding: 0; margin: 0;
-    display: flex; flex-direction: column;
-    gap: 6px;
-  }
-  .docend-aviso ul li {
-    display: flex; flex-direction: column;
-    gap: 1px;
-    font-size: 0.78em;
-    line-height: 1.35;
-    padding: 5px 0 5px 12px;
-    position: relative;
-  }
-  .docend-aviso ul li::before {
-    content: '';
-    position: absolute;
-    left: 0; top: 12px;
-    width: 4px; height: 4px;
-    border-radius: 50%;
-    background: var(--color-primary);
-    opacity: 0.5;
-  }
-  .docend-aviso ul li strong {
-    color: var(--color-text-primary);
-    font-weight: 600;
-    font-size: 1.02em;
-  }
-  .docend-aviso ul li span {
-    color: var(--color-text-muted);
-    font-style: italic;
-    font-size: 0.92em;
-  }
-
-  /* ═══ Créditos finales · una línea limpia ═══ */
-  .docend-credits {
-    display: flex; flex-wrap: wrap;
-    align-items: center; justify-content: space-between;
-    gap: 12px;
-    padding-top: 18px;
-    border-top: 1px solid var(--color-border-subtle);
-    font-size: 0.72em;
-    color: var(--color-text-muted);
-    letter-spacing: 0.2px;
-  }
-  .docend-credits-text strong {
-    color: var(--color-text-secondary);
-    font-weight: 600;
-  }
-  .docend-version {
-    display: inline-block;
-    margin-left: 6px;
-    padding: 1px 7px;
-    font-size: 0.95em;
-    font-weight: 600;
-    color: var(--color-anchor);
-    background: rgba(142,68,173,0.06);
-    border: 1px solid rgba(142,68,173,0.14);
-    border-radius: 4px;
-    font-variant-numeric: tabular-nums;
-    cursor: default;
-  }
-  .docend-date {
-    font-size: 1em;
-    color: var(--color-text-muted);
-    font-weight: 500;
-    letter-spacing: 0.1px;
-  }
-
-  /* ═══ Aviso de uso de IA · ya no necesita pegar a slab oscuro ═══ */
-  .ai-note {
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 36px 50px 0;
-    font-size: 0.72em;
-    color: var(--color-text-muted);
-    font-style: italic;
-    line-height: 1.55;
-    letter-spacing: 0.1px;
-    text-align: center;
-    opacity: 0.7;
-  }
-
-  /* ═══ Mobile ═══ */
-  @media (max-width: 800px) {
-    .docend-inner { padding: 32px 24px 0; }
-    .docend-foot .docend-inner { padding-top: 28px; }
-    .docend-title { font-size: 1.3em; }
-    .docend-progress { gap: 10px; }
-    .docend-actions {
-      grid-template-columns: 1fr;
-      gap: 10px;
-      margin-bottom: 28px;
-    }
-    .docend-btn-ghost { order: 1; }
-    .docend-btn-primary { order: 2; }
-    .docend-meta {
-      grid-template-columns: 1fr;
-      gap: 22px;
-      margin-bottom: 22px;
-    }
-    .ai-note { padding: 28px 24px 0; }
-  }
-  @media (max-width: 480px) {
-    .docend-inner { padding: 28px 18px 0; }
-    .docend-title { font-size: 1.15em; }
-    .docend-eyebrow { letter-spacing: 2.5px; }
-    .docend-credits { flex-direction: column; align-items: flex-start; gap: 10px; }
-    .docend-aviso { padding: 14px 16px; }
+  /* ═══════ DOC END · cierre liviano (canon U1) ═══════ */
+  .docend { margin-top: 64px; background: transparent; color: var(--color-text-body); padding: 0 26px 48px; }
+  .docend-inner { max-width: 820px; margin: 0 auto; padding-top: 44px; border-top: 1px solid var(--color-border-subtle); }
+  .docend-head { text-align: center; margin-bottom: 24px; }
+  .docend-eyebrow { display: inline-block; font-size: 0.62rem; text-transform: uppercase; letter-spacing: 3.5px; color: var(--color-anchor); font-weight: 700; margin-bottom: 12px; opacity: 0.7; }
+  .docend-title { font-family: var(--font-display); font-size: 1.5rem; color: var(--color-anchor); line-height: 1.25; font-weight: 700; letter-spacing: -0.3px; margin: 0; }
+  .docend-title em { font-style: italic; color: var(--color-primary); }
+  .docend-progress { display: flex; align-items: center; justify-content: center; gap: 16px; margin: 0 auto 32px; flex-wrap: wrap; }
+  .docend-dots { display: flex; align-items: center; gap: 7px; }
+  .docend-dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(142,68,173,0.10); border: 1px solid rgba(142,68,173,0.18); }
+  .docend-dot.is-done { background: rgba(142,68,173,0.5); border-color: rgba(142,68,173,0.55); }
+  .docend-dot.is-current { width: 26px; border-radius: 50px; background: linear-gradient(90deg, var(--color-primary), var(--color-anchor)); border-color: transparent; box-shadow: 0 2px 8px rgba(142,68,173,0.3); }
+  .docend-progress-label { font-size: 0.72rem; color: var(--color-text-muted); letter-spacing: 0.4px; font-variant-numeric: tabular-nums; }
+  .docend-progress-label strong { color: var(--color-anchor); font-family: var(--font-display); font-weight: 700; font-size: 1.1em; }
+  /* Navegacion entre unidades - liviana */
+  .docend-nav { display: flex; gap: 12px; align-items: stretch; flex-wrap: wrap; padding-bottom: 34px; }
+  .docend-nav-item { flex: 1; min-width: 180px; display: flex; align-items: center; gap: 14px; padding: 16px 18px; border: 1px solid var(--color-border-subtle); border-radius: 12px; background: #fff; text-decoration: none; transition: border-color 0.3s, background 0.3s, transform 0.3s, box-shadow 0.3s; }
+  .docend-nav-item.is-next { justify-content: flex-end; text-align: right; }
+  .docend-nav-item:not(.is-disabled):hover { border-color: rgba(142,68,173,0.35); background: #fdfbff; transform: translateY(-2px); box-shadow: 0 10px 24px rgba(74,35,90,0.08); }
+  .docend-nav-item.is-disabled { opacity: 0.45; pointer-events: none; }
+  .docend-nav-item:focus-visible, .docend-nav-aula:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 3px; }
+  .dn-arrow { font-size: 1.35rem; color: var(--color-primary); flex-shrink: 0; }
+  .dn-text { display: flex; flex-direction: column; gap: 2px; }
+  .dn-lbl { font-size: 0.64rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--color-text-muted); }
+  .dn-title { font-family: var(--font-display); font-size: 1.05rem; font-weight: 700; color: var(--color-anchor); }
+  .docend-nav-aula { flex: 0 0 auto; display: flex; align-items: center; padding: 0 18px; border: 1px solid var(--color-border-subtle); border-radius: 12px; background: #fff; text-decoration: none; font-size: 0.8rem; font-weight: 600; color: var(--color-primary-dark); transition: background 0.3s, color 0.25s, border-color 0.3s; }
+  .docend-nav-aula:hover { background: var(--color-primary); color: #fff; border-color: var(--color-primary); }
+  /* Invitacion a dejar comentarios */
+  .docend-feedback { text-align: center; max-width: 560px; margin: 0 auto; padding: 24px 26px; background: linear-gradient(135deg, rgba(142,68,173,0.05), rgba(76,160,216,0.04)); border: 1px solid var(--color-border-subtle); border-radius: 16px; }
+  .df-ico { font-size: 1.8rem; display: block; margin-bottom: 6px; }
+  .df-q { font-family: var(--font-display); font-size: 1.22rem; color: var(--color-deepest); font-weight: 700; margin: 0 0 7px; }
+  .df-sub { font-size: 0.9rem; color: var(--color-text-secondary); line-height: 1.6; margin: 0; }
+  .df-sub strong { color: var(--color-primary-dark); }
+  .df-sub a { color: var(--color-primary-dark); font-weight: 600; text-decoration: none; border-bottom: 1px solid rgba(142,68,173,0.35); transition: color 0.25s, border-color 0.25s; }
+  .df-sub a:hover { color: var(--color-primary); border-bottom-color: var(--color-primary); }
+  /* Marca + equipo docente */
+  .docend-meta { display: grid; grid-template-columns: 1.05fr 1fr; gap: 34px; margin-top: 32px; padding-top: 34px; border-top: 1px dashed var(--color-border-subtle); }
+  .docend-meta-brand { text-align: center; }
+  .docend-brand-line { display: inline-flex; align-items: center; gap: 9px; margin-bottom: 12px; }
+  .docend-brand-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--color-success); box-shadow: 0 0 8px rgba(39,174,96,0.5); flex-shrink: 0; animation: docend-brand-pulse 2.2s ease-in-out infinite; }
+  @keyframes docend-brand-pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.55; transform: scale(0.85); } }
+  .docend-brand-label { font-size: 0.66rem; letter-spacing: 3px; text-transform: uppercase; color: var(--color-anchor); font-weight: 700; opacity: 0.8; }
+  .docend-meta-title { font-family: var(--font-display); font-size: 1.28rem; color: var(--color-text-primary); font-weight: 700; line-height: 1.25; margin: 0 0 10px; }
+  .docend-meta-title em { font-style: italic; color: var(--color-primary); }
+  .docend-meta-sub { font-size: 0.84rem; color: var(--color-text-muted); line-height: 1.55; margin: 0; }
+  .docend-aviso { background: #fdfbff; border: 1px solid var(--color-border-subtle); border-left: 2px solid var(--color-primary); border-radius: 0 12px 12px 0; padding: 18px 20px; }
+  .docend-aviso-tag { display: inline-block; font-size: 0.6rem; letter-spacing: 2.5px; text-transform: uppercase; color: var(--color-anchor); font-weight: 700; margin-bottom: 12px; }
+  .docend-aviso ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+  .docend-aviso li { position: relative; padding-left: 13px; }
+  .docend-aviso li::before { content: ""; position: absolute; left: 0; top: 8px; width: 4px; height: 4px; border-radius: 50%; background: var(--color-primary); opacity: 0.55; }
+  .docend-aviso li strong { display: block; font-family: var(--font-display); font-size: 1rem; color: var(--color-text-primary); font-weight: 700; line-height: 1.2; margin-bottom: 1px; }
+  .docend-aviso li span { display: block; font-size: 0.8rem; color: var(--color-text-muted); font-style: italic; line-height: 1.3; }
+  .docend-aviso-foot { margin: 14px 0 0; padding-top: 12px; border-top: 1px dashed var(--color-border-subtle); font-size: 0.76rem; color: var(--color-text-muted); font-style: italic; display: flex; align-items: center; gap: 8px; }
+  .docend-aviso-foot::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--color-success); flex-shrink: 0; }
+  /* Creditos */
+  .docend-credits { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; margin-top: 28px; padding-top: 18px; border-top: 1px solid var(--color-border-subtle); font-size: 0.74rem; color: var(--color-text-muted); }
+  .docend-credits-text strong { color: var(--color-text-secondary); font-weight: 600; }
+  .docend-version { color: #8a8a8a; font-size: 0.9em; font-weight: 400; }
+  .docend-date { font-family: var(--font-display); font-style: italic; color: var(--color-text-muted); }
+  /* Nota IA - sutil sobre fondo claro */
+  .ai-note { max-width: 680px; margin: 26px auto 0; font-size: 0.72rem; color: #888; font-style: italic; line-height: 1.55; text-align: center; opacity: 0.9; }
+  /* Reiniciar progreso */
+  .docend-reset-wrap { text-align: center; margin-top: 24px; }
+  .docend-reset { background: none; border: 1px solid var(--color-border-subtle); color: var(--color-text-muted); padding: 8px 18px; border-radius: 999px; cursor: pointer; font-size: 0.78rem; font-family: var(--font-body); transition: color 0.3s, border-color 0.3s, background 0.3s; }
+  .docend-reset:hover { border-color: var(--color-danger); color: var(--color-danger); background: rgba(192,57,43,0.05); }
+  .docend-reset:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 3px; }
+  @media (max-width: 720px) {
+    .docend-meta { grid-template-columns: 1fr; gap: 24px; }
+    .docend-nav { flex-direction: column; }
+    .docend-nav-item.is-next { justify-content: flex-start; text-align: left; }
   }
 
   /* ════════ TABLA SCROLLABLE ════════ */
@@ -4851,7 +4048,6 @@
     .main { margin-left: 0; max-width: 100%; }
     .container { padding: 30px 22px; }
     .hero { padding: 70px 24px 210px; }
-    .hero h1 { font-size: 2.6em; }
     .progress-bar-bottom { left: 0; }
     .progress-percent { left: auto; right: 16px; bottom: 80px; }
     .scroll-top { bottom: 18px; right: 16px; width: 46px; height: 46px; }
@@ -4862,8 +4058,7 @@
   @media (max-width: 600px) {
     /* Hero */
     .hero { padding: 64px 20px 165px; }
-    .hero h1 { font-size: 2em; letter-spacing: -1px; margin-bottom: 18px; }
-    .hero p.lead { font-size: 0.98em; }
+    .hero h1 { margin-bottom: 18px; }
     .hero::before { font-size: 14em; top: -30px; right: -10px; }
     .hero-label { font-size: 0.66em; letter-spacing: 3px; padding: 5px 12px; }
     .hero-meta { gap: 16px; margin-top: 28px; }
@@ -4901,17 +4096,11 @@
     .definition { padding: 22px 20px; }
     .formula-box { font-size: 1.1em; padding: 18px 20px; }
 
-    /* Tabs / acordeón / quiz */
+    /* Tabs / quiz */
     .tab-btn { padding: 11px 14px; font-size: 0.85em; }
-    .acc-trigger { padding: 16px 18px; font-size: 0.95em; }
-    .acc-item.open .acc-content { padding: 5px 18px 18px; }
     .quiz { padding: 24px 18px; border-radius: 14px; }
-    .quiz-header { gap: 10px; }
     .quiz-question { padding: 20px 18px; }
     .quiz-option { padding: 13px 14px 13px 16px; font-size: 0.92em; }
-    .quiz-final { padding: 24px 20px; }
-    .quiz-final h4 { font-size: 1.3em; }
-    .quiz-final .score { font-size: 2.4em; }
 
     /* Companion banner · override fino para 600px */
     .companion-banner { padding: 22px 20px; }
@@ -4948,15 +4137,13 @@
 
     /* Sidebar (cuando abre en mobile): un poco más angosto */
     .sidebar { width: 86vw; max-width: 320px; }
-    .sidebar-progress { padding: 12px 13px 10px; }
-    .sp-count strong { font-size: 1.35em; }
+    .sidebar-progress { padding: 12px 18px 4px; }
   }
 
   /* ════════ MOBILE — muy chico ════════ */
   @media (max-width: 380px) {
     .container { padding: 20px 12px; }
     .hero { padding: 60px 16px 150px; }
-    .hero h1 { font-size: 1.75em; }
     .hero p.lead { font-size: 0.94em; }
     section h2 { font-size: 1.55em; }
     section h3 { font-size: 1.18em; }
@@ -4989,6 +4176,105 @@
     }
   }
 
+  /* ═══════════════════════════════════════════════
+     COMPONENTES CANÓNICOS (serie EP · U1)
+     ═══════════════════════════════════════════════ */
+  .acento { color: var(--color-primary); font-style: italic; }
+  .hl { background: linear-gradient(180deg, transparent 62%, rgba(255,214,115,0.5) 62%); font-weight: 600; color: var(--color-deepest); padding: 0 2px; }
+
+  /* Definición de cátedra · destacada (material de examen) */
+  .defstrip { margin: 22px 0; padding: 24px 26px; border-radius: 16px; text-align: center; background: linear-gradient(135deg, rgba(142,68,173,0.06), rgba(76,160,216,0.05)); border: 1px dashed var(--color-border-subtle); }
+  .defstrip .def-term { font-family: var(--font-display); font-size: 1.35rem; color: var(--color-primary-dark); font-weight: 700; margin-bottom: 6px; }
+  .defstrip .def-body { font-size: 1.02rem; color: var(--color-text-secondary); line-height: 1.65; max-width: 640px; margin: 0 auto; }
+  .defstrip .def-body strong { color: var(--color-deepest); }
+  .defstrip .def-source { display: block; margin-top: 12px; font-size: 0.74rem; text-transform: uppercase; letter-spacing: 1.2px; color: var(--color-text-faint); }
+
+  /* ════════ CHECKLIST DE AUTOEVALUACIÓN "¿Puedo…?" ════════ */
+  .check-card { margin: 34px 0; padding: 30px 28px 24px; border-radius: 16px; background: #fff; border: 1px solid var(--color-border-card); box-shadow: var(--shadow-card); }
+  .check-card h3 { margin-top: 0; }
+  .check-card .check-intro { font-size: 0.95rem; color: var(--color-text-secondary); margin-bottom: 4px; }
+  .check-list { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 20px 0 16px; }
+  .check-item { display: flex; align-items: flex-start; gap: 12px; padding: 14px 16px; background: #fff; border: 1px solid var(--color-border-card); border-radius: 12px; cursor: pointer; transition: border-color 0.3s, background 0.3s; }
+  .check-item:hover { border-color: var(--color-primary); }
+  .check-item:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; }
+  .check-item .check-box { flex-shrink: 0; width: 22px; height: 22px; margin-top: 1px; border-radius: 7px; border: 2px solid var(--color-border-card); display: flex; align-items: center; justify-content: center; font-size: 0.72rem; font-weight: 700; color: transparent; transition: all 0.3s; }
+  .check-item.done { background: rgba(39,174,96,0.05); border-color: var(--color-success); }
+  .check-item.done .check-box { background: var(--color-success); border-color: var(--color-success); color: #fff; animation: check-pop 0.4s var(--ease-pop); }
+  .check-item .check-txt { font-size: 0.93rem; color: var(--color-text-body); line-height: 1.5; }
+  .check-item.done .check-txt { color: var(--color-text-muted); }
+  .check-progress { text-align: center; font-size: 0.85rem; color: var(--color-primary-dark); font-weight: 600; }
+  @keyframes check-pop { 0% { transform: scale(0.4); } 70% { transform: scale(1.15); } 100% { transform: scale(1); } }
+  @keyframes confetti-fall { 0% { transform: translateY(-20px) rotateZ(0deg); opacity: 1; } 100% { transform: translateY(110vh) rotateZ(720deg); opacity: 0; } }
+  @media (max-width: 700px) {
+    .check-list { grid-template-columns: 1fr; }
+    .check-card { padding: 24px 18px 20px; }
+  }
+
+  /* Pausa para pensar · reflexión con callback */
+  .pausa { margin: 28px 0; padding: 24px 26px; border-radius: 16px; position: relative; background: linear-gradient(135deg, var(--color-deepest), var(--color-anchor)); color: #fff; overflow: hidden; }
+  .pausa::after { content: "?"; position: absolute; right: 18px; bottom: -18px; font-family: var(--font-display); font-size: 8rem; color: rgba(255,255,255,0.06); font-weight: 700; line-height: 1; }
+  .pausa-tag { display: inline-flex; align-items: center; gap: 8px; font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; color: var(--color-gold); font-weight: 700; margin-bottom: 10px; }
+  .pausa h4 { font-family: var(--font-display); font-size: 1.3rem; color: #fff; margin-bottom: 8px; font-weight: 700; position: relative; z-index: 2; }
+  .pausa p { color: rgba(255,255,255,0.86); margin-bottom: 0; font-size: 0.98rem; position: relative; z-index: 2; }
+
+  /* Guía de uso · sin fondo, tick verde, andragógica */
+  .guia-uso { margin: 40px 0; padding: 0; background: none; border: none; box-shadow: none; }
+  .guia-head { display: flex; align-items: center; gap: 15px; margin-bottom: 16px; }
+  .guia-ico { width: 40px; height: 40px; border-radius: 50%; background: var(--color-success); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; font-weight: 700; flex-shrink: 0; box-shadow: 0 2px 8px rgba(39,174,96,0.35); }
+  .guia-head h2 { font-family: var(--font-display); font-size: clamp(1.5rem, 4vw, 2rem); line-height: 1.15; color: var(--color-deepest); font-weight: 700; margin: 0; letter-spacing: -0.4px; }
+  .guia-head h2 .acento { color: var(--color-primary); font-style: italic; }
+  .guia-intro { font-size: 0.97rem; color: var(--color-text-body); line-height: 1.68; margin-bottom: 22px; }
+  .guia-intro strong, .guia-list li strong { background: linear-gradient(180deg, transparent 62%, rgba(255,214,115,0.5) 62%); color: var(--color-deepest); font-weight: 600; padding: 0 2px; }
+  .guia-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 15px; }
+  .guia-list li { display: flex; gap: 15px; align-items: flex-start; font-size: 0.94rem; color: var(--color-text-body); line-height: 1.6; }
+  .guia-n { flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; background: rgba(39,174,96,0.14); color: #1e6d3e; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 700; font-size: 0.92rem; margin-top: 1px; }
+
+  /* Aviso verde · no reemplaza la bibliografía */
+  .aviso-biblio { display: flex; gap: 16px; align-items: flex-start; margin: 40px 0 8px; padding: 22px 24px; border-radius: 16px; background: linear-gradient(135deg, rgba(39,174,96,0.08), rgba(46,125,79,0.05)); border: 1.5px solid rgba(39,174,96,0.32); border-left: 5px solid var(--color-success); box-shadow: 0 6px 22px rgba(30,109,62,0.08); }
+  .aviso-biblio-ico { font-size: 1.6rem; flex-shrink: 0; line-height: 1.2; }
+  .aviso-biblio strong { display: block; font-family: var(--font-display); font-size: 1.12rem; color: #1e6d3e; line-height: 1.3; margin-bottom: 6px; }
+  .aviso-biblio p { font-size: 0.92rem; color: var(--color-text-secondary); line-height: 1.6; margin: 0; }
+
+  /* Glosario consolidado · repaso al cierre */
+  .glosario-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 20px 0; }
+  .glos-item { padding: 14px 16px; background: #fff; border: 1px solid var(--color-border); border-left: 3px solid var(--color-primary); border-radius: 10px; }
+  .glos-term { display: block; font-family: var(--font-display); font-weight: 700; color: var(--color-primary-dark); font-size: 1rem; margin-bottom: 3px; }
+  .glos-def { font-size: 0.85rem; color: var(--color-text-secondary); line-height: 1.5; }
+  @media (max-width: 640px) { .glosario-grid { grid-template-columns: 1fr; } }
+
+  /* Mini-test final · preguntas de a una, interleaving (canon U1) */
+  .minitest { margin: 26px 0 34px; padding: 30px 26px 26px; border-radius: 16px; background: #fff; border: 1px solid var(--color-border-card); box-shadow: 0 8px 28px rgba(74,35,90,0.07); position: relative; }
+  .minitest .quiz-badge { position: absolute; top: -13px; left: 24px; background: linear-gradient(135deg, var(--color-primary), var(--color-anchor)); color: #fff; font-size: 0.68rem; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700; padding: 6px 14px; border-radius: 999px; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 4px 12px rgba(108,52,131,0.3); }
+  .mt-progress { height: 6px; border-radius: 4px; background: var(--color-bg-gradient-end); overflow: hidden; margin: 8px 0 10px; }
+  .mt-progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--color-primary), var(--color-gold)); transition: width 0.4s var(--ease-out-quart); border-radius: 4px; }
+  .mt-counter { font-size: 0.72rem; letter-spacing: 1.6px; text-transform: uppercase; color: var(--color-primary-dark); font-weight: 700; margin-bottom: 14px; }
+  .mt-q { display: none; }
+  .mt-q.active { display: block; animation: fadeIn 0.35s ease; }
+  .minitest .quiz-q { font-family: var(--font-display); font-size: 1.22rem; color: var(--color-deepest); margin: 10px 0 18px; font-weight: 700; line-height: 1.4; }
+  .minitest .quiz-options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 6px; }
+  .minitest .quiz-opt { text-align: left; padding: 14px 16px; border: 1.5px solid var(--color-border-card); border-radius: 11px; background: #fff; cursor: pointer; font-family: var(--font-body); font-size: 0.96rem; color: var(--color-text-body); transition: border-color 0.25s, background 0.25s, color 0.25s; display: flex; gap: 10px; align-items: flex-start; line-height: 1.5; width: 100%; }
+  .minitest .quiz-opt .opt-letter { flex-shrink: 0; width: 24px; height: 24px; border-radius: 7px; background: var(--color-bg-tinted); border: 1px solid var(--color-border-subtle); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.82rem; color: var(--color-primary-dark); transition: background 0.25s, color 0.25s; }
+  .minitest .quiz-opt:hover { border-color: var(--color-primary); background: rgba(142,68,173,0.03); }
+  .minitest .quiz-opt:hover .opt-letter { background: var(--color-primary); color: #fff; }
+  .minitest .quiz-opt.correcta { border-color: var(--color-success); background: rgba(39,174,96,0.08); color: #1e6d3e; }
+  .minitest .quiz-opt.correcta .opt-letter { background: var(--color-success); color: #fff; border-color: var(--color-success); }
+  .minitest .quiz-opt.incorrecta { border-color: var(--color-red); background: rgba(192,57,43,0.06); color: #8b2c20; }
+  .minitest .quiz-opt.incorrecta .opt-letter { background: var(--color-red); color: #fff; border-color: var(--color-red); }
+  .minitest .quiz-opt.disabled { cursor: default; opacity: 0.78; }
+  .mt-fb { display: none; margin-top: 14px; padding: 14px 16px; border-radius: 11px; font-size: 0.92rem; line-height: 1.6; }
+  .mt-fb.ok { background: rgba(39,174,96,0.08); color: #1e6d3e; border-left: 3px solid var(--color-success); }
+  .mt-fb.fail { background: rgba(192,57,43,0.06); color: #8b2c20; border-left: 3px solid var(--color-red); }
+  .mt-fb.show { display: block; animation: fadeIn 0.35s ease; }
+  .mt-next { display: none; margin-top: 16px; padding: 11px 24px; border: none; border-radius: 10px; background: linear-gradient(135deg, var(--color-primary), var(--color-anchor)); color: #fff; font-family: var(--font-body); font-weight: 600; font-size: 0.92rem; cursor: pointer; transition: transform 0.25s, box-shadow 0.25s; }
+  .mt-next.show { display: inline-flex; animation: fadeIn 0.3s ease; }
+  .mt-next:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(108,52,131,0.32); }
+  .mt-result { display: none; text-align: center; padding: 12px 0 4px; }
+  .mt-result.show { display: block; animation: fadeIn 0.4s ease; }
+  .mt-score { font-family: var(--font-display); font-size: 3.2rem; font-weight: 700; line-height: 1.1; background: linear-gradient(135deg, var(--color-primary), var(--color-anchor)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .mt-msg { color: var(--color-text-secondary); font-size: 0.98rem; margin: 10px auto 18px; max-width: 480px; line-height: 1.6; }
+  .mt-retry { background: none; border: 1.5px solid var(--color-primary); color: var(--color-primary-dark); padding: 9px 22px; border-radius: 999px; cursor: pointer; font-family: var(--font-body); font-weight: 600; font-size: 0.88rem; transition: background 0.3s, color 0.25s; }
+  .mt-retry:hover { background: var(--color-primary); color: #fff; }
+
   /* ════════ REDUCED MOTION ════════ */
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
@@ -5002,7 +4288,38 @@
     .companion-banner::after,
     .learn-goals::before { animation: none !important; }
   }
+
+  /* ════════ IMPRESIÓN ════════ */
+  @media print {
+    .sidebar, .sidebar-collapse, .sidebar-expand,
+    .mobile-nav-toggle, .mobile-nav-backdrop,
+    .progress-bar-bottom, .progress-percent,
+    .scroll-top, .achievement,
+    .docend-nav, .docend-reset-wrap { display: none !important; }
+    .main, .layout { margin: 0 !important; max-width: 100% !important; }
+    .container { max-width: 100% !important; padding: 0 !important; }
+    body { background: #fff !important; color: #000 !important; }
+    .reveal { opacity: 1 !important; transform: none !important; }
+    .tab-panel { display: block !important; }
+    .minitest .mt-q { display: block !important; }
+    .minitest .mt-counter, .minitest .mt-progress, .minitest .mt-next, .minitest .mt-result { display: none !important; }
+    .hero { background: #fff !important; color: #000 !important; }
+    a { color: #000 !important; text-decoration: underline; }
+    * { box-shadow: none !important; text-shadow: none !important; animation: none !important; }
+    section, .card, .callout, .definition, .defstrip, .quiz, .check-card, .check-item { break-inside: avoid; }
+  }
 </style>
+<noscript>
+  <style>
+    /* Sin JavaScript: mostrar todo el contenido que se revela/expande por script */
+    .reveal { opacity: 1 !important; transform: none !important; }
+    .tab-panel { display: block !important; }
+    .sidebar-collapse, .sidebar-expand, .sidebar-progress { display: none !important; }
+    /* Mini-test legible de forma estática: todas las preguntas visibles */
+    .minitest .mt-q { display: block !important; }
+    .minitest .mt-counter, .minitest .mt-progress, .minitest .mt-next, .minitest .mt-result { display: none !important; }
+  </style>
+</noscript>
 </head>
 <body>
 
@@ -5033,53 +4350,24 @@
     </svg>
   </button>
 
-  <span class="brand">Cátedra B</span>
+  <span class="sidebar-brand">Cátedra B</span>
   <div class="sidebar-title-row">
+    <a href="https://nickperot.com/unidad3" class="sidebar-nav-arrow prev" title="Ir a Unidad 3 · Conceptos Macroeconómicos" aria-label="Ir a Unidad 3" rel="noopener">‹</a>
     <h2 class="sidebar-title">Unidad 4</h2>
-    <a href="https://nickperot.com/unidad5" class="sidebar-nav-arrow next" title="Ir a Unidad 5 · Sector Externo" aria-label="Ir a Unidad 5" rel="noopener">
-      <span class="nav-arrow-num">U5</span>
-      <span class="nav-arrow-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M9 6l6 6-6 6"/>
-        </svg>
-      </span>
-    </a>
+    <a href="https://nickperot.com/unidad5" class="sidebar-nav-arrow next" title="Ir a Unidad 5 · Sector Externo" aria-label="Ir a Unidad 5" rel="noopener">›</a>
   </div>
-  <span class="subtitle">Sector Público · Economía Política</span>
+  <span class="sidebar-subtitle">Sector Público · Economía Política</span>
 
-  <a href="https://servicios.unl.edu.ar/aulavirtual/fcjs/" class="sidebar-aula-btn" target="_blank" rel="noopener" title="Volver al Aula Virtual (se abre en una pestaña nueva)">
-    <span class="aula-btn-text">
-      <span class="aula-btn-eyebrow">Volver al</span>
-      <span class="aula-btn-label">Aula virtual</span>
-    </span>
-    <span class="aula-btn-arrow" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M7 17 17 7"/>
-        <path d="M9 7h8v8"/>
-      </svg>
-    </span>
+  <a href="https://servicios.unl.edu.ar/aulavirtual/fcjs/" class="sidebar-aula-btn" target="_blank" rel="noopener" title="Volver al Aula Virtual">
+    ⌂ Aula Virtual
   </a>
 
-  <!-- Toggle de efectos visuales -->
-  <button class="fx-toggle" id="fxToggle" type="button" aria-pressed="true" aria-label="Activar o desactivar efectos visuales">
-    <span class="fx-icon" aria-hidden="true">✦</span>
-    <span class="fx-text">
-      <span class="fx-label">Efectos visuales</span>
-      <span class="fx-state" id="fxState">Activados</span>
-    </span>
-    <span class="fx-switch" aria-hidden="true"></span>
-  </button>
-
-  <!-- Panel de progreso -->
+  <!-- Progreso · barra + reset ↺ + % recorrido -->
   <div class="sidebar-progress" aria-label="Progreso de lectura">
-    <div class="sp-header">
-      <span class="sp-label">Tu progreso</span>
-      <span class="sp-count" id="spCount"><strong id="spDone">0</strong> / <span id="spTotal">0</span></span>
-    </div>
-    <div class="sp-bar"><div class="sp-fill" id="spFill"></div></div>
-    <div class="sp-footer">
-      <span class="sp-hint">Se guarda en este dispositivo</span>
-      <button class="sp-reset" id="spReset" type="button" title="Reiniciar progreso">↺ Reiniciar</button>
+    <div class="sidebar-progress-track"><div class="sidebar-progress-fill" id="sbProgressFill"></div></div>
+    <div class="sidebar-progress-row">
+      <button class="sidebar-reset" id="sidebarResetBtn" type="button" title="Reiniciar mi progreso en esta unidad" aria-label="Reiniciar mi progreso en esta unidad">↺</button>
+      <span class="sidebar-progress-label" id="sbProgressLabel">0% recorrido</span>
     </div>
   </div>
 
@@ -5091,6 +4379,7 @@
     <a href="#por-que-interviene"><span class="sl-text">¿Por qué interviene?</span></a>
     <a href="#fallas"><span class="sl-text">Las 4 fallas del mercado</span></a>
     <a href="#funciones-estado"><span class="sl-text">Funciones del Estado</span></a>
+    <a href="#sector-gobierno"><span class="sl-text">Gobierno vs. Sector Público</span></a>
     <a href="#acciones-cibotti"><span class="sl-text">Acciones (Cibotti y Sierra)</span></a>
     <a href="#financiamiento"><span class="sl-text">Fuentes de financiamiento</span></a>
 
@@ -5114,7 +4403,8 @@
     <a href="#pf-deficit"><span class="sl-text">Financiación del déficit</span></a>
 
     <a href="#cierre" class="section-title" data-st="cierre"><span class="st-num">✦</span><span class="st-text">Cierre</span></a>
-    <a href="#quiz"><span class="sl-text">Quiz de autoevaluación</span></a>
+    <a href="#minitest-h"><span class="sl-text">Mini-test final</span></a>
+    <a href="#checklist"><span class="sl-text">Autoevaluación ¿puedo…?</span></a>
     <a href="#objetivos"><span class="sl-text">Objetivos de aprendizaje</span></a>
     <a href="#rubrica"><span class="sl-text">Rúbrica de evaluación</span></a>
     <a href="#cierre-reflexivo"><span class="sl-text">¿Qué te llevás?</span></a>
@@ -5144,7 +4434,15 @@
           <stop offset="0%" stop-color="rgba(255,255,255,0.22)"/>
           <stop offset="100%" stop-color="rgba(210,180,222,0.08)"/>
         </linearGradient>
+        <radialGradient id="cr-glow-grad" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="rgba(255,214,115,0.16)"/>
+          <stop offset="55%" stop-color="rgba(255,214,115,0.07)"/>
+          <stop offset="100%" stop-color="rgba(255,214,115,0)"/>
+        </radialGradient>
       </defs>
+
+      <!-- Resplandor suave detrás del domo -->
+      <ellipse class="cr-glow" cx="400" cy="28" rx="110" ry="55" fill="url(#cr-glow-grad)"/>
 
       <!-- Ala lateral izquierda -->
       <rect x="40" y="100" width="180" height="80" fill="url(#cr-grad)"/>
@@ -5156,9 +4454,20 @@
 
       <!-- Cornisa central -->
       <rect x="218" y="78" width="364" height="3" fill="rgba(255,255,255,0.22)"/>
+      <!-- Segunda cornisa · división de pisos del cuerpo central -->
+      <rect x="220" y="124" width="360" height="2" fill="rgba(255,255,255,0.14)"/>
 
       <!-- Torre superior -->
       <rect x="340" y="50" width="120" height="30" fill="url(#cr-grad-strong)"/>
+      <!-- Columnata de la torre (entre las ventanas) -->
+      <g class="cr-colonnade" aria-hidden="true">
+        <rect x="349" y="54" width="2" height="24" fill="rgba(255,255,255,0.16)"/>
+        <rect x="368" y="54" width="2" height="24" fill="rgba(255,255,255,0.16)"/>
+        <rect x="390" y="54" width="2" height="24" fill="rgba(255,255,255,0.16)"/>
+        <rect x="412" y="54" width="2" height="24" fill="rgba(255,255,255,0.16)"/>
+        <rect x="432" y="54" width="2" height="24" fill="rgba(255,255,255,0.16)"/>
+        <rect x="449" y="54" width="2" height="24" fill="rgba(255,255,255,0.16)"/>
+      </g>
 
       <!-- Tambor del domo -->
       <rect x="370" y="32" width="60" height="20" fill="rgba(255,255,255,0.18)"/>
@@ -5247,14 +4556,32 @@
 
   <div class="hero-inner">
     <span class="hero-label">Unidad 4 · Economía Política</span>
-    <h1>Sector <span class="accent">Público</span></h1>
+    <h1>El Estado entra en escena: <em>Sector Público</em></h1>
     <p class="lead">
-      En esta unidad vamos a entender por qué (y cómo) interviene el Estado en la economía,
-      con qué fondos se financia, en qué los gasta y a través de qué <em>política fiscal</em>
-      busca estabilizar la actividad económica. Pensar el sector público es pensar el
-      Estado como actor económico — no como observador.
+      ¿Quién paga la escuela, la ruta, el hospital — y por qué nadie los provee "gratis"?
+      En esta unidad vamos a entender <em>por qué interviene el Estado</em> cuando el
+      mercado solo no alcanza, con qué fondos se financia, en qué los gasta y cómo usa la
+      <em>política fiscal</em> para estabilizar la economía. Pensar el sector público es
+      pensar el Estado como actor económico — no como observador.
     </p>
+
+    <div class="hero-voces">
+      <div class="hero-chips-head">
+        <span class="hero-chips-eyebrow">Voces de la unidad</span>
+        <span class="hero-chips-thread"></span>
+      </div>
+      <div class="hero-chips">
+        <span class="hero-chip"><span class="hero-chip-dot"></span>Mochón &amp; Beker</span>
+        <span class="hero-chip c2"><span class="hero-chip-dot"></span>Pérez Enrri</span>
+        <span class="hero-chip c3"><span class="hero-chip-dot"></span>Cibotti &amp; Sierra</span>
+      </div>
+    </div>
+
     <div class="hero-meta">
+      <div class="meta-item">
+        <span class="label">Materia</span>
+        <span class="value">Economía Política · Cátedra B</span>
+      </div>
       <div class="meta-item">
         <span class="label">Carrera</span>
         <span class="value">Abogacía · Lic. Trabajo Social</span>
@@ -5265,28 +4592,27 @@
       </div>
       <div class="meta-item">
         <span class="label">Lectura estimada</span>
-        <span class="value">≈ 30–35 minutos</span>
+        <span class="value">≈ 45–55 minutos</span>
       </div>
-      <div class="meta-item">
-        <span class="label">Fuentes</span>
-        <span class="value">Mochón–Beker · Pérez Enrri · Cibotti–Sierra</span>
-      </div>
+    </div>
+
+    <div class="hero-scroll-cue" aria-hidden="true">
+      <span>Deslizá para empezar</span><span class="cue-arrow">↓</span>
     </div>
   </div>
 </header>
 
 <div class="container">
 
-<!-- ════════ AVISO DE CÁTEDRA ════════ -->
-<div class="cathedra-notice">
-  <span class="nc-tag">Guía de cátedra</span>
-  <p>
-    Este es un <strong>documento de cátedra</strong> pensado como <strong>guía de lectura</strong>:
-    acompaña el estudio pero <strong>no reemplaza</strong> el trabajo con la bibliografía
-    obligatoria. Las instancias de evaluación se realizan <strong>sobre el contenido del material
-    de la bibliografía obligatoria</strong> (Mochón–Beker, Pérez Enrri y la ficha de Cibotti
-    y Sierra).
-  </p>
+<!-- ════════ GUÍA DE USO ════════ -->
+<div class="guia-uso">
+  <div class="guia-head"><span class="guia-ico" aria-hidden="true">✓</span><h2>¿Para qué sirve esta <span class="acento">guía interactiva</span>?</h2></div>
+  <p class="guia-intro">Junto con el equipo de cátedra preparamos esta guía para ayudarte a <strong>comprender mejor la bibliografía obligatoria</strong> (Mochón–Beker, Pérez Enrri y la ficha de Cibotti y Sierra). Sabemos que el primer acercamiento a los textos académicos puede presentar desafíos, y estamos para acompañarte en ese camino. Algunas sugerencias para sacarle el máximo provecho:</p>
+  <ul class="guia-list">
+    <li><span class="guia-n">1</span><div><strong>Leé con algo para anotar al lado.</strong> Escribí las ideas y definiciones con tus propias palabras: te va a servir para repasar y para las instancias de examen.</div></li>
+    <li><span class="guia-n">2</span><div><strong>Las palabras subrayadas con puntitos tienen definición.</strong> Pasales el mouse (o tocalas en el celular) para verla sin perder el hilo de la lectura.</div></li>
+    <li><span class="guia-n">3</span><div><strong>Esto acompaña, no reemplaza.</strong> La guía ordena los contenidos, pero la lectura de los textos originales es imprescindible para las instancias de examen.</div></li>
+  </ul>
 </div>
 
 <!-- ════════ DOCUMENTO VINCULADO · Banner minimalista ════════ -->
@@ -5324,11 +4650,12 @@
 <section id="intro">
   <div class="section-header">
     <div class="section-label">
-      <div class="line"></div>
+      <span class="sec-num">★</span>
       <span class="text">Antes de empezar</span>
       <div class="grow"></div>
     </div>
     <h2>Una pregunta <span class="colored">incómoda</span></h2>
+    <div class="divider-flourish"><span>◆</span></div>
   </div>
 
   <p class="lead-paragraph">
@@ -5354,6 +4681,16 @@
     provincial y municipal). Lo interesante no es <em>si</em> el Estado debe intervenir,
     sino <strong>cómo, cuánto y con qué objetivos</strong>. Sobre eso discuten los
     enfoques clásico, keynesiano y estructuralista que verán en esta unidad.
+  </div>
+
+  <div class="callout">
+    <strong>Una aclaración sobre las palabras.</strong> En esta guía usamos formas como
+    «las personas», «quien trabaja» o «la persona contribuyente» para nombrar funciones
+    económicas que puede ejercer cualquier persona, sin marca de género. Tené en cuenta que
+    la <strong>bibliografía obligatoria y las consignas de examen usan las formas
+    tradicionales</strong> («el contribuyente», «el trabajador», «el empresario»):
+    significan exactamente lo mismo, así que no te desoriente el cambio al leer los textos
+    originales.
   </div>
 
   <h3 id="mapa">Mapa de la Unidad</h3>
@@ -5470,11 +4807,12 @@
 <section id="estado-mercado">
   <div class="section-header">
     <div class="section-label">
-      <div class="line"></div>
-      <span class="text">Bloque 1 · Estado y mercado</span>
+      <span class="sec-num">1</span>
+      <span class="text">Estado y mercado</span>
       <div class="grow"></div>
     </div>
     <h2>¿Por qué interviene <span class="colored">el Estado</span>?</h2>
+    <div class="divider-flourish"><span>◆</span></div>
   </div>
 
   <p class="lead-paragraph">
@@ -5548,7 +4886,7 @@
       </p>
       <p>El gasto público debe ser <strong>limitado</strong> y el presupuesto, equilibrado <em>anualmente</em>.</p>
       <div class="vision-key">
-        <strong>Frase clave:</strong> "La economía tiene mecanismos autocorrectores que hacen innecesaria la intervención estabilizadora estatal".<span class="source-cite">MB, cap. 13</span>
+        <strong>Frase clave:</strong> «Las economías tienen mecanismos autocorrectores que eliminan los desajustes y hacen innecesaria la intervención estabilizadora estatal».<span class="source-cite">MB, cap. 13, esquema 13.4</span>
       </div>
     </article>
 
@@ -5576,7 +4914,7 @@
       <span class="vision-eyebrow">Enfoque · 1950 → 1970</span>
       <h4>Estructuralista</h4>
       <p class="vision-subtitle">Estado promotor del desarrollo</p>
-      <p class="vision-thinker">Prebisch · CEPAL <span class="thinker-date">· postkeynesiano</span></p>
+      <p class="vision-thinker">Prebisch · CEPAL <span class="thinker-date">· neokeynesiano</span></p>
       <p>
         En América Latina surge esta variante: el Estado no solo estabiliza —
         también <strong>promueve el desarrollo</strong> en regiones rezagadas, invierte en
@@ -5643,9 +4981,9 @@
       <span class="gloss" tabindex="0" data-gloss="Persona que consume un bien o servicio sin pagar por él, porque no se la puede excluir del consumo. Es el problema típico de los bienes públicos: si nadie paga porque puede 'colgarse', el mercado no provee el bien.">free-rider</span>
       o "usuario gratuito".</p>
       <div class="example">
-        <strong>Ejemplo:</strong> defensa nacional, alumbrado público, fuegos artificiales
-        en la plaza. Nadie querría pagarlos en el mercado porque podría disfrutarlos sin
-        pagar. Si no los provee el Estado, casi no se proveen.
+        <strong>Ejemplo:</strong> el alumbrado público, la seguridad ciudadana (policía) o
+        los fuegos artificiales de una fiesta popular. Nadie querría pagarlos en el mercado
+        porque podría disfrutarlos sin pagar. Si no los provee el Estado, casi no se proveen.
       </div>
     </div>
 
@@ -5658,9 +4996,9 @@
       cobrado) o <strong>negativas</strong> (un costo no asumido).</p>
       <div class="example">
         <strong>Ejemplos:</strong> una fábrica que contamina un río perjudica a los
-        pescadores aguas abajo (externalidad negativa). La educación de un trabajador
-        beneficia a toda la empresa y la sociedad (positiva). El Estado interviene con
-        impuestos, subsidios o regulación ambiental.
+        pescadores aguas abajo (externalidad negativa). La educación de una persona
+        trabajadora beneficia a toda la empresa y la sociedad (positiva). El Estado
+        interviene con impuestos, subsidios o regulación ambiental.
       </div>
     </div>
 
@@ -5684,6 +5022,31 @@
     Estado deba reemplazar al mercado. Significa que el mercado <strong>solo</strong> no
     asigna eficientemente cuando alguna de estas condiciones aparece. El debate es cómo y
     cuánto intervenir, no si hacerlo.
+  </div>
+
+  <div class="pausa">
+    <span class="pausa-tag">◆ Pausa para pensar</span>
+    <h4>¿Toda intervención mejora las cosas?</h4>
+    <p>Vimos cuatro fallas donde el mercado, por sí solo, no alcanza. Pero el Estado también puede fallar: información incompleta, presiones de intereses, decisiones que llegan tarde. Antes de seguir, anotá tu respuesta: cuando el Estado interviene para corregir una falla, ¿qué debería tener en cuenta para no generar un problema mayor? Lo vamos a retomar al final, en <em>Política Fiscal</em>, cuando veamos las limitaciones de sus herramientas.</p>
+  </div>
+
+  <div class="quiz quiz-inline">
+    <div class="quiz-question">
+      <span class="q-num">✓ Comprobá lo que leíste</span>
+      <p class="q-text">¿Cuál de los siguientes es un <strong>bien público</strong> en el sentido económico?</p>
+      <div class="quiz-options">
+        <button class="quiz-option" data-correct="false" data-feedback="Una casa es un bien privado típico: hay rivalidad (si vos la usás, otra persona no puede) y exclusión (se puede impedir el uso a quien no es dueña).">
+          <span class="marker">A</span><span>Una casa con dueño</span>
+        </button>
+        <button class="quiz-option" data-correct="false" data-feedback="El pasaje tiene rivalidad (el asiento que ocupás no lo puede ocupar nadie más) y exclusión (sin pagar no subís al avión).">
+          <span class="marker">B</span><span>Un pasaje de avión</span>
+        </button>
+        <button class="quiz-option" data-correct="true" data-feedback="El alumbrado público tiene los dos rasgos: no rivalidad (que ilumine a una persona no reduce la luz para las demás) y no exclusión (no se puede dejar a oscuras a quien no paga).">
+          <span class="marker">C</span><span>El alumbrado público</span>
+        </button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
   </div>
 
   <h3 id="funciones-estado">Las funciones del Estado (Mochón y Beker)</h3>
@@ -5727,10 +5090,56 @@
       <span class="num">5</span>
       <span class="label">Función</span>
       <h4>Estabilizadora</h4>
-      <p>Controla los grandes agregados económicos para evitar fluctuaciones excesivas:
-      busca el mayor nivel de empleo posible, la estabilidad de precios y el crecimiento
-      económico.</p>
+      <p>Controla los grandes
+      <span class="gloss" tabindex="0" data-gloss="Las variables globales de una economía: producción total (PBI), nivel general de precios, empleo, consumo, inversión. Se estudian en conjunto, no mercado por mercado.">agregados económicos</span>
+      para evitar fluctuaciones excesivas. Está al servicio de los objetivos que MB
+      asignan al sector público: el mayor nivel de empleo posible, la estabilidad de
+      precios y el crecimiento económico.</p>
     </div>
+  </div>
+
+  <h3 id="sector-gobierno">¿Qué abarca "el Estado"? Sector Gobierno y Sector Público</h3>
+  <p>
+    Hasta acá hablamos del "Estado" como si fuera una sola cosa. Pero cuando la economía
+    lo analiza, distingue <strong>dos niveles</strong>: el <strong>Sector Gobierno</strong>
+    (la estructura administrativa) y el <strong>Sector Público</strong>, que es un concepto
+    más amplio. La distinción importa porque no es lo mismo un ministerio que una empresa
+    estatal que factura y compite.<span class="source-cite">Clase U4 · PE, cap. 12</span>
+  </p>
+
+  <div class="comparativa">
+    <div class="comp-card gobierno">
+      <span class="comp-tag">Sector Gobierno</span>
+      <h4>La estructura administrativa</h4>
+      <ul>
+        <li><strong>A · Administración Central:</strong> Poder Ejecutivo (ministerios,
+          secretarías), Poder Legislativo y Poder Judicial.</li>
+        <li><strong>B · Administraciones provinciales y municipales:</strong> las
+          dependencias estatales en los niveles provincial y municipal.</li>
+        <li><strong>C · Organismos descentralizados:</strong> tienen autonomía parcial
+          de gobierno y de fondos. Ejemplos: las universidades públicas, la ANSES.</li>
+      </ul>
+    </div>
+    <div class="comp-card publico">
+      <span class="comp-tag">Sector Público</span>
+      <h4>Concepto más amplio</h4>
+      <p>Incluye al Sector Gobierno <strong>más las empresas públicas</strong>, que tienen
+      personería jurídica y patrimonio propio:</p>
+      <ul>
+        <li><strong>Empresas del Estado</strong> (ej.: YPF).</li>
+        <li><strong>Sociedades:</strong> por acciones, de economía mixta o del Estado.</li>
+        <li><strong>Entes jurisdiccionales</strong> (ej.: Túnel Subfluvial, Yacyretá).</li>
+        <li><strong>Organismos residuales</strong> (los que quedaron tras las
+          privatizaciones).</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>Para retener:</strong> el Sector Gobierno está <em>contenido</em> en el Sector
+    Público. Cuando se consolidan todos los niveles (Nación, provincias, municipios y
+    empresas), Pérez Enrri habla de <strong>Sector Público Consolidado</strong>. En esta
+    unidad, cuando digamos "sector público" estamos usando esa acepción amplia.
   </div>
 
   <h3 id="acciones-cibotti">Las acciones del Estado según Cibotti y Sierra</h3>
@@ -5819,7 +5228,7 @@
           <div class="cibotti-examples">
             <span class="cibotti-examples-label">Diferencia esencial</span>
             <ul>
-              <li>El Estado-productor <strong>no</strong> decide en función de la maximización de ganancias.</li>
+              <li>El Estado-productor <strong>no</strong> decide, <em>en lo principal</em>, en función de la maximización de ganancias.</li>
               <li>Gravitan también consideraciones de política económica y bienestar.</li>
             </ul>
           </div>
@@ -5839,8 +5248,9 @@
           <span class="cibotti-tipo">Formación de capital</span>
           <h5>Acumulación</h5>
           <p class="cibotti-thesis">
-            Inversiones que contribuyen a la <em>formación del acervo de instalaciones
-            y equipo</em> que la economía necesita. También se distinguen dos subtipos
+            Inversiones que contribuyen a la <em>formación del
+            <span class="gloss" tabindex="0" data-gloss="Conjunto acumulado de bienes; el 'stock' de instalaciones y equipos con que cuenta una economía.">acervo</span>
+            de instalaciones y equipo</em> que la economía necesita. También se distinguen dos subtipos
             según para quién se acumula:
           </p>
           <div class="cibotti-subdiv">
@@ -5897,6 +5307,25 @@
         </div>
       </article>
 
+    </div>
+  </div>
+
+  <div class="quiz quiz-inline">
+    <div class="quiz-question">
+      <span class="q-num">✓ Comprobá lo que leíste</span>
+      <p class="q-text">Según Cibotti y Sierra, cuando el Estado dicta una ley antimonopolio o fija las tasas de encaje bancario, está realizando:</p>
+      <div class="quiz-options">
+        <button class="quiz-option" data-correct="true" data-feedback="Las acciones de regulación son normativas: el Estado dicta leyes y normas para inducir comportamientos en los agentes económicos, sin movilizar grandes recursos físicos.">
+          <span class="marker">A</span><span>Acciones de regulación</span>
+        </button>
+        <button class="quiz-option" data-correct="false" data-feedback="Las acciones de acumulación son inversiones en bienes de capital (caminos, edificios, equipos), no normas.">
+          <span class="marker">B</span><span>Acciones de acumulación</span>
+        </button>
+        <button class="quiz-option" data-correct="false" data-feedback="Las acciones de producción implican que el Estado entrega bienes o servicios como unidad productora (justicia, educación, salud). Una ley antimonopolio no produce un bien: establece una norma.">
+          <span class="marker">C</span><span>Acciones de producción</span>
+        </button>
+      </div>
+      <div class="quiz-feedback"></div>
     </div>
   </div>
 
@@ -5973,7 +5402,8 @@
         <p class="fuente-desc">
           <strong>Privatizaciones</strong>: el Estado vende empresas o activos. Es
           una fuente <em>no recurrente</em> — se obtiene una sola vez por activo.
-          Cobró peso en Argentina a partir de 1992.
+          Cobró peso en Argentina a partir de 1992. La clase suma en esta familia
+          otros recursos menores: <strong>concesiones, arriendos y donaciones</strong>.
         </p>
         <div class="fuente-tags">
           <span class="fuente-tag is-warning">No recurrente</span>
@@ -6039,6 +5469,8 @@
         y recursos de propiedad común.</li>
       <li><strong>Funciones</strong> (Mochón–Beker): fiscal · reguladora · proveedora ·
         redistributiva · estabilizadora. Son <em>complementarias</em>, no alternativas.</li>
+      <li><strong>El Sector Gobierno está contenido en el Sector Público</strong>, que
+        agrega las empresas públicas (con personería jurídica y patrimonio propio).</li>
       <li><strong>Acciones</strong> (Cibotti y Sierra): regulación · producción ·
         acumulación · financiamiento. Útil para pensar el Estado-productor
         latinoamericano.</li>
@@ -6052,11 +5484,12 @@
 <section id="ingresos">
   <div class="section-header">
     <div class="section-label">
-      <div class="line"></div>
-      <span class="text">Bloque 2 · Ingresos públicos</span>
+      <span class="sec-num">2</span>
+      <span class="text">Ingresos públicos</span>
       <div class="grow"></div>
     </div>
     <h2>Recursos <span class="colored">o ingresos públicos</span></h2>
+    <div class="divider-flourish"><span>◆</span></div>
   </div>
 
   <div class="definition">
@@ -6080,7 +5513,8 @@
       <span class="comp-tag">Criterio Jurídico</span>
       <h4>Según el poder coercitivo</h4>
       <ul>
-        <li><strong>Originarios:</strong> el Estado <em>no</em> ejerce su poder coercitivo.
+        <li><strong>Originarios:</strong> el Estado <em>no</em> ejerce su poder
+          <span class="gloss" tabindex="0" data-gloss="Que obliga. El poder coercitivo del Estado es su capacidad de imponer conductas por ley, sin pedir consentimiento.">coercitivo</span>.
           Surgen de su patrimonio o actividad económica. Ejemplos: venta de bienes y
           servicios, tarifas, crédito público.</li>
         <li><strong>Derivados:</strong> surgen del <em>poder coercitivo</em> del Estado.
@@ -6110,12 +5544,12 @@
   </p>
 
   <div class="tabs" id="ingTabs">
-    <div class="tab-list">
-      <button class="tab-btn active" data-tab="i-corr">Corrientes</button>
-      <button class="tab-btn" data-tab="i-nocorr">No corrientes</button>
+    <div class="tab-list" role="tablist" aria-label="Tipos de ingresos públicos">
+      <button class="tab-btn active" data-tab="i-corr" role="tab" aria-selected="true" aria-controls="i-corr">Corrientes</button>
+      <button class="tab-btn" data-tab="i-nocorr" role="tab" aria-selected="false" aria-controls="i-nocorr">No corrientes</button>
     </div>
 
-    <div class="tab-panel active" id="i-corr">
+    <div class="tab-panel active" id="i-corr" role="tabpanel">
       <div class="tree">
         <div class="tree-center"><div class="tree-root">Ingresos Corrientes</div></div>
         <div class="tree-branches">
@@ -6152,7 +5586,7 @@
       </div>
     </div>
 
-    <div class="tab-panel" id="i-nocorr">
+    <div class="tab-panel" id="i-nocorr" role="tabpanel">
       <div class="tree">
         <div class="tree-center"><div class="tree-root">Ingresos No Corrientes (o de Capital)</div></div>
         <div class="tree-branches">
@@ -6187,6 +5621,17 @@
     </div>
   </div>
 
+  <div class="callout">
+    <strong>Una palabra, dos acepciones.</strong> Vas a encontrar "tributo" usado de dos
+    maneras, y las dos son correctas. En <em>sentido amplio</em> — el de la clase y el de
+    Cibotti y Sierra — los tributos abarcan <strong>impuestos, tasas y contribuciones</strong>.
+    En el árbol de arriba, en cambio, Pérez Enrri usa un criterio más <em>restringido</em>:
+    reserva "tributarios" para los aportes <strong>sin contrapartida directa</strong>, y por
+    eso ubica a las tasas y contribuciones entre los "no tributarios". No es una
+    contradicción: es un cambio de criterio de clasificación. Si una consigna habla de
+    tributos, fijate qué acepción está usando.
+  </div>
+
   <div class="idea-fuerza">
     <span class="if-tag">Para retener · Bloque 2</span>
     <h4>Dos clasificaciones complementarias</h4>
@@ -6196,10 +5641,30 @@
         previsionales).</li>
       <li><strong>Económica:</strong> corrientes (sin endeudarse · ingresos tributarios)
         vs no corrientes o de capital (deuda y venta de activos · "se usan una sola vez").</li>
-      <li><strong>Los tributos</strong> son la fuente más importante. Se dividen en
-        impuestos, tasas (con contrapartida directa) y contribuciones especiales (por
-        una obra puntual).</li>
+      <li><strong>Los tributos</strong> son la fuente más importante. En sentido amplio
+        se dividen en impuestos, tasas (con contrapartida directa) y contribuciones
+        especiales (por una obra puntual); para Pérez Enrri, "tributarios" son solo los
+        aportes sin contrapartida (ver aclaración de arriba).</li>
     </ul>
+  </div>
+
+  <div class="quiz quiz-inline">
+    <div class="quiz-question">
+      <span class="q-num">✓ Comprobá lo que leíste</span>
+      <p class="q-text">Las <strong>privatizaciones</strong> son una fuente de financiamiento del Estado que, desde el criterio económico, se clasifica como:</p>
+      <div class="quiz-options">
+        <button class="quiz-option" data-correct="false" data-feedback="Los ingresos corrientes los obtiene el Estado sin endeudarse ni reducir sus activos. La privatización reduce el patrimonio estatal, así que no puede ser corriente.">
+          <span class="marker">A</span><span>Ingreso corriente del Estado</span>
+        </button>
+        <button class="quiz-option" data-correct="true" data-feedback="Las privatizaciones se obtienen vendiendo activos del Estado: son recursos 'de una vez', no recurrentes. Por eso se clasifican como no corrientes (o de capital).">
+          <span class="marker">B</span><span>Ingreso no corriente (de capital)</span>
+        </button>
+        <button class="quiz-option" data-correct="false" data-feedback="Los ingresos tributarios son los impuestos, tasas y contribuciones. Vender una empresa pública no es un tributo.">
+          <span class="marker">C</span><span>Ingreso tributario derivado</span>
+        </button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
   </div>
 </section>
 
@@ -6209,22 +5674,24 @@
 <section id="gastos">
   <div class="section-header">
     <div class="section-label">
-      <div class="line"></div>
-      <span class="text">Bloque 3 · Gastos públicos</span>
+      <span class="sec-num">3</span>
+      <span class="text">Gastos públicos</span>
       <div class="grow"></div>
     </div>
     <h2>Erogaciones o <span class="colored">gastos públicos</span></h2>
+    <div class="divider-flourish"><span>◆</span></div>
   </div>
 
   <div class="definition">
     <span class="tag">Definición</span>
     <h4>Gasto Público</h4>
     <p>
-      Son las <strong>erogaciones que hace el Estado para satisfacer las necesidades
-      públicas</strong>. Pérez Enrri lo define más técnicamente como <em>"transacciones
-      financieras que realizan instituciones públicas para adquirir bienes y servicios
-      que requieren para la producción pública o para transferir los recursos recaudados
-      a diferentes destinatarios"</em>.<span class="source-cite">PE, cap. 12</span>
+      Son las <strong><span class="gloss" tabindex="0" data-gloss="Salidas de dinero; gastos. En finanzas públicas, todo pago que realiza el Estado.">erogaciones</span> que hace el Estado para satisfacer las necesidades
+      públicas</strong>. Pérez Enrri recoge la definición más técnica del Ministerio de
+      Economía: <em>"transacciones financieras que realizan instituciones públicas para
+      adquirir bienes y servicios que requieren para la producción pública o para
+      transferir los recursos recaudados a diferentes
+      destinatarios"</em>.<span class="source-cite">PE, cap. 12</span>
     </p>
   </div>
 
@@ -6333,6 +5800,25 @@
         Cada uno responde a una pregunta distinta.</li>
     </ul>
   </div>
+
+  <div class="quiz quiz-inline">
+    <div class="quiz-question">
+      <span class="q-num">✓ Comprobá lo que leíste</span>
+      <p class="q-text">El Estado construye una <strong>escuela pública</strong>. Según la clasificación moderna del gasto, esa erogación es un gasto:</p>
+      <div class="quiz-options">
+        <button class="quiz-option" data-correct="false" data-feedback="Los gastos corrientes son los del funcionamiento habitual: salarios, bienes de consumo, intereses de la deuda. Construir una escuela crea un activo nuevo.">
+          <span class="marker">A</span><span>Corriente, porque sostiene el funcionamiento del Estado</span>
+        </button>
+        <button class="quiz-option" data-correct="true" data-feedback="Los gastos de capital o de inversión aumentan la capacidad productiva del sector público: construcción de escuelas, carreteras, hospitales.">
+          <span class="marker">B</span><span>De capital, porque amplía la capacidad productiva pública</span>
+        </button>
+        <button class="quiz-option" data-correct="false" data-feedback="Las transferencias (jubilaciones, pensiones, subvenciones) no tienen contraprestación y no crean un activo físico. La escuela sí: es inversión.">
+          <span class="marker">C</span><span>De transferencia, porque no genera contraprestación</span>
+        </button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+  </div>
 </section>
 
 <div class="separator"><div class="line"></div><div class="dot"></div><div class="line right"></div></div>
@@ -6376,11 +5862,12 @@
 <section id="impuestos">
   <div class="section-header">
     <div class="section-label">
-      <div class="line"></div>
-      <span class="text">Bloque 4 · Impuestos</span>
+      <span class="sec-num">4</span>
+      <span class="text">Impuestos</span>
       <div class="grow"></div>
     </div>
     <h2>Impuestos: <span class="colored">clasificación y fundamentos</span></h2>
+    <div class="divider-flourish"><span>◆</span></div>
   </div>
 
   <div class="definition">
@@ -6389,7 +5876,7 @@
     <p>
       Son los <strong>ingresos públicos creados por ley y de cumplimiento obligatorio</strong>
       por parte de los sujetos contemplados en la misma. Son <em>aportes</em> que el
-      Estado exige a los ciudadanos sin <strong>contrapartida directa</strong> en bienes
+      Estado exige a la ciudadanía sin <strong>contrapartida directa</strong> en bienes
       y servicios. El monto se fija a cada persona en relación con su
       <span class="gloss" tabindex="0" data-gloss="Principio según el cual cada persona debe contribuir al sostenimiento del Estado en proporción a sus posibilidades económicas. A mayor ingreso o patrimonio, mayor aporte. Es el fundamento de los impuestos progresivos.">capacidad contributiva</span>.
     </p>
@@ -6413,9 +5900,11 @@
     <div class="comp-card directos">
       <span class="comp-tag">Directos</span>
       <h4>Gravan la propiedad, la riqueza o el ingreso</h4>
-      <p>Tienen como base imponible la <strong>propiedad, la riqueza o el ingreso</strong>
-      de las personas. Su rasgo distintivo: son <strong>absorbidos por el individuo</strong>
-      al que se le impone la contribución. <em>No son trasladables</em>.</p>
+      <p>Tienen como
+      <span class="gloss" tabindex="0" data-gloss="La magnitud sobre la que se calcula un impuesto: el ingreso, el patrimonio o el valor de lo que se consume.">base imponible</span>
+      la <strong>propiedad, la riqueza o el ingreso</strong>
+      de las personas. Su rasgo distintivo: los absorbe <strong>la persona a la que la ley
+      impone la contribución</strong>. <em>No son trasladables</em>.</p>
       <ul>
         <li><strong>Impuesto a las Ganancias</strong> (a personas y empresas).</li>
         <li><strong>Bienes Personales.</strong></li>
@@ -6427,7 +5916,7 @@
       <span class="comp-tag">Indirectos</span>
       <h4>Gravan el consumo y las transacciones</h4>
       <p>Gravan el <strong>consumo y las transacciones económicas</strong> en general.
-      Su rasgo distintivo: <em>son trasladables</em>. El contribuyente formal (la empresa)
+      Su rasgo distintivo: <em>son trasladables</em>. La empresa — contribuyente formal —
       carga el impuesto al precio de venta y termina pagándolo el consumidor final.</p>
       <ul>
         <li><strong>IVA (Impuesto al Valor Agregado).</strong></li>
@@ -6435,6 +5924,25 @@
           combustibles).</li>
         <li>Ingresos Brutos (provincial).</li>
       </ul>
+    </div>
+  </div>
+
+  <div class="quiz quiz-inline">
+    <div class="quiz-question">
+      <span class="q-num">✓ Comprobá lo que leíste</span>
+      <p class="q-text">Una característica clave de los <strong>impuestos directos</strong> respecto de los indirectos es que:</p>
+      <div class="quiz-options">
+        <button class="quiz-option" data-correct="true" data-feedback="Los impuestos directos los absorbe la persona a la que la ley impone la contribución: no se trasladan. Los indirectos (como el IVA), en cambio, se trasladan al precio.">
+          <span class="marker">A</span><span>No se trasladan: los paga quien la ley designa</span>
+        </button>
+        <button class="quiz-option" data-correct="false" data-feedback="Gravar el consumo y las transacciones es el rasgo de los indirectos; los directos gravan la propiedad, la riqueza o el ingreso.">
+          <span class="marker">B</span><span>Gravan el consumo y las transacciones económicas</span>
+        </button>
+        <button class="quiz-option" data-correct="false" data-feedback="Muchos directos son progresivos (Ganancias a personas físicas, con escalas), pero lo que los define como directos no es la progresividad sino la no trasladabilidad.">
+          <span class="marker">C</span><span>Aplican siempre alícuotas progresivas por escala</span>
+        </button>
+      </div>
+      <div class="quiz-feedback"></div>
     </div>
   </div>
 
@@ -6448,11 +5956,12 @@
     <div class="comp-card progresivos">
       <span class="comp-tag">Progresivos</span>
       <h4>Más sacrificio a los que tienen más</h4>
-      <p>Imponen un <strong>sacrificio mayor</strong> sobre los individuos con mayor
+      <p>Imponen un <strong>sacrificio mayor</strong> sobre las personas con mayor
       capacidad económica. A más ingreso, mayor proporción se paga.</p>
       <div style="background: rgba(39,174,96,0.06); padding: 12px 14px; border-radius: 8px; margin: 12px 0; font-size: 0.9em;">
         <strong>Ejemplo:</strong> Impuesto a las Ganancias para personas físicas, donde
-        hay escalas: a mayor ingreso, mayor alícuota.
+        hay escalas: a mayor ingreso, mayor
+        <span class="gloss" tabindex="0" data-gloss="El porcentaje que se aplica sobre la base imponible para calcular cuánto impuesto se paga. La alícuota general del IVA es 21%.">alícuota</span>.
       </div>
       <p style="font-size: 0.9em; color: var(--color-text-secondary);">
         <strong>Fundamento:</strong> el principio de <em>capacidad contributiva</em>. Quien
@@ -6493,6 +6002,70 @@
       <em>directo y proporcional</em> (Ganancias para empresas, que paga una alícuota
       única). La estructura tributaria de un país se evalúa mirando esa combinación.</p>
     </div>
+  </div>
+
+  <div class="pausa">
+    <span class="pausa-tag">◆ Pausa para pensar</span>
+    <h4>Dos familias, las mismas zapatillas</h4>
+    <p>Una familia que gana $50.000 por mes y otra que gana $500.000 compran las mismas
+    zapatillas, al mismo precio, con el mismo IVA del 21%. Antes de seguir, anotá tu
+    intuición: ¿a cuál de las dos el IVA le "duele" más? ¿O les pesa igual, ya que la
+    alícuota es la misma? Lo retomamos con números concretos un poco más abajo.</p>
+  </div>
+
+  <div class="quiz quiz-inline">
+    <div class="quiz-question">
+      <span class="q-num">✓ Comprobá lo que leíste</span>
+      <p class="q-text">El IVA suele clasificarse como <strong>regresivo</strong>. ¿Por qué?</p>
+      <div class="quiz-options">
+        <button class="quiz-option" data-correct="false" data-feedback="Al revés: la alícuota del IVA es la misma para todos (21% general). El problema regresivo no está en la tasa, sino en el peso relativo sobre el ingreso.">
+          <span class="marker">A</span><span>Porque aplica alícuotas más altas a medida que sube el ingreso familiar</span>
+        </button>
+        <button class="quiz-option" data-correct="false" data-feedback="La regresividad no pasa por la evasión sino por el efecto distributivo: aun con evasión cero, el IVA seguiría pesando más sobre los ingresos bajos.">
+          <span class="marker">B</span><span>Porque es fácil de evadir y la carga termina cayendo sobre el resto</span>
+        </button>
+        <button class="quiz-option" data-correct="true" data-feedback="Las personas de menores ingresos consumen una proporción mayor de lo que ganan. Por eso el IVA — que grava el consumo — les pesa proporcionalmente más (acordate de las familias A y B).">
+          <span class="marker">C</span><span>Porque quien menos gana consume mayor proporción de su ingreso</span>
+        </button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+  </div>
+
+  <p>
+    <strong>Retomamos la pausa.</strong> Te preguntamos a cuál de las dos familias el IVA
+    le "duele" más. La clase lo responde con este ejemplo numérico (valores ilustrativos):
+  </p>
+
+  <div class="comparativa">
+    <div class="comp-card directos">
+      <span class="comp-tag">Familia A · Asalariada</span>
+      <h4>Gasta todo lo que gana</h4>
+      <ul>
+        <li><strong>Sueldo:</strong> $50.000.</li>
+        <li><strong>Consumo:</strong> gasta el 100% del ingreso.</li>
+        <li><strong>IVA pagado:</strong> $10.500 (21% de $50.000).</li>
+        <li><strong>El IVA se lleva el 21% de sus ingresos.</strong></li>
+      </ul>
+    </div>
+    <div class="comp-card indirectos">
+      <span class="comp-tag">Familia B · Altos recursos</span>
+      <h4>Puede ahorrar una parte</h4>
+      <ul>
+        <li><strong>Sueldo:</strong> $500.000.</li>
+        <li><strong>Consumo:</strong> gasta el 60% ($300.000) y ahorra el 40% ($200.000).</li>
+        <li><strong>IVA pagado:</strong> $63.000 (21% de $300.000).</li>
+        <li><strong>El IVA se lleva solo el 12,6% de sus ingresos.</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout data">
+    <strong>La conclusión de la clase:</strong> el IVA impacta el <strong>21%</strong> del
+    ingreso en la familia asalariada y solo el <strong>12,6%</strong> en la de altos
+    recursos — aunque la alícuota sea idéntica. Por eso es un impuesto
+    <em>regresivo</em>: castiga proporcionalmente más a quienes menos
+    tienen.<span class="source-cite">Clase U4</span>
   </div>
 
   <h3 id="presion">Presión tributaria</h3>
@@ -6541,9 +6114,13 @@
     <p>
       En Argentina, la recaudación se apoya fuertemente en el <strong>IVA</strong>
       (impuesto indirecto y regresivo, 21% general) y mucho menos en
-      <strong>Ganancias para personas físicas</strong> (directo y progresivo). Eso hace
-      que la presión tributaria <em>recaiga más</em> sobre quienes consumen una mayor
-      proporción de su ingreso — los hogares de ingresos bajos y medios.
+      <strong>Ganancias</strong> (directo y, para personas físicas, progresivo). La clase
+      lo compara con los países de la OCDE: acá el IVA aporta el <strong>47,3% del total
+      recaudado</strong>, cuando en la OCDE no supera el <strong>18%</strong>; Ganancias
+      apenas llega al <strong>23,5%</strong>, contra el <strong>36%</strong> de los países
+      desarrollados. Eso hace que la presión tributaria <em>recaiga más</em> sobre quienes
+      consumen una mayor proporción de su ingreso — los hogares de ingresos bajos y
+      medios.<span class="source-cite">Clase U4</span>
     </p>
     <p>
       Una estructura tributaria es <strong>redistributiva</strong> cuando los impuestos
@@ -6577,18 +6154,19 @@
 <section id="politica-fiscal">
   <div class="section-header">
     <div class="section-label">
-      <div class="line"></div>
-      <span class="text">Bloque 5 · Política Fiscal</span>
+      <span class="sec-num">5</span>
+      <span class="text">Política Fiscal</span>
       <div class="grow"></div>
     </div>
     <h2>Política <span class="colored">Fiscal</span></h2>
+    <div class="divider-flourish"><span>◆</span></div>
   </div>
 
   <p class="lead-paragraph">
     Ya conocés los ingresos, los gastos y el presupuesto. La <strong>política fiscal</strong>
     es el uso <em>activo</em> de esas tres piezas para influir sobre la economía. Es uno
     de los grandes instrumentos de la política económica — el otro es la política monetaria,
-    que se ve en la Unidad 6.
+    que se retoma más adelante en la materia.
   </p>
 
   <div class="cita-fuente">
@@ -6719,6 +6297,25 @@
     </ul>
   </div>
 
+  <div class="quiz quiz-inline">
+    <div class="quiz-question">
+      <span class="q-num">✓ Comprobá lo que leíste</span>
+      <p class="q-text">Si la economía está en recesión, con desempleo elevado, una política fiscal <strong>expansiva</strong> consiste en:</p>
+      <div class="quiz-options">
+        <button class="quiz-option" data-correct="false" data-feedback="Eso describe una política restrictiva, pensada para una sobreexpansión con inflación — no para una recesión con desempleo.">
+          <span class="marker">A</span><span>Subir impuestos y recortar el gasto público para enfriar la demanda</span>
+        </button>
+        <button class="quiz-option" data-correct="true" data-feedback="La expansiva busca impulsar la demanda agregada: más gasto (obras, transferencias) y/o menos impuestos, para que suba el ingreso disponible. Tiende a generar déficit, que se acepta como temporal.">
+          <span class="marker">B</span><span>Aumentar el gasto público y/o bajar impuestos para estimular la demanda</span>
+        </button>
+        <button class="quiz-option" data-correct="false" data-feedback="No actuar no es política fiscal expansiva: es la receta clásica/monetarista, que confía en los mecanismos autocorrectores del mercado.">
+          <span class="marker">C</span><span>Mantener el presupuesto sin cambios y esperar la corrección del mercado</span>
+        </button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+  </div>
+
   <h3 id="pf-estabilizadores">Estabilizadores automáticos</h3>
   <p>
     No toda la política fiscal requiere una decisión explícita. Algunos elementos del
@@ -6762,6 +6359,25 @@
     <strong>Importante:</strong> los estabilizadores automáticos <em>suavizan</em> las
     fluctuaciones, pero <strong>no las eliminan</strong>. Por eso se complementan con la
     política discrecional.<span class="source-cite">MB, cap. 13</span>
+  </div>
+
+  <div class="quiz quiz-inline">
+    <div class="quiz-question">
+      <span class="q-num">✓ Comprobá lo que leíste</span>
+      <p class="q-text">Mochón y Beker llaman <strong>estabilizadores automáticos</strong> a:</p>
+      <div class="quiz-options">
+        <button class="quiz-option" data-correct="true" data-feedback="Son hechos del sistema económico que reducen mecánicamente la fuerza de recesiones y expansiones, sin medidas discrecionales. Los dos típicos: impuestos proporcionales y seguro de desempleo.">
+          <span class="marker">A</span><span>Mecanismos del sistema que suavizan los ciclos sin decisión explícita</span>
+        </button>
+        <button class="quiz-option" data-correct="false" data-feedback="Las obras públicas son política fiscal discrecional: requieren una decisión explícita del gobierno. Justo lo contrario de un estabilizador automático.">
+          <span class="marker">B</span><span>Los programas de obras públicas que el gobierno lanza en cada recesión</span>
+        </button>
+        <button class="quiz-option" data-correct="false" data-feedback="La emisión monetaria es una vía para financiar el déficit, no un estabilizador automático del ciclo económico.">
+          <span class="marker">C</span><span>La emisión monetaria con la que el Banco Central asiste al Tesoro</span>
+        </button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
   </div>
 
   <h3>Política fiscal: visión clásica vs. keynesiana</h3>
@@ -6850,7 +6466,7 @@
           <strong>política monetaria expansiva</strong> que trae tensiones inflacionarias
           y pérdida de valor del dinero. Es el famoso
           <span class="gloss" tabindex="0" data-gloss="Pérdida del valor del dinero que sufren todos los tenedores de moneda nacional cuando el Estado financia su déficit emitiendo. Funciona como un impuesto invisible sobre quienes tienen pesos.">impuesto inflacionario</span>
-          (se desarrolla en la Unidad 6).
+          (se desarrolla más adelante en la materia).
         </p>
         <div class="deficit-cost">
           <span class="deficit-cost-label">Costo</span>
@@ -6892,6 +6508,15 @@
     </div>
   </div>
 
+  <div class="callout">
+    <strong>Retomamos la pausa.</strong> Al principio te preguntamos qué debería tener en
+    cuenta el Estado para que su intervención no genere un problema mayor. Acá está una
+    parte de la respuesta: las herramientas fiscales <strong>tardan en hacer efecto, son
+    difíciles de revertir y toda vía de financiamiento tiene un costo</strong>. Corregir una
+    falla del mercado con el Estado exige medir esos costos — porque una intervención mal
+    calibrada puede dejar a la economía peor que antes.
+  </div>
+
   <div class="idea-fuerza">
     <span class="if-tag">Para retener · Bloque 5</span>
     <h4>El núcleo de la <em>política fiscal</em></h4>
@@ -6908,6 +6533,25 @@
         emisión (inflación) o deuda (efecto desplazamiento). Cada vía con su costo.</li>
     </ul>
   </div>
+
+  <div class="quiz quiz-inline">
+    <div class="quiz-question">
+      <span class="q-num">✓ Comprobá lo que leíste</span>
+      <p class="q-text">El llamado <strong>efecto desplazamiento</strong> ("crowding out") describe que:</p>
+      <div class="quiz-options">
+        <button class="quiz-option" data-correct="false" data-feedback="Ese sería un efecto positivo del gasto sobre la actividad privada — el efecto desplazamiento describe exactamente lo contrario.">
+          <span class="marker">A</span><span>El gasto público impulsa la inversión privada mediante contratos de obra</span>
+        </button>
+        <button class="quiz-option" data-correct="false" data-feedback="La emisión de moneda tiene otros costos (inflación, pérdida de valor del dinero); el crowding out se refiere específicamente a la deuda pública.">
+          <span class="marker">B</span><span>La emisión de moneda desplaza el consumo privado de las familias</span>
+        </button>
+        <button class="quiz-option" data-correct="true" data-feedback="La deuda que emite el Estado para financiar el déficit compite con las empresas por el ahorro disponible, eleva las tasas de interés y la inversión privada cae.">
+          <span class="marker">C</span><span>La deuda pública compite por el ahorro y desplaza inversión privada</span>
+        </button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+  </div>
 </section>
 
 <div class="separator"><div class="line"></div><div class="dot"></div><div class="line right"></div></div>
@@ -6916,166 +6560,102 @@
 <section id="cierre">
   <div class="section-header">
     <div class="section-label">
-      <div class="line"></div>
+      <span class="sec-num">✓</span>
       <span class="text">Cierre</span>
       <div class="grow"></div>
     </div>
-    <h2>Quiz de <span class="colored">autoevaluación</span></h2>
+    <h2>Autoevaluación <span class="colored">final</span></h2>
+    <div class="divider-flourish"><span>◆</span></div>
   </div>
 
-  <p class="lead-paragraph">
-    Ocho preguntas para chequear comprensión. El error no es castigo: es información sobre
-    qué conviene releer. Las preguntas no son trampas — buscan que pongas en relación los
-    conceptos centrales de la unidad.
-  </p>
+  <h3 id="minitest-h">Mini-test: cinco preguntas de toda la unidad</h3>
+  <p>A lo largo de la unidad fuiste comprobando cada bloque con preguntas sueltas. Esta es la <strong>pasada final</strong>, <strong>mezclando temas de toda la unidad</strong> —así funciona la memoria de verdad: recuperando, no releyendo. Van de a una y no se guarda ninguna nota.</p>
 
-  <div class="quiz" id="quiz">
-    <div class="quiz-header">
-      <h3>Verificá tu comprensión</h3>
-      <span class="quiz-progress" id="quizProgress">0 / 8</span>
-    </div>
+  <div class="minitest" id="minitest">
+    <span class="quiz-badge">✦ Mini-test final</span>
+    <div class="mt-progress"><div class="mt-progress-fill"></div></div>
+    <div class="mt-counter">Pregunta 1 de 5</div>
 
-    <div class="quiz-question" data-q="1">
-      <span class="q-num">Pregunta 1</span>
-      <p class="q-text">¿Cuál de los siguientes es un <strong>bien público</strong> en el sentido económico?</p>
+    <div class="mt-q">
+      <p class="quiz-q">El alumbrado público de una calle: nadie puede cobrarle a cada vecino por separado, y que una persona lo aproveche no impide que otra también lo haga. Por eso el mercado privado no lo ofrece. ¿De qué falla del mercado es un caso típico?</p>
       <div class="quiz-options">
-        <button class="quiz-option" data-correct="false" data-feedback="No: una casa es un bien privado típico — hay rivalidad (si vos la usás, otro no) y exclusión (podés impedir el uso).">
-          <span class="marker">A</span><span>Una casa con dueño</span>
-        </button>
-        <button class="quiz-option" data-correct="true" data-feedback="Correcto. La defensa nacional tiene los dos rasgos: no rivalidad (que un ciudadano esté protegido no reduce la protección para otro) y no exclusión (no se puede dejar afuera a nadie).">
-          <span class="marker">B</span><span>La defensa nacional</span>
-        </button>
-        <button class="quiz-option" data-correct="false" data-feedback="No: un pasaje de avión tiene rivalidad (si compraste el asiento, otro no puede sentarse) y exclusión (sin pagar no entrás).">
-          <span class="marker">C</span><span>Un pasaje de avión</span>
-        </button>
+        <button class="quiz-opt" data-correct="false" data-fb="No. El monopolio natural es otra falla: aparece cuando una sola empresa produce a menor costo que varias (una red de agua, por ejemplo). Acá el problema es que el bien no se puede cobrar ni racionar."><span class="opt-letter">A</span><span>Un monopolio natural, porque conviene que una sola empresa lo provea.</span></button>
+        <button class="quiz-opt" data-correct="true" data-fb="¡Correcto! No rival (que un vecino lo use no reduce el servicio para otro) y no excluible (no se puede dejar a nadie afuera). Por eso aparece el free-rider y el mercado no lo provee: lo hace el Estado."><span class="opt-letter">B</span><span>Un bien público, por ser de consumo no rival y no excluible.</span></button>
+        <button class="quiz-opt" data-correct="false" data-fb="No. La externalidad es cuando una actividad afecta a un tercero ajeno a ella (una fábrica que contamina). El alumbrado no perjudica a nadie: el punto es que no se puede excluir ni cobrar."><span class="opt-letter">C</span><span>Una externalidad negativa, porque afecta a los vecinos.</span></button>
       </div>
-      <div class="quiz-feedback"></div>
+      <div class="mt-fb"></div>
+      <button class="mt-next" type="button">Siguiente →</button>
     </div>
 
-    <div class="quiz-question" data-q="2">
-      <span class="q-num">Pregunta 2</span>
-      <p class="q-text">Según Cibotti y Sierra, cuando el Estado dicta una ley antimonopolio o fija las tasas de encaje bancario, está realizando:</p>
+    <div class="mt-q">
+      <p class="quiz-q">El IVA se cobra a la misma alícuota a todo el mundo, sin mirar el ingreso de quien compra. Como los sectores de menores ingresos gastan casi todo lo que ganan, el impuesto pesa proporcionalmente más sobre ellos. Según su efecto distributivo, el IVA es…</p>
       <div class="quiz-options">
-        <button class="quiz-option" data-correct="true" data-feedback="Correcto. Las acciones de regulación son típicamente normativas: el Estado dicta normas para inducir comportamientos en los agentes económicos, sin necesidad de movilizar grandes recursos físicos.">
-          <span class="marker">A</span><span>Acciones de regulación</span>
-        </button>
-        <button class="quiz-option" data-correct="false" data-feedback="No: las acciones de acumulación son inversiones en bienes de capital (caminos, edificios, equipos), no normas.">
-          <span class="marker">B</span><span>Acciones de acumulación</span>
-        </button>
-        <button class="quiz-option" data-correct="false" data-feedback="No: las acciones de producción implican que el Estado actúa como unidad productora de bienes o servicios (justicia, educación, salud). Una ley antimonopolio no produce un bien — establece una norma.">
-          <span class="marker">C</span><span>Acciones de producción</span>
-        </button>
+        <button class="quiz-opt" data-correct="false" data-fb="No. Progresivo significa que la alícuota sube con la capacidad contributiva (a más ingreso, mayor porcentaje). El IVA hace lo contrario en términos relativos."><span class="opt-letter">A</span><span>Progresivo, porque en total paga más quien más consume.</span></button>
+        <button class="quiz-opt" data-correct="false" data-fb="No. «Directo / indirecto» es otra clasificación: mira la base imponible (renta y patrimonio vs. consumo) y si el impuesto puede trasladarse. El IVA es indirecto y trasladable — y la pregunta apunta a su efecto sobre la distribución."><span class="opt-letter">B</span><span>Directo, porque se abona en el momento mismo de cada compra realizada.</span></button>
+        <button class="quiz-opt" data-correct="true" data-fb="¡Correcto! A mayor ingreso, el IVA representa una porción menor de lo que la persona gana. Por eso se lo considera regresivo: golpea más fuerte a quienes menos tienen."><span class="opt-letter">C</span><span>Regresivo, porque su peso relativo baja cuando sube el ingreso.</span></button>
       </div>
-      <div class="quiz-feedback"></div>
+      <div class="mt-fb"></div>
+      <button class="mt-next" type="button">Siguiente →</button>
     </div>
 
-    <div class="quiz-question" data-q="3">
-      <span class="q-num">Pregunta 3</span>
-      <p class="q-text">Las <strong>privatizaciones</strong> son una fuente de financiamiento del Estado que, desde el criterio económico, se clasifica como:</p>
+    <div class="mt-q">
+      <p class="quiz-q">La economía está en recesión: cae la demanda, sobra capacidad instalada y sube el desempleo. ¿Qué orientación de política fiscal corresponde según el enfoque keynesiano?</p>
       <div class="quiz-options">
-        <button class="quiz-option" data-correct="false" data-feedback="No: los ingresos tributarios son los impuestos, tasas y contribuciones. Las privatizaciones no son tributarias.">
-          <span class="marker">A</span><span>Ingreso tributario</span>
-        </button>
-        <button class="quiz-option" data-correct="false" data-feedback="No: los ingresos corrientes los obtiene el Estado sin endeudarse ni reducir sus activos. La privatización reduce el patrimonio del Estado.">
-          <span class="marker">B</span><span>Ingreso corriente</span>
-        </button>
-        <button class="quiz-option" data-correct="true" data-feedback="Correcto. Las privatizaciones son ingresos no corrientes (o de capital): se obtienen vendiendo activos del Estado. Son recursos 'de una vez', no recurrentes.">
-          <span class="marker">C</span><span>Ingreso no corriente o de capital</span>
-        </button>
+        <button class="quiz-opt" data-correct="true" data-fb="¡Correcto! En recesión el Estado inyecta demanda —más gasto o menos impuestos— para reactivar la producción y el empleo. Es la política anticíclica que propone Keynes."><span class="opt-letter">A</span><span>Expansiva: más gasto público y/o menos impuestos para impulsar la demanda.</span></button>
+        <button class="quiz-opt" data-correct="false" data-fb="No. La política restrictiva enfría la economía: en plena recesión profundizaría la caída y el desempleo. Se usa cuando hay sobreexpansión, no cuando falta demanda."><span class="opt-letter">B</span><span>Restrictiva: subir impuestos y recortar el gasto para frenar la inflación.</span></button>
+        <button class="quiz-opt" data-correct="false" data-fb="No. Esa es la mirada clásica, pero la pregunta pide la herramienta fiscal: frente a una demanda insuficiente, Keynes propone intervenir activamente."><span class="opt-letter">C</span><span>Neutra: no tocar nada y esperar a que el mercado se corrija por sí solo.</span></button>
       </div>
-      <div class="quiz-feedback"></div>
+      <div class="mt-fb"></div>
+      <button class="mt-next" type="button">Siguiente →</button>
     </div>
 
-    <div class="quiz-question" data-q="4">
-      <span class="q-num">Pregunta 4</span>
-      <p class="q-text">Una característica clave de los <strong>impuestos directos</strong> respecto de los indirectos es que:</p>
+    <div class="mt-q">
+      <p class="quiz-q">Un Estado cobra impuestos a los sectores de mayores ingresos y financia con eso planes y transferencias para los más pobres, buscando una sociedad menos desigual. Según las cinco funciones de Mochón y Beker, está ejerciendo la función…</p>
       <div class="quiz-options">
-        <button class="quiz-option" data-correct="false" data-feedback="No es así: muchos impuestos directos son progresivos (Ganancias a personas físicas), pero la característica que los define no es ser progresivos, sino no ser trasladables.">
-          <span class="marker">A</span><span>Son siempre progresivos</span>
-        </button>
-        <button class="quiz-option" data-correct="true" data-feedback="Correcto. Los impuestos directos son absorbidos por el individuo al cual se le impone la contribución: no son trasladables. En cambio los indirectos (como el IVA) se trasladan al precio.">
-          <span class="marker">B</span><span>No son trasladables: los paga quien la ley designa</span>
-        </button>
-        <button class="quiz-option" data-correct="false" data-feedback="No: los directos gravan la propiedad, la riqueza o el ingreso; son los indirectos los que gravan el consumo.">
-          <span class="marker">C</span><span>Gravan el consumo y las transacciones</span>
-        </button>
+        <button class="quiz-opt" data-correct="false" data-fb="No. La función estabilizadora apunta a los grandes agregados —empleo, precios, crecimiento— para suavizar el ciclo económico. El caso habla del reparto del ingreso, no del ciclo."><span class="opt-letter">A</span><span>Estabilizadora, porque ordena los grandes agregados.</span></button>
+        <button class="quiz-opt" data-correct="true" data-fb="¡Correcto! La función redistributiva modifica la distribución de la renta buscando que sea más igualitaria, con impuestos progresivos y transferencias. Es exactamente el caso."><span class="opt-letter">B</span><span>Redistributiva, porque modifica el reparto de la renta.</span></button>
+        <button class="quiz-opt" data-correct="false" data-fb="No. La función reguladora opera mediante leyes y disposiciones que encuadran la actividad (control de monopolios, defensa del consumidor), no mediante impuestos y transferencias."><span class="opt-letter">C</span><span>Reguladora, porque encuadra la actividad económica.</span></button>
       </div>
-      <div class="quiz-feedback"></div>
+      <div class="mt-fb"></div>
+      <button class="mt-next" type="button">Siguiente →</button>
     </div>
 
-    <div class="quiz-question" data-q="5">
-      <span class="q-num">Pregunta 5</span>
-      <p class="q-text">El IVA suele clasificarse como <strong>regresivo</strong>. ¿Por qué?</p>
+    <div class="mt-q">
+      <p class="quiz-q">Para cubrir su déficit, un gobierno le pide al banco central que emita dinero. Los precios suben y todos los que tienen pesos pierden poder de compra, sin que se haya votado ningún impuesto nuevo. A ese fenómeno se lo llama…</p>
       <div class="quiz-options">
-        <button class="quiz-option" data-correct="false" data-feedback="No: la alícuota del IVA es la misma para todos (21% en general). El problema regresivo no es de tasa sino de peso relativo en el ingreso.">
-          <span class="marker">A</span><span>Porque tiene alícuotas mayores para quienes ganan más</span>
-        </button>
-        <button class="quiz-option" data-correct="true" data-feedback="Correcto. Las personas con menores ingresos consumen una proporción mayor de lo que ganan. Por eso el IVA — que grava el consumo — les pesa proporcionalmente más que a quienes ahorran parte de su ingreso.">
-          <span class="marker">B</span><span>Porque a menor ingreso, el consumo es proporcionalmente mayor, y el IVA pesa más sobre ese sector</span>
-        </button>
-        <button class="quiz-option" data-correct="false" data-feedback="No: el IVA recauda mucho y de forma sostenida, no es 'fácil de evadir'. La razón de su regresividad no es la evasión sino su efecto distributivo.">
-          <span class="marker">C</span><span>Porque es fácil de evadir</span>
-        </button>
+        <button class="quiz-opt" data-correct="false" data-fb="No. La presión tributaria mide cuánto pesan los impuestos sobre el conjunto de la economía (recaudación sobre PBI). Acá no hay un impuesto formal, sino una pérdida de valor del dinero."><span class="opt-letter">A</span><span>Presión tributaria total.</span></button>
+        <button class="quiz-opt" data-correct="false" data-fb="No. El déficit fiscal es la diferencia entre los gastos y los ingresos del Estado. Es la causa que llevó a emitir — no el efecto de esa emisión sobre quienes tienen pesos."><span class="opt-letter">B</span><span>Déficit fiscal crónico.</span></button>
+        <button class="quiz-opt" data-correct="true" data-fb="¡Correcto! Al financiar el déficit con emisión, la inflación licúa el valor del dinero: funciona como un impuesto invisible sobre todos los que tienen pesos, aunque nadie lo haya legislado."><span class="opt-letter">C</span><span>Impuesto inflacionario.</span></button>
       </div>
-      <div class="quiz-feedback"></div>
+      <div class="mt-fb"></div>
+      <button class="mt-next" type="button">Siguiente →</button>
     </div>
 
-    <div class="quiz-question" data-q="6">
-      <span class="q-num">Pregunta 6</span>
-      <p class="q-text">Si la economía está en recesión, con desempleo elevado, una política fiscal <strong>expansiva</strong> consiste en:</p>
-      <div class="quiz-options">
-        <button class="quiz-option" data-correct="false" data-feedback="No: eso describe una política restrictiva. La expansiva busca lo contrario en recesión: estimular la demanda.">
-          <span class="marker">A</span><span>Subir impuestos y reducir el gasto público</span>
-        </button>
-        <button class="quiz-option" data-correct="true" data-feedback="Correcto. La política expansiva busca impulsar la demanda agregada: aumentar el gasto (obras, transferencias) y reducir impuestos para que aumente el ingreso disponible. Tiende a generar déficit, que se acepta como temporal.">
-          <span class="marker">B</span><span>Aumentar el gasto público y/o reducir impuestos para estimular la demanda</span>
-        </button>
-        <button class="quiz-option" data-correct="false" data-feedback="Mantener todo igual no es política fiscal; es no actuar. Esa es la posición clásica/monetarista, no la herramienta keynesiana frente a una recesión.">
-          <span class="marker">C</span><span>Mantener el presupuesto sin cambios</span>
-        </button>
-      </div>
-      <div class="quiz-feedback"></div>
+    <div class="mt-result">
+      <div class="mt-score">0 / 5</div>
+      <p class="mt-msg"></p>
+      <button class="mt-retry" type="button">↺ Volver a intentar</button>
     </div>
+  </div>
 
-    <div class="quiz-question" data-q="7">
-      <span class="q-num">Pregunta 7</span>
-      <p class="q-text">Mochón y Beker llaman <strong>estabilizadores automáticos</strong> a:</p>
-      <div class="quiz-options">
-        <button class="quiz-option" data-correct="false" data-feedback="No: las obras públicas son política fiscal discrecional (requieren decisión explícita), no estabilizadores automáticos.">
-          <span class="marker">A</span><span>Los programas de obras públicas decididos por el gobierno</span>
-        </button>
-        <button class="quiz-option" data-correct="true" data-feedback="Correcto. Son hechos del sistema económico que reducen mecánicamente la fuerza de recesiones y expansiones sin necesidad de medidas discrecionales. Los dos típicos: impuestos proporcionales (sube la recaudación si crece la economía) y seguro de desempleo (sostiene el consumo en recesión).">
-          <span class="marker">B</span><span>Mecanismos del sistema económico que suavizan los ciclos sin que el gobierno tome medidas explícitas</span>
-        </button>
-        <button class="quiz-option" data-correct="false" data-feedback="No: la emisión monetaria es una vía de financiar el déficit, no un estabilizador automático.">
-          <span class="marker">C</span><span>La emisión monetaria del Banco Central</span>
-        </button>
-      </div>
-      <div class="quiz-feedback"></div>
+  <div class="check-card" id="checklist">
+    <h3>Autoevaluación: ¿puedo…?</h3>
+    <p class="check-intro">Antes de dar por cerrada la unidad, repasá esta lista. Marcá
+    solo lo que podrías explicar <strong>sin mirar el material</strong> — eso es lo que
+    de verdad tenés incorporado. Lo que quede sin marcar te dice exactamente qué releer.</p>
+    <div class="check-list">
+      <div class="check-item" tabindex="0" role="button" aria-pressed="false"><span class="check-box">✓</span><span class="check-txt">Explicar las <strong>cuatro fallas del mercado</strong> con un ejemplo de cada una.</span></div>
+      <div class="check-item" tabindex="0" role="button" aria-pressed="false"><span class="check-box">✓</span><span class="check-txt">Enumerar las <strong>cinco funciones del Estado</strong> según Mochón y Beker.</span></div>
+      <div class="check-item" tabindex="0" role="button" aria-pressed="false"><span class="check-box">✓</span><span class="check-txt">Distinguir <strong>Sector Gobierno</strong> de <strong>Sector Público</strong> (y ubicar ANSES, universidades e YPF).</span></div>
+      <div class="check-item" tabindex="0" role="button" aria-pressed="false"><span class="check-box">✓</span><span class="check-txt">Diferenciar las <strong>cuatro acciones del Estado</strong> de Cibotti y Sierra.</span></div>
+      <div class="check-item" tabindex="0" role="button" aria-pressed="false"><span class="check-box">✓</span><span class="check-txt">Clasificar un ingreso público como <strong>originario/derivado</strong> y <strong>corriente/no corriente</strong>.</span></div>
+      <div class="check-item" tabindex="0" role="button" aria-pressed="false"><span class="check-box">✓</span><span class="check-txt">Explicar la diferencia entre <strong>impuestos, tasas y contribuciones</strong> (y las dos acepciones de "tributo").</span></div>
+      <div class="check-item" tabindex="0" role="button" aria-pressed="false"><span class="check-box">✓</span><span class="check-txt">Justificar por qué un impuesto es <strong>directo o indirecto</strong> según su trasladabilidad.</span></div>
+      <div class="check-item" tabindex="0" role="button" aria-pressed="false"><span class="check-box">✓</span><span class="check-txt">Explicar con el <strong>ejemplo de las dos familias</strong> por qué el IVA es regresivo.</span></div>
+      <div class="check-item" tabindex="0" role="button" aria-pressed="false"><span class="check-box">✓</span><span class="check-txt">Distinguir política fiscal <strong>expansiva</strong> de <strong>restrictiva</strong>, con un instrumento de cada una.</span></div>
+      <div class="check-item" tabindex="0" role="button" aria-pressed="false"><span class="check-box">✓</span><span class="check-txt">Describir las <strong>tres vías de financiar el déficit</strong> y el efecto desplazamiento.</span></div>
     </div>
-
-    <div class="quiz-question" data-q="8">
-      <span class="q-num">Pregunta 8</span>
-      <p class="q-text">El llamado <strong>efecto desplazamiento</strong> ("crowding out") describe que:</p>
-      <div class="quiz-options">
-        <button class="quiz-option" data-correct="false" data-feedback="No: ese sería un efecto positivo del gasto público, no el efecto desplazamiento. El crowding out describe lo contrario.">
-          <span class="marker">A</span><span>El gasto público impulsa la inversión privada</span>
-        </button>
-        <button class="quiz-option" data-correct="true" data-feedback="Correcto. El efecto desplazamiento o crowding out: la emisión de deuda pública para financiar el déficit compite con la inversión privada por el ahorro disponible, eleva las tasas de interés y reduce la inversión de las empresas.">
-          <span class="marker">B</span><span>El gasto público y la emisión de deuda reducen la inversión privada al elevar las tasas de interés</span>
-        </button>
-        <button class="quiz-option" data-correct="false" data-feedback="No: la emisión de moneda tiene otros efectos (inflación, pérdida de valor del dinero), pero no es exactamente el efecto desplazamiento, que se refiere específicamente a la deuda pública desplazando la inversión privada.">
-          <span class="marker">C</span><span>La emisión de moneda desplaza el consumo privado</span>
-        </button>
-      </div>
-      <div class="quiz-feedback"></div>
-    </div>
-
-    <div class="quiz-final" id="quizFinal">
-      <h4>¡Quiz completado!</h4>
-      <div class="score" id="quizScore">0 / 8</div>
-      <p id="quizMsg">Excelente trabajo. Revisá las preguntas que fallaste y volvé al bloque correspondiente.</p>
-    </div>
+    <div class="check-progress" id="checkProgress">0 de 10 completadas</div>
   </div>
 </section>
 
@@ -7083,11 +6663,12 @@
 <section id="objetivos" style="padding-top: 30px;">
   <div class="section-header">
     <div class="section-label">
-      <div class="line"></div>
+      <span class="sec-num">✦</span>
       <span class="text">Lo que aprendiste</span>
       <div class="grow"></div>
     </div>
     <h2>Objetivos de <span class="colored">aprendizaje</span></h2>
+    <div class="divider-flourish"><span>◆</span></div>
   </div>
 
   <div class="learn-goals" id="learnGoals">
@@ -7152,11 +6733,12 @@
 <section id="rubrica" style="padding-top: 30px;">
   <div class="section-header">
     <div class="section-label">
-      <div class="line"></div>
+      <span class="sec-num">✦</span>
       <span class="text">Marco evaluativo</span>
       <div class="grow"></div>
     </div>
     <h2>Rúbrica de <span class="colored">evaluación</span></h2>
+    <div class="divider-flourish"><span>◆</span></div>
   </div>
 
   <p class="lead-paragraph">
@@ -7294,11 +6876,12 @@
 <section id="cierre-reflexivo" style="padding-top: 30px;">
   <div class="section-header">
     <div class="section-label">
-      <div class="line"></div>
+      <span class="sec-num">✦</span>
       <span class="text">Conclusión</span>
       <div class="grow"></div>
     </div>
     <h2>¿Qué te <span class="colored">llevás?</span></h2>
+    <div class="divider-flourish"><span>◆</span></div>
   </div>
 
   <div class="closing">
@@ -7332,17 +6915,38 @@
        style="color: var(--color-primary-dark); font-weight: 700; text-decoration: none; border-bottom: 1px dotted var(--color-primary-dark);">guía
     de Presupuesto Público</a> — es el otro pilar de esta unidad.
   </p>
+
+  <h3 id="glosario">Glosario de la unidad</h3>
+  <p>Los términos clave que aparecen en el texto, reunidos para repaso. En la lectura van
+    <span class="gloss" tabindex="0" data-gloss="Los términos del glosario aparecen subrayados con puntitos. Pasales el mouse o tocalos para ver la definición sin perder el hilo.">subrayados con puntitos</span>.</p>
+  <div class="glosario-grid">
+    <div class="glos-item"><span class="glos-term">Acervo</span><span class="glos-def">Conjunto acumulado de bienes; el "stock" de instalaciones y equipos con que cuenta una economía.</span></div>
+    <div class="glos-item"><span class="glos-term">Agregados económicos</span><span class="glos-def">Las variables globales de una economía: producción total (PBI), nivel de precios, empleo, consumo, inversión. Se estudian en conjunto, no mercado por mercado.</span></div>
+    <div class="glos-item"><span class="glos-term">Alícuota</span><span class="glos-def">El porcentaje que se aplica sobre la base imponible para calcular cuánto impuesto se paga. La alícuota general del IVA es 21%.</span></div>
+    <div class="glos-item"><span class="glos-term">Base imponible</span><span class="glos-def">La magnitud sobre la que se calcula un impuesto: el ingreso, el patrimonio o el valor de lo que se consume.</span></div>
+    <div class="glos-item"><span class="glos-term">Coercitivo</span><span class="glos-def">Que obliga. El poder coercitivo del Estado es su capacidad de imponer conductas por ley, sin pedir consentimiento.</span></div>
+    <div class="glos-item"><span class="glos-term">Demanda agregada</span><span class="glos-def">Gasto total de la economía: consumo + inversión + gasto público + exportaciones netas (C + I + G + X − M). La «palanca» que mueve la política fiscal.</span></div>
+    <div class="glos-item"><span class="glos-term">Demanda efectiva</span><span class="glos-def">(Keynes) El gasto que efectivamente se realiza en consumo e inversión. Si es insuficiente, la economía se contrae y aparece desempleo.</span></div>
+    <div class="glos-item"><span class="glos-term">Erogación</span><span class="glos-def">Salida de dinero; gasto. En finanzas públicas, todo pago que realiza el Estado.</span></div>
+    <div class="glos-item"><span class="glos-term">Free-rider</span><span class="glos-def">Quien consume un bien sin pagar por él porque no se lo puede excluir. Es el problema típico de los bienes públicos: si nadie paga, el mercado no los provee.</span></div>
+    <div class="glos-item"><span class="glos-term">Capacidad contributiva</span><span class="glos-def">Cada quien aporta al sostenimiento del Estado según sus posibilidades: a mayor ingreso o patrimonio, mayor aporte. Fundamento de los impuestos progresivos.</span></div>
+    <div class="glos-item"><span class="glos-term">Impuesto inflacionario</span><span class="glos-def">Pérdida de valor del dinero que sufren quienes tienen pesos cuando el Estado financia su déficit emitiendo. Funciona como un impuesto invisible.</span></div>
+    <div class="glos-item"><span class="glos-term">Política anticíclica</span><span class="glos-def">Busca suavizar el ciclo económico: en recesión se expande para impulsar la demanda; en sobreexpansión se contrae para enfriar la economía.</span></div>
+    <div class="glos-item"><span class="glos-term">Discrecional</span><span class="glos-def">Política fiscal que requiere una decisión explícita del gobierno (una obra, cambiar una alícuota). Se opone a los estabilizadores automáticos.</span></div>
+    <div class="glos-item"><span class="glos-term">Monetaristas</span><span class="glos-def">Escuela de Milton Friedman (Chicago), continuadora de las ideas clásicas: confía en el libre mercado y limita al Estado al control de la cantidad de dinero.</span></div>
+  </div>
 </section>
 
 <!-- ════════ BIBLIOGRAFÍA ════════ -->
 <section id="bibliografia" style="padding-top: 30px;">
   <div class="section-header">
     <div class="section-label">
-      <div class="line"></div>
+      <span class="sec-num">✦</span>
       <span class="text">Para profundizar</span>
       <div class="grow"></div>
     </div>
     <h2>Bibliografía <span class="colored">obligatoria</span></h2>
+    <div class="divider-flourish"><span>◆</span></div>
   </div>
 
   <p class="lead-paragraph">
@@ -7536,17 +7140,19 @@
   </aside>
 </section>
 
+<!-- ════════ AVISO VERDE · no reemplaza la bibliografía ════════ -->
+<div class="aviso-biblio">
+  <span class="aviso-biblio-ico" aria-hidden="true">📖</span>
+  <div>
+    <strong>Este material no reemplaza la lectura de la bibliografía obligatoria.</strong>
+    <p>Es una guía de estudio para acompañar y ordenar los contenidos de la unidad. Para la comprensión completa —y para las instancias de examen— es imprescindible leer los textos citados (Mochón–Beker, Pérez Enrri y la ficha de Cibotti y Sierra) en su versión original.</p>
+  </div>
+</div>
+
 </div><!-- /.container -->
 
-<!-- Aviso de uso de IA · sutil, sobre fondo claro antes del pre-footer oscuro -->
-<p class="ai-note">Elaboración digital asistida con Inteligencia Artificial, supervisada por el equipo docente.<br>La Inteligencia Artificial puede cometer errores. Se sugiere su uso responsable y consciente.</p>
-
-<!-- ═══════════════════════════════════════════════
-     DOCEND · pie unificado liviano · cierre editorial
-     Combina navegación entre unidades + footer institucional
-     en una sola zona clara, sutil, integrada al cuerpo.
-     ═══════════════════════════════════════════════ -->
-<nav class="docend docend-nav" aria-label="Navegación entre unidades y aula virtual">
+<!-- ═══════ DOC END · cierre unificado (canon U1) ═══════ -->
+<footer class="docend">
   <div class="docend-inner">
 
     <header class="docend-head">
@@ -7554,9 +7160,8 @@
       <h3 class="docend-title">Seguí explorando <em>Economía Política</em></h3>
     </header>
 
-    <!-- Progress · ubicación de la unidad dentro del programa -->
     <div class="docend-progress" aria-label="Unidad 4 de 9 del programa">
-      <div class="docend-dots">
+      <div class="docend-dots" aria-hidden="true">
         <span class="docend-dot is-done" title="Unidad 1"></span>
         <span class="docend-dot is-done" title="Unidad 2"></span>
         <span class="docend-dot is-done" title="Unidad 3"></span>
@@ -7570,82 +7175,49 @@
       <span class="docend-progress-label">Unidad <strong>4</strong> de <strong>9</strong></span>
     </div>
 
-    <!-- Acciones · ghost (aula) + primary (siguiente) -->
-    <div class="docend-actions">
-
-      <a href="https://servicios.unl.edu.ar/aulavirtual/fcjs/" class="docend-btn docend-btn-ghost" target="_blank" rel="noopener">
-        <span class="docend-btn-text">
-          <span class="docend-btn-eyebrow">Volver al</span>
-          <span class="docend-btn-label">Aula virtual</span>
-        </span>
-        <span class="docend-btn-arrow" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M7 17 17 7"/>
-            <path d="M9 7h8v8"/>
-          </svg>
-        </span>
+    <nav class="docend-nav" aria-label="Navegación entre unidades">
+      <a href="https://nickperot.com/unidad3" class="docend-nav-item is-prev" rel="noopener">
+        <span class="dn-arrow">←</span>
+        <span class="dn-text"><span class="dn-lbl">Unidad anterior</span><span class="dn-title">Unidad 3 · Conceptos Macroeconómicos</span></span>
       </a>
-
-      <a href="https://nickperot.com/unidad5" class="docend-btn docend-btn-primary" rel="noopener">
-        <span class="docend-btn-text">
-          <span class="docend-btn-eyebrow">Siguiente unidad</span>
-          <span class="docend-btn-label">Unidad 5 · <em>Sector Externo</em></span>
-        </span>
-        <span class="docend-btn-arrow" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M5 12h14"/>
-            <path d="M13 5l7 7-7 7"/>
-          </svg>
-        </span>
+      <a href="https://servicios.unl.edu.ar/aulavirtual/fcjs/" class="docend-nav-aula" target="_blank" rel="noopener">⌂ Aula Virtual</a>
+      <a href="https://nickperot.com/unidad5" class="docend-nav-item is-next" rel="noopener">
+        <span class="dn-text"><span class="dn-lbl">Siguiente unidad</span><span class="dn-title">Unidad 5 · Sector Externo</span></span>
+        <span class="dn-arrow">→</span>
       </a>
+    </nav>
 
+    <div class="docend-feedback">
+      <span class="df-ico" aria-hidden="true">💬</span>
+      <p class="df-q">¿Qué te pareció este material?</p>
+      <p class="df-sub">Nos ayuda a mejorarlo. Escribinos por la <strong>mensajería interna del aula virtual</strong> o a <a href="mailto:nperot@fcjs.unl.edu.ar?subject=Comentario%20sobre%20la%20gu%C3%ADa%20de%20la%20Unidad%204%20%C2%B7%20Sector%20P%C3%BAblico">nperot@fcjs.unl.edu.ar</a></p>
     </div>
 
-  </div>
-</nav>
-
-<footer class="docend docend-foot">
-  <div class="docend-inner">
-
     <div class="docend-meta">
-
       <div class="docend-meta-brand">
-        <div class="docend-brand-line">
-          <span class="docend-brand-dot" aria-hidden="true"></span>
-          <span class="docend-brand-label">Cátedra B · Economía Política</span>
-        </div>
+        <span class="docend-brand-line"><span class="docend-brand-dot" aria-hidden="true"></span><span class="docend-brand-label">Cátedra B · Economía Política</span></span>
         <h4 class="docend-meta-title">Unidad 4 · El <em>Sector Público</em></h4>
-        <p class="docend-meta-sub">
-          Facultad de Ciencias Jurídicas y Sociales<br>
-          Universidad Nacional del Litoral
-        </p>
+        <p class="docend-meta-sub">Facultad de Ciencias Jurídicas y Sociales<br>Universidad Nacional del Litoral</p>
       </div>
-
-      <aside class="docend-aviso">
-        <span class="docend-aviso-tag">En verificación</span>
-        <p>
-          Documento en <strong>etapa de revisión</strong>. Tu feedback es bienvenido vía <strong>mensajería interna del aula virtual</strong>:
-        </p>
+      <div class="docend-aviso">
+        <span class="docend-aviso-tag">Equipo docente</span>
         <ul>
-          <li>
-            <strong>Prof. Nicolás Perot</strong>
-            <span>Coordinación pedagógica y digital</span>
-          </li>
-          <li>
-            <strong>Prof. Julio Tealdo</strong>
-            <span>Titular de cátedra</span>
-          </li>
+          <li><strong>Prof. Abog. Nicolás Perot</strong><span>Responsable de la edición pedagógica y la gestión digital</span></li>
+          <li><strong>Prof. Lic. Julio Tealdo</strong><span>Titular de cátedra</span></li>
         </ul>
-      </aside>
-
+        <p class="docend-aviso-foot">Revisado por docentes de la Cátedra B</p>
+      </div>
     </div>
 
     <div class="docend-credits">
-      <span class="docend-credits-text">
-        Documento de estudio · <strong>Equipo de Cátedra</strong> · Ciclo Lectivo 2026
-        <span class="docend-version" title="Versión interna">v5</span>
-      </span>
+      <span class="docend-credits-text">Documento de estudio · <strong>Equipo de Cátedra</strong> · Ciclo Lectivo 2026 · <span class="docend-version" title="Versión interna">v5.2</span></span>
       <span class="docend-date">Mayo de 2026</span>
+    </div>
+
+    <p class="ai-note">En su elaboración se utilizaron herramientas de inteligencia artificial, especialmente Claude Opus 4.8 (Anthropic), para tareas de edición y codificación, bajo revisión y supervisión docente. Se sugiere un uso responsable de la inteligencia artificial: puede cometer errores.</p>
+
+    <div class="docend-reset-wrap">
+      <button class="docend-reset" id="docendReset" type="button">↺ Reiniciar mi progreso en esta unidad</button>
     </div>
 
   </div>
@@ -7768,35 +7340,6 @@
     updateActiveSection();
   })();
 
-  // ════════ TOGGLE DE EFECTOS VISUALES (primero) ════════
-  (function() {
-    const FX_KEY = 'u4_fx_enabled';
-    const toggle = document.getElementById('fxToggle');
-    const stateLabel = document.getElementById('fxState');
-    if (!toggle) return;
-
-    let enabled = true;
-    try {
-      const stored = localStorage.getItem(FX_KEY);
-      if (stored === '0') enabled = false;
-    } catch (e) {}
-
-    function applyState() {
-      document.body.classList.toggle('fx-off', !enabled);
-      toggle.classList.toggle('fx-off', !enabled);
-      toggle.setAttribute('aria-pressed', enabled ? 'true' : 'false');
-      if (stateLabel) stateLabel.textContent = enabled ? 'Activados' : 'Apagados';
-      window.__u4FxEnabled = enabled;
-    }
-    applyState();
-
-    toggle.addEventListener('click', () => {
-      enabled = !enabled;
-      try { localStorage.setItem(FX_KEY, enabled ? '1' : '0'); } catch (e) {}
-      applyState();
-    });
-  })();
-
   // ════════ GLOSARIO · tooltip global ════════
   (function() {
     const tip = document.getElementById('glossTooltip');
@@ -7876,6 +7419,9 @@
     document.addEventListener('click', (e) => {
       if (currentEl && !currentEl.contains(e.target)) hide();
     });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && currentEl) hide();
+    });
   })();
 
   // ════════ ACHIEVEMENT TOAST ════════
@@ -7891,18 +7437,39 @@
     achTimer = setTimeout(() => achEl.classList.remove('show'), 3000);
   }
 
+  // ════════ CONFETI (mini-test ≥4 y checklist completa) ════════
+  function confetti() {
+    try {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      const colors = ['#8e44ad', '#ffd673', '#4ca0d8', '#27ae60', '#16a085'];
+      for (let i = 0; i < 80; i++) {
+        const p = document.createElement('div');
+        const size = 6 + Math.random() * 6;
+        p.style.cssText = 'position:fixed;top:-20px;left:' + (Math.random() * 100) + 'vw;width:' + size + 'px;height:' + size + 'px;background:' + colors[Math.floor(Math.random() * colors.length)] + ';z-index:5000;pointer-events:none;border-radius:' + (Math.random() > 0.5 ? '50%' : '2px') + ';animation:confetti-fall ' + (2.5 + Math.random() * 2) + 's linear forwards;';
+        document.body.appendChild(p);
+        setTimeout(() => p.remove(), 5000);
+      }
+    } catch (e) {}
+  }
+
   // ════════ PROGRESS BAR + PORCENTAJE + HITOS ════════
   const progressFill = document.getElementById('progressFill');
   const progressPercent = document.getElementById('progressPercent');
   const scrollTopBtn = document.getElementById('scrollTop');
+  // Progreso del sidebar · barra + "% recorrido" (canon U1, basado en scroll)
+  const sbProgressFill = document.getElementById('sbProgressFill');
+  const sbProgressLabel = document.getElementById('sbProgressLabel');
   let milestone25 = false, milestone50 = false, milestone75 = false, milestone100 = false;
 
   function updateProgress() {
     const scrolled = window.scrollY;
     const max = document.documentElement.scrollHeight - window.innerHeight;
     const pct = max > 0 ? Math.min((scrolled / max) * 100, 100) : 0;
+    const pctR = Math.round(pct);
     progressFill.style.width = pct + '%';
-    if (progressPercent) progressPercent.textContent = Math.round(pct) + '%';
+    if (progressPercent) progressPercent.textContent = pctR + '%';
+    if (sbProgressFill) sbProgressFill.style.width = pct + '%';
+    if (sbProgressLabel) sbProgressLabel.textContent = pctR + '% recorrido';
     if (scrolled > 400) scrollTopBtn.classList.add('visible');
     else scrollTopBtn.classList.remove('visible');
 
@@ -7920,32 +7487,39 @@
   // Elementos arriba del fold se muestran sin animación (sin flash).
   // Solo los que están abajo del viewport reciben la clase .reveal
   // y se observan para animarse cuando entren al hacer scroll.
-  const revealObs = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('in-view');
-        revealObs.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.08, rootMargin: '0px 0px -5% 0px' });
-  const viewportH = window.innerHeight;
-  document.querySelectorAll(
+  // Guard de soporte: sin IntersectionObserver no se agrega .reveal → todo visible.
+  const revealSelector =
     'section h2, section h3, .lead-paragraph, .card, .definition, .callout, .callout-arrow, ' +
-    '.accordion, .tabs, .timeline, .formula-box, .comparativa, .flow, .tree, ' +
+    '.tabs, .timeline, .formula-box, .comparativa, .flow, .tree, .check-card, ' +
     'table.data, .resultado-grid, .biblio-frame, .closing, .quiz, ' +
     '.vision-grid, .cibotti-frame, .fuentes-frame, .deficit-frame, .rubrica, ' +
-    '.companion-banner, .historia-track, .idea-fuerza, .contexto-arg, .cita-fuente'
-  ).forEach(el => {
-    // Solo animar si el elemento está debajo del viewport inicial
-    if (el.getBoundingClientRect().top > viewportH) {
-      el.classList.add('reveal');
-      revealObs.observe(el);
-    }
-  });
+    '.companion-banner, .historia-track, .idea-fuerza, .contexto-arg, .cita-fuente';
+  if ('IntersectionObserver' in window) {
+    // rootMargin 140px: revela un toque ANTES de que el elemento entre (canon).
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in-view');
+          revealObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0, rootMargin: '0px 0px 140px 0px' });
+    const viewportH = window.innerHeight;
+    document.querySelectorAll(revealSelector).forEach(el => {
+      // Solo animar lo que está debajo del viewport inicial → sin flash al cargar
+      if (el.getBoundingClientRect().top > viewportH) {
+        el.classList.add('reveal');
+        revealObs.observe(el);
+      }
+    });
+  }
 
   // ════════ NAVEGACIÓN ENRIQUECIDA · checklist + progreso + estado actual ════════
   (function() {
-    const STORAGE_KEY = 'u4-sidebar-visited-v2';
+    // Persistencia unificada · una sola clave canónica ep_unidad4_v1 { visited, goals }
+    const STORE_KEY = 'ep_unidad4_v1';
+    function loadStore() { try { return JSON.parse(localStorage.getItem(STORE_KEY)) || {}; } catch(e) { return {}; } }
+    function saveStore(patch) { try { const s = loadStore(); Object.assign(s, patch); localStorage.setItem(STORE_KEY, JSON.stringify(s)); } catch(e) {} }
     const navLinks = Array.from(document.querySelectorAll('.sidebar nav a[href^="#"]'));
     const subLinks = navLinks.filter(l => !l.classList.contains('section-title'));
     const totalSub = subLinks.length;
@@ -7970,30 +7544,16 @@
       if (target) linkByTarget.set(target, { link, id });
     });
 
-    // UI refs
-    const spDone = document.getElementById('spDone');
-    const spTotal = document.getElementById('spTotal');
-    const spFill = document.getElementById('spFill');
-    const spCount = document.getElementById('spCount');
-    const spReset = document.getElementById('spReset');
-    if (spTotal) spTotal.textContent = totalSub;
-
     // Estado persistido
     let visitedIds = new Set();
-    try {
-      const raw = localStorage.getItem(STORAGE_KEY);
-      if (raw) JSON.parse(raw).forEach(id => visitedIds.add(id));
-    } catch(e) {}
+    (loadStore().visited || []).forEach(id => visitedIds.add(id));
 
     function persist() {
-      try { localStorage.setItem(STORAGE_KEY, JSON.stringify([...visitedIds])); } catch(e) {}
+      saveStore({ visited: [...visitedIds] });
     }
 
     function updateProgress() {
       const count = subLinks.filter(l => l.classList.contains('visited')).length;
-      if (spDone) spDone.textContent = count;
-      if (spFill) spFill.style.width = (totalSub > 0 ? (count/totalSub*100) : 0) + '%';
-      if (spCount) spCount.classList.toggle('is-complete', count === totalSub && totalSub > 0);
       if (count === totalSub && totalSub > 0 && !window.__u4FullComplete) {
         window.__u4FullComplete = true;
         if (typeof showAchievement === 'function') {
@@ -8049,16 +7609,19 @@
     let hasScrolled = false;
     window.addEventListener('scroll', () => { hasScrolled = true; }, { once: true, passive: true });
 
-    const navObs = new IntersectionObserver((entries) => {
-      if (!hasScrolled) return;
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const data = linkByTarget.get(entry.target);
-          if (data) markVisited(data.id, true);
-        }
-      });
-    }, { threshold: 0.2, rootMargin: '0px 0px -30% 0px' });
-    linkByTarget.forEach((data, target) => navObs.observe(target));
+    if ('IntersectionObserver' in window) {
+      const navObs = new IntersectionObserver((entries) => {
+        if (!hasScrolled) return;
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const data = linkByTarget.get(entry.target);
+            if (data) markVisited(data.id, true);
+          }
+        });
+      }, { threshold: 0.2, rootMargin: '0px 0px -30% 0px' });
+      linkByTarget.forEach((data, target) => navObs.observe(target));
+    }
+    // (sin IntersectionObserver, updateCurrent() sigue marcando visitadas por scroll)
 
     // "Leyendo ahora": el último target cuyo top quedó arriba de la línea activa.
     // Además, marca como visitada cualquier sección que se haya pasado (top < línea).
@@ -8101,15 +7664,11 @@
     });
 
     // ═══ Objetivos de aprendizaje (checklist persistente) ═══
-    const GOALS_KEY = 'u4-learning-goals-v1';
     const goalItems = document.querySelectorAll('.lg-item');
     let goalsDone = new Set();
-    try {
-      const raw = localStorage.getItem(GOALS_KEY);
-      if (raw) JSON.parse(raw).forEach(g => goalsDone.add(g));
-    } catch(e) {}
+    (loadStore().goals || []).forEach(g => goalsDone.add(g));
     function persistGoals() {
-      try { localStorage.setItem(GOALS_KEY, JSON.stringify([...goalsDone])); } catch(e) {}
+      saveStore({ goals: [...goalsDone] });
     }
     function applyGoalState(item) {
       const id = item.dataset.goal;
@@ -8148,21 +7707,27 @@
       });
     });
 
-    // Botón de reset
-    if (spReset) {
-      spReset.addEventListener('click', () => {
-        if (!confirm('¿Reiniciar tu progreso de lectura? Se borrarán todos los tildes y objetivos.')) return;
-        visitedIds.clear();
-        goalsDone.clear();
-        navLinks.forEach(l => l.classList.remove('visited', 'just-visited', 'section-complete', 'just-completed'));
-        goalItems.forEach(item => applyGoalState(item));
-        window.__u4FullComplete = false;
-        updateProgress();
-        persist();
-        persistGoals();
-        if (typeof showAchievement === 'function') showAchievement('↺ Progreso reiniciado');
-      });
+    // Botón de reset · compartido entre sidebar (#sidebarResetBtn) y footer (#docendReset)
+    function doReset() {
+      if (!confirm('¿Reiniciar tu progreso? Se borrarán los tildes de lectura, los objetivos, las respuestas de los quizzes, la checklist y el mini-test.')) return;
+      visitedIds.clear();
+      goalsDone.clear();
+      navLinks.forEach(l => l.classList.remove('visited', 'just-visited', 'section-complete', 'just-completed'));
+      goalItems.forEach(item => applyGoalState(item));
+      window.__u4FullComplete = false;
+      updateProgress();
+      persist();
+      persistGoals();
+      // Reiniciar también quizzes, checklist y mini-test (hooks de sus módulos)
+      if (typeof window.__u4ResetQuizzes === 'function') window.__u4ResetQuizzes();
+      if (typeof window.__u4ResetChecklist === 'function') window.__u4ResetChecklist();
+      if (typeof window.__u4ResetMinitest === 'function') window.__u4ResetMinitest();
+      if (typeof showAchievement === 'function') showAchievement('↺ Progreso reiniciado');
     }
+    ['sidebarResetBtn', 'docendReset'].forEach(function(id) {
+      const btn = document.getElementById(id);
+      if (btn) btn.addEventListener('click', doReset);
+    });
   })();
 
   // ════════ MOBILE NAV · sidebar + backdrop + body-lock + ESC + resize ════════
@@ -8208,15 +7773,16 @@
     }, { passive: true });
   }
 
-  // ════════ TABS ════════
+  // ════════ TABS (con ARIA) ════════
   document.querySelectorAll('.tabs').forEach(tabs => {
     const btns = tabs.querySelectorAll('.tab-btn');
     const panels = tabs.querySelectorAll('.tab-panel');
     btns.forEach(btn => {
       btn.addEventListener('click', () => {
-        btns.forEach(b => b.classList.remove('active'));
+        btns.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
         panels.forEach(p => p.classList.remove('active'));
         btn.classList.add('active');
+        btn.setAttribute('aria-selected', 'true');
         const tab = btn.dataset.tab;
         const panel = tabs.querySelector('#' + tab);
         if (panel) panel.classList.add('active');
@@ -8224,65 +7790,195 @@
     });
   });
 
-  // ════════ ACORDEÓN ════════
-  document.querySelectorAll('.acc-trigger').forEach(t => {
-    t.addEventListener('click', () => {
-      const item = t.closest('.acc-item');
-      item.classList.toggle('open');
-    });
-  });
-
   // ════════ QUIZ ════════
-  const quiz = document.getElementById('quiz');
-  if (quiz) {
-    const questions = quiz.querySelectorAll('.quiz-question');
-    const progressLbl = document.getElementById('quizProgress');
-    const finalBox = document.getElementById('quizFinal');
-    const scoreEl = document.getElementById('quizScore');
-    const msgEl = document.getElementById('quizMsg');
-    let answered = 0;
-    let correct = 0;
-    const total = questions.length;
+  // Quizzes distribuidos · respuestas persistidas por índice en la clave unificada
+  (function() {
+    const QZ_KEY = 'ep_unidad4_v1';
+    function qzLoad() { try { return JSON.parse(localStorage.getItem(QZ_KEY)) || {}; } catch(e) { return {}; } }
+    function qzSave(patch) { try { const s = qzLoad(); Object.assign(s, patch); localStorage.setItem(QZ_KEY, JSON.stringify(s)); } catch(e) {} }
+    const questions = Array.prototype.slice.call(document.querySelectorAll('.quiz-question'));
 
-    questions.forEach(q => {
-      const options = q.querySelectorAll('.quiz-option');
+    function lock(q, opt, isCorrect) {
+      q.dataset.done = '1';
+      q.querySelectorAll('.quiz-option').forEach(o => {
+        o.classList.add('disabled');
+        if (o.dataset.correct === 'true') o.classList.add('correct');
+        else if (o === opt) o.classList.add('incorrect');
+      });
+      opt.classList.add('selected');
       const feedback = q.querySelector('.quiz-feedback');
-      options.forEach(opt => {
+      feedback.innerHTML = '<strong>' + (isCorrect ? '✓ Correcto' : '✗ Volvé a leer') + '</strong> · ' + opt.dataset.feedback;
+      feedback.classList.remove('correct', 'incorrect');
+      feedback.classList.add('show', isCorrect ? 'correct' : 'incorrect');
+    }
+
+    const saved = qzLoad().quiz || {};
+    questions.forEach((q, qi) => {
+      const options = q.querySelectorAll('.quiz-option');
+      // Restaurar respuesta guardada (por índice de pregunta y de opción)
+      const st = saved['q' + qi];
+      if (st && options[st.idx]) lock(q, options[st.idx], !!st.correct);
+      options.forEach((opt, idx) => {
         opt.addEventListener('click', () => {
           if (q.dataset.done === '1') return;
-          q.dataset.done = '1';
           const isCorrect = opt.dataset.correct === 'true';
-          options.forEach(o => {
-            o.classList.add('disabled');
-            if (o.dataset.correct === 'true') o.classList.add('correct');
-            else if (o === opt) o.classList.add('incorrect');
-          });
-          opt.classList.add('selected');
-          feedback.innerHTML = '<strong>' + (isCorrect ? '✓ Correcto' : '✗ Volvé a leer') + '</strong>' + opt.dataset.feedback;
-          feedback.classList.remove('correct', 'incorrect');
-          feedback.classList.add('show', isCorrect ? 'correct' : 'incorrect');
-
-          answered++;
-          if (isCorrect) correct++;
-          progressLbl.textContent = answered + ' / ' + total;
-
-          if (answered === total) {
-            setTimeout(() => {
-              scoreEl.textContent = correct + ' / ' + total;
-              let msg;
-              if (correct === total) msg = '¡Perfecto! Tenés los conceptos centrales bien claros. Estás en condiciones de avanzar.';
-              else if (correct >= total * 0.75) msg = 'Muy buen resultado. Revisá las preguntas que fallaste y volvé al bloque correspondiente.';
-              else if (correct >= total * 0.5) msg = 'Tenés la base, pero hay temas para reforzar. Volvé al material y rehacé el quiz.';
-              else msg = 'Conviene volver a la lectura. Empezá por las fallas del mercado y la clasificación de impuestos: son la columna vertebral de la unidad.';
-              msgEl.textContent = msg;
-              finalBox.classList.add('show');
-              finalBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }, 400);
-          }
+          lock(q, opt, isCorrect);
+          const cur = qzLoad().quiz || {};
+          cur['q' + qi] = { idx: idx, correct: isCorrect };
+          qzSave({ quiz: cur });
         });
       });
     });
-  }
+
+    // Hook global para el botón "Reiniciar mi progreso"
+    window.__u4ResetQuizzes = function() {
+      questions.forEach(q => {
+        q.dataset.done = '';
+        q.querySelectorAll('.quiz-option').forEach(o => o.classList.remove('disabled', 'correct', 'incorrect', 'selected'));
+        const fb = q.querySelector('.quiz-feedback');
+        fb.className = 'quiz-feedback';
+        fb.innerHTML = '';
+      });
+      qzSave({ quiz: null });
+    };
+  })();
+
+  // ════════ CHECKLIST DE AUTOEVALUACIÓN "¿Puedo…?" ════════
+  (function() {
+    const items = Array.prototype.slice.call(document.querySelectorAll('.check-item'));
+    if (!items.length) return;
+    const progress = document.getElementById('checkProgress');
+    const CK_KEY = 'ep_unidad4_v1';
+    function ckLoad() { try { return JSON.parse(localStorage.getItem(CK_KEY)) || {}; } catch(e) { return {}; } }
+    function ckSave(patch) { try { const s = ckLoad(); Object.assign(s, patch); localStorage.setItem(CK_KEY, JSON.stringify(s)); } catch(e) {} }
+    let checks = ckLoad().checks || {};
+    let celebrated = false;
+
+    function refresh() {
+      let n = 0;
+      items.forEach((item, i) => {
+        const done = !!checks[i];
+        item.classList.toggle('done', done);
+        item.setAttribute('aria-pressed', done ? 'true' : 'false');
+        if (done) n++;
+      });
+      if (progress) progress.textContent = n + ' de ' + items.length + ' completadas';
+      if (n === items.length) {
+        if (!celebrated && window.__u4Hydrated) {
+          if (typeof confetti === 'function') confetti();
+          if (typeof showAchievement === 'function') showAchievement('🏆 ¡Autoevaluación completa: 10 de 10!');
+        }
+        celebrated = true;
+      } else {
+        celebrated = false;
+      }
+    }
+
+    items.forEach((item, i) => {
+      function toggle() {
+        checks[i] = !checks[i];
+        ckSave({ checks: checks });
+        refresh();
+      }
+      item.addEventListener('click', toggle);
+      item.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+      });
+    });
+    refresh();
+
+    // Hook global para el botón "Reiniciar mi progreso"
+    window.__u4ResetChecklist = function() {
+      checks = {};
+      celebrated = false;
+      ckSave({ checks: null });
+      refresh();
+    };
+  })();
+
+  // ════════ MINI-TEST FINAL · preguntas de a una, interleaving ════════
+  (function() {
+    const mt = document.getElementById('minitest');
+    if (!mt) return;
+    const MT_KEY = 'ep_unidad4_v1';
+    function mtLoad() { try { return JSON.parse(localStorage.getItem(MT_KEY)) || {}; } catch(e) { return {}; } }
+    function mtSave(patch) { try { const s = mtLoad(); Object.assign(s, patch); localStorage.setItem(MT_KEY, JSON.stringify(s)); } catch(e) {} }
+
+    const qs = Array.prototype.slice.call(mt.querySelectorAll('.mt-q'));
+    const counter = mt.querySelector('.mt-counter');
+    const fill = mt.querySelector('.mt-progress-fill');
+    const result = mt.querySelector('.mt-result');
+    let score = 0;
+
+    function showQ(i) {
+      qs.forEach((q, j) => q.classList.toggle('active', j === i));
+      result.classList.remove('show');
+      counter.style.display = 'block';
+      counter.textContent = 'Pregunta ' + (i + 1) + ' de ' + qs.length;
+      fill.style.width = (i / qs.length * 100) + '%';
+    }
+    function showResult(fresh) {
+      qs.forEach(q => q.classList.remove('active'));
+      counter.style.display = 'none';
+      fill.style.width = '100%';
+      result.classList.add('show');
+      let msg;
+      if (score === qs.length) msg = '¡Excelente! Dominás los conceptos centrales de la unidad.';
+      else if (score >= 4) msg = '¡Muy bien! Repasá el punto que fallaste y quedás a pleno.';
+      else if (score >= 3) msg = 'Buen intento. Volvé a las secciones de las preguntas que fallaste antes del examen.';
+      else msg = 'Conviene releer la unidad con calma y volver a intentarlo. La relectura con propósito rinde más que la prisa.';
+      result.querySelector('.mt-score').textContent = score + ' / ' + qs.length;
+      result.querySelector('.mt-msg').textContent = msg;
+      if (fresh) {
+        mtSave({ minitest: { score: score, done: true } });
+        if (score >= 4 && typeof confetti === 'function') confetti();
+        if (typeof showAchievement === 'function') {
+          showAchievement((score >= 4 ? '🎓' : '📚') + ' Mini-test: ' + score + ' de ' + qs.length + ' correctas');
+        }
+      }
+    }
+    qs.forEach((q, qi) => {
+      const opts = q.querySelectorAll('.quiz-opt');
+      const fb = q.querySelector('.mt-fb');
+      const nextBtn = q.querySelector('.mt-next');
+      opts.forEach(btn => {
+        btn.addEventListener('click', () => {
+          if (btn.classList.contains('disabled')) return;
+          const ok = btn.dataset.correct === 'true';
+          if (ok) score++;
+          opts.forEach(b => {
+            b.classList.add('disabled');
+            if (b.dataset.correct === 'true') b.classList.add('correcta');
+          });
+          if (!ok) btn.classList.add('incorrecta');
+          fb.textContent = btn.dataset.fb;
+          fb.className = 'mt-fb show ' + (ok ? 'ok' : 'fail');
+          nextBtn.classList.add('show');
+          nextBtn.textContent = (qi < qs.length - 1) ? 'Siguiente →' : 'Ver mi resultado ✦';
+        });
+      });
+      nextBtn.addEventListener('click', () => {
+        if (qi < qs.length - 1) showQ(qi + 1);
+        else showResult(true);
+      });
+    });
+    function mtReset() {
+      score = 0;
+      qs.forEach(q => {
+        q.querySelectorAll('.quiz-opt').forEach(b => b.classList.remove('disabled', 'correcta', 'incorrecta'));
+        const fb = q.querySelector('.mt-fb'); fb.className = 'mt-fb'; fb.textContent = '';
+        const nb = q.querySelector('.mt-next'); nb.classList.remove('show'); nb.textContent = 'Siguiente →';
+      });
+      mtSave({ minitest: null });
+      showQ(0);
+    }
+    result.querySelector('.mt-retry').addEventListener('click', mtReset);
+    // Hook global para el botón "Reiniciar mi progreso"
+    window.__u4ResetMinitest = mtReset;
+    const st = mtLoad();
+    if (st.minitest && st.minitest.done) { score = st.minitest.score; showResult(false); }
+    else showQ(0);
+  })();
 })();
 </script>
 
