@@ -17,6 +17,8 @@
   .mt-next, .mt-counter, .mt-progress { display: none !important; }
   .rankbars .rb-fill { width: var(--w) !important; transition: none !important; }
   .sdgame-scoreline, .sdgame-progress, .sdgame-btns, .sdgame-meter, .sdgame-next, .sdgame-result { display: none !important; }
+  .flip-front .flip-hint { display: none !important; }
+  .mlab-controls, .mlab-viz { display: none !important; }
 </style></noscript>
 <style>
   /* ════════════════════════════════════════════
@@ -240,8 +242,9 @@
   .hero-lead em { color: var(--color-gold); font-style: italic; }
 
   .hero-chips-head { display: flex; align-items: center; gap: 12px; margin-top: 34px; margin-bottom: 12px; }
-  .hero-chips-eyebrow { font-size: .68rem; letter-spacing: 2px; text-transform: uppercase; color: var(--color-soft); font-weight: 700; white-space: nowrap; }
-  .hero-chips-thread { flex: 1; height: 1px; background: linear-gradient(90deg, rgba(210,180,222,.5), rgba(210,180,222,0)); }
+  /* Rótulos del hero · un solo nivel. Jerarquía: .hero-tag (identidad) > estos rótulos > datos */
+  .hero-chips-eyebrow, .hero-ficha-eyebrow { font-size: .64rem; letter-spacing: 2.2px; text-transform: uppercase; color: var(--color-soft); font-weight: 700; opacity: .85; white-space: nowrap; }
+  .hero-chips-thread, .hero-ficha-thread { flex: 1; min-width: 20px; height: 1px; background: linear-gradient(90deg, rgba(210,180,222,.5), rgba(210,180,222,0)); }
   .hero-chips { display: flex; flex-wrap: wrap; gap: 9px; }
   .hero-chip {
     display: inline-flex; align-items: center; gap: 7px; font-size: .78rem; font-weight: 600;
@@ -253,13 +256,19 @@
   .hero-chip.c3 .hero-chip-dot { background: var(--color-red); }
   .hero-chip.c4 .hero-chip-dot { background: var(--color-success); }
 
-  .hero-ficha { margin-top: 36px; background: rgba(255,255,255,.05); border: 1px solid rgba(210,180,222,.2); border-radius: 16px; padding: 22px 24px; backdrop-filter: blur(4px); }
-  .hero-ficha-eyebrow { font-size: .66rem; letter-spacing: 2px; text-transform: uppercase; color: var(--color-soft); font-weight: 700; }
-  .hero-meta { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 16px; }
-  .hero-meta-item { display: flex; flex-direction: column; gap: 4px; }
-  .hero-meta-item .lbl { font-size: .66rem; letter-spacing: 1px; text-transform: uppercase; color: var(--color-soft); }
-  .hero-meta-item .val { font-size: .92rem; color: #fff; font-weight: 600; }
-  @media (max-width: 680px) { .hero-meta { grid-template-columns: repeat(2, 1fr); } }
+  /* Ficha · sin recuadro: filete superior en vez de caja, para no repetir el
+     mismo material translúcido de .hero-tag y .hero-chip a mayor tamaño. */
+  .hero-ficha { margin-top: 34px; padding-top: 20px; border-top: 1px solid rgba(210,180,222,.18); }
+  .hero-ficha-head { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
+  .hero-ficha-time { display: inline-flex; align-items: center; gap: 7px; white-space: nowrap; font-size: .76rem; font-weight: 600; color: var(--color-gold); font-variant-numeric: tabular-nums; }
+  .hero-time-icon { display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0; background: rgba(255,214,115,.14); border: 1px solid rgba(255,214,115,.35); color: var(--color-gold); font-size: .78rem; }
+  .hero-meta { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px 20px; }
+  .hero-meta-item { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+  .hero-meta-item .lbl { font-size: .6rem; letter-spacing: 1.6px; text-transform: uppercase; color: var(--color-soft); font-weight: 700; opacity: .85; }
+  .hero-meta-item .val { font-size: .9rem; color: rgba(255,255,255,.95); font-weight: 600; line-height: 1.35; }
+  @media (max-width: 1100px) { .hero-meta { grid-template-columns: repeat(2, 1fr); gap: 16px 20px; } }
+  @media (max-width: 560px) { .hero-ficha { margin-top: 28px; padding-top: 18px; } .hero-ficha-head { gap: 10px; margin-bottom: 14px; } }
+  @media (max-width: 380px) { .hero-meta { grid-template-columns: 1fr; gap: 12px; } }
 
   /* Scroll cue */
   .hero-cue { display: flex; flex-direction: column; align-items: center; gap: 6px; margin-top: 40px; color: var(--color-soft); font-size: .72rem; letter-spacing: 1.5px; text-transform: uppercase; animation: float 2.6s ease-in-out infinite; }
@@ -618,6 +627,11 @@
   .glos-def { font-size: .85rem; color: var(--color-text-secondary); line-height: 1.5; }
   .docend-reset { background: none; border: 1px solid var(--color-border-card); color: var(--color-text-muted); padding: 8px 18px; border-radius: 999px; cursor: pointer; font-size: .78rem; font-family: var(--font-body); transition: all .3s; }
   .docend-reset:hover { border-color: var(--color-red); color: var(--color-red); background: rgba(192,57,43,.05); }
+  /* Marca de versión · última línea del documento, deliberadamente tenue.
+     OJO: es independiente de STORE ('ep_unidad2_v2'). NO sincronizar esa clave
+     con este número: cambiarla borra el progreso guardado de cada estudiante. */
+  .docend-version { margin-top: 22px; text-align: center; font-size: .68rem; font-weight: 600; letter-spacing: 1.2px; color: var(--color-anchor); opacity: .28; font-variant-numeric: tabular-nums; cursor: default; transition: opacity .3s; }
+  .docend-version:hover { opacity: .55; }
 
   /* ════════ LABORATORIO DE ESTRUCTURAS DE MERCADO ════════ */
   .mlab { margin: 30px 0; border-radius: 18px; border: 1px solid var(--color-border-card); background: #fff; box-shadow: 0 8px 28px rgba(74,35,90,.07); overflow: hidden; }
@@ -730,24 +744,93 @@
 
   /* ════════ IMPRESIÓN ════════ */
   @media print {
-    .sidebar, .sidebar-expand, .sidebar-backdrop, .scroll-top, .toast, .read-progress, .hero-cue, .hero-net, .docend-reset, .gloss-pop { display: none !important; }
-    .gloss { border-bottom: none; }
+    /* Los recuadros, íconos y numeritos chicos conservan su color aunque el
+       usuario no active "gráficos de fondo". Los fondos grandes se neutralizan abajo. */
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+
+    /* Ninguna animación en papel. Al pasar un bloque de display:none a block, su
+       animación de entrada arranca en el fotograma 0 —que en fadeIn es opacity: 0—
+       y se imprime invisible. Le pasaba a las pestañas de cartel/trust/holding. */
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+
+    .sidebar, .sidebar-expand, .sidebar-backdrop, .scroll-top, .toast, .read-progress,
+    .hero-cue, .hero-net, .hero-glow, .docend-reset-wrap, .docend-reset, .gloss-pop, .tab-btns { display: none !important; }
+
+    body { background: #fff; font-size: 10.5pt; }
     .main { margin-left: 0 !important; }
-    body { background: #fff; font-size: 11pt; }
+    .wrap { max-width: none; padding: 0; }
     .reveal, .reveal-left, .reveal-right, .reveal-scale { opacity: 1 !important; transform: none !important; }
-    .hero { padding: 40px 26px; }
-    .seccion, .quiz, .ecard, .desafio, .callout, .pausa, .defstrip, .idea, .fuente, .aviso-biblio { break-inside: avoid; }
+    .gloss { border-bottom: none; }
+
+    /* Encabezado · en pantalla es violeta oscuro con texto blanco */
+    .hero { background: #fff !important; color: var(--color-text-body); padding: 0 0 18px; border-bottom: 2px solid var(--color-primary); }
+    .hero h1 { color: var(--color-deepest); }
+    .hero h1 em, .hero-lead em { color: var(--color-primary); }
+    .hero-lead { color: var(--color-text-body); }
+    .hero-tag { color: var(--color-primary-dark); background: none; border-color: var(--color-border-subtle); }
+    .hero-chip { color: var(--color-text-body); background: none; border-color: var(--color-border-card); }
+    .hero-chips-eyebrow, .hero-ficha-eyebrow, .hero-meta-item .lbl, .hero-ficha-time { color: var(--color-primary-dark) !important; opacity: 1; }
+    .hero-meta-item .val { color: var(--color-text-primary) !important; }
+    .hero-time-icon { color: var(--color-primary-dark); background: none; border-color: var(--color-border-subtle); }
+    .hero-ficha { border-top-color: var(--color-border-subtle); }
+    .hero-chips-thread, .hero-ficha-thread { background: var(--color-border-subtle); }
+
+    /* Otros bloques con texto blanco sobre fondo oscuro */
+    .pausa { background: var(--color-bg-tinted) !important; border: 1px solid var(--color-border-subtle); border-left: 4px solid var(--color-primary); color: var(--color-text-body); }
+    .pausa::after { display: none; }
+    .pausa h4 { color: var(--color-deepest); }
+    .pausa p { color: var(--color-text-secondary); }
+    .pausa-tag { color: var(--color-primary-dark); }
+    .q3 { background: #fff !important; border: 1px solid var(--color-border-card); border-top: 3px solid var(--color-primary); color: var(--color-text-body); }
+    .q3 h4 { color: var(--color-deepest); }
+    .q3 p { color: var(--color-text-secondary); }
+    .q3-big { color: var(--color-border-subtle); }
+    .flip-front { background: #fff !important; border: 1px solid var(--color-border-card); color: var(--color-text-body); }
+    .flip-front .flip-q { color: var(--color-primary-dark); }
+    .comp-head { background: var(--color-bg-tinted) !important; color: var(--color-deepest); border-bottom: 2px solid var(--color-primary); }
+    .quiz-badge { background: none !important; color: var(--color-primary-dark); border: 1px solid var(--color-border-subtle); box-shadow: none; }
+    /* Número en degradado: sin fondos impresos quedaría transparente */
+    .idea-num { background: none; -webkit-text-fill-color: var(--color-primary); color: var(--color-primary); }
+    /* Encabezados oscuros de los dos interactivos propios de esta unidad */
+    .mlab-head, .sdgame-head { background: var(--color-bg-tinted) !important; color: var(--color-text-body); border-bottom: 2px solid var(--color-primary); }
+    .mlab-head h4, .sdgame-head h4 { color: var(--color-deepest); }
+    .mlab-head p, .sdgame-head p { color: var(--color-text-secondary); }
+    .mlab-eyebrow, .sdgame-eyebrow { color: var(--color-primary-dark); }
+    .mlab-rtag { background: none !important; color: var(--color-primary-dark); border: 1px solid var(--color-border-subtle); }
+
+    /* Tarjetas giratorias: en papel se ven las dos caras, sin espejar */
     .flip { height: auto; }
-    .flip-face { position: static; transform: none; backface-visibility: visible; }
+    .flip-inner { transform: none !important; height: auto; }
+    .flip-face { position: static !important; transform: none !important; backface-visibility: visible; overflow: visible; }
     .flip-front .flip-hint { display: none; }
-    .tab-panel { display: block !important; border-top: 1px dashed var(--color-border-subtle); padding-top: 14px; margin-top: 14px; }
-    .mt-q { display: block !important; break-inside: avoid; }
+
+    /* Pestañas y mini-test: todo desplegado */
+    .tab-panel { display: block !important; opacity: 1 !important; transform: none !important; border-top: 1px dashed var(--color-border-subtle); padding-top: 12px; margin-top: 12px; }
+    .tab-panel:first-child { border-top: none; padding-top: 0; margin-top: 0; }
+    .tab-panels { border-radius: 12px; }
+    .mt-q { display: block !important; opacity: 1 !important; transform: none !important; }
+    .quiz-feedback.show { opacity: 1 !important; transform: none !important; }
     .mt-next, .mt-retry, .mt-counter, .mt-progress, .mt-result { display: none !important; }
-    .rankbars .rb-fill { width: var(--w) !important; transition: none !important; }
-    .mlab { break-inside: avoid; }
+
+    /* Interactivos que dependen de JS: se imprime lo que tiene sentido en papel */
+    .rankbars .rb-fill { width: var(--w) !important; }
     .mlab-controls, .mlab-viz { display: none !important; }
-    .sdgame { break-inside: avoid; }
-    .sdgame-scoreline, .sdgame-progress, .sdgame-btns, .sdgame-meter, .sdgame-next, .sdgame-result { display: none !important; }
+    .sdgame-scoreline, .sdgame-progress, .sdgame-btns, .sdgame-meter, .sdgame-fb, .sdgame-next, .sdgame-result { display: none !important; }
+    .check-progress { display: none !important; }
+
+    /* Cortes de página: solo en bloques que entran en una hoja */
+    .quiz, .ecard, .desafio, .callout, .pausa, .defstrip, .idea, .fuente, .aviso-biblio,
+    .q3, .flip, .mt-q, .glos-item, .check-item, .diagram-card, .comp-table, .obj-list li,
+    .rankbar, .mlab, .sdgame { break-inside: avoid; }
+    h2, h3, h4 { break-after: avoid; }
+    p, li { orphans: 3; widows: 3; }
+
+    /* Menos aire vertical que en pantalla */
+    .seccion { padding: 26px 0 6px; }
+    .guia-uso { margin: 20px 0; }
+    .docend { margin-top: 30px; padding-bottom: 0; }
+    .docend-inner { padding-top: 24px; }
+    .docend-version { opacity: .6; margin-top: 14px; }
   }
 </style>
 </head>
@@ -786,11 +869,11 @@
     <a href="#sec-4" class="section-title"><span class="st-num">04</span><span class="st-text">Oferta, demanda y voluntad social</span></a>
     <a href="#sec-5" class="section-title"><span class="st-num">05</span><span class="st-text">Relaciones y distribución</span></a>
     <a href="#sec-6" class="section-title"><span class="st-num">06</span><span class="st-text">Mercado: concepto y estructura</span></a>
-    <a href="#sec-7" class="section-title"><span class="st-num">07</span><span class="st-text">Competencia perfecta e imperfecta</span></a>
-    <a href="#sec-8" class="section-title"><span class="st-num">08</span><span class="st-text">Los mercados imperfectos</span></a>
-    <a href="#sec-9" class="section-title"><span class="st-num">09</span><span class="st-text">Comportamientos empresariales</span></a>
-    <a href="#sec-10" class="section-title"><span class="st-num">10</span><span class="st-text">Concentración del capital</span></a>
-    <a href="#sec-11" class="section-title"><span class="st-num">11</span><span class="st-text">Centralización de capitales</span></a>
+    <a href="#sec-7" class="section-title"><span class="st-num">07</span><span class="st-text">Comportamientos empresariales</span></a>
+    <a href="#sec-8" class="section-title"><span class="st-num">08</span><span class="st-text">Concentración del capital</span></a>
+    <a href="#sec-9" class="section-title"><span class="st-num">09</span><span class="st-text">Centralización de capitales</span></a>
+    <a href="#sec-10" class="section-title"><span class="st-num">10</span><span class="st-text">Competencia perfecta e imperfecta</span></a>
+    <a href="#sec-11" class="section-title"><span class="st-num">11</span><span class="st-text">Los mercados imperfectos</span></a>
     <a href="#sec-cierre" class="section-title" data-st="cierre"><span class="st-num">✦</span><span class="st-text">Síntesis y autoevaluación</span></a>
   </nav>
 
@@ -887,12 +970,16 @@
     </div>
 
     <div class="hero-ficha">
-      <span class="hero-ficha-eyebrow">Ficha de la unidad</span>
+      <div class="hero-ficha-head">
+        <span class="hero-ficha-eyebrow">Ficha de la unidad</span>
+        <span class="hero-ficha-thread" aria-hidden="true"></span>
+        <span class="hero-ficha-time"><span class="hero-time-icon" aria-hidden="true">⏱</span>50–60 min de lectura</span>
+      </div>
       <div class="hero-meta">
         <div class="hero-meta-item"><span class="lbl">Materia</span><span class="val">Economía Política</span></div>
         <div class="hero-meta-item"><span class="lbl">Cátedra</span><span class="val">B</span></div>
-        <div class="hero-meta-item"><span class="lbl">Nivel</span><span class="val">Primer año</span></div>
-        <div class="hero-meta-item"><span class="lbl">Lectura</span><span class="val">⏱ 50–60 min</span></div>
+        <div class="hero-meta-item"><span class="lbl">Carreras</span><span class="val">Abogacía · Trabajo Social</span></div>
+        <div class="hero-meta-item"><span class="lbl">Nivel</span><span class="val">Primer año · Ciclo 2026</span></div>
       </div>
     </div>
 
@@ -1473,7 +1560,7 @@
 
   <!-- ═══════ SEC 6 · El mercado: concepto y estructura ═══════ -->
   <section class="seccion reveal" id="sec-6">
-    <span class="sec-eyebrow"><span class="sec-eyebrow-num">6</span> Bloque II · Mercados</span>
+    <span class="sec-eyebrow"><span class="sec-eyebrow-num">6</span> Bloque II · El mercado y las empresas</span>
     <h2>El mercado: <span class="acento">concepto y estructura</span></h2>
     <div class="divider-flourish"><span>◆</span></div>
     <p class="lead-p">Hasta acá seguimos a <em>una</em> persona empresaria por dentro de su circuito. Ahora cambiamos el zoom: miramos el <strong>conjunto</strong> de oferentes y demandantes de un mismo tipo de bien. Ese conjunto tiene nombre —mercado— y tiene forma —estructura—.</p>
@@ -1498,15 +1585,247 @@
       <span class="def-source">Cátedra B · Unidad 2 · Definición de examen</span>
     </div>
 
-    <p>Fernández Pol usa como sinónimos «forma del mercado» o <span class="gloss" tabindex="0" data-def="Estudio de la forma. La «morfología del mercado» es su forma o fisonomía: cuántos venden, cuántos compran y cuánto pesa cada participante.">morfología</span> del mercado. Lo importante es que la estructura es <strong>observable</strong>: se cuenta cuántos venden, cuántos compran y qué porción del mercado maneja cada uno. No hace falta adivinar intenciones —eso, el <em>comportamiento</em>, es otra cosa y lo vemos en la sección 9—. Con este instrumental ya podemos clasificar los mercados reales. Empecemos por el patrón de referencia.</p>
+    <p>Fernández Pol usa como sinónimos «forma del mercado» o <span class="gloss" tabindex="0" data-def="Estudio de la forma. La «morfología del mercado» es su forma o fisonomía: cuántos venden, cuántos compran y cuánto pesa cada participante.">morfología</span> del mercado. Lo importante es que la estructura es <strong>observable</strong>: se cuenta cuántos venden, cuántos compran y qué porción del mercado maneja cada uno. No hace falta adivinar intenciones.</p>
+
+    <p>Pero describir la forma de un mercado todavía no dice qué hace cada empresa adentro: <span class="hl">la estructura es el escenario, no el guion</span>. Dos empresas rodeadas de la misma estructura pueden actuar de maneras muy distintas. Ese segundo plano —el <strong>comportamiento</strong>— es el que abrimos ahora. Con los dos juntos vas a poder, al final del recorrido, ponerle nombre a cada mercado real.</p>
   </section>
 
-  <!-- ═══════ SEC 7 · Competencia perfecta e imperfecta ═══════ -->
+  <!-- ═══════ SEC 7 · Comportamientos empresariales ═══════ -->
   <section class="seccion reveal" id="sec-7">
-    <span class="sec-eyebrow"><span class="sec-eyebrow-num">7</span> Bloque II · Mercados</span>
+    <span class="sec-eyebrow"><span class="sec-eyebrow-num">7</span> Bloque II · El mercado y las empresas</span>
+    <h2>Tipos de <span class="acento">comportamiento empresarial</span></h2>
+    <div class="divider-flourish"><span>◆</span></div>
+    <p class="lead-p">La estructura describe <strong>cómo es</strong> el mercado; el comportamiento, <strong>cómo actúan</strong> las empresas dentro de él. Son dos planos distintos —y no siempre coinciden—. La cátedra distingue cinco comportamientos:</p>
+
+    <div class="callout">
+      <div class="callout-icon">🧭</div>
+      <h4>Dos palabras que vas a usar antes de definirlas</h4>
+      <p>En las tarjetas que siguen aparecen los adjetivos <strong>monopolístico</strong> y <strong>oligopolístico</strong>. Por ahora alcanza con la intuición que traen los prefijos: <em>mono-</em> es uno solo —un único oferente— y <em>oligo-</em>, unos pocos. Son nombres de <strong>estructuras</strong>, y las vas a definir con precisión en el tramo final de la unidad. Acá nos sirven para nombrar <strong>conductas</strong>: lo que importa ahora es que una empresa puede comportarse como si estuviera sola aunque no lo esté.</p>
+    </div>
+
+    <div class="desafios-grid">
+      <div class="desafio reveal-left">
+        <div class="desafio-head"><span class="desafio-ico">👑</span><h4>Monopolístico</h4></div>
+        <p>La empresa impone precio y condiciones al mercado al ser el único oferente. Fernández Pol agrega un matiz: se comporta así quien <em>«se siente solo»</em> del lado de la oferta, aunque estrictamente no sea el único.</p>
+      </div>
+      <div class="desafio reveal-right">
+        <div class="desafio-head"><span class="desafio-ico">✂️</span><h4>Discriminador</h4></div>
+        <p>Se fijan precios diferenciados según segmentos de mercado, clientes o regiones: el mismo bien, a precios distintos. Puede usarse, incluso, como estrategia para monopolizar un mercado.</p>
+      </div>
+      <div class="desafio reveal-left">
+        <div class="desafio-head"><span class="desafio-ico">🎯</span><h4>Oligopolístico</h4></div>
+        <p>Pocas empresas coordinan —explícita o <span class="gloss" tabindex="0" data-def="Que no se dice expresamente; sobreentendido. Un acuerdo tácito no se firma: se practica.">tácitamente</span>— sus decisiones de precio y producción. Cada una sabe que sus ventas dependen también de los precios de sus rivales.</p>
+      </div>
+      <div class="desafio reveal-right">
+        <div class="desafio-head"><span class="desafio-ico">🍃</span><h4>Precio-aceptante</h4></div>
+        <p>La empresa no puede influir en el precio del mercado y lo toma como dato. Es el «tomador de precios»: ajusta cantidades, nunca el precio.</p>
+      </div>
+      <div class="desafio reveal-left">
+        <div class="desafio-head"><span class="desafio-ico">🧩</span><h4>Mixto</h4></div>
+        <p>Combina rasgos de los anteriores según la estrategia y el contexto. El caso típico es el <strong>liderazgo de precios</strong>: una empresa líder fija el precio y las seguidoras la imitan.</p>
+      </div>
+      <div class="desafio reveal-right">
+        <div class="desafio-head"><span class="desafio-ico">⚠️</span><h4>El cruce que confunde</h4></div>
+        <p>Fernández Pol advierte: <strong>no hay correspondencia automática</strong> entre estructura y comportamiento. Un <span class="gloss" tabindex="0" data-def="Estructura de mercado con un único oferente. Su definición precisa —y la de sus parientes— llega en el tramo final de la unidad.">monopolio</span> cuyo precio lo fija el Estado se comporta como precio-aceptante, aunque su estructura sea monopólica.</p>
+      </div>
+    </div>
+
+    <div class="callout tip">
+      <div class="callout-icon">💡</div>
+      <h4>Perseverantes y arrebatadores</h4>
+      <p>Otra distinción de Fernández Pol que ilumina la economía argentina: la persona empresaria <strong>perseverante</strong> apuesta al largo plazo —cuida clientela, calidad, reputación—, mientras que la <strong>arrebatadora</strong> busca la ganancia inmediata. Contextos de alta inflación empujan hacia el segundo: acortan el horizonte de cálculo y producen una verdadera «miopía económica».</p>
+    </div>
+  </section>
+
+  <!-- ═══════ SEC 8 · Concentración del capital ═══════ -->
+  <section class="seccion reveal" id="sec-8">
+    <span class="sec-eyebrow"><span class="sec-eyebrow-num">8</span> Bloque III · Concentración y centralización</span>
+    <h2>La <span class="acento">concentración</span> del capital</h2>
+    <div class="divider-flourish"><span>◆</span></div>
+    <p class="lead-p">Ya viste <em>cómo</em> se comportan las empresas. Falta una pregunta de origen: <strong>¿cómo llega un puñado de empresas a dominar toda una rama?</strong> No nacieron así. La cátedra es explícita: <span class="hl">para que los monopolios y oligopolios existan es necesario que previamente se dé un proceso de concentración de capitales</span>. Empecemos por ese proceso; al final de la unidad vas a ponerle nombre propio a cada una de esas estructuras.</p>
+
+    <p>El punto de partida está en el propio circuito: la empresa que gana <strong>reinvierte</strong> su ganancia, amplía su escala, incorpora tecnología. Cerletti llama a esto concentración en <strong>sentido estricto</strong> (crecer con recursos propios) y la distingue de la concentración en <strong>sentido amplio</strong>: crecer absorbiendo a otros por poder económico. Burkun y Spagnolo agregan por qué el capital grande corre con ventaja: mayor masa de ganancia para reinvertir, acceso a tecnología y fondos, y capacidad de desplazar —o directamente destruir— a competidores menores.</p>
+
+    <h3>Dos maneras de contarla: técnica y económica</h3>
+
+    <div class="comp-table reveal-scale">
+      <div class="comp-row comp-head">
+        <div>Concentración técnica <span class="badge-v">sentido restringido</span></div>
+        <div>Concentración económica <span class="badge-v badge-c">sentido englobante</span></div>
+      </div>
+      <div class="comp-body">
+        <div class="comp-row">
+          <div>Se refiere a la cantidad de <strong>fábricas o establecimientos</strong> industriales.</div>
+          <div>Se refiere a la cantidad de <strong>empresas</strong>.</div>
+        </div>
+        <div class="comp-row">
+          <div>Generalmente, una actividad económica con varios establecimientos.</div>
+          <div>Más amplia: una misma <span class="gloss" tabindex="0" data-def="Nombre jurídico oficial con el que una empresa está registrada y actúa legalmente.">razón social</span> puede nuclear establecimientos de varios sectores y actividades diversificadas.</div>
+        </div>
+      </div>
+    </div>
+
+    <h3>Dos direcciones de crecimiento: horizontal y vertical</h3>
+
+    <div class="comp-table reveal-scale">
+      <div class="comp-row comp-head">
+        <div>Concentración horizontal</div>
+        <div>Concentración vertical</div>
+      </div>
+      <div class="comp-body">
+        <div class="comp-row">
+          <div>Artículos diferenciados bajo una <strong>misma unidad tecnológica</strong>: crecer «a lo ancho», en la misma etapa productiva.</div>
+          <div>Abarca <strong>fases de un mismo proceso productivo</strong>: crecer «a lo largo», integrando etapas anteriores o posteriores.</div>
+        </div>
+        <div class="comp-row">
+          <div>Ejemplo: una automotriz que produce variedad de modelos.</div>
+          <div>Ejemplo: <span class="hl">Ford absorbió Acinfer</span>, que le proveía piezas de fundición para autos.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout tip">
+      <div class="callout-icon">🕰️</div>
+      <h4>Contexto · La industria automotriz de EE.UU.</h4>
+      <p>Cerletti ilustra la fuerza del proceso con un dato histórico contundente: en Estados Unidos había <strong>265 empresas automotrices en 1909</strong>; quedaban <strong>38 en 1921</strong> y apenas <strong>6 en 1965</strong>. Medio siglo de concentración convirtió una rama atomizada en un puñado de gigantes.</p>
+    </div>
+
+    <h3>¿Y en la Argentina?</h3>
+    <p>Estos son los datos que maneja la cátedra sobre la participación de las mayores empresas en la producción de algunas ramas —miralos crecer y pensá qué estructura de mercado implica cada uno—:</p>
+
+    <div class="rankbars reveal" aria-label="Ramas altamente concentradas en Argentina según datos de cátedra">
+      <div class="rankbar"><span class="rb-name">Automotriz</span><div class="rb-track"><div class="rb-fill" style="--w:98.1%"></div></div><span class="rb-val">98,1%</span></div>
+      <div class="rankbar"><span class="rb-name">Aluminio</span><div class="rb-track"><div class="rb-fill" style="--w:96.7%"></div></div><span class="rb-val">96,7%</span></div>
+      <div class="rankbar"><span class="rb-name">Relojes</span><div class="rb-track"><div class="rb-fill" style="--w:95.4%"></div></div><span class="rb-val">95,4%</span></div>
+      <div class="rankbar"><span class="rb-name">Cerveza</span><div class="rb-track"><div class="rb-fill" style="--w:91.2%"></div></div><span class="rb-val">91,2%</span></div>
+      <div class="rankbar"><span class="rb-name">Cubiertas</span><div class="rb-track"><div class="rb-fill" style="--w:90.5%"></div></div><span class="rb-val">90,5%</span></div>
+      <div class="rankbar"><span class="rb-name">Papel higiénico</span><div class="rb-track"><div class="rb-fill" style="--w:88.8%"></div></div><span class="rb-val">88,8%</span></div>
+      <div class="rankbar"><span class="rb-name">Bebidas espirituosas</span><div class="rb-track"><div class="rb-fill" style="--w:87.8%"></div></div><span class="rb-val">87,8%</span></div>
+    </div>
+
+    <!-- QUIZ 6 -->
+    <div class="quiz" data-quiz="q6">
+      <span class="quiz-badge">✓ Quiz</span>
+      <p class="quiz-q">Ford absorbió a Acinfer, la empresa que le proveía piezas de fundición para sus autos. ¿Qué tipo de concentración es?</p>
+      <div class="quiz-options">
+        <button class="quiz-opt" data-correct="true" data-fb="¡Correcto! Ford integró una fase anterior de su propio proceso productivo: la fabricación de las piezas que antes le compraba a un proveedor. Crecer «a lo largo» del proceso —hacia atrás o hacia adelante— es concentración vertical.">
+          <span class="opt-letter">A</span><span>Vertical, porque integró una fase anterior de su proceso productivo.</span></button>
+        <button class="quiz-opt" data-correct="false" data-fb="No. La concentración horizontal es crecer «a lo ancho»: más artículos diferenciados en la misma etapa productiva (como una automotriz que multiplica modelos). Acá Ford no sumó otro modelo: sumó una etapa previa de su proceso. Eso es vertical.">
+          <span class="opt-letter">B</span><span>Horizontal, porque las dos empresas pertenecen al sector automotor.</span></button>
+        <button class="quiz-opt" data-correct="false" data-fb="No exactamente. Es cierto que hubo una absorción (eso es centralización, el «cómo» jurídico). Pero la pregunta apunta al efecto sobre el proceso productivo: al integrar una fase anterior de su propia producción, el resultado es concentración vertical.">
+          <span class="opt-letter">C</span><span>Técnica, porque simplemente aumentó la cantidad de establecimientos que tiene Ford.</span></button>
+      </div>
+      <div class="quiz-feedback" data-fb-for="q6"></div>
+    </div>
+  </section>
+
+  <!-- ═══════ SEC 9 · Centralización de capitales ═══════ -->
+  <section class="seccion reveal" id="sec-9">
+    <span class="sec-eyebrow"><span class="sec-eyebrow-num">9</span> Bloque III · Concentración y centralización</span>
+    <h2>La <span class="acento">centralización</span> de capitales</h2>
+    <div class="divider-flourish"><span>◆</span></div>
+    <p class="lead-p">Concentrar es crecer reinvirtiendo la propia ganancia. <strong>Centralizar es otra cosa</strong>: agrupar capitales que ya existen. Como dice la cátedra, es un enfoque <span class="hl">más jurídico</span>: importa qué pasa con la razón social, con la propiedad, con la independencia de las empresas. Cerletti señala que la sociedad anónima fue el recurso jurídico principal de este proceso. Sus tres formatos:</p>
+
+    <div class="cardgrid c3">
+      <div class="ecard reveal-scale">
+        <div class="ecard-ico">🔗</div>
+        <h4>Fusión</h4>
+        <p>Dos empresas o capitales <strong>se unen para conformar una nueva empresa</strong>, una nueva razón social jurídica. Para Cerletti es la forma <em>más estable</em>. Ej. de cátedra: Cablevisión + Telecom → Personal Flow.</p>
+      </div>
+      <div class="ecard v3 reveal-scale reveal-delay-1">
+        <div class="ecard-ico">🦈</div>
+        <h4>Absorción</h4>
+        <p>Una empresa <strong>compra a otra y la hace desaparecer</strong>. Cerletti la lee como demostración de la supremacía del gran capital. Ej. de cátedra: Personal compró a Movistar.</p>
+      </div>
+      <div class="ecard v2 reveal-scale reveal-delay-2">
+        <div class="ecard-ico">🤝</div>
+        <h4>Asociación</h4>
+        <p>Dos empresas se unen <strong>pero conservan su independencia jurídica</strong>. Es el acuerdo menos estable, de vínculo menos firme. Ej. de cátedra: empresas que se asocian para licitar autopistas.</p>
+      </div>
+    </div>
+
+    <h3>Cartel, trust y holding: tres formas asociativas</h3>
+    <p>Cuando la centralización se organiza en el tiempo, aparecen tres figuras clásicas. Explorá cada una:</p>
+
+    <div class="tabs" id="tabsFormas">
+      <div class="tab-btns" role="tablist" aria-label="Formas asociativas: cartel, trust y holding">
+        <button class="tab-btn active" data-tab="cartel" role="tab" aria-selected="true"><span class="tab-ico">📜</span>Cartel</button>
+        <button class="tab-btn" data-tab="trust" role="tab" aria-selected="false"><span class="tab-ico">🏛️</span>Trust</button>
+        <button class="tab-btn" data-tab="holding" role="tab" aria-selected="false"><span class="tab-ico">🕸️</span>Holding</button>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel active" data-panel="cartel" role="tabpanel">
+          <h4>El cartel</h4>
+          <div class="tp-sub">Acuerdo entre independientes</div>
+          <p>Agrupación de empresas de una misma rama donde los participantes <strong>conservan la propiedad</strong> de sus medios de producción y del producto elaborado. Lo que acuerdan son las condiciones: <strong>cuotas de producción, precios de venta y distribución de mercados</strong>. Es colaboración entre empresas que siguen siendo independientes.</p>
+          <div class="tp-tags"><span class="tp-tag">Propiedad separada</span><span class="tp-tag">Acuerdo de precios</span><span class="tp-tag">Reparto de mercados</span></div>
+        </div>
+        <div class="tab-panel" data-panel="trust" role="tabpanel">
+          <h4>El trust</h4>
+          <div class="tp-sub">Una sola entidad real</div>
+          <p><strong>Propiedad conjunta</strong> de un grupo de capitalistas sobre los medios de producción: los propietarios <strong>transfieren su propiedad</strong> a la asociación y reciben acciones a cambio. Implica la <strong>consolidación real</strong> de varias empresas bajo una sola entidad. Acá ya no hay empresas independientes que acuerdan: hay una unidad nueva.</p>
+          <div class="tp-tags"><span class="tp-tag">Propiedad transferida</span><span class="tp-tag">Acciones a cambio</span><span class="tp-tag">Consolidación real</span></div>
+        </div>
+        <div class="tab-panel" data-panel="holding" role="tabpanel">
+          <h4>El holding</h4>
+          <div class="tp-sub">Controlar sin administrar</div>
+          <p>Una empresa <strong>posee y controla las acciones de otras</strong>, pero no necesariamente administra sus operaciones diarias. Es una <strong>empresa matriz</strong> con participaciones, sin influencia directa en la gestión cotidiana. El control es financiero: se ejerce desde el paquete accionario, no desde la oficina de al lado.</p>
+          <div class="tp-tags"><span class="tp-tag">Empresa matriz</span><span class="tp-tag">Control accionario</span><span class="tp-tag">Sin gestión diaria</span></div>
+        </div>
+      </div>
+    </div>
+
+    <h3>El mapa argentino</h3>
+    <p>La cátedra ofrece una tabla de casos reales para ejercitar la clasificación. Fijate que mezcla los dos procesos: para ubicar cada caso tenés que decidir si la empresa creció <strong>reinvirtiendo lo propio</strong> o <strong>agrupando capitales que ya existían</strong>.</p>
+
+    <div class="desafios-grid">
+      <div class="desafio reveal-left">
+        <div class="desafio-head"><span class="desafio-ico">🍺</span><h4>CCU Argentina (Chile)</h4></div>
+        <p><strong>Concentración horizontal:</strong> cervezas Heineken, Santa Fe, Schneider, Amstel — variedad de marcas en la misma etapa productiva.</p>
+      </div>
+      <div class="desafio reveal-right">
+        <div class="desafio-head"><span class="desafio-ico">🚗</span><h4>Renault (Francia)</h4></div>
+        <p><strong>Concentración vertical:</strong> automotriz + fundición de aluminio en Córdoba — integra una fase anterior de su proceso.</p>
+      </div>
+      <div class="desafio reveal-left">
+        <div class="desafio-head"><span class="desafio-ico">🚜</span><h4>Fiat Industrial</h4></div>
+        <p><strong>Concentración horizontal:</strong> Fiat autos, Iveco camiones, CNH, FPT Industrial — artículos diferenciados bajo una misma unidad tecnológica.</p>
+      </div>
+      <div class="desafio reveal-right">
+        <div class="desafio-head"><span class="desafio-ico">🛒</span><h4>Cencosud (Chile)</h4></div>
+        <p><strong>Centralización:</strong> Jumbo, Easy, Disco, Vea — creció por adquisiciones de empresas existentes en Sudamérica.</p>
+      </div>
+      <div class="desafio reveal-left">
+        <div class="desafio-head"><span class="desafio-ico">🛣️</span><h4>Autopistas del Sol</h4></div>
+        <p><strong>Centralización:</strong> Estado argentino + Impregilo + Abertis y otras — capitales que se asocian conservando su independencia.</p>
+      </div>
+      <div class="desafio reveal-right">
+        <div class="desafio-head"><span class="desafio-ico">⛽</span><h4>YPF</h4></div>
+        <p><strong>Centralización:</strong> Estado argentino + Eurnekian + Repsol España — su historia combina asociaciones y transferencias de capital.</p>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-icon">📉</div>
+      <h4>Crisis: la gran ocasión</h4>
+      <p>Burkun y Spagnolo observan que concentración y centralización conviven siempre, pero se aceleran en momentos distintos: en el <strong>auge</strong>, las empresas concentran y centralizan para posicionarse mejor en el reparto; en la <strong>crisis</strong>, el capital grande compra barato el capital depreciado de los que caen. Por eso los momentos de crisis suelen ser los de mayores operaciones de centralización.</p>
+    </div>
+
+    <div class="callout key">
+      <div class="callout-icon">★</div>
+      <h4>Antes de seguir · la competencia no muere</h4>
+      <p>Ni siquiera en los mercados monopólicos deja de existir la competencia: sobreviven los <strong>productos sustitutos</strong>, la interdependencia con otras ramas y la amenaza de nuevos entrantes. Cambia la forma: rigidez de precios a la baja, competencia por calidad y diferenciación, publicidad para resaltar diferencias entre productos que satisfacen la misma necesidad. Y frente al poder concentrado, Burkun y Spagnolo señalan al <strong>Estado</strong> como el mecanismo básico de regulación en representación de los intereses generales. Guardate esa idea: ya tenés el <em>cómo</em> se formaron las grandes empresas; lo que falta es el <em>qué son</em>. En las dos secciones que siguen les vamos a poner nombre, y para eso primero hay que construir la vara con la que se las mide.</p>
+    </div>
+  </section>
+
+  <!-- ═══════ SEC 10 · Competencia perfecta e imperfecta ═══════ -->
+  <section class="seccion reveal" id="sec-10">
+    <span class="sec-eyebrow"><span class="sec-eyebrow-num">10</span> Bloque IV · Las estructuras de mercado</span>
     <h2>Competencia <span class="acento">perfecta e imperfecta</span></h2>
     <div class="divider-flourish"><span>◆</span></div>
-    <p class="lead-p">Para clasificar mercados reales, la teoría construyó primero un <strong>patrón de referencia</strong>: la competencia perfecta. Es un mercado donde nadie —absolutamente nadie— tiene poder para influir en el precio. Para que exista deben cumplirse <span class="hl">tres condiciones a la vez</span>:</p>
+    <p class="lead-p">Recapitulemos el camino: seguiste a la persona empresaria por dentro de su circuito, viste cómo se forman los precios y cómo se reparte lo producido; después ampliaste el zoom al mercado, a los comportamientos de las empresas y a los procesos —concentración y centralización— que explican por qué existen empresas gigantes. Llegamos al tramo que pone los nombres: <span class="hl">¿cómo se llama cada una de esas estructuras?</span></p>
+
+    <p>Para clasificar mercados reales, la teoría construyó primero un <strong>patrón de referencia</strong>: la competencia perfecta. Es un mercado donde nadie —absolutamente nadie— tiene poder para influir en el precio. Para que exista deben cumplirse <strong>tres condiciones a la vez</strong>:</p>
 
     <div class="q3grid">
       <div class="q3 a reveal-scale">
@@ -1541,12 +1860,12 @@
       <span class="def-source">Cátedra B · Unidad 2</span>
     </div>
 
-    <p>Un apunte de fondo, tomado de Burkun y Spagnolo: la competencia no es solo una clasificación, es una <strong>manera de regular conductas</strong>. En una sociedad donde ningún organismo decide centralmente qué, cómo y cuánto se produce, es la competencia la que normaliza los comportamientos: <span class="hl">el otro fija el contorno de mi propio proceder</span>. Si un competidor moderniza su técnica, los demás se modernizan o desaparecen. Tenelo presente: aun en los mercados más concentrados que vas a ver ahora, la competencia nunca desaparece del todo.</p>
+    <p>Un apunte de fondo, tomado de Burkun y Spagnolo: la competencia no es solo una clasificación, es una <strong>manera de regular conductas</strong>. En una sociedad donde ningún organismo decide centralmente qué, cómo y cuánto se produce, es la competencia la que normaliza los comportamientos: <span class="hl">el otro fija el contorno de mi propio proceder</span>. Si un competidor moderniza su técnica, los demás se modernizan o desaparecen. Tenelo presente al recorrer las estructuras que vas a clasificar enseguida: por más concentrado que esté un mercado, esa presión nunca desaparece del todo.</p>
   </section>
 
-  <!-- ═══════ SEC 8 · Los mercados imperfectos ═══════ -->
-  <section class="seccion reveal" id="sec-8">
-    <span class="sec-eyebrow"><span class="sec-eyebrow-num">8</span> Bloque II · Mercados</span>
+  <!-- ═══════ SEC 11 · Los mercados imperfectos ═══════ -->
+  <section class="seccion reveal" id="sec-11">
+    <span class="sec-eyebrow"><span class="sec-eyebrow-num">11</span> Bloque IV · Las estructuras de mercado</span>
     <h2>Los <span class="acento">mercados imperfectos</span>: un laboratorio</h2>
     <div class="divider-flourish"><span>◆</span></div>
     <p class="lead-p">Los cuatro nombres que siguen son material de examen seguro: <strong>monopolio, oligopolio, monopsonio y oligopsonio</strong>. La buena noticia es que la lógica para no confundirlos es una sola: preguntarse <span class="hl">¿cuántos venden?, ¿cuántos compran?, ¿de qué lado está el poder?</span> Probalo vos en este laboratorio:</p>
@@ -1703,227 +2022,11 @@
       </div>
       <div class="quiz-feedback" data-fb-for="q5"></div>
     </div>
-  </section>
-
-  <!-- ═══════ SEC 9 · Comportamientos empresariales ═══════ -->
-  <section class="seccion reveal" id="sec-9">
-    <span class="sec-eyebrow"><span class="sec-eyebrow-num">9</span> Bloque II · Mercados</span>
-    <h2>Tipos de <span class="acento">comportamiento empresarial</span></h2>
-    <div class="divider-flourish"><span>◆</span></div>
-    <p class="lead-p">La estructura describe <strong>cómo es</strong> el mercado; el comportamiento, <strong>cómo actúan</strong> las empresas dentro de él. Son dos planos distintos —y no siempre coinciden—. La cátedra distingue cinco comportamientos:</p>
-
-    <div class="desafios-grid">
-      <div class="desafio reveal-left">
-        <div class="desafio-head"><span class="desafio-ico">👑</span><h4>Monopolístico</h4></div>
-        <p>La empresa impone precio y condiciones al mercado al ser el único oferente. Fernández Pol agrega un matiz: se comporta así quien <em>«se siente solo»</em> del lado de la oferta, aunque estrictamente no sea el único.</p>
-      </div>
-      <div class="desafio reveal-right">
-        <div class="desafio-head"><span class="desafio-ico">✂️</span><h4>Discriminador</h4></div>
-        <p>Se fijan precios diferenciados según segmentos de mercado, clientes o regiones: el mismo bien, a precios distintos. Puede usarse, incluso, como estrategia para monopolizar un mercado.</p>
-      </div>
-      <div class="desafio reveal-left">
-        <div class="desafio-head"><span class="desafio-ico">🎯</span><h4>Oligopolístico</h4></div>
-        <p>Pocas empresas coordinan —explícita o <span class="gloss" tabindex="0" data-def="Que no se dice expresamente; sobreentendido. Un acuerdo tácito no se firma: se practica.">tácitamente</span>— sus decisiones de precio y producción. Cada una sabe que sus ventas dependen también de los precios de sus rivales.</p>
-      </div>
-      <div class="desafio reveal-right">
-        <div class="desafio-head"><span class="desafio-ico">🍃</span><h4>Precio-aceptante</h4></div>
-        <p>La empresa no puede influir en el precio del mercado y lo toma como dato. Es el «tomador de precios»: ajusta cantidades, nunca el precio.</p>
-      </div>
-      <div class="desafio reveal-left">
-        <div class="desafio-head"><span class="desafio-ico">🧩</span><h4>Mixto</h4></div>
-        <p>Combina rasgos de los anteriores según la estrategia y el contexto. El caso típico es el <strong>liderazgo de precios</strong>: una empresa líder fija el precio y las seguidoras la imitan.</p>
-      </div>
-      <div class="desafio reveal-right">
-        <div class="desafio-head"><span class="desafio-ico">⚠️</span><h4>El cruce que confunde</h4></div>
-        <p>Fernández Pol advierte: <strong>no hay correspondencia automática</strong> entre estructura y comportamiento. Un monopolio cuyo precio lo fija el Estado se comporta como precio-aceptante, aunque su estructura sea monopólica.</p>
-      </div>
-    </div>
-
-    <div class="callout tip">
-      <div class="callout-icon">💡</div>
-      <h4>Perseverantes y arrebatadores</h4>
-      <p>Otra distinción de Fernández Pol que ilumina la economía argentina: la persona empresaria <strong>perseverante</strong> apuesta al largo plazo —cuida clientela, calidad, reputación—, mientras que la <strong>arrebatadora</strong> busca la ganancia inmediata. Contextos de alta inflación empujan hacia el segundo: acortan el horizonte de cálculo y producen una verdadera «miopía económica».</p>
-    </div>
-  </section>
-
-  <!-- ═══════ SEC 10 · Concentración del capital ═══════ -->
-  <section class="seccion reveal" id="sec-10">
-    <span class="sec-eyebrow"><span class="sec-eyebrow-num">10</span> Bloque III · Concentración y centralización</span>
-    <h2>La <span class="acento">concentración</span> del capital</h2>
-    <div class="divider-flourish"><span>◆</span></div>
-    <p class="lead-p">Queda una pregunta pendiente: ¿de dónde <em>salen</em> los monopolios y oligopolios? No nacieron así. La cátedra es explícita: <span class="hl">para que existan es necesario que previamente se dé un proceso de concentración de capitales</span>.</p>
-
-    <p>El punto de partida está en el propio circuito: la empresa que gana <strong>reinvierte</strong> su ganancia, amplía su escala, incorpora tecnología. Cerletti llama a esto concentración en <strong>sentido estricto</strong> (crecer con recursos propios) y la distingue de la concentración en <strong>sentido amplio</strong>: crecer absorbiendo a otros por poder económico. Burkun y Spagnolo agregan por qué el capital grande corre con ventaja: mayor masa de ganancia para reinvertir, acceso a tecnología y fondos, y capacidad de desplazar —o directamente destruir— a competidores menores.</p>
-
-    <h3>Dos maneras de contarla: técnica y económica</h3>
-
-    <div class="comp-table reveal-scale">
-      <div class="comp-row comp-head">
-        <div>Concentración técnica <span class="badge-v">sentido restringido</span></div>
-        <div>Concentración económica <span class="badge-v badge-c">sentido englobante</span></div>
-      </div>
-      <div class="comp-body">
-        <div class="comp-row">
-          <div>Se refiere a la cantidad de <strong>fábricas o establecimientos</strong> industriales.</div>
-          <div>Se refiere a la cantidad de <strong>empresas</strong>.</div>
-        </div>
-        <div class="comp-row">
-          <div>Generalmente, una actividad económica con varios establecimientos.</div>
-          <div>Más amplia: una misma <span class="gloss" tabindex="0" data-def="Nombre jurídico oficial con el que una empresa está registrada y actúa legalmente.">razón social</span> puede nuclear establecimientos de varios sectores y actividades diversificadas.</div>
-        </div>
-      </div>
-    </div>
-
-    <h3>Dos direcciones de crecimiento: horizontal y vertical</h3>
-
-    <div class="comp-table reveal-scale">
-      <div class="comp-row comp-head">
-        <div>Concentración horizontal</div>
-        <div>Concentración vertical</div>
-      </div>
-      <div class="comp-body">
-        <div class="comp-row">
-          <div>Artículos diferenciados bajo una <strong>misma unidad tecnológica</strong>: crecer «a lo ancho», en la misma etapa productiva.</div>
-          <div>Abarca <strong>fases de un mismo proceso productivo</strong>: crecer «a lo largo», integrando etapas anteriores o posteriores.</div>
-        </div>
-        <div class="comp-row">
-          <div>Ejemplo: una automotriz que produce variedad de modelos.</div>
-          <div>Ejemplo: <span class="hl">Ford absorbió Acinfer</span>, que le proveía piezas de fundición para autos.</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="callout tip">
-      <div class="callout-icon">🕰️</div>
-      <h4>Contexto · La industria automotriz de EE.UU.</h4>
-      <p>Cerletti ilustra la fuerza del proceso con un dato histórico contundente: en Estados Unidos había <strong>265 empresas automotrices en 1909</strong>; quedaban <strong>38 en 1921</strong> y apenas <strong>6 en 1965</strong>. Medio siglo de concentración convirtió una rama atomizada en un puñado de gigantes.</p>
-    </div>
-
-    <h3>¿Y en la Argentina?</h3>
-    <p>Estos son los datos que maneja la cátedra sobre la participación de las mayores empresas en la producción de algunas ramas —miralos crecer y pensá qué estructura de mercado implica cada uno—:</p>
-
-    <div class="rankbars reveal" aria-label="Ramas altamente concentradas en Argentina según datos de cátedra">
-      <div class="rankbar"><span class="rb-name">Automotriz</span><div class="rb-track"><div class="rb-fill" style="--w:98.1%"></div></div><span class="rb-val">98,1%</span></div>
-      <div class="rankbar"><span class="rb-name">Aluminio</span><div class="rb-track"><div class="rb-fill" style="--w:96.7%"></div></div><span class="rb-val">96,7%</span></div>
-      <div class="rankbar"><span class="rb-name">Relojes</span><div class="rb-track"><div class="rb-fill" style="--w:95.4%"></div></div><span class="rb-val">95,4%</span></div>
-      <div class="rankbar"><span class="rb-name">Cerveza</span><div class="rb-track"><div class="rb-fill" style="--w:91.2%"></div></div><span class="rb-val">91,2%</span></div>
-      <div class="rankbar"><span class="rb-name">Cubiertas</span><div class="rb-track"><div class="rb-fill" style="--w:90.5%"></div></div><span class="rb-val">90,5%</span></div>
-      <div class="rankbar"><span class="rb-name">Papel higiénico</span><div class="rb-track"><div class="rb-fill" style="--w:88.8%"></div></div><span class="rb-val">88,8%</span></div>
-      <div class="rankbar"><span class="rb-name">Bebidas espirituosas</span><div class="rb-track"><div class="rb-fill" style="--w:87.8%"></div></div><span class="rb-val">87,8%</span></div>
-    </div>
-
-    <!-- QUIZ 6 -->
-    <div class="quiz" data-quiz="q6">
-      <span class="quiz-badge">✓ Quiz</span>
-      <p class="quiz-q">Ford absorbió a Acinfer, la empresa que le proveía piezas de fundición para sus autos. ¿Qué tipo de concentración es?</p>
-      <div class="quiz-options">
-        <button class="quiz-opt" data-correct="true" data-fb="¡Correcto! Ford integró una fase anterior de su propio proceso productivo: la fabricación de las piezas que antes le compraba a un proveedor. Crecer «a lo largo» del proceso —hacia atrás o hacia adelante— es concentración vertical.">
-          <span class="opt-letter">A</span><span>Vertical, porque integró una fase anterior de su proceso productivo.</span></button>
-        <button class="quiz-opt" data-correct="false" data-fb="No. La concentración horizontal es crecer «a lo ancho»: más artículos diferenciados en la misma etapa productiva (como una automotriz que multiplica modelos). Acá Ford no sumó otro modelo: sumó una etapa previa de su proceso. Eso es vertical.">
-          <span class="opt-letter">B</span><span>Horizontal, porque las dos empresas pertenecen al sector automotor.</span></button>
-        <button class="quiz-opt" data-correct="false" data-fb="No exactamente. Es cierto que hubo una absorción (eso es centralización, el «cómo» jurídico). Pero la pregunta apunta al efecto sobre el proceso productivo: al integrar una fase anterior de su propia producción, el resultado es concentración vertical.">
-          <span class="opt-letter">C</span><span>Técnica, porque simplemente aumentó la cantidad de establecimientos que tiene Ford.</span></button>
-      </div>
-      <div class="quiz-feedback" data-fb-for="q6"></div>
-    </div>
-  </section>
-
-  <!-- ═══════ SEC 11 · Centralización de capitales ═══════ -->
-  <section class="seccion reveal" id="sec-11">
-    <span class="sec-eyebrow"><span class="sec-eyebrow-num">11</span> Bloque III · Concentración y centralización</span>
-    <h2>La <span class="acento">centralización</span> de capitales</h2>
-    <div class="divider-flourish"><span>◆</span></div>
-    <p class="lead-p">Concentrar es crecer reinvirtiendo la propia ganancia. <strong>Centralizar es otra cosa</strong>: agrupar capitales que ya existen. Como dice la cátedra, es un enfoque <span class="hl">más jurídico</span>: importa qué pasa con la razón social, con la propiedad, con la independencia de las empresas. Cerletti señala que la sociedad anónima fue el recurso jurídico principal de este proceso. Sus tres formatos:</p>
-
-    <div class="cardgrid c3">
-      <div class="ecard reveal-scale">
-        <div class="ecard-ico">🔗</div>
-        <h4>Fusión</h4>
-        <p>Dos empresas o capitales <strong>se unen para conformar una nueva empresa</strong>, una nueva razón social jurídica. Para Cerletti es la forma <em>más estable</em>. Ej. de cátedra: Cablevisión + Telecom → Personal Flow.</p>
-      </div>
-      <div class="ecard v3 reveal-scale reveal-delay-1">
-        <div class="ecard-ico">🦈</div>
-        <h4>Absorción</h4>
-        <p>Una empresa <strong>compra a otra y la hace desaparecer</strong>. Cerletti la lee como demostración de la supremacía del gran capital. Ej. de cátedra: Personal compró a Movistar.</p>
-      </div>
-      <div class="ecard v2 reveal-scale reveal-delay-2">
-        <div class="ecard-ico">🤝</div>
-        <h4>Asociación</h4>
-        <p>Dos empresas se unen <strong>pero conservan su independencia jurídica</strong>. Es el acuerdo menos estable, de vínculo menos firme. Ej. de cátedra: empresas que se asocian para licitar autopistas.</p>
-      </div>
-    </div>
-
-    <h3>Cartel, trust y holding: tres formas asociativas</h3>
-    <p>Cuando la centralización se organiza en el tiempo, aparecen tres figuras clásicas. Explorá cada una:</p>
-
-    <div class="tabs" id="tabsFormas">
-      <div class="tab-btns" role="tablist" aria-label="Formas asociativas: cartel, trust y holding">
-        <button class="tab-btn active" data-tab="cartel" role="tab" aria-selected="true"><span class="tab-ico">📜</span>Cartel</button>
-        <button class="tab-btn" data-tab="trust" role="tab" aria-selected="false"><span class="tab-ico">🏛️</span>Trust</button>
-        <button class="tab-btn" data-tab="holding" role="tab" aria-selected="false"><span class="tab-ico">🕸️</span>Holding</button>
-      </div>
-      <div class="tab-panels">
-        <div class="tab-panel active" data-panel="cartel" role="tabpanel">
-          <h4>El cartel</h4>
-          <div class="tp-sub">Acuerdo entre independientes</div>
-          <p>Agrupación de empresas de una misma rama donde los participantes <strong>conservan la propiedad</strong> de sus medios de producción y del producto elaborado. Lo que acuerdan son las condiciones: <strong>cuotas de producción, precios de venta y distribución de mercados</strong>. Es colaboración entre empresas que siguen siendo independientes.</p>
-          <div class="tp-tags"><span class="tp-tag">Propiedad separada</span><span class="tp-tag">Acuerdo de precios</span><span class="tp-tag">Reparto de mercados</span></div>
-        </div>
-        <div class="tab-panel" data-panel="trust" role="tabpanel">
-          <h4>El trust</h4>
-          <div class="tp-sub">Una sola entidad real</div>
-          <p><strong>Propiedad conjunta</strong> de un grupo de capitalistas sobre los medios de producción: los propietarios <strong>transfieren su propiedad</strong> a la asociación y reciben acciones a cambio. Implica la <strong>consolidación real</strong> de varias empresas bajo una sola entidad. Acá ya no hay empresas independientes que acuerdan: hay una unidad nueva.</p>
-          <div class="tp-tags"><span class="tp-tag">Propiedad transferida</span><span class="tp-tag">Acciones a cambio</span><span class="tp-tag">Consolidación real</span></div>
-        </div>
-        <div class="tab-panel" data-panel="holding" role="tabpanel">
-          <h4>El holding</h4>
-          <div class="tp-sub">Controlar sin administrar</div>
-          <p>Una empresa <strong>posee y controla las acciones de otras</strong>, pero no necesariamente administra sus operaciones diarias. Es una <strong>empresa matriz</strong> con participaciones, sin influencia directa en la gestión cotidiana. El control es financiero: se ejerce desde el paquete accionario, no desde la oficina de al lado.</p>
-          <div class="tp-tags"><span class="tp-tag">Empresa matriz</span><span class="tp-tag">Control accionario</span><span class="tp-tag">Sin gestión diaria</span></div>
-        </div>
-      </div>
-    </div>
-
-    <h3>El mapa argentino</h3>
-    <p>La cátedra ofrece una tabla de casos reales para ejercitar la clasificación. Fijate que combina los conceptos de las dos últimas secciones:</p>
-
-    <div class="desafios-grid">
-      <div class="desafio reveal-left">
-        <div class="desafio-head"><span class="desafio-ico">🍺</span><h4>CCU Argentina (Chile)</h4></div>
-        <p><strong>Concentración horizontal:</strong> cervezas Heineken, Santa Fe, Schneider, Amstel — variedad de marcas en la misma etapa productiva.</p>
-      </div>
-      <div class="desafio reveal-right">
-        <div class="desafio-head"><span class="desafio-ico">🚗</span><h4>Renault (Francia)</h4></div>
-        <p><strong>Concentración vertical:</strong> automotriz + fundición de aluminio en Córdoba — integra una fase anterior de su proceso.</p>
-      </div>
-      <div class="desafio reveal-left">
-        <div class="desafio-head"><span class="desafio-ico">🚜</span><h4>Fiat Industrial</h4></div>
-        <p><strong>Concentración horizontal:</strong> Fiat autos, Iveco camiones, CNH, FPT Industrial — artículos diferenciados bajo una misma unidad tecnológica.</p>
-      </div>
-      <div class="desafio reveal-right">
-        <div class="desafio-head"><span class="desafio-ico">🛒</span><h4>Cencosud (Chile)</h4></div>
-        <p><strong>Centralización:</strong> Jumbo, Easy, Disco, Vea — creció por adquisiciones de empresas existentes en Sudamérica.</p>
-      </div>
-      <div class="desafio reveal-left">
-        <div class="desafio-head"><span class="desafio-ico">🛣️</span><h4>Autopistas del Sol</h4></div>
-        <p><strong>Centralización:</strong> Estado argentino + Impregilo + Abertis y otras — capitales que se asocian conservando su independencia.</p>
-      </div>
-      <div class="desafio reveal-right">
-        <div class="desafio-head"><span class="desafio-ico">⛽</span><h4>YPF</h4></div>
-        <p><strong>Centralización:</strong> Estado argentino + Eurnekian + Repsol España — su historia combina asociaciones y transferencias de capital.</p>
-      </div>
-    </div>
-
-    <div class="callout">
-      <div class="callout-icon">📉</div>
-      <h4>Crisis: la gran ocasión</h4>
-      <p>Burkun y Spagnolo observan que concentración y centralización conviven siempre, pero se aceleran en momentos distintos: en el <strong>auge</strong>, las empresas concentran y centralizan para posicionarse mejor en el reparto; en la <strong>crisis</strong>, el capital grande compra barato el capital depreciado de los que caen. Por eso los momentos de crisis suelen ser los de mayores operaciones de centralización.</p>
-    </div>
 
     <div class="callout key">
       <div class="callout-icon">★</div>
-      <h4>Idea de cierre · la competencia no muere</h4>
-      <p>Ni siquiera en los mercados monopólicos deja de existir la competencia: sobreviven los <strong>productos sustitutos</strong>, la interdependencia con otras ramas y la amenaza de nuevos entrantes. Cambia la forma: rigidez de precios a la baja, competencia por calidad y diferenciación, publicidad para resaltar diferencias entre productos que satisfacen la misma necesidad. Y frente al poder concentrado, Burkun y Spagnolo señalan al <strong>Estado</strong> como el mecanismo básico de regulación en representación de los intereses generales — un debate que te va a acompañar el resto de la materia.</p>
+      <h4>Cierre del recorrido · de la decisión individual al poder de mercado</h4>
+      <p>Mirá el camino completo de una sola vez: arrancamos con una persona empresaria decidiendo sola cuánto producir, y terminamos en estructuras donde unas pocas empresas fijan las condiciones para todas las demás. Entre una cosa y la otra no hubo ningún salto: fue el mismo circuito funcionando —vendiendo, reinvirtiendo, concentrando, centralizando—. Por eso la pregunta de quién tiene el poder de fijar un precio no se responde adivinando intenciones, sino <span class="hl">contando cuántos hay de cada lado del mercado</span>. Y por eso el <strong>Estado</strong> aparece como contrapeso: un debate que te va a acompañar el resto de la materia.</p>
     </div>
   </section>
 
@@ -1940,7 +2043,7 @@
       <div class="idea"><span class="idea-num">3</span><div><h4>Tres precios</h4><p>Costo de producción (el piso), precio de producción (costo + margen, limitado por la rama y la voluntad social) y precio de reproducción (el que permite reiniciar, vivir y reinvertir).</p></div></div>
       <div class="idea"><span class="idea-num">4</span><div><h4>El precio es un hecho social</h4><p>Oferta y demanda determinan el precio, y el precio determina a la oferta y la demanda. La voluntad social —necesidad más capacidad de pago— convalida o rechaza. Nada es arbitrario.</p></div></div>
       <div class="idea"><span class="idea-num">5</span><div><h4>La distribución</h4><p>Básica: ganancia empresarial (propiedad del capital) y salario (fuerza de trabajo). Complementaria: renta, interés y ganancia comercial entre los propietarios de las condiciones del circuito.</p></div></div>
-      <div class="idea"><span class="idea-num">6</span><div><h4>Estructuras y poder</h4><p>La competencia perfecta es un tipo ideal; lo real es imperfecto: monopolio, oligopolio, monopsonio, oligopsonio. Detrás de ellos, la concentración y la centralización del capital.</p></div></div>
+      <div class="idea"><span class="idea-num">6</span><div><h4>Estructuras y poder</h4><p>El mercado tiene forma observable —la estructura— y las empresas, conducta —el comportamiento—: no siempre coinciden. La concentración y la centralización del capital explican de dónde salen las empresas grandes; el resultado son las estructuras imperfectas —monopolio, oligopolio, monopsonio, oligopsonio—, medidas contra un tipo ideal que en la realidad no existe: la competencia perfecta.</p></div></div>
     </div>
 
     <h3>Glosario de la unidad</h3>
@@ -2050,14 +2153,14 @@
     <div class="checklist" id="checklist">
       <div class="check-item"><span class="check-box">✓</span><span class="check-txt">Describir las <strong>tres fases del circuito</strong> y el rol de la persona empresaria en cada una.</span></div>
       <div class="check-item"><span class="check-box">✓</span><span class="check-txt">Explicar las <strong>cuatro características de las fases</strong> con un ejemplo propio.</span></div>
-      <div class="check-item"><span class="check-box">✓</span><span class="check-txt">Calcular <strong>masa y tasa de ganancia</strong> y explicar para qué sirve cada una.</span></div>
-      <div class="check-item"><span class="check-box">✓</span><span class="check-txt">Distinguir la <strong>ganancia posible</strong> de la <strong>ganancia real</strong>, y por qué media el riesgo.</span></div>
+      <div class="check-item"><span class="check-box">✓</span><span class="check-txt">Calcular <strong>masa y tasa de ganancia</strong>, y distinguir la <strong>ganancia posible</strong> de la <strong>real</strong>.</span></div>
       <div class="check-item"><span class="check-box">✓</span><span class="check-txt">Diferenciar <strong>costo de producción, precio de producción y precio de reproducción</strong>.</span></div>
       <div class="check-item"><span class="check-box">✓</span><span class="check-txt">Explicar la <strong>voluntad social</strong> y los tres escenarios de oferta y necesidad social.</span></div>
       <div class="check-item"><span class="check-box">✓</span><span class="check-txt">Distinguir la <strong>distribución básica</strong> de la <strong>complementaria</strong> y nombrar sus ingresos.</span></div>
       <div class="check-item"><span class="check-box">✓</span><span class="check-txt">Enunciar las definiciones de cátedra de <strong>mercado</strong> y <strong>estructura de mercado</strong>.</span></div>
-      <div class="check-item"><span class="check-box">✓</span><span class="check-txt">Reconocer <strong>monopolio, oligopolio, monopsonio y oligopsonio</strong> en casos reales como el de la yerba mate.</span></div>
+      <div class="check-item"><span class="check-box">✓</span><span class="check-txt">Distinguir la <strong>estructura</strong> de un mercado del <strong>comportamiento</strong> de las empresas, y dar un caso donde no coincidan.</span></div>
       <div class="check-item"><span class="check-box">✓</span><span class="check-txt">Diferenciar <strong>concentración</strong> (técnica/económica, horizontal/vertical) de <strong>centralización</strong> (fusión, absorción, asociación) y las figuras cartel, trust y holding.</span></div>
+      <div class="check-item"><span class="check-box">✓</span><span class="check-txt">Enunciar las <strong>tres condiciones</strong> de la competencia perfecta y reconocer <strong>monopolio, oligopolio, monopsonio y oligopsonio</strong> en casos reales como el de la yerba mate.</span></div>
     </div>
     <div class="check-progress" id="checkProgress">0 de 10 completadas</div>
 
@@ -2077,8 +2180,9 @@
       <li><span class="obj-check">✓</span><span><strong>Aplicar</strong> el cálculo económico elemental: masa y tasa de ganancia, ganancia posible y real.</span></li>
       <li><span class="obj-check">✓</span><span><strong>Explicar</strong> la formación de los precios —costo, producción, reproducción— y el papel de la oferta, la demanda y la voluntad social.</span></li>
       <li><span class="obj-check">✓</span><span><strong>Analizar</strong> la distribución del ingreso: salario, ganancia, renta, interés y ganancia comercial.</span></li>
-      <li><span class="obj-check">✓</span><span><strong>Clasificar</strong> las estructuras de mercado —perfectas e imperfectas— y reconocerlas en casos argentinos reales.</span></li>
+      <li><span class="obj-check">✓</span><span><strong>Caracterizar</strong> el mercado y su estructura, y distinguirla de los comportamientos empresariales.</span></li>
       <li><span class="obj-check">✓</span><span><strong>Diferenciar</strong> la concentración de la centralización de capitales, con sus tipos y formas asociativas.</span></li>
+      <li><span class="obj-check">✓</span><span><strong>Clasificar</strong> las estructuras de mercado —perfectas e imperfectas— y reconocerlas en casos argentinos reales.</span></li>
     </ul>
   </section>
 
@@ -2199,6 +2303,8 @@
       <button class="docend-reset" id="resetBtn" type="button">↺ Reiniciar mi progreso en esta unidad</button>
     </div>
 
+    <p class="docend-version" title="Versión de este documento">v2.1</p>
+
   </div>
 </footer>
 
@@ -2216,7 +2322,7 @@
 <script>
 (function(){
   "use strict";
-  var STORE = 'ep_unidad2_v1';
+  var STORE = 'ep_unidad2_v2';
   function load(){ try { return JSON.parse(localStorage.getItem(STORE)) || {}; } catch(e){ return {}; } }
   function save(s){ try { localStorage.setItem(STORE, JSON.stringify(s)); } catch(e){} }
   var state = load();
