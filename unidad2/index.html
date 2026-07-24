@@ -2151,16 +2151,16 @@
     <h3>Autoevaluación: ¿puedo…?</h3>
     <p>Marcá cada afirmación que sientas que ya podés hacer. Es tu termómetro personal —no se guarda ninguna nota, solo tu propio control.</p>
     <div class="checklist" id="checklist">
-      <div class="check-item"><span class="check-box">✓</span><span class="check-txt">Describir las <strong>tres fases del circuito</strong> y el rol de la persona empresaria en cada una.</span></div>
-      <div class="check-item"><span class="check-box">✓</span><span class="check-txt">Explicar las <strong>cuatro características de las fases</strong> con un ejemplo propio.</span></div>
-      <div class="check-item"><span class="check-box">✓</span><span class="check-txt">Calcular <strong>masa y tasa de ganancia</strong>, y distinguir la <strong>ganancia posible</strong> de la <strong>real</strong>.</span></div>
-      <div class="check-item"><span class="check-box">✓</span><span class="check-txt">Diferenciar <strong>costo de producción, precio de producción y precio de reproducción</strong>.</span></div>
-      <div class="check-item"><span class="check-box">✓</span><span class="check-txt">Explicar la <strong>voluntad social</strong> y los tres escenarios de oferta y necesidad social.</span></div>
-      <div class="check-item"><span class="check-box">✓</span><span class="check-txt">Distinguir la <strong>distribución básica</strong> de la <strong>complementaria</strong> y nombrar sus ingresos.</span></div>
-      <div class="check-item"><span class="check-box">✓</span><span class="check-txt">Enunciar las definiciones de cátedra de <strong>mercado</strong> y <strong>estructura de mercado</strong>.</span></div>
-      <div class="check-item"><span class="check-box">✓</span><span class="check-txt">Distinguir la <strong>estructura</strong> de un mercado del <strong>comportamiento</strong> de las empresas, y dar un caso donde no coincidan.</span></div>
-      <div class="check-item"><span class="check-box">✓</span><span class="check-txt">Diferenciar <strong>concentración</strong> (técnica/económica, horizontal/vertical) de <strong>centralización</strong> (fusión, absorción, asociación) y las figuras cartel, trust y holding.</span></div>
-      <div class="check-item"><span class="check-box">✓</span><span class="check-txt">Enunciar las <strong>tres condiciones</strong> de la competencia perfecta y reconocer <strong>monopolio, oligopolio, monopsonio y oligopsonio</strong> en casos reales como el de la yerba mate.</span></div>
+      <div class="check-item" data-check="c1"><span class="check-box">✓</span><span class="check-txt">Describir las <strong>tres fases del circuito</strong> y el rol de la persona empresaria en cada una.</span></div>
+      <div class="check-item" data-check="c2"><span class="check-box">✓</span><span class="check-txt">Explicar las <strong>cuatro características de las fases</strong> con un ejemplo propio.</span></div>
+      <div class="check-item" data-check="c3"><span class="check-box">✓</span><span class="check-txt">Calcular <strong>masa y tasa de ganancia</strong>, y distinguir la <strong>ganancia posible</strong> de la <strong>real</strong>.</span></div>
+      <div class="check-item" data-check="c4"><span class="check-box">✓</span><span class="check-txt">Diferenciar <strong>costo de producción, precio de producción y precio de reproducción</strong>.</span></div>
+      <div class="check-item" data-check="c5"><span class="check-box">✓</span><span class="check-txt">Explicar la <strong>voluntad social</strong> y los tres escenarios de oferta y necesidad social.</span></div>
+      <div class="check-item" data-check="c6"><span class="check-box">✓</span><span class="check-txt">Distinguir la <strong>distribución básica</strong> de la <strong>complementaria</strong> y nombrar sus ingresos.</span></div>
+      <div class="check-item" data-check="c7"><span class="check-box">✓</span><span class="check-txt">Enunciar las definiciones de cátedra de <strong>mercado</strong> y <strong>estructura de mercado</strong>.</span></div>
+      <div class="check-item" data-check="c8"><span class="check-box">✓</span><span class="check-txt">Distinguir la <strong>estructura</strong> de un mercado del <strong>comportamiento</strong> de las empresas, y dar un caso donde no coincidan.</span></div>
+      <div class="check-item" data-check="c9"><span class="check-box">✓</span><span class="check-txt">Diferenciar <strong>concentración</strong> (técnica/económica, horizontal/vertical) de <strong>centralización</strong> (fusión, absorción, asociación) y las figuras cartel, trust y holding.</span></div>
+      <div class="check-item" data-check="c10"><span class="check-box">✓</span><span class="check-txt">Enunciar las <strong>tres condiciones</strong> de la competencia perfecta y reconocer <strong>monopolio, oligopolio, monopsonio y oligopsonio</strong> en casos reales como el de la yerba mate.</span></div>
     </div>
     <div class="check-progress" id="checkProgress">0 de 10 completadas</div>
 
@@ -2596,10 +2596,13 @@
     }
   }
   checkItems.forEach(function(item, i){
-    if(state.checks[i]) item.classList.add('done');
+    /* Se guarda por data-check (identidad estable), NO por índice: si se reordena
+       o se inserta un ítem, los tildes seguirían al ítem correcto. */
+    var key = item.dataset.check || ('c' + (i + 1));
+    if(state.checks[key]) item.classList.add('done');
     item.addEventListener('click', function(){
       item.classList.toggle('done');
-      state.checks[i] = item.classList.contains('done'); save(state);
+      state.checks[key] = item.classList.contains('done'); save(state);
       updateCheckProgress();
     });
   });
