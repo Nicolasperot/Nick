@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#2a1133">
-<meta name="description" content="Unidad 1 de Economía Política · Cátedra B · FCJS UNL. Introducción a la Economía Política: qué estudia, conocimiento vulgar y científico, el problema económico, las tres preguntas fundamentales, tradición/mando/mercado, la economía como ciencia social, divisiones de la economía y política económica.">
+<meta name="description" content="Unidad 1 de Economía Política · Cátedra B · FCJS UNL. Introducción a la Economía Política: qué estudia, conocimiento vulgar y científico, la economía como ciencia social, divisiones de la economía, política económica e instrumentos de acción, el problema económico, las tres preguntas fundamentales y tradición/mando/mercado.">
 <meta name="author" content="Cátedra B · Economía Política · FCJS UNL">
 <meta name="keywords" content="economía política, problema económico, conocimiento científico, qué producir cómo producir para quién producir, tradición mando mercado, ciencia social, política económica, Heilbroner, Demarco, Rossetti, Lafferriere, Cátedra B, FCJS, UNL">
 <title>Unidad 1 · Introducción a la Economía Política · Cátedra B · FCJS UNL</title>
@@ -97,7 +97,9 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    * { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
+    /* animation-delay debe anularse también: con fill-mode backwards, un delay
+       dejaría el elemento invisible hasta que arranque la animación. */
+    * { animation-duration: .001ms !important; animation-delay: 0s !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
   }
 
   /* ════════ PROGRESS BAR (top) ════════ */
@@ -224,8 +226,9 @@
   .hero-lead em { color: var(--color-gold); font-style: italic; }
 
   .hero-chips-head { display: flex; align-items: center; gap: 12px; margin-top: 34px; margin-bottom: 12px; }
-  .hero-chips-eyebrow { font-size: .68rem; letter-spacing: 2px; text-transform: uppercase; color: var(--color-soft); font-weight: 700; white-space: nowrap; }
-  .hero-chips-thread { flex: 1; height: 1px; background: linear-gradient(90deg, rgba(210,180,222,.5), rgba(210,180,222,0)); }
+  /* Rótulos del hero · un solo nivel. Jerarquía: .hero-tag (identidad) > estos rótulos > datos */
+  .hero-chips-eyebrow, .hero-ficha-eyebrow { font-size: .64rem; letter-spacing: 2.2px; text-transform: uppercase; color: var(--color-soft); font-weight: 700; opacity: .85; white-space: nowrap; }
+  .hero-chips-thread, .hero-ficha-thread { flex: 1; min-width: 20px; height: 1px; background: linear-gradient(90deg, rgba(210,180,222,.5), rgba(210,180,222,0)); }
   .hero-chips { display: flex; flex-wrap: wrap; gap: 9px; }
   .hero-chip {
     display: inline-flex; align-items: center; gap: 7px; font-size: .78rem; font-weight: 600;
@@ -237,13 +240,19 @@
   .hero-chip.c3 .hero-chip-dot { background: var(--color-red); }
   .hero-chip.c4 .hero-chip-dot { background: var(--color-success); }
 
-  .hero-ficha { margin-top: 36px; background: rgba(255,255,255,.05); border: 1px solid rgba(210,180,222,.2); border-radius: 16px; padding: 22px 24px; backdrop-filter: blur(4px); }
-  .hero-ficha-eyebrow { font-size: .66rem; letter-spacing: 2px; text-transform: uppercase; color: var(--color-soft); font-weight: 700; }
-  .hero-meta { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 16px; }
-  .hero-meta-item { display: flex; flex-direction: column; gap: 4px; }
-  .hero-meta-item .lbl { font-size: .66rem; letter-spacing: 1px; text-transform: uppercase; color: var(--color-soft); }
-  .hero-meta-item .val { font-size: .92rem; color: #fff; font-weight: 600; }
-  @media (max-width: 680px) { .hero-meta { grid-template-columns: repeat(2, 1fr); } }
+  /* Ficha · sin recuadro: filete superior en vez de caja, para no repetir el
+     mismo material translúcido de .hero-tag y .hero-chip a mayor tamaño. */
+  .hero-ficha { margin-top: 34px; padding-top: 20px; border-top: 1px solid rgba(210,180,222,.18); }
+  .hero-ficha-head { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
+  .hero-ficha-time { display: inline-flex; align-items: center; gap: 7px; white-space: nowrap; font-size: .76rem; font-weight: 600; color: var(--color-gold); font-variant-numeric: tabular-nums; }
+  .hero-time-icon { display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0; background: rgba(255,214,115,.14); border: 1px solid rgba(255,214,115,.35); color: var(--color-gold); font-size: .78rem; }
+  .hero-meta { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px 20px; }
+  .hero-meta-item { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+  .hero-meta-item .lbl { font-size: .6rem; letter-spacing: 1.6px; text-transform: uppercase; color: var(--color-soft); font-weight: 700; opacity: .85; }
+  .hero-meta-item .val { font-size: .9rem; color: rgba(255,255,255,.95); font-weight: 600; line-height: 1.35; }
+  @media (max-width: 1100px) { .hero-meta { grid-template-columns: repeat(2, 1fr); gap: 16px 20px; } }
+  @media (max-width: 560px) { .hero-ficha { margin-top: 28px; padding-top: 18px; } .hero-ficha-head { gap: 10px; margin-bottom: 14px; } }
+  @media (max-width: 380px) { .hero-meta { grid-template-columns: 1fr; gap: 12px; } }
 
   /* Scroll cue */
   .hero-cue { display: flex; flex-direction: column; align-items: center; gap: 6px; margin-top: 40px; color: var(--color-soft); font-size: .72rem; letter-spacing: 1.5px; text-transform: uppercase; animation: float 2.6s ease-in-out infinite; }
@@ -269,6 +278,13 @@
   .divider-flourish { display: flex; align-items: center; justify-content: center; gap: 14px; margin: 4px 0 26px; }
   .divider-flourish::before, .divider-flourish::after { content: ""; height: 1px; width: 60px; background: linear-gradient(90deg, transparent, var(--color-soft)); }
   .divider-flourish span { color: var(--color-primary); font-size: 1.1rem; }
+
+  /* ════════ PUENTE ENTRE MITADES ════════ */
+  .tramo { margin: 64px 0 8px; padding: 30px 30px 32px; text-align: center; border-top: 1px solid var(--color-border-subtle); border-bottom: 1px solid var(--color-border-subtle); background: linear-gradient(180deg, rgba(142,68,173,.04), transparent 70%); }
+  .tramo-eyebrow { display: inline-block; font-size: .66rem; letter-spacing: 3px; text-transform: uppercase; color: var(--color-primary); font-weight: 700; margin-bottom: 12px; opacity: .85; }
+  .tramo p { max-width: 620px; margin: 0 auto; font-family: var(--font-display); font-size: 1.12rem; line-height: 1.6; color: var(--color-text-secondary); }
+  .tramo p strong { color: var(--color-deepest); font-weight: 700; }
+  @media (max-width: 560px) { .tramo { margin-top: 48px; padding: 24px 20px 26px; } .tramo p { font-size: 1.02rem; } }
 
   /* ════════ CALLOUTS ════════ */
   .callout {
@@ -598,6 +614,11 @@
   .glos-def { font-size: .85rem; color: var(--color-text-secondary); line-height: 1.5; }
   .docend-reset { background: none; border: 1px solid var(--color-border-card); color: var(--color-text-muted); padding: 8px 18px; border-radius: 999px; cursor: pointer; font-size: .78rem; font-family: var(--font-body); transition: all .3s; }
   .docend-reset:hover { border-color: var(--color-red); color: var(--color-red); background: rgba(192,57,43,.05); }
+  /* Marca de versión · última línea del documento, deliberadamente tenue.
+     OJO: es independiente de STORE ('ep_unidad1_v2'). NO sincronizar esa clave
+     con este número: cambiarla borra el progreso guardado de cada estudiante. */
+  .docend-version { margin-top: 22px; text-align: center; font-size: .68rem; font-weight: 600; letter-spacing: 1.2px; color: var(--color-anchor); opacity: .28; font-variant-numeric: tabular-nums; cursor: default; transition: opacity .3s; }
+  .docend-version:hover { opacity: .55; }
 
   /* ════════ SCROLL TOP ════════ */
   .scroll-top { position: fixed; bottom: 24px; right: 24px; width: 48px; height: 48px; border-radius: 14px; background: linear-gradient(135deg, var(--color-primary), var(--color-anchor)); color: #fff; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; box-shadow: 0 8px 22px rgba(108,52,131,.4); opacity: 0; pointer-events: none; transition: all .4s; z-index: 1500; }
@@ -622,20 +643,90 @@
   }
 
   /* ════════ IMPRESIÓN ════════ */
+  /* ════════ IMPRESIÓN ════════
+     Dos objetivos: que salga TODO el contenido y que no queden hojas casi vacías.
+     1) Los bloques que en pantalla son oscuros con texto blanco se pasan a claro:
+        si el navegador imprime sin "gráficos de fondo" (el valor por defecto en
+        Chrome), ese texto quedaría blanco sobre blanco, o sea invisible.
+     2) break-inside: avoid solo en bloques que entran en una página. Nunca en
+        .seccion, que ocupa varias: forzarlo empuja la sección entera a la hoja
+        siguiente y deja media página en blanco antes de cada una. */
   @media print {
-    .sidebar, .sidebar-expand, .sidebar-backdrop, .scroll-top, .toast, .read-progress, .hero-cue, .hero-net, .docend-reset, .gloss-pop { display: none !important; }
-    .gloss { border-bottom: none; }
+    /* Los recuadros, íconos y numeritos chicos conservan su color aunque el
+       usuario no active "gráficos de fondo". Los fondos grandes se neutralizan abajo. */
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+
+    /* Ninguna animación en papel. Al pasar un bloque de display:none a block, su
+       animación de entrada arranca en el fotograma 0 —que en fadeIn es opacity: 0—
+       y se imprime invisible. Le pasaba a las pestañas de tradición/mando/mercado. */
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+
+    .sidebar, .sidebar-expand, .sidebar-backdrop, .scroll-top, .toast, .read-progress,
+    .hero-cue, .hero-net, .hero-glow, .docend-reset-wrap, .gloss-pop, .tab-btns { display: none !important; }
+
+    body { background: #fff; font-size: 10.5pt; }
     .main { margin-left: 0 !important; }
-    body { background: #fff; font-size: 11pt; }
+    .wrap { max-width: none; padding: 0; }
     .reveal, .reveal-left, .reveal-right, .reveal-scale { opacity: 1 !important; transform: none !important; }
-    .hero { padding: 40px 26px; }
-    .seccion, .quiz, .ecard, .desafio, .callout, .pausa, .defstrip, .idea, .fuente, .aviso-biblio { break-inside: avoid; }
+    .gloss { border-bottom: none; }
+
+    /* Encabezado · en pantalla es violeta oscuro con texto blanco */
+    .hero { background: #fff !important; color: var(--color-text-body); padding: 0 0 18px; border-bottom: 2px solid var(--color-primary); }
+    .hero h1 { color: var(--color-deepest); }
+    .hero h1 em, .hero-lead em { color: var(--color-primary); }
+    .hero-lead { color: var(--color-text-body); }
+    .hero-tag { color: var(--color-primary-dark); background: none; border-color: var(--color-border-subtle); }
+    .hero-chip { color: var(--color-text-body); background: none; border-color: var(--color-border-card); }
+    .hero-chips-eyebrow, .hero-ficha-eyebrow, .hero-meta-item .lbl, .hero-ficha-time { color: var(--color-primary-dark) !important; opacity: 1; }
+    .hero-meta-item .val { color: var(--color-text-primary) !important; }
+    .hero-time-icon { color: var(--color-primary-dark); background: none; border-color: var(--color-border-subtle); }
+    .hero-ficha { border-top-color: var(--color-border-subtle); }
+    .hero-chips-thread, .hero-ficha-thread { background: var(--color-border-subtle); }
+
+    /* Otros bloques con texto blanco sobre fondo oscuro */
+    .pausa { background: var(--color-bg-tinted) !important; border: 1px solid var(--color-border-subtle); border-left: 4px solid var(--color-primary); color: var(--color-text-body); }
+    .pausa::after { display: none; }
+    .pausa h4 { color: var(--color-deepest); }
+    .pausa p { color: var(--color-text-secondary); }
+    .pausa-tag { color: var(--color-primary-dark); }
+    .q3 { background: #fff !important; border: 1px solid var(--color-border-card); border-top: 3px solid var(--color-primary); color: var(--color-text-body); }
+    .q3 h4 { color: var(--color-deepest); }
+    .q3 p { color: var(--color-text-secondary); }
+    .q3-big { color: var(--color-border-subtle); }
+    .flip-front { background: #fff !important; border: 1px solid var(--color-border-card); color: var(--color-text-body); }
+    .flip-front .flip-q { color: var(--color-primary-dark); }
+    .comp-head { background: var(--color-bg-tinted) !important; color: var(--color-deepest); border-bottom: 2px solid var(--color-primary); }
+    .quiz-badge { background: none !important; color: var(--color-primary-dark); border: 1px solid var(--color-border-subtle); box-shadow: none; }
+    /* Número en degradado: sin fondos impresos quedaría transparente */
+    .idea-num { background: none; -webkit-text-fill-color: var(--color-primary); color: var(--color-primary); }
+
+    /* Tarjetas giratorias: en papel se ven las dos caras, sin espejar */
     .flip { height: auto; }
-    .flip-face { position: static; transform: none; backface-visibility: visible; }
+    .flip-inner { transform: none !important; height: auto; }
+    .flip-face { position: static !important; transform: none !important; backface-visibility: visible; overflow: visible; }
     .flip-front .flip-hint { display: none; }
-    .tab-panel { display: block !important; border-top: 1px dashed var(--color-border-subtle); padding-top: 14px; margin-top: 14px; }
-    .mt-q { display: block !important; break-inside: avoid; }
+
+    /* Pestañas y mini-test: todo desplegado */
+    .tab-panel { display: block !important; opacity: 1 !important; transform: none !important; border-top: 1px dashed var(--color-border-subtle); padding-top: 12px; margin-top: 12px; }
+    .tab-panel:first-child { border-top: none; padding-top: 0; margin-top: 0; }
+    .tab-panels { border-radius: 12px; }
+    .mt-q { display: block !important; opacity: 1 !important; transform: none !important; }
+    .quiz-feedback.show { opacity: 1 !important; transform: none !important; }
     .mt-next, .mt-retry, .mt-counter, .mt-progress, .mt-result { display: none !important; }
+
+    /* Cortes de página: solo en bloques que entran en una hoja */
+    .quiz, .ecard, .desafio, .callout, .pausa, .defstrip, .idea, .fuente, .aviso-biblio, .tramo,
+    .q3, .flip, .mt-q, .glos-item, .check-item, .diagram-card, .comp-table, .obj-list li, .metodo-step { break-inside: avoid; }
+    h2, h3, h4 { break-after: avoid; }
+    p, li { orphans: 3; widows: 3; }
+
+    /* Menos aire vertical que en pantalla */
+    .seccion { padding: 26px 0 6px; }
+    .tramo { margin: 26px 0 10px; }
+    .guia-uso { margin: 20px 0; }
+    .docend { margin-top: 30px; padding-bottom: 0; }
+    .docend-inner { padding-top: 24px; }
+    .docend-version { opacity: .6; margin-top: 14px; }
   }
 </style>
 </head>
@@ -670,16 +761,16 @@
     <a href="#top" class="section-title" data-st="intro"><span class="st-num">★</span><span class="st-text">Portada</span></a>
     <a href="#sec-1" class="section-title"><span class="st-num">01</span><span class="st-text">¿Qué estudia?</span></a>
     <a href="#sec-2" class="section-title"><span class="st-num">02</span><span class="st-text">Vulgar vs. científico</span></a>
-    <a href="#sec-3" class="section-title"><span class="st-num">03</span><span class="st-text">El problema económico</span></a>
-    <a href="#sec-4" class="section-title"><span class="st-num">04</span><span class="st-text">Las tres preguntas</span></a>
-    <a href="#sec-5" class="section-title"><span class="st-num">05</span><span class="st-text">Tradición · mando · mercado</span></a>
-    <a href="#sec-6" class="section-title"><span class="st-num">06</span><span class="st-text">Ciencia social</span></a>
-    <a href="#sec-7" class="section-title"><span class="st-num">07</span><span class="st-text">Conceptos de economía</span></a>
-    <a href="#sec-8" class="section-title"><span class="st-num">08</span><span class="st-text">Desafíos metodológicos</span></a>
-    <a href="#sec-9" class="section-title"><span class="st-num">09</span><span class="st-text">Leyes, teorías y modelos</span></a>
-    <a href="#sec-10" class="section-title"><span class="st-num">10</span><span class="st-text">Divisiones de la economía</span></a>
-    <a href="#sec-11" class="section-title"><span class="st-num">11</span><span class="st-text">Política económica</span></a>
-    <a href="#sec-12" class="section-title"><span class="st-num">12</span><span class="st-text">Instrumentos de acción</span></a>
+    <a href="#sec-6" class="section-title"><span class="st-num">03</span><span class="st-text">Ciencia social</span></a>
+    <a href="#sec-7" class="section-title"><span class="st-num">04</span><span class="st-text">Conceptos de economía</span></a>
+    <a href="#sec-8" class="section-title"><span class="st-num">05</span><span class="st-text">Desafíos metodológicos</span></a>
+    <a href="#sec-9" class="section-title"><span class="st-num">06</span><span class="st-text">Leyes, teorías y modelos</span></a>
+    <a href="#sec-10" class="section-title"><span class="st-num">07</span><span class="st-text">Divisiones de la economía</span></a>
+    <a href="#sec-11" class="section-title"><span class="st-num">08</span><span class="st-text">Política económica</span></a>
+    <a href="#sec-12" class="section-title"><span class="st-num">09</span><span class="st-text">Instrumentos de acción</span></a>
+    <a href="#sec-3" class="section-title"><span class="st-num">10</span><span class="st-text">El problema económico</span></a>
+    <a href="#sec-4" class="section-title"><span class="st-num">11</span><span class="st-text">Las tres preguntas</span></a>
+    <a href="#sec-5" class="section-title"><span class="st-num">12</span><span class="st-text">Tradición · mando · mercado</span></a>
     <a href="#sec-cierre" class="section-title" data-st="cierre"><span class="st-num">✦</span><span class="st-text">Síntesis y autoevaluación</span></a>
   </nav>
 
@@ -808,12 +899,16 @@
     </div>
 
     <div class="hero-ficha">
-      <span class="hero-ficha-eyebrow">Ficha de la unidad</span>
+      <div class="hero-ficha-head">
+        <span class="hero-ficha-eyebrow">Ficha de la unidad</span>
+        <span class="hero-ficha-thread" aria-hidden="true"></span>
+        <span class="hero-ficha-time"><span class="hero-time-icon" aria-hidden="true">⏱</span>35–45 min de lectura</span>
+      </div>
       <div class="hero-meta">
         <div class="hero-meta-item"><span class="lbl">Materia</span><span class="val">Economía Política</span></div>
         <div class="hero-meta-item"><span class="lbl">Cátedra</span><span class="val">B</span></div>
-        <div class="hero-meta-item"><span class="lbl">Nivel</span><span class="val">Primer año</span></div>
-        <div class="hero-meta-item"><span class="lbl">Lectura</span><span class="val">⏱ 35–45 min</span></div>
+        <div class="hero-meta-item"><span class="lbl">Carreras</span><span class="val">Abogacía · Trabajo Social</span></div>
+        <div class="hero-meta-item"><span class="lbl">Nivel</span><span class="val">Primer año · Ciclo 2026</span></div>
       </div>
     </div>
 
@@ -914,163 +1009,9 @@
     </div>
   </section>
 
-  <!-- ═══════ SEC 3 · El problema económico ═══════ -->
-  <section class="seccion reveal" id="sec-3">
-    <span class="sec-eyebrow"><span class="sec-eyebrow-num">3</span> Heilbroner · el punto de partida</span>
-    <h2>El <span class="acento">problema económico</span></h2>
-    <div class="divider-flourish"><span>◆</span></div>
-    <p class="lead-p">«No solo de pan vive el hombre»… pero es evidente que <strong>sin pan no puede vivir</strong>. Para Robert Heilbroner, toda sociedad enfrenta un desafío básico e ineludible: garantizar su propia supervivencia material.</p>
-
-    <p>El punto de partida es la <strong>escasez</strong>: la naturaleza es «avara» y los bienes no nos son dados directamente. Pero atención —Heilbroner señala algo sorprendente— <span class="hl">el ser humano, y no la naturaleza, es la fuente de la mayoría de nuestros problemas económicos</span>. La escasez no depende solo de lo que la naturaleza rinde, sino también de los deseos siempre crecientes de la «naturaleza humana».</p>
-
-    <div class="callout">
-      <div class="callout-icon">⚙️</div>
-      <h4>Somos ricos como sociedad, no como individuos</h4>
-      <p>Cuanto más rica es una nación, más <strong>dependemos</strong> unos de otros. Casi nadie cultiva su comida ni fabrica su ropa: sobrevivimos gracias a una enorme <em>división del trabajo</em>. Nuestra abundancia está asegurada solo mientras funcione la cooperación organizada de millones de personas.</p>
-    </div>
-
-    <p>De aquí Heilbroner deriva que toda sociedad debe resolver <strong>dos tareas</strong> distintas pero relacionadas. Tocá cada tarjeta para ver el desafío oculto que encierra cada una:</p>
-
-    <div class="flipgrid" style="grid-template-columns: repeat(2,1fr);">
-      <div class="flip" tabindex="0">
-        <div class="flip-inner">
-          <div class="flip-face flip-front">
-            <span class="flip-q">1 · Producción</span>
-            <span class="flip-hint">↻ Tocá para ver</span>
-          </div>
-          <div class="flip-face flip-back">
-            <div class="flip-a-title">Movilizar el esfuerzo</div>
-            <p>No basta la técnica: hay que <strong>organizar instituciones</strong> que movilicen la energía humana hacia fines productivos <em>y</em> la asignen a las labores adecuadas. En 1933, EE.UU. tenía 13 millones de desocupados dispuestos a trabajar: faltaba el mecanismo social, no la naturaleza.</p>
-          </div>
-        </div>
-      </div>
-      <div class="flip v2" tabindex="0">
-        <div class="flip-inner">
-          <div class="flip-face flip-front">
-            <span class="flip-q">2 · Distribución</span>
-            <span class="flip-hint">↻ Tocá para ver</span>
-          </div>
-          <div class="flip-face flip-back">
-            <div class="flip-a-title">Repartir para continuar</div>
-            <p>Hay que distribuir lo producido de modo que se mantenga la <strong>capacidad</strong> y la <strong>voluntad</strong> de la gente para seguir trabajando. Una mala solución no siempre colapsa la economía: se manifiesta como intranquilidad social, política o incluso revoluciones.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="defstrip">
-      <div class="def-term">El problema básico de la economía</div>
-      <div class="def-body">Cómo las sociedades <strong>forjan y mantienen los vínculos</strong> que garantizan su supervivencia material, resolviendo las tareas gemelas de la <strong>producción</strong> y la <strong>distribución</strong>.</div>
-      <span class="def-source">Heilbroner · La formación de la sociedad económica</span>
-    </div>
-  </section>
-
-  <!-- ═══════ SEC 4 · Las tres preguntas ═══════ -->
-  <section class="seccion reveal" id="sec-4">
-    <span class="sec-eyebrow"><span class="sec-eyebrow-num">4</span> El problema, en tres preguntas</span>
-    <h2>Qué, cómo y <span class="acento">para quién</span> producir</h2>
-    <div class="divider-flourish"><span>◆</span></div>
-    <p class="lead-p">Existe una coincidencia bastante generalizada en la ciencia económica: <strong>toda economía concreta debe responder a tres grandes interrogantes</strong>. Según cómo esté organizado un sistema económico, los resolverá de una manera u otra.</p>
-
-    <div class="q3grid">
-      <div class="q3 a reveal-scale">
-        <span class="q3-big">?</span>
-        <div class="q3-icon">📦</div>
-        <h4>¿Qué producir?</h4>
-        <p>Qué tipo de bienes y servicios, y en qué cantidades.</p>
-      </div>
-      <div class="q3 b reveal-scale reveal-delay-1">
-        <span class="q3-big">?</span>
-        <div class="q3-icon">🏭</div>
-        <h4>¿Cómo producir?</h4>
-        <p>Con qué técnicas y qué recursos productivos.</p>
-      </div>
-      <div class="q3 c reveal-scale reveal-delay-2">
-        <span class="q3-big">?</span>
-        <div class="q3-icon">🤝</div>
-        <h4>¿Para quién producir?</h4>
-        <p>Cómo se distribuye entre los miembros la riqueza generada.</p>
-      </div>
-    </div>
-
-    <p>La pregunta «para quién producir» —la <strong>distribución</strong>— es, para la mirada de la cátedra, la más decisiva. Lo que interesa al analizar un sistema económico concreto es si logra una producción indispensable y una distribución adecuada, «de manera que logre una mejora persistente en la calidad de vida de su población, <span class="hl">sin poner en peligro la existencia de recursos para las generaciones futuras</span>».</p>
-
-    <div class="callout tip">
-      <div class="callout-icon">💡</div>
-      <h4>Conectá con lo anterior</h4>
-      <p>Estas tres preguntas son la versión ordenada de las dos tareas de Heilbroner: <strong>qué</strong> y <strong>cómo</strong> producir resuelven la <em>producción</em>; <strong>para quién</strong> producir resuelve la <em>distribución</em>.</p>
-    </div>
-  </section>
-
-  <!-- ═══════ SEC 5 · Tradición, mando, mercado ═══════ -->
-  <section class="seccion reveal" id="sec-5">
-    <span class="sec-eyebrow"><span class="sec-eyebrow-num">5</span> Las tres soluciones históricas</span>
-    <h2>Tradición, mando y <span class="acento">mercado</span></h2>
-    <div class="divider-flourish"><span>◆</span></div>
-    <p class="lead-p">A lo largo de la historia, la humanidad no ha resuelto los problemas de producción y distribución sino a través de <strong>tres caminos</strong>. Ya sea por separado o combinados entre sí, permiten a cualquier sociedad enfrentar su desafío económico. Explorá cada uno:</p>
-
-    <div class="tabs" id="tabsMercado">
-      <div class="tab-btns" role="tablist" aria-label="Las tres soluciones al problema económico">
-        <button class="tab-btn active" data-tab="trad" role="tab" aria-selected="true"><span class="tab-ico">🏛️</span>Tradición</button>
-        <button class="tab-btn" data-tab="mando" role="tab" aria-selected="false"><span class="tab-ico">👑</span>Mando</button>
-        <button class="tab-btn" data-tab="merc" role="tab" aria-selected="false"><span class="tab-ico">⚖️</span>Mercado</button>
-      </div>
-      <div class="tab-panels">
-        <div class="tab-panel active" data-panel="trad" role="tabpanel">
-          <h4>La tradición</h4>
-          <div class="tp-sub">La solución más antigua</div>
-          <p>La producción y la distribución se basan en <strong>procedimientos heredados del pasado</strong>, consolidados por ensayo y error y sostenidos por la ley, la costumbre y la creencia. El oficio pasa de padres a hijos; en el antiguo Egipto —cuenta Adam Smith— cambiar de ocupación era «el más abominable sacrilegio».</p>
-          <p><strong>Su límite:</strong> la solución es <em>estática</em>. Resuelve el problema económico, pero a expensas del <strong>progreso económico</strong>: una aldea puede repetir hoy las rutinas de hace mil años.</p>
-          <div class="tp-tags"><span class="tp-tag">Herencia</span><span class="tp-tag">Costumbre</span><span class="tp-tag">Estabilidad</span><span class="tp-tag">Sin cambio interno</span></div>
-        </div>
-        <div class="tab-panel" data-panel="mando" role="tabpanel">
-          <h4>El mando</h4>
-          <div class="tp-sub">La autoridad impuesta</div>
-          <p>El sistema se organiza según las <strong>órdenes de una autoridad económica</strong>. Los faraones movilizaron el esfuerzo para construir las pirámides; lo mismo la Gran Muralla china o, hoy, la planificación centralizada. En nuestra sociedad aparece en forma más moderada: los <em>impuestos</em> son mando económico.</p>
-          <p><strong>Su fuerza:</strong> a diferencia de la tradición, el mando <em>no</em> retarda el cambio: es «el instrumento más poderoso para reforzar la transformación económica». Puede ser democrático o totalitario: en sí mismo no merece elogio ni censura.</p>
-          <div class="tp-tags"><span class="tp-tag">Autoridad</span><span class="tp-tag">Planificación</span><span class="tp-tag">Órdenes</span><span class="tp-tag">Transformación</span></div>
-        </div>
-        <div class="tab-panel" data-panel="merc" role="tabpanel">
-          <h4>El mercado</h4>
-          <div class="tp-sub">Nadie manda, y sin embargo funciona</div>
-          <p>La sociedad se organiza a base del <strong>mercado</strong>: no se le asigna a nadie una tarea; cada persona decide por sí misma qué hacer, y aun así todos los empleos se cubren y la producción se equilibra. «Nadie dirige el mercado —se maneja él solo». Resulta la solución más <em>paradójica</em> y también la más interesante para quien estudia economía.</p>
-          <p>Es la que exige más conocimiento económico: en la tradición y el mando entendemos rápido cómo funciona todo; ante una sociedad de mercado, «nos encontramos perdidos si carecemos de conocimientos económicos».</p>
-          <div class="tp-tags"><span class="tp-tag">Oferta y demanda</span><span class="tp-tag">Precios</span><span class="tp-tag">Libre intercambio</span><span class="tp-tag">Descentralizado</span></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="callout warn">
-      <div class="callout-icon">!</div>
-      <h4>Ninguna sociedad es «pura»</h4>
-      <p>Ninguna sociedad moderna carece de elementos de <strong>mando</strong>, ni está desprovista de la influencia de la <strong>tradición</strong>. Los tres mecanismos conviven y se combinan: lo que cambia es cuál predomina.</p>
-    </div>
-
-    <div class="defstrip">
-      <div class="def-term">¿Qué es el mercado?</div>
-      <div class="def-body">El mercado es una <strong>abstracción</strong> donde se enfrentan <strong>compradores (demandantes)</strong> y <strong>vendedores (oferentes)</strong>, determinando el <strong>precio</strong> y la <strong>cantidad</strong> de lo que se intercambia.</div>
-      <span class="def-source">Cátedra B · Unidad 1</span>
-    </div>
-
-    <!-- QUIZ 1 -->
-    <div class="quiz" data-quiz="q1">
-      <span class="quiz-badge">✓ Quiz</span>
-      <p class="quiz-q">Una familia cultiva una huerta para su propio consumo y reparte la cosecha según lo que cada integrante hizo siempre. ¿Qué mecanismo predomina en esa distribución?</p>
-      <div class="quiz-options">
-        <button class="quiz-opt" data-correct="false" data-fb="No es lo más adecuado. En el mercado, la distribución se resuelve por el intercambio y los precios; acá no hay ni venta ni precios: se reparte según la costumbre.">
-          <span class="opt-letter">A</span><span>El mercado, porque hay producción y reparto.</span></button>
-        <button class="quiz-opt" data-correct="false" data-fb="No. El mando implica una autoridad que da órdenes y planifica. En la huerta familiar no hay una autoridad externa imponiendo el reparto: hay una costumbre compartida.">
-          <span class="opt-letter">B</span><span>El mando, porque alguien decide el reparto.</span></button>
-        <button class="quiz-opt" data-correct="true" data-fb="¡Correcto! Se reparte «según lo que cada integrante hizo siempre»: es una asignación heredada y sostenida por la costumbre. Ese es, exactamente, el mecanismo de la tradición.">
-          <span class="opt-letter">C</span><span>La tradición, porque el reparto sigue la costumbre.</span></button>
-      </div>
-      <div class="quiz-feedback" data-fb-for="q1"></div>
-    </div>
-  </section>
-
-  <!-- ═══════ SEC 6 · Ciencia social ═══════ -->
+  <!-- ═══════ SEC 3 (id: sec-6) · Ciencia social ═══════ -->
   <section class="seccion reveal" id="sec-6">
-    <span class="sec-eyebrow"><span class="sec-eyebrow-num">6</span> Demarco · el objeto de estudio</span>
+    <span class="sec-eyebrow"><span class="sec-eyebrow-num">3</span> Demarco · el objeto de estudio</span>
     <h2>La economía como <span class="acento">ciencia social</span></h2>
     <div class="divider-flourish"><span>◆</span></div>
     <p class="lead-p">El ser humano se relaciona con la <strong>naturaleza</strong> y con <strong>otros seres humanos</strong>. De ahí surgen dos grandes campos de la ciencia: las ciencias naturales (que estudian la relación con la naturaleza y sus leyes) y las <span class="hl">ciencias sociales</span>, que tienen por objeto a la persona en cuanto ser social.</p>
@@ -1114,9 +1055,9 @@
     </div>
   </section>
 
-  <!-- ═══════ SEC 7 · Conceptos de economía ═══════ -->
+  <!-- ═══════ SEC 4 (id: sec-7) · Conceptos de economía ═══════ -->
   <section class="seccion reveal" id="sec-7">
-    <span class="sec-eyebrow"><span class="sec-eyebrow-num">7</span> Distintos conceptos</span>
+    <span class="sec-eyebrow"><span class="sec-eyebrow-num">4</span> Distintos conceptos</span>
     <h2>¿Existe un solo <span class="acento">concepto de economía</span>?</h2>
     <div class="divider-flourish"><span>◆</span></div>
     <p class="lead-p">No. Existen <strong>múltiples definiciones</strong>. La interpretación de las relaciones económicas varía según la ideología y la perspectiva de quien investiga, y eso da origen a distintas teorías. Mirá tres miradas históricas:</p>
@@ -1146,11 +1087,11 @@
 
     <div class="defstrip">
       <div class="def-term">Definición adoptada por la cátedra</div>
-      <div class="def-body">La <strong>Economía Política</strong> es la ciencia social que estudia las <strong>relaciones económicas</strong> que establecen las personas para <strong>producir y distribuir</strong> bienes destinados a satisfacer necesidades, y las <strong>leyes científicas</strong> que rigen esos fenómenos.</div>
+      <div class="def-body">La <strong>Economía Política</strong> es la ciencia social que estudia las <strong>relaciones económicas</strong> que establecen las personas para <strong class="gloss" tabindex="0" data-def="Las dos tareas que toda sociedad debe resolver para sostenerse: organizar la producción de bienes y coordinar su reparto. Las vemos en detalle en «El problema económico».">producir y distribuir</strong> bienes destinados a satisfacer necesidades, y las <strong>leyes científicas</strong> que rigen esos fenómenos.</div>
       <span class="def-source">Cátedra B · a partir de Lafferriere y Frigerio</span>
     </div>
 
-    <p style="text-align:center;color:var(--color-text-muted);font-size:.92rem;">Su objeto de estudio incluye: empresas y organizaciones productivas · procesos de producción · mecanismos de distribución · funcionamiento del mercado · formación de precios · sistemas económicos.</p>
+    <p style="text-align:center;color:var(--color-text-muted);font-size:.92rem;">Su objeto de estudio incluye: empresas y organizaciones productivas · procesos de producción · mecanismos de distribución · funcionamiento del <span class="gloss" tabindex="0" data-def="Abstracción donde se enfrentan compradores (demandantes) y vendedores (oferentes), determinando el precio y la cantidad. Lo vemos en «Tradición, mando y mercado».">mercado</span> · formación de precios · sistemas económicos.</p>
 
     <!-- QUIZ 4 -->
     <div class="quiz" data-quiz="q4">
@@ -1168,9 +1109,9 @@
     </div>
   </section>
 
-  <!-- ═══════ SEC 8 · Desafíos metodológicos ═══════ -->
+  <!-- ═══════ SEC 5 (id: sec-8) · Desafíos metodológicos ═══════ -->
   <section class="seccion reveal" id="sec-8">
-    <span class="sec-eyebrow"><span class="sec-eyebrow-num">8</span> Dificultades del conocimiento</span>
+    <span class="sec-eyebrow"><span class="sec-eyebrow-num">5</span> Dificultades del conocimiento</span>
     <h2>Desafíos <span class="acento">metodológicos</span></h2>
     <div class="divider-flourish"><span>◆</span></div>
     <p class="lead-p">¿Por qué, si la economía es una ciencia, hay <strong>varias explicaciones</strong> para un mismo problema? Aquí retomamos la pausa de antes. Conocer a fondo la realidad económica choca con <strong>seis dificultades</strong> propias de las ciencias sociales:</p>
@@ -1215,9 +1156,9 @@
     </div>
   </section>
 
-  <!-- ═══════ SEC 9 · Método, leyes, teorías, modelos ═══════ -->
+  <!-- ═══════ SEC 6 (id: sec-9) · Método, leyes, teorías, modelos ═══════ -->
   <section class="seccion reveal" id="sec-9">
-    <span class="sec-eyebrow"><span class="sec-eyebrow-num">9</span> Cómo trabaja la ciencia económica</span>
+    <span class="sec-eyebrow"><span class="sec-eyebrow-num">6</span> Cómo trabaja la ciencia económica</span>
     <h2>Método, leyes, teorías y <span class="acento">modelos</span></h2>
     <div class="divider-flourish"><span>◆</span></div>
     <p class="lead-p">Como toda ciencia fáctica, la economía parte de la <strong>observación</strong>, plantea hipótesis, establece leyes explicativas y busca anticipar el comportamiento futuro de los fenómenos. Este es su recorrido:</p>
@@ -1306,9 +1247,9 @@
     </div>
   </section>
 
-  <!-- ═══════ SEC 10 · Divisiones ═══════ -->
+  <!-- ═══════ SEC 7 (id: sec-10) · Divisiones ═══════ -->
   <section class="seccion reveal" id="sec-10">
-    <span class="sec-eyebrow"><span class="sec-eyebrow-num">10</span> Rossetti · el mapa de la economía</span>
+    <span class="sec-eyebrow"><span class="sec-eyebrow-num">7</span> Rossetti · el mapa de la economía</span>
     <h2>Las divisiones principales <span class="acento">de la economía</span></h2>
     <div class="divider-flourish"><span>◆</span></div>
     <p class="lead-p">Según la mayoría de los autores, la ciencia económica tiene <strong>tres divisiones principales</strong>, agrupadas en dos grandes campos: la <em>economía positiva</em> (qué es y cómo es) y la <em>economía normativa</em> (cómo debería ser).</p>
@@ -1378,9 +1319,9 @@
     </div>
   </section>
 
-  <!-- ═══════ SEC 11 · Política económica ═══════ -->
+  <!-- ═══════ SEC 8 (id: sec-11) · Política económica ═══════ -->
   <section class="seccion reveal" id="sec-11">
-    <span class="sec-eyebrow"><span class="sec-eyebrow-num">11</span> La acción sobre la economía</span>
+    <span class="sec-eyebrow"><span class="sec-eyebrow-num">8</span> La acción sobre la economía</span>
     <h2>Política económica: concepto, <span class="acento">formulación y objetivos</span></h2>
     <div class="divider-flourish"><span>◆</span></div>
     <p class="lead-p">Las personas conocen la realidad <strong>para actuar sobre ella</strong> y transformarla. Ahí entra la política económica: parte de una situación inicial (con problemas) y busca llegar a una situación ideal (los objetivos).</p>
@@ -1440,9 +1381,9 @@
     </div>
   </section>
 
-  <!-- ═══════ SEC 12 · Instrumentos ═══════ -->
+  <!-- ═══════ SEC 9 (id: sec-12) · Instrumentos ═══════ -->
   <section class="seccion reveal" id="sec-12">
-    <span class="sec-eyebrow"><span class="sec-eyebrow-num">12</span> El Estado en acción</span>
+    <span class="sec-eyebrow"><span class="sec-eyebrow-num">9</span> El Estado en acción</span>
     <h2>Instrumentos <span class="acento">de acción</span></h2>
     <div class="divider-flourish"><span>◆</span></div>
     <p class="lead-p">El Estado dispone de diversos instrumentos para conducir el sistema económico hacia los objetivos predeterminados. Los más significativos se correlacionan con la teoría macroeconómica.</p>
@@ -1486,6 +1427,166 @@
     </div>
   </section>
 
+  <!-- ═══════ PUENTE · cierre de la primera mitad ═══════ -->
+  <div class="tramo reveal">
+    <span class="tramo-eyebrow">Segunda parte</span>
+    <p>Hasta acá recorrimos <strong>qué es la Economía Política</strong>, cómo conoce y con qué instrumentos actúa. Nos queda la pregunta de fondo: <strong>¿cuál es el problema que toda sociedad debe resolver?</strong> Con las herramientas ya en la mano, volvemos al principio de todo.</p>
+  </div>
+
+  <!-- ═══════ SEC 10 (id: sec-3) · El problema económico ═══════ -->
+  <section class="seccion reveal" id="sec-3">
+    <span class="sec-eyebrow"><span class="sec-eyebrow-num">10</span> Heilbroner · la raíz del problema</span>
+    <h2>El <span class="acento">problema económico</span></h2>
+    <div class="divider-flourish"><span>◆</span></div>
+    <p class="lead-p">«No solo de pan vive el hombre»… pero es evidente que <strong>sin pan no puede vivir</strong>. Para Robert Heilbroner, toda sociedad enfrenta un desafío básico e ineludible: garantizar su propia supervivencia material.</p>
+
+    <p>En la base de todo está la <strong>escasez</strong>: la naturaleza es «avara» y los bienes no nos son dados directamente. Pero atención —Heilbroner señala algo sorprendente— <span class="hl">el ser humano, y no la naturaleza, es la fuente de la mayoría de nuestros problemas económicos</span>. La escasez no depende solo de lo que la naturaleza rinde, sino también de los deseos siempre crecientes de la «naturaleza humana».</p>
+
+    <div class="callout">
+      <div class="callout-icon">⚙️</div>
+      <h4>Somos ricos como sociedad, no como individuos</h4>
+      <p>Cuanto más rica es una nación, más <strong>dependemos</strong> unos de otros. Casi nadie cultiva su comida ni fabrica su ropa: sobrevivimos gracias a una enorme <em>división del trabajo</em>. Nuestra abundancia está asegurada solo mientras funcione la cooperación organizada de millones de personas.</p>
+    </div>
+
+    <p>De aquí Heilbroner deriva que toda sociedad debe resolver <strong>dos tareas</strong> distintas pero relacionadas. Tocá cada tarjeta para ver el desafío oculto que encierra cada una:</p>
+
+    <div class="flipgrid" style="grid-template-columns: repeat(2,1fr);">
+      <div class="flip" tabindex="0">
+        <div class="flip-inner">
+          <div class="flip-face flip-front">
+            <span class="flip-q">1 · Producción</span>
+            <span class="flip-hint">↻ Tocá para ver</span>
+          </div>
+          <div class="flip-face flip-back">
+            <div class="flip-a-title">Movilizar el esfuerzo</div>
+            <p>No basta la técnica: hay que <strong>organizar instituciones</strong> que movilicen la energía humana hacia fines productivos <em>y</em> la asignen a las labores adecuadas. En 1933, EE.UU. tenía 13 millones de desocupados dispuestos a trabajar: faltaba el mecanismo social, no la naturaleza.</p>
+          </div>
+        </div>
+      </div>
+      <div class="flip v2" tabindex="0">
+        <div class="flip-inner">
+          <div class="flip-face flip-front">
+            <span class="flip-q">2 · Distribución</span>
+            <span class="flip-hint">↻ Tocá para ver</span>
+          </div>
+          <div class="flip-face flip-back">
+            <div class="flip-a-title">Repartir para continuar</div>
+            <p>Hay que distribuir lo producido de modo que se mantenga la <strong>capacidad</strong> y la <strong>voluntad</strong> de la gente para seguir trabajando. Una mala solución no siempre colapsa la economía: se manifiesta como intranquilidad social, política o incluso revoluciones.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="defstrip">
+      <div class="def-term">El problema básico de la economía</div>
+      <div class="def-body">Cómo las sociedades <strong>forjan y mantienen los vínculos</strong> que garantizan su supervivencia material, resolviendo las tareas gemelas de la <strong>producción</strong> y la <strong>distribución</strong>.</div>
+      <span class="def-source">Heilbroner · La formación de la sociedad económica</span>
+    </div>
+  </section>
+
+  <!-- ═══════ SEC 11 (id: sec-4) · Las tres preguntas ═══════ -->
+  <section class="seccion reveal" id="sec-4">
+    <span class="sec-eyebrow"><span class="sec-eyebrow-num">11</span> El problema, en tres preguntas</span>
+    <h2>Qué, cómo y <span class="acento">para quién</span> producir</h2>
+    <div class="divider-flourish"><span>◆</span></div>
+    <p class="lead-p">Existe una coincidencia bastante generalizada en la ciencia económica: <strong>toda economía concreta debe responder a tres grandes interrogantes</strong>. Según cómo esté organizado un sistema económico, los resolverá de una manera u otra.</p>
+
+    <div class="q3grid">
+      <div class="q3 a reveal-scale">
+        <span class="q3-big">?</span>
+        <div class="q3-icon">📦</div>
+        <h4>¿Qué producir?</h4>
+        <p>Qué tipo de bienes y servicios, y en qué cantidades.</p>
+      </div>
+      <div class="q3 b reveal-scale reveal-delay-1">
+        <span class="q3-big">?</span>
+        <div class="q3-icon">🏭</div>
+        <h4>¿Cómo producir?</h4>
+        <p>Con qué técnicas y qué recursos productivos.</p>
+      </div>
+      <div class="q3 c reveal-scale reveal-delay-2">
+        <span class="q3-big">?</span>
+        <div class="q3-icon">🤝</div>
+        <h4>¿Para quién producir?</h4>
+        <p>Cómo se distribuye entre los miembros la riqueza generada.</p>
+      </div>
+    </div>
+
+    <p>La pregunta «para quién producir» —la <strong>distribución</strong>— es, para la mirada de la cátedra, la más decisiva. Lo que interesa al analizar un sistema económico concreto es si logra una producción indispensable y una distribución adecuada, «de manera que logre una mejora persistente en la calidad de vida de su población, <span class="hl">sin poner en peligro la existencia de recursos para las generaciones futuras</span>».</p>
+
+    <div class="callout tip">
+      <div class="callout-icon">💡</div>
+      <h4>Conectá con lo anterior</h4>
+      <p>Estas tres preguntas son la versión ordenada de las dos tareas de Heilbroner: <strong>qué</strong> y <strong>cómo</strong> producir resuelven la <em>producción</em>; <strong>para quién</strong> producir resuelve la <em>distribución</em>.</p>
+    </div>
+  </section>
+
+  <!-- ═══════ SEC 12 (id: sec-5) · Tradición, mando, mercado ═══════ -->
+  <section class="seccion reveal" id="sec-5">
+    <span class="sec-eyebrow"><span class="sec-eyebrow-num">12</span> Las tres soluciones históricas</span>
+    <h2>Tradición, mando y <span class="acento">mercado</span></h2>
+    <div class="divider-flourish"><span>◆</span></div>
+    <p class="lead-p">A lo largo de la historia, la humanidad no ha resuelto los problemas de producción y distribución sino a través de <strong>tres caminos</strong>. Ya sea por separado o combinados entre sí, permiten a cualquier sociedad enfrentar su desafío económico. Explorá cada uno:</p>
+
+    <div class="tabs" id="tabsMercado">
+      <div class="tab-btns" role="tablist" aria-label="Las tres soluciones al problema económico">
+        <button class="tab-btn active" data-tab="trad" role="tab" aria-selected="true"><span class="tab-ico">🏛️</span>Tradición</button>
+        <button class="tab-btn" data-tab="mando" role="tab" aria-selected="false"><span class="tab-ico">👑</span>Mando</button>
+        <button class="tab-btn" data-tab="merc" role="tab" aria-selected="false"><span class="tab-ico">⚖️</span>Mercado</button>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel active" data-panel="trad" role="tabpanel">
+          <h4>La tradición</h4>
+          <div class="tp-sub">La solución más antigua</div>
+          <p>La producción y la distribución se basan en <strong>procedimientos heredados del pasado</strong>, consolidados por ensayo y error y sostenidos por la ley, la costumbre y la creencia. El oficio pasa de padres a hijos; en el antiguo Egipto —cuenta Adam Smith— cambiar de ocupación era «el más abominable sacrilegio».</p>
+          <p><strong>Su límite:</strong> la solución es <em>estática</em>. Resuelve el problema económico, pero a expensas del <strong>progreso económico</strong>: una aldea puede repetir hoy las rutinas de hace mil años.</p>
+          <div class="tp-tags"><span class="tp-tag">Herencia</span><span class="tp-tag">Costumbre</span><span class="tp-tag">Estabilidad</span><span class="tp-tag">Sin cambio interno</span></div>
+        </div>
+        <div class="tab-panel" data-panel="mando" role="tabpanel">
+          <h4>El mando</h4>
+          <div class="tp-sub">La autoridad impuesta</div>
+          <p>El sistema se organiza según las <strong>órdenes de una autoridad económica</strong>. Los faraones movilizaron el esfuerzo para construir las pirámides; lo mismo la Gran Muralla china o, hoy, la planificación centralizada. En nuestra sociedad aparece en forma más moderada: los <em>impuestos</em> son mando económico.</p>
+          <p><strong>Su fuerza:</strong> a diferencia de la tradición, el mando <em>no</em> retarda el cambio: es «el instrumento más poderoso para reforzar la transformación económica». Puede ser democrático o totalitario: en sí mismo no merece elogio ni censura.</p>
+          <div class="tp-tags"><span class="tp-tag">Autoridad</span><span class="tp-tag">Planificación</span><span class="tp-tag">Órdenes</span><span class="tp-tag">Transformación</span></div>
+        </div>
+        <div class="tab-panel" data-panel="merc" role="tabpanel">
+          <h4>El mercado</h4>
+          <div class="tp-sub">Nadie manda, y sin embargo funciona</div>
+          <p>La sociedad se organiza a base del <strong>mercado</strong>: no se le asigna a nadie una tarea; cada persona decide por sí misma qué hacer, y aun así todos los empleos se cubren y la producción se equilibra. «Nadie dirige el mercado —se maneja él solo». Resulta la solución más <em>paradójica</em> y también la más interesante para quien estudia economía.</p>
+          <p>Es la que exige más conocimiento económico: en la tradición y el mando entendemos rápido cómo funciona todo; ante una sociedad de mercado, «nos encontramos perdidos si carecemos de conocimientos económicos».</p>
+          <div class="tp-tags"><span class="tp-tag">Oferta y demanda</span><span class="tp-tag">Precios</span><span class="tp-tag">Libre intercambio</span><span class="tp-tag">Descentralizado</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout warn">
+      <div class="callout-icon">!</div>
+      <h4>Ninguna sociedad es «pura»</h4>
+      <p>Ninguna sociedad moderna carece de elementos de <strong>mando</strong>, ni está desprovista de la influencia de la <strong>tradición</strong>. Los tres mecanismos conviven y se combinan: lo que cambia es cuál predomina.</p>
+    </div>
+
+    <div class="defstrip">
+      <div class="def-term">¿Qué es el mercado?</div>
+      <div class="def-body">El mercado es una <strong>abstracción</strong> donde se enfrentan <strong>compradores (demandantes)</strong> y <strong>vendedores (oferentes)</strong>, determinando el <strong>precio</strong> y la <strong>cantidad</strong> de lo que se intercambia.</div>
+      <span class="def-source">Cátedra B · Unidad 1</span>
+    </div>
+
+    <!-- QUIZ 1 -->
+    <div class="quiz" data-quiz="q1">
+      <span class="quiz-badge">✓ Quiz</span>
+      <p class="quiz-q">Una familia cultiva una huerta para su propio consumo y reparte la cosecha según lo que cada integrante hizo siempre. ¿Qué mecanismo predomina en esa distribución?</p>
+      <div class="quiz-options">
+        <button class="quiz-opt" data-correct="false" data-fb="No es lo más adecuado. En el mercado, la distribución se resuelve por el intercambio y los precios; acá no hay ni venta ni precios: se reparte según la costumbre.">
+          <span class="opt-letter">A</span><span>El mercado, porque hay producción y reparto.</span></button>
+        <button class="quiz-opt" data-correct="false" data-fb="No. El mando implica una autoridad que da órdenes y planifica. En la huerta familiar no hay una autoridad externa imponiendo el reparto: hay una costumbre compartida.">
+          <span class="opt-letter">B</span><span>El mando, porque alguien decide el reparto.</span></button>
+        <button class="quiz-opt" data-correct="true" data-fb="¡Correcto! Se reparte «según lo que cada integrante hizo siempre»: es una asignación heredada y sostenida por la costumbre. Ese es, exactamente, el mecanismo de la tradición.">
+          <span class="opt-letter">C</span><span>La tradición, porque el reparto sigue la costumbre.</span></button>
+      </div>
+      <div class="quiz-feedback" data-fb-for="q1"></div>
+    </div>
+  </section>
+
   <!-- ═══════ CIERRE ═══════ -->
   <section class="seccion reveal" id="sec-cierre">
     <span class="sec-eyebrow"><span class="sec-eyebrow-num">✦</span> Cierre de la unidad</span>
@@ -1496,10 +1597,10 @@
     <div class="ideas">
       <div class="idea"><span class="idea-num">1</span><div><h4>Tres dimensiones</h4><p>La Economía Política estudia los problemas económicos, sus causas y sus soluciones. Hay acuerdo sobre los problemas; la diversidad aparece en causas y soluciones.</p></div></div>
       <div class="idea"><span class="idea-num">2</span><div><h4>Ciencia, no opinión</h4><p>Frente al conocimiento vulgar (superficial), la ciencia busca la esencia de los fenómenos con método riguroso y verificación.</p></div></div>
-      <div class="idea"><span class="idea-num">3</span><div><h4>Un problema básico</h4><p>Toda sociedad debe resolver la producción y la distribución, respondiendo qué, cómo y para quién producir.</p></div></div>
-      <div class="idea"><span class="idea-num">4</span><div><h4>Tres soluciones históricas</h4><p>Tradición, mando y mercado: mecanismos que conviven y se combinan en toda sociedad concreta.</p></div></div>
-      <div class="idea"><span class="idea-num">5</span><div><h4>Una ciencia social</h4><p>Lo económico es una dimensión del sistema social, entrelazada con lo político, lo cultural y lo jurídico. Por eso incide la ideología.</p></div></div>
-      <div class="idea"><span class="idea-num">6</span><div><h4>Ciencia y acción</h4><p>La economía política explica; la política económica actúa. Se dividen en positiva/normativa, micro/macro, y usan instrumentos fiscales, monetarios, cambiarios y de ingresos.</p></div></div>
+      <div class="idea"><span class="idea-num">3</span><div><h4>Una ciencia social</h4><p>Lo económico es una dimensión del sistema social, entrelazada con lo político, lo cultural y lo jurídico. Por eso incide la ideología.</p></div></div>
+      <div class="idea"><span class="idea-num">4</span><div><h4>Ciencia y acción</h4><p>La economía política explica; la política económica actúa. Se dividen en positiva/normativa, micro/macro, y usan instrumentos fiscales, monetarios, cambiarios y de ingresos.</p></div></div>
+      <div class="idea"><span class="idea-num">5</span><div><h4>Un problema básico</h4><p>Toda sociedad debe resolver la producción y la distribución, respondiendo qué, cómo y para quién producir.</p></div></div>
+      <div class="idea"><span class="idea-num">6</span><div><h4>Tres soluciones históricas</h4><p>Tradición, mando y mercado: mecanismos que conviven y se combinan en toda sociedad concreta.</p></div></div>
     </div>
 
     <h3>Glosario de la unidad</h3>
@@ -1604,16 +1705,16 @@
     <h3>Autoevaluación: ¿puedo…?</h3>
     <p>Marcá cada afirmación que sientas que ya podés hacer. Es tu termómetro personal —no se guarda ninguna nota, solo tu propio control.</p>
     <div class="checklist" id="checklist">
-      <div class="check-item"><span class="check-box">✓</span><span class="check-txt">Distinguir las <strong>tres dimensiones</strong> que estudia la Economía Política (problemas, causas, soluciones).</span></div>
-      <div class="check-item"><span class="check-box">✓</span><span class="check-txt">Diferenciar el <strong>conocimiento vulgar</strong> del <strong>científico</strong> con un ejemplo propio.</span></div>
-      <div class="check-item"><span class="check-box">✓</span><span class="check-txt">Explicar el <strong>problema económico</strong> y las dos tareas (producción y distribución) según Heilbroner.</span></div>
-      <div class="check-item"><span class="check-box">✓</span><span class="check-txt">Enunciar las <strong>tres preguntas</strong>: qué, cómo y para quién producir.</span></div>
-      <div class="check-item"><span class="check-box">✓</span><span class="check-txt">Caracterizar la <strong>tradición, el mando y el mercado</strong> como soluciones al problema económico.</span></div>
-      <div class="check-item"><span class="check-box">✓</span><span class="check-txt">Justificar por qué la economía es una <strong>ciencia social</strong> y qué es un sistema/subsistema.</span></div>
-      <div class="check-item"><span class="check-box">✓</span><span class="check-txt">Reconocer la <strong>definición de cátedra</strong> y por qué se distingue de otras.</span></div>
-      <div class="check-item"><span class="check-box">✓</span><span class="check-txt">Listar las <strong>dificultades</strong> del conocimiento económico y el papel de la ideología.</span></div>
-      <div class="check-item"><span class="check-box">✓</span><span class="check-txt">Describir las <strong>divisiones</strong> de la economía (positiva/normativa, micro/macro).</span></div>
-      <div class="check-item"><span class="check-box">✓</span><span class="check-txt">Diferenciar <strong>economía política</strong> de <strong>política económica</strong>, con sus objetivos e instrumentos.</span></div>
+      <div class="check-item" data-check="c1"><span class="check-box">✓</span><span class="check-txt">Distinguir las <strong>tres dimensiones</strong> que estudia la Economía Política (problemas, causas, soluciones).</span></div>
+      <div class="check-item" data-check="c2"><span class="check-box">✓</span><span class="check-txt">Diferenciar el <strong>conocimiento vulgar</strong> del <strong>científico</strong> con un ejemplo propio.</span></div>
+      <div class="check-item" data-check="c6"><span class="check-box">✓</span><span class="check-txt">Justificar por qué la economía es una <strong>ciencia social</strong> y qué es un sistema/subsistema.</span></div>
+      <div class="check-item" data-check="c7"><span class="check-box">✓</span><span class="check-txt">Reconocer la <strong>definición de cátedra</strong> y por qué se distingue de otras.</span></div>
+      <div class="check-item" data-check="c8"><span class="check-box">✓</span><span class="check-txt">Listar las <strong>dificultades</strong> del conocimiento económico y el papel de la ideología.</span></div>
+      <div class="check-item" data-check="c9"><span class="check-box">✓</span><span class="check-txt">Describir las <strong>divisiones</strong> de la economía (positiva/normativa, micro/macro).</span></div>
+      <div class="check-item" data-check="c10"><span class="check-box">✓</span><span class="check-txt">Diferenciar <strong>economía política</strong> de <strong>política económica</strong>, con sus objetivos e instrumentos.</span></div>
+      <div class="check-item" data-check="c3"><span class="check-box">✓</span><span class="check-txt">Explicar el <strong>problema económico</strong> y las dos tareas (producción y distribución) según Heilbroner.</span></div>
+      <div class="check-item" data-check="c4"><span class="check-box">✓</span><span class="check-txt">Enunciar las <strong>tres preguntas</strong>: qué, cómo y para quién producir.</span></div>
+      <div class="check-item" data-check="c5"><span class="check-box">✓</span><span class="check-txt">Caracterizar la <strong>tradición, el mando y el mercado</strong> como soluciones al problema económico.</span></div>
     </div>
     <div class="check-progress" id="checkProgress">0 de 10 completadas</div>
 
@@ -1631,10 +1732,10 @@
     <ul class="obj-list">
       <li><span class="obj-check">✓</span><span><strong>Comprender</strong> el objeto de estudio de la Economía Política y su carácter de ciencia social.</span></li>
       <li><span class="obj-check">✓</span><span><strong>Distinguir</strong> el conocimiento científico del conocimiento vulgar y valorar el porqué del método.</span></li>
-      <li><span class="obj-check">✓</span><span><strong>Identificar</strong> el problema económico y las tres preguntas fundamentales de todo sistema.</span></li>
-      <li><span class="obj-check">✓</span><span><strong>Analizar</strong> las tres resoluciones históricas —tradición, mando y mercado— y reconocerlas en casos concretos.</span></li>
       <li><span class="obj-check">✓</span><span><strong>Relacionar</strong> las divisiones de la economía y diferenciar la economía política de la política económica.</span></li>
       <li><span class="obj-check">✓</span><span><strong>Reconocer</strong> los objetivos e instrumentos de la política económica.</span></li>
+      <li><span class="obj-check">✓</span><span><strong>Identificar</strong> el problema económico y las tres preguntas fundamentales de todo sistema.</span></li>
+      <li><span class="obj-check">✓</span><span><strong>Analizar</strong> las tres resoluciones históricas —tradición, mando y mercado— y reconocerlas en casos concretos.</span></li>
     </ul>
   </section>
 
@@ -1755,6 +1856,8 @@
     <div class="docend-reset-wrap">
       <button class="docend-reset" id="resetBtn" type="button">↺ Reiniciar mi progreso en esta unidad</button>
     </div>
+
+    <p class="docend-version" title="Versión de este documento">v2.1</p>
 
   </div>
 </footer>
@@ -2046,11 +2149,14 @@
       confetti(); showToast('🏆','¡Unidad 1 dominada!','Completaste toda la autoevaluación.');
     }
   }
-  checkItems.forEach(function(item, i){
-    if(state.checks[i]) item.classList.add('done');
+  // El estado se guarda por data-check (clave estable), no por posición:
+  // así se puede reordenar la lista sin que los tildes salten de ítem.
+  checkItems.forEach(function(item){
+    var k = item.getAttribute('data-check');
+    if(state.checks[k]) item.classList.add('done');
     item.addEventListener('click', function(){
       item.classList.toggle('done');
-      state.checks[i] = item.classList.contains('done'); save(state);
+      state.checks[k] = item.classList.contains('done'); save(state);
       updateCheckProgress();
     });
   });
