@@ -660,6 +660,15 @@
     .magg-tag { font-size: 1.25rem; }
   }
 
+  /* ════════ Chips de efecto sobre base / oferta (sección 9) ════════
+     Verde = sube · ámbar = baja · gris = no cambia. Sin rojo (criterio andragógico). */
+  .efectos { display: flex; flex-wrap: wrap; gap: 7px; margin: 4px 0 10px; }
+  .efecto { display: inline-flex; align-items: center; gap: 6px; font-size: .82rem; font-weight: 700; padding: 4px 11px; border-radius: 50px; border: 1px solid; font-variant-numeric: tabular-nums; }
+  .efecto .ef-lbl { font-size: .6rem; letter-spacing: 1.2px; text-transform: uppercase; font-weight: 800; opacity: .82; }
+  .efecto.sube  { background: rgba(39,174,96,.1);   color: #1e7a45; border-color: rgba(39,174,96,.32); }
+  .efecto.baja  { background: rgba(230,126,34,.1);  color: var(--color-amber-dark); border-color: rgba(230,126,34,.32); }
+  .efecto.igual { background: rgba(102,102,102,.07); color: var(--color-text-muted); border-color: var(--color-border-card); }
+
   /* Enlaces de contenido (dentro de párrafos y callouts) — violeta del canon */
   .seccion p a, .callout a, .defstrip a { color: var(--color-primary); text-decoration: underline; text-underline-offset: 2px; text-decoration-thickness: 1.5px; font-weight: 600; transition: color .2s; }
   .seccion p a:hover, .callout a:hover, .defstrip a:hover { color: var(--color-primary-dark); }
@@ -1143,8 +1152,8 @@
   <div class="hero-glow g2"></div>
   <div class="hero-inner">
     <span class="hero-tag">Unidad 6 · Sector Monetario</span>
-    <h1>¿Qué es —de verdad— el <em>dinero</em>?</h1>
-    <p class="hero-lead">La Unidad 5 cerró mirando el tipo de cambio; ahora entramos al corazón del sistema: el dinero mismo. ¿Por qué un papel sin valor propio <em>compra cosas</em>? ¿Quién lo crea: el Estado o los bancos? ¿Cómo hace el Banco Central para que haya <em>más o menos</em> dinero circulando? Son las preguntas que vertebran el <em>sector monetario</em>, y esta unidad las va respondiendo una por una.</p>
+    <h1>¿Qué es el <em>dinero</em>?</h1>
+    <p class="hero-lead">La Unidad 5 cerró mirando el tipo de cambio; ahora entramos al corazón del sistema: el dinero mismo. ¿Por qué un papel sin valor propio <em>sirve para comprar cosas</em>? ¿Quién lo crea: el Estado o los bancos? ¿Cómo hace el Banco Central para que haya <em>más o menos</em> dinero circulando? Son las preguntas que vertebran el <em>sector monetario</em>, y esta unidad las va respondiendo una por una.</p>
 
     <div class="hero-chips-head">
       <span class="hero-chips-eyebrow">Voces de la unidad</span>
@@ -1177,7 +1186,7 @@
         </div>
         <div class="hero-meta-item is-time">
           <svg class="mi-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
-          <span class="lbl">Lectura</span><span class="val">45–55 min</span>
+          <span class="lbl">Lectura</span><span class="val">50–60 min</span>
         </div>
       </div>
     </div>
@@ -1726,7 +1735,7 @@
 
     <div class="defstrip">
       <div class="def-term">Base monetaria</div>
-      <div class="def-body">Es la <strong>creación primaria del dinero</strong> que realiza el Banco Central de un país: el valor de los <strong>billetes y monedas</strong> que emite. Cuando el BCRA compra dólares acumula reservas, emite pesos y aumentan tanto su activo como su pasivo.</div>
+      <div class="def-body">Es la <strong>creación primaria del dinero</strong> que realiza el Banco Central de un país: el valor de los <strong>billetes y monedas</strong> que emite. Cuando el BCRA compra dólares acumula reservas, emite pesos y aumentan tanto su activo como su pasivo. Pérez Enrri la llama también <strong>«dinero de alta potencia»</strong>: es la materia prima que, al entrar al sistema bancario, se multiplica.</div>
       <span class="def-source">Cátedra B · Unidad 6 (sobre Pérez Enrri)</span>
     </div>
 
@@ -1785,7 +1794,7 @@
     <span class="sec-eyebrow"><span class="sec-eyebrow-num">9</span> Medir el dinero</span>
     <h2>De la base a la oferta: los <span class="acento">agregados</span></h2>
     <div class="divider-flourish"><span>◆</span></div>
-    <p class="lead-p">Ya tenemos las dos piezas: la <strong>creación primaria</strong> (el Banco Central) y la <strong>creación secundaria</strong> (los bancos). Sumadas, dan la cantidad total de dinero de una economía. Pero, ¿todo el dinero es igual de «dinero»? No: se ordena en <strong>agregados</strong> según su liquidez.</p>
+    <p class="lead-p">Ya tenemos las dos piezas: la <strong>creación primaria</strong> (el Banco Central) y la <strong>creación secundaria</strong> (los bancos). Sumadas dan la cantidad total de dinero de una economía. Ahora vamos a ponerle nombre y medida: en qué se diferencian la <strong>base</strong> y la <strong>oferta monetaria</strong>, qué hace que cada una crezca o se achique, y cómo se ordena todo ese dinero según su <strong>liquidez</strong>.</p>
 
     <h3>Base monetaria vs. oferta monetaria</h3>
     <div class="comp-table reveal-scale">
@@ -1815,6 +1824,31 @@
       <span class="def-source">Cátedra B · Unidad 6 · Beker &amp; Mochón, cap. 14</span>
     </div>
 
+    <div class="formula soft">
+      <div class="f-eq">Oferta monetaria = <em>Circulante en el público</em> + <em>Depósitos</em></div>
+      <div class="f-cap">Beker &amp; Mochón, cap. 14</div>
+    </div>
+
+    <div class="callout key">
+      <div class="callout-icon">🔑</div>
+      <h4>Misma C, distinto segundo término</h4>
+      <p>Poné las dos fórmulas una al lado de la otra. Las dos <strong>arrancan igual</strong>: el circulante en poder del público. Lo que cambia es lo que se le suma. La base agrega solo las <strong>reservas de los bancos</strong> —lo que quedó inmovilizado por el encaje—; la oferta agrega <strong>todos los depósitos del público</strong>. Como los depósitos son muy superiores a los encajes, <span class="hl">la oferta monetaria es siempre mayor que la base</span>. Esa es, en una línea, la diferencia entre una y otra.</p>
+    </div>
+
+    <h3>El puente entre las dos: el multiplicador</h3>
+    <p>¿Cuánto mayor? Depende del <strong>multiplicador</strong> que viste al estudiar el encaje: cada peso que el Banco Central emite se convierte en varios pesos de oferta, porque el sistema bancario lo presta una y otra vez.</p>
+
+    <div class="formula soft">
+      <div class="f-eq">Oferta monetaria = <em>multiplicador</em> × <em>Base monetaria</em></div>
+      <div class="f-cap">Pérez Enrri, cap. 10</div>
+    </div>
+
+    <div class="callout data">
+      <div class="callout-icon">ƒ</div>
+      <h4>El mismo cálculo, con números</h4>
+      <p>Con un encaje del 20&nbsp;%, el multiplicador es <strong>5</strong>. Entonces una creación primaria de <strong>$100</strong> puede transformarse en <strong>$500</strong> de oferta monetaria. El Banco Central emitió $100; los otros $400 los creó el sistema bancario al prestar.<span class="src">Pérez Enrri · cap. 10</span></p>
+    </div>
+
     <h3>Factores que mueven la base monetaria</h3>
     <div class="comp-table reveal-scale">
       <div class="comp-row comp-head">
@@ -1823,8 +1857,12 @@
       </div>
       <div class="comp-body">
         <div class="comp-row">
-          <div>Superávit de balanza de pagos.</div>
-          <div>Déficit de balanza de pagos.</div>
+          <div><strong>Compra de divisas</strong> (dólares u oro): el BCRA emite pesos para pagarlas.</div>
+          <div><strong>Venta de divisas</strong> (dólares u oro): el BCRA retira los pesos que recibe.</div>
+        </div>
+        <div class="comp-row">
+          <div>Superávit de balanza de pagos: entran dólares y el BCRA los compra.</div>
+          <div>Déficit de balanza de pagos: salen dólares y el BCRA los vende.</div>
         </div>
         <div class="comp-row">
           <div>Déficit de presupuesto.</div>
@@ -1845,6 +1883,106 @@
       <div class="callout-icon">!</div>
       <h4>Un matiz sobre el «déficit de presupuesto»</h4>
       <p>El déficit fiscal aumenta la base monetaria <strong>solo cuando el Tesoro lo financia con emisión del Banco Central</strong> —es decir, cuando le pide al BCRA que emita para cubrir el rojo—. Si el déficit se financia con deuda (colocando bonos en el mercado), no necesariamente crece la base. El esquema de cátedra supone el caso de financiamiento con emisión.</p>
+    </div>
+
+    <h3>Factores que mueven la oferta monetaria</h3>
+    <p>Si la oferta es <em>multiplicador × base</em>, entonces puede moverse por <strong>dos caminos distintos</strong>: porque cambia la <strong>base</strong> (el Banco Central emite o absorbe) o porque cambia el <strong>multiplicador</strong> (cambia cuánto se multiplica cada peso que ya existe). El segundo camino es el que suele pasarse por alto.</p>
+
+    <div class="comp-table reveal-scale">
+      <div class="comp-row comp-head">
+        <div>Aumenta la oferta <span class="badge-v badge-c">más dinero</span></div>
+        <div>Disminuye la oferta <span class="badge-v">menos dinero</span></div>
+      </div>
+      <div class="comp-body">
+        <div class="comp-row">
+          <div><strong>Vía base:</strong> el BCRA emite — compra divisas, compra títulos públicos o da redescuentos.</div>
+          <div><strong>Vía base:</strong> el BCRA absorbe — vende divisas o vende títulos y retira esos pesos.</div>
+        </div>
+        <div class="comp-row">
+          <div><strong>Vía multiplicador:</strong> <span class="hl">baja el encaje</span> y cada peso se multiplica más.</div>
+          <div><strong>Vía multiplicador:</strong> <span class="hl">sube el encaje</span> y cada peso se multiplica menos.</div>
+        </div>
+        <div class="comp-row">
+          <div>Los bancos prestan más: más creación secundaria.</div>
+          <div>Los bancos prestan menos y retienen reservas de más.</div>
+        </div>
+        <div class="comp-row">
+          <div>El público deposita más y usa menos efectivo.</div>
+          <div>El público retira depósitos y guarda efectivo.</div>
+        </div>
+      </div>
+    </div>
+
+    <h3>¿Esto mueve la base, la oferta, o las dos?</h3>
+    <p>La forma más rápida de fijar la diferencia es mirar casos concretos. Prestá atención sobre todo a los <strong>dos últimos</strong>: ahí la base no se mueve <em>y la oferta sí</em>.</p>
+
+    <div class="desafios-grid">
+      <div class="desafio reveal-scale">
+        <div class="desafio-head"><span class="desafio-num">01</span><span class="desafio-ico">🏦</span></div>
+        <h4>El BCRA compra US$&nbsp;100 millones de reservas</h4>
+        <div class="efectos">
+          <span class="efecto sube"><span class="ef-lbl">Base</span> ↑</span>
+          <span class="efecto sube"><span class="ef-lbl">Oferta</span> ↑↑</span>
+        </div>
+        <p>Emite pesos para pagar esos dólares: <strong>creación primaria</strong>. Y cuando esos pesos se depositan, el sistema bancario los multiplica.</p>
+      </div>
+      <div class="desafio reveal-scale reveal-delay-1">
+        <div class="desafio-head"><span class="desafio-num">02</span><span class="desafio-ico">📜</span></div>
+        <h4>El BCRA vende títulos públicos</h4>
+        <div class="efectos">
+          <span class="efecto baja"><span class="ef-lbl">Base</span> ↓</span>
+          <span class="efecto baja"><span class="ef-lbl">Oferta</span> ↓</span>
+        </div>
+        <p>Recibe pesos a cambio de los títulos y los <strong>retira de circulación</strong>. Es una operación de mercado abierto en sentido contractivo.</p>
+      </div>
+      <div class="desafio reveal-scale reveal-delay-2">
+        <div class="desafio-head"><span class="desafio-num">03</span><span class="desafio-ico">🤝</span></div>
+        <h4>El BCRA le da un redescuento a un banco</h4>
+        <div class="efectos">
+          <span class="efecto sube"><span class="ef-lbl">Base</span> ↑</span>
+          <span class="efecto sube"><span class="ef-lbl">Oferta</span> ↑</span>
+        </div>
+        <p>Le presta dinero primario para cubrir una falta transitoria de caja: entra dinero nuevo al sistema.</p>
+      </div>
+      <div class="desafio reveal-scale">
+        <div class="desafio-head"><span class="desafio-num">04</span><span class="desafio-ico">✂️</span></div>
+        <h4>El BCRA baja el encaje del 10&nbsp;% al 5&nbsp;%</h4>
+        <div class="efectos">
+          <span class="efecto igual"><span class="ef-lbl">Base</span> =</span>
+          <span class="efecto sube"><span class="ef-lbl">Oferta</span> ↑</span>
+        </div>
+        <p><strong>No emite un solo peso</strong>, así que la base queda igual. Pero el multiplicador pasa de 10 a 20: con la misma base, el sistema puede crear el doble.</p>
+      </div>
+      <div class="desafio reveal-scale reveal-delay-1">
+        <div class="desafio-head"><span class="desafio-num">05</span><span class="desafio-ico">💳</span></div>
+        <h4>Un banco presta $9.000 de tu depósito</h4>
+        <div class="efectos">
+          <span class="efecto igual"><span class="ef-lbl">Base</span> =</span>
+          <span class="efecto sube"><span class="ef-lbl">Oferta</span> ↑</span>
+        </div>
+        <p><strong>Creación secundaria</strong>: aparecen medios de pago nuevos sin que el Banco Central haya emitido nada. Tu depósito sigue siendo tuyo y el préstamo ya circula.</p>
+      </div>
+    </div>
+
+    <div class="callout caution">
+      <div class="callout-icon">!</div>
+      <h4>Un caso que se presta a confusión</h4>
+      <p>Si sacás $10.000 del banco y los guardás en tu casa, ¿baja la oferta monetaria? <strong>En el momento, no</strong>: bajan los depósitos en $10.000 y sube en $10.000 el efectivo en tu poder. Como la oferta suma las dos cosas, el total queda igual. Lo que sí cambia es lo que viene después: el banco se quedó con menos fondos para prestar, así que <strong>presta menos y la oferta termina cayendo</strong> por la vía del multiplicador. No es un efecto inmediato, es de segunda vuelta.</p>
+    </div>
+
+    <!-- QUIZ 7 -->
+    <div class="quiz" data-quiz="q7">
+      <span class="quiz-badge">✓ Quiz</span>
+      <p class="quiz-q">El Banco Central baja el encaje del 10&nbsp;% al 5&nbsp;%, sin emitir un solo peso. ¿Qué pasa con la base monetaria y con la oferta monetaria?</p>
+      <div class="quiz-options">
+        <button class="quiz-opt" data-correct="true" data-fb="¡Correcto! El BCRA no emitió, así que la base monetaria no se movió. Pero al bajar el encaje del 10 % al 5 %, el multiplicador pasa de 10 a 20: con la misma base, el sistema bancario puede crear el doble de dinero. Es el caso que prueba que base y oferta no son lo mismo.">
+          <span class="opt-letter">A</span><span>La base queda igual y la oferta aumenta: el multiplicador sube de 10 a 20.</span></button>
+        <button class="quiz-opt" data-correct="false" data-fb="No. Bajar el encaje no implica ninguna emisión: el Banco Central no crea un peso nuevo, de modo que la base monetaria queda intacta. Lo que cambia es cuánto puede multiplicar el sistema bancario esa base que ya existía.">
+          <span class="opt-letter">B</span><span>Las dos aumentan: bajar el encaje obliga al BCRA a emitir.</span></button>
+        <button class="quiz-opt" data-correct="false" data-fb="No. Es cierto que el encaje se les exige a los bancos, pero por eso mismo afecta a toda la economía: al liberar depósitos que estaban inmovilizados, los bancos pueden prestar más y la oferta monetaria crece.">
+          <span class="opt-letter">C</span><span>Las dos quedan igual, porque el encaje solo afecta a los bancos comerciales.</span></button>
+      </div>
+      <div class="quiz-feedback" data-fb-for="q7"></div>
     </div>
 
     <h3>Los agregados, por grado de liquidez</h3>
@@ -2094,7 +2232,7 @@
       <div class="idea"><span class="idea-num">3</span><div><h4>Los bancos crean dinero</h4><p>Los bancos comerciales intermedian (spread entre tasa activa y pasiva) y, al prestar sobre los depósitos, generan dinero bancario: la creación secundaria.</p></div></div>
       <div class="idea"><span class="idea-num">4</span><div><h4>Encaje y multiplicador</h4><p>El encaje limita cuánto pueden prestar los bancos. El multiplicador (1/R) marca el techo del dinero que el sistema puede crear a partir de la base.</p></div></div>
       <div class="idea"><span class="idea-num">5</span><div><h4>El BCRA y la base</h4><p>El Banco Central hace la creación primaria (emisión) y su balance define la base monetaria (B = circulante + reservas). Es el banco de los bancos.</p></div></div>
-      <div class="idea"><span class="idea-num">6</span><div><h4>Agregados y política monetaria</h4><p>El dinero se ordena por liquidez (M0 a M4). Con la política monetaria expansiva o restrictiva —encajes, redescuentos, pases, mercado abierto— el BCRA regula su cantidad.</p></div></div>
+      <div class="idea"><span class="idea-num">6</span><div><h4>De la base a la oferta</h4><p>La oferta monetaria es la base multiplicada por el sistema bancario, y se ordena por liquidez (M0 a M4). El BCRA la regula por dos caminos: moviendo la <em>base</em> (emite o absorbe) o moviendo el <em>multiplicador</em> (encajes, redescuentos, pases, mercado abierto).</p></div></div>
     </div>
 
     <h3>Glosario de la unidad</h3>
@@ -2206,7 +2344,7 @@
       <div class="check-item" data-check="c6"><span class="check-box">✓</span><span class="check-txt">Distinguir <strong>creación primaria y secundaria</strong> y decir quién realiza cada una.</span></div>
       <div class="check-item" data-check="c7"><span class="check-box">✓</span><span class="check-txt">Estimar cuánto dinero puede crear el sistema a partir de un depósito, dado un <strong>encaje</strong> (multiplicador 1/R).</span></div>
       <div class="check-item" data-check="c8"><span class="check-box">✓</span><span class="check-txt">Enumerar las <strong>funciones del BCRA</strong> y leer su balance (activo / pasivo / base monetaria).</span></div>
-      <div class="check-item" data-check="c9"><span class="check-box">✓</span><span class="check-txt">Diferenciar <strong>base</strong> de <strong>oferta monetaria</strong> y ordenar los agregados por liquidez.</span></div>
+      <div class="check-item" data-check="c9"><span class="check-box">✓</span><span class="check-txt">Diferenciar <strong>base</strong> de <strong>oferta monetaria</strong>, explicar <strong>cuándo aumenta y cuándo disminuye</strong> cada una, y ordenar los agregados por liquidez.</span></div>
       <div class="check-item" data-check="c10"><span class="check-box">✓</span><span class="check-txt">Elegir qué <strong>instrumento</strong> usaría el BCRA para expandir o contraer la cantidad de dinero.</span></div>
     </div>
     <div class="check-progress" id="checkProgress">0 de 10 completadas</div>
@@ -2227,7 +2365,7 @@
       <li><span class="obj-check">✓</span><span><strong>Ubicar</strong> los medios de pago actuales (efectivo, tarjetas, QR, billeteras, criptomonedas) dentro del sistema monetario.</span></li>
       <li><span class="obj-check">✓</span><span><strong>Comprender</strong> cómo los bancos comerciales crean dinero secundario y qué papel juegan el encaje y el multiplicador.</span></li>
       <li><span class="obj-check">✓</span><span><strong>Describir</strong> las funciones del BCRA y la relación entre su balance y la base monetaria.</span></li>
-      <li><span class="obj-check">✓</span><span><strong>Diferenciar</strong> base y oferta monetaria, manejar los agregados por liquidez y analizar la política monetaria y sus instrumentos.</span></li>
+      <li><span class="obj-check">✓</span><span><strong>Diferenciar</strong> base y oferta monetaria, explicar qué hace variar a cada una, manejar los agregados por liquidez y analizar la política monetaria y sus instrumentos.</span></li>
     </ul>
   </section>
 
@@ -2363,7 +2501,7 @@
       <span class="docend-credits-text">Documento de estudio · <strong>Equipo de Cátedra</strong> · Ciclo Lectivo 2026</span>
       <span class="docend-stamp">
         <span class="docend-date">Julio de 2026</span>
-        <span class="docend-version" title="Versión del documento">v2.1</span>
+        <span class="docend-version" title="Versión del documento">v2.2</span>
       </span>
     </div>
 
