@@ -582,6 +582,11 @@
   .gloss:hover, .gloss:focus { background: rgba(142,68,173,.1); outline: none; }
   /* Texto que solo tiene sentido en pantalla (hover, tap) vs. su reemplazo en papel */
   .solo-papel { display: none; }
+
+  /* Anclas de compatibilidad para enlaces profundos ya compartidos. Bloque de altura cero:
+     no ocupa lugar ni se ve, pero es un destino de scroll válido. Lleva el mismo
+     scroll-margin-top que .seccion para que el salto quede a la misma altura. */
+  .anchor-compat { display: block; height: 0; overflow: hidden; scroll-margin-top: 20px; }
   .gloss-pop { position: fixed; z-index: 4500; max-width: 290px; background: var(--color-deepest); color: #fff; font-family: var(--font-body); font-size: .82rem; font-weight: 400; font-style: normal; text-transform: none; letter-spacing: .1px; line-height: 1.5; padding: 11px 14px; border-radius: 10px; box-shadow: 0 12px 32px rgba(42,17,51,.42); opacity: 0; pointer-events: none; transition: opacity .18s ease; }
   .gloss-pop.show { opacity: 1; }
   .gloss-pop::after { content: ""; position: absolute; left: var(--arrow-x, 50%); transform: translateX(-50%); border: 6px solid transparent; }
@@ -808,6 +813,8 @@
   .formula.soft .f-eq { color: var(--color-deepest); }
   .formula.soft .f-eq em { color: var(--color-primary); }
   .f-cap { font-size: .78rem; letter-spacing: 1.4px; text-transform: uppercase; margin-top: 12px; color: var(--color-soft); font-weight: 600; }
+  /* El paréntesis aclaratorio de una ecuación: más chico que la fórmula pero legible */
+  .f-eq small { font-size: .62em; font-weight: 400; font-style: normal; opacity: .85; white-space: nowrap; }
   .formula.soft .f-cap { color: var(--color-text-muted); }
 
   /* Diagrama de flujos X / M */
@@ -1058,12 +1065,15 @@
 
     /* ── 3 · Nada se recorta: en papel no hay scroll ── */
     .dolar-scroll { overflow: visible !important; }
-    /* rem es relativo a la raíz, no a body: en papel hay que fijar pt para que la
-       tabla de 6 columnas entre en el ancho útil de A4 sin desbordar */
+    /* rem es relativo a la raíz, no a body, así que en papel hay que fijar pt o la tabla
+       hereda un tamaño de pantalla. Estos valores están medidos: a 9pt la tabla de tres
+       columnas entra con holgura en los anchos útiles de A4 (658 px de 680, 622 de 643,
+       581 de 600). Si alguna vez se agrega una tabla de más columnas, hay que volver a
+       medir y probablemente bajar a 8pt. */
     table.dolar { min-width: 0 !important; table-layout: auto; }
-    table.dolar th, table.dolar td { padding: 5px 7px; font-size: 8pt; }
-    table.dolar thead th { font-size: 7pt; letter-spacing: .6px; }
-    table.dolar caption { font-size: 11pt; padding: 10px 7px 8px; }
+    table.dolar th, table.dolar td { padding: 6px 9px; font-size: 9pt; }
+    table.dolar thead th { font-size: 8pt; letter-spacing: .6px; }
+    table.dolar caption { font-size: 11pt; padding: 10px 9px 8px; }
     .flip-back, .ecard, .pausa, .hero, .bpstruct, .comp-table, .rubrica, .dolar-wrap, .hero-ficha { overflow: visible !important; }
     .hero-ficha { backdrop-filter: none; box-shadow: none; }
 
@@ -1213,7 +1223,7 @@
     /* ── 11 · Nada se corta en dos páginas ──
        .seccion queda AFUERA de esta lista a propósito: cada sección mide entre 1 y 4
        páginas de A4, y un break-inside: avoid sobre un bloque más alto que la página
-       fuerza el salto de la hoja entera antes de partirlo — con .padding-top: 62px sin
+       fuerza el salto de la hoja entera antes de partirlo — con el padding-top de 62px sin
        resetear, eso costaba 6 páginas en blanco de 47 sobre el total del documento. Los
        títulos ya quedan pegados a su contenido por el break-after: avoid de más abajo,
        y cada componente interno (quiz, callout, tabla…) conserva su propio avoid. */
@@ -1266,8 +1276,9 @@
     <a href="#sec-6" class="section-title"><span class="st-num">06</span><span class="st-text">Bienes, servicios, capitales</span></a>
     <a href="#sec-7" class="section-title"><span class="st-num">07</span><span class="st-text">La balanza de pagos</span></a>
     <a href="#sec-8" class="section-title"><span class="st-num">08</span><span class="st-text">La cuenta corriente</span></a>
-    <a href="#sec-9" class="section-title"><span class="st-num">09</span><span class="st-text">Tipo de cambio</span></a>
-    <a href="#sec-10" class="section-title"><span class="st-num">10</span><span class="st-text">Sobre y subvaluación</span></a>
+    <a href="#sec-cuenta-capital" class="section-title"><span class="st-num">09</span><span class="st-text">Cuenta capital y reservas</span></a>
+    <a href="#sec-tipo-cambio" class="section-title"><span class="st-num">10</span><span class="st-text">Tipo de cambio</span></a>
+    <a href="#sec-valuacion" class="section-title"><span class="st-num">11</span><span class="st-text">Sobre y subvaluación</span></a>
     <a href="#sec-real" class="section-title" data-st="real"><span class="st-num">◈</span><span class="st-text">Conectá con la realidad</span></a>
     <a href="#sec-cierre" class="section-title" data-st="cierre"><span class="st-num">✦</span><span class="st-text">Síntesis y autoevaluación</span></a>
     <a href="#sec-rubrica" class="section-title" data-st="rubrica"><span class="st-num">◎</span><span class="st-text">Rúbrica de evaluación</span></a>
@@ -1435,7 +1446,7 @@
         </div>
         <div class="hero-meta-item is-time">
           <svg class="mi-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
-          <span class="lbl">Lectura</span><span class="val">55–65 min</span>
+          <span class="lbl">Lectura</span><span class="val">60–70 min</span>
         </div>
       </div>
     </div>
@@ -1500,7 +1511,7 @@
     <div class="pausa">
       <span class="pausa-tag">◆ Pausa para pensar</span>
       <h4>¿Qué exporta e importa la Argentina?</h4>
-      <p>Antes de seguir leyendo, anotá en dos columnas lo que creas que la Argentina le vende y le compra al mundo. No busques todavía: escribí lo que suponés. En la <strong>sección 8</strong> vamos a mirar los datos reales de tres décadas, y vas a poder contrastar tu intuición con lo que efectivamente pasó.</p>
+      <p>Antes de seguir leyendo, anotá en dos columnas lo que creas que la Argentina le vende y le compra al mundo. No busques todavía: escribí lo que suponés. En la <strong>sección 8</strong> vas a ver qué pasó realmente en tres décadas, y vas a poder contrastar tu intuición con eso.</p>
     </div>
   </section>
 
@@ -1607,14 +1618,14 @@
           </span>
           <span class="station-num">Bloque 02</span>
           <h4 class="station-title">Balanza de pagos</h4>
-          <p class="station-subtitle">Documento contable · Tres partes · Siete sub-balances · Clasificador de transacciones · Caso argentino</p>
+          <p class="station-subtitle">Documento contable · Tres partes · Siete sub-balances · Cuenta capital y reservas · Autónomos y compensatorios · Clasificador de transacciones · Caso argentino</p>
           <div class="station-meta">
-            <span class="station-range">Secciones 7 y 8</span>
+            <span class="station-range">Secciones 7 a 9</span>
             <span class="station-go">Empezar</span>
           </div>
         </a>
 
-        <a href="#sec-9" class="station st-cambio">
+        <a href="#sec-tipo-cambio" class="station st-cambio">
           <span class="station-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
               <polyline points="17 1 21 5 17 9"/>
@@ -1627,7 +1638,7 @@
           <h4 class="station-title">Tipo de cambio</h4>
           <p class="station-subtitle">BCRA · Cuatro sistemas · Sobre y subvaluación · Los seis dólares</p>
           <div class="station-meta">
-            <span class="station-range">Secciones 9 y 10</span>
+            <span class="station-range">Secciones 10 y 11</span>
             <span class="station-go">Empezar</span>
           </div>
         </a>
@@ -1830,7 +1841,7 @@
           <h4>Medidas de política económica</h4>
           <div class="tp-sub">Grupo 3 · el que más se olvida</div>
           <p>Tealdo agrega un tercer grupo que no siempre aparece en los manuales: decisiones de <strong>política económica</strong> que terminan funcionando como traba al comercio, aunque no hayan sido diseñadas como aduana.<span class="src">JCT ficha</span></p>
-          <p>Entran acá los <strong>cupos o cuotas de importación</strong> —límites cuantitativos, cualquiera sea el precio, como los que fijó Europa a los automóviles japoneses—, los <strong>subsidios a las exportaciones</strong> y a la producción local (caso clásico: los subsidios agrícolas de EE.&nbsp;UU.) y, la más potente de todas, <strong>la fijación del tipo de cambio</strong>, que vas a ver en las secciones 9 y 10.</p>
+          <p>Entran acá los <strong>cupos o cuotas de importación</strong> —límites cuantitativos, cualquiera sea el precio, como los que fijó Europa a los automóviles japoneses—, los <strong>subsidios a las exportaciones</strong> y a la producción local (caso clásico: los subsidios agrícolas de EE.&nbsp;UU.) y, la más potente de todas, <strong>la fijación del tipo de cambio</strong>, que vas a ver en las secciones 10 y 11.</p>
           <div class="tp-tags"><span class="tp-tag">Cupos y cuotas</span><span class="tp-tag">Subsidios a la exportación</span><span class="tp-tag">Subsidios a la producción</span><span class="tp-tag">Tipo de cambio</span></div>
         </div>
       </div>
@@ -1880,7 +1891,7 @@
     <div class="callout data">
       <div class="callout-icon">◆</div>
       <h4>Exógenas y endógenas</h4>
-      <p>A las variables cuya evolución depende del exterior se las llama <strong>exógenas</strong>, a diferencia de las <strong>endógenas</strong>, que dependen de la marcha interna de la economía. La fluctuación de las exportaciones no se decide adentro del país: si a China le va mal, a la soja argentina le va mal, por más que acá no haya cambiado nada.<span class="src">JCT 2024</span></p>
+      <p>A las variables cuya evolución depende del exterior se las llama <strong>exógenas</strong>, a diferencia de las <strong><span class="gloss" tabindex="0" data-def="Variable que se explica por el funcionamiento interno del propio sistema económico.">endógenas</span></strong>, que dependen de la marcha interna de la economía. La fluctuación de las exportaciones no se decide adentro del país: si a China le va mal, a la soja argentina le va mal, por más que acá no haya cambiado nada.<span class="src">JCT 2024</span></p>
     </div>
 
     <h3>Movimientos de servicios y de capitales</h3>
@@ -2000,7 +2011,7 @@
       <div class="bppart">
         <div class="bppart-l"><span class="bppart-num">Parte III · compensa</span><h5>Variación de reservas</h5></div>
         <div class="bppart-r">
-          <div class="bpsub t3"><strong>3.1 Reservas internacionales</strong><span>Divisas, oro y DEG que tiene el Banco Central.</span></div>
+          <div class="bpsub t3"><strong>3.1 Reservas internacionales</strong><span>Las divisas —y el oro— que tiene el Banco Central.</span></div>
           <div class="bpsub t3"><strong>3.2 Capitales compensatorios</strong><span>Préstamos del FMI y otros organismos, pedidos para cerrar la brecha.</span></div>
         </div>
       </div>
@@ -2029,7 +2040,7 @@
 
   <!-- ═══════ SEC 8 · La cuenta corriente ═══════ -->
   <section class="seccion reveal" id="sec-8">
-    <span class="sec-eyebrow"><span class="sec-eyebrow-num">8</span> Cuenta corriente y compensación</span>
+    <span class="sec-eyebrow"><span class="sec-eyebrow-num">8</span> Cuenta corriente</span>
     <h2>El flujo <span class="acento">genuino</span> de divisas</h2>
     <div class="divider-flourish"><span>◆</span></div>
     <p class="lead-p">De las tres partes, la <strong>cuenta corriente</strong> es la que más dice sobre la economía real: mide la capacidad del país de <em>generar divisas de manera genuina</em> y su grado de competitividad. Tiene tres sub-balances y conviene poder distinguirlos con un ejemplo cada uno.<span class="src">JCT ficha · BM cap. 16</span></p>
@@ -2142,63 +2153,13 @@
       </div>
     </div>
 
-    <h3>¿Cómo se compensa la balanza de pagos?</h3>
-    <p>El saldo final siempre queda en equilibrio. Tealdo lo compara con el balance de una empresa, donde el activo iguala al pasivo, o con el de una familia, donde los ingresos igualan a los egresos. En términos globales, a lo largo del año, la balanza de pagos cierra.<span class="src">JCT ficha</span></p>
-
-    <div class="formula soft reveal-scale">
-      <div class="f-eq">Saldo cta. corriente + saldo cta. capital = <em>variación de reservas</em></div>
-      <div class="f-cap">El mecanismo de compensación</div>
-    </div>
-
-    <p>Ahora bien: <strong>el equilibrio contable siempre existe, pero el camino para llegar a él no es indiferente</strong>. Hay tres situaciones típicas, y la diferencia entre ellas es exactamente lo que separa una economía sana de una crisis.</p>
-
-    <div class="cardgrid c3">
-      <div class="ecard v4">
-        <span class="ecard-num">A</span>
-        <h4>Superávit global</h4>
-        <p>Ingresan más divisas de las que salen. El Banco Central <strong>compra</strong> los dólares que sobran en el mercado y sus <strong>reservas aumentan</strong>.</p>
-      </div>
-      <div class="ecard v2">
-        <span class="ecard-num">B</span>
-        <h4>Déficit cubierto</h4>
-        <p>Salen más divisas de las que entran. El Banco Central <strong>vende reservas</strong> para cubrir la demanda. Si no alcanzan, el país recurre a <strong>capitales compensatorios</strong>: préstamos del FMI.</p>
-      </div>
-      <div class="ecard v3">
-        <span class="ecard-num">C</span>
-        <h4>Déficit no cubierto</h4>
-        <p>Si las reservas no alcanzan y los organismos no prestan, la demanda de divisas presiona sobre la oferta y el tipo de cambio se modifica: la moneda nacional <strong>se devalúa</strong>. Ahí termina el equilibrio externo y empieza la crisis.</p>
-      </div>
-    </div>
-
-    <h3>El caso de la cátedra: la Argentina entre 1990 y 2001</h3>
-    <p>Tealdo documenta con datos qué pasó durante la convertibilidad. Es el caso clásico con el que la cátedra enseña a leer una balanza de pagos, así que conviene mirarlo despacio.<span class="src">JCT ficha</span></p>
-
-    <div class="dolar-wrap reveal-scale">
-      <div class="dolar-scroll">
-        <table class="dolar">
-          <caption>Balanza de pagos argentina · 1990–2001 (millones de U$S)</caption>
-          <thead>
-            <tr><th scope="col">Año</th><th scope="col">Bal. comercial</th><th scope="col">Cta. corriente</th><th scope="col">Cta. capital</th><th scope="col">Var. reservas</th><th scope="col">Deuda externa</th></tr>
-          </thead>
-          <tbody>
-            <tr><th scope="row">1990</th><td class="val">+ 8.274</td><td>—</td><td>—</td><td>—</td><td class="val">61.770</td></tr>
-            <tr><th scope="row">1992</th><td class="val">− 1.450</td><td class="val">− 5.462</td><td class="val">+ 8.567</td><td class="val">+ 3.105</td><td class="val">61.551</td></tr>
-            <tr><th scope="row">1994</th><td class="val">− 4.139</td><td class="val">− 11.157</td><td class="val">+ 12.743</td><td class="val">+ 684</td><td class="val">90.094</td></tr>
-            <tr><th scope="row">1997</th><td class="val">− 2.123</td><td class="val">− 12.334</td><td class="val">+ 16.818</td><td class="val">+ 3.272</td><td class="val">145.683</td></tr>
-            <tr><th scope="row">1999</th><td class="val">− 794</td><td class="val">− 12.000</td><td class="val">+ 14.010</td><td class="val">+ 1.203</td><td class="val">176.751</td></tr>
-            <tr><th scope="row">2001</th><td class="val">+ 7.507</td><td class="val">− 4.429</td><td class="val">− 4.127</td><td class="val">− 12.083</td><td class="val">198.841</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <p class="dolar-foot">Fuente: ficha de cátedra de Tealdo, en base a FIDE, INDEC, Ministerio de Economía y BCRA.</p>
-    </div>
-
-    <p><strong>Cómo se lee el cuadro.</strong> Durante toda la década del noventa la Argentina tuvo déficit de cuenta corriente: cae la balanza comercial y crecen los servicios financieros por intereses de deuda. Ese déficit se compensaba con superávit de cuenta capital —es decir, con <em>más endeudamiento</em>—, y eso incluso permitía engrosar reservas. Mirá la última columna: la deuda externa trepó de U$S 61.770 millones en 1990 a U$S 198.841 millones en 2001. En 2001 el mecanismo se rompió: la cuenta capital se volvió deficitaria, las reservas cayeron U$S 12.083 millones y vino la devaluación de enero de 2002.<span class="src">JCT ficha</span></p>
+    <h3>El caso de la cátedra: la Argentina de la convertibilidad</h3>
+    <p>Tealdo documenta con datos qué pasó durante la convertibilidad, y es el caso clásico con el que la cátedra enseña a leer una balanza de pagos. El recorrido, en pocos números: entre 1992 y 2001 la <strong>cuenta corriente fue negativa los diez años</strong>. Y lo revelador es que siguió en rojo <em>incluso cuando la balanza comercial dio superávit</em> —como en 1995, 1996, 2000 y 2001—, porque los servicios financieros crecían sin parar con los intereses de la deuda. Ese déficit se compensaba con <strong>superávit de cuenta capital</strong>, es decir con <em>más endeudamiento</em>, lo que incluso permitía engrosar reservas. El precio quedó en el stock de deuda externa, que trepó de <strong>U$S 61.770 millones en 1990 a U$S 198.841 millones en 2001</strong>. Y en 2001 el mecanismo se rompió: la cuenta capital se volvió deficitaria, las reservas cayeron <strong>U$S 12.083 millones</strong> y vino la devaluación de enero de 2002.<span class="src">JCT ficha</span></p>
 
     <div class="callout tip">
       <div class="callout-icon">⌛</div>
       <h4>Contexto: la convertibilidad</h4>
-      <p>Entre 1991 y 2001 rigió en la Argentina una ley que fijaba <strong>un peso igual a un dólar</strong>. Frenó la hiperinflación, pero al mantener la moneda cara volvió baratas las importaciones y caras las exportaciones. El sistema se sostuvo mientras entró financiamiento externo; cuando dejó de entrar, colapsó. Vas a ver el mecanismo completo en la sección 10.</p>
+      <p>Entre 1991 y 2001 rigió en la Argentina una ley que fijaba <strong>un peso igual a un dólar</strong>. Frenó la hiperinflación, pero al mantener la moneda cara volvió baratas las importaciones y caras las exportaciones. El sistema se sostuvo mientras entró financiamiento externo; cuando dejó de entrar, colapsó. Vas a ver el mecanismo completo en la sección 11.</p>
     </div>
 
     <div class="callout data">
@@ -2210,13 +2171,172 @@
     <div class="pausa">
       <span class="pausa-tag">◆ Retomamos la pausa</span>
       <h4>Volvé a tus dos columnas</h4>
-      <p>En la sección 1 anotaste lo que suponías que la Argentina vende y compra al mundo. Contrastalo ahora con el cuadro: durante casi toda la década, con balanza comercial negativa y cuenta corriente en rojo, ¿coincide con lo que habías imaginado? Y sobre todo: si las exportaciones no alcanzaban, <strong>¿de dónde salían las divisas?</strong> La respuesta está en la columna de cuenta capital, y su precio está en la de deuda externa.</p>
+      <p>En la sección 1 anotaste lo que suponías que la Argentina vende y compra al mundo. Contrastalo ahora con lo que acabás de leer: durante casi toda la década, con balanza comercial negativa y cuenta corriente en rojo, ¿coincide con lo que habías imaginado? Y sobre todo: si las exportaciones no alcanzaban, <strong>¿de dónde salían las divisas?</strong> La respuesta está en la cuenta capital, y su precio en la deuda externa. Es lo que sigue.</p>
     </div>
   </section>
 
-  <!-- ═══════ SEC 9 · Tipo de cambio ═══════ -->
-  <section class="seccion reveal" id="sec-9">
-    <span class="sec-eyebrow"><span class="sec-eyebrow-num">9</span> Mercado cambiario</span>
+  <!-- ═══════ SEC 9 · Cuenta capital y reservas ═══════
+       Desde acá los ids son SEMÁNTICOS y no numéricos. La razón: esta sección se insertó
+       entre la 8 y la 9 cuando la unidad ya había circulado, así que numerar en cadena
+       habría hecho que un id apuntara a un contenido distinto del que apuntaba antes.
+       Un id semántico no puede quedar desfasado si mañana se inserta otra sección.
+       Los ids numéricos viejos sobreviven como anclas de compatibilidad (.anchor-compat)
+       delante de su contenido original, para que los enlaces ya compartidos sigan
+       llevando a donde llevaban. NO reutilizar sec-9 ni sec-10 para otra cosa. -->
+  <section class="seccion reveal" id="sec-cuenta-capital">
+    <span class="sec-eyebrow"><span class="sec-eyebrow-num">9</span> Cuenta capital y reservas</span>
+    <h2>¿De dónde salen las divisas que <span class="acento">faltan</span>?</h2>
+    <div class="divider-flourish"><span>◆</span></div>
+    <p class="lead-p">La cuenta corriente contesta si el país <em>genera</em> divisas con su actividad real. Cuando no alcanzan —y en la Argentina, como viste, casi nunca alcanzaron— la pregunta se corre: ¿con qué se cubre el faltante? Las otras dos partes de la balanza contestan eso, y también revelan a qué precio.</p>
+
+    <div class="defstrip">
+      <div class="def-term">Cuenta capital</div>
+      <div class="def-body">También llamada <strong>balanza en cuenta de capital</strong>. Está conformada por <strong>dos grandes cuentas</strong>: los <strong>capitales de préstamo</strong> y los <strong>capitales de riesgo</strong>.</div>
+      <span class="def-source">Definición de cátedra · Unidad 5</span>
+    </div>
+
+    <p>La definición es corta, pero lo decisivo es qué distingue a esta cuenta de la anterior: acá los movimientos <span class="hl">no mueven mercancías ni servicios</span>, y sin embargo cambian lo que el país tiene y lo que debe. La cátedra lo resume así: «Los movimientos de capitales alteran los derechos y obligaciones de las naciones, es decir, su <strong>estado patrimonial</strong>».<span class="src">PPT 2024</span> Castro y Lessa lo desarrollan: «Una entrada de capitales […] acarrea un aumento de las obligaciones de la nación receptora para con el resto del mundo, o una disminución de los haberes de la nación en el exterior».<span class="src">C&amp;L cap. IV</span></p>
+
+    <div class="cardgrid c2">
+      <div class="ecard">
+        <div class="ecard-ico" aria-hidden="true">📜</div>
+        <h4>Capitales de préstamo</h4>
+        <p>Todos los préstamos que el país <strong>recibe</strong> del exterior —los pida el Estado o los pida una empresa privada—, los que <strong>otorga</strong>, y las <strong>devoluciones</strong>. Recibir un préstamo hace ingresar divisas; otorgarlo o amortizarlo las hace salir.<span class="src">JCT ficha</span></p>
+        <p>No alteran el régimen de propiedad: el país se endeuda «concediendo títulos de crédito al exterior». Y el monto acumulado de los préstamos obtenidos y no amortizados es, precisamente, la <strong>deuda externa</strong>.<span class="src">C&amp;L cap. IV</span></p>
+      </div>
+      <div class="ecard v2">
+        <div class="ecard-ico" aria-hidden="true">🎲</div>
+        <h4>Capitales de riesgo</h4>
+        <p>Capitales que <em>no</em> son préstamo: quien los trae asume el riesgo de la operación y no tiene garantizada la devolución de nada.<span class="src">JCT ficha</span></p>
+        <p>Acá sí cambia la propiedad. Llegan «bajo la forma de inversiones directas y dan como resultado la constitución de empresas de propiedad extranjera», lo que introduce «el control de una parte de los factores operantes en el sistema por las empresas extranjeras».<span class="src">C&amp;L cap. IV</span></p>
+      </div>
+    </div>
+
+    <div class="callout caution">
+      <div class="callout-icon">!</div>
+      <h4>Cuidado con este error, que es el más frecuente</h4>
+      <p>Cuando el país paga los <strong>intereses</strong> de un préstamo, eso <em>no</em> se registra en la cuenta capital. En la cuenta capital va el <strong>capital</strong>: el préstamo cuando entra y la <span class="gloss" tabindex="0" data-def="Devolver el capital de una deuda, distinto del pago de sus intereses.">amortización</span> cuando se devuelve. Los intereses son el <em>precio</em> de ese capital y van a <strong>servicios financieros</strong>, dentro de la cuenta corriente —la misma tarjeta que viste en la sección anterior—. Volvé al clasificador si te quedó dudando: los casos 4 y 5 son exactamente este par.</p>
+    </div>
+
+    <h3>Los dos capitales de riesgo, que no se parecen en nada</h3>
+    <p>La cátedra subdivide el riesgo en dos tipos con comportamientos opuestos, y la diferencia entre ellos importa mucho más que el nombre.</p>
+
+    <div class="desafios-grid">
+      <div class="desafio">
+        <div class="desafio-head"><span class="desafio-num">1</span><span class="desafio-ico" aria-hidden="true">🏗️</span></div>
+        <h4>Inversión productiva (IED)</h4>
+        <p>Capitales que ingresan «en una actividad productiva concreta»: instalar una fábrica, comprar una empresa local. El ejemplo de la ficha es la instalación de <strong>General Motors en la provincia de Santa Fe</strong> en los años noventa. Se quedan, producen y emplean — y con el tiempo giran utilidades al exterior, que caen en servicios financieros.<span class="src">JCT ficha</span></p>
+      </div>
+      <div class="desafio">
+        <div class="desafio-head"><span class="desafio-num">2</span><span class="desafio-ico" aria-hidden="true">🦉</span></div>
+        <h4>Capitales financieros, o «golondrinas»</h4>
+        <p>Ingresan «vía inversiones en divisas en el mercado financiero, plazo fijo, acciones, títulos valores, bonos de deuda pública». La ficha los caracteriza así: «capitales muy volátiles, generalmente de corto plazo, que entraban y salían del país libremente, sin control y regulación, y estaban exentos de impuestos».<span class="src">JCT ficha</span></p>
+      </div>
+    </div>
+
+    <div class="callout caution">
+      <div class="callout-icon">!</div>
+      <h4>El costo diferido: por qué financiarse no es neutral</h4>
+      <p>Acá se cierra el círculo que la sección anterior dejó abierto. Durante los noventa el déficit de cuenta corriente «se fue financiando con el ingreso de divisas en la cuenta capital», y Tealdo marca que eso es un <strong>«aspecto no neutral, porque iba generando un incremento de la Deuda Externa a niveles cada vez más elevados, que luego se debía devolver más intereses»</strong>.<span class="src">JCT ficha</span> Es decir: la cuenta capital tapa hoy el agujero de la cuenta corriente, y mañana lo agranda, porque esos intereses vuelven como déficit de servicios financieros. Y es exactamente lo que pasó: durante toda la década los servicios financieros crecieron año a año, en paralelo con el stock de deuda.</p>
+    </div>
+
+    <div class="defstrip">
+      <div class="def-term">Variación de reservas internacionales</div>
+      <div class="def-body">Es la tercera parte de la balanza y <strong>actúa como compensación de las dos anteriores</strong>. Está conformada por las <strong>reservas en divisas</strong> que el país tiene y por los <strong>capitales compensatorios</strong>, que son los préstamos que se piden para cubrir un déficit.</div>
+      <span class="def-source">Definición de cátedra · Unidad 5</span>
+    </div>
+
+    <p>Sobre qué componen las reservas, conviene ser preciso con lo que dicen las fuentes: la ficha habla de <strong>divisas</strong> —dólares y otras monedas extranjeras— y Castro y Lessa nombran el binomio clásico, «reservas de <strong>oro y divisas</strong>».<span class="src">JCT ficha · C&amp;L cap. IV</span> Y «divisa» tiene una definición técnica que conviene no confundir con «billete»: son «las monedas extranjeras o cualesquiera títulos de crédito expresados en moneda extranjera».<span class="src">C&amp;L cap. IV</span></p>
+
+    <h3>La distinción que explica toda la estructura</h3>
+    <p>Acá está la idea más fina de la unidad, y también la que más se pregunta. Un préstamo del FMI y un préstamo del Banco Mundial son <em>el mismo instrumento</em>, pero pueden ir en dos cuentas distintas. Lo que decide no es el instrumento sino <span class="hl">el motivo por el cual se lo pidió</span>.</p>
+
+    <div class="comp-table reveal-scale">
+      <div class="comp-row comp-head">
+        <div>Capitales autónomos <span class="badge-v badge-c">Arriba de la línea</span></div>
+        <div>Capitales compensatorios <span class="badge-v">Abajo de la línea</span></div>
+      </div>
+      <div class="comp-body">
+        <div class="comp-row">
+          <div><strong>Qué los motiva:</strong> «llegan a la nación motivados por las oportunidades económicas allí existentes» — una ganancia esperada, un proyecto concreto.</div>
+          <div><strong>Qué los motiva:</strong> «son solicitados con el fin principal de hacer frente a una fracción de gastos externos, que de otra manera no podrían cubrirse».</div>
+        </div>
+        <div class="comp-row">
+          <div><strong>Qué tipo de operación son:</strong> decisiones propias de quien invierte o presta, tomadas por su cuenta.</div>
+          <div><strong>Qué tipo de operación son:</strong> «operaciones <em>inducidas</em> por el estado deficitario de la balanza de pagos». No las decide una oportunidad: las fuerza un agujero.</div>
+        </div>
+        <div class="comp-row">
+          <div><strong>Dónde se registran:</strong> en la cuenta capital. Su saldo forma parte del resultado que después hay que compensar.</div>
+          <div><strong>Dónde se registran:</strong> en la variación de reservas. Son el asiento de cierre, no una transacción que genere desequilibrio.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout key">
+      <div class="callout-icon">★</div>
+      <h4>Por qué la línea de corte no es un capricho contable</h4>
+      <p>Si el préstamo pedido para tapar el agujero se anotara <em>arriba</em> de la línea, junto a los autónomos, el déficit se cancelaría solo y <strong>el desequilibrio sería indetectable</strong>: la balanza cerraría en cero y nadie podría ver que el país no llegó a fin de año con lo suyo. Por eso Castro y Lessa señalan que localizar el desequilibrio «necesita la introducción de los conceptos de capitales autónomos y compensatorios».<span class="src">C&amp;L cap. IV</span> La tripartición con la que trabaja la cátedra existe justamente para dejar esa línea a la vista.</p>
+      <p>Vale saber que <strong>no todos los autores la dibujan así</strong>: Beker–Mochón y Castro–Lessa ubican la variación de reservas <em>dentro</em> de la cuenta capital, de modo que la balanza queda con dos grandes partes en lugar de tres.<span class="src">BM cap. 16 · C&amp;L cap. IV</span> La ficha lo anticipa: «Para algunos autores ésta última cuenta formaría parte de la Cuenta Capital».<span class="src">JCT ficha</span> No es una contradicción: es la misma contabilidad con la línea más o menos visible.</p>
+    </div>
+
+    <h3>¿Cómo se compensa la balanza de pagos?</h3>
+    <p>El saldo final siempre queda en equilibrio. Tealdo lo compara con el balance de una empresa, donde el activo iguala al pasivo, o con el de una familia, donde los ingresos igualan a los egresos. En términos globales, a lo largo del año, la balanza de pagos cierra.<span class="src">JCT ficha</span></p>
+
+    <div class="formula soft reveal-scale">
+      <div class="f-eq">Saldo cta. corriente + saldo cta. capital <small>(sin variación de reservas)</small> = <em>variación de reservas</em></div>
+      <div class="f-cap">El mecanismo de compensación</div>
+    </div>
+
+    <p>Y quien ejecuta esa compensación es el Banco Central, porque —como explican Beker y Mochón— es «el canal obligatorio para la adquisición o venta de divisas». De ahí que «un superávit global de la balanza de pagos será exactamente igual a las compras netas de divisas que realiza el Banco Central, y un déficit de la balanza de pagos será exactamente igual a las ventas netas».<span class="src">BM cap. 16</span></p>
+
+    <p>Ahora bien: <strong>el equilibrio contable siempre existe, pero el camino para llegar a él no es indiferente</strong>. Hay tres situaciones típicas, y la diferencia entre ellas es exactamente lo que separa una economía sana de una crisis.</p>
+
+    <div class="cardgrid c3">
+      <div class="ecard v4">
+        <span class="ecard-num">A</span>
+        <h4>Escenario A · Superávit global</h4>
+        <p>Ingresan más divisas de las que salen. El Banco Central <strong>compra</strong> los dólares que sobran en el mercado y sus <strong>reservas aumentan</strong>.</p>
+      </div>
+      <div class="ecard v2">
+        <span class="ecard-num">B</span>
+        <h4>Escenario B · Déficit cubierto</h4>
+        <p>Salen más divisas de las que entran. El Banco Central <strong>vende reservas</strong> para cubrir la demanda. Si no alcanzan, el país recurre a <strong>capitales compensatorios</strong>: préstamos del FMI.</p>
+      </div>
+      <div class="ecard v3">
+        <span class="ecard-num">C</span>
+        <h4>Escenario C · Déficit no cubierto</h4>
+        <p>Si las reservas no alcanzan y los organismos no prestan, la demanda de divisas presiona sobre la oferta y el tipo de cambio se modifica: la moneda nacional <strong>se devalúa</strong>. Ahí termina el equilibrio externo y empieza la crisis.</p>
+      </div>
+    </div>
+
+    <p>El <strong>escenario C</strong> es el que cierra esta unidad y abre la siguiente. Cuando en el Banco Central «disminuían las reservas», dice la ficha, «hacía imposible sostener el tipo de cambio fijo»: si la demanda de divisas supera a la oferta y el déficit global no se puede compensar, «el tipo de cambio se modifica (aumenta el valor del dólar, se devalúa nuestra moneda), porque es un bien escaso y altamente necesario».<span class="src">JCT ficha</span> El ajuste que no hacen las reservas lo termina haciendo el precio.</p>
+
+    <!-- q7 aparece acá, entre q4 y q5, porque esta sección se agregó después. NO renombrarlo
+         para "ordenarlo": las respuestas se guardan por el valor de data-quiz, así que
+         renumerarlo haría que la respuesta guardada de un estudiante reaparezca en otra
+         pregunta. El desorden de los ids es inocuo; renombrarlos no lo es. -->
+    <div class="quiz" data-quiz="q7">
+      <span class="quiz-badge">✓ Quiz</span>
+      <p class="quiz-q">El país cierra el año con déficit en la cuenta corriente y en la cuenta capital a la vez, y para poder pagar sus compromisos externos le pide un préstamo al FMI. ¿Dónde se registra ese préstamo y por qué?</p>
+      <div class="quiz-options">
+        <button class="quiz-opt" data-correct="false" data-fb="No. Que el prestamista sea un organismo internacional no define nada: el Banco Mundial o el FMI también otorgan créditos para proyectos concretos, y esos sí van a la cuenta capital. Lo que decide es el motivo del préstamo, no quién lo da.">
+          <span class="opt-letter">A</span><span>En la cuenta capital, porque todo préstamo de un organismo internacional se registra ahí.</span></button>
+        <button class="quiz-opt" data-correct="false" data-fb="No. Los intereses de ese préstamo sí irán a servicios financieros, pero en los años siguientes y como precio del capital. El ingreso del capital en sí no se registra en la cuenta corriente.">
+          <span class="opt-letter">B</span><span>En servicios financieros, porque un préstamo del FMI genera intereses a pagar.</span></button>
+        <button class="quiz-opt" data-correct="true" data-fb="¡Correcto! Es un capital compensatorio: lo induce el déficit ya existente, no una oportunidad de ganancia. Va abajo de la línea, en la variación de reservas, precisamente para que el desequilibrio siga siendo visible en lugar de cancelarse solo.">
+          <span class="opt-letter">C</span><span>En la variación de reservas, porque lo induce el déficit y no una oportunidad.</span></button>
+      </div>
+      <div class="quiz-feedback" data-fb-for="q7"></div>
+    </div>
+  </section>
+
+  <!-- ═══════ SEC 10 · Tipo de cambio ═══════ -->
+  <!-- Ancla de compatibilidad: antes de agregarse la sección de cuenta capital, esta
+       sección era la 9 y su id era sec-9. Los enlaces con #sec-9 que ya circularon
+       siguen cayendo acá. No borrar. -->
+  <span class="anchor-compat" id="sec-9" aria-hidden="true"></span>
+  <section class="seccion reveal" id="sec-tipo-cambio">
+    <span class="sec-eyebrow"><span class="sec-eyebrow-num">10</span> Mercado cambiario</span>
     <h2>El tipo de <span class="acento">cambio</span></h2>
     <div class="divider-flourish"><span>◆</span></div>
     <p class="lead-p">El comercio internacional supone que cada país tiene su propia moneda. Una empresa argentina que exporta a Paraguay querrá cobrar en pesos; una norteamericana que vende acá querrá cobrar en dólares. Para que el sistema funcione hace falta <strong>un mercado donde una moneda se cambie por otra</strong> y un precio que rija ese intercambio.<span class="src">BM cap. 18</span></p>
@@ -2227,7 +2347,7 @@
       <span class="def-source">Definición de cátedra · Unidad 5</span>
     </div>
 
-    <p>Un ejemplo: si decimos que $&nbsp;93,50 = U$S&nbsp;1, estamos diciendo que hay que entregar 93,50 pesos para obtener un dólar. Ese número no sale de la nada. Según la cátedra, en su determinación influyen la <strong>oferta y demanda de la divisa</strong>, los <strong>precios internos</strong> (la inflación) y los internacionales, el <strong>valor del tipo de cambio de otras monedas</strong> —una devaluación en Brasil nos afecta— y la <strong>evolución de la actividad económica</strong>, interna y externa.<span class="src">JCT 2024</span></p>
+    <p>Un ejemplo: si el dólar cotiza a $&nbsp;1.500 —un valor de referencia de julio de 2026—, estamos diciendo que hay que entregar 1.500 pesos para obtener un dólar. Ese número no sale de la nada. Según la cátedra, en su determinación influyen la <strong>oferta y demanda de la divisa</strong>, los <strong>precios internos</strong> (la inflación) y los internacionales, el <strong>valor del tipo de cambio de otras monedas</strong> —una devaluación en Brasil nos afecta— y la <strong>evolución de la actividad económica</strong>, interna y externa.<span class="src">JCT 2024</span></p>
 
     <h3>Quién trae y quién busca dólares</h3>
     <p>El mercado cambiario es un mercado más de la economía, con la particularidad de que el bien que se transa es la divisa. El tipo de cambio emerge del cruce entre su oferta y su demanda.</p>
@@ -2249,6 +2369,12 @@
       <div class="def-term">Política cambiaria</div>
       <div class="def-body"><strong>Determinación o fijación del valor del tipo de cambio</strong> por parte del <strong>Banco Central</strong>. Es una parte de la política económica y se coordina con la política fiscal, monetaria, de precios y arancelaria.</div>
       <span class="def-source">Definición de cátedra · Unidad 5</span>
+    </div>
+
+    <div class="callout">
+      <div class="callout-icon">§</div>
+      <h4>De dónde saca el BCRA esa atribución</h4>
+      <p>No es una costumbre ni una decisión propia: es una <strong>competencia legal</strong>. Su carta orgánica se la asigna expresamente entre las funciones del banco: «Son funciones y facultades del banco: (…) <strong>f) Ejecutar la política cambiaria en un todo de acuerdo con la legislación que sancione el Honorable Congreso de la Nación</strong>».<span class="src">Carta Orgánica del BCRA · Ley 24.144, art. 4 inc. f, texto s/ Ley 26.739</span> Leé con atención el final del inciso, porque ahí está lo jurídicamente decisivo: el Banco Central <em>ejecuta</em>, y lo hace «en un todo de acuerdo» con lo que el Congreso legisle. La política cambiaria no es una potestad discrecional del banco sino una atribución delegada, y eso marca su límite.</p>
     </div>
 
     <div class="callout key">
@@ -2336,9 +2462,11 @@
     </div>
   </section>
 
-  <!-- ═══════ SEC 10 · Sobre y subvaluación ═══════ -->
-  <section class="seccion reveal" id="sec-10">
-    <span class="sec-eyebrow"><span class="sec-eyebrow-num">10</span> Efectos cambiarios</span>
+  <!-- ═══════ SEC 11 · Sobre y subvaluación ═══════ -->
+  <!-- Ancla de compatibilidad: esta sección era la 10 y su id era sec-10. No borrar. -->
+  <span class="anchor-compat" id="sec-10" aria-hidden="true"></span>
+  <section class="seccion reveal" id="sec-valuacion">
+    <span class="sec-eyebrow"><span class="sec-eyebrow-num">11</span> Efectos cambiarios</span>
     <h2>Sobrevaluación y <span class="acento">subvaluación</span></h2>
     <div class="divider-flourish"><span>◆</span></div>
     <p class="lead-p">Sea cual sea el sistema, lo importante es que el tipo de cambio quede lo más <strong>cerca posible del equilibrio</strong>. Cuando no lo está, ocurren dos fenómenos opuestos con efectos muy distintos sobre el aparato productivo y sobre la distribución del ingreso.<span class="src">JCT ficha</span></p>
@@ -2378,7 +2506,7 @@
     <div class="callout data">
       <div class="callout-icon">◆</div>
       <h4>La convertibilidad, otra vez</h4>
-      <p>Ahora podés cerrar el círculo con la sección 8. La convertibilidad ($1 = U$S 1, entre 1991 y 2001) sostuvo una <strong>sobrevaluación persistente</strong>. Volvé a mirar el cuadro: balanza comercial negativa año tras año, importaciones que crecen, cuenta corriente en rojo y una deuda externa que se triplica para financiar el desequilibrio. Los efectos de la primera columna de este cuadro son, exactamente, la historia argentina de esa década.<span class="src">JCT ficha</span></p>
+      <p>Ahora podés cerrar el círculo con la sección 8. La convertibilidad ($1 = U$S 1, entre 1991 y 2001) sostuvo una <strong>sobrevaluación persistente</strong>. Repasá lo que leíste ahí: cuenta corriente en rojo los diez años, importaciones que crecen y una deuda externa que se triplica para financiar el desequilibrio. Los efectos del <strong>Escenario 1</strong>, la sobrevaluación, son exactamente la historia argentina de esa década.<span class="src">JCT ficha</span></p>
     </div>
 
     <h3>Devaluación y apreciación</h3>
@@ -2621,7 +2749,7 @@
       <div class="check-item" data-check="c6"><span class="check-box">✓</span><span class="check-txt">Diferenciar movimientos de <strong>bienes, servicios (reales y financieros) y capitales</strong> (riesgo y préstamo).</span></div>
       <div class="check-item" data-check="c7"><span class="check-box">✓</span><span class="check-txt">Definir la <strong>balanza de pagos</strong> y enumerar sus tres partes con sus sub-balances.</span></div>
       <div class="check-item" data-check="c8"><span class="check-box">✓</span><span class="check-txt"><strong>Clasificar una transacción</strong> concreta en su cuenta y decir en qué dirección van las divisas.</span></div>
-      <div class="check-item" data-check="c9"><span class="check-box">✓</span><span class="check-txt">Explicar <strong>cómo se compensa</strong> el saldo global y qué pasa cuando las reservas no alcanzan.</span></div>
+      <div class="check-item" data-check="c9"><span class="check-box">✓</span><span class="check-txt">Explicar <strong>cómo se compensa</strong> el saldo global, distinguir un capital <strong>autónomo</strong> de uno <strong>compensatorio</strong> y decir qué pasa cuando las reservas no alcanzan.</span></div>
       <div class="check-item" data-check="c10"><span class="check-box">✓</span><span class="check-txt">Definir el <strong>tipo de cambio</strong>, distinguir los cuatro sistemas y los efectos de sobre y subvaluación.</span></div>
     </div>
     <div class="check-progress" id="checkProgress">0 de 10 completadas</div>
@@ -2629,7 +2757,7 @@
     <div class="pausa" style="margin-top:34px;">
       <span class="pausa-tag">◆ Para llevar al aula</span>
       <h4>Una pregunta para pensar</h4>
-      <p>Volvé al cuadro de la convertibilidad. Durante diez años el país cerró sus cuentas y hasta sumó reservas, y sin embargo la crisis llegó igual. ¿Qué te dice eso sobre la diferencia entre <em>equilibrio contable</em> y <em>equilibrio económico</em>? No hay una única respuesta correcta: se trata de <em>fundamentar</em> la tuya con las herramientas de esta unidad.</p>
+      <p>Volvé al caso de la convertibilidad. Durante diez años el país cerró sus cuentas y hasta sumó reservas, y sin embargo la crisis llegó igual. ¿Qué te dice eso sobre la diferencia entre <em>equilibrio contable</em> y <em>equilibrio económico</em>? No hay una única respuesta correcta: se trata de <em>fundamentar</em> la tuya con las herramientas de esta unidad.</p>
     </div>
   </section>
 
@@ -2642,7 +2770,8 @@
       <li><span class="obj-check">✓</span><span><strong>Distinguir</strong> exportaciones e importaciones, y los movimientos de servicios y de capitales.</span></li>
       <li><span class="obj-check">✓</span><span><strong>Identificar</strong> medidas arancelarias y no arancelarias en el debate librecambio / proteccionismo.</span></li>
       <li><span class="obj-check">✓</span><span><strong>Comprender</strong> qué es la balanza de pagos e identificar sus cuentas, sub-balances y qué registra cada una.</span></li>
-      <li><span class="obj-check">✓</span><span><strong>Explicar</strong> cómo se compensa el saldo global mediante reservas y capitales compensatorios.</span></li>
+      <li><span class="obj-check">✓</span><span><strong>Diferenciar</strong> capitales de préstamo y de riesgo, e inversión productiva de capitales financieros.</span></li>
+      <li><span class="obj-check">✓</span><span><strong>Explicar</strong> cómo se compensa el saldo global y por qué un capital compensatorio se registra separado de uno autónomo.</span></li>
       <li><span class="obj-check">✓</span><span><strong>Definir</strong> el tipo de cambio, reconocer al BCRA como autoridad cambiaria y distinguir los sistemas vistos.</span></li>
       <li><span class="obj-check">✓</span><span><strong>Analizar</strong> los efectos de la sobrevaluación y la subvaluación sobre la economía y la distribución del ingreso.</span></li>
     </ul>
@@ -2677,7 +2806,7 @@
       <div class="rub-row">
         <div class="rub-crit"><span>Competencia 02</span><strong>Balanza de pagos</strong></div>
         <div class="rub-levels">
-          <div class="rub-lvl l3"><b>Logrado</b><span>Identifica y diferencia cuentas y sub-balances, ubica cada transacción en su cuenta con la dirección correcta de las divisas, y explica cómo se compensa el saldo global.</span></div>
+          <div class="rub-lvl l3"><b>Logrado</b><span>Identifica y diferencia cuentas y sub-balances, ubica cada transacción en su cuenta con la dirección correcta de las divisas, distingue un capital <strong>autónomo</strong> de uno <strong>compensatorio</strong> y explica cómo se compensa el saldo global.</span></div>
           <div class="rub-lvl l2"><b>En proceso</b><span>Nombra las tres partes y sus sub-balances, pero se confunde al clasificar casos concretos, en especial entre servicios financieros y cuenta capital.</span></div>
           <div class="rub-lvl l1"><b>Inicial</b><span>Define la balanza de pagos sin poder desagregarla ni explicar el mecanismo de compensación.</span></div>
         </div>
@@ -2812,7 +2941,7 @@
       <span class="docend-credits-text">Documento de estudio · <strong>Equipo de Cátedra</strong> · Ciclo Lectivo 2026</span>
       <span class="docend-stamp">
         <span class="docend-date">Julio de 2026</span>
-        <span class="docend-version" title="Versión del documento">v2.1</span>
+        <span class="docend-version" title="Versión del documento">v2.2</span>
       </span>
     </div>
 
@@ -2839,12 +2968,49 @@
 <script>
 (function(){
   "use strict";
-  /* _v2: el checklist pasó de guardarse por índice a guardarse por data-check, así que la
-     forma del estado cambió. La unidad todavía no se publicó; si ya hubiera circulado,
-     habría que migrar leyendo las claves numéricas viejas en vez de bumpear. */
+  /* _v2: el checklist pasó de guardarse por índice a guardarse por data-check, y tres
+     secciones pasaron de id numérico a id semántico. Las dos cosas cambian la forma del
+     estado, de ahí el bump de clave. Como la unidad YA circuló, hay una migración
+     (migrarV1) que recupera el progreso guardado bajo la clave vieja en vez de perderlo. */
   var STORE = 'ep_unidad5_v2';
+  var STORE_V1 = 'ep_unidad5_v1';
   function load(){ try { return JSON.parse(localStorage.getItem(STORE)) || {}; } catch(e){ return {}; } }
   function save(s){ try { localStorage.setItem(STORE, JSON.stringify(s)); } catch(e){} }
+
+  /* Migración única de _v1 a _v2. Corre solo si no hay estado nuevo y sí hay estado viejo,
+     así que es idempotente y nunca pisa progreso reciente. Traduce las dos cosas que
+     cambiaron de forma:
+       · checks: el índice numérico del forEach → la clave estable data-check (c1..c10).
+         La correspondencia es exacta porque el orden de la lista nunca se alteró.
+       · visited: los ids de sección que se volvieron semánticos.
+     El resto (quiz por data-quiz, minitest, clasif) ya era estable y se copia tal cual.
+     No se borra _v1: si esta migración tuviera un error, el dato original sigue ahí. */
+  function migrarV1(){
+    try {
+      if(localStorage.getItem(STORE)) return;
+      var viejo = localStorage.getItem(STORE_V1);
+      if(!viejo) return;
+      var v1 = JSON.parse(viejo) || {};
+      var nuevo = {
+        quiz: v1.quiz || {},
+        minitest: v1.minitest,
+        clasif: v1.clasif,
+        checks: {},
+        visited: {}
+      };
+      Object.keys(v1.checks || {}).forEach(function(k){
+        var i = parseInt(k, 10);
+        if(!isNaN(i) && v1.checks[k]) nuevo.checks['c' + (i + 1)] = true;
+      });
+      var mapaIds = { 'sec-9': 'sec-tipo-cambio', 'sec-10': 'sec-valuacion' };
+      Object.keys(v1.visited || {}).forEach(function(k){
+        if(v1.visited[k]) nuevo.visited[mapaIds[k] || k] = true;
+      });
+      localStorage.setItem(STORE, JSON.stringify(nuevo));
+    } catch(e){}
+  }
+  migrarV1();
+
   var state = load();
   state.quiz = state.quiz || {};
   state.checks = state.checks || {};
@@ -3254,8 +3420,8 @@
       elScore.textContent = aciertos + ' / ' + CASOS.length;
       if(aciertos === CASOS.length) elMsg.textContent = 'Impecable: clasificás cualquier transacción sin dudar.';
       else if(aciertos >= 4) elMsg.textContent = 'Muy bien. Repasá los casos que fallaste y quedás a pleno.';
-      else if(aciertos >= 3) elMsg.textContent = 'Buen intento. Volvé a la estructura de la balanza en la sección 7 y probá de nuevo.';
-      else elMsg.textContent = 'Conviene releer las secciones 6 y 7 antes de reintentar: la clave está en distinguir servicios financieros de cuenta capital.';
+      else if(aciertos >= 3) elMsg.textContent = 'Buen intento. Volvé al diagrama de la estructura de la balanza y probá de nuevo.';
+      else elMsg.textContent = 'Conviene releer la cuenta corriente y la cuenta capital antes de reintentar: la clave está en distinguir los intereses, que son servicios financieros, del capital que los genera.';
       elDone.classList.add('show');
       if(fresh){
         state.clasif = { aciertos: aciertos, done: true }; save(state);
