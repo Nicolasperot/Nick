@@ -4672,9 +4672,17 @@
     letter-spacing: 0; text-transform: none;
   }
 
+  /* La barra de scroll del sidebar ocupa ~11 px del lado derecho y solo de
+     ese lado, así que todo el contenido queda corrido. En los bloques de
+     texto no se nota; en un botón con borde, sí. `scrollbar-gutter` con
+     `both-edges` reserva el hueco en los dos lados y devuelve el centrado
+     real a toda la columna, no solo a este botón. */
+  .sidebar { scrollbar-gutter: stable both-edges; }
   .sidebar-aula-btn {
     display: flex; align-items: center; justify-content: center; gap: 7px;
-    margin: 16px 20px 4px; padding: 9px 12px; border-radius: 9px;
+    /* Sin margen lateral propio: se alinea al padding del sidebar, igual
+       que la marca, el título, el subtítulo, el progreso y la navegación. */
+    margin: 16px 0 4px; padding: 9px 12px; border-radius: 9px;
     background: rgba(255,255,255,.06);
     border: 1px solid rgba(210,180,222,.22);
     color: var(--color-soft); text-decoration: none;
@@ -7125,7 +7133,7 @@
       <span class="docend-credits-text">Documento de estudio · <strong>Equipo de Cátedra</strong> · Ciclo Lectivo 2026</span>
       <span class="docend-stamp">
         <span class="docend-date">Julio de 2026</span>
-        <span class="docend-version" title="Versión del documento">v2.1</span>
+        <span class="docend-version" title="Versión del documento">v2.1.1</span>
       </span>
     </div>
 
@@ -7678,7 +7686,8 @@ document.querySelectorAll('.reflexion-btn').forEach(btn => {
 
   /* ──────────────── ESTADO PERSISTENTE ────────────────
      Clave propia del canon. Es INDEPENDIENTE de la marca de versión del pie
-     (v2.1): nadie debe "corregir" esa diferencia sincronizándolas, porque
+     —y por eso acá no se nombra ningún número, que quedaría viejo al primer
+     bump—: nadie debe "corregir" esa diferencia sincronizándolas, porque
      cambiar esta clave borra el progreso guardado de toda la cohorte.
      Las secciones visitadas y los objetivos viven en sus claves legacy
      (u9_visited_sections, u9_learning_goals), que el reset también limpia. */
