@@ -1,0 +1,2836 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Boletín N° 9.1 · Pastoral Social · Arquidiócesis de Santa Fe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --coral:#d65a31;
+    --coral-soft:#f4a987;
+    --coral-light:#fde8dc;
+    --cream:#fdf8f3;
+    --cream-deep:#faf0e6;
+    --ink:#2a2a2a;
+    --ink-soft:#4a4a4a;
+    --muted:#8a7e74;
+    --gold:#c9923a;
+    --sky:#a8c8d8;
+    --sky-soft:#e3eef3;
+    --line:#ead9c6;
+    --mourning:#6d5d7a;
+    --mourning-soft:#f1edf3;
+    --shadow:0 8px 30px rgba(214,90,49,.08);
+    --shadow-lift:0 16px 50px rgba(214,90,49,.14);
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+
+  /* ===== Scrollbar general (estilo coral, a juego con la barra lateral) ===== */
+  ::-webkit-scrollbar{width:14px;height:14px}
+  ::-webkit-scrollbar-track{background:var(--cream-deep)}
+  ::-webkit-scrollbar-thumb{
+    background:var(--coral-soft);
+    border-radius:12px;
+    border:4px solid var(--cream-deep);
+  }
+  ::-webkit-scrollbar-thumb:hover{background:var(--coral)}
+  ::-webkit-scrollbar-corner{background:var(--cream-deep)}
+  body{
+    font-family:'Inter',sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    line-height:1.65;
+    font-size:16px;
+    overflow-x:hidden;
+  }
+
+  /* ================ HERO ================ */
+  .hero{
+    min-height:100vh;
+    background:
+      radial-gradient(circle at 15% 20%, rgba(214,90,49,.10), transparent 40%),
+      radial-gradient(circle at 85% 75%, rgba(168,200,216,.18), transparent 45%),
+      linear-gradient(180deg, var(--cream) 0%, var(--cream-deep) 100%);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    overflow:hidden;
+    padding:60px 24px;
+  }
+  .hero::before{
+    content:"\271D\FE0E"; /* cruz + selector de variación: fuerza texto, no emoji */
+    position:absolute;
+    font-size:680px;
+    color:rgba(214,90,49,.04);
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    font-family:'Fraunces',serif;
+    pointer-events:none;
+  }
+  .hero-inner{
+    position:relative;
+    z-index:2;
+    text-align:center;
+    max-width:780px;
+    /* ancho estable donde apoyar los filetes del cintillo:
+       antes el bloque medía lo que medía el h1 */
+    width:100%;
+  }
+
+  /* ── CINTILLO ABIERTO ────────────────────────────────────────────
+     Tres columnas: filete elástico / texto / filete elástico.
+     Los filetes se desvanecen hacia afuera, así el rótulo respira y no
+     queda colgado de dos líneas duras. Nada de background, nada de
+     border, nada de border-radius, nada de backdrop-filter: la caja
+     se fue y no la reemplaza ningún recuadro disimulado.
+     El max-width de 520px es más angosto que el h1 a propósito: la
+     jerarquía queda dicha sin una sola palabra.                     */
+  .hero .cintillo{
+    display:grid;
+    grid-template-columns:1fr auto 1fr;
+    align-items:center;
+    gap:16px;
+    max-width:520px;
+    margin:0 auto 36px;
+  }
+  /* min-width:0 es obligatorio: sin eso el track 1fr se niega a encoger
+     por debajo de su min-content y a 320px empuja hacia afuera. */
+  .hero .cintillo-filete{display:block;height:1px;min-width:0}
+  .hero .cintillo-filete--izq{background:linear-gradient(90deg, rgba(234,217,198,0), var(--line))}
+  .hero .cintillo-filete--der{background:linear-gradient(90deg, var(--line), rgba(234,217,198,0))}
+  /* Fraunces en versalita: el rótulo pertenece a la misma familia que
+     el título y la fecha. No baja de 12px en ningún corte, porque a
+     cuerpos menores los trazos finos de una display de alto contraste
+     caen por debajo del píxel.
+     El margin-right negativo descuenta el hueco fantasma que el tracking
+     deja después de la última letra: sobre un ítem de grid el track auto
+     mide el margin-box, así que la tinta queda ópticamente centrada.
+     Si algún día se retoca el letter-spacing, hay que mover el
+     margin-right al MISMO valor, acá y en los tres cortes.          */
+  .hero .cintillo-txt{
+    display:inline-flex;
+    align-items:center;
+    gap:11px;
+    font-family:'Fraunces',serif;
+    font-size:13px;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:.34em;
+    color:var(--coral);
+    white-space:nowrap;
+    margin-right:-.34em;
+  }
+  /* Rombo de imprenta: un cuadrado girado, dibujado en CSS. No depende
+     de ningún glifo. Reemplaza al punto verde animado: se va el único
+     color fuera de :root y el único movimiento de la portada. */
+  .hero .cintillo-rombo{
+    flex:0 0 auto;
+    width:6px;height:6px;
+    background:var(--coral);
+    transform:rotate(45deg);
+  }
+  .hero h1{
+    font-family:'Fraunces',serif;
+    font-size:clamp(48px,8vw,104px);
+    font-weight:900;
+    line-height:.95;
+    letter-spacing:-2px;
+    color:var(--ink);
+    margin-bottom:8px;
+  }
+  .hero h1 .accent{
+    color:var(--coral);
+    font-style:italic;
+    font-weight:400;
+  }
+  .hero .sub{
+    font-family:'Fraunces',serif;
+    font-style:italic;
+    font-size:clamp(18px,2.2vw,24px);
+    color:var(--muted);
+    /* baja de 48 a 40: el pie de imprenta pesa menos y no necesita
+       tanto empujón */
+    margin:0 0 40px;
+  }
+
+  /* ── PIE DE IMPRENTA (número + fecha) ────────────────────────────
+     Un renglón alineado por la línea de base —rótulo, cifra, filete
+     vertical, fecha en bastardilla— coronado por un filete corto y
+     centrado, en lugar del border-top que antes cruzaba los 780px.
+     flex-wrap:nowrap es deliberado: de 601px para arriba sobra ancho
+     y por debajo de 600px el bloque se apila, así que nunca existe la
+     ventana en la que el filete vertical quedaría huérfano al final de
+     una línea partida.                                              */
+  .hero .colofon{
+    position:relative;
+    margin:0;
+    padding-top:30px;
+    display:flex;
+    align-items:baseline;
+    justify-content:center;
+    flex-wrap:nowrap;
+    gap:0 20px;
+  }
+  /* Filete de cierre: 88px al medio. Único position:absolute nuevo de
+     la portada; ancho fijo y left:50% + translateX(-50%) sobre un padre
+     relative, así que no infla el scrollWidth. */
+  .hero .colofon::before{
+    content:"";
+    position:absolute;top:0;left:50%;transform:translateX(-50%);
+    width:88px;height:1px;background:var(--line);
+  }
+  .hero .colofon-num{display:inline-flex;align-items:baseline;gap:13px;flex:0 0 auto}
+  /* El rótulo va en Inter y no en Fraunces: a 11px una grotesca aguanta
+     el cuerpo chico y un serif de alto contraste no.
+     Color --ink-soft (8,9:1 sobre la crema) y no --muted (3,74:1, por
+     debajo de AA a este cuerpo). */
+  .hero .colofon-lbl{
+    font-family:'Inter',sans-serif;
+    font-size:11px;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:.26em;
+    color:var(--ink-soft);
+    margin-right:-.26em;
+    white-space:nowrap;
+  }
+  /* LA CIFRA: 58px contra los 88px anteriores. Un escalón, no un salto.
+     El peso baja de 900 a 700: es lo que evita que el «09» tenga la
+     misma masa tipográfica que «Pastoral Social», que sigue en 900. */
+  .hero .colofon-cifra{
+    font-family:'Fraunces',serif;
+    font-size:58px;
+    font-weight:700;
+    line-height:1;
+    letter-spacing:-1px;
+    color:var(--coral);
+    font-variant-numeric:lining-nums tabular-nums;
+  }
+  .hero .colofon-filete{
+    align-self:center;
+    flex:0 0 auto;
+    width:1px;height:34px;
+    background:var(--line);
+  }
+  /* Cursiva 400: la bastardilla sola alcanza para separar la fecha del
+     número. Rima con el «Social» del h1, que también es italic 400. */
+  .hero .colofon-fecha{
+    font-family:'Fraunces',serif;
+    font-style:italic;
+    font-weight:400;
+    font-size:19px;
+    line-height:1.3;
+    color:var(--ink-soft);
+    max-width:14em;
+    min-width:0;
+  }
+  .scroll-hint{
+    position:absolute;
+    bottom:32px;
+    left:50%;
+    transform:translateX(-50%);
+    font-size:12px;
+    letter-spacing:3px;
+    padding-left:3px;
+    color:var(--muted);
+    text-transform:uppercase;
+    text-align:center;
+    z-index:2;
+  }
+  .scroll-hint::after{
+    content:"↓";
+    display:block;
+    font-size:20px;
+    margin-top:8px;
+    letter-spacing:0;
+    padding-left:0;
+    animation:bounce 2s infinite;
+  }
+  @keyframes bounce{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(8px)}
+  }
+  /* en ventanas muy bajas el hero centrado choca con el hint: lo ocultamos */
+  @media (max-height:640px){
+    .scroll-hint{display:none}
+  }
+
+  /* ================ WELCOME ================ */
+  .welcome{
+    max-width:760px;
+    margin:0 auto;
+    padding:56px 24px 36px;
+    text-align:center;
+  }
+  .welcome .ornament{
+    font-size:32px;
+    color:var(--coral-soft);
+    margin-bottom:24px;
+    letter-spacing:12px;
+  }
+  .welcome p{
+    font-family:'Fraunces',serif;
+    font-size:clamp(22px,2.6vw,30px);
+    font-weight:400;
+    line-height:1.45;
+    color:var(--ink-soft);
+    font-style:italic;
+  }
+  .welcome .signature{
+    margin-top:32px;
+    font-family:'Inter',sans-serif;
+    font-style:normal;
+    font-size:14px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    color:var(--coral);
+    font-weight:600;
+  }
+
+  /* ================ TOC ================ */
+  .toc{
+    max-width:1100px;
+    margin:0 auto 100px;
+    padding:0 24px;
+  }
+  .toc-header{
+    display:flex;
+    align-items:baseline;
+    gap:24px;
+    margin-bottom:40px;
+  }
+  .toc-header .num{
+    font-family:'Fraunces',serif;
+    font-size:18px;
+    color:var(--coral);
+    font-weight:600;
+    letter-spacing:2px;
+  }
+  .toc-header h2{
+    font-family:'Fraunces',serif;
+    font-size:clamp(32px,4vw,48px);
+    font-weight:700;
+    color:var(--ink);
+    letter-spacing:-1px;
+  }
+  .toc-header .line{
+    flex:1;
+    height:1px;
+    background:var(--line);
+  }
+  .toc-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+    gap:2px;
+    background:var(--line);
+    border:1px solid var(--line);
+    border-radius:24px;
+    overflow:hidden;
+  }
+  .toc-item{
+    background:var(--cream);
+    padding:24px 28px;
+    text-decoration:none;
+    color:inherit;
+    transition:all .3s ease;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    position:relative;
+  }
+  .toc-item:hover{
+    background:#fff;
+    transform:translateY(-2px);
+  }
+  .toc-item .toc-num{
+    font-family:'Fraunces',serif;
+    font-size:14px;
+    color:var(--coral);
+    font-weight:700;
+    letter-spacing:2px;
+  }
+  .toc-item .toc-title{
+    font-family:'Fraunces',serif;
+    font-size:18px;
+    font-weight:600;
+    line-height:1.3;
+    color:var(--ink);
+  }
+  .toc-item .toc-date{
+    font-size:12px;
+    color:var(--muted);
+    letter-spacing:1px;
+    text-transform:uppercase;
+    margin-top:4px;
+  }
+  .toc-item::after{
+    content:"→";
+    position:absolute;
+    top:24px;
+    right:24px;
+    color:var(--coral);
+    opacity:0;
+    transition:all .3s ease;
+  }
+  .toc-item:hover::after{
+    opacity:1;
+    transform:translateX(4px);
+  }
+
+  /* ================ ARTICLE ================ */
+  .article{
+    max-width:780px;
+    margin:0 auto;
+    padding:80px 24px;
+    position:relative;
+  }
+  .article.wide{max-width:1100px}
+
+  .article-header{
+    margin-bottom:48px;
+  }
+  .tag{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:6px 16px;
+    border-radius:100px;
+    font-size:11px;
+    letter-spacing:2.5px;
+    text-transform:uppercase;
+    font-weight:700;
+    margin-bottom:24px;
+  }
+  .tag.noticia{background:var(--coral);color:#fff}
+  .tag.evento{background:var(--gold);color:#fff}
+  .tag.reunion{background:var(--sky);color:#fff}
+  .tag.invitacion{background:#7ba87b;color:#fff}
+  .tag.equipo{background:var(--ink);color:#fff}
+  .tag.comunicado{background:var(--mourning);color:#fff}
+  .tag .date-chip{
+    background:rgba(255,255,255,.25);
+    padding:2px 10px;
+    border-radius:100px;
+    letter-spacing:1px;
+  }
+
+  .article h2{
+    font-family:'Fraunces',serif;
+    font-size:clamp(34px,4.5vw,54px);
+    font-weight:700;
+    line-height:1.05;
+    letter-spacing:-1.5px;
+    color:var(--ink);
+    margin-bottom:16px;
+  }
+  .article h2 .em{
+    color:var(--coral);
+    font-style:italic;
+    font-weight:400;
+  }
+  .article .lead{
+    font-family:'Fraunces',serif;
+    font-size:22px;
+    line-height:1.5;
+    color:var(--ink-soft);
+    font-style:italic;
+    padding-left:24px;
+    border-left:3px solid var(--coral-soft);
+    margin-bottom:32px;
+  }
+  .article p{
+    font-size:17px;
+    line-height:1.75;
+    color:var(--ink-soft);
+    margin-bottom:20px;
+  }
+  .article p strong{color:var(--ink);font-weight:600}
+  .article a{
+    color:var(--coral);
+    text-decoration:none;
+    border-bottom:1px solid var(--coral-soft);
+    transition:all .2s;
+  }
+  .article a:hover{
+    background:var(--coral-light);
+  }
+  .article h3{
+    font-family:'Fraunces',serif;
+    font-size:24px;
+    font-weight:600;
+    color:var(--coral);
+    margin:36px 0 16px;
+  }
+  .article ul{
+    list-style:none;
+    margin:20px 0;
+  }
+  .article ul li{
+    padding:14px 0 14px 32px;
+    border-bottom:1px dashed var(--line);
+    position:relative;
+    font-size:16px;
+    color:var(--ink-soft);
+  }
+  .article ul li:last-child{border-bottom:none}
+  .article ul li::before{
+    content:"✦";
+    position:absolute;
+    left:8px;
+    top:14px;
+    color:var(--coral);
+    font-size:14px;
+  }
+  .article ul li strong{color:var(--ink);font-weight:600}
+
+  /* divider */
+  .divider{
+    max-width:780px;
+    margin:40px auto;
+    padding:0 24px;
+    text-align:center;
+  }
+  .divider span{
+    display:inline-block;
+    color:var(--coral-soft);
+    font-size:14px;
+    letter-spacing:24px;
+    padding-left:24px;
+  }
+
+  /* card variant */
+  .card{
+    background:#fff;
+    border-radius:24px;
+    padding:40px;
+    box-shadow:var(--shadow);
+    border:1px solid var(--line);
+    margin:32px 0;
+  }
+  .card.coral{
+    background:linear-gradient(135deg, var(--coral-light) 0%, var(--cream) 100%);
+    border:none;
+  }
+  .card.sky{
+    background:linear-gradient(135deg, var(--sky-soft) 0%, var(--cream) 100%);
+    border:none;
+  }
+  .card.mourning{
+    background:var(--mourning-soft);
+    border:none;
+    border-left:4px solid var(--mourning);
+    border-radius:0 20px 20px 0;
+  }
+  .card h4{
+    font-family:'Fraunces',serif;
+    font-size:22px;
+    font-weight:600;
+    color:var(--ink);
+    margin-bottom:8px;
+  }
+  .card .small{
+    font-size:13px;
+    color:var(--muted);
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    margin-bottom:16px;
+  }
+
+  .info-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:16px;
+    margin:28px 0;
+  }
+  .info-cell{
+    padding:20px;
+    background:var(--cream);
+    border-radius:16px;
+    border:1px solid var(--line);
+  }
+  .info-cell .icon{
+    font-size:22px;
+    margin-bottom:8px;
+  }
+  .info-cell .label{
+    font-size:11px;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin-bottom:4px;
+  }
+  .info-cell .val{
+    font-family:'Fraunces',serif;
+    font-size:17px;
+    font-weight:600;
+    color:var(--ink);
+    line-height:1.3;
+  }
+
+  /* pull quote */
+  .pull{
+    margin:48px 0;
+    padding:48px;
+    background:var(--coral);
+    border-radius:32px;
+    color:#fff;
+    position:relative;
+    overflow:hidden;
+  }
+  .pull.sober{background:var(--mourning)}
+  .pull::before{
+    content:"❝";
+    position:absolute;
+    top:-30px;
+    right:24px;
+    font-size:180px;
+    color:rgba(255,255,255,.15);
+    font-family:'Fraunces',serif;
+  }
+  .pull p{
+    font-family:'Fraunces',serif;
+    font-size:28px;
+    line-height:1.4;
+    font-style:italic;
+    color:#fff;
+    position:relative;
+    z-index:1;
+    margin:0;
+  }
+  .pull .src{
+    margin-top:16px;
+    font-style:normal;
+    font-size:14px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    opacity:.8;
+    font-family:'Inter',sans-serif;
+  }
+
+  /* people */
+  .people{
+    margin:32px 0;
+  }
+  .person{
+    display:flex;
+    gap:20px;
+    padding:24px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .person:last-child{border-bottom:none}
+  .person .avatar{
+    width:56px;height:56px;
+    border-radius:50%;
+    background:var(--coral-light);
+    color:var(--coral);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'Fraunces',serif;
+    font-size:22px;
+    font-weight:700;
+    flex-shrink:0;
+  }
+  .person .info h5{
+    font-family:'Fraunces',serif;
+    font-size:18px;
+    font-weight:600;
+    margin-bottom:4px;
+    color:var(--ink);
+  }
+  .person .info p{
+    font-size:16px;
+    color:var(--ink-soft);
+    line-height:1.65;
+    margin:0 0 16px;
+  }
+  .person .info p:last-child{margin-bottom:0}
+
+  /* chip de crédito (Presentes / Participó / Confirmados) */
+  p.credit{
+    display:inline-block;
+    font-size:13px;
+    font-weight:600;
+    color:var(--ink-soft);
+    background:var(--coral-light);
+    padding:6px 14px;
+    border-radius:20px;
+    margin:10px 0 0;
+  }
+  .credit b{
+    color:var(--coral);
+    text-transform:uppercase;
+    letter-spacing:1px;
+    font-size:11px;
+    font-weight:700;
+  }
+
+  /* hashtags */
+  .hashtags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin:24px 0;
+  }
+  .hashtags span{
+    font-size:13px;
+    font-weight:600;
+    color:var(--mourning);
+    background:var(--mourning-soft);
+    padding:6px 14px;
+    border-radius:100px;
+  }
+
+  /* section bg variants */
+  section.section-alt{
+    background:var(--cream-deep);
+  }
+  section.section-warm{
+    background:linear-gradient(180deg, var(--cream) 0%, var(--coral-light) 100%);
+  }
+  section.section-mourning{
+    background:linear-gradient(180deg, var(--cream) 0%, var(--mourning-soft) 100%);
+  }
+
+  /* footer */
+  .footer{
+    background:var(--ink);
+    color:#fff;
+    padding:80px 24px 40px;
+    text-align:center;
+  }
+  .footer .ornament{
+    font-size:48px;
+    color:var(--coral);
+    margin-bottom:24px;
+    font-family:'Fraunces',serif;
+  }
+  .footer h3{
+    font-family:'Fraunces',serif;
+    font-size:32px;
+    font-weight:400;
+    font-style:italic;
+    margin-bottom:24px;
+    max-width:600px;
+    margin-left:auto;
+    margin-right:auto;
+    line-height:1.4;
+  }
+  .footer .meta{
+    margin-top:48px;
+    padding-top:32px;
+    border-top:1px solid rgba(255,255,255,.1);
+    font-size:13px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:rgba(255,255,255,.5);
+  }
+  .footer .meta strong{color:#fff}
+
+  /* responsive base */
+  @media (max-width:640px){
+    .hero{padding:48px 20px}
+    .article{padding:60px 20px}
+    .pull{padding:32px 24px}
+    .pull p{font-size:22px}
+    .card{padding:28px 24px}
+  }
+
+  /* ================ SIDEBAR ================ */
+  .sidenav{
+    position:fixed;
+    left:0;
+    top:0;
+    height:100vh;
+    width:72px;
+    background:rgba(253,248,243,.85);
+    backdrop-filter:blur(12px);
+    border-right:1px solid var(--line);
+    z-index:100;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding:24px 0;
+    transition:width .35s cubic-bezier(.4,0,.2,1);
+    overflow:hidden;
+  }
+  .sidenav:hover{
+    width:300px;
+    box-shadow:var(--shadow-lift);
+  }
+  .sidenav-logo{
+    width:46px;
+    height:46px;
+    border-radius:14px;
+    background:var(--coral);
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'Fraunces',serif;
+    font-weight:900;
+    font-size:20px;
+    flex-shrink:0;
+    margin-bottom:14px;
+    box-shadow:0 6px 16px rgba(214,90,49,.28);
+    transition:transform .35s cubic-bezier(.4,0,.2,1),box-shadow .35s;
+    text-decoration:none;
+  }
+  .sidenav:hover .sidenav-logo{
+    transform:scale(1.06);
+    box-shadow:0 8px 22px rgba(214,90,49,.36);
+  }
+  .sidenav-title{
+    font-family:'Fraunces',serif;
+    font-size:13px;
+    font-weight:600;
+    color:var(--ink);
+    letter-spacing:1px;
+    text-align:center;
+    width:100%;
+    padding:0 16px;
+    box-sizing:border-box;
+    max-height:0;
+    opacity:0;
+    overflow:hidden;
+    border-bottom:1px solid transparent;
+    transition:max-height .35s cubic-bezier(.4,0,.2,1),opacity .25s ease .05s,padding .35s ease,margin .35s ease;
+    flex-shrink:0;
+  }
+  .sidenav:hover .sidenav-title{
+    max-height:80px;
+    opacity:1;
+    padding-bottom:18px;
+    margin-bottom:16px;
+    border-bottom-color:var(--line);
+  }
+  .sidenav-list{
+    list-style:none;
+    width:100%;
+    overflow-y:auto;
+    overflow-x:hidden;
+    flex:1;
+    padding:0 12px;
+    scrollbar-width:none;
+  }
+  /* contraída: sin scrollbar para que los números queden centrados */
+  .sidenav-list::-webkit-scrollbar{width:0;height:0}
+  /* expandida: scrollbar fino coral */
+  .sidenav:hover .sidenav-list{scrollbar-width:thin;scrollbar-color:var(--coral-soft) transparent}
+  .sidenav:hover .sidenav-list::-webkit-scrollbar{width:6px}
+  .sidenav:hover .sidenav-list::-webkit-scrollbar-track{background:transparent}
+  .sidenav:hover .sidenav-list::-webkit-scrollbar-thumb{background:var(--coral-soft);border:none;border-radius:6px}
+  .sidenav:hover .sidenav-list::-webkit-scrollbar-thumb:hover{background:var(--coral)}
+  .sidenav-item{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding:10px 12px;
+    margin:2px 0;
+    border-radius:12px;
+    text-decoration:none;
+    color:var(--ink-soft);
+    transition:all .25s;
+    white-space:nowrap;
+    position:relative;
+  }
+  .sidenav-item:hover{
+    background:var(--coral-light);
+    color:var(--coral);
+  }
+  .sidenav-item.active{
+    background:var(--coral);
+    color:#fff;
+    box-shadow:0 6px 16px rgba(214,90,49,.28);
+  }
+  .sidenav-item.active .sidenav-num{
+    background:rgba(255,255,255,.25);
+    color:#fff;
+  }
+  .sidenav-num{
+    width:24px;
+    height:24px;
+    border-radius:8px;
+    background:var(--cream-deep);
+    color:var(--coral);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'Fraunces',serif;
+    font-size:11px;
+    font-weight:700;
+    flex-shrink:0;
+    transition:all .25s;
+  }
+  .sidenav-label{
+    font-size:13px;
+    font-weight:500;
+    opacity:0;
+    transition:opacity .25s;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+  .sidenav:hover .sidenav-label{
+    opacity:1;
+  }
+  .sidenav-footer{
+    padding:16px 12px 0;
+    border-top:1px solid var(--line);
+    width:100%;
+    font-size:11px;
+    color:var(--muted);
+    text-align:center;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    opacity:0;
+    transition:opacity .25s;
+  }
+  .sidenav:hover .sidenav-footer{opacity:1}
+
+  /* shift main content to make room */
+  .main-shift{padding-left:72px}
+
+  /* ================ BACK TO TOP ================ */
+  .back-top{
+    position:fixed;
+    bottom:32px;
+    right:32px;
+    width:56px;
+    height:56px;
+    background:var(--coral);
+    color:#fff;
+    border:none;
+    border-radius:50%;
+    cursor:pointer;
+    box-shadow:var(--shadow-lift);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+    z-index:99;
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(20px);
+    transition:all .35s cubic-bezier(.4,0,.2,1);
+  }
+  .back-top.visible{
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
+  }
+  .back-top:hover{
+    background:#b94a25;
+    transform:translateY(-4px);
+    box-shadow:0 20px 40px rgba(214,90,49,.4);
+  }
+  .back-top::before{
+    content:"";
+    position:absolute;
+    inset:-4px;
+    border-radius:50%;
+    border:2px solid var(--coral);
+    opacity:0;
+    transform:scale(.8);
+    transition:all .4s;
+  }
+  .back-top:hover::before{
+    opacity:.3;
+    transform:scale(1.15);
+  }
+
+  /* hamburger — hidden on desktop */
+  .nav-toggle{display:none}
+
+  /* mobile: top bar + slide-down drawer */
+  @media (max-width:900px){
+    .sidenav{
+      width:100%;
+      height:64px;
+      flex-direction:row;
+      padding:12px 16px;
+      border-right:none;
+      border-bottom:1px solid var(--line);
+      align-items:center;
+      gap:12px;
+      overflow:visible;
+      background:rgba(253,248,243,.96);
+    }
+    .sidenav:hover{width:100%;box-shadow:none}
+    .sidenav-logo{margin:0 !important;width:40px;height:40px;font-size:17px}
+    .sidenav:hover .sidenav-logo{margin-left:0}
+    .sidenav-title{
+      flex:1;
+      width:auto;
+      opacity:1;
+      margin:0;
+      padding:0;
+      border:none;
+      font-size:13px;
+      line-height:1.3;
+      text-align:left;
+      max-height:none;
+      overflow:visible;
+    }
+    .nav-toggle{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:40px;
+      height:40px;
+      background:var(--cream-deep);
+      border:1px solid var(--line);
+      border-radius:12px;
+      cursor:pointer;
+      flex-shrink:0;
+      padding:0;
+      color:var(--ink);
+    }
+    .nav-toggle span{
+      display:block;
+      width:18px;
+      height:2px;
+      background:var(--ink);
+      position:relative;
+    }
+    .nav-toggle span::before,
+    .nav-toggle span::after{
+      content:"";
+      position:absolute;
+      left:0;
+      width:18px;
+      height:2px;
+      background:var(--ink);
+      transition:transform .25s;
+    }
+    .nav-toggle span::before{top:-6px}
+    .nav-toggle span::after{top:6px}
+    .sidenav.open .nav-toggle span{background:transparent}
+    .sidenav.open .nav-toggle span::before{transform:translateY(6px) rotate(45deg)}
+    .sidenav.open .nav-toggle span::after{transform:translateY(-6px) rotate(-45deg)}
+
+    .sidenav-list{
+      position:fixed;
+      top:64px;
+      left:0;
+      right:0;
+      background:var(--cream);
+      backdrop-filter:blur(14px);
+      max-height:0;
+      overflow:hidden;
+      padding:0 14px;
+      transition:max-height .4s cubic-bezier(.4,0,.2,1), padding .4s ease, box-shadow .4s ease;
+      border-bottom:1px solid transparent;
+      border-radius:0 0 20px 20px;
+      z-index:99;
+    }
+    .sidenav.open .sidenav-list{
+      max-height:calc(100vh - 64px);
+      overflow-y:auto;
+      padding:12px 14px 18px;
+      border-bottom-color:var(--line);
+      box-shadow:0 20px 36px rgba(42,42,42,.16);
+      scrollbar-width:thin;
+      scrollbar-color:var(--coral-soft) transparent;
+    }
+    .sidenav.open .sidenav-list::-webkit-scrollbar{width:6px}
+    .sidenav.open .sidenav-list::-webkit-scrollbar-track{background:transparent}
+    .sidenav.open .sidenav-list::-webkit-scrollbar-thumb{background:var(--coral-soft);border:none;border-radius:6px}
+    .sidenav.open .sidenav-list::-webkit-scrollbar-thumb:hover{background:var(--coral)}
+    .sidenav-label{opacity:1}
+    .sidenav-footer{display:none}
+    .main-shift{padding-left:0;padding-top:64px}
+    html{scroll-padding-top:80px}
+    .back-top{bottom:20px;right:20px;width:48px;height:48px;font-size:18px}
+
+    .hero{min-height:88vh;padding:80px 20px 60px}
+    .hero::before{display:none}
+    .scroll-hint{bottom:20px;font-size:11px}
+
+    .welcome{padding:40px 20px 28px}
+
+    .toc{margin-bottom:60px}
+    .toc-header{flex-wrap:wrap;gap:12px}
+    .toc-header .line{display:none}
+    .toc-grid{border-radius:16px;grid-template-columns:1fr}
+
+    .article{padding:48px 18px}
+    .article .lead{font-size:18px;padding-left:18px}
+    .article p{font-size:16px}
+
+    .card{padding:24px 20px;border-radius:18px}
+    .info-grid{grid-template-columns:1fr;gap:10px}
+    .info-cell{padding:16px}
+    .pull{padding:28px 22px;border-radius:22px;margin:32px 0}
+    .pull p{font-size:19px;line-height:1.45}
+    .pull::before{font-size:120px;top:-16px;right:14px}
+
+    .link-card{padding:18px;gap:14px;border-radius:16px}
+    .link-card .icon-big{width:48px;height:48px;font-size:24px;border-radius:12px}
+    .link-card .lc-content h5{font-size:16px}
+
+    .footer{padding:60px 20px 32px}
+    .footer h3{font-size:22px}
+  }
+
+  @media (max-width:480px){
+    .hero h1{letter-spacing:-1px}
+    .toc-item{padding:18px 20px}
+    .article h2{letter-spacing:-1px}
+    .person{gap:14px;padding:18px 0}
+    .person .avatar{width:48px;height:48px;font-size:18px}
+  }
+
+  /* small flourish */
+  .flourish{
+    text-align:center;
+    margin:24px 0;
+    color:var(--coral-soft);
+    font-size:20px;
+    letter-spacing:8px;
+  }
+
+  /* link cards */
+  .link-card{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    padding:20px 22px;
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:18px;
+    text-decoration:none;
+    color:inherit;
+    margin:16px 0;
+    position:relative;
+    overflow:hidden;
+    transition:transform .3s cubic-bezier(.4,0,.2,1), box-shadow .3s, border-color .3s;
+  }
+  .link-card::before{
+    content:"";
+    position:absolute;left:0;top:0;bottom:0;width:4px;
+    background:var(--coral);
+    transform:scaleY(0);
+    transform-origin:center;
+    transition:transform .3s;
+  }
+  .link-card::after{
+    content:"→";
+    flex-shrink:0;
+    margin-left:auto;
+    color:var(--coral);
+    font-family:'Fraunces',serif;
+    font-size:22px;
+    opacity:.4;
+    transition:transform .3s, opacity .3s;
+  }
+  .link-card:hover{
+    border-color:var(--coral-soft);
+    box-shadow:var(--shadow-lift);
+    transform:translateY(-3px);
+  }
+  .link-card:hover::before{transform:scaleY(1)}
+  .link-card:hover::after{opacity:1;transform:translateX(5px)}
+  .link-card .icon-big{
+    font-size:30px;
+    width:58px;height:58px;
+    background:linear-gradient(135deg,var(--coral-light),var(--cream-deep));
+    border-radius:15px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+    transition:transform .35s cubic-bezier(.4,0,.2,1);
+  }
+  .link-card:hover .icon-big{transform:scale(1.08) rotate(-3deg)}
+  .link-card .lc-content{flex:1;min-width:0}
+  .link-card .lc-content h5{
+    font-family:'Fraunces',serif;
+    font-size:18px;
+    font-weight:600;
+    color:var(--ink);
+    margin-bottom:4px;
+    overflow-wrap:break-word;
+  }
+  .link-card .lc-content p{
+    font-size:14px;
+    color:var(--muted);
+    margin:0;
+    border:none;
+    word-break:break-word;
+  }
+  .link-card.muted .icon-big{background:var(--mourning-soft)}
+
+  /* ===== News grid (Otras noticias) ===== */
+  .news-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:18px;
+    margin-top:26px;
+  }
+  .news-tile{
+    display:flex;
+    flex-direction:column;
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:18px;
+    overflow:hidden;
+    text-decoration:none;
+    color:inherit;
+    transition:transform .35s cubic-bezier(.4,0,.2,1), box-shadow .3s, border-color .3s;
+  }
+  .news-tile:hover{
+    transform:translateY(-5px);
+    box-shadow:var(--shadow-lift);
+    border-color:var(--coral-soft);
+  }
+  .news-tile .cover{
+    height:92px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:38px;
+    background:linear-gradient(135deg,var(--coral),#ec8a5d);
+    color:#fff;
+    position:relative;
+    overflow:hidden;
+  }
+  .news-tile .cover::after{
+    content:"";
+    position:absolute;top:-50%;left:-60%;
+    width:50%;height:200%;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,.28),transparent);
+    transform:skewX(-20deg);
+    transition:left .55s ease;
+  }
+  .news-tile:hover .cover::after{left:140%}
+  .news-tile .cover .ico{transition:transform .35s cubic-bezier(.4,0,.2,1);position:relative;z-index:1}
+  .news-tile:hover .cover .ico{transform:scale(1.16)}
+  .news-tile .src{
+    position:absolute;left:14px;bottom:9px;
+    font-size:10px;letter-spacing:1.5px;text-transform:uppercase;
+    font-weight:700;color:rgba(255,255,255,.92);
+    z-index:1;
+  }
+  .news-tile .nt-body{
+    padding:15px 18px 18px;
+    display:flex;
+    flex-direction:column;
+    flex:1;
+  }
+  .news-tile h5{
+    font-family:'Fraunces',serif;
+    font-size:16px;
+    line-height:1.32;
+    font-weight:600;
+    color:var(--ink);
+    margin:0 0 14px;
+    flex:1;
+  }
+  .news-tile .read{
+    font-size:13px;
+    font-weight:700;
+    color:var(--coral);
+    letter-spacing:.3px;
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+  }
+  .news-tile .read span{transition:transform .3s}
+  .news-tile:hover .read span{transform:translateX(5px)}
+  .news-tile.gold .cover{background:linear-gradient(135deg,#c9923a,#e0b65f)}
+  .news-tile.sky .cover{background:linear-gradient(135deg,#5f93ab,#a8c8d8)}
+  .news-tile.green .cover{background:linear-gradient(135deg,#3e6b4f,#6f9f78)}
+
+  /* ===== Jornada Social · slogan + cuenta regresiva ===== */
+  .article-header .slogan-big{
+    font-family:'Fraunces',serif;
+    font-style:italic;
+    font-size:clamp(26px,4.5vw,40px);
+    font-weight:600;
+    line-height:1.12;
+    color:var(--coral);
+    margin:14px 0 0;
+  }
+  .article-header .slogan-tag{
+    font-size:11px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:var(--coral-soft);
+    font-weight:600;
+    margin:7px 0 0;
+  }
+  /* CTA destacado (Sigamos trabajando) */
+  .link-cta{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    padding:24px 26px;
+    border-radius:20px;
+    text-decoration:none;
+    color:#fff;
+    margin:18px 0;
+    background:linear-gradient(135deg,#3e8e5f,#66b27e);
+    box-shadow:0 14px 34px rgba(62,142,95,.3);
+    position:relative;
+    overflow:hidden;
+    transition:transform .3s cubic-bezier(.4,0,.2,1), box-shadow .3s;
+  }
+  .link-cta:hover{transform:translateY(-4px);box-shadow:0 20px 46px rgba(62,142,95,.4)}
+  .link-cta::after{
+    content:"";position:absolute;top:-50%;left:-65%;width:55%;height:200%;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,.32),transparent);
+    transform:skewX(-20deg);transition:left .6s ease;
+  }
+  .link-cta:hover::after{left:150%}
+  .link-cta .icon-big{
+    font-size:30px;width:60px;height:60px;
+    background:rgba(255,255,255,.2);
+    border-radius:16px;
+    display:flex;align-items:center;justify-content:center;
+    flex-shrink:0;position:relative;z-index:1;
+  }
+  .link-cta .lc-content{flex:1;min-width:0;position:relative;z-index:1}
+  .link-cta .kicker{
+    font-size:11px;letter-spacing:1.5px;text-transform:uppercase;
+    color:#fff;opacity:.88;font-weight:700;
+  }
+  .link-cta .lc-content h5{
+    font-family:'Fraunces',serif;font-size:21px;font-weight:700;
+    color:#fff;margin:2px 0 0;line-height:1.2;
+  }
+  .link-cta .cta-arrow{
+    font-family:'Fraunces',serif;font-size:26px;flex-shrink:0;color:#fff;
+    position:relative;z-index:1;transition:transform .3s;
+  }
+  .link-cta:hover .cta-arrow{transform:translateX(6px)}
+  /* tarjeta atenuada (Drive Base 2025) */
+  .link-card.subtle{
+    background:#efeae2;
+    border-color:#e6dfd4;
+    box-shadow:none;
+  }
+  .link-card.subtle::before{display:none}
+  .link-card.subtle::after{opacity:.3}
+  .link-card.subtle:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 18px rgba(0,0,0,.05);
+    border-color:#d9cfc1;
+  }
+  .link-card.subtle .icon-big{background:#e3dccf}
+  .link-card.subtle .lc-content h5{color:var(--ink-soft)}
+  .cd-block{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:22px;
+    padding:26px 22px;
+    margin:24px 0;
+    text-align:center;
+    box-shadow:var(--shadow);
+  }
+  .cd-block.deadline{
+    background:var(--cream-deep);
+    box-shadow:none;
+  }
+  .cd-head{
+    font-size:15px;
+    color:var(--ink-soft);
+    margin-bottom:18px;
+  }
+  .cd-head strong{color:var(--coral)}
+  .cd-block.deadline .cd-head strong{color:var(--ink)}
+  .countdown{
+    display:flex;
+    gap:12px;
+    justify-content:center;
+    flex-wrap:wrap;
+  }
+  .cd-unit{
+    flex:1 1 70px;
+    min-width:62px;
+    max-width:96px;
+    text-align:center;
+    background:linear-gradient(160deg,var(--coral),#e0784c);
+    color:#fff;
+    border-radius:16px;
+    padding:16px 8px;
+    box-shadow:0 8px 20px rgba(214,90,49,.22);
+  }
+  .countdown.big .cd-unit{padding:20px 8px}
+  .cd-num{
+    display:block;
+    font-family:'Fraunces',serif;
+    font-weight:900;
+    font-size:32px;
+    line-height:1;
+    font-variant-numeric:tabular-nums;
+  }
+  .countdown.big .cd-num{font-size:42px}
+  .cd-lab{
+    display:block;
+    margin-top:7px;
+    font-size:10px;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    opacity:.92;
+  }
+  .cd-block.deadline .cd-unit{
+    background:linear-gradient(160deg,#5d5168,var(--mourning));
+    box-shadow:none;
+  }
+  .countdown.done .cd-unit{opacity:.55}
+  @media (max-width:600px){
+    .countdown{gap:8px}
+    .cd-unit{flex:1 1 0;min-width:0;max-width:none;padding:14px 3px}
+    .cd-num{font-size:25px}
+    .countdown.big .cd-num{font-size:31px}
+    .cd-lab{font-size:9px;letter-spacing:.8px}
+  }
+
+  /* ===== Sección especial (Papa León XIV) ===== */
+  section.section-special{
+    background:linear-gradient(180deg,#f1f6fa 0%,#e6eef5 100%);
+    border-top:1px solid #d8e5ee;
+    border-bottom:1px solid #d8e5ee;
+  }
+  .tag.especial{background:linear-gradient(135deg,#4d7f99,#7fb0c6);color:#fff}
+  .special-note{
+    margin:34px 0 0;
+    padding:26px 28px;
+    background:#fff;
+    border:1px solid #d8e5ee;
+    border-left:4px solid #5f93ab;
+    border-radius:0 20px 20px 0;
+    box-shadow:var(--shadow);
+  }
+  .special-note h4{
+    font-family:'Fraunces',serif;
+    font-size:20px;
+    font-weight:600;
+    color:var(--ink);
+    margin:0 0 10px;
+  }
+  .special-note p{
+    font-size:16px;
+    line-height:1.7;
+    color:var(--ink-soft);
+    margin:0 0 14px;
+  }
+  .special-note p:last-child{margin-bottom:0}
+  @media (max-width:600px){
+    .special-note{padding:20px 20px;border-radius:0 16px 16px 0}
+  }
+
+  /* ===== Panel del viaje apostólico ===== */
+  .trip-panel{
+    position:relative;
+    margin:30px 0 34px;
+    padding:34px 34px 30px;
+    border-radius:28px;
+    background:linear-gradient(155deg,#3d6377 0%,#2d4c5c 55%,#23404e 100%);
+    box-shadow:0 20px 60px rgba(35,64,78,.30);
+    overflow:hidden;
+    color:#fff;
+  }
+  /* halo dorado, arriba a la derecha (dentro del panel: no desborda) */
+  .trip-panel::before{
+    content:"";
+    position:absolute;inset:0;
+    background:radial-gradient(340px 300px at 92% -10%, rgba(201,146,58,.32), transparent 70%);
+    pointer-events:none;
+  }
+  .trip-panel > *{position:relative}
+  .trip-kicker{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:11px;font-weight:700;letter-spacing:2.4px;text-transform:uppercase;
+    color:var(--gold);
+    border:1px solid rgba(201,146,58,.45);
+    border-radius:999px;
+    padding:6px 15px;
+    margin-bottom:20px;
+  }
+  /* p.trip-dates / p.trip-sub: `.article p` le gana a una clase sola */
+  p.trip-dates{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-size:44px;
+    line-height:1.05;
+    letter-spacing:-.5px;
+    margin:0;
+    color:#fff;
+  }
+  .trip-dates .to{color:var(--gold);font-style:italic;padding:0 4px}
+  p.trip-sub{
+    font-size:15px;
+    color:rgba(255,255,255,.72);
+    margin:12px 0 0;
+    letter-spacing:.3px;
+    line-height:1.55;
+  }
+
+  /* ruta: Uruguay · Argentina · Perú */
+  .trip-route{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+    margin:30px 0 0;
+  }
+  .trip-route::before{
+    content:"";
+    position:absolute;left:14%;right:14%;top:23px;height:2px;
+    background:linear-gradient(90deg,rgba(255,255,255,.08),rgba(201,146,58,.55),rgba(255,255,255,.08));
+  }
+  .trip-stop{
+    position:relative;
+    padding:16px 12px 15px;
+    border-radius:18px;
+    background:rgba(255,255,255,.07);
+    border:1px solid rgba(255,255,255,.12);
+    text-align:center;
+  }
+  .trip-stop .pin{
+    display:block;
+    width:15px;height:15px;
+    margin:0 auto 12px;
+    border-radius:50%;
+    background:#2d4c5c;
+    border:2px solid rgba(255,255,255,.45);
+  }
+  .trip-stop .country{
+    font-family:'Fraunces',serif;
+    font-size:19px;font-weight:600;
+    margin:0;color:#fff;
+  }
+  .trip-stop .when{
+    font-size:12.5px;
+    color:rgba(255,255,255,.6);
+    margin:5px 0 0;
+    letter-spacing:.3px;
+  }
+  .trip-stop.is-ar{
+    background:linear-gradient(160deg,rgba(201,146,58,.24),rgba(201,146,58,.07));
+    border-color:rgba(201,146,58,.55);
+    box-shadow:0 12px 32px rgba(0,0,0,.20);
+  }
+  .trip-stop.is-ar .pin{background:var(--gold);border-color:rgba(255,255,255,.85)}
+  .trip-stop.is-ar .when{color:var(--gold);font-weight:600}
+  .trip-cities{
+    display:flex;flex-wrap:wrap;justify-content:center;
+    gap:6px;margin-top:11px;
+  }
+  .trip-cities span{
+    font-size:11.5px;font-weight:600;letter-spacing:.4px;
+    background:rgba(255,255,255,.13);
+    border-radius:999px;
+    padding:4px 10px;
+    color:rgba(255,255,255,.92);
+  }
+  /* la cuenta regresiva, dentro del panel */
+  .trip-panel .cd-block{
+    background:transparent;border:none;box-shadow:none;
+    padding:0;margin:30px 0 0;
+  }
+  .trip-panel .cd-head{color:rgba(255,255,255,.72)}
+  .trip-panel .cd-head strong{color:var(--gold)}
+  .trip-panel .cd-unit{
+    background:rgba(255,255,255,.10);
+    border:1px solid rgba(255,255,255,.16);
+    box-shadow:none;
+  }
+  .trip-panel .cd-num{color:#fff}
+  .trip-panel .cd-lab{color:rgba(255,255,255,.55);opacity:1}
+
+  @media (max-width:820px){
+    .trip-route{grid-template-columns:1fr;gap:10px}
+    .trip-route::before{display:none}
+    .trip-stop{display:flex;align-items:center;gap:12px;text-align:left;padding:14px 16px}
+    .trip-stop .pin{margin:0;flex-shrink:0}
+    .trip-stop .tr-body{flex:1;min-width:0}
+    .trip-cities{justify-content:flex-start}
+  }
+  @media (max-width:600px){
+    .trip-panel{padding:26px 18px 24px;border-radius:22px;margin:24px 0 28px}
+    p.trip-dates{font-size:32px}
+    p.trip-sub{font-size:14px}
+    .trip-panel .cd-block{margin-top:24px}
+  }
+  @media (max-width:360px){
+    p.trip-dates{font-size:27px}
+    .trip-stop{gap:10px;padding:13px 13px}
+  }
+
+  /* ===== Grilla de documentos ===== */
+  .doc-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(310px,1fr));
+    gap:14px;
+    margin:22px 0;
+  }
+  .doc-grid .link-card{margin:0;height:100%;padding:18px 20px;gap:14px}
+  .doc-grid .link-card .icon-big{width:48px;height:48px;font-size:24px;border-radius:13px}
+  .doc-grid .link-card .lc-content h5{font-size:16.5px;line-height:1.35}
+  @media (max-width:600px){
+    .doc-grid{grid-template-columns:1fr;gap:12px}
+  }
+
+  /* ===== Bloque de acciones · Importante para leer ===== */
+  section.section-action{
+    background:linear-gradient(180deg,#f3f9f3 0%,#e9f2ea 100%);
+    border-top:1px solid #d9e7da;
+    border-bottom:1px solid #d9e7da;
+  }
+  .tag.importante{background:#3e8e5f;color:#fff}
+  .action-block{
+    background:#fff;
+    border:1px solid #dcebde;
+    border-radius:26px;
+    padding:34px 34px 30px;
+    box-shadow:0 14px 36px rgba(62,142,95,.10);
+    margin:8px 0 0;
+  }
+  .action-item{
+    display:flex;
+    gap:20px;
+    padding:26px 0;
+    border-bottom:1px dashed #dfeae0;
+  }
+  .action-item:first-of-type{padding-top:4px}
+  .action-item:last-of-type{border-bottom:none;padding-bottom:4px}
+  .action-item .step{
+    flex-shrink:0;
+    width:42px;height:42px;
+    border-radius:50%;
+    background:#eaf4ec;
+    color:#3e8e5f;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Fraunces',serif;
+    font-weight:700;font-size:16px;
+    margin-top:4px;
+  }
+  .action-item .ai-body{flex:1;min-width:0}
+  .action-item h4{
+    font-family:'Fraunces',serif;
+    font-size:21px;
+    font-weight:600;
+    color:var(--ink);
+    margin:4px 0 8px;
+    line-height:1.25;
+  }
+  .action-item .why{
+    font-size:15.5px;
+    line-height:1.68;
+    color:var(--ink-soft);
+    margin:0 0 6px;
+  }
+  .action-item .why strong{color:var(--ink);font-weight:600}
+  /* cuenta regresiva compacta */
+  .cd-mini{
+    margin:16px 0 6px;
+    padding:14px 16px 16px;
+    background:var(--cream-deep);
+    border:1px solid var(--line);
+    border-radius:16px;
+  }
+  .section-action .cd-mini{background:#f4f9f5;border-color:#dcebde}
+  .cd-mini .cd-mini-lab{
+    display:block;
+    font-size:12px;
+    letter-spacing:.4px;
+    color:var(--ink-soft);
+    font-weight:600;
+    margin-bottom:11px;
+    text-align:center;
+  }
+  .countdown.mini{gap:8px}
+  .countdown.mini .cd-unit{
+    flex:1 1 0;
+    min-width:0;
+    max-width:74px;
+    padding:9px 4px;
+    border-radius:12px;
+    box-shadow:none;
+  }
+  .section-action .countdown.mini .cd-unit{background:linear-gradient(160deg,#4d9c6d,#3e8e5f)}
+  .countdown.mini .cd-num{font-size:19px}
+  .countdown.mini .cd-lab{font-size:8px;letter-spacing:.6px;margin-top:4px}
+  @media (max-width:600px){
+    .cd-mini{padding:13px 12px 14px}
+    .countdown.mini{gap:6px}
+    .countdown.mini .cd-unit{padding:9px 2px}
+    .countdown.mini .cd-num{font-size:17px}
+    .countdown.mini .cd-lab{font-size:7.5px;letter-spacing:0}
+  }
+  @media (max-width:600px){
+    .action-block{padding:24px 16px 22px;border-radius:20px}
+    /* en pantallas chicas el número va arriba: el contenido gana todo el ancho */
+    .action-item{display:block;padding:22px 0}
+    .action-item .step{width:32px;height:32px;font-size:13px;margin:0 0 10px}
+    .action-item h4{font-size:19px;margin-top:0}
+    .section-action .link-card .icon-big{width:42px;height:42px;font-size:21px}
+  }
+
+  /* ===== ajustes finos para pantallas chicas ===== */
+  @media (max-width:600px){
+    /* el CTA verde: ícono y título más chicos para que entren sin desbordar */
+    .link-cta{padding:18px 16px;gap:12px}
+    .link-cta .icon-big{width:46px;height:46px;font-size:24px}
+    .link-cta .lc-content h5{font-size:18px}
+    .link-cta .cta-arrow{font-size:22px}
+    /* fichas de integrantes: el avatar va arriba y el texto gana todo el ancho */
+    .person{display:block}
+    .person .avatar{margin-bottom:12px}
+  }
+  @media (max-width:360px){
+    .cd-num{font-size:21px}
+    .countdown.big .cd-num{font-size:25px}
+    .countdown.mini .cd-num{font-size:16px}
+  }
+
+  /* ============================================================
+     v9.1 · pasada de diseño sobre todas las secciones
+     ============================================================ */
+
+  /* Etiquetas: blanco sobre fondos claros no llegaba al 4,5:1 exigible.
+     Estos valores dan entre 4,6 y 4,8:1 y conservan el matiz de la paleta. */
+  .tag.noticia{background:#c3522d}
+  .tag.evento{background:#986d1d}
+  .tag.reunion{background:#4a7a93}
+  .tag.invitacion{background:#4d7d4d}
+  .tag.importante{background:#398357}
+
+  /* Notas al pie de sección (antes iban con estilo en línea) */
+  p.note{
+    font-size:14px;
+    color:var(--muted);
+    font-style:italic;
+    line-height:1.55;
+    text-align:center;
+    margin:14px 0 0;
+  }
+  p.note.left{text-align:left}
+
+  /* ===== Quiénes estuvimos ===== */
+  .who{
+    margin:24px 0 0;
+    padding:20px 22px;
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:20px;
+  }
+  .section-alt .who{background:var(--cream)}
+  .who-lab{
+    display:block;
+    font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;
+    color:var(--coral);margin-bottom:14px;
+  }
+  .who-list{display:flex;flex-wrap:wrap;gap:10px}
+  .who-chip{
+    display:inline-flex;align-items:center;gap:9px;
+    padding:6px 16px 6px 6px;
+    background:var(--cream-deep);
+    border:1px solid var(--line);
+    border-radius:999px;
+    font-size:15px;font-weight:600;color:var(--ink);
+  }
+  .who-chip i{
+    width:30px;height:30px;border-radius:50%;
+    background:linear-gradient(150deg,var(--coral),#e0784c);
+    color:#fff;font-style:normal;font-weight:700;font-size:13px;
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  }
+
+  /* ===== Ficha de fiesta litúrgica ===== */
+  .feast{
+    display:flex;gap:22px;align-items:center;
+    margin:26px 0 0;padding:24px 26px;
+    background:#fff;
+    border:1px solid var(--line);
+    border-left:4px solid var(--gold);
+    border-radius:0 22px 22px 0;
+    box-shadow:var(--shadow);
+  }
+  .feast-date{
+    flex-shrink:0;width:92px;text-align:center;
+    padding:14px 6px 12px;
+    background:linear-gradient(160deg,#d9a44a,var(--gold));
+    border-radius:18px;color:#fff;
+    box-shadow:0 10px 24px rgba(201,146,58,.28);
+  }
+  .feast-date .d{display:block;font-family:'Fraunces',serif;font-weight:900;font-size:34px;line-height:1}
+  .feast-date .m{display:block;margin-top:5px;font-size:10px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;opacity:.92}
+  .feast-body{flex:1;min-width:0}
+  .feast-body .kicker{
+    display:block;font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;
+    color:var(--gold);margin-bottom:7px;
+  }
+  .feast-body h4{font-family:'Fraunces',serif;font-size:21px;font-weight:600;color:var(--ink);margin:0;line-height:1.35}
+
+  /* ===== Saludo del equipo ===== */
+  .greeting{
+    margin:28px 0 0;padding:32px 28px;text-align:center;
+    background:linear-gradient(150deg,var(--coral-light) 0%,var(--cream-deep) 100%);
+    border:1px solid var(--coral-soft);
+    border-radius:26px;
+  }
+  .greeting .ico{display:block;font-size:34px;margin-bottom:10px}
+  .greeting h4{font-family:'Fraunces',serif;font-size:27px;font-weight:600;color:var(--coral);margin:0 0 10px}
+  .greeting p{font-size:16px;line-height:1.65;color:var(--ink-soft);margin:0 auto;max-width:520px}
+
+  /* ===== Línea de tiempo · Lo que viene ===== */
+  .timeline{margin:26px 0 0}
+  .tl-month{
+    display:flex;align-items:center;gap:14px;
+    font-size:11px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;
+    color:var(--coral);margin:30px 0 12px;
+  }
+  .tl-month:first-child{margin-top:0}
+  .tl-month::after{content:"";flex:1;height:1px;background:var(--line)}
+  .tl-item{
+    display:flex;gap:18px;align-items:flex-start;
+    padding:14px 16px;border-radius:18px;
+    transition:background .25s, transform .25s;
+  }
+  .tl-item:hover{background:#fff;transform:translateX(3px)}
+  .tl-date{
+    flex-shrink:0;width:78px;text-align:center;
+    background:#fff;border:1px solid var(--line);
+    border-radius:15px;padding:10px 4px 9px;
+  }
+  .tl-date .d{display:block;font-family:'Fraunces',serif;font-weight:700;font-size:23px;line-height:1;color:var(--ink)}
+  .tl-date .m{display:block;margin-top:5px;font-size:9.5px;font-weight:700;letter-spacing:1.3px;text-transform:uppercase;color:var(--muted)}
+  .tl-body{flex:1;min-width:0;padding-top:3px}
+  .tl-item .tl-body h4{font-family:'Fraunces',serif;font-size:18px;font-weight:600;color:var(--ink);margin:0 0 4px;line-height:1.35}
+  .tl-item .tl-body p{font-size:15px;line-height:1.55;color:var(--ink-soft);margin:0}
+  .tl-flag{
+    display:inline-block;margin-left:9px;vertical-align:2px;
+    font-size:9.5px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;
+    color:#fff;background:var(--coral);border-radius:999px;padding:3px 9px;
+  }
+  .tl-item.is-next .tl-date{
+    background:linear-gradient(160deg,var(--coral),#e0784c);
+    border-color:transparent;
+    box-shadow:0 8px 20px rgba(214,90,49,.22);
+  }
+  .tl-item.is-next .tl-date .d,.tl-item.is-next .tl-date .m{color:#fff}
+
+  @media (max-width:600px){
+    .who{padding:18px 16px}
+    .who-chip{font-size:14px;padding:5px 14px 5px 5px}
+    .who-chip i{width:27px;height:27px;font-size:12px}
+    .feast{display:block;padding:22px 20px;border-radius:0 18px 18px 0}
+    .feast-date{width:76px;margin-bottom:15px}
+    .feast-date .d{font-size:29px}
+    .greeting{padding:26px 20px;border-radius:22px}
+    .greeting h4{font-size:23px}
+    .greeting .ico{font-size:30px}
+    .tl-item{gap:13px;padding:12px 10px}
+    .tl-date{width:66px;padding:9px 3px 8px}
+    .tl-date .d{font-size:20px}
+    .tl-date .m{font-size:9px;letter-spacing:.8px}
+    .tl-item .tl-body h4{font-size:17px}
+    .tl-item .tl-body p{font-size:14.5px}
+  }
+
+  /* El h5 del CTA verde nunca había recibido el overflow-wrap que sí
+     tiene .link-card: dentro de un .action-item, a 320px le quedan 95px
+     de ancho y «¡Sigamos trabajando!» pide 105. Se arregla con el corte
+     de palabra como red de seguridad y bajando el cuerpo a ≤360, que es
+     lo que de verdad lo hace entrar sin partir la palabra. */
+  .link-cta .lc-content h5{overflow-wrap:break-word}
+  @media (max-width:360px){
+    .link-cta .lc-content h5{font-size:16px}
+    .link-cta .icon-big{width:42px;height:42px;font-size:21px}
+  }
+
+  /* ===== Cortes de la portada =====
+     Van agrupados y al final a propósito. Los @media que ya existían
+     arriba no son 900/600/360 sino 640/900/480, y son de otra época del
+     archivo: mezclar la portada ahí dejaba el pie de imprenta apilado
+     desde los 900px. Acá quedan en el orden correcto y ganan por
+     posición sin depender de la especificidad. */
+  @media (max-width:900px){
+    /* el cintillo se acorta para no quedar desparramado y el pie baja
+       un escalón; el renglón sigue entero */
+    .hero .cintillo{max-width:440px}
+    .hero .colofon-cifra{font-size:52px}
+    .hero .colofon-filete{height:32px}
+  }
+  @media (max-width:600px){
+    /* acá el pie de imprenta se apila y el filete vertical se acuesta:
+       elimina de raíz cualquier chance de que el renglón se parta y
+       deje el filete colgando. La cifra queda en 42px contra un h1 que
+       entre 320 y 600px se planta en su piso de 48px: más chica, más
+       liviana (700 contra 900) y coral. Dato secundario, sin discusión. */
+    .hero .cintillo{max-width:100%;gap:12px;margin-bottom:28px}
+    .hero .cintillo-txt{font-size:12px;letter-spacing:.26em;margin-right:-.26em;gap:9px}
+    .hero .sub{margin-bottom:34px}
+    .hero .colofon{flex-direction:column;align-items:center;gap:14px;padding-top:26px}
+    .hero .colofon-num{gap:11px}
+    .hero .colofon-cifra{font-size:42px}
+    .hero .colofon-filete{width:44px;height:1px}
+    .hero .colofon-fecha{font-size:17px;max-width:none}
+  }
+  @media (max-width:360px){
+    /* pensado para 320px reales: ancho útil 280px. El cintillo mide
+       unos 176px con rombo y gap incluidos, y los dos tracks 1fr se
+       reparten los ~80px que sobran. */
+    .hero .cintillo-txt{letter-spacing:.2em;margin-right:-.2em;gap:8px}
+    .hero .colofon{gap:12px}
+    .hero .colofon-lbl{letter-spacing:.2em;margin-right:-.2em}
+    .hero .colofon-cifra{font-size:38px}
+    .hero .colofon-filete{width:36px}
+    .hero .colofon-fecha{font-size:16px;line-height:1.25}
+  }
+  /* los filetes en degradado a transparente se pierden en papel */
+  @media print{
+    .hero .cintillo-filete--izq,
+    .hero .cintillo-filete--der{background:var(--line)}
+  }
+
+</style>
+</head>
+<body>
+
+<!-- ============== SIDEBAR ============== -->
+<nav class="sidenav" id="sidenav" aria-label="Navegación del boletín">
+  <a href="#top" class="sidenav-logo" aria-label="Ir al inicio">PS</a>
+  <div class="sidenav-title">Boletín N° 9</div>
+  <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false"><span></span></button>
+  <ul class="sidenav-list">
+    <li><a href="#top" class="sidenav-item"><span class="sidenav-num">★</span><span class="sidenav-label">Portada</span></a></li>
+    <li><a href="#importante" class="sidenav-item"><span class="sidenav-num">00</span><span class="sidenav-label">Importante para leer</span></a></li>
+    <li><a href="#papa" class="sidenav-item"><span class="sidenav-num">01</span><span class="sidenav-label">El Papa viene a la Argentina</span></a></li>
+    <li><a href="#semana-social" class="sidenav-item"><span class="sidenav-num">02</span><span class="sidenav-label">Semana Social 2026</span></a></li>
+    <li><a href="#jornada" class="sidenav-item"><span class="sidenav-num">03</span><span class="sidenav-label">Jornada Social 2026</span></a></li>
+    <li><a href="#clero" class="sidenav-item"><span class="sidenav-num">04</span><span class="sidenav-label">Encuentro Pastoral del Clero</span></a></li>
+    <li><a href="#cayetano" class="sidenav-item"><span class="sidenav-num">05</span><span class="sidenav-label">San Cayetano</span></a></li>
+    <li><a href="#diacono" class="sidenav-item"><span class="sidenav-num">06</span><span class="sidenav-label">Día del Diácono</span></a></li>
+    <li><a href="#elnino" class="sidenav-item"><span class="sidenav-num">07</span><span class="sidenav-label">Nos preparamos por si llega El Niño</span></a></li>
+    <li><a href="#ceys" class="sidenav-item"><span class="sidenav-num">08</span><span class="sidenav-label">Consejo Económico y Social</span></a></li>
+    <li><a href="#expo" class="sidenav-item"><span class="sidenav-num">09</span><span class="sidenav-label">VI Expo Vocacional</span></a></li>
+    <li><a href="#otras" class="sidenav-item"><span class="sidenav-num">10</span><span class="sidenav-label">Otras noticias</span></a></li>
+    <li><a href="#agenda" class="sidenav-item"><span class="sidenav-num">11</span><span class="sidenav-label">Lo que viene</span></a></li>
+  </ul>
+  <div class="sidenav-footer">Pastoral Social · Santa Fe</div>
+</nav>
+
+<!-- ============== MAIN ============== -->
+<main class="main-shift">
+
+<!-- ============== HERO ============== -->
+<section class="hero" id="top">
+  <div class="hero-inner">
+    <!-- CINTILLO ABIERTO: filete + versalitas + filete. Sin caja. -->
+    <p class="cintillo">
+      <span class="cintillo-filete cintillo-filete--izq" aria-hidden="true"></span>
+      <span class="cintillo-txt"><span class="cintillo-rombo" aria-hidden="true"></span>Boletín Interno</span>
+      <span class="cintillo-filete cintillo-filete--der" aria-hidden="true"></span>
+    </p>
+
+    <h1>Pastoral <span class="accent">Social</span></h1>
+    <p class="sub">Arquidiócesis de Santa Fe de la Vera Cruz</p>
+
+    <!-- PIE DE IMPRENTA: número y fecha en un renglón, separados por un filete. -->
+    <p class="colofon">
+      <span class="colofon-num">
+        <span class="colofon-lbl">Número</span><span class="colofon-cifra">09</span>
+      </span>
+      <span class="colofon-filete" aria-hidden="true"></span>
+      <span class="colofon-fecha">12 de agosto de 2026</span>
+    </p>
+  </div>
+  <div class="scroll-hint">Comencemos</div>
+</section>
+
+<!-- ============== BIENVENIDA ============== -->
+<section class="welcome">
+  <div class="ornament">✦ ✦ ✦</div>
+  <p>Desde el boletín anterior se confirmó el viaje del Papa León XIV a la Argentina, celebramos la misa de San Cayetano a la medianoche y acompañamos el Encuentro Pastoral del Clero, entre otras actividades. Está todo reunido acá.</p>
+  <div class="signature">Buena lectura. Nos encontramos.</div>
+</section>
+
+<!-- ============== TOC ============== -->
+<section class="toc">
+  <div class="toc-header">
+    <span class="num">ÍNDICE</span>
+    <h2>¿Qué tenemos hoy?</h2>
+    <span class="line"></span>
+  </div>
+  <div class="toc-grid">
+    <a href="#importante" class="toc-item">
+      <span class="toc-num">00 · PARA TENER EN CUENTA</span>
+      <span class="toc-title">Importante para leer</span>
+      <span class="toc-date">Tres materiales a mano</span>
+    </a>
+    <a href="#papa" class="toc-item">
+      <span class="toc-num">01 · ESPECIAL</span>
+      <span class="toc-title">El Papa León XIV viene a la Argentina</span>
+      <span class="toc-date">Confirmado · noviembre</span>
+    </a>
+    <a href="#semana-social" class="toc-item">
+      <span class="toc-num">02 · EVENTO</span>
+      <span class="toc-title">Semana Social 2026, en Córdoba</span>
+      <span class="toc-date">4 al 6 de septiembre</span>
+    </a>
+    <a href="#jornada" class="toc-item">
+      <span class="toc-num">03 · DESTACADO</span>
+      <span class="toc-title">Jornada Social 2026</span>
+      <span class="toc-date">26 de septiembre</span>
+    </a>
+    <a href="#clero" class="toc-item">
+      <span class="toc-num">04 · NOS INVITARON</span>
+      <span class="toc-title">Encuentro Pastoral del Clero</span>
+      <span class="toc-date">4 al 6 de agosto</span>
+    </a>
+    <a href="#cayetano" class="toc-item">
+      <span class="toc-num">05 · NOS ENCONTRAMOS</span>
+      <span class="toc-title">San Cayetano: la misa de las 00 h</span>
+      <span class="toc-date">7 de agosto</span>
+    </a>
+    <a href="#diacono" class="toc-item">
+      <span class="toc-num">06 · EQUIPO</span>
+      <span class="toc-title">Día del Diácono</span>
+      <span class="toc-date">10 de agosto</span>
+    </a>
+    <a href="#elnino" class="toc-item">
+      <span class="toc-num">07 · EQUIPO</span>
+      <span class="toc-title">Nos preparamos por si llega El Niño</span>
+      <span class="toc-date">Agosto</span>
+    </a>
+    <a href="#ceys" class="toc-item">
+      <span class="toc-num">08 · NOS CONVOCAN</span>
+      <span class="toc-title">Consejo Económico y Social de la Provincia</span>
+      <span class="toc-date">19 y 24 de agosto</span>
+    </a>
+    <a href="#expo" class="toc-item">
+      <span class="toc-num">09 · NOS INVITAN</span>
+      <span class="toc-title">VI Expo Vocacional, en Esperanza</span>
+      <span class="toc-date">6 de septiembre</span>
+    </a>
+    <a href="#otras" class="toc-item">
+      <span class="toc-num">10 · ENLACES</span>
+      <span class="toc-title">Otras noticias</span>
+      <span class="toc-date">Para leer</span>
+    </a>
+    <a href="#agenda" class="toc-item">
+      <span class="toc-num">11 · AGENDA</span>
+      <span class="toc-title">Lo que viene</span>
+      <span class="toc-date">De agosto a noviembre</span>
+    </a>
+  </div>
+</section>
+
+<!-- ============== 00 · IMPORTANTE PARA LEER ============== -->
+<section class="section-action">
+<article class="article" id="importante">
+  <div class="article-header">
+    <span class="tag importante">Para tener en cuenta</span>
+    <h2>Importante <span class="em">para leer</span></h2>
+  </div>
+
+  <p class="lead">Tres materiales para tener a mano antes de encontrarnos. Con dedicarles un rato tranquilo es suficiente: así llegamos con la lectura hecha y podemos destinar el tiempo compartido a lo que solo se construye conversando.</p>
+
+  <div class="action-block">
+
+    <div class="action-item">
+      <div class="step">01</div>
+      <div class="ai-body">
+        <h4>Leer el borrador de aportes a la Carta Orgánica</h4>
+        <p class="why">Si todavía no llegaron a leerlo, sigue disponible el <strong>borrador del documento con los aportes al debate</strong> sobre la futura Carta Orgánica de la ciudad de Santa Fe. Junto a él va un segundo documento con <strong>breves claves de lectura</strong>. Conviene empezar por ellas: ayudan a entrar en el enfoque y en la organización del texto principal.</p>
+
+        <a href="https://docs.google.com/document/d/1jLKkbv-FiOFLgDwz1Q9hH24dow4OjfXB/edit?usp=drive_link&amp;ouid=110749476491118473696&amp;rtpof=true&amp;sd=true" target="_blank" rel="noopener" class="link-card">
+          <div class="icon-big">📄</div>
+          <div class="lc-content">
+            <h5>Borrador · Aportes al debate sobre la Carta Orgánica</h5>
+            <p>Google Docs · documento principal</p>
+          </div>
+        </a>
+
+        <a href="https://docs.google.com/document/d/1uGXQ6x4OiAyHjtwFspaYWrGT5dBpfXZS/edit?usp=drive_link&amp;ouid=110749476491118473696&amp;rtpof=true&amp;sd=true" target="_blank" rel="noopener" class="link-card">
+          <div class="icon-big">🗝️</div>
+          <div class="lc-content">
+            <h5>Claves de lectura del documento</h5>
+            <p>Google Docs · guía breve</p>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="action-item">
+      <div class="step">02</div>
+      <div class="ai-body">
+        <h4>Inscribirse a la Semana Social 2026</h4>
+        <p class="why">El formulario reúne toda la información del encuentro y las modalidades de participación. <strong>Confirmados hasta el momento: Andrés, Meli, Nick y Jose.</strong> Si ya se inscribieron o tienen intención de participar, les pedimos que nos avisen: nos permite organizarnos y viajar acompañados.</p>
+
+        <div class="cd-mini">
+          <span class="cd-mini-lab">📆 Nos encontramos en Córdoba, del 4 al 6 de septiembre</span>
+          <div class="countdown mini" data-target="2026-09-04T00:00:00">
+            <div class="cd-unit"><span class="cd-num" data-u="d">--</span><span class="cd-lab">días</span></div>
+            <div class="cd-unit"><span class="cd-num" data-u="h">--</span><span class="cd-lab">horas</span></div>
+            <div class="cd-unit"><span class="cd-num" data-u="m">--</span><span class="cd-lab">min</span></div>
+            <div class="cd-unit"><span class="cd-num" data-u="s">--</span><span class="cd-lab">seg</span></div>
+          </div>
+        </div>
+
+        <a href="https://forms.gle/DDwnCEVdhgGeNYFT6" target="_blank" rel="noopener" class="link-card">
+          <div class="icon-big">📝</div>
+          <div class="lc-content">
+            <h5>Formulario de inscripción · Semana Social 2026</h5>
+            <p>Google Forms · información, programa y participación</p>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="action-item">
+      <div class="step">03</div>
+      <div class="ai-body">
+        <h4>Seguir cargando aportes para la Jornada Social</h4>
+        <p class="why">Falta cada vez menos para la Jornada Social 2026. El drive de trabajo está abierto para que vayamos cargando <strong>ideas y propuestas</strong>: cada una, por pequeña que parezca, nos allana el camino más adelante.</p>
+
+        <div class="cd-mini">
+          <span class="cd-mini-lab">🎯 Meta del equipo: tener todo listo para el 26 de agosto</span>
+          <div class="countdown mini" data-target="2026-08-26T08:00:00">
+            <div class="cd-unit"><span class="cd-num" data-u="d">--</span><span class="cd-lab">días</span></div>
+            <div class="cd-unit"><span class="cd-num" data-u="h">--</span><span class="cd-lab">horas</span></div>
+            <div class="cd-unit"><span class="cd-num" data-u="m">--</span><span class="cd-lab">min</span></div>
+            <div class="cd-unit"><span class="cd-num" data-u="s">--</span><span class="cd-lab">seg</span></div>
+          </div>
+        </div>
+
+        <a href="https://docs.google.com/document/d/1-4bYFVEgAr5Z1gRx7Wmgvrzs6BbCu7U3tjs7oG_HbxM/edit?usp=sharing" target="_blank" rel="noopener" class="link-cta">
+          <div class="icon-big">🚀</div>
+          <div class="lc-content">
+            <div class="kicker">Documento de trabajo · 2026</div>
+            <h5>¡Sigamos trabajando!</h5>
+          </div>
+          <span class="cta-arrow">→</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</article>
+</section>
+
+<!-- ============== 01 · ESPECIAL · PAPA LEÓN XIV ============== -->
+<section class="section-special">
+<article class="article" id="papa">
+  <div class="article-header">
+    <span class="tag especial">Edición especial <span class="date-chip">Confirmado</span></span>
+    <h2>El Papa León XIV <span class="em">viene a la Argentina</span></h2>
+  </div>
+
+  <p class="lead">Ya es oficial. El miércoles 5 de agosto la Nunciatura Apostólica confirmó que el Santo Padre realizará un viaje apostólico a Uruguay, Argentina y Perú.</p>
+
+  <div class="trip-panel">
+    <span class="trip-kicker">Viaje apostólico</span>
+    <p class="trip-dates">6 <span class="to">→</span> 17 de noviembre</p>
+    <p class="trip-sub">Anunciado por la Nunciatura Apostólica el 5 de agosto de 2026. El programa detallado todavía no se publicó.</p>
+
+    <div class="trip-route">
+      <div class="trip-stop">
+        <span class="pin"></span>
+        <div class="tr-body">
+          <p class="country">Uruguay</p>
+          <p class="when">Fechas aún no publicadas</p>
+        </div>
+      </div>
+      <div class="trip-stop is-ar">
+        <span class="pin"></span>
+        <div class="tr-body">
+          <p class="country">Argentina</p>
+          <p class="when">Entre el 8 y el 11 de noviembre</p>
+          <div class="trip-cities"><span>Buenos Aires</span><span>Córdoba</span><span>Luján</span></div>
+        </div>
+      </div>
+      <div class="trip-stop">
+        <span class="pin"></span>
+        <div class="tr-body">
+          <p class="country">Perú</p>
+          <p class="when">Fechas aún no publicadas</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cd-block">
+      <div class="cd-head">Falta para el comienzo del viaje, el <strong>6 de noviembre</strong></div>
+      <div class="countdown big" data-target="2026-11-06T00:00:00">
+        <div class="cd-unit"><span class="cd-num" data-u="d">--</span><span class="cd-lab">días</span></div>
+        <div class="cd-unit"><span class="cd-num" data-u="h">--</span><span class="cd-lab">horas</span></div>
+        <div class="cd-unit"><span class="cd-num" data-u="m">--</span><span class="cd-lab">min</span></div>
+        <div class="cd-unit"><span class="cd-num" data-u="s">--</span><span class="cd-lab">seg</span></div>
+      </div>
+    </div>
+  </div>
+
+  <h3>El mensaje de nuestros obispos</h3>
+
+  <p>La noticia llegó mientras Mons. Sergio Fenoy y Mons. Matías Vecino se encontraban en la casa de retiro Santa Catalina, en Esperanza, participando de las jornadas anuales de formación permanente del clero. Desde allí compartieron un mensaje con toda la Arquidiócesis.</p>
+
+  <div class="pull">
+    <p>Al confirmar su visita el Papa nos regala su presencia. Y cuando llega una visita hay que prepararse.</p>
+    <div class="src">Mons. Sergio Fenoy, arzobispo de Santa Fe de la Vera Cruz</div>
+  </div>
+
+  <p>Mons. Vecino, por su parte, invitó a rezar la oración preparatoria del viaje, para que el corazón se abra y podamos ser permeables al mensaje que el Papa trae.</p>
+
+  <div class="special-note">
+    <h4>Cómo nos paramos frente a esto</h4>
+    <p>En el boletín anterior pedíamos prudencia porque no había anuncio oficial. Ahora lo hay, y esa prudencia <strong>cambia de lugar</strong>: ya no se trata de esperar la confirmación, sino de <strong>prepararnos</strong>.</p>
+    <p>Sigue habiendo, eso sí, mucho por definir: el programa día por día, los lugares exactos, las formas de participación. Esos detalles todavía no están publicados, así que seguimos tomándolos con cuidado hasta que se anuncien.</p>
+    <p>Lo que sí podemos hacer desde ahora es acompañar la preparación. La Conferencia Episcopal ya conformó los equipos de trabajo y empezó a publicar materiales para las comunidades.</p>
+  </div>
+
+  <h3>Para leer y compartir</h3>
+
+  <div class="doc-grid">
+
+  <a href="https://arquisantafe.org.ar/mensaje-de-los-obispos-de-santa-fe-ante-la-venida-de-leon-xiv/" target="_blank" rel="noopener" class="link-card">
+    <div class="icon-big">✝&#xFE0E;</div>
+    <div class="lc-content">
+      <h5>Mensaje de los Obispos de Santa Fe ante la venida de León XIV</h5>
+      <p>Arquidiócesis de Santa Fe · 6 de agosto de 2026</p>
+    </div>
+  </a>
+
+  <a href="https://episcopado.org/ver/4941" target="_blank" rel="noopener" class="link-card">
+    <div class="icon-big">📣</div>
+    <div class="lc-content">
+      <h5>León XIV realizará un Viaje Apostólico a Uruguay, Argentina y Perú</h5>
+      <p>Conferencia Episcopal Argentina · 5 de agosto de 2026</p>
+    </div>
+  </a>
+
+  <a href="https://episcopado.org/ver/4947" target="_blank" rel="noopener" class="link-card">
+    <div class="icon-big">📖</div>
+    <div class="lc-content">
+      <h5>Preparemos juntos la visita de León XIV a la Argentina · Díptico</h5>
+      <p>Conferencia Episcopal Argentina · 7 de agosto de 2026 · subsidio para las comunidades</p>
+    </div>
+  </a>
+
+  <a href="https://episcopado.org/ver/4952" target="_blank" rel="noopener" class="link-card">
+    <div class="icon-big">🧭</div>
+    <div class="lc-content">
+      <h5>Equipos de trabajo para la organización de la visita de León XIV</h5>
+      <p>Conferencia Episcopal Argentina · 9 de agosto de 2026</p>
+    </div>
+  </a>
+
+  <a href="https://pastoralsocial.org.ar/2026/08/09/a-la-espera-de-la-visita-del-papa-leon-xiv-la-iglesia-argentina-le-dio-la-bienvenida-al-nuevo-nuncio/" target="_blank" rel="noopener" class="link-card">
+    <div class="icon-big">🤝</div>
+    <div class="lc-content">
+      <h5>A la espera de la visita del Papa León XIV, la Iglesia argentina le dio la bienvenida al nuevo nuncio</h5>
+      <p>Pastoral Social · 9 de agosto de 2026 · Mons. Michael Banach</p>
+    </div>
+  </a>
+
+  </div>
+
+  <div class="card coral">
+    <div class="small">Para agendar</div>
+    <h4>Colecta Nacional Imperada · 22 y 23 de agosto</h4>
+    <p>Los obispos convocaron a una colecta en todas las misas del fin de semana del <strong>sábado 22 y domingo 23 de agosto</strong>. Lo recaudado colaborará con la organización de la visita del Santo Padre a la Argentina.</p>
+    <a href="https://episcopado.org/ver/4948" target="_blank" rel="noopener" class="link-card subtle">
+      <div class="icon-big">🧺</div>
+      <div class="lc-content">
+        <h5>22 y 23/8 · Colecta Nacional Imperada</h5>
+        <p>Conferencia Episcopal Argentina · 8 de agosto de 2026</p>
+      </div>
+    </a>
+  </div>
+</article>
+</section>
+
+<!-- ============== 02 · SEMANA SOCIAL 2026 ============== -->
+<article class="article" id="semana-social">
+  <div class="article-header">
+    <span class="tag evento">Evento <span class="date-chip">4 al 6 sep</span></span>
+    <h2>Semana Social <span class="em">2026</span></h2>
+    <p class="slogan-big">«Puentes hacia el Bien Común»</p>
+    <p class="slogan-tag">lema del encuentro</p>
+  </div>
+
+  <p class="lead">Del 4 al 6 de septiembre se llevará a cabo en la ciudad de Córdoba la Semana Social 2026.</p>
+
+  <div class="cd-mini">
+    <span class="cd-mini-lab">📆 Nos encontramos en Córdoba, del 4 al 6 de septiembre</span>
+    <div class="countdown mini" data-target="2026-09-04T00:00:00">
+      <div class="cd-unit"><span class="cd-num" data-u="d">--</span><span class="cd-lab">días</span></div>
+      <div class="cd-unit"><span class="cd-num" data-u="h">--</span><span class="cd-lab">horas</span></div>
+      <div class="cd-unit"><span class="cd-num" data-u="m">--</span><span class="cd-lab">min</span></div>
+      <div class="cd-unit"><span class="cd-num" data-u="s">--</span><span class="cd-lab">seg</span></div>
+    </div>
+  </div>
+
+  <p>En el formulario de inscripción se encuentra toda la información sobre el encuentro, el programa de actividades y las modalidades de participación.</p>
+
+  <a href="https://forms.gle/DDwnCEVdhgGeNYFT6" target="_blank" rel="noopener" class="link-card">
+    <div class="icon-big">📝</div>
+    <div class="lc-content">
+      <h5>Formulario de inscripción · Semana Social 2026</h5>
+      <p>Google Forms · información, programa y modalidades</p>
+    </div>
+  </a>
+
+  <p class="credit"><b>Confirmados&nbsp;·&nbsp;</b>Andrés, Meli, Nick y Jose</p>
+
+  <p class="note">Es el mismoformulario que compartimos en «Importante para leer». Lo repetimos acá para tenerlo a mano.</p>
+
+  <p style="margin-top:24px">¿Alguien más ya se inscribió? ¿Quiénes tienen intención de ir? Les pedimos que nos cuenten, así nos organizamos entre todos. ¡Los esperamos!</p>
+</article>
+
+<!-- ============== 03 · JORNADA SOCIAL 2026 ============== -->
+<section class="section-warm">
+<article class="article" id="jornada">
+  <div class="article-header">
+    <span class="tag evento">Próximamente <span class="date-chip">26 sep</span></span>
+    <h2>Jornada Social <span class="em">2026</span></h2>
+    <p class="slogan-big">«La Magnífica Humanidad»</p>
+    <p class="slogan-tag">posible slogan</p>
+  </div>
+
+  <p class="lead">Nos seguimos preparando para la Jornada Social 2026.</p>
+
+  <div class="cd-block">
+    <div class="cd-head">⛪ La Jornada Social está prevista para el <strong>sábado 26 de septiembre · 8 h</strong></div>
+    <div class="countdown big" data-target="2026-09-26T08:00:00">
+      <div class="cd-unit"><span class="cd-num" data-u="d">--</span><span class="cd-lab">días</span></div>
+      <div class="cd-unit"><span class="cd-num" data-u="h">--</span><span class="cd-lab">horas</span></div>
+      <div class="cd-unit"><span class="cd-num" data-u="m">--</span><span class="cd-lab">min</span></div>
+      <div class="cd-unit"><span class="cd-num" data-u="s">--</span><span class="cd-lab">seg</span></div>
+    </div>
+  </div>
+
+  <div class="cd-block deadline">
+    <div class="cd-head">🎯 Meta del equipo: tener <strong>todo listo para el 26 de agosto</strong></div>
+    <div class="countdown" data-target="2026-08-26T08:00:00">
+      <div class="cd-unit"><span class="cd-num" data-u="d">--</span><span class="cd-lab">días</span></div>
+      <div class="cd-unit"><span class="cd-num" data-u="h">--</span><span class="cd-lab">horas</span></div>
+      <div class="cd-unit"><span class="cd-num" data-u="m">--</span><span class="cd-lab">min</span></div>
+      <div class="cd-unit"><span class="cd-num" data-u="s">--</span><span class="cd-lab">seg</span></div>
+    </div>
+  </div>
+
+  <a href="https://docs.google.com/document/d/1-4bYFVEgAr5Z1gRx7Wmgvrzs6BbCu7U3tjs7oG_HbxM/edit?usp=sharing" target="_blank" rel="noopener" class="link-cta">
+    <div class="icon-big">🚀</div>
+    <div class="lc-content">
+      <div class="kicker">Documento de trabajo · 2026</div>
+      <h5>¡Sigamos trabajando!</h5>
+    </div>
+    <span class="cta-arrow">→</span>
+  </a>
+  <p class="note">Es el mismodocumento que compartimos en «Importante para leer». Lo repetimos acá para tenerlo a mano.</p>
+
+  <a href="https://drive.google.com/drive/folders/1VcujBvVsCzwHkNgSn1tVGu9sFqG8Jw-z?usp=drive_link" target="_blank" rel="noopener" class="link-card">
+    <div class="icon-big">📁</div>
+    <div class="lc-content">
+      <h5>Carpeta · Jornada Social 2026</h5>
+      <p>Google Drive · carpeta</p>
+    </div>
+  </a>
+</article>
+</section>
+
+<!-- ============== 04 · ENCUENTRO PASTORAL DEL CLERO ============== -->
+<article class="article" id="clero">
+  <div class="article-header">
+    <span class="tag invitacion">Nos invitaron <span class="date-chip">4 al 6 ago</span></span>
+    <h2>Encuentro Pastoral <span class="em">del Clero</span></h2>
+  </div>
+
+  <p class="lead">Del 4 al 6 de agosto se realizó el Encuentro Pastoral del Clero, en la casa de retiro Santa Catalina, en Esperanza. El tema de esta edición fue <strong>el lenguaje en la evangelización de los sectores más populares</strong>.</p>
+
+  <p>Desde hace años los sacerdotes se reúnen para pensar e intercambiar opiniones sobre algún tema de la pastoral ordinaria de la diócesis. Cada vez con más decisión vienen incorporando la presencia de laicos que, desde su lugar y competencia, puedan iluminar, reflexionar y rezar con ellos. Por el tema a tratar, en esta oportunidad abrieron la invitación a los organismos de la Arquidiócesis.</p>
+
+  <div class="pull">
+    <p>El encuentro no está abierto a todos los miembros de dichos organismos, sino a un núcleo representativo que luego también pueda volver y compartir lo charlado con el resto de los integrantes.</p>
+    <div class="src">De la carta de invitación</div>
+  </div>
+
+  <p class="credit"><b>Acompañó&nbsp;·&nbsp;</b>Jorge, el miércoles 5</p>
+
+  <div class="card sky">
+    <div class="small">Una coincidencia</div>
+    <h4>El anuncio de la visita del Papa llegó durante el encuentro</h4>
+    <p style="margin-bottom:0">Fue justamente el miércoles 5, mientras las jornadas estaban en curso en Santa Catalina, cuando la Nunciatura Apostólica confirmó el viaje de León XIV. Desde allí, Mons. Fenoy y Mons. Vecino compartieron su mensaje con toda la Arquidiócesis.</p>
+  </div>
+</article>
+
+<!-- ============== 05 · SAN CAYETANO ============== -->
+<section class="section-alt">
+<article class="article" id="cayetano">
+  <div class="article-header">
+    <span class="tag evento">Nos encontramos <span class="date-chip">7 ago</span></span>
+    <h2>San <span class="em">Cayetano</span></h2>
+    <p class="slogan-big">El santo del pan, la paz y el trabajo</p>
+  </div>
+
+  <p class="lead">Fieles a nuestra tradición, dimos inicio al día de San Cayetano celebrando juntos la misa de las 00 h, junto a movimientos sociales, sindicatos y gremios.</p>
+
+  <p>Nos reunimos alrededor del santo del pan, la paz y el trabajo para elevar nuestra oración <strong>por el empleo, por las familias y por un futuro con más justicia</strong>.</p>
+
+  <div class="info-grid">
+    <div class="info-cell">
+      <div class="icon">🕛</div>
+      <div class="label">Cuándo</div>
+      <div class="val">Viernes 7 de agosto, 00 h</div>
+    </div>
+    <div class="info-cell">
+      <div class="icon">⛪</div>
+      <div class="label">Dónde</div>
+      <div class="val">Parroquia San Cayetano</div>
+    </div>
+    <div class="info-cell">
+      <div class="icon">✝&#xFE0E;</div>
+      <div class="label">Presidió</div>
+      <div class="val">Mons. Sergio Fenoy</div>
+    </div>
+    <div class="info-cell">
+      <div class="icon">🤝</div>
+      <div class="label">Nos acompañaron</div>
+      <div class="val">Movimientos sociales, sindicatos y gremios</div>
+    </div>
+  </div>
+
+  <div class="who">
+    <span class="who-lab">Estuvimos</span>
+    <div class="who-list">
+      <span class="who-chip"><i>M</i>Meli</span>
+      <span class="who-chip"><i>N</i>Nick</span>
+      <span class="who-chip"><i>S</i>Silvi</span>
+      <span class="who-chip"><i>F</i>Fede</span>
+      <span class="who-chip"><i>N</i>Nadi</span>
+    </div>
+  </div>
+
+  <a href="https://www.instagram.com/p/Dbuafu7tBXh/" target="_blank" rel="noopener" class="link-cta">
+    <div class="icon-big">🎬</div>
+    <div class="lc-content">
+      <div class="kicker">Instagram · publicación</div>
+      <h5>Ver el reel de la misa</h5>
+    </div>
+    <span class="cta-arrow">→</span>
+  </a>
+</article>
+</section>
+
+<!-- ============== 06 · DÍA DEL DIÁCONO ============== -->
+<article class="article" id="diacono">
+  <div class="article-header">
+    <span class="tag equipo">Equipo <span class="date-chip">10 ago</span></span>
+    <h2>Día del <span class="em">Diácono</span></h2>
+  </div>
+
+  <p class="lead">El 10 de agosto, fiesta de San Lorenzo, se celebra el Día del Diácono.</p>
+
+  <div class="feast">
+    <div class="feast-date">
+      <span class="d">10</span>
+      <span class="m">agosto</span>
+    </div>
+    <div class="feast-body">
+      <span class="kicker">Fiesta de San Lorenzo</span>
+      <h4>Diácono y mártir, patrono de los diáconos</h4>
+    </div>
+  </div>
+
+  <p>San Lorenzo fue uno de los diáconos de Roma en el siglo III y tenía a su cargo la administración de los bienes de la Iglesia y la asistencia a los pobres. Cuando le exigieron entregar los tesoros de la comunidad, presentó a los pobres. Ese gesto le costó la vida, y dejó marcado para siempre el sentido del diaconado: el servicio.</p>
+
+  <div class="greeting">
+    <span class="ico">🎉</span>
+    <h4>¡Feliz día, Jorge!</h4>
+    <p>Gracias por el servicio de todos los días, y por seguir sosteniendo con nosotros esta tarea compartida.</p>
+  </div>
+</article>
+
+<!-- ============== 07 · EL NIÑO ============== -->
+<section class="section-alt">
+<article class="article" id="elnino">
+  <div class="article-header">
+    <span class="tag equipo">Prevención</span>
+    <h2>Nos preparamos por si <span class="em">llega El Niño</span></h2>
+  </div>
+
+  <p class="lead">Anticiparse también es una forma de cuidar. Nos vamos organizando para estar cerca si el agua llega.</p>
+
+  <p>Colaboraremos en una <strong>colecta organizada por Cáritas</strong>, de ropa interior y especialmente medias. Meli está en vínculo con <strong>Julio</strong>, director de Cáritas Arquidiocesana, para coordinar cómo acompañamos.</p>
+
+  <p>Cáritas, además, participa de las reuniones oficiales que se vienen llevando a cabo.</p>
+
+  <h3>Lo último sobre la prevención en la ciudad</h3>
+
+  <p>En estas semanas la Municipalidad avanzó con dos cuestiones concretas que conviene conocer: el <strong>mapa de puntos de encuentro</strong> por barrio y un <strong>plan familiar de contingencia</strong> para preparar con tiempo lo que hace falta.</p>
+
+  <div class="doc-grid">
+
+  <a href="https://www.ellitoral.com/area-metropolitana/mapa-puntos-encuentro-santafe-ciudad-posible-llegada-nino-fenomeno-climatico-inundacion-crecida-rio-lluvias-familias-plan_0_Z1obU9NykC.html" target="_blank" rel="noopener" class="link-card">
+    <div class="icon-big">🗺️</div>
+    <div class="lc-content">
+      <h5>Dónde acudir: el mapa de puntos de encuentro en Santa Fe ante una posible emergencia hídrica</h5>
+      <p>El Litoral · 10 de agosto de 2026</p>
+    </div>
+  </a>
+
+  <a href="https://www.ellitoral.com/area-metropolitana/riesgohidrico-plandeevacuacionfamiliar-puntosdeencuentro-emergencia-inundacion-fenomenoelnino-santafe-ciudad_0_PlkpXrEhnt.html" target="_blank" rel="noopener" class="link-card">
+    <div class="icon-big">🏠</div>
+    <div class="lc-content">
+      <h5>El plan familiar de la Municipalidad de Santa Fe para actuar antes de que llegue el agua</h5>
+      <p>El Litoral · 4 de agosto de 2026</p>
+    </div>
+  </a>
+
+  <a href="https://www.ellitoral.com/area-metropolitana/refugios-evacuados-santafe-municipalidad_0_l5ChIcCah7.html" target="_blank" rel="noopener" class="link-card">
+    <div class="icon-big">🛟</div>
+    <div class="lc-content">
+      <h5>Ante un posible El Niño fuerte, Santa Fe refuerza su red de refugios y puntos seguros para eventuales evacuaciones</h5>
+      <p>El Litoral · 24 de julio de 2026</p>
+    </div>
+  </a>
+
+  <a href="https://www.airedesantafe.com.ar/politica/emergencia-hidrica-santa-fe-las-12-medidas-clave-que-propone-el-gobierno-el-nino-n664872" target="_blank" rel="noopener" class="link-card">
+    <div class="icon-big">📋</div>
+    <div class="lc-content">
+      <h5>Emergencia hídrica en Santa Fe: las 12 medidas clave que propone el Gobierno por El Niño</h5>
+      <p>Aire de Santa Fe · 30 de julio de 2026</p>
+    </div>
+  </a>
+
+  </div>
+
+  <p class="note left">La Provincia envió a la Legislatura el pedido de emergencia hídrica para todo el territorio santafesino hasta el 30 de abril de 2027.</p>
+</article>
+</section>
+
+<!-- ============== 08 · CONSEJO ECONÓMICO Y SOCIAL ============== -->
+<article class="article" id="ceys">
+  <div class="article-header">
+    <span class="tag reunion">Nos convocan <span class="date-chip">19 y 24 ago</span></span>
+    <h2>Consejo Económico y Social <span class="em">de la Provincia</span></h2>
+  </div>
+
+  <p class="lead">Nos llegó la convocatoria a la reunión de comisiones del Consejo Económico y Social de la provincia de Santa Fe. Son dos instancias distintas, con dos fechas.</p>
+
+  <div class="feast">
+    <div class="feast-date">
+      <span class="d">24</span>
+      <span class="m">agosto</span>
+    </div>
+    <div class="feast-body">
+      <span class="kicker">Lunes · desde las 10.30 h</span>
+      <h4>Reunión de comisiones en la sede de CAMARCO Santa Fe</h4>
+    </div>
+  </div>
+
+  <p>La sede es <strong>Corrientes 2645</strong>, de la ciudad de Santa Fe. El orden del día fue aprobado por la Mesa Directiva y la Asamblea Plenaria del CEyS:</p>
+
+  <ul>
+    <li><strong>Comisión de Producción, Trabajo e Innovación</strong> — Industria y Trabajo.</li>
+    <li><strong>Comisión de Educación</strong> — Plan de Educación Digital e IA para uso didáctico.</li>
+    <li><strong>Comisión de Justicia y Seguridad</strong> — Mediación y Asistencia a las Víctimas.</li>
+    <li><strong>De forma.</strong></li>
+  </ul>
+
+  <div class="feast">
+    <div class="feast-date">
+      <span class="d">19</span>
+      <span class="m">agosto</span>
+    </div>
+    <div class="feast-body">
+      <span class="kicker">Miércoles · 13.30 h</span>
+      <h4>Visita a la Unidad Penitenciaria 8 de la cárcel de Piñero</h4>
+    </div>
+  </div>
+
+  <p>La visita estaba prevista entre las actividades de la Comisión de Justicia y Seguridad, y la hacen extensiva al conjunto de las instituciones miembros. La unidad está próxima a terminarse. <strong>La delegación sale de la sede de la gobernación en Rosario a las 13.30 h.</strong></p>
+
+  <div class="card coral">
+    <div class="small">De la convocatoria</div>
+    <h4>Piden confirmar a la brevedad</h4>
+    <p style="margin-bottom:0">Quien tenga voluntad de sumarse a la visita del 19 necesita confirmarlo cuanto antes.</p>
+  </div>
+
+  <div class="pull">
+    <p>Para el trabajo en las comisiones, es recomendable que las instituciones miembros inviten a instituciones de primer grado afiliadas, especialistas y técnicos que trabajen los temas seleccionados.</p>
+    <div class="src">De la convocatoria del CEyS</div>
+  </div>
+
+  <p>La idea de fondo es que cada institución envíe representantes a las distintas comisiones, de manera de garantizar una representación equilibrada de los tres sectores: <strong>empresarial, sindical y de las organizaciones de la sociedad civil</strong>.</p>
+
+  <p class="note left">Firma la convocatoria el Esp. Lic. Jorge Dolce, Secretario Ejecutivo del CEyS. Carta del 10 de agosto de 2026.</p>
+</article>
+
+<!-- ============== 09 · EXPO VOCACIONAL ============== -->
+<section class="section-alt">
+<article class="article" id="expo">
+  <div class="article-header">
+    <span class="tag invitacion">Nos invitan <span class="date-chip">6 sep</span></span>
+    <h2>VI Expo <span class="em">Vocacional</span></h2>
+    <p class="slogan-big">«Seamos todos uno»</p>
+    <p class="slogan-tag">lema de la Expo</p>
+  </div>
+
+  <p class="lead">Nos invitan a participar con un stand, para compartir nuestra identidad, nuestro carisma y la diversidad de dones que nos caracteriza.</p>
+
+  <div class="info-grid">
+    <div class="info-cell">
+      <div class="icon">📅</div>
+      <div class="label">Cuándo</div>
+      <div class="val">Domingo 6 de septiembre</div>
+    </div>
+    <div class="info-cell">
+      <div class="icon">📍</div>
+      <div class="label">Dónde</div>
+      <div class="val">Esperanza</div>
+    </div>
+    <div class="info-cell">
+      <div class="icon">🕑</div>
+      <div class="label">Desde</div>
+      <div class="val">14 h</div>
+    </div>
+    <div class="info-cell">
+      <div class="icon">⛪</div>
+      <div class="label">Cierre</div>
+      <div class="val">Santa Misa a las 20 h</div>
+    </div>
+  </div>
+
+  <p>Será una jornada pensada para compartir, valorar la vocación del trabajo y seguir fortaleciendo los lazos comunitarios. La invitación llega de parte de <strong>Ludmila Roldán</strong>, del Equipo Organizador.</p>
+
+  <div class="card sky">
+    <div class="small">Para conversar</div>
+    <h4>La Expo cae el mismo día que el cierre de la Semana Social</h4>
+    <p style="margin-bottom:0">El domingo 6 de septiembre es también el último día de la Semana Social en Córdoba. Conviene que veamos juntos quiénes pueden estar en el stand de Esperanza.</p>
+  </div>
+</article>
+</section>
+
+<!-- ============== 10 · OTRAS NOTICIAS ============== -->
+<article class="article wide" id="otras">
+  <div class="article-header">
+    <span class="tag noticia">Enlaces</span>
+    <h2>Otras <span class="em">noticias</span></h2>
+  </div>
+
+  <p class="lead">Tres lecturas breves de estos días, para cuando dispongamos de un momento.</p>
+
+  <div class="news-grid">
+
+    <a href="https://pastoralsocial.org.ar/2026/08/08/inteligencia-artificial-educacion-y-trabajo-para-el-desarrollo-se-realizo-el-3-encuentro-de-encuentro-argentina/" target="_blank" rel="noopener" class="news-tile green">
+      <div class="cover"><span class="ico">💻</span><span class="src">Pastoral Social · 8 ago</span></div>
+      <div class="nt-body">
+        <h5>Inteligencia Artificial, educación y trabajo para el desarrollo: se realizó el 3.° Encuentro de «Encuentro Argentina»</h5>
+        <span class="read">Leer la nota <span>→</span></span>
+      </div>
+    </a>
+
+    <a href="https://www.vaticannews.va/es/papa/news/2026-08/papa-tema-jornada-paz-desarmar-tecnologia-politica-preventiva.html" target="_blank" rel="noopener" class="news-tile sky">
+      <div class="cover"><span class="ico">🕊️</span><span class="src">Vatican News · 11 ago</span></div>
+      <div class="nt-body">
+        <h5>El Papa: Para construir la paz, desarmar la tecnología y la inteligencia artificial</h5>
+        <span class="read">Leer la nota <span>→</span></span>
+      </div>
+    </a>
+
+    <a href="https://www.vaticannews.va/es/papa/news/2026-08/papa-reza-por-las-victimas-del-terremoto-en-colombia.html" target="_blank" rel="noopener" class="news-tile gold">
+      <div class="cover"><span class="ico">🙏</span><span class="src">Vatican News · 11 ago</span></div>
+      <div class="nt-body">
+        <h5>El Papa reza por las víctimas del terremoto en Colombia y pide fortaleza espiritual</h5>
+        <span class="read">Leer la nota <span>→</span></span>
+      </div>
+    </a>
+
+  </div>
+
+  <p class="note left">El tema elegido para la 60.ª Jornada Mundial de la Paz, que se celebrará el 1 de enero de 2027, es «Desarmar la tecnología, servir a la paz. La política como responsabilidad preventiva».</p>
+</article>
+
+<!-- ============== 11 · AGENDA · LO QUE VIENE ============== -->
+<section class="section-alt">
+<article class="article" id="agenda">
+  <div class="article-header">
+    <span class="tag evento">Agenda</span>
+    <h2>Lo que <span class="em">viene</span></h2>
+  </div>
+
+  <p class="lead">Las fechas de acá a noviembre, reunidas en un solo lugar.</p>
+
+  <div class="timeline">
+
+    <div class="tl-month">Agosto</div>
+
+    <div class="tl-item is-next">
+      <div class="tl-date"><span class="d">19</span><span class="m">mié</span></div>
+      <div class="tl-body">
+        <h4>Visita a la Unidad Penitenciaria 8 de Piñero<span class="tl-flag">Lo más próximo</span></h4>
+        <p>Comisión de Justicia y Seguridad del CEyS. La delegación sale de la gobernación en Rosario a las 13.30 h. Piden confirmar a la brevedad.</p>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date"><span class="d">22</span><span class="m">y 23</span></div>
+      <div class="tl-body">
+        <h4>Colecta Nacional Imperada</h4>
+        <p>Sábado 22 y domingo 23, en todas las misas, para la organización de la visita del Papa.</p>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date"><span class="d">24</span><span class="m">lun</span></div>
+      <div class="tl-body">
+        <h4>Reunión de comisiones del CEyS</h4>
+        <p>Desde las 10.30 h en la sede de CAMARCO Santa Fe, Corrientes 2645.</p>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date"><span class="d">26</span><span class="m">mié</span></div>
+      <div class="tl-body">
+        <h4>Meta del equipo</h4>
+        <p>Tener todo listo para la Jornada Social.</p>
+      </div>
+    </div>
+
+    <div class="tl-month">Septiembre</div>
+
+    <div class="tl-item">
+      <div class="tl-date"><span class="d">4</span><span class="m">al 6</span></div>
+      <div class="tl-body">
+        <h4>Semana Social 2026, en Córdoba</h4>
+        <p>«Puentes hacia el Bien Común».</p>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date"><span class="d">6</span><span class="m">dom</span></div>
+      <div class="tl-body">
+        <h4>VI Expo Vocacional, en Esperanza</h4>
+        <p>Desde las 14 h, con Santa Misa a las 20 h.</p>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date"><span class="d">26</span><span class="m">sáb</span></div>
+      <div class="tl-body">
+        <h4>Jornada Social 2026</h4>
+        <p>Desde las 8 h.</p>
+      </div>
+    </div>
+
+    <div class="tl-month">Noviembre</div>
+
+    <div class="tl-item">
+      <div class="tl-date"><span class="d">6</span><span class="m">al 17</span></div>
+      <div class="tl-body">
+        <h4>Viaje apostólico del Papa León XIV</h4>
+        <p>Uruguay, Argentina y Perú.</p>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date"><span class="d">8</span><span class="m">al 11</span></div>
+      <div class="tl-body">
+        <h4>El Papa en la Argentina</h4>
+        <p>Buenos Aires, Córdoba y Luján.</p>
+      </div>
+    </div>
+
+  </div>
+</article>
+</section>
+
+<!-- ============== FOOTER ============== -->
+<footer class="footer">
+  <div class="ornament">✝&#xFE0E;</div>
+  <h3>«Puentes hacia el Bien Común»</h3>
+  <div style="font-family:'Fraunces',serif;font-style:italic;color:var(--gold);font-size:16px;letter-spacing:.5px;margin-top:4px">— Lema de la Semana Social 2026 · Córdoba, 4 al 6 de septiembre</div>
+  <div class="meta">
+    <strong>Pastoral Social</strong> · Arquidiócesis de Santa Fe de la Vera Cruz<br>
+    Boletín Interno N° 9 · 12 de agosto de 2026
+  </div>
+</footer>
+
+</main>
+
+<!-- ============== BACK TO TOP ============== -->
+<button class="back-top" id="backTop" aria-label="Volver arriba" title="Volver arriba">↑</button>
+
+<script>
+  // Back-to-top visibility
+  const backTop = document.getElementById('backTop');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 400) backTop.classList.add('visible');
+    else backTop.classList.remove('visible');
+  });
+  backTop.addEventListener('click', () => {
+    // forma de 2 argumentos (compatible en todos los navegadores);
+    // la animación suave la aporta el CSS scroll-behavior:smooth
+    window.scrollTo(0, 0);
+  });
+
+  // Mobile nav toggle
+  const sidenav = document.getElementById('sidenav');
+  const navToggle = document.getElementById('navToggle');
+  navToggle.addEventListener('click', () => {
+    const open = sidenav.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    navToggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+  });
+  document.querySelectorAll('.sidenav-item').forEach(item => {
+    item.addEventListener('click', () => {
+      if (sidenav.classList.contains('open')) {
+        sidenav.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  });
+
+  // Active section highlighting in sidebar
+  const sections = document.querySelectorAll('section[id], article[id]');
+  const navItems = document.querySelectorAll('.sidenav-item');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        navItems.forEach(item => {
+          item.classList.toggle('active', item.getAttribute('href') === '#' + id);
+        });
+      }
+    });
+  }, {rootMargin: '-40% 0px -55% 0px'});
+  sections.forEach(s => observer.observe(s));
+
+  // Cuentas regresivas (Jornada Social)
+  function tickCountdowns(){
+    const now = new Date().getTime();
+    document.querySelectorAll('.countdown').forEach(cd => {
+      const target = new Date(cd.getAttribute('data-target')).getTime();
+      let diff = target - now;
+      if (diff < 0) diff = 0;
+      const d = Math.floor(diff / 86400000);
+      const h = Math.floor((diff % 86400000) / 3600000);
+      const m = Math.floor((diff % 3600000) / 60000);
+      const s = Math.floor((diff % 60000) / 1000);
+      const set = (u, v) => {
+        const el = cd.querySelector('[data-u="' + u + '"]');
+        if (el) el.textContent = String(v).padStart(2, '0');
+      };
+      set('d', d); set('h', h); set('m', m); set('s', s);
+      cd.classList.toggle('done', diff === 0);
+    });
+  }
+  if (document.querySelector('.countdown')) {
+    tickCountdowns();
+    setInterval(tickCountdowns, 1000);
+  }
+</script>
+
+</body>
+</html>
